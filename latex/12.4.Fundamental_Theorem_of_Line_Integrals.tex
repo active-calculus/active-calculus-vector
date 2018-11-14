@@ -1,0 +1,174 @@
+\section[Path-Independent Vector Fields]{Path-Independent Vector Fields and the Fundamental Theorem of
+Calculus for Line Integrals} \label{S:12.4.FTCLI}
+
+
+\vspace*{-14 pt}
+\framebox{\hspace*{3 pt}
+\parbox{6.25 in}{\begin{goals}
+\item How can we characterize the vector fields $\vF$ for which
+  $\int_C\vF\cdot d\vr$ has the same value for every oriented path
+  from a point $P$ to a point $Q$?
+\item What special properties do gradient vector fields have?
+\end{goals}} \hspace*{3 pt}}
+
+\subsection*{Introduction}
+
+In some of the activities and examples in this chapter we have
+encountered situations where $C_1$ and $C_2$ are different oriented curves from a
+point $P$ to a point $Q$ and $\int_{C_1}\vF\cdot d\vr =
+\int_{C_2}\vF\cdot d\vr$. In this section, we explore vector fields
+which have the property that for all points $P$ and $Q$, if $C_1$ and
+$C_2$ are oriented paths from $P$ to $Q$, then $\int_{C_1}\vF\cdot
+d\vr = \int_{C_2}\vF\cdot d\vr$.
+
+\input{previews/12.4.PA1}
+
+\subsection*{Path-Independent Vector Fields}
+
+We say that a vector field $\vF$ defined on a domain $D$ is
+\textbf{path-independent} \index{pathindependent!definition} if
+$\int_{C_1}\vF\cdot d\vr = \int_{C_2}\vF\cdot d\vr$ whenever $C_1$ and
+$C_2$ are oriented paths in $D$ having the same initial point and same
+terminal point. 
+
+We've already encountered some situations where we had evidence that a
+vector field was path-independent, but since the definition requires
+that for every pair of points in the domain and every possible pair of
+paths from oine point to the other we must get the same value, it
+doesn't appear that verifying a vector field is path-independent is an
+easy task. Fortunately, one familiar class of vector fields can be
+shown to be path-independent. Let $f\colon \R^3\to \R$ be a function
+for which $\nabla f$ is continuous on a domain $D$. Suppose that $P$
+and $Q$ are points in $D$ and let $C$ be a smooth oriented path from $P$ to
+$Q$. Let's take a look at $\int_C\nabla f \cdot d\vr$ by fixing an arbitrary
+parameterization $\vr(t)$ of $C$, $a\leq t \leq b$. Since $\nabla
+f(\vr(t)) = \langle f_x(\vr(t)),f_y(\vr(t)),f_z(\vr(t))\rangle$, we know that
+\[\int_C\nabla f\cdot d\vr  = \int_a^b \nabla f(\vr(t))\cdot
+\vr'(t)\, dt = \int_a^b \langle f_x(\vr(t)), f_y(\vr(t)),
+f_z(\vr(t))\rangle \cdot \vr'(t)\, dt.\]
+If $\vr(t) = \langle x(t), y(t), z(t)\rangle$, then the integrand
+above is
+\begin{multline*}\langle f_x(\vr(t)), f_y(\vr(t)), f_z(\vr(t))\rangle\cdot \langle
+x'(t),y'(t),z'(t)\rangle =\\ f_x(x(t),y(t),z(t))x'(t) +
+f_y(x(t),y(t),z(t))y'(t) + f_z(x(t),y(t),z(t))z'(t).\end{multline*}
+Notice that this is exactly what the chain rule tells us
+$\ds\frac{d}{dt} f(\vr(t))$ is equal to. Therefore,
+\[\int_C\nabla f\cdot d\vr = \int_a^b \frac{d}{dt} f(\vr(t))\, dt =
+f(\vr(b)) - f(\vr(a)) = f(Q) - f(P).\]
+In other words, gradient vector fields are path-independent vector
+fields, and we can evaluate line integrals of gradient vector fields
+by using a potential function. (Technically the argument above assumed
+that $C$ was smooth, but we can replace $C$ by a piecewise smooth
+curve by splitting the line integral up into the sum of finitely many
+line integrals along smooth curves.)
+
+This result is so important that it is frequently called the
+Fundamental Theorem of Calculus for Line integrals, because of its
+similarity to the Fundamental Theorem of Calculus, which can be
+written as
+\[\int_a^b f'(x)\, dx = f(b) - f(a).\]
+\vspace*{5pt}
+\nin \framebox{\hspace*{3 pt}
+  \parbox{6.25 in}{\textbf{Fundamental Theorem of Calculus for Line
+      Integrals} Let $f$ be a function for which $\nabla f$ is
+    continuous on a domain $D$. If $P$ and $Q$ are points in $D$ and
+    $C$ is a piece-wise smooth oriented path from $P$ to $Q$ in $D$, then
+  \[\int_C \nabla f\cdot d\vr = f(Q) - f(P).\]} \hspace*{3 pt}} \vspace*{5pt}
+
+\input{activities/12.4.Act1}
+
+By following the methodology laid out in Preview
+Activity~\ref{PA:12.4} to show that a given vector field is a gradient
+vector field, the Fundamental Theorem of Calculus for Line Integrals
+makes evaluating a large number of line integrals simpler now.
+
+\input{activities/12.4.Act1}
+
+\input{activities/12.4.Act2}
+%\clearpage %% Temporary just to make a handout
+\subsection*{Line Integrals Along Closed Curves}
+
+Recall that we call an oriented curve $C$ \textbf{closed} if it has
+the same initial and terminal point. A typical example of a closed
+curve would be a circle (with orientation), but we could also consider
+something like the square with vertices $(1,1)$, $(-1,1)$, $(-1,-1)$,
+and $(1,-1)$, oriented clockwise (or counterclockwise).
+
+\input{activities/12.4.Act3}
+
+From Activity~\ref{A:12.4.3}, we now know that $\vF$ is path-independent if and only if $\oint_C\vF\cdot d\vr = 0$ for all closed
+curves $C$ in the domain of $\vF$. Although this is not a terribly
+useful way to show that a vector field is path-independent, it can be
+a useful way to show that a vector field is \emph{not}
+path-independent: find a closed curve around which the circulation is
+not zero.
+
+\input{activities/12.4.Act4}
+
+\subsection*{What other vector fields are path-independent?}
+
+Recall that in single variable calculus, the Second Fundamental
+Theorem of Calculus tells us that given a constant $c$ and a
+continuous function $f$, there is a unique function $A(x)$ for which
+$A(c) = 0$ and $A'(x) = f(x)$. In particular, $A(x) = \int_c^x f(t)\,
+dt$ is this function. We are about to investigate an analog of this result for
+path-independent vector fields, but first we require two additional
+definitions.
+
+If $D$ is a subset of $\R^2$ or $\R^3$, we say that $D$ is
+\textbf{open}\index{open!definition} provided that for every point in $D$, there
+is a disc (in $\R^2$) or ball (in $\R^3$) centered at that point such
+that every point of the disc/ball is contained in $D$. For example,
+the set of points $(x,y)$ in $\R^2$ for which $x^2+y^2 < 1$ is open,
+since we can always surround any point in this set by a tiny disc
+contained in the set. However, if we change the inequality to
+$x^2+y^2\leq 1$, then the set is not open, as any point on the circle
+$x^2+y^2=1$ cannot be surrounded by a disc contained in the set; any
+disc surrounding a point on that circle will contain points outside
+the set, that is with $x^2+y^2>1$. We will also say that a region $D$
+is \textbf{connected}\index{connected!definition} provided that for
+every pair of points in $D$, there is a path from one to the other
+contained in $D$.
+
+\input{activities/12.4.Act5}
+
+We summarize the result of Activity~\ref{A:12.4.5} below.
+
+\nin \framebox{\hspace*{3 pt}
+  \parbox{6.25 in}{\textbf{Path-Independent Vector Fields} If $\vF$ is
+  a path-independent vector field on an open, connected domain $D$,
+  then $\vF$ is conservative (or a gradient vector field) on
+  $D$. Furthermore, if $P$ is a point in $D$ and $f(P)$ is fixed, then
+  the function \[f(Q) = f(P) + \int_C\vF\cdot d\vr\]
+  (where $Q$ is a point in $D$ and $C$ is an oriented curve from $P$ to
+  $Q$ in $D$) is a 
+  potential function for $\vF$.} \hspace*{3 pt}} \vspace*{5pt}
+
+
+%\clearpage %% Temporary just to make a handout
+
+%\nin \framebox{\hspace*{3 pt}
+%\parbox{6.25 in}{
+\begin{summary}
+\item Gradient vector fields are path-independent, and if $C$ is an
+  oriented curve from $(x_1,y_1)$ to $(x_2,y_2)$, then $\int_C\nabla f\cdot
+  d\vr = f(x_2,y_2)-f(x_1,y_1)$, with the analogous result holding if
+  $f$ is a function of three variables.
+\item A vector field is path-independent if and only if the
+  ciruclation around every closed curve in its domain is $0$.
+\item If a vector field $\vF$ is path-independent, then there exists a
+  function $f$ such that $\nabla f = \vF$. That is, $\vF$ is a
+  conservative or gradient vector field.
+\end{summary}
+%} \hspace*{3 pt}}
+
+\nin \hrulefill
+
+%\input{exercises/9.2.Vectors(Ex)}
+
+\clearpage
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "0_AC_MV"
+%%% End:

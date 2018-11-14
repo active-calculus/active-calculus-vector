@@ -1,0 +1,249 @@
+\section{The Idea of a Line Integral} \label{S:12.2.IdeaLineIntegral}
+
+
+\vspace*{-14 pt}
+\framebox{\hspace*{3 pt}
+\parbox{6.25 in}{\begin{goals}
+\item What is a line integral of a vector-valued function along a curve?
+\item How can we estimate if a line integral of a vector-valued
+  function along a curve is positive, negative, or zero?
+\end{goals}} \hspace*{3 pt}}
+
+\subsection*{Introduction}
+
+As we discussed in section \ref{S:12.1.VectorFields}, vector fields
+are often useful as representations of forces such as gravity, wind,
+and flowing water. We learned in section \ref{S:9.3.Dot_Product} that
+the dot product of a force vector and a displacement vector tells us
+how much work the force did on the object as it moved from the tail of
+its displacement vector to the tip. However, things more complicated
+when an object's movement is not in a straight line and when the force
+is not uniform throughout the area in which the object moves. For
+example, how much work does a wind of $30$ mph toward the northwest do
+on an airplane that's flying 500 miles due north? What if the wind
+gets weaker the farther north the plane gets? In this
+section, we begin investigating how integration can be used to
+calculate the work a force field does in such circumstances.
+
+\input{previews/12.2.PA1}
+
+\subsection*{Orientations of Curves}
+
+Given our motivation for calculating the work that a force field does
+on an object as it moves through the field, it is natural to concern
+ourselves with \emph{how} the object moves. In particular, in many
+circumstances it will be different if an object moves from the point
+$(0,1)$ to the point $(4,3)$ by first going up the $y$-axis to $(0,3)$
+and then moving horizontally to $(4,3)$ than if the object moves along
+the line segment from $(0,1)$ directly to $(4,3)$. Similarly, given a
+fixed force field, we would expect the work done to be different (in
+fact, opposite) if the object moves from $(4,3)$ to $(0,1)$ directly
+along a line segment. We say that a curve in $\R^2$ or $\R^3$ is
+\emph{oriented} if we have specified the direction of travel along the
+curve. When a curve is given parametrically (including as a
+vector-valued function), our convention will be that the orientation
+follows from the smallest allowable value of the parameter to the largest.
+
+
+\input{activities/12.2.Act1}
+
+\subsection*{Line Integrals}
+
+Just as when we differentiated a vector-valued function $\vr(t)$ to
+find a tangent vector, we begin by dividing a curve $C$ oriented from
+a point $P$ to a point $Q$ into $n$ small, straight pieces. Each of
+these pieces is in an area where the vector field $\vF$ is nearly
+constant. In Figure~\ref{fig:12.2.curve-vectors}, we show this
+situation. Each $\vr_i$ is the tip of a vector that traces out the
+curve, and then the $\Delta\vr_i = \vr_{i+1}-\vr_i$ (shown in blue)
+approximate the curve $C$. The green vectors are the vectors in the
+vector field $\vF$ at each of the designated points along the curve.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\linewidth]{figures/fig_12_2_curve_vec_field.pdf}
+  \caption{A curve $C$ oriented from the point $P$ to the point
+    $Q$. The tips of the vectors $\vr_i$ that trace out the curve are
+    shown as points. The blue vectors are the $\Delta\vr_i$, while the
+  green vectors are the vectors associated to each of the points by a
+  vector field $\vF$.}
+  \label{fig:12.2.curve-vectors}
+\end{figure}
+
+If we are trying to figure out how much a wind current helps or
+hinders an aircraft flying along a path determined by the curve, then
+calculating the dot product $\vF(\vr_i)\cdot \Delta\vr_i$ makes sense for
+the local amount of help/hindrance, as if the vector $\vr_i$ along the
+curve and the force field vector $\vF(\vr_i)$ point in similar
+directions, the dot product will be positive.\footnote{We are abusing
+  notation here a tiny bit, since technically the domain of $\vF$ is
+  points in $\R^2$ or $\R^3$, and $\vr_i$ is a vector. By $\vF(\vr)$,
+  we mean $\vF(r_1,r_2)$, where $\vr= \langle r_1,r_2\rangle$.} On the other hand, if
+the angle between them is obtuse, the dot product will be negative and
+we also would note that the force field is hindering the aircraft's
+progress. Taking the sum over $i=0,\dots,n-1$, we have a Riemann sum
+that approximates the work done by the vector field on the aircraft as
+it flies along $C$:
+\[\sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta \vr_i.\]
+This suggests the following definition.
+
+\vspace*{5pt}
+\nin \framebox{\hspace*{3 pt}
+  \parbox{6.25 in}{\begin{definition} \label{def:12.2.line-integral}Let $C$ be an oriented curve and
+      $\vF$ a vector field defined in a region containing $C$. The
+      \textbf{line integral}\index{lineintegral!definition} of $\vF$
+      along $C$ is
+      \[\int_C \vF\cdot d\vr = \lim_{|\Delta\vr_i|\to 0}
+      \sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta\vr_i,\]
+      provided the limit exists.
+\end{definition} } \hspace*{3 pt}} \vspace*{5pt}
+
+The limit in definition~\ref{def:12.2.line-integral} exists provided
+that $\vF$ is a continuous vector field, by which we mean that each
+component function of $\vF$ is continuous as a function of $2$ or $3$
+variables, and that $C$ is a piecewise smooth curved traced out from
+its initial point to its terminal point without retracing any portion
+of the curve.
+
+Because the dot products in the definition of the line integral
+$\int_C\vF\cdot d\vr$ can each be viewed as the work done by $\vF$ as
+an object moves along the (very small) vector $\Delta\vr$, the line
+integral gives the total work done by the vector field on an object
+that moves along $C$ (in the direction of its orientation).
+
+\input{activities/12.2.Act2}
+
+The next several sections will be devoted to determining ways to
+calculate line integrals, since the limit in the definition, just like
+the limit in the definition of every other type of integral we've
+studied so far, is cumbersome to work with in most cases. However, in
+the case where the oriented curve $C$ is composed of horizontal and
+vertical line segments, we can make a rather quick reduction to a
+single-variable integral, as the following example shows.
+
+\begin{example}\label{ex:12.2.line-int}
+  Consider the constant vector field $\vF(x,y) = \langle
+  2,1\rangle$. Let $C$ be the curve that follows the horizontal line
+  segment from $(1,1)$ to $(4,1)$ and then continues down the vertical
+  line segment to $(4,-2)$. Figure~\ref{fig:12.2.curve-field} shows
+  $\vF$ and $C$, including the orientation.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\linewidth]{figures/fig_12_2_field_line_segs.pdf}
+  \caption{An oriented curve from $(1,1)$ to $(4,-2)$ in a vector
+    field $\vF$.}
+  \label{fig:12.2.curve-field}
+\end{figure}
+
+To calculate $\int_C\vF\cdot d\vr$, we'll start by working with the
+horizontal line segment. Along that part of $C$, notice that
+$d\vr\approx \Delta\vr = \Delta x\vi$. Thus, the Riemann sum that
+calculates the line integral along this portion of $C$ consists of
+terms of the form $\langle 2,1\rangle\cdot (\Delta x \vi) = 2\Delta
+x$. Along this part of $C$, $x$ ranges from $1$ to $4$, and thus we
+can turn the Riemann sum here into the definite integral $\int_1^4 2\,
+dx = 6$. Since the vectors are generally pointing in a direction that
+agrees with the orientation of $C$, we are not surprised to have a
+positive value here.
+
+Now we turn our attention to the vertical portion of $C$. Here $d\vr
+\approx \Delta\vr = \Delta y\vj$, which means that $\vF\cdot
+d\vr\approx 1\Delta y$. Hence, our Riemann sum can
+be calculated by the definite integral $\int_1^{-2} 1\, dy =
+-3$. Notice that the limits of integration here were set up to match
+the orientation of $C$. Also, the negative value should not be
+unexpected, since $C$ is oriented in a direction for which the vectors
+of $\vF$ point in a direction that would hinder motion along $C$.
+
+Combining these two pieces of work, we find that $\int_C \vF\cdot d\vr
+= 6 - 3 = 3$.
+\end{example}
+
+\subsection*{Properties of Line Integrals}
+
+In Example~\ref{ex:12.2.line-int}, we implicitly made use of the idea
+that if $C$ can be broken up into two curves $C_1$ and $C_2$ such that
+the endpoint of $C_1$ is the start point of $C_2$, then the line
+integral of $\vF$ along $C$ is the sum of the line integrals of $\vF$
+along $C_1$ and along $C_2$. This probably seems natural, based on the
+property for definite integrals which tells us that
+\[\int_a^b f(x)\, dx = \int_a^c f(x)\, dx + \int_c^b f(x)\, dx.\]
+The table below summarizes some other properties of line integrals,
+each of which has a familiar analogue amongst the properties of
+definite integrals. If $C_1$ and $C_2$ are oriented curves, with $C_1$
+from a point $P$ to a point $Q$ and $C_2$ from $Q$ to a point $R$, we
+denote by $C_1+C_2$ the oriented curve from $P$ to $R$ that follows
+$C_1$ to $Q$ and then continues along $C_2$ to $R$. Also, if $C$ is an
+oriented curve, $-C$ denotes the same curve but with the opposite
+orientation.
+
+
+\vspace*{5pt}
+\nin 
+\framebox{
+  \hspace*{3 pt}
+  \parbox{6.25 in}{
+    For a constant scalar $k$, vector fields $\vF$ and $\vG$, and
+    oriented curves $C$, $C_1$, and $C_2$, the following properties hold:
+    \begin{enumerate}
+    \item $\ds\int_C (k\vF)\cdot d\vr = k\int_C\vF\cdot d\vr$
+    \item $\ds\int_C(\vF+\vG)\cdot d\vr = \int_C \vF\cdot d\vr +
+      \int_C\vG\cdot d\vr$
+    \item $\ds\int_{-C}\vF\cdot d\vr = -\int_C \vF\cdot d\vr$
+    \item $\ds\int_{C_1+C_2} \vF\cdot d\vr = \int_{C_1}\vF\cdot d\vr +
+      \int_{C_2}\vF\cdot d\vr$.
+    \end{enumerate}
+  } 
+  \hspace*{3 pt}
+}
+\vspace*{5pt}
+
+\input{activities/12.2.Act3}
+
+\subsection*{The Circulation of a Vector Field}
+
+If an oriented curve $C$ ends at the same point where it started, we
+say that $C$ is \textbf{closed}. The line integral of a vector field
+$\vF$ along a closed curve $C$ is called the \textbf{circulation} of
+$\vF$ around $C$. To emphasize the fact that $C$ is closed, we
+sometimes write $\oint_C \vF\cdot d\vr$ for $\int_C \vF\cdot
+d\vr$. Circulation servies as a measure of a vector field's tendency
+to rotate in a manner consistent with the orientation of the curve.
+
+\input{activities/12.2.Act4}
+% In Figure~\ref{fig:12.2.circulation}
+
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=0.45\linewidth]{figures/fig_12_2_circ_circle.pdf}  \includegraphics[width=0.45\linewidth]{figures/fig_12_2_circ_box.pdf}
+
+%   \caption{Closed oriented curves in vector fields}
+%   \label{fig:12.2.curve-vectors}
+% \end{figure}
+
+
+%\nin \framebox{\hspace*{3 pt}
+%\parbox{6.25 in}{
+\begin{summary}
+\item A line integral measures of a vector field along an oriented
+  curve measures the extent to which the vector field points in a
+  direction consistent with the orientation of the curve.
+\item Line integrals are defined using Riemann sums by breaking the
+  curve into many small segments along which the vector field is
+  essentially constant.
+\item Line integrals have many properties that are analogous to those
+  of definite integrals of functions of a single variable.
+\end{summary}
+%} \hspace*{3 pt}}
+
+\nin \hrulefill
+
+%\input{exercises/9.2.Vectors(Ex)}
+
+\clearpage
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "0_AC_MV"
+%%% End:
