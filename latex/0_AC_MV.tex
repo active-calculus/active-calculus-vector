@@ -1,0 +1,236 @@
+\documentclass[11pt]{book}
+
+\setlength{\oddsidemargin}{0.1in}
+\setlength{\evensidemargin}{0.1in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{.04in}
+\setlength{\textheight}{8.2in}
+
+%Path to images
+\usepackage{graphicx,multicol}
+\graphicspath{ {figures/} }
+\DeclareGraphicsExtensions{.eps,.png}
+
+%% AMS packages
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm,hhline}
+
+%% other packages
+% note that "epstopdf" is required for Mac users
+
+\usepackage{graphics,epstopdf,fancyhdr,palatino, verbatim, bigstrut,
+  lscape,enumitem, caption}
+\usepackage[abs]{overpic}
+\usepackage{graphicx, animate}
+\usepackage{color, colortbl}
+\definecolor{tracered}{rgb}{1,0.5,0.5}
+\definecolor{traceblue}{rgb}{0.5,0.5,1}
+\usepackage{makeidx}
+\makeindex
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue,  anchorcolor=blue,
+citecolor=blue, filecolor=blue, menucolor=blue, pagecolor=blue,
+urlcolor=blue,pdftitle={ACmain}}
+
+%% Packages to use the MathDesign _Charter_ font.
+
+%\usepackage[T1]{fontenc}
+%\usepackage[charter]{mathdesign}
+
+%% Activities package
+
+% Options to the activities package are: "bighints", "smallhints",
+% "activitysolutions" (which are mutually exclusive; the last one listed is the
+% one used) "exercisesolutions", and "authornotes".  If the option is there, then
+% the corresponding environment is shown.
+
+\usepackage{activities}
+
+\lhead[\fancyplain{}{\thepage}]         {\fancyplain{}{\rightmark}}
+\chead[\fancyplain{}{}]                 {\fancyplain{}{}}
+\rhead[\fancyplain{}{\rightmark}]       {\fancyplain{\scalebox{0.35}{\includegraphics{figures/CClicense.eps}} }{\thepage}}
+
+\rfoot[\fancyplain{}{}] {\fancyplain{}{\scalebox{0.35}{\includegraphics{figures/CClicense.eps}} }}
+
+\cfoot[\fancyplain{\thepage}{}] {\fancyplain{\thepage}{}}
+
+\lfoot[ \fancyplain{ \scalebox{0.35}{\includegraphics{figures/CClicense.eps}}  }  { \scalebox{0.35}{\includegraphics{figures/CClicense.eps}}  } ] {\fancyplain{}{}}
+
+
+% \newcounter{cnt}
+% \newenvironment{numlist}{\begin{list}{(\arabic{cnt})}{\usecounter{cnt}
+% \setlength{\leftmargin}{.35 in}\setlength{\labelwidth}{.35 in}
+% \setlength{\itemsep}{10 pt}}}{\end{list}}
+\newenvironment{numlist}{\begin{enumerate}[label=(\arabic*),leftmargin=0.35in,labelwidth=0.35in,itemsep=10pt]}{\end{enumerate}}
+
+% \newcounter{cnt4}
+% \newenvironment{numlist2}{\begin{list}{(\arabic{cnt4})}{\usecounter{cnt4}
+% \setlength{\leftmargin}{.5 in}\setlength{\labelwidth}{.25 in}
+% \setlength{\itemsep}{10 pt}}}{\end{list}}
+\newenvironment{numlist2}{\begin{enumerate}[label=(\arabic*),leftmargin=0.5in,labelwidth=0.25in,itemsep=10pt]}{\end{enumerate}}
+
+%\newcounter{cnt2}
+%\newenvironment{alphalist}{\vspace*{-3 pt}\begin{list}{(\alph{cnt2})}{\usecounter{cnt2}
+%\setlength{\leftmargin}{.5 in}\setlength{\labelwidth}{.25
+%in}\setlength{\itemsep}{5 pt}}}{\end{list}}
+\newenvironment{alphalist}{\vspace*{-3pt}\begin{enumerate}[label=(\alph*),leftmargin=0.5in,labelwidth=0.25in,itemsep=5pt]}{\end{enumerate}}
+
+% \newcounter{cnt3}
+% \newenvironment{alphalist2}{\vspace*{-3 pt}\begin{list}{(\alph{cnt3})}{\usecounter{cnt3}
+% \setlength{\leftmargin}{.25 in}\setlength{\labelwidth}{.25
+% in}\setlength{\itemsep}{5 pt}}}{\end{list}}
+\newenvironment{alphalist2}{\vspace*{-3pt}\begin{enumerate}[label=(\alph*),leftmargin=0.25in,labelwidth=0.25in,itemsep=5pt]}{\end{enumerate}}
+
+% \newcounter{cnt5}
+% \newenvironment{thmlist}{\vspace*{-3 pt}\begin{list}{{\em (\roman{cnt5})}}{\usecounter{cnt5}
+% \setlength{\leftmargin}{.5 in}\setlength{\labelwidth}{.25
+% in}\setlength{\itemsep}{3 pt}}}{\end{list}}
+\newenvironment{thmlist}{\vspace*{-3pt}\begin{enumerate}[label=\emph{(\roman*)},leftmargin=0.5in,labelwidth=0.25in,itemsep=3pt]}{\end{enumerate}}
+
+%\newcommand{\lint}{\raisebox{-.14 in}{\underline{\hspace*{.7 ex}}}
+%\hspace*{-1 ex} \int}
+
+%\newcommand{\uint}{\hspace*{1.5 ex} \raisebox{.296 in}{\underline{\hspace*{.7 ex}}}
+%\hspace*{-2.3 ex} \int}
+
+\setlength{\parskip}{5 pt}
+
+\newcounter{lastenum}
+\newcommand{\saveCount}{\setcounter{lastenum}{\value{enumi}}}
+\newcommand{\restoreCount}{\setcounter{enumi}{\value{lastenum}}}
+\newcommand{\addeqno}{\refstepcounter{equation}\tag{\theequation}}
+
+\newcommand{\be}{\begin{numlist}}
+\newcommand{\ee}{\end{numlist}}
+\newcommand{\bei}{\begin{numlist2}}
+\newcommand{\eei}{\end{numlist2}}
+\newcommand{\ba}{\begin{alphalist}}
+\newcommand{\ea}{\end{alphalist}}
+\newcommand{\bal}{\begin{alphalist2}}
+\newcommand{\eal}{\end{alphalist2}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\btl}{\begin{thmlist}}
+\newcommand{\etl}{\end{thmlist}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+
+
+% theorem-like environments
+\theoremstyle{definition}
+\newtheorem{pa}{Preview Activity}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+
+\newcommand{\bex}{\begin{center}\underline{\hspace{5.0in}}\end{center} \begin{example}}
+\newcommand{\eex}{\end{example} \noindent{\bf Solution.}~~}
+\newcommand{\afterex}{\begin{center}\underline{\hspace{5.0in}}\end{center}}
+\newcommand{\afterexercises}{\nin \hrulefill \vfill \ \newpage}
+
+% my commands
+
+\newcommand{\ds}{\ensuremath{\displaystyle}}
+\newcommand{\nin}{\noindent}
+\newcommand{\tr}{\vspace*{0.5in}}
+\newcommand{\lr}{\vspace*{1.0in}}
+\newcommand{\mr}{\vspace*{2.0in}}
+\newcommand{\br}{\vspace*{3.0in}}
+\newcommand{\afterpa}{\hfill $\bowtie$}
+\newcommand{\aftera}{\hfill $\lhd$}
+
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}}
+
+\newenvironment{goals}{ \vspace*{7 pt}{\large \textbf{Motivating Questions}} \vspace*{-6 pt} \\ ~\hrule~ \vspace*{2 pt}
+
+ {\em In this section, we strive to understand the ideas generated by the following important questions:}
+\vspace*{-5 pt} \\ ~\hrule~ \vspace*{-3 pt}
+\begin{list}{\labelitemi}{\leftmargin=1.25em}
+\setlength{\itemsep}{3 pt}}{ \end{list} \vspace*{-2 pt}}
+
+\newenvironment{summary}{ \vspace*{7 pt}
+\nin{\large \textbf{Summary}} \vspace*{-6 pt} %\\ ~\hrule~ \vspace*{2 pt}
+%\nin{\em \hspace*{-10pt} In this section, we encountered the following important ideas:}
+%\vspace*{-9 pt} \\ ~\hrule~ \vspace*{-3 pt}
+\begin{list}{\labelitemi}{\leftmargin=1.25em}
+\setlength{\itemsep}{3 pt}}{ \end{list} \vspace*{-2 pt}}
+
+\pagestyle{fancyplain}
+
+\setcounter{chapter}{11}
+
+%TABLE/GRAPH ON ONE LINE COMMANDS
+%\begin{figure}[h]
+%\centering
+%\begin{tabular}{cc}
+%	\raisebox{.75in}{\begin{tabular}[b]{c|c} $x$ & $y$ \\ \hline a & b \\ c & d \\ e & f  \end{tabular} } &	
+%	\hspace{1in} \includegraphics[2in,2in]{c:/mth310/project/Hamilton.bmp}
+%\end{tabular}
+%\caption{{\scriptsize Table and graph for $f$.}}
+%\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Active Calculus - Multivariable \\ \vspace{0.02in} \small{2015 edition} \\ \vspace{0.1in} \scalebox{0.75}{\includegraphics{figures/CClicense.eps}}}
+%\date{\today}
+\author{Steve Schlicker, Lead Author and Editor \\ Department of Mathematics \\ Grand Valley State University \\
+\texttt{schlicks@gvsu.edu} \\
+\href{http://faculty.gvsu.edu/schlicks/}{\texttt{http://faculty.gvsu.edu/schlicks/}}\\
+\vspace{1.5in} \\
+David Austin, Contributing Author \\
+\href{http://merganser.math.gvsu.edu/david/}{\texttt{http://merganser.math.gvsu.edu/david/}} \\ \ \\
+Matt Boelkins, Contributing Author \\
+\href{http://faculty.gvsu.edu/boelkinm/}{\texttt{http://faculty.gvsu.edu/boelkinm/}} }
+
+%\includeonly{6.chap}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+
+
+\mainmatter
+
+\include{12.chap}
+
+
+\pagebreak
+
+\backmatter
+	
+\printindex
+
+\end{document} 

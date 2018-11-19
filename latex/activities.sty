@@ -1,0 +1,116 @@
+%%
+%% This is file `activities.sty',
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Activities.sty package,           2011-8-17          %%
+%% Copyright (C) 2011 Clark Wells                       %%
+%%   wellsc@gvsu.edu                                    %%
+%%                                                      %%
+%% This program can redistributed and/or modified under %%
+%% the terms of the LaTeX Project Public License        %%
+%% Distributed from CTAN archives in directory          %%
+%% macros/latex/base/lppl.txt; either version 1 of the  %%
+%% License, or (at your option) any later version.      %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{activities}
+ [2011/08/17 v1.00 Activities with optional small hints, big hints, full
+ solutions, and author's notes for LaTeX/PDF package]
+\DeclareOption{smallhints}{\act@show@smallhintstrue\act@show@bighintsfalse\act@show@activitysolutionsfalse}
+\DeclareOption{bighints}{\act@show@smallhintsfalse\act@show@bighintstrue\act@show@activitysolutionsfalse}
+\DeclareOption{activitysolutions}{\act@show@smallhintsfalse\act@show@bighintsfalse\act@show@activitysolutionstrue}
+\DeclareOption{exercisesolutions}{\act@show@exercisesolutionstrue}
+\DeclareOption{authornotes}{\act@show@authornotestrue}
+
+\newif\ifact@show@smallhints \act@show@smallhintsfalse
+\newif\ifact@show@bighints \act@show@bighintsfalse
+\newif\ifact@show@activitysolutions \act@show@activitysolutionsfalse
+\newif\ifact@show@exercisesolutions \act@show@exercisesolutionsfalse
+\newif\ifact@show@authornotes \act@show@authornotesfalse
+
+\ProcessOptions
+
+\newcounter{acti}[chapter]
+\renewcommand{\theacti}{\thechapter.\arabic{acti}}
+\newenvironment{activity}[1][]
+{\refstepcounter{acti}\par\noindent{\normalfont\large\bfseries{}Activity~\theacti.%
+\if\relax\detokenize{#1}\relax\else{ (#1)}\fi%
+}
+\begin{list}{}{\setlength{\leftmargin}{0.5cm}\setlength{\topsep}{\z@}}\item[]}
+{\end{list}}
+
+\newcounter{exeri}
+\newenvironment{exercises}[1][]
+{\par\noindent{\normalfont\large\bfseries{}Exercises
+\if\relax\detokenize{#1}\relax\else{ (#1)}\fi%
+}
+\begin{list}{\bfseries\arabic{exeri}.}{\usecounter{exeri}\setlength{\leftmargin}{0.5cm}\setlength{\topsep}{\z@}}}
+{\end{list}}
+
+\ifact@show@activitysolutions
+\newenvironment{activitySolution}[1][]
+{\unskip\par\noindent{\bfseries{}Solution
+\if\relax\detokenize{#1}\relax\else{ (#1)}\fi%
+}
+\newline}
+{\unskip\par}
+\else
+\newenvironment{activitySolution}[1][]
+{\setbox\z@\vbox\bgroup}
+{\egroup}
+\fi
+
+\ifact@show@exercisesolutions
+\newenvironment{exerciseSolution}[1][]
+{\unskip\par\noindent{\bfseries{}Solution
+\if\relax\detokenize{#1}\relax\else{ (#1)}\fi%
+}
+\newline}
+{\unskip\par}
+\else
+\newenvironment{exerciseSolution}[1][]
+{\setbox\z@\vbox\bgroup}
+{\egroup}
+\fi
+
+\ifact@show@smallhints
+\newenvironment{smallhint}[1][]
+{\unskip\par\noindent{\bfseries{}Hint(s):
+\if\relax\detokenize{#1}\relax\else{ (#1)}\fi%
+}}
+{\unskip\par}
+\else
+\newenvironment{smallhint}[1][]
+{\setbox\z@\vbox\bgroup}
+{\egroup}
+\fi
+
+\ifact@show@bighints
+\newenvironment{bighint}[1][]
+{\unskip\par\noindent{\bfseries{}Hint(s):
+\if\relax\detokenize{#1}\relax\else{ (#1)}\fi%
+}}
+{\unskip\par}
+\else
+\newenvironment{bighint}[1][]
+{\setbox\z@\vbox\bgroup}
+{\egroup}
+\fi
+
+\ifact@show@authornotes
+\newenvironment{authornote}[1][]
+{\noindent\itshape{}{Note:
+\if\relax\detokenize{#1}\relax\else{ (#1)}\fi%
+}
+\newline}
+{}
+\else
+\newenvironment{authornote}[1][]
+{\setbox\z@\vbox\bgroup}
+{\egroup}
+\fi
+
+
+\endinput
+%%
+%% End of file `activities.sty'.
