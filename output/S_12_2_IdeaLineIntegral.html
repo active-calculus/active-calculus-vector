@@ -1,0 +1,286 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<!--**************************************-->
+<!--*    Generated from PreTeXt source   *-->
+<!--*    on 2019-01-18T13:59:12-06:00    *-->
+<!--*                                    *-->
+<!--*      https://pretextbook.org       *-->
+<!--*                                    *-->
+<!--**************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Idea of a Line Integral</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    asciimath2jax: {
+        ignoreClass: ".*",
+        processClass: "has_am"
+    },
+    jax: ["input/AsciiMath"],
+    extensions: ["asciimath2jax.js"],
+    TeX: {
+        extensions: ["extpfeil.js", "autobold.js", "https://aimath.org/mathbook/mathjaxknowl.js", ],
+        // scrolling to fragment identifiers is controlled by other Javascript
+        positionToHash: false,
+        equationNumbers: { autoNumber: "none", useLabelIds: true, },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    // HTML-CSS output Jax to be dropped for MathJax 3.0
+    "HTML-CSS": {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+    CommonHTML: {
+        scale: 88,
+        mtextFontInherit: true,
+    },
+});
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full"></script><script src="https://aimath.org/knowl.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="https://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.1/pretext.js"></script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="https://aimath.org/mathbook/mathbook-add-on2.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.1/features.css" rel="stylesheet" type="text/css">
+<script>var logged_in = false;
+var role = 'student';
+var guest_access = true;
+var login_required = false;
+</script>
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div class="hidden-content" style="display:none">\(\renewcommand{\theacti}{\thechapter.\arabic{acti}}
+\newcommand{\saveCount}{\setcounter{lastenum}{\value{enumi}}}
+\newcommand{\restoreCount}{\setcounter{enumi}{\value{lastenum}}}
+\newcommand{\addeqno}{}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bei}{\begin{numlist2}}
+\newcommand{\eei}{\end{numlist2}}
+\newcommand{\ba}{\begin{enumerate}}
+\newcommand{\ea}{\end{enumerate}}
+\newcommand{\bal}{\begin{alphalist2}}
+\newcommand{\eal}{\end{alphalist2}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\btl}{\begin{thmlist}}
+\newcommand{\etl}{\end{thmlist}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\afterex}{\begin{center}\underline{}\end{center}}
+\newcommand{\afterexercises}{\nin \vfill \ }
+\newcommand{\nin}{}
+\newcommand{\tr}{\vspace{0.5in}}
+\newcommand{\lr}{\vspace{1.0in}}
+\newcommand{\mr}{\vspace{2.0in}}
+\newcommand{\br}{\vspace{3.0in}}
+\newcommand{\afterpa}{\hfill $\bowtie$}
+\newcommand{\aftera}{\hfill $\lhd$}
+\newcommand{\T}{}
+\newcommand{\B}{\rule[-1.2ex]{0pt}{0pt}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="index.html"><span class="title">Active Calculus - Multivariable Vector Calculus Addendum</span></a></h1>
+<p class="byline">Steve Schlicker, Lead Author, Mitchel T. Keller, Contributing Author, Nicholas Long, Contributing Author</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S_12_1_VectorFields.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C_12.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S_12_3_ParamLineIntegrals.html" title="Next">Next</a></span>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S_12_1_VectorFields.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C_12.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S_12_3_ParamLineIntegrals.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="frontmatter-1.html" data-scroll="frontmatter-1"><span class="title">Front Matter</span></a></h2>
+<h2 class="link"><a href="C_12.html" data-scroll="C_12"><span class="codenumber">1</span> <span class="title">Vector Calculus</span></a></h2>
+<ul>
+<li><a href="S_12_1_VectorFields.html" data-scroll="S_12_1_VectorFields">Vector Fields</a></li>
+<li><a href="S_12_2_IdeaLineIntegral.html" data-scroll="S_12_2_IdeaLineIntegral" class="active">The Idea of a Line Integral</a></li>
+<li><a href="S_12_3_ParamLineIntegrals.html" data-scroll="S_12_3_ParamLineIntegrals">Using Parameterizations to Calculate Line Integrals</a></li>
+<li><a href="S_12_4_FTCLI.html" data-scroll="S_12_4_FTCLI">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+</ul>
+<h2 class="link"><a href="backmatter-1.html" data-scroll="backmatter-1"><span class="title">Back Matter</span></a></h2>
+<h2 class="link"><a href="references-1.html" data-scroll="references-1"><span class="title">Bibliography</span></a></h2>
+<h2 class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></h2></nav><div class="extras"><nav><a class="mathbook-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="mathbook-content"><section class="section" id="S_12_2_IdeaLineIntegral"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">1.2</span> <span class="title">The Idea of a Line Integral</span>
+</h2>
+<a href="S_12_2_IdeaLineIntegral.html" class="permalink">¶</a><section class="introduction" id="introduction-2"><article class="objectives" id="objectives-2"><h6 class="heading"><span class="type">Objectives</span></h6>
+<ul class="disc">
+<li id="li-22"><p id="p-35">What is a line integral of a vector-valued function along a curve?</p></li>
+<li id="li-23"><p id="p-36">How can we estimate if a line integral of a vector-valued function along a curve is positive, negative, or zero?</p></li>
+</ul></article><p id="p-37">As we discussed in <a href="S_12_1_VectorFields.html" class="xref" title="Section 1.1: Vector Fields">section 1.1</a>, vector fields are often useful as representations of forces such as gravity, wind, and flowing water. We learned in <span>(((Unresolved xref, reference "S_9_3_Dot_Product"; check spelling or use "provisional" attribute)))</span><a href="" class="xref" title="">section </a> that the dot product of a force vector and a displacement vector tells us how much work the force did on the object as it moved from the tail of its displacement vector to the tip. However, things more complicated when an object's movement is not in a straight line and when the force is not uniform throughout the area in which the object moves. For example, how much work does a wind of \(30\) mph toward the northwest do on an airplane that's flying 500 miles due north? What if the wind gets weaker the farther north the plane gets? In this section, we begin investigating how integration can be used to calculate the work a force field does in such circumstances.</p>
+<article class="example-like" id="PA_12_2"><h6 class="heading">
+<span class="type">Preview Activity</span> <span class="codenumber">1.2.1</span>
+</h6>
+<p id="p-38">Recall from <span>(((Unresolved xref, reference "S_9_3_Dot_Product"; check spelling or use "provisional" attribute)))</span><a href="" class="xref" title="">Section </a> that the work done by a force \(\vF\) on an object that moves with displacement vector \(\vv\) is \(\vF\cdot \vv\text{.}\) In this Preview Activity, we will consider the work done by a wind blowing due east at \(45\) miles per hour on an airplane at various stages of its journey.</p>
+<ol class="decimal">
+<li id="li-24"><p id="p-39">A pilot flies for an hour and finds that he is \(300\) miles from where he started at a heading of \(20^\circ\) degrees east of due north. Find the work the wind has done on the airplane during the flight.</p></li>
+<li id="li-25"><p id="p-40">An hour later, the pilot determines that he is \(275\) miles due north of where he previously checked his position. Find the work done by the wind on the airplane during the second hour of the flight.</p></li>
+<li id="li-26"><p id="p-41">Find the pilot's displacement from his original position after two hours of flying and use that to find the work done by the wind on the airplane during the first two hours of flight.</p></li>
+<li id="li-27"><p id="p-42">How does your answer to the previous part connect to the answers to the first two parts?</p></li>
+<li id="li-28"><p id="p-43">Suppose that the pilot then flies \(45^\circ\) west of due north for \(200\) miles. Find the work done by the wind on the airplane during this part of the journey.</p></li>
+</ol></article></section><section class="subsection" id="subsection-6"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.2.1</span> <span class="title">Orientations of Curves</span>
+</h3>
+<p id="p-44">Given our motivation for calculating the work that a force field does on an object as it moves through the field, it is natural to concern ourselves with <em class="emphasis">how</em> the object moves. In particular, in many circumstances it will be different if an object moves from the point \((0,1)\) to the point \((4,3)\) by first going up the \(y\)-axis to \((0,3)\) and then moving horizontally to \((4,3)\) than if the object moves along the line segment from \((0,1)\) directly to \((4,3)\text{.}\) Similarly, given a fixed force field, we would expect the work done to be different (in fact, opposite) if the object moves from \((4,3)\) to \((0,1)\) directly along a line segment. We say that a curve in \(\R^2\) or \(\R^3\) is <em class="emphasis">oriented</em> if we have specified the direction of travel along the curve. When a curve is given parametrically (including as a vector-valued function), our convention will be that the orientation follows from the smallest allowable value of the parameter to the largest.</p>
+<article class="example-like" id="A_12_2_1"><h6 class="heading">
+<span class="type">Activity</span> <span class="codenumber">1.2.2</span>
+</h6>
+<p id="p-45">Find parameterizations of each of the curves described below. Ensure that each curve's orientation matches the one specified.</p>
+<ol class="decimal">
+<li id="li-29"><p id="p-46">The line segment in \(\R^3\) from \((0,1,-2)\) to \((3,-1,2)\text{.}\)</p></li>
+<li id="li-30"><p id="p-47">The line segment in \(\R^3\) from \((3,-1,2)\) to \((0,1,-2)\text{.}\)</p></li>
+<li id="li-31"><p id="p-48">The circle of radius \(3\) (in \(\R^2\)) centered at the origin, beginning at the point \((0,-3)\) and proceeding clockwise around the circle.</p></li>
+<li id="li-32"><p id="p-49">The portion of the parabola \(y^2 = x\) from the point \((4,2)\) to the point \((1,-1)\text{.}\)</p></li>
+</ol></article></section><section class="subsection" id="subsection-7"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.2.2</span> <span class="title">Line Integrals</span>
+</h3>
+<p id="p-50">Just as when we differentiated a vector-valued function \(\vr(t)\) to find a tangent vector, we begin by dividing a curve \(C\) oriented from a point \(P\) to a point \(Q\) into \(n\) small, straight pieces. Each of these pieces is in an area where the vector field \(\vF\) is nearly constant. In <a knowl="./knowl/fig_12_2_curve-vectors.html" title="Figure 1.2.1">Figure 1.2.1</a>, we show this situation. Each \(\vr_i\) is the tip of a vector that traces out the curve, and then the \(\Delta\vr_i = \vr_{i+1}-\vr_i\) (shown in blue) approximate the curve \(C\text{.}\) The green vectors are the vectors in the vector field \(\vF\) at each of the designated points along the curve.</p>
+<figure class="figure-like" id="fig_12_2_curve-vectors"><div style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="images/fig_12_2_curve_vec_field.svg" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">1.2.1</span> A curve \(C\) oriented from the point \(P\) to the point \(Q\text{.}\) The tips of the vectors \(\vr_i\) that trace out the curve are shown as points. The blue vectors are the \(\Delta\vr_i\text{,}\) while the green vectors are the vectors associated to each of the points by a vector field \(\vF\text{.}\)</figcaption></figure><p id="p-51">If we are trying to figure out how much a wind current helps or hinders an aircraft flying along a path determined by the curve, then calculating the dot product \(\vF(\vr_i)\cdot \Delta\vr_i\) makes sense for the local amount of help/hindrance, as if the vector \(\vr_i\) along the curve and the force field vector \(\vF(\vr_i)\) point in similar directions, the dot product will be positive.<a knowl="" class="id-ref" refid="hk-fn-1" id="fn-1"><sup> 1 </sup></a><span id="hk-fn-1" class="hidden-content tex2jax_ignore"><span class="footnote">We are abusing notation here a tiny bit, since technically the domain of \(\vF\) is points in \(\R^2\) or \(\R^3\text{,}\) and \(\vr_i\) is a vector. By \(\vF(\vr)\text{,}\) we mean \(\vF(r_1,r_2)\text{,}\) where \(\vr= \langle r_1,r_2\rangle\text{.}\)</span></span> On the other hand, if the angle between them is obtuse, the dot product will be negative and we also would note that the force field is hindering the aircraft's progress. Taking the sum over \(i=0,\dots,n-1\text{,}\) we have a Riemann sum that approximates the work done by the vector field on the aircraft as it flies along \(C\text{:}\)</p>
+<div class="displaymath">
+\begin{equation*}
+\sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta \vr_i\text{.}
+\end{equation*}
+</div>
+<p id="p-52">This suggests the following definition.</p>
+<article class="definition-like" id="def_12_2_line-integral"><h6 class="heading">
+<span class="type">Definition</span> <span class="codenumber">1.2.2</span>
+</h6>
+<p id="p-53">Let \(C\) be an oriented curve and \(\vF\) a vector field defined in a region containing \(C\text{.}\) The <dfn class="terminology">line integral</dfn> of \(\vF\) along \(C\) is</p>
+<div class="displaymath">
+\begin{equation*}
+\int_C \vF\cdot d\vr = \lim_{|\Delta\vr_i|\to 0}
+\sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta\vr_i\text{,}
+\end{equation*}
+</div>
+<p>provided the limit exists.</p></article><p id="p-54">The limit in <a knowl="./knowl/def_12_2_line-integral.html" title="Definition 1.2.2">definition 1.2.2</a> exists provided that \(\vF\) is a continuous vector field, by which we mean that each component function of \(\vF\) is continuous as a function of \(2\) or \(3\) variables, and that \(C\) is a piecewise smooth curved traced out from its initial point to its terminal point without retracing any portion of the curve.</p>
+<p id="p-55">Because the dot products in the definition of the line integral \(\int_C\vF\cdot d\vr\) can each be viewed as the work done by \(\vF\) as an object moves along the (very small) vector \(\Delta\vr\text{,}\) the line integral gives the total work done by the vector field on an object that moves along \(C\) (in the direction of its orientation).</p>
+<article class="example-like" id="A_12_2_2"><h6 class="heading">
+<span class="type">Activity</span> <span class="codenumber">1.2.3</span>
+</h6>
+<p id="p-56">Shown in <a knowl="./knowl/F_12_2-idea-figs.html" title="Figure 1.2.3">Figure 1.2.3</a> are two vector fields, \(\vF\) and \(\vG\) and four oriented curves, as labeled in the plots. For each of the line integrals below, determine if its value should be positive, negative, or zero.</p>
+<ol class="decimal">
+<li id="li-33"><p id="p-57">\(\int_{C_1}\vF\cdot d\vr\)</p></li>
+<li id="li-34"><p id="p-58">\(\int_{C_2}\vF\cdot d\vr\)</p></li>
+<li id="li-35"><p id="p-59">\(\int_{C_3}\vG\cdot d\vr\)</p></li>
+<li id="li-36"><p id="p-60">\(\int_{C_4}\vG\cdot d\vr\)</p></li>
+</ol>
+<figure class="figure-like" id="F_12_2-idea-figs"><div style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig_12_2_idea_field_2_rev.svg" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">1.2.3</span> Vector fields \(\vF\) (left) and \(\vG\) (right)</figcaption></figure></article><p id="p-61">The next several sections will be devoted to determining ways to calculate line integrals, since the limit in the definition, just like the limit in the definition of every other type of integral we've studied so far, is cumbersome to work with in most cases. However, in the case where the oriented curve \(C\) is composed of horizontal and vertical line segments, we can make a rather quick reduction to a single-variable integral, as the following example shows.</p>
+<article class="example-like" id="ex_12_2_line-int"><a knowl="" class="id-ref" refid="hk-ex_12_2_line-int"><h6 class="heading">
+<span class="type">Example</span> <span class="codenumber">1.2.4</span>
+</h6></a></article><div id="hk-ex_12_2_line-int" class="hidden-content tex2jax_ignore"><article class="example-like"><p id="p-62">Consider the constant vector field \(\vF(x,y) = \langle
+2,1\rangle\text{.}\) Let \(C\) be the curve that follows the horizontal line segment from \((1,1)\) to \((4,1)\) and then continues down the vertical line segment to \((4,-2)\text{.}\) <a knowl="./knowl/fig_12_2_curve-field.html" title="Figure 1.2.5">Figure 1.2.5</a> shows \(\vF\) and \(C\text{,}\) including the orientation.</p>
+<figure class="figure-like" id="fig_12_2_curve-field"><div style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="images/fig_12_2_field_line_segs.svg" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">1.2.5</span> An oriented curve from \((1,1)\) to \((4,-2)\) in a vector field \(\vF\text{.}\)</figcaption></figure><p id="p-63">To calculate \(\int_C\vF\cdot d\vr\text{,}\) we'll start by working with the horizontal line segment. Along that part of \(C\text{,}\) notice that \(d\vr\approx \Delta\vr = \Delta x\vi\text{.}\) Thus, the Riemann sum that calculates the line integral along this portion of \(C\) consists of terms of the form \(\langle 2,1\rangle\cdot (\Delta x \vi) = 2\Delta
+x\text{.}\) Along this part of \(C\text{,}\) \(x\) ranges from \(1\) to \(4\text{,}\) and thus we can turn the Riemann sum here into the definite integral \(\int_1^4 2\,
+dx = 6\text{.}\) Since the vectors are generally pointing in a direction that agrees with the orientation of \(C\text{,}\) we are not surprised to have a positive value here.</p>
+<p id="p-64">Now we turn our attention to the vertical portion of \(C\text{.}\) Here \(d\vr
+\approx \Delta\vr = \Delta y\vj\text{,}\) which means that \(\vF\cdot
+d\vr\approx 1\Delta y\text{.}\) Hence, our Riemann sum can be calculated by the definite integral \(\int_1^{-2} 1\, dy =
+-3\text{.}\) Notice that the limits of integration here were set up to match the orientation of \(C\text{.}\) Also, the negative value should not be unexpected, since \(C\) is oriented in a direction for which the vectors of \(\vF\) point in a direction that would hinder motion along \(C\text{.}\)</p>
+<p id="p-65">Combining these two pieces of work, we find that \(\int_C \vF\cdot d\vr
+= 6 - 3 = 3\text{.}\)</p></article></div></section><section class="subsection" id="subsection-8"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.2.3</span> <span class="title">Properties of Line Integrals</span>
+</h3>
+<p id="p-66">In <a knowl="./knowl/ex_12_2_line-int.html" title="Example 1.2.4">Example 1.2.4</a>, we implicitly made use of the idea that if \(C\) can be broken up into two curves \(C_1\) and \(C_2\) such that the endpoint of \(C_1\) is the start point of \(C_2\text{,}\) then the line integral of \(\vF\) along \(C\) is the sum of the line integrals of \(\vF\) along \(C_1\) and along \(C_2\text{.}\) This probably seems natural, based on the property for definite integrals which tells us that</p>
+<div class="displaymath">
+\begin{equation*}
+\int_a^b f(x)\, dx = \int_a^c f(x)\, dx + \int_c^b f(x)\, dx\text{.}
+\end{equation*}
+</div>
+<p id="p-67">The table below summarizes some other properties of line integrals, each of which has a familiar analogue amongst the properties of definite integrals. If \(C_1\) and \(C_2\) are oriented curves, with \(C_1\) from a point \(P\) to a point \(Q\) and \(C_2\) from \(Q\) to a point \(R\text{,}\) we denote by \(C_1+C_2\) the oriented curve from \(P\) to \(R\) that follows \(C_1\) to \(Q\) and then continues along \(C_2\) to \(R\text{.}\) Also, if \(C\) is an oriented curve, \(-C\) denotes the same curve but with the opposite orientation.</p>
+<p id="p-68">For a constant scalar \(k\text{,}\) vector fields \(\vF\) and \(\vG\text{,}\) and oriented curves \(C\text{,}\) \(C_1\text{,}\) and \(C_2\text{,}\) the following properties hold:</p>
+<ol class="decimal">
+<li id="li-37"><p id="p-69">\(\int_C (k\vF)\cdot d\vr = k\int_C\vF\cdot d\vr\)</p></li>
+<li id="li-38"><p id="p-70">\(\int_C(\vF+\vG)\cdot d\vr = \int_C \vF\cdot d\vr +
+\int_C\vG\cdot d\vr\)</p></li>
+<li id="li-39"><p id="p-71">\(\int_{-C}\vF\cdot d\vr = -\int_C \vF\cdot d\vr\)</p></li>
+<li id="li-40"><p id="p-72">\(\int_{C_1+C_2} \vF\cdot d\vr = \int_{C_1}\vF\cdot d\vr +
+\int_{C_2}\vF\cdot d\vr\text{.}\)</p></li>
+</ol>
+<article class="example-like" id="A_12_2_3"><h6 class="heading">
+<span class="type">Activity</span> <span class="codenumber">1.2.4</span>
+</h6>
+<p id="p-73"><a knowl="./knowl/F_12_2-field-practice.html" title="Figure 1.2.6">Figure 1.2.6</a> shows a vector field \(\vF\) as well as six oriented curves, as labeled in the plot.</p>
+<figure class="figure-like" id="F_12_2-field-practice"><div style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/fig_12_2_field_practice_rev.svg" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">1.2.6</span> A vector field \(\vF\) and six oriented curves.</figcaption></figure><ol class="decimal">
+<li id="li-41"><p id="p-74">Is \(\int_{C_5}\vF\cdot d\vr\) positive, negative, or zero? Explain.</p></li>
+<li id="li-42"><p id="p-75">Let \(C = C_1+C_2+C_3+C_4\text{.}\) Determine if \(\int_C\vF\cdot d\vr\) is positive, negative, or zero.</p></li>
+<li id="li-43">
+<p id="p-76">Order the line integrals below from smallest to largest.</p>
+<div class="displaymath">
+\begin{equation*}
+\int_{C_1}\vF\cdot d\vr\qquad \int_{C_2}\vF\cdot d\vr\qquad \int_{C_3}\vF\cdot d\vr\qquad \int_{C_4}\vF\cdot d\vr\qquad \int_{C_5}\vF\cdot d\vr\qquad \int_{C_6}\vF\cdot d\vr
+\end{equation*}
+</div>
+</li>
+</ol></article></section><section class="subsection" id="subsection-9"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.2.4</span> <span class="title">The Circulation of a Vector Field</span>
+</h3>
+<p id="p-77">If an oriented curve \(C\) ends at the same point where it started, we say that \(C\) is <em class="emphasis">closed</em>. The line integral of a vector field \(\vF\) along a closed curve \(C\) is called the <em class="emphasis">circulation</em> of \(\vF\) around \(C\text{.}\) To emphasize the fact that \(C\) is closed, we sometimes write \(\oint_C \vF\cdot d\vr\) for \(\int_C \vF\cdot
+d\vr\text{.}\) Circulation servies as a measure of a vector field's tendency to rotate in a manner consistent with the orientation of the curve.</p>
+<article class="example-like" id="A_12_2_4"><h6 class="heading">
+<span class="type">Activity</span> <span class="codenumber">1.2.5</span>
+</h6>
+<p id="p-78">Determine if the circulation of the vector field around each of the closed curves shown in <a knowl="./knowl/F_12_2-circ.html" title="Figure 1.2.7">Figure 1.2.7</a> below is positive, negative, or zero.</p>
+<figure class="figure-like" id="F_12_2-circ"><div style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="images/fig_12_2_circ_circle.svg" style="width: 100%; height: auto;" alt=""></div>
+<div style="width: 45%; margin-left: 27.5%; margin-right: 27.5%;"><img src="images/fig_12_2_circ_box.svg" style="width: 100%; height: auto;" alt=""></div>
+<figcaption><span class="type">Figure</span> <span class="codenumber">1.2.7</span> Vector fields and closed curves</figcaption></figure></article></section><section class="subsection" id="subsection-10"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.2.5</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-44"><p id="p-79">A line integral measures of a vector field along an oriented curve measures the extent to which the vector field points in a direction consistent with the orientation of the curve.</p></li>
+<li id="li-45"><p id="p-80">Line integrals are defined using Riemann sums by breaking the curve into many small segments along which the vector field is essentially constant.</p></li>
+<li id="li-46"><p id="p-81">Line integrals have many properties that are analogous to those of definite integrals of functions of a single variable.</p></li>
+</ul></section></section></div></main>
+</div>
+<div class="login-link"><span id="loginlogout" class="login">login</span></div>
+<script src="https://pretextbook.org/js/0.1/login.js"></script>
+</body>
+</html>
