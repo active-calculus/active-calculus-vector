@@ -1,0 +1,135 @@
+<section xml:id="S_12_5_Div">
+  <title>The Divergence of a Vector Field</title>
+  
+    <objectives>
+      <ul>
+        <li>
+          <p>
+          	How can you measure where a vector field is created (or destroyed)? How can you measure where a vector field's strength is increasing or decreasing?
+          </p>
+        </li>
+        <li>
+          <p>
+           	What is does the divergence of a vector field measure and how can you visually measure whether the divergence of a vector field is positive or negative?
+          </p>
+        </li>
+      </ul>
+    </objectives>
+	<introduction>
+    <p>
+      As we saw in <xref ref="S_12_1_VectorFields">Section</xref>, there are many physical and theoretical representations for vector fields. A natural question is  "Where exactly is the vector field created?" With the vector field in <xref ref="fig_test">Figure</xref>, you can see that the vector field increases in strength as you move along the flow. So we wish to understand (as a function of position), how much of the vector field is created (or destroyed) at a given location. 
+    </p>
+    <figure xml:id="fig_test">
+    	<caption> Here is a caption </caption>
+    	<image source="images/fig_12_5_vf1"/>
+    </figure>
+	
+
+	</introduction>
+
+	<exploration xml:id="Divergence_PA">
+		<introduction>
+			<p> In this preview activity, we will look at a few examples of vector fields and try to assess when the vector field has increased or decreased in strength on the interior of some region. </p>
+		</introduction>
+			<task xml:id="Div_PA_task1">
+				For <xref ref="Div_PA_task1">Question </xref>, use the following vector field plot to answer each question.
+				<figure xml:id="Div_PA_vf1">
+					<caption><p> Vector Field for <xref ref="Div_PA_task1">Question </xref> </p></caption>
+					<image source="images/PA_div_xy_field.svg"/>
+				</figure>
+			    <ol type="labelroman">
+			    	
+			    	<li><p> Which of the following options do you think applies to the square centered on the point <m>P_1</m>? </p>
+			    	<ul>
+			    		<li><p>More of the vector field is going into the square than going out. </p></li>
+			    		<li><p>Less of the vector field is going into the square than going out. </p></li>
+			    		<li><p>The same amount of the vector field is going into the square as is going out. </p></li>
+			    	</ul>
+			    	</li>
+			    	<li><p> Does your answer to the previous part suggest that the vector field is being created, destroyed, or is unchanging in strength inside the square? Explain your reasoning. </p></li>
+			    	<li><p>Would the answer to the previous parts change if you used a smaller square centered on <m>P_1</m> </p></li>
+			    </ol>
+			</task>
+			<task xml:id="Div_PA_task2">
+				For <xref ref="Div_PA_task2">Question </xref>, use the following vector field plot to answer each question.
+				<figure xml:id="Div_PA_vf2">
+					<caption><p> Vector Field for <xref ref="Div_PA_task2">Question </xref> </p></caption>
+					<image source="images/PA_div_xy_field2.svg"/>
+				</figure>
+			    <ol type="labelroman">
+			    	
+			    	<li><p> Which of the following options do you think applies to the square centered on the point <m>P_2</m>? </p>
+			    	<ul>
+			    		<li><p>More of the vector field is going into the square than going out. </p></li>
+			    		<li><p>Less of the vector field is going into the square than going out. </p></li>
+			    		<li><p>The same amount of the vector field is going into the square as is going out. </p></li>
+			    	</ul>
+			    	</li>
+			    	<li><p> Does your answer to the previous part suggest that the vector field is being created, destroyed, or is unchanging in strength inside the square? Explain your reasoning. </p></li>
+			    	<li><p>Would the answer to the previous parts change if you used a smaller square centered on <m>P_2</m>? </p></li>
+			    </ol>
+			</task>
+			<task xml:id="Div_PA_task3">
+					For <xref ref="Div_PA_task3">Question </xref>, use the following vector field plot to answer each question.
+					<figure xml:id="Div_PA_vf3">
+						<caption><p> Vector Field for <xref ref="Div_PA_task3">Question </xref> </p></caption>
+						<image source="images/PA_div_-yx_field.svg"/>
+					</figure>
+				    <ol type="labelroman">
+				    	
+				    	<li><p> Which of the following options do you think applies to the square centered on the point <m>P_3</m>? </p>
+				    	<ul>
+				    		<li><p>More of the vector field is going into the square than going out. </p></li>
+				    		<li><p>Less of the vector field is going into the square than going out. </p></li>
+				    		<li><p>The same amount of the vector field is going into the square as is going out. </p></li>
+				    	</ul>
+				    	</li>
+				    	<li><p> Does your answer to the previous part suggest that the vector field is being created, destroyed, or is unchanging in strength inside the square? Explain your reasoning. </p></li>
+				    	<li><p>Would the answer to the previous parts change if you used a smaller square centered on <m>P_3</m>? </p></li>
+				    	<li><p>Would any of your answers to the parts of <xref ref="Div_PA_task3"> Question</xref> change if you considered squares around points <m>P_4</m>, <m>P_5</m>, or <m>P_6</m>? Explain your reasoning.</p></li>
+				    </ol>
+				</task>
+				
+	</exploration>
+
+			<p>
+
+			</p>
+
+			<subsection xml:id="Div_development">
+    		<title> Measuring the Change in Strength of a Vector Field</title>
+      		
+	        <p> 
+	        	In this section, we will go through the process for how to measure the density of the "creation" or "destruction" of the vector field in a classic calculus fashion. Specifically, we will measure how the strength of the vector field changes in a region around a point, then using a limit we examine what happens to our measurement as we shrink the region. Because our vector fields will change in a continous fashion, we won't have the vector field actually change at a single point. Rather we will really be measuring the density for the change in strength of the vector field. 
+	    	</p>
+	    	<p>
+	    		We will develop these measurements in a two dimensional setting for now, but our arguments can be generalized and applied to three (or more!) dimensions. Let's start in the same fashion as in <xref ref="Divergence_PA">Preview Activity</xref>, namely we will look at how much of the vector field is going into or out of a square centered at our point <m>(a,b)</m>.
+	    	</p>
+		    <figure xml:id="S_12_5_box">
+		      <caption><p>A square around the point <m>(a,b)</m></p></caption>
+		      <image source="images/fig_12_5_box.svg"/>
+		    </figure>
+		
+            <p>
+               We can parameterize the top edge of the box (in red) using the parameter <m> -h\geq t\geq h</m> as <m>\vr(t) = \langle a+t,b+h\rangle</m>.
+           </p>
+            
+            <p>
+              We can find out much of our vector field is created in a square around the point <m>(a,b)</m> but measuring the net amount of the vector field coming in or going out of our square. 
+          	</p>
+            <p>
+            	If we want to measure how much of our vector field <m>\vF</m> goes through the top of our square (in blue on the figure), which component of <m>\vF</m>do we need to pay attention to? Explain why we only need to pay attention to this component on the top section of our square. 
+            </p> 
+            	<answer><p> <m>F_2</m> since we need only pay attention to the vertical component, since none of the horizontal component of the vector field goes through the top part of our square.</p> </answer>
+            	<solution><p> <m>F_2</m> since we need only pay attention to the vertical component, since none of the horizontal component of the vector field goes through the top part of our square.</p></solution>
+            
+
+
+        
+        	<p>The same argument applies to the bottom edge of our square (in orange). Similarly, if we want to measure how much of <m>\vF</m> goes through either the left or right side of the square, we only need to use the horizontal component, <m>F_1</m>. Since our vector field changes with each point, we will need to measure the accumulation of our vector field flow</p>
+        
+    
+ 		</subsection>
+
+</section>
+
