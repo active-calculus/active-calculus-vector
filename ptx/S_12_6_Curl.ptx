@@ -1,33 +1,106 @@
-
-
 <section xml:id="S_12_6_Curl">
   <title>The Curl of a Vector Field</title>
-  <introduction>
+  
     <objectives>
       <ul>
         <li>
           <p>
-          Characterize the vector fields <m>\vF</m> for which <m>\int_C\vF\cdot d\vr</m> has the same value for every oriented path from a point <m>P</m> to a point <m>Q</m>?
+          How can you measure the rotational strength of a vector field?
           </p>
         </li>
         <li>
           <p>
-            Understand what special properties gradient vector fields have and how to calculate the potential function, when appropriate.
+            Another???
           </p>
         </li>
       </ul>
     </objectives>
-
+    <introduction>
     <p>
-      As we saw in <xref ref="S_12_1_VectorFields">Section</xref>, there are many physical and theoretical representations for vector fields. A natural question is  "Where exactly is the vector field created?" With the vector field in <xref ref="fig_test">Figure</xref>, you can see that the vector field increases in strength as you move along the flow. So we wish to understand (as a function of position), how much of the vector field is created (or destroyed) at a given location.
+      Introduce the idea of a spinner (pinwheel) as a measure for how a vector field rotates (as a local measurement)
     </p>
 
-    <figure xml:id="fig_test">
-      <caption> Here is a caption</caption>
-      <sidebyside widths="90%">
-        <image source="images/fig_12_5_vf1"/>
-      </sidebyside>          
-    </figure>
-  </introduction>
+    </introduction>
+    <activity xml:id="Curl_PA">
+        <task xml:id="Curl_PA_task1">
+          <p> show a picture of (-y,x) and ask about whether the spinner would go clockwise, counterclockwise, or not spin if placed at (0,0), (1,1), (-2,-1)
+          Maybe ask the student to generalize and talk about where the spinner would go cw, ccw, or not spin. 
+        </p>
+        </task>
+        <task xml:id="Curl_PA_task2">
+          <p> show a picture of (x,y) and ask about whether the spinner would go clockwise, counterclockwise, or not spin if placed at (0,0), (1,1), (-2,-1)
+          </p>
+        </task>
+        <task xml:id="Curl_PA_task3">
+          <p> show a picture of (2,1), etc.</p>
+        </task>
+        <task xml:id="Curl_PA_task4">
+            <p> show a picture of (1-x,xy), ask about points, ask for generalizations
+            This may be a point where they have an interact that allows them to redraw the vector field around a point to look at the vf at a local level rather than the more global picture.
+            Maybe fix the vf but let them input a point and have a slider that zooms in around the point(probably exponential steps like width of plot =(1/2)^d)
+          </p>
+        </task>
+    </activity>
+    <p>
+      Now we talk about the classic calculus approach to this measurement, we will precisely calculate the appropriate line integral for the circulation around a point using a square centered at our point. Then we will examine what happens to this measurement as we shrink the size of the square to 0, ie. take a limit.
+    </p>
+    <p>
+      step through the process of setting up the line integrals on each of the sides of the square. Give the exact process for something like the top edge but then give results of the other sides. Pay attention to orientation since our square is oriented ccw. talk about how we will view ccw rotation in the xy plane as "positive" rotation and thus cw is "negative". This part will culminate in writing the four line integrals with a simplification that we only need to pay attention to one component of the vector field. Thus we get 4 single variable calculus integrals.
+    </p>
+    <p>
+      we will convert our measurment to a density (rotation per unit area) to be able to compare the results as we change the size of the square. If we have a larger square we will probably have a larger circulation since there is more distance to accumulate how the vector field is moving in the same direction as our path. Once we set up the density arguement, we use a MVT argument to trade our integrals for a function evaluation along the segment. This will allow us to show that in the limit we will have a center difference method for calculating the partial derivatives of certain components of the vector field. 
+      </p>
+      <p>
+      Summarize the result of this in contrast to the divergence, namely that we get partial of F_1 with respect to y and partial of F_2 with respect to x because we are looking at the deflection (rate change in the direction of the vf) to measure rotation, whereas divergence looked at the change in the strength of the vf. 
+    </p>
+    <p>
+      Now we make an argument about how to do the same thing on a 3D vf. If we look at rotation at a point (a,b,c), then we can really think of this as the linear combinations of rotations as measured on the planes z=c, y=b, and x=a. Thus we can apply the same argument above to each of the appropriate planes and get the curl as we know it. We will need to take an aside with each plane and talk about how the presentation of each plane relates to whether i, j, or k is going into or out of the page. xy-plane and yz-plane are coming out of the plane where as xz-plane presentation has j going into the page (this is the reason for the alternating sign in some presentaions of the curl formula.
+    </p>
+    <p>
+      Should also mention that there is nothing special about using a square other than it simplified the calculations involved in the circulation density. Conceptually, you will often see a circle but our use of rectangular coordinates makes it easiest to use rectangular figures.
+    </p>
+    <definition>
+      <statement>
+        <p> The definition of the curl goes here. </p>
+      </statement>
+    </definition>
+    <activity xml:id="curl_activity">
+        <title>Curl in 3D</title>
+        <task xml:id="curl_act_task1">
+            <title></title>
+            <p>
+            Have students look at 3D vector field plot, mention how it is hard to "see" rotation in 3D since we are not used to visualization depth. So we will look at the planes described above.
+            Have a sliced plot with z=c for the appropriate value. Ask about whether a spinner will have positive, negative, or no rotation. What direction will the axis of rotation be for this plane? State your answer as a vector.
+          </p>
+        </task>
+        <task xml:id="curl_act_task2">
+           <p> Show the other two trace slices of the vector field plots. Ask about value of circulation and axis of rotation for each plane. </p>
+        </task>
+        <task xml:id="curl_act_task3">
+          <p>Have students summarize thier rotation predictions as a linear combination of the vectors representing the axes of rotations.</p>
+        </task>
+        <task xml:id="curl_act_task4">
+          <p>
+            Give the algebraic form of the vf. Have students compute the curl. 
+          </p>
+        </task>
+        <task xml:id="curl_act_task5">
+          <p>Compare the result of the curl to the prediction from <xref ref="curl_act_task3">Question</xref> </p>
+        </task>
+    </activity>
+<p>
+  Include a few 3D vf plots (in calcplot3d? or sage?) with a point included. Give examples where the curl is non-zero, a constant vf, and a point source vf. For the last two examples, talk about how any slice around any point will have the same rotational argument.
+</p>
+<p>
+  Include an example where the curl has different values in different quadrants. Maybe include an interact that will allow the user to input a point, toggle whether the curl vector is displayed and have a slider to zoom in around the point. Probably need to include a slider that will change the density of vectors displayed around the point. 
+  </p>
+
+  <p>
+    Exercises will include several purely calculation based questions
+  </p>
+
+  <p>
+    Should we have a subsection at the end of each section that shows how to do the relevent graphs and computations in Sage or Calcplot3d?
+  </p>
 </section>
 
