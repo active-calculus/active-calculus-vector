@@ -1,5 +1,5 @@
 <section xml:id="S_Vector_GreensTheorem">
-    <title>Vector Fields</title>
+    <title>Green's Theorem</title>
     <objectives>
       <ul>
         <li>
@@ -50,311 +50,166 @@
             <statement>
             <p>Verify that <m>\vF</m> is not path-independent by
 	    calculating the circulation of <m>\vF</m> around the
-	    circle <m>C</m>.
+	    circle <m>C</m>. The SageMath cell below is set up to
+	    assist you with this, but you will need to supply a
+	    parameterization of <m>C</m> on line 3.
             </p>
+	    <sage>
+	      <input>
+var('r,t,x,y')
+F = vector([2*y,3*x^2*y])
+C = vector([ , ])# Supply a parameterization of C here inside the [ ]
+integral(F(x=C[0],y=C[1]).dot_product(derivative(C,t)),t,0,2*pi)
+	      </input>
+	    </sage>
             </statement>
             <answer>
-            <sidebyside>
-                <!--sidebyside is the way to center things that would be LaTeX -->
-                <!--floats when you don't want a caption on them -->
-                <tabular>
-                    <col halign="center" right="minor" /><col /><col /><col /><col /><col />
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(2,1)</m></cell>
-                  <cell><m>(0,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(3,-1)</m></cell>
-                  <cell><m>(-2,-1)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vF(x,y)</m></cell>
-                  <cell><m>\langle 1,2\rangle</m></cell>
-                  <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 2,-1\rangle</m></cell>
-                  <cell><m>\langle -1,3\rangle</m></cell>
-                  <cell><m>\langle -1,-2\rangle</m></cell>
-                </row>
-              </tabular>
-            </sidebyside>
+	      <p><m>-8\pi</m></p>
             </answer>
             <solution>
-                <p>The vector field <m>\vF(x,y)</m> takes the coordinates of the point <m>(x,y)</m> and reverses them to make the components of the vector. Thus, <m>\vF(2,1) = \langle 1,2\rangle</m>. The remaining vectors are shown in the table below.</p>
-                <sidebyside>
-                <!--sidebyside is the way to center things that would be LaTeX -->
-                <!--floats when you don't want a caption on them -->
-                <tabular>
-                    <col halign="center" right="minor" /><col /><col /><col /><col /><col />
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(2,1)</m></cell>
-                  <cell><m>(0,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(3,-1)</m></cell>
-                  <cell><m>(-2,-1)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vF(x,y)</m></cell>
-                  <cell><m>\langle 1,2\rangle</m></cell>
-                  <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 2,-1\rangle</m></cell>
-                  <cell><m>\langle -1,3\rangle</m></cell>
-                  <cell><m>\langle -1,-2\rangle</m></cell>
-                </row>
-              </tabular>
-            </sidebyside>
+	      <p>If we parameterize <m>C</m> as <m>\vr(t) = \langle
+	      2\cos(t),2\sin(t)\rangle</m>, then <m>\oint_C \vF\cdot
+	      d\vr = -8\pi</m>. To use the SageMath cell to do this,
+	      make line 3 read <c>C = vector([2*cos(t),2*sin(t)])</c>
+	      and execute. Because the circulation around <m>C</m> is
+	      not <m>0</m>, we know that <m>\vF</m> is not
+	      path-independent. 
+	      </p>
             </solution>
         </task>
-        <task xml:id="task_PA12_1G">
+        <task xml:id="task_PA_Vector_GreensTheorem_Integrand">
             <statement>
                 <p>
-              Suppose that we associate the vector
-              <m>\vG(x,y) = -x\vj</m> to a point <m>(x,y)</m> in the plane.
-              Complete the table below by giving the vector associated to each of the given points.
-            </p>
-            <sidebyside>
-                <tabular>
-                    <col halign="center" right="minor" /><col /><col /><col /><col /><col /><col /><col /><col />
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(-2,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(0,-2)</m></cell>
-                  <cell><m>(1,1)</m></cell>
-                  <cell><m>(2,3)</m></cell>
-                  <cell><m>(3,2)</m></cell>
-                  <cell><m>(-1,0)</m></cell>
-                  <cell><m>(1,3)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vG(x,y)</m></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                </row>
-              </tabular>
-            </sidebyside>
+		  Consider <m>\vF = \langle
+		F_1(x,y),F_2(x,y)\rangle</m>. Without doing any
+		calculations, do you think that
+		<m>\displaystyle \frac{\partial F_2}{\partial x} -
+		\frac{\partial F_1}{\partial y}</m> is <m>0</m> for
+		all values of <m>x</m> and <m>y</m>?  Calculate <m>\displaystyle \frac{\partial F_2}{\partial x} -
+		\frac{\partial F_1}{\partial y}</m> to confirm your answer.
+		</p>
             </statement>
             <answer>
-            <sidebyside>
-                <tabular>
-                    <col halign="center" right="minor" />
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(-2,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(0,-2)</m></cell>
-                  <cell><m>(1,1)</m></cell>
-                  <cell><m>(2,3)</m></cell>
-                  <cell><m>(3,2)</m></cell>
-                  <cell><m>(-1,0)</m></cell>
-                  <cell><m>(1,3)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vG(x,y)</m></cell>
-                  <cell><m>\langle 0,2\rangle</m></cell>
-                  <cell><m>\langle 0,1\rangle</m></cell>
-                  <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 0,-1\rangle</m></cell>
-                  <cell><m>\langle 0,-2\rangle</m></cell>
-                  <cell><m>\langle 0,-3\rangle</m></cell>
-                  <cell><m>\langle 0,1\rangle</m></cell>
-                  <cell><m>\langle 0,-1\rangle</m></cell>
-                </row>
-              </tabular>
-            </sidebyside>
+	      <p>No; <m>6xy-2</m>.</p>
             </answer>
             <solution>
-                <p>
-                    Note that another way of writing <m>\vG(x,y)</m> is <m>\langle 0 -x\rangle</m>. Thus, <m>\vG(2,3) = \langle 0,-2\rangle</m>, for example. The remaining answers are found in the table below.
-                </p>
-                <sidebyside>
-                <tabular>
-                    <col halign="center" right="minor" />
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(-2,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(0,-2)</m></cell>
-                  <cell><m>(1,1)</m></cell>
-                  <cell><m>(2,3)</m></cell>
-                  <cell><m>(3,2)</m></cell>
-                  <cell><m>(-1,0)</m></cell>
-                  <cell><m>(1,3)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vG(x,y)</m></cell>
-                  <cell><m>\langle 0,2\rangle</m></cell>
-                  <cell><m>\langle 0,1\rangle</m></cell>
-                  <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 0,-1\rangle</m></cell>
-                  <cell><m>\langle 0,-2\rangle</m></cell>
-                  <cell><m>\langle 0,-3\rangle</m></cell>
-                  <cell><m>\langle 0,1\rangle</m></cell>
-                  <cell><m>\langle 0,-1\rangle</m></cell>
-                </row>
-              </tabular>
-            </sidebyside>
+	      	      <p>Since <m>\vF</m> is not path independent, we
+		      know that <m>\vF</m> is not a gradient vector
+		      field. Thus, we would not expect <m>\displaystyle \frac{\partial F_2}{\partial x} -
+		\frac{\partial F_1}{\partial y}</m> to be <m>0</m> for
+		all values of <m>x</m> and <m>y</m> as would be the
+		case if <m>\vF</m> were the gradient of a smooth function. Here we have that <m>\partial F_2/\partial x
+		      =6xy</m> and <m>\partial F_1/\partial y = 2</m>,
+		      so we have that <m>\partial F_2/\partial x
+		      - \partial F_1/\partial y= 6xy-2</m>.
+		      </p>
             </solution>
         </task>
-        <task>
-            <p>
-                A table of values of these vector-valued functions is useful,
-                but perhaps even better is a method of visualizing the vectors.
-                In keeping with our wind velocity analogy,
-                if <m>\vF(2,1) = \langle 1,2\rangle</m>,
-                we draw the vector <m>\langle 1,2\rangle</m> with its tail at the point <m>(2,1)</m>.
+        <task xml:id="task_PA_Vector_GreensTheorem_Double">
+          <statement>
+	    <p>
+	    In <alert>OK, put something here about what comes in
+		the curl section</alert>. Calculate the double
+		integral of <m>\displaystyle \frac{\partial F_2}{\partial x} -
+		\frac{\partial F_1}{\partial y}</m> over the region
+		inside the circle <m>C</m>. This integral is not the
+		most fun to do by hand, so a SageMath cell has been
+		provided to assist you. 
             </p>
-            <p>
-              Using the first set of axes in <xref ref="fig_PA12_1a">Figure</xref>,
-              plot the vectors <m>\vF(x,y)</m> for the five points in the table in <xref ref="task_PA12_1F" text="local">part</xref>.
-              The example <m>\vF(1,-1) = \langle -1,1\rangle</m> is drawn for you.
-            </p>
-        </task>
-
-        <task>
-            <p>
-              Using the second set of axes in <xref ref="fig_PA12_1a">Figure</xref>,
-              plot the vectors <m>\vG(x,y)</m> for the eight points in the table in <xref ref="task_PA12_1G" text="local">part</xref>.
-            </p>
-              <figure xml:id="fig_PA12_1a">
-                <caption>Axes for plotting some vectors from <m>\vF(x,y)</m> and <m>\vG(x,y)</m>.</caption>
-                <sidebyside widths = "47% 47%" margins ="0% 6% 0%">
-                    <image source="images/PA12-1F-axes" />
-                    <image source="images/PA12-1G-axes" />
-                </sidebyside>
-              </figure>
-        </task>
-    </exploration>
+	  <sage>
+	    <input>
+integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)	      
+	    </input>
+	  </sage>
+	  </statement>
+	  <hint>
+	    <p>If you choose polar coordinates, use <m>\theta</m> for the
+	    first variable and <m>r</m> for the second variable.</p>
+	  </hint>
+	<answer>
+	  <p><m>-8\pi</m></p>
+	</answer>
+	<solution>
+	  <p>
+	    Denote by <m>D</m> the region inside the circle <m>C</m>. We can describe <m>D</m> readily in polar coordinates
+	    with the inequalities <m>0\leq r \leq 2</m> and <m>0\leq
+	    \theta\leq 2\pi</m>. Thus, we need to calculate
+	    <md>
+	      <mrow>\iint_D \left(\frac{\partial F_2}{\partial x} -
+		\frac{\partial F_1}{\partial y}\right)\, dA &amp;= \iint_D
+	      (6xy-2)\, dA</mrow>
+	      <mrow>&amp;= \int_0^2 \int_0^{2\pi}
+	      (6r^2\cos(\theta)\sin(\theta) - 2)r\, d\theta\, dr</mrow>
+	    </md>.
+	    Using SageMath to calculate this, we obtain <m>-8\pi</m>.
+	  </p>
+	</solution>
+	</task>
+	<conclusion>
+	  <p>A natural question after completing this Preview Activity
+	  is if there is something special about the vector field
+	  <m>\vF</m> or the curve <m>C</m> that led to the results you
+	  obtained, and investigating this will be our principal task
+	  in this section</p>
+	</conclusion>
+      </exploration>
   </introduction>
 
   <subsection>
-    <title>Examples of Vector Fields</title>
+    <title>Circulation</title>
     <p>
-      As <xref ref="PA_12_1">Preview Activity</xref>
-      showed you, one example of a time
-      where it makes sense to associate a vector to each point in a region
-      is a <term>velocity vector field</term>
-      <m>\vF(x,y)</m> or <m>\vF(x,y,z)</m>, where
-      the vector associated to the point <m>(x,y)</m> or <m>(x,y,z)</m> is the
-      velocity of something at that point.
-      Wind velocity is one example, but
-      another example would be the velocity of a flowing fluid.
-      <xref ref="fig_12_1_fluid-velocity">Figure</xref> shows such a velocity vector
-      field.
-      Technically, it only shows some of the vectors in the vector
-      field, since the figure would be unintelligible if all of the vectors
-      were shown.
-      This is illustrated by the inset in the upper left corner,
-      which gives a better picture of what we would see if we zoomed in on
-      the red square of the main figure.
+      This is where there will be a cartoon with a bunch of tiny
+      circulations and the idea of cancelling circulations when we
+      break up a region into boxes. I'm too lazy to draw the figures
+      right now.
     </p>
-
-    <figure xml:id="fig_12_1_fluid-velocity">
-      <caption>An illustration of some of the vectors in a fluid velocity
-      vector field.
-      <url href="https://commons.wikimedia.org/wiki/File:PIVlab_multipass.jpg#/media/File:PIVlab_multipass.jpg">"PIVlab multipass" by Willa</url> Licensed under CC-BY-SA 3.0 via Wikimedia Commons.</caption>
-      <image width="90%" source="images/12_1_PIVlab_multipass.jpg" /> 
-    </figure>
-
-    <p>
-      Force fields,
-      such as those created by gravity, are also examples of
-      vector fields.
-      For example, the earth exerts a gravitational force on
-      objects.
-      The force is directed from the center of the object to the
-      center of the earth, and its magnitude is determined by the distance
-      between the object and the earth.
-      An illustration of this vector field
-      can be seen in <xref ref="fig_12_1_gravity">Figure</xref>,
-      where the earth is
-      positioned at the origin, but not shown.
-      Notice that the vectors get
-      shorter as the distance from the origin increases, reflecting the fact
-      that the gravitational force is weaker at that distance.
-    </p>
-
-    <figure xml:id="fig_12_1_gravity">
-      <caption>Gravitational vector field.</caption>
-      <!--<image width="40%" source="images/fig_12_1_gravity_field.png" />-->
-      <interactive xml:id="interactive-gravitational-field" platform="sage" width="100%" aspect="1:1">
-                        <slate surface="sage">
-                        var('x,y,z')
-                        @interact
-                        def grav_field():
-                            gravity_field = plot_vector_field3d((-6.67408*10^(-11)*1*5.972*10^24*x/sqrt(x^2 + y^2 + z^2)^3, -6.67408*10^(-11)*1*5.972*10^24*y/sqrt(x^2 + y^2 + z^2)^3, -6.67408*10^(-11)*1*5.972*10^24*z/sqrt(x^2 + y^2 + z^2)^3),(x,-1,1),(y,-1,1),(z,-1,1),colors="green",radius=.01,head_len=.1,head_radius=.05)
-                            show(gravity_field)
-                        </slate>
-                    </interactive>
-
-    </figure>
+    <activity>
+      <p>
+	Do Green's Theorem for rectangles, but try to build it out of
+	NL's work on 2D curl so that they can just grab earlier work.
+      </p>
+    </activity>
   </subsection>
 
   <subsection>
-    <title>Mathematical Vector Fields</title>
-    <p>
-      As suggested in the introduction and <xref ref="PA_12_1">Preview Activity</xref>,
-      vector fields can be given by formulas.
-    </p>
-
-    <definition>
+    <title>Green's Theorem</title>
+    <theorem xml:id="thm_Green">
+      <title>
+	Green's Theorem
+      </title>
       <statement>
-        <p>
-          A
-          <term>vector field</term><idx><h>vectorfield</h><h>definition</h></idx> in <m>2</m>-space
-          function whose value at a point <m>(x,y)</m> is a <m>2</m>-dimensional
-          vector <m>\vF(x,y)</m>.
-          In <m>3</m>-space, a vector field is similarly a
-          function <m>\vF(x,y,z)</m> whose value at the point <m>(x,y,z)</m> is a
-          <m>3</m>-dimensional vector.
-        </p>
+	<p>Let <m>C</m> be a simple, closed curve in the plane that
+	bounds a region <m>R</m> with <m>C</m> oriented in such a
+	way that when walking along <m>C</m> in the direction of its
+	orientation, the region <m>R</m> is on our left. Suppose that
+	<m>\vF=\langle F_1,F_2\rangle</m> is vector field with continuous partial derivatives
+	on the region <m>R</m> and its boundary <m>C</m>. The
+	circulation of <m>\vF</m> along <m>C</m> may be calculated as
+	<me>\oint_C \vF\cdot d\vr = \iint_R \left(\frac{\partial F_2}{\partial x} -
+		\frac{\partial F_1}{\partial y}\right)\, dA</me>.</p>
       </statement>
-    </definition>
+    </theorem>
 
     <p>
-      Since <m>\vF(x,y,z)</m> is a vector,
-      it has <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>
-      components.
-      Each of these components is a scalar function of the point
-      <m>(x,y,z)</m>, and so we will often write
-      <me>
-        \vF(x,y,z) = F_1(x,y,z)\vi + F_2(x,y,z)\vj + F_3(x,y,z)\vk
-      </me>.
-    </p>
-
-    <p>
-      For example,
-      if <m>\vF(x,y,z) = \langle x^2,xy\sin(z),y^3\rangle</m>, then
-      <m>F_1(x,y,z) = x^2</m>, <m>F_2(x,y,z) = xy\sin(z)</m>,
-      and <m>F_3(x,y,z) =
-      y^3</m>.
-      Any time we are considering a vector field <m>\vF(x,y,z)</m>, the
-      definitions of functions <m>F_1</m>, <m>F_2</m>,
-      and <m>F_3</m> should be assumed in
-      this manner. (For a vector field
-      <m>\vF(x,y)</m> in <m>2</m>-space, we only have
-      the functions <m>F_1</m> and <m>F_2</m>, defined analogously.)
+      At first glance, it may seem that <xref ref="thm_Green"
+      text="title" /> is of purely intellectual interest. However, we
+      have already encountered a number of instances where
+      parameterizing a curve can be complicated. This is particularly
+      true when the curve has <q>corners</q> that require us to give
+      separate parameterizations for several pieces of the
+      curve. However, it is often the case that a curve that is
+      difficult to parameterize bounds a region that is not too
+      complex to describe using rectangular or polar coordinates. For
+      instance, if <m>C</m> is the square with vertices <m>(0,0)</m>,
+      <m>(2,0)</m>, <m>(2,2)</m>, and <m>(0,2)</m>, a reasonable
+      parameterization involves four line segments. However, the
+      region insice <m>C</m> can be described using the inequalities
+      <m>0\leq x\leq 2</m> and <m>0\leq y\leq 2</m>. Additionally, the
+      integrand of the double integral in <xref ref="thm_Green"
+      text="title" /> involves partial derivatives that can sometimes
+      result in an integrand that is very easy to work with. The next
+      activity asks you to apply <xref ref="thm_Green"
+      text="title" /> in a few instances.
     </p>
   </subsection>
 
