@@ -113,10 +113,43 @@
             </ol>
         </task>
         <task xml:id="Curl_PA_task4">
+          <p> For this part, look at the vector field in <xref ref="Curl_PA_task4_vf">Figure</xref>.</p>
+          <figure xml:id="Curl_PA_task4_vf">
+            <image source="images/Curl_1xxy_field"/>
+          </figure>
+            <ol>
+              <li>
+                <p>Would a small spinner placed at the origin spin clockwise, counterclockwise, or not spin at all?</p>
+              </li>
+              <li>
+                <p>Would a small spinner placed at <m>(1,1)</m> spin clockwise, counterclockwise, or not spin at all?</p>
+              </li>
+              <li>
+                <p>Would a small spinner placed at <m>(-2,1)</m> spin clockwise, counterclockwise, or not spin at all?</p>
+              </li>
+               <li>
+                <p>Are there any points on the <m>xy</m>-plane where the spinner would turn differently than your descriptions in the previous part of this problem?</p>
+              </li>
+            </ol>
             <p> show a picture of (1-x,xy), ask about points, ask for generalizations
             This may be a point where they have an interact that allows them to redraw the vector field around a point to look at the vf at a local level rather than the more global picture.
             Maybe fix the vf but let them input a point and have a slider that zooms in around the point(probably exponential steps like width of plot =(1/2)^d)
           </p>
+          <figure xml:id="Curl_PA_interact">
+            <caption>A Sage applet for solving linear systems</caption>
+                    <interactive xml:id="sage_curl_interact" platform="sage" width="100%" aspect="2:5">
+                <slate surface="sage">
+                    var('x,y,t')
+                    @interact
+                    def curl_explorer(f=input_box(default=1-x,label="First Component Equation $F_1=$"),g=input_box(default=x*y,label="Second Component Equation $F_2=$"),zoom=slider(0,10,1,0),x0=input_box(default=1,label="$x_0$"),y0=input_box(default=1,label="$y_0$")):
+                        d=2
+                        zoom_level=(1/2)^zoom
+                        plot1=plot_vector_field((f,g),(x,x0-(d*zoom_level),x0+(d*zoom_level)),(y,y0-(d*zoom_level),y0+(d*zoom_level)),frame=False,axes_labels=["x","y"],aspect_ratio=1)
+                        plot1+=point([(x0,y0)],color='red')
+                        show(plot1)
+                </slate>
+            </interactive>
+        </figure>
         </task>
     </activity>
     <p>
