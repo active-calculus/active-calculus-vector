@@ -113,16 +113,31 @@
             </ol>
         </task>
         <task xml:id="Curl_PA_task4">
-          <p> For this part, look at the vector field in <xref ref="Curl_PA_task4_vf">Figure</xref>.</p>
-          <figure xml:id="Curl_PA_task4_vf">
+          <p> For this part, look at the vector field in <xref ref="Curl_PA_task4_vf">Figure</xref>. You may find it useful to recenter the plot on your point by changing <m>x_0</m> and <m>y_0</m>. You may also zoom in on your point by using the slider labeled zoom. </p>
+          <!-- <figure xml:id="Curl_PA_task4_vf">
             <image source="images/Curl_1xxy_field"/>
-          </figure>
-            <ol>
+          </figure> -->
+          <figure xml:id="Curl_PA_task4_vf">
+            <caption>A Sage applet for solving linear systems</caption>
+                    <interactive xml:id="sage_curl_interact" platform="sage" width="110%" aspect="2:5">
+                <slate surface="sage">
+                    var('x,y,t')
+                    @interact
+                    def curl_explorer(f=input_box(default=1-x,label="First Component Equation $F_1=$"),g=input_box(default=x*y,label="Second Component Equation $F_2=$"),zoom=slider(-1,3,1,0),x0=input_box(default=1,label="$x_0$"),y0=input_box(default=1,label="$y_0$")):
+                        d=2
+                        zoom_level=(1/2)^zoom
+                        plot1=plot_vector_field((f,g),(x,x0-(d*zoom_level),x0+(d*zoom_level)),(y,y0-(d*zoom_level),y0+(d*zoom_level)),frame=False,axes_labels=["x","y"],aspect_ratio=1)
+                        plot1+=point([(x0,y0)],color='red',size=20)+text("$(x_0,y_0)$",(x0+0.1,y0+(0.1)),color='red',fontsize='large',clip=True)
+                        show(plot1)
+                </slate>
+            </interactive>
+        </figure>
+        <ol>
               <li>
                 <p>Would a small spinner placed at the origin spin clockwise, counterclockwise, or not spin at all?</p>
               </li>
               <li>
-                <p>Would a small spinner placed at <m>(1,1)</m> spin clockwise, counterclockwise, or not spin at all?</p>
+                <p>Would a small spinner placed at <m>(0,2)</m> spin clockwise, counterclockwise, or not spin at all?</p>
               </li>
               <li>
                 <p>Would a small spinner placed at <m>(-2,1)</m> spin clockwise, counterclockwise, or not spin at all?</p>
@@ -131,38 +146,35 @@
                 <p>Are there any points on the <m>xy</m>-plane where the spinner would turn differently than your descriptions in the previous part of this problem?</p>
               </li>
             </ol>
-            <p> show a picture of (1-x,xy), ask about points, ask for generalizations
-            This may be a point where they have an interact that allows them to redraw the vector field around a point to look at the vf at a local level rather than the more global picture.
-            Maybe fix the vf but let them input a point and have a slider that zooms in around the point(probably exponential steps like width of plot =(1/2)^d)
+            <p> 
           </p>
-          <figure xml:id="Curl_PA_interact">
-            <caption>A Sage applet for solving linear systems</caption>
-                    <interactive xml:id="sage_curl_interact" platform="sage" width="100%" aspect="2:5">
-                <slate surface="sage">
-                    var('x,y,t')
-                    @interact
-                    def curl_explorer(f=input_box(default=1-x,label="First Component Equation $F_1=$"),g=input_box(default=x*y,label="Second Component Equation $F_2=$"),zoom=slider(0,10,1,0),x0=input_box(default=1,label="$x_0$"),y0=input_box(default=1,label="$y_0$")):
-                        d=2
-                        zoom_level=(1/2)^zoom
-                        plot1=plot_vector_field((f,g),(x,x0-(d*zoom_level),x0+(d*zoom_level)),(y,y0-(d*zoom_level),y0+(d*zoom_level)),frame=False,axes_labels=["x","y"],aspect_ratio=1)
-                        plot1+=point([(x0,y0)],color='red')
-                        show(plot1)
-                </slate>
-            </interactive>
-        </figure>
+          
         </task>
     </activity>
+    <subsection xml:id="Curl_development">
     <p>
-      Now we talk about the classic calculus approach to this measurement, we will precisely calculate the appropriate line integral for the circulation around a point using a square centered at our point. Then we will examine what happens to this measurement as we shrink the size of the square to 0, ie. take a limit.
+      In this section, we will measure the circulation of a vector field for a path around a point and use this idea to generalize to a circulation density. Specifically, we will measure the circulation of a vector field as we move around a square centered on some point. Using this meausurement, we will look at the density of the circulation by dividing by the area, thus allowing us to compare our measurement across different sized regions. By taking the limit as our square's side length goes to zero, we will have a measurement for how the circulation density can be measured at a point. Just as in our discussion of <xref ref="Div_development">Subsection</xref>, we will look at two dimensional setting first then examine how our argument can be generalized to higher dimensions.
     </p>
     <p>
-      step through the process of setting up the line integrals on each of the sides of the square. Give the exact process for something like the top edge but then give results of the other sides. Pay attention to orientation since our square is oriented ccw. talk about how we will view ccw rotation in the xy plane as "positive" rotation and thus cw is "negative". This part will culminate in writing the four line integrals with a simplification that we only need to pay attention to one component of the vector field. Thus we get 4 single variable calculus integrals.
+      Let's start by measuring the circulation around a square with side length <m>2h</m> centered at a point <m>(a,b)</m>. Namely, we will look at the line integral of our vector field as we move along the square curve shown in <xref ref="Curl_dev_square">Figure</xref>.
     </p>
-    <p>
-      we will convert our measurment to a density (rotation per unit area) to be able to compare the results as we change the size of the square. If we have a larger square we will probably have a larger circulation since there is more distance to accumulate how the vector field is moving in the same direction as our path. Once we set up the density arguement, we use a MVT argument to trade our integrals for a function evaluation along the segment. This will allow us to show that in the limit we will have a center difference method for calculating the partial derivatives of certain components of the vector field. 
+      <figure xml:id="Curl_dev_square">
+        <caption><p>A square with side lengths <m>2h</m> traveled counterclockwise around the point <m>(a,b)</m>.</p></caption>
+        <image width ="55%" source="images/Square_with_arrows"/>
+      </figure>
+      <p>
+        We can parameterize the top edge of the box (in red) using the parameter <m> -h\geq t\geq h</m> as <m>\vr_{top}(t) = \langle a+t,b+h\rangle</m>. Similarly, the bottom, right, and left can be parameterized by  <m>\vr_{bottom}(t) = \langle a+t,b-h\rangle</m>,  <m>\vr_{right}(t) = \langle a+h,b+t\rangle</m>, and  <m>\vr_{left}(t) = \langle a-h,b+t\rangle</m>.
       </p>
       <p>
-      Summarize the result of this in contrast to the divergence, namely that we get partial of F_1 with respect to y and partial of F_2 with respect to x because we are looking at the deflection (rate change in the direction of the vf) to measure rotation, whereas divergence looked at the change in the strength of the vf. 
+        We want to know how much of the vector field is parallel to the direction of travel, so
+      
+       Give the exact process for something like the top edge but then give results of the other sides. Pay attention to orientation since our square is oriented ccw. talk about how we will view ccw rotation in the xy plane as "positive" rotation and thus cw is "negative". This part will culminate in writing the four line integrals with a simplification that we only need to pay attention to one component of the vector field. Thus we get 4 single variable calculus integrals.
+      </p>
+    <p>
+      we will convert our measurment to a density (rotation per unit area) to be able to compare the results as we change the size of the square. If we have a larger square we will probably have a larger circulation since there is more distance to accumulate how the vector field is moving in the same direction as our path. Once we set up the density arguement, we use a MVT argument to trade our integrals for a function evaluation along the segment. This will allow us to show that in the limit we will have a center difference method for calculating the partial derivatives of certain components of the vector field.
+      </p>
+      <p>
+      Summarize the result of this in contrast to the divergence, namely that we get partial of F_1 with respect to y and partial of F_2 with respect to x because we are looking at the deflection (rate change in the direction of the vf) to measure rotation, whereas divergence looked at the change in the strength of the vf.
     </p>
     <p>
       Now we make an argument about how to do the same thing on a 3D vf. If we look at rotation at a point (a,b,c), then we can really think of this as the linear combinations of rotations as measured on the planes z=c, y=b, and x=a. Thus we can apply the same argument above to each of the appropriate planes and get the curl as we know it. We will need to take an aside with each plane and talk about how the presentation of each plane relates to whether i, j, or k is going into or out of the page. xy-plane and yz-plane are coming out of the plane where as xz-plane presentation has j going into the page (this is the reason for the alternating sign in some presentaions of the curl formula.
@@ -170,6 +182,7 @@
     <p>
       Should also mention that there is nothing special about using a square other than it simplified the calculations involved in the circulation density. Conceptually, you will often see a circle but our use of rectangular coordinates makes it easiest to use rectangular figures.
     </p>
+  </subsection>
     <definition>
       <statement>
         <p> The definition of the curl goes here. </p>
