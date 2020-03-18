@@ -152,39 +152,75 @@
         </task>
     </activity>
     <subsection xml:id="Curl_development">
-      <title>Measuring the Circulation Density of a Vector Field</title>
+      <title>Measuring the Circulation Density of a 2D Vector Field</title>
     <p>
-      In this section, we will measure the circulation of a vector field for a path around a point and use this idea to generalize to a circulation density. Specifically, we will measure the circulation of a vector field as we move around a square centered on some point. Using this meausurement, we will look at the density of the circulation by dividing by the area, thus allowing us to compare our measurement across different sized regions. By taking the limit as our square's side length goes to zero, we will have a measurement for how the circulation density can be measured at a point. Just as in our discussion of <xref ref="Div_development">Subsection</xref>, we will look at two dimensional setting first then examine how our argument can be generalized to higher dimensions.
+      In this subsection, we will develop the measurement of the circulation density for a two dimensional vector field. We will use this 2D measurement to generalize to a notion of rotational strength in higher dimensional cases. 
+    </p>
+
+    <p>
+      We wish to measure the circulation of a vector field for a path around a point and use this idea to generalize to a circulation density. Specifically, we will measure the circulation of a vector field as we move around a square centered on some point. Using this meausurement, we will look at the density of the circulation by dividing by the area, thus allowing us to compare our measurement across different sized regions. By taking the limit as our square's side length goes to zero, we will have a measurement for how the circulation density can be measured at a point. Just as in our discussion of <xref ref="Div_development">Subsection</xref>, we will look at two dimensional setting first then examine how our argument can be generalized to higher dimensions.
     </p>
     <p>
       Let's start by measuring the circulation around a square with side length <m>2h</m> centered at a point <m>(a,b)</m>. Namely, we will look at the line integral of our vector field as we move along the square curve shown in <xref ref="Curl_dev_square">Figure</xref>.
     </p>
       <figure xml:id="Curl_dev_square">
-        <caption><p>A square with side lengths <m>2h</m> traveled counterclockwise around the point <m>(a,b)</m>.</p></caption>
+        <caption><p>A square centered at the point <m>(a,b)</m> with side lengths <m>2h</m> traveled counterclockwise.</p></caption>
         <image width ="55%" source="images/Square_with_arrows"/>
       </figure>
       <p>
         We can parameterize the top edge of the box (in blue) using the parameterization <m> -h\geq t\geq h</m> as <m>\vr_{top}(t) = \langle a+t,b+h\rangle</m>. Similarly, the bottom, right, and left can be parameterized by  <m>\vr_{bottom}(t) = \langle a+t,b-h\rangle</m>,  <m>\vr_{right}(t) = \langle a+h,b+t\rangle</m>, and  <m>\vr_{left}(t) = \langle a-h,b+t\rangle</m>.
       </p>
       <p>
-        We want to know how much of the vector field is parallel to the direction of travel, so along each of the sides of the box, we only need to look at one of the components of the vector field. The only contribution to the circulation on the top and bottom comes from the horizontal component (<m>F_1</m>) and the vertical component (<m>F_2</m>) is all that contributes on the right and left sides. This means that we can simplify our line integrals considerably once we apply <xref ref="LineInt_Param_Thm">Theorem</xref>.
+        In order to measure the circulation, we want to know how much of the vector field is parallel to the direction of travel, so along each of the sides of the box, we only need to look at one of the components of the vector field. The only contribution to the circulation on the top and bottom comes from the horizontal component (<m>F_1</m>) and the vertical component (<m>F_2</m>) is all that contributes on the right and left sides. This means that we can simplify our line integrals considerably once we apply <xref ref="LineInt_Param_Thm">Theorem</xref>.
         <me>
           \int_{top} \vF \cdot \vr=\int_{-h}^h \langle F_1,F_2\rangle \cdot \langle -1,0\rangle \enspace dt = \int_{-h}^h -F_1( a+t,b+h) \enspace dt
         </me>
       Similarly we can simplify the appropriate line integrals on the other sides (ordered below as top, left, bottom, right) to get the total circulation around the square to be 
       <me> 
-        \verb"Total Circulation" = \int_{\verb"Square"} \vF \cdot \vr = 
-        \int_{-h}^h -F_1( a+t,b+h) \enspace dt +  \int_{-h}^h -F_2( a-h,b+t) \enspace dt + \int_{-h}^h F_1( a+t,b-h) \enspace dt + \int_{-h}^h F_2( a+h,b+t) \enspace dt.
+        \verb"Total Circulation" = \int_{\verb"Square"} \vF \cdot \vr  \\
+        = \int_{-h}^h -F_1( a+t,b+h) \enspace dt +  \int_{-h}^h -F_2( a-h,b+t) \enspace dt \\ \quad \quad + \int_{-h}^h F_1( a+t,b-h) \enspace dt + \int_{-h}^h F_2( a+h,b+t) \enspace dt
       </me>
       Note that the sign on the top and the left sides end up being switched because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about "positive" rotation being counterclockwise and "negative" rotaiton being clockwise when looking at these planar graphs. 
       </p>
+      <p>
+        We will take moment here to apply a Mean Value Theorem argument to the four integrals given above in order to simplify our calculations in the next part. Specifically, We apply the Mean Value Theorem to the first integral to get a value <m>t_{top}^* \in (a-h,a+h)</m> such that
+        <me>
+        \int_{-h}^h -F_1( a+t,b+h) \enspace dt=  -2h F_1(t_{top}^*,b+h)
+      </me>
+      Applying the same arguments to the other three integrals in our Total Circulation calculation gives the following:
+      <me> 
+        \verb"Total Circulation" = \int_{\verb"Square"} \vF \cdot \vr \\
+        = \int_{-h}^h -F_1( a+t,b+h) \enspace dt +  \int_{-h}^h -F_2( a-h,b+t) \enspace dt \\
+        \quad \quad + \int_{-h}^h F_1( a+t,b-h) \enspace dt + \int_{-h}^h F_2( a+h,b+t) \enspace dt \\
+        = -2h F_1(t_{top}^*,b+h) -2h F_2(a-h,t_{left}^*) \\
+        \quad \quad + 2h F_1(t_{bottom}^*,b-h)+2h F_2(a+h,t_{right}^*) \\
+        =2h(F_2(a+h,t_{right}^*)-F_2(a-h,t_{left}^*))\\
+        \quad \quad -2h(F_1(t_{top}^*,b+h)-F_1(t_{bottom}^*,b-h))
+      </me>
+      where <m>t_{top}^*,t_{bottom}^* \in (a-h,a+h)</m> and <m>t_{left}^*,t_{right}^* \in (b-h,b+h)</m>.
+      </p>
     <p>
-      Since we are going to take a limit of this circulation as we shrink the square to the central point <m>(a,b)</m>
-      we will convert our measurment to a density (rotation per unit area) to be able to compare the results as we change the size of the square. If we have a larger square we will probably have a larger circulation since there is more distance to accumulate how the vector field is moving in the same direction as our path. Once we set up the density arguement, we use a MVT argument to trade our integrals for a function evaluation along the segment. This will allow us to show that in the limit we will have a center difference method for calculating the partial derivatives of certain components of the vector field.
+      Since we are going to take the limit of the total circulation as we shrink the square to the central point <m>(a,b)</m>,
+      we will convert our total circulation measurment to a circulation density (rotation per unit area) to be able to compare the results as we change the size of the square. If we have a larger square we will probably have a larger circulation since there is more distance to accumulate how the vector field is moving in the same direction as our path.
+    </p>
+    <p>
+      We will compute our circulation density by the following
+      <me>
+        \verb"Circulation Density"=\lim_{h\rightarrow 0} \frac{\verb"Total Circulation"}{\verb"Area of Square"} \\
+        = \lim_{h\rightarrow 0} \frac{\int_{\verb"Square"} \vF \cdot \vr}{4h^2}\\
+        =\lim_{h\rightarrow 0} \frac{F_2(a+h,t_{right}^*)-F_2(a-h,t_{left}^*)}{2h} - \frac{F_1(t_{top}^*,b+h)-F_1(t_{bottom}^*,b-h)}{2h}
+      </me>
+      Recall the central difference method of evaluating derivatives from page. 48 (1.5.2) and notice that as <m>h</m> goes to zero, then <m>t_{top}^*,t_{bottom}^*</m> must go to <m>a</m> and <m>t_{left}^*,t_{right}^*</m> must go to <m>b</m>. Therefore, our flow density ends up being
+          <me> \verb"Circulation Density at the point "(a,b)=
+            \frac{\partial F_2}{\partial x} (a,b)-\frac{\partial F_1}{\partial y} (a,b)
+          </me>
+
       </p>
       <p>
-      Summarize the result of this in contrast to the divergence, namely that we get partial of F_1 with respect to y and partial of F_2 with respect to x because we are looking at the deflection (rate change in the direction of the vf) to measure rotation, whereas divergence looked at the change in the strength of the vf.
+      Notice that this argument had a similar flow to the development of divergence in <xref ref="S_12_5_Div">Section</xref>, but the result ended up quite different because what we were measuring was different. Because divergence was developed to measure the change in the strength of the vector field (without regard to the direction), divergence is computed using the partial derivatives of the horizontal component of the vector field with respect to the horizontal variable and the vertical component of the vector field with respect to the vertical variable. The circulation density we just developed
+      measures how the direction of the vector field is changing, and thus uses partial derivatives of the components with respect to the transverse variable. In other words, the rotational aspects of the vector field depends on how the horizontal component of the vector field changes when we move vertically (and vice versa).
     </p>
+
     <p>
       Now we make an argument about how to do the same thing on a 3D vf. If we look at rotation at a point (a,b,c), then we can really think of this as the linear combinations of rotations as measured on the planes z=c, y=b, and x=a. Thus we can apply the same argument above to each of the appropriate planes and get the curl as we know it. We will need to take an aside with each plane and talk about how the presentation of each plane relates to whether i, j, or k is going into or out of the page. xy-plane and yz-plane are coming out of the plane where as xz-plane presentation has j going into the page (this is the reason for the alternating sign in some presentaions of the curl formula.
     </p>
