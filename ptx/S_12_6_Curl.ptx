@@ -221,12 +221,143 @@
       measures how the direction of the vector field is changing, and thus uses partial derivatives of the components with respect to the transverse variable. In other words, the rotational aspects of the vector field depends on how the horizontal component of the vector field changes when we move vertically (and vice versa).
     </p>
 
+   
     <p>
+      We could have used other shapes in the development of the circulation density (other than a square), but the square allowed for a more easily understood set of calculations as the area of our shape was shrunk. Our use of rectangular coordinates made it easiest to use rectangular figures but more general arguements exist..
+    </p>
+  </subsection>
+   <subsection xml:id="Curl_development_3d">
+      <title>Measuring the Circulation Density of a 3D Vector Field</title>
+    <p>
+    
+      The previous subsection showed how we can measure the circulation density, or strength of rotation, at a point for a two dimensional vector field. In this subsection, we will look at how this two dimensional measurement can be used to define circulation density for three dimensional vector fields. 
+    </p>
+    <figure xml:id="rot_in_3d">
+      <caption>Trace planes at a point</caption>
+      <interactive xml:id="vec_rotation" platform="sage" width="100%" aspect="1:1">
+      <slate surface="sage">
+        var('t,s')
+        a=4
+        b=5
+        @interact
+        def _():
+          plot1=sphere((1,2,0),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,s,0),(t,-a,a),(s,-a,a),color="red",opacity=.2)
+          plot1+=arrow3d((1,2,0),(1,2,2),color="blue",width=3)+parametric_plot3d((t,0,0),(t,-b,b),color="black")
+          plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
+          plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1,3,0.25))
+          plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="blue",thickness=3)+arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=5,color="blue")
+          show(plot1)
+      </slate>
+    </interactive>
+    </figure>
+    <p>
+      Let's think a bit about how we want to represent and measure rotation in three dimensions. When we did our development of the circulation density on the <m>xy></m>-plane, we measured the rotational strength at a point <m>(a,b,c)</m> with an axis of rotation coming out of the <m>xy</m>-plane. This coresponds to the axis of rotation being given by the blue vector in <xref ref="rot_in_3d">Figure</xref>. Remember that "positive" rotation corresponds to counterclockwise rotation in the <m>xy</m>-plane. We can generalize this idea to think of rotation in three dimensions as being represented by a vector where 
+      <ul>
+        <li>the direction of the vector represents the axis of rotation. </li>
+        <li>the magnitude of the vector represents the strength of the rotation. </li>
+      </ul>
+      By convention, we consider positive "rotation" to correspond to counterclockwise rotation when the vector field is viewed looking from the end of the vector to the base. If we look at the same slice of the vector field from the other side in three dimensions, the notion of rotation (clockwise versus counterclockwise) switches exactly with the orientation of the direction. Consider the following to plots of a vector field on the <m>xy</m>-plane when viewed from the positive and negative <m>z</m>-axis. 
+    </p>
+    <figure xml:id="F_12_2-idea-figs">
+        <sidebyside widths="47% 47%" margins="0% 5% 0%">
+            <figure>
+                <caption><m>\vF</m> from above the <m>xy</m>-plane </caption>
+                <image source="images/vf_from_positive"/>
+            </figure>
+            <figure>
+                <caption><m>\vF</m> from below the <m>xy</m>-plane</caption>
+                <image source="images/vf_from_negative"/>
+            </figure>
+        </sidebyside>
+    </figure>
+    <p>
+      Notice that the orientation of the <m>x</m>-axes switches which what changes the sign of our rotational measurement. With this idea of using a vector to represent the rotation of some element, we have enabled all of the tools that vectors allow, especially the projection and linear combination ideas. Remember that projection of a vector <m>/vec{v}</m> onto a vector <m>/vec{u}</m> will give the vector component of <m>/vec{v}</m> that is parallel to <m>/vec{u}</m>. In other words, the projection of <m>/vec{v}</m> onto <m>/vec{u}</m> is how much of <m>/vec{v}</m> is in the direction of <m>/vec{u}</m>. This will allow us to take the vector form of rotation and pull out how much rotation happens around a given axis of rotation.
+    </p>
+    <p>
+      Recall that we have used a set of coordinate vectors (namely <m>\vec{i}</m>, <m>\vec{j}</m>, and <m>\vec{k}</m>) to write other vectors as a linear combination of our base vectors.
+      <figure xml:id="ijk_vector_sum">
+      <caption>Trace planes at a point</caption>
+      <interactive xml:id="ijk_sum" platform="sage" width="125%" aspect="1:1">
+      <slate surface="sage">
+        d=5
+        shift=.5
+        var('t,s')
+        @interact
+        def _(a=slider(-5,5,1,default=1),b=slider(-5,5,1,default=2),c=slider(-5,5,1,default=-1)):
+          plot3=arrow3d((1,2,1),(1+a,2+b,1+c),width=2,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])
+          plot3+=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+          plot3+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black")
+          plot3+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))
+          plot3+=arrow3d((1,2,1),(1+a,2,1),width=2,color="red")+arrow3d((1,2,1),(1,2+b,1),width=2,color="green")+arrow3d((1,2,1),(1,2,1+c),width=2,color="blue")
+          plot3+=arrow3d((1,2+b,1),(1+a,2+b,1),width=2,color="red")+arrow3d((1+a,2,1),(1+a,2+b,1),width=2,color="green")+arrow3d((1+a,2+b,1),(1+a,2+b,1+c),width=2,color="blue")
+          print('You can see the black vector, given by $\langle a,b,c \rangle $ decomposed into parts parallel to $\vec{i}$, $\vec{j}$, and $\vec{k}$.') 
+          show(plot3)
+      </slate>
+    </interactive>
+    </figure>
+      The linear combination of vectors will allow us to build the total rotation vector by measuring the rotational strength in three coordinate direction vectors. This 
+    </p>
+
+    <figure xml:id="trace_planes_3d">
+      <caption>Trace planes at a point</caption>
+      <interactive xml:id="trace_planes" platform="sage" width="125%" aspect="1:1">
+      <slate surface="sage">
+        var('t,s')
+        a=3
+        b=5
+        @interact
+        def _():
+          plot1=sphere((1,2,1),size=.2,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((1+t,2+s,1),(t,-a,a),(s,-a,a),color="red",opacity=.2)
+          plot1+=arrow3d((1,2,1),(1,2,2),color="blue",width=2)+parametric_plot3d((t,0,0),(t,-b,b),color="black")
+          plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
+          plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1,3,1.25))
+          show(plot1)
+      </slate>
+    </interactive>
+    </figure>
+    <p> 
+      Let's look at how we can measure the circulation density at a point <m>(a,b,c)</m>. We can apply our 2D circulation density to the 3D vector field restricted to the plane <m> z=c</m>. This corresponds to examining the vector field on the red plane shown in <xref ref="trace_planes_3d">Figure</xref>. This means that our red slice with have axes of <m>x</m> and <m>y</m> and axes of rotation for the restricted vector field will be parallel to the <m>z</m>-axis. This is displayed with the blue vector in <xref ref="trace_planes_3d">Figure</xref>. 
+    <figure xml:id="trace_planes_3d_xy">
+      <caption>Trace planes at a point</caption>
+      <interactive xml:id="trace_planes_xy" platform="sage" width="100%" aspect="1:1">
+      <slate surface="sage">
+        var('t,s')
+        a=3
+        b=5
+        @interact
+        def _():
+          plot2=sphere((1,2,1),size=.2,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((1,2+s,1+t),(t,-a,a),(s,-a,a),color="green",opacity=.2)
+          plot2+=arrow3d((1,2,1),(2,2,1),color="pink",width=2)+parametric_plot3d((t,0,0),(t,-b,b),color="black")+parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
+          plot2+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1.5,1.5,1.5))
+          plot2+=parametric_plot3d((1+s,2,1+t),(t,-a,a),(s,-a,a),color="orange",opacity=.2)+arrow3d((1,2,1),(1,3,1),color="purple",width=2)
+          show(plot2)
+      </slate>
+    </interactive>
+    </figure>
+    Similarly, we can look at the 2D rotational strength for the vector field on either the <m>x</m> or <m>y</m> traces as shown in <xref ref="trace_planes_3d_xy">Figure</xref>. We will measure the rotational strength at a point <m>(a,b,c)</m> using a vector where the length of the vector is a measure of the rotational strength and the direction of the vector gives the axis of rotation. In this way, we can express the rotational strength of a vector field in three dimensions as being the vector sums of the 2D circulation densities on the trace planes. 
+
+    as the linear combination of the rotational strengths using vectors
       Now we make an argument about how to do the same thing on a 3D vf. If we look at rotation at a point (a,b,c), then we can really think of this as the linear combinations of rotations as measured on the planes z=c, y=b, and x=a. Thus we can apply the same argument above to each of the appropriate planes and get the curl as we know it. We will need to take an aside with each plane and talk about how the presentation of each plane relates to whether i, j, or k is going into or out of the page. xy-plane and yz-plane are coming out of the plane where as xz-plane presentation has j going into the page (this is the reason for the alternating sign in some presentaions of the curl formula.
     </p>
-    <p>
-      Should also mention that there is nothing special about using a square other than it simplified the calculations involved in the circulation density. Conceptually, you will often see a circle but our use of rectangular coordinates makes it easiest to use rectangular figures.
-    </p>
+<figure xml:id="trace_planes_3d_all">
+      <caption>Trace planes at a point</caption>
+      <interactive xml:id="trace_planes_all" platform="sage" width="100%" aspect="1:1">
+      <slate surface="sage">
+        var('t,s')
+        a=3
+        b=5
+        @interact
+        def _():
+          plot2=sphere((1,2,1),size=.2,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((1,2+s,1+t),(t,-a,a),(s,-a,a),color="green",opacity=.2)
+          plot2+=arrow3d((1,2,1),(2,2,1),color="pink",width=2)+parametric_plot3d((t,0,0),(t,-b,b),color="black")
+          plot2+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
+          plot2+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1.5,1.5,1.5))
+          plot2+=parametric_plot3d((1+s,2,1+t),(t,-a,a),(s,-a,a),color="orange",opacity=.2)+arrow3d((1,2,1),(1,3,1),color="purple",width=2)
+          plot2+=parametric_plot3d((1+t,2+s,1),(t,-a,a),(s,-a,a),color="red",opacity=.2)+arrow3d((1,2,1),(1,2,2),color="blue",width=2)
+          show(plot2)
+      </slate>
+    </interactive>
+    </figure>
   </subsection>
     <definition>
       <statement>
@@ -260,6 +391,7 @@
 <p>
   Include a few 3D vf plots (in calcplot3d? or sage?) with a point included. Give examples where the curl is non-zero, a constant vf, and a point source vf. For the last two examples, talk about how any slice around any point will have the same rotational argument.
 </p>
+ 
 <p>
   Include an example where the curl has different values in different quadrants. Maybe include an interact that will allow the user to input a point, toggle whether the curl vector is displayed and have a slider to zoom in around the point. Probably need to include a slider that will change the density of vectors displayed around the point. 
   </p>
