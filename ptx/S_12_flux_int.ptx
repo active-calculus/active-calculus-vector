@@ -17,57 +17,114 @@
     </objectives>
     <introduction>
     <p>
-      Need to go over the idea of a simply connnected region and what the boundary of a region means.
+      Recall from 11.6, we can give parameterizations of surfaces. for instance <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> as <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere centered at the origin of radius 2.
 
-      Simple closed paths in the plane are the same as simply connected regions. Show some examples of each and some examples that are not simple or closed. Maybe this goes after the preview activity?
+      In section 11.6.2, we talked about how to set up a Riemann sum for hte surface area of a curved surface in space based on a parameterization.
+
+      Need to construct a 3D version of Figure 11.6.6.
     </p>
-     
     </introduction>
     <activity >
       <introduction>
         <p>
-          We will be examining how the circulation around paths that join each other can be combined.
+          This activity will be about a deeper understanding of the parameterization of a surface.
         </p>
       </introduction>
         <task>
           <p>
-            For this part, look at the squares in <xref ref="Greens_Thm_task1_squares">Figure</xref>. All paths are going to the right or up. Will probably want to color coordinate the figure to make it easy to see. Perhaps we just show the 1463 square and compute the paths that are taken to find circulation (remind them that circulation is measured counterclockwise)
+            have students parameterize a sphere, a right circular cylinder, and a slanted plane
           </p>
-          
+        </task>
+        <task>
+          <p>
+            have students give the points on each sphere that correspond to (0,0), (0,1), (1,0), and (2,3)
+          </p>
+        </task>
+        <task>
+          <p>
+            for each parameterization, have students calculate r_s, r_t, and r_s cross r_t.
+          </p>
+        </task>
+        <task>
+          <p>
+            calculate each of the vectors in previous part at our four points and have students interpret the direction of thier results.
+          </p>
+        </task>
+        <task>
+          <p>
+            In summary, which of the vectors is tangent to the surface and which is orthogonal to the surface?
+          </p>
         </task>
     </activity>
     <p>
-      Moral of the story: When we sum circulation around adjoining paths only the outer parts survive. In this way, we can both combine circulations and equivalently split into paths around smaller areas.
+      The formula for surface area in section 11.6 utilized the magnitude of r_x cross r_t to give the surface area element that we summed.
 
-      There was nothing special about squares in the precediing activity. Could just have easily been done on the following figure.
+      The direction of r_s cross r_t be orthogonal to the surface traced by the parameterization. this will be a very useful tool in looking at it means to go through a surface. 
+
+      In this way the vector properties (direction and magnitude) of r_s cross r_t will be vital as we explore how much of a vector field moves through a surface. 
     </p>
     <subsection>
-      <title>Green's Theorerm</title>
-    <theorem >
-      <p>
-      Put the right theorem here...
-      <me>
-        \int_C \vF\cdot d\vr = \int_a^b \vF(\vr(t))\cdot \vr'(t)\, dt
-      </me>.
-      </p>
-    </theorem>
-    <p>If we have a problem that fits the conditions of Green's Theorem, the we can trade the following problems:
-    <ol>
-      <li>Calculate the circulation over a closed simple path in the plane </li>
-      <li>Integrate the circulation density over the interior of the closed, simple path</li>
-    </ol>
-  </p>
+      <title>The flux of a vector field through a surface</title>
+    <p>
+      Show a vector field on a grid over a surface.
+
+      If we are trying to measure the amount of the vector field that goes through our surface, we only need to consdier the vector field that goes perpendicular to the surface. Any part of the vector field that goes along the surface will not contribute to flow of the vector field through the surface. We want to pull out the component of the vector field that is tangent to the surface.
+
+      Show the same vector field with the normal and tangential components.
+
+      We want to accumulate the yellow component of the vector field in above picture. 
+
+      make a pictoral argument about outward pointing normal being what positive flow means.
+    </p>
     <activity>
-        <title>Checking Green's Theorem</title>
+        <title>Visualizing Flux through a field</title>
         <task >
           <p>
-            give scenario and verify that the path is a simple closed path (maybe draw a picture of the path and shade the interior of the path). Perhaps the path should be three line segments that make a triangle, that way the line integral is tedious but possible and the area integral is noticably easier (i.e. the students see the advantage of the trade in Green's Theorem)
+            show interact with vector field and a surface (surface should have outward pointing normal). allow a selector to change the vector field and change the surface. ask the student to assess whether the flux through different combinations will be positive, negative, or zero.
+
+            this should have clear pictures but variety of answers.
           </p>
         </task>
-        
     </activity>
     <p>
-      maybe mention that rarely will you be able to use Green's Theorem to trade a double integral for circulation integral in a useful way since we have to go from a scalar function to two component functions of the vector fields (as an integrand). No canonical way to do this.
+      Let N be the unit vector normal to the surface. The projection of F onto N will be the amount of the vector field that flows through the surface. We need to look at the accumulation of F dot N, since N is unit vector.
+
+      From our ideas above, N can be given by r_s cross r_t divided by magnitude. so we have a way to find F dot N on each block of the sum for the surface area. 
+
+      Our Riemann sum becomes Sum F dot N S_ij where Sij is the area of the ij partition element.
+
+      take limit as partition elements go to zero in all dimensions to get flux integral. 
     </p>
+    <theorem>
+      <statement>
+        <p>
+          flux integral can be computed as double integral of F dot (r_s \cross r_t) ds dt. 
+        </p>
+      </statement>
+    </theorem>
+    <p>
+      Might want to mention that surface area is \iint 1 dS. 
+
+      Talk about how the cancelation of magnitudes happens in this formula. 
+    </p>
+    <activity>
+        <title>Checking visualization of vector field flux</title>
+        <task >
+          <p>
+            visualize a paraboloid and vector field.
+
+            Do you expect the flux to be positive, negative, zero.
+
+            parameterize surface
+
+            compute r_s \cross r_t
+
+            set up flux integral
+
+            have sage compute integral 
+            
+          </p>
+        </task>
+    </activity>
   </subsection>
 </section>
