@@ -1,189 +1,213 @@
 <section xml:id="S_12_Stokes_Thm">
   <title>Stokes Theorem</title>
-  
-    <objectives>
-      <ul>
-        <li>
-          <p>
-          	Is there a theorem analogous to Green's Theorem that applies to calculating the circulation over simple closed curves in three dimensions?
-          </p>
-        </li>
-        <li>
-          <p>
-            Why does it not matter what surface we use as the "interior" of our simple closed curve in Stoke's Theorem?
-          </p>
-        </li>
-      </ul>
-    </objectives>
+<objectives>
+  <ul>
+    <li>
+      <p>
+      	Is there a theorem analogous to Green's Theorem that applies to calculating the circulation over simple closed curves in three dimensions?
+      </p>
+    </li>
+    <li>
+      <p>
+        Why does it not matter what surface we use as the "interior" of our simple closed curve in Stoke's Theorem?
+      </p>
+    </li>
+  </ul>
+</objectives>
+<introduction>
+  <p>
+    In this section we will look at how to measure the circulation over 
+  </p>
+  <exploration xml:id="Stokes_PA">
     <introduction>
-    <p>
-      In this section we will look at how to measure the circulation over 
-    </p>
+      <p>
+       In this activity, we will look at how we can apply the moral from right after <xref ref="Greens_Thm_PA">Activity</xref> to curves in space.
+      </p>
+      <figure xml:id="Stokes_curve1">
+        <caption>Curves in Space!</caption>
+        <interactive xml:id="Stokes_c1" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            var('t,s,x,y,z,r,theta')
+            @interact
+            def _():
+              plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,pi),color="red",thickness=2)+ parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi,2*pi),color="green",thickness=2)+parametric_plot3d((t,0,1),(t,-1,1),color="blue",thickness=2)+arrow3d((-.1,0,1),(.1,0,1),color="blue")
+              show(plot1)
+          </slate>
+        </interactive>
+      </figure>
     </introduction>
-    <activity xml:id="Stokes_PA">
-      <introduction>
-        <p>
-         In this activity, we will look at how we can apply the moral from right after <xref ref="Greens_Thm_PA">Activity</xref> to curves in space.
-        </p>
-        <figure xml:id="Stokes_curve1">
-	      <caption>Curves in Space!</caption>
-	      <interactive xml:id="Stokes_c1" platform="sage" width="100%" aspect="1:1">
-	      <slate surface="sage">
-	        var('t,s,x,y,z,r,theta')
-			@interact
-			def _():
-				plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,pi),color="red",thickness=2)+ parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi,2*pi),color="green",thickness=2)+parametric_plot3d((t,0,1),(t,-1,1),color="blue",thickness=2)+arrow3d((-.1,0,1),(.1,0,1),color="blue")
-				show(plot1)
-	      	</slate>
-	    	</interactive>
-	    </figure>
-      </introduction>
-        <task xml:id="Stokes_PA_task1">
-          <p> For this part, look at the in <xref ref="Stokes_curve1">Figure</xref>.</p>
-            <ol>
-              <li>
-                <p>Write out the circulation line integrals of the green and blue closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise. </p>
-              </li>
-              <li>
-                <p>Write out the circulation line integrals of the red and blue closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise.</p>
-              </li>
-              <li>
-                <p>Write out the circulation line integrals of the green and red closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise.</p>
-              </li>
-               <li>
-                <p>Why does it make sense that we can add the results of the first two parts and get the third?</p>
-              </li>
-              
-              <li> <p>Would your arguments from above change at all if you considered the following figure?</p>
-              <figure xml:id="Stokes_curve2">
-			      <caption>Curves in Space!</caption>
-			      <interactive xml:id="Stokes_c2" platform="sage" width="100%" aspect="1:1">
-			      <slate surface="sage">
-			        var('t,s,x,y,z,r,theta')
-					@interact
-					def _():
-						plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi/4,5*pi/4),color="red",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,5*pi/4,9*pi/4),color="green",thickness=2)+parametric_plot3d((t,t,0),(t,-sqrt(2)/2,sqrt(2)/2),color="blue",thickness=2)+arrow3d((-.1,-.1,0),(.1,.1,0),color="blue")
-						show(plot1)
-			      	</slate>
-			    	</interactive>
-			    </figure>
-          		</li>
-            </ol>
-        </task>
-        <task xml:id="Stokes_PA_task2">
-          <p> We will now consider the green and the red curve as <m>C</m>, the closed, simple curve which is plotted in red in <xref ref="fill_in_surfaces">Figure</xref>.</p>
-          <figure xml:id="fill_in_surfaces">
-		      <caption>Ways to fill in our simple closed curve</caption>
-		      <interactive xml:id="pringle_surfaces" platform="sage" width="100%" aspect="1:1">
-		      <slate surface="sage">
-		        var('t,s,x,y,z,r,theta')
-				@interact
-				def _(s=selector(['Surface1', 'Surface2','Surface3'],label="Surface Selection:")):
-					plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=50)
-					if s=='Surface1':
-						surface=parametric_plot3d((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.25)
-					if s=='Surface2':
-						surface=parametric_plot3d((r*cos(t),r*sin(t),(1-cos(pi*r))*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.45)
-					if s=='Surface3':
-						surface=parametric_plot3d((r*cos(t),r*sin(t),(r^6)*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,1.5), color="gray",opacity=.45, aspect_ratio=(1,1,.1))
-					show(plot1+surface)
-		      	</slate>
-		    	</interactive>
-	    	</figure>
-        <p>Verify that each of the three optional surfaces contains our curve <m>C</m>.</p>
-        </task>
-    </activity>
-    <subsection xml:id="Stokes_Thm_development">
-      <title>Behind circulation in three dimensions</title>
-    <p>
-      In this subsection, we will look at the correspondence between circulation around a path in three dimensions and the circulation density "inside" the path. As you saw in <xref ref="Stokes_PA_task2">Activity part</xref>, there is not just one way to fill in the interior of a simple closed curve in three dimensions. For now, we will pick some surface <m>S_1</m> that has our simple closed curve <m>C_1</m> as its boundary, like in <xref ref="base_surface">Figure</xref>.
-    </p>
-<figure xml:id="base_surface">
-		      <caption>Our base surface<m>S_1</m> with boundary given by our simple closed curve <m>C_1</m></caption>
-		      <interactive platform="sage" width="100%" aspect="1:1">
-		      <slate surface="sage">
-		        var('t,s,x,y,z,r,theta')
-				@interact
-				def _():
-					plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=2)+parametric_plot3d((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,1),color="gray",opacity=.75)
-					show(plot1)
-		      	</slate>
-		    	</interactive>
-	    	</figure>
-    <p>
-    	The 3D analog of circulation density is the curl, which measures the maximal rotational strength as a vector. In order to generalize the circulation density argument we did in the Green's Theorem section, we need to know how much of circulatiton density there is at each point on the surface of <m>S_1</m>. Remember that given a parameterization of a surface we can calculate the vector form of the surface area element <m>\vS</m>, which has a direction orthogonal to the surface.
+    <task xml:id="Stokes_PA_task1">
+      <statement>
+      <p>
+        For this part, look at the in <xref ref="Stokes_curve1">Figure</xref>.
+      </p>
+      <ol>
+        <li>
+          <p>Write out the circulation line integrals of the green and blue closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise. </p>
+        </li>
+        <li>
+          <p>Write out the circulation line integrals of the red and blue closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise.</p>
+        </li>
+        <li>
+          <p>Write out the circulation line integrals of the green and red closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise.</p>
+        </li>
+        <li>
+          <p>Why does it make sense that we can add the results of the first two parts and get the third?</p>
+        </li>
+        <li>
+          <p>Would your arguments from above change at all if you considered the following figure?</p>
+          <figure xml:id="Stokes_curve2">
+            <caption>Curves in Space!</caption>
+            <interactive xml:id="Stokes_c2" platform="sage" width="100%" aspect="1:1">
+              <slate surface="sage">
+                var('t,s,x,y,z,r,theta')
+                @interact
+                def _():
+                  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi/4,5*pi/4),color="red",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,5*pi/4,9*pi/4),color="green",thickness=2)+parametric_plot3d((t,t,0),(t,-sqrt(2)/2,sqrt(2)/2),color="blue",thickness=2)+arrow3d((-.1,-.1,0),(.1,.1,0),color="blue")
+                  show(plot1)
+              </slate>
+            </interactive>
+          </figure>
+        </li>
+      </ol>
+      </statement>
+    </task>
+    <task xml:id="Stokes_PA_task2">
+      <statement>
+      <p> We will now consider the green and the red curve as <m>C</m>, the closed, simple curve which is plotted in red in <xref ref="fill_in_surfaces">Figure</xref>.</p>
+      <figure xml:id="fill_in_surfaces">
+        <caption>Ways to fill in our simple closed curve</caption>
+        <interactive xml:id="pringle_surfaces" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          var('t,s,x,y,z,r,theta')
+          @interact
+          def _(s=selector(['Surface1', 'Surface2','Surface3'],label="Surface Selection:")):
+            plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=50)
+            if s=='Surface1':
+              surface=parametric_plot3d((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.25)
+            if s=='Surface2':
+              surface=parametric_plot3d((r*cos(t),r*sin(t),(1-cos(pi*r))*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.45)
+            if s=='Surface3':
+              surface=parametric_plot3d((r*cos(t),r*sin(t),(r^6)*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,1.5), color="gray",opacity=.45,aspect_ratio=(1,1,.1))
+            show(plot1+surface)
+        </slate>
+        </interactive>
+      </figure>
+      <p>Verify that each of the three optional surfaces contains our curve <m>C</m>.</p>
+      </statement>
+    </task>
+  </exploration>
+</introduction>
+<subsection xml:id="Stokes_Thm_development">
+  <title>Behind circulation in three dimensions</title>
+  <p>
+    In this subsection, we will look at the correspondence between circulation around a path in three dimensions and the circulation density "inside" the path. As you saw in <xref ref="Stokes_PA_task2">Activity part</xref>, there is not just one way to fill in the interior of a simple closed curve in three dimensions. For now, we will pick some surface <m>S_1</m> that has our simple closed curve <m>C_1</m> as its boundary, like in <xref ref="base_surface">Figure</xref>.
+  </p>
+  <figure xml:id="base_surface">
+    <caption>Our base surface<m>S_1</m> with boundary given by our simple closed curve <m>C_1</m></caption>
+    <interactive platform="sage" width="100%" aspect="1:1">
+    <slate surface="sage">
+      var('t,s,x,y,z,r,theta')
+      @interact
+      def _():
+        plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=2)+parametric_plot3d((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,1),color="gray",opacity=.75)
+        show(plot1)
+    </slate>
+    </interactive>
+  </figure>
+  <p>
+    The 3D analog of circulation density is the curl, which measures the maximal rotational strength as a vector. In order to generalize the circulation density argument we did in the Green's Theorem section, we need to know how much of circulatiton density there is at each point on the surface of <m>S_1</m>. Remember that given a parameterization of a surface we can calculate the vector form of the surface area element <m>\vS</m>, which has a direction orthogonal to the surface.
 
-    	How much rotation is along the surface is the same as knowing how much of the curl is orthogonal to the surface.
+    How much rotation is along the surface is the same as knowing how much of the curl is orthogonal to the surface.
 
-    	In other words, integrating the circulation density over <m>S_1</m> is the same as look at the flux of the curl through <m>S_1</m>, given by 
-    	<me>
-    		\int_{S_1} curl(\vF)\cdot d\vS
-    	</me>
-    	If we used a different surface <m>S_2</m> with boundary <m>C_1</m> then we will get same flux. Why? by our Green's Theorem argument, no matter how we cut up the area, the only parts of the circulations that don't get cancelled out correspond to the boundary. Since we have the same boundary, we will have the same flux. 
-    </p>
-  </subsection>
-  <subsection xml:id="Stokes_Thm_statement">
-      <title>Stokes' Theorem</title>
-   
-    <theorem xml:id="Stokes_Thm">
+    In other words, integrating the circulation density over <m>S_1</m> is the same as look at the flux of the curl through <m>S_1</m>, given by 
+    <me>
+    	\int_{S_1} curl(\vF)\cdot d\vS
+    </me>
+    If we used a different surface <m>S_2</m> with boundary <m>C_1</m> then we will get same flux. Why? by our Green's Theorem argument, no matter how we cut up the area, the only parts of the circulations that don't get cancelled out correspond to the boundary. Since we have the same boundary, we will have the same flux. 
+  </p>
+</subsection>
+<subsection xml:id="Stokes_Thm_statement">
+  <title>Stokes' Theorem</title>
+  <theorem xml:id="Stokes_Thm">
+    <statement>  
       <p>
       Put the right theorem here...
       <me>
         \int_C \vF\cdot d\vr = \int_a^b \vF(\vr(t))\cdot \vr'(t)\, dt
       </me>.
       </p>
-    </theorem>
+    </statement>
+  </theorem>
+  <p>
     If we have a problem that fits the conditions of Stokes' Theorem, the we can trade the following problems:
     <ol>
       <li>Calculate the circulation over a closed simple path in space </li>
       <li>Integrate the flux of the curl over any surface that has a boundary given by our closed, simple path in space</li>
     </ol>
-    <activity xml:id="verify_Stokes_Thm">
-        <title>Checking Stokes' Theorem</title>
-        <task xml:id="verify_Stokes_Thm_task1">
-          <p>
-            could use something like the diagonal great line of sphere (along the trace of x=z) as our path.
-          </p>
-        </task>
-        <task xml:id="verify_Stokes_Thm_task2">
-          <p>
-            Set up and evaluate the line integral to calculate the circulation directly
-          </p>
-        </task>
-        <task xml:id="verify_Stokes_Thm_task3">
-          <p>
-            Give parameterization of the hemisphere with proper boundary. Suggest using spherical coordinates to evaluate
-          </p>
-        </task>
-        <task xml:id="verify_Stokes_Thm_task4">
-          <p>
-           Use the previous part to set up and evaluate the flux integral on the right side of Stokes' Theorem. Suggest using Sage to calculate?
-          </p>
-        </task>
-        <task xml:id="verify_Stokes_Thm_task5">
-          <p>
-            Verify that both the line integrals of the circulation and the flux integral of the curl give same result.
-          </p>
-        </task>
-        <task xml:id="verify_Stokes_Thm_task6">
-          <p>
-            Give parameterization of the plane with proper boundary. Suggest using polar coordinates to evaluate
-          </p>
-        </task>
-        <task xml:id="verify_Stokes_Thm_task7">
-          <p>
-           Use the previous part to set up and evaluate the flux integral on the right side of Stokes' Theorem. Suggest using Sage to calculate?
-          </p>
-        </task>
-        <task xml:id="verify_Stokes_Thm_task8">
-          <p>
-            Verify that this flux integral of the curl give same result.
-          </p>
-        </task>
-    </activity>
-    <p>
-      mention that you should use the freedom to make your surface whatever you want should make your life easier, not harder. 
-    </p>
-  </subsection>
-</section>
+  </p>
+  <activity xml:id="verify_Stokes_Thm">
+    <title>Checking Stokes' Theorem</title>
+    <task xml:id="verify_Stokes_Thm_task1">
+      <statement>
+      <p>
+        could use something like the diagonal great line of sphere (along the trace of x=z) as our path.
+      </p>
+      </statement>
+    </task>
+    <task xml:id="verify_Stokes_Thm_task2">
+      <statement>
+      <p>
+        Set up and evaluate the line integral to calculate the circulation directly
+      </p>
+      </statement>
+    </task>
+    <task xml:id="verify_Stokes_Thm_task3">
+      <statement>
+      <p>
+        Give parameterization of the hemisphere with proper boundary. Suggest using spherical coordinates to evaluate
+      </p>
+      </statement>
+    </task>
+    <task xml:id="verify_Stokes_Thm_task4">
+      <statement>
+      <p>
+        Use the previous part to set up and evaluate the flux integral on the right side of Stokes' Theorem. Suggest using Sage to calculate?
+      </p>
+      </statement>
+    </task>
+    <task xml:id="verify_Stokes_Thm_task5">
+      <statement>
+        <p>
+          Verify that both the line integrals of the circulation and the flux integral of the curl give same result.
+        </p>
+      </statement>
+    </task>
+    <task xml:id="verify_Stokes_Thm_task6">
+      <statement>
+      <p>
+        Give parameterization of the plane with proper boundary. Suggest using polar coordinates to evaluate
+      </p>
+      </statement>
+    </task>
+    <task xml:id="verify_Stokes_Thm_task7">
+      <statement>
+        <p>
+          Use the previous part to set up and evaluate the flux integral on the right side of Stokes' Theorem. Suggest using Sage to calculate?
+        </p>
+      </statement>
+    </task>
+    <task xml:id="verify_Stokes_Thm_task8">
+      <statement>
+        <p>
+          Verify that this flux integral of the curl give same result.
+        </p>
+      </statement>
+    </task>
+  </activity>
+  <p>
+    mention that you should use the freedom to make your surface whatever you want should make your life easier, not harder. 
+  </p>
+</subsection>
 
+</section>
