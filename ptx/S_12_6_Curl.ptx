@@ -4,7 +4,7 @@
   <ul>
     <li>
       <p>
-      What is meant by rotation of a vector field in a plane? 
+      What is meant by rotation of a vector field in a plane?
       </p>
     </li>
     <li>
@@ -21,20 +21,28 @@
 </objectives>
 <introduction>
   <p>
-    In <xref ref="S_12_5_Div">Section</xref> we examined two (and higher) dimensional vector field for how the strength of the vector field changed in different regions. In particular, we developed the <xref ref="Div_defn">divergence (Definition</xref>) of a vector field as a local (or density) measurement for how the strength of the vector field changes. In many physical settings it is also useful to measure the rotational strength of a vector field at a local scale. For instance, the vector field on the left of <xref ref="Curl_intro_vfs">Figure</xref> shows a vector field which flows in a counterclockwise fashion around the origin. The vector field on the right of <xref ref="Curl_intro_vfs">Figure</xref> shows a vector field which does not have a rotational aspect to its flow.
+    In <xref ref="S_12_5_Div">Section</xref>, we examined how the strength of a vector field in two (or more) dimensions changed in different regions. In particular, we developed the <xref ref="Div_defn">divergence (Definition</xref>) of a vector field as a local (or density) measurement for how the strength of the vector field changes.
+    <ul>
+      <li>A positive divergence means that the vector field is growing in strength</li>
+      <li>A negative divergence means that the vector field is decreasing in strength</li>
+      <li>A zero divergence mean that the vector field is not changing in strength</li>
+    </ul>
+  </p>
+  <p>
+    In many physical settings it is also useful to measure the rotational strength of a vector field at a local scale. For instance, the vector field on the left of <xref ref="Curl_intro_vfs">Figure</xref> shows a vector field which flows in a counterclockwise fashion around the origin. The vector field on the right of <xref ref="Curl_intro_vfs">Figure</xref> shows a vector field which does not have a rotational aspect to its flow.
   </p>
   <figure xml:id="Curl_intro_vfs">
-    <caption>Examples of vector fields with global rotation properties and without rotation in either the global or local sense.</caption>
+    <caption>Examples of vector fields with global rotation properties (left) and without rotation in either the global or local sense (right)</caption>
     <sidebyside widths="45% 45%">
-      <image source="images/fig_12_4_ex2_field1"/>
+      <image source="images/curl_vf1"/>
       <image source="images/Div_activity_-x-y"/>
     </sidebyside>
   </figure>
   <p>
-    These global ideas of rotation are nice but are not always visually apparent or may only appear in some regions. For instance, the vector field on the left of <xref ref="Curl_intro_vfs2">Figure</xref> seems to have rotation around at least a couple of different points in a global sense. The vector field on the right of <xref ref="Curl_intro_vfs2">Figure</xref> has the rotation of the flows dependant on which quadrant you are examining.
+    These global ideas of rotation are nice but are not always visually apparent or may only appear in some regions. For instance, the vector field on the left of <xref ref="Curl_intro_vfs2">Figure</xref> seems to have rotation around at least a couple of different points. In each quadrant, the vector field on the right of <xref ref="Curl_intro_vfs2">Figure</xref> has different rotational patterns.
   </p>
   <figure xml:id="Curl_intro_vfs2">
-    <caption>Examples of vector fields with global rotation properties and without rotation in either the global or local sense.</caption>
+    <caption>Examples of vector fields with varying rotation properties</caption>
     <sidebyside widths="45% 45%">
         <image source="images/Div_activity_xy1x"/>
         <image source="images/fig_12_5_vf1"/>
@@ -43,7 +51,7 @@
   <exploration xml:id="Curl_PA">
     <introduction>
     <p>
-      We would like to measure and understand rotation at the local level for a vector field. In order to investigate this concept, we will look at some two dimensional vector fields and think about whether the vector field shown will rotate a small pinwheel or spinner placed at a particular location.
+      We would like to understand and measure rotation at the local level (in the neighborhood of a particular point) for a vector field. In order to investigate this concept, we will look at some two dimensional vector fields and think about whether the vector field shown will rotate a small pinwheel or spinner placed at a particular location.
     </p>
     <figure xml:id="spinner_fig">
       <caption>A picture of our model spinner</caption>
@@ -52,7 +60,7 @@
     </introduction>
     <task xml:id="Curl_PA_task1">
       <statement>
-        <p> For this part, look at the vector field in <xref ref="Curl_PA_task1_vf">Figure</xref>.</p>
+        <p>For this part, look at the vector field in <xref ref="Curl_PA_task1_vf">Figure</xref>.</p>
         <figure xml:id="Curl_PA_task1_vf">
           <image width="55%" source="images/Curl_-yx_field"/>
         </figure>
@@ -124,7 +132,7 @@
           </figure> -->
         <figure xml:id="Curl_PA_task4_vf">
           <caption>A Sage Interact to examine vector fields</caption>
-          <interactive xml:id="sage_curl_interact" platform="sage" width="100%">
+          <interactive xml:id="sage_curl_interact" platform="sage" width="100%" height="200%">
             <slate surface="sage">
               var('x,y,t')
               @interact
@@ -148,7 +156,13 @@
             <p>Would a small spinner placed at <m>(-2,1)</m> spin clockwise, counterclockwise, or not spin at all?</p>
           </li>
           <li>
-            <p>Are there any points on the <m>xy</m>-plane where the spinner would turn differently than your descriptions in the previous part of this problem?</p>
+            <p>Give a point (different than the ones used in 1.-3.) in the <m>xy</m>-plane where a spinner would 
+              <ul>
+                <li>turn clockwise.</li>
+                <li>turn counterclockwise.</li>
+                <li>not turn at all.</li>
+              </ul>
+            </p>
           </li>
         </ol>
       </statement>
@@ -161,46 +175,54 @@
     In this subsection, we will develop the measurement of the circulation density for a two dimensional vector field. We will use this 2D measurement to generalize to a notion of rotational strength in higher dimensional cases.
   </p>
   <p>
-    We wish to measure the circulation of a vector field for a path around a point and use this idea to generalize to a circulation density. Specifically, we will measure the circulation of a vector field as we move around a square centered on some point. Using this meausurement, we will look at the density of the circulation by dividing by the area, thus allowing us to compare our measurement across different sized regions. By taking the limit as our square's side length goes to zero, we will have a measurement for how the circulation density can be measured at a point. Just as in our discussion of <xref ref="Div_development">Subsection</xref>, we will look at two dimensional setting first then examine how our argument can be generalized to higher dimensions.
+    We will start by measuring the circulation of a vector field on a path around the point <m>(a,b)</m> and use this measurement to define circulation density. Specifically, we will measure the circulation of a vector field as we move around a square centered on <m>(a,b)</m>. Using this meausurement, we will look at the circulationo density by dividing our measurement by the area enclosed, thus allowing us to compare our measurement across different sized regions. By taking the limit as our square's side length goes to zero, we will have the circulation density at the point <m>(a,b)</m>. Just as in our discussion of <xref ref="Div_development">Subsection</xref>, we will look at two dimensional setting first, then examine how our argument can be generalized to higher dimensions.
   </p>
   <p>
     Let's start by measuring the circulation around a square with side length <m>2h</m> centered at a point <m>(a,b)</m>. Namely, we will look at the line integral of our vector field as we move along the square curve shown in <xref ref="Curl_dev_square">Figure</xref>.
   </p>
   <figure xml:id="Curl_dev_square">
-    <caption>A square centered at the point <m>(a,b)</m> with side lengths <m>2h</m> traveled counterclockwise.</caption>
+    <caption>A square centered at the point <m>(a,b)</m> with side lengths <m>2h</m> traveled counterclockwise</caption>
     <image width ="55%" source="images/Square_with_arrows"/>
   </figure>
   <p>
-    We can parameterize the top edge of the box (in blue) using the parameterization <m> -h\geq t\geq h</m> as <m>\vr_{top}(t) = \langle a+t,b+h\rangle</m>. Similarly, the bottom, right, and left can be parameterized by  <m>\vr_{bottom}(t) = \langle a+t,b-h\rangle</m>,  <m>\vr_{right}(t) = \langle a+h,b+t\rangle</m>, and  <m>\vr_{left}(t) = \langle a-h,b+t\rangle</m>.
+    We can parameterize the top edge of the box (in blue) using the parameterization 
+      <me> \vr_{top}(t) = \langle a-t,b+h\rangle </me> 
+      where <m>-h\geq t\geq h</m>. Similarly, the bottom, right, and left can be parameterized by 
+      <me>
+        \vr_{bottom}(t) = \langle a+t,b-h\rangle \\
+        \vr_{right}(t) = \langle a+h,b+t\rangle \\
+        \vr_{left}(t) = \langle a-h,b-t\rangle
+      </me>
   </p>
   <p>
-    In order to measure the circulation, we want to know how much of the vector field is parallel to the direction of travel, so along each of the sides of the box, we only need to look at one of the components of the vector field. The only contribution to the circulation on the top and bottom comes from the horizontal component (<m>F_1</m>) and the vertical component (<m>F_2</m>) is all that contributes on the right and left sides. This means that we can simplify our line integrals considerably once we apply <xref ref="LineInt_Param_Thm">Theorem</xref>.
+    In order to measure the circulation, we want to know how much of the vector field is parallel to the direction of travel, so along each of the sides of the box, we only need to look at one of the components of the vector field. The only contribution to the circulation on the top and bottom comes from the horizontal component (<m>F_1</m>) and the vertical component (<m>F_2</m>) is all that contributes on the right and left sides. This means that we can simplify our line integrals considerably once we apply <xref ref="LineInt_Param_Thm">Theorem</xref>. For instance, the circulation on the top can be written as
     <me>
-      \int_{top} \vF \cdot \vr=\int_{-h}^h \langle F_1,F_2\rangle \cdot \langle -1,0\rangle \enspace dt = \int_{-h}^h -F_1( a+t,b+h) \enspace dt
+      \int_{top} \vF \cdot \vr=\int_{-h}^h \langle F_1,F_2\rangle \cdot \langle -1,0\rangle \enspace dt = \int_{-h}^h -F_1( a-t,b+h) \enspace dt
     </me>
     Similarly we can simplify the appropriate line integrals on the other sides (ordered below as top, left, bottom, right) to get the total circulation around the square to be
     <me> 
-      \verb"Total Circulation" = \int_{\verb"Square"} \vF \cdot \vr  \\
-      = \int_{-h}^h -F_1( a+t,b+h) \enspace dt +  \int_{-h}^h -F_2( a-h,b+t) \enspace dt \\ \quad \quad + \int_{-h}^h F_1( a+t,b-h) \enspace dt + \int_{-h}^h F_2( a+h,b+t) \enspace dt
+      \verb"Total Circulation" = \int_{\verb"Square"} \vF \cdot d\vr  \\
+      = \int_{-h}^h -F_1(a-t,b+h) \enspace dt +  \int_{-h}^h -F_2(a-h,b-t) \enspace dt \\ 
+      \quad \quad + \int_{-h}^h F_1(a+t,b-h) \enspace dt + \int_{-h}^h F_2(a+h,b+t) \enspace dt
     </me>
-    Note that the sign on the top and the left sides end up being switched because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about "positive" rotation being counterclockwise and "negative" rotaiton being clockwise when looking at these planar graphs.
+    Note that the sign on the top and the left sides end up being switched because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about "positive" rotation being counterclockwise and "negative" rotation being clockwise when looking at these planar graphs.
   </p>
   <p>
     We will take moment here to apply a Mean Value Theorem argument to the four integrals given above in order to simplify our calculations in the next part. Specifically, We apply the Mean Value Theorem to the first integral to get a value <m>t_{top}^* \in (a-h,a+h)</m> such that
     <me>
-      \int_{-h}^h -F_1( a+t,b+h) \enspace dt=  -2h F_1(t_{top}^*,b+h)
+      \int_{-h}^h -F_1( a-t,b+h) \enspace dt=  -2h \left(F_1(t_{top}^*,b+h)\right)
     </me>
     Applying the same arguments to the other three integrals in our Total Circulation calculation gives the following:
     <me> 
-      \verb"Total Circulation" = \int_{\verb"Square"} \vF \cdot \vr \\
-      = \int_{-h}^h -F_1( a+t,b+h) \enspace dt +  \int_{-h}^h -F_2( a-h,b+t) \enspace dt \\
-      \quad \quad + \int_{-h}^h F_1( a+t,b-h) \enspace dt + \int_{-h}^h F_2( a+h,b+t) \enspace dt \\
-      = -2h F_1(t_{top}^*,b+h) -2h F_2(a-h,t_{left}^*) \\
-      \quad \quad + 2h F_1(t_{bottom}^*,b-h)+2h F_2(a+h,t_{right}^*) \\
-      =2h(F_2(a+h,t_{right}^*)-F_2(a-h,t_{left}^*))\\
-      \quad \quad -2h(F_1(t_{top}^*,b+h)-F_1(t_{bottom}^*,b-h))
+      \verb"Total Circulation" = \int_{\verb"Square"} \vF \cdot d\vr \\
+      = \int_{-h}^h -F_1(a-t,b+h) \enspace dt +  \int_{-h}^h -F_2(a-h,b-t) \enspace dt \\
+      \quad \quad + \int_{-h}^h F_1(a+t,b-h) \enspace dt + \int_{-h}^h F_2(a+h,b+t) \enspace dt \\
+      = -2h F_1(a_{top}^*,b+h) -2h F_2(a-h,b_{left}^*) \\
+      \quad \quad + 2h F_1(a_{bottom}^*,b-h)+2h F_2(a+h,b_{right}^*) \\
+      =2h(F_2(a+h,b_{right}^*)-F_2(a-h,b_{left}^*))\\
+      \quad \quad -2h(F_1(a_{top}^*,b+h)-F_1(a_{bottom}^*,b-h))
     </me>
-    where <m>t_{top}^*,t_{bottom}^* \in (a-h,a+h)</m> and <m>t_{left}^*,t_{right}^* \in (b-h,b+h)</m>.
+    where <m>a_{top}^*,a_{bottom}^* \in (a-h,a+h)</m> and <m>b_{left}^*,b_{right}^* \in (b-h,b+h)</m>.
   </p>
   <p>
     Since we are going to take the limit of the total circulation as we shrink the square to the central point <m>(a,b)</m>, we will convert our total circulation measurment to a circulation density (rotation per unit area) to be able to compare the results as we change the size of the square. If we have a larger square we will probably have a larger circulation since there is more distance to accumulate how the vector field is moving in the same direction as our path.
@@ -209,10 +231,10 @@
     We will compute our circulation density by the following
     <me>
       \verb"Circulation Density"=\lim_{h\rightarrow 0} \frac{\verb"Total Circulation"}{\verb"Area of Square"} \\
-      = \lim_{h\rightarrow 0} \frac{\int_{\verb"Square"} \vF \cdot \vr}{4h^2}\\
-      =\lim_{h\rightarrow 0} \frac{F_2(a+h,t_{right}^*)-F_2(a-h,t_{left}^*)}{2h} - \frac{F_1(t_{top}^*,b+h)-F_1(t_{bottom}^*,b-h)}{2h}
+      = \lim_{h\rightarrow 0} \frac{\int_{\verb"Square"} \vF \cdot d\vr}{4h^2}\\
+      =\lim_{h\rightarrow 0} \frac{F_2(a+h,b_{right}^*)-F_2(a-h,b_{left}^*)}{2h} - \frac{F_1(a_{top}^*,b+h)-F_1(a_{bottom}^*,b-h)}{2h}
     </me>
-    Recall the central difference method of evaluating derivatives from page. 48 (1.5.2) and notice that as <m>h</m> goes to zero, then <m>t_{top}^*,t_{bottom}^*</m> must go to <m>a</m> and <m>t_{left}^*,t_{right}^*</m> must go to <m>b</m>. Therefore, our flow density ends up being
+    Recall the central difference method of evaluating derivatives from page. 48 (1.5.2) and notice that as <m>h</m> goes to zero, then <m>a_{top}^*,a_{bottom}^*</m> must go to <m>a</m> and <m>b_{left}^*,b_{right}^*</m> must go to <m>b</m>. Therefore, our flow density ends up being
     <me> 
       \verb"Circulation Density at the point "(a,b)= \frac{\partial F_2}{\partial x} (a,b)-\frac{\partial F_1}{\partial y} (a,b)
     </me>
@@ -221,11 +243,11 @@
     Notice that this argument had a similar flow to the development of divergence in <xref ref="S_12_5_Div">Section</xref>, but the result ended up quite different because what we were measuring was different. Because divergence was developed to measure the change in the strength of the vector field (without regard to the direction), divergence is computed using the partial derivatives of the horizontal component of the vector field with respect to the horizontal variable and the vertical component of the vector field with respect to the vertical variable. The circulation density we just developed measures how the direction of the vector field is changing, and thus uses partial derivatives of the components with respect to the transverse variable. In other words, the rotational aspects of the vector field depends on how the horizontal component of the vector field changes when we move vertically (and vice versa).
   </p>
   <p>
-    We could have used other shapes in the development of the circulation density (other than a square), but the square allowed for a more easily understood set of calculations as the area of our shape was shrunk. Our use of rectangular coordinates made it easiest to use rectangular figures but more general arguements exist..
+    We could have used other shapes in the development of the circulation density (other than a square), but the square allowed for a more easily understood set of calculations as the area of our shape was shrunk. Our use of rectangular coordinates made it easiest to use rectangular figures but more general arguements exist.
   </p>
 </subsection>
 <subsection xml:id="Curl_development_3d">
-  <title>Measuring the Circulation Density of a 3D Vector Field</title>
+  <title>Measuring Rotation in 3D using Vectors</title>
   <p>
     The previous subsection showed how we can measure the circulation density, or strength of rotation, at a point for a two dimensional vector field. In this subsection, we will look at how this two dimensional measurement can be used to define circulation density for three dimensional vector fields. 
   </p>
@@ -259,7 +281,7 @@
   <figure xml:id="F_12_2-idea-figs">
     <sidebyside widths="47% 47%" margins="0% 5% 0%">
       <figure>
-        <caption><m>\vF</m> from above the <m>xy</m>-plane </caption>
+        <caption><m>\vF</m> from above the <m>xy</m>-plane</caption>
         <image source="images/vf_from_positive"/>
       </figure>
       <figure>
