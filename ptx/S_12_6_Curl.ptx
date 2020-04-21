@@ -21,7 +21,7 @@
 </objectives>
 <introduction>
   <p>
-    In <xref ref="S_12_5_Div">Section</xref>, we examined how the strength of a vector field in two (or more) dimensions changed in different regions. In particular, we developed the <xref ref="Div_defn">divergence (Definition</xref>) of a vector field as a local (or density) measurement for how the strength of the vector field changes.
+    In <xref ref="S_12_5_Div" >Section</xref>, we examined how the strength of a vector field in two (or more) dimensions changed in different regions. In particular, we developed the <xref ref="Div_defn" text="custom">divergence</xref> of a vector field as a local (or density) measurement for how the strength of the vector field changes.
     <ul>
       <li>A positive divergence means that the vector field is growing in strength</li>
       <li>A negative divergence means that the vector field is decreasing in strength</li>
@@ -205,7 +205,7 @@
       = \int_{-h}^h -F_1(a-t,b+h) \enspace dt +  \int_{-h}^h -F_2(a-h,b-t) \enspace dt \\ 
       \quad \quad + \int_{-h}^h F_1(a+t,b-h) \enspace dt + \int_{-h}^h F_2(a+h,b+t) \enspace dt
     </me>
-    Note that the sign on the top and the left sides ends up being switched because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about "positive" rotation being counterclockwise and "negative" rotation being clockwise when looking at these planar graphs. This will be discussed more fully in <xref ref="Curl_development_3d">Section</xref>.
+    Note that the sign on the top and the left sides ends up being switched because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about <q>positive</q> rotation being counterclockwise and "negative" rotation being clockwise when looking at these planar graphs. This will be discussed more fully in <xref ref="Curl_development_3d">Section</xref>.
   </p>
   <p>
     We will take a moment here to apply the Mean Value Theorem to the four integrals given above in order to simplify our calculations in the next part. Specifically, we apply the Mean Value Theorem to the first integral to get a value <m>t_{top}^* \in (a-h,a+h)</m> such that
@@ -324,7 +324,7 @@
       <li>the direction of the vector represents the axis of rotation</li>
       <li>the magnitude of the vector represents the strength of the rotation</li>
     </ul>
-    By convention, we consider positive "rotation" to correspond to counterclockwise rotation when the vector field is viewed looking from the end of the vector to the base. Alternatively, if we look along the vector from the base point to the final point, positive rotation corresponds to clockwise rotation.
+    By convention, we consider positive "rotation" to correspond to counterclockwise rotation when the vector field is viewed looking from the end of the vector to the base. Alternatively, if we look along the vector from the base point to the final point, positive rotation corresponds to clockwise rotation. In <xref ref="rotations_in_3d">Figure</xref> you can see that each vector corresponds to the rotation displayed and is consistent with the conventions described above.
   </p>
   <figure xml:id="rotations_in_3d">
     <caption>Rotation as a vector on each coordinate plane</caption>
@@ -344,15 +344,20 @@
         plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")+parametric_plot3d((t,0,0),(t,-b,b),color="black")
         plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))
         plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="blue",size=50)+arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=10,color="blue")
-        plot1+=parametric_plot3d((-2+cos(t),2,1+sin(t)),(t,0,5.5),color="purple",size=50)+arrow3d((-2+cos(5.5),2,1+sin(5.5)),(-2+cos(5.75),2,1+sin(5.75)),width=10,color="purple")
+        plot1+=parametric_plot3d((-2+cos(-t),2,1+sin(-t)),(t,0,5.5),color="purple",size=50)+arrow3d((-2+cos(-5.5),2,1+sin(-5.5)),(-2+cos(-5.75),2,1+sin(-5.75)),width=10,color="purple")
         plot1+=parametric_plot3d((2,-2+cos(t),2+sin(t)),(t,0,5.5),color="orange",size=50)+arrow3d((2,-2+cos(5.5),2+sin(5.5)),(2,-2+cos(5.75),2+sin(5.75)),width=10,color="orange")
         show(plot1)
     </slate>
     </interactive>
   </figure>
-
-
   <p>
+    If you look carefully at <xref ref="rotations_in_3d">Figure</xref>, you can see that the vector show in blue will be parallel to <m>/vk</m> and will represent rotations on planes of the form <m>z=c</m>. Similarly, the vector shown in yellow will be parallel to <m>/vi</m> and will represent rotations on planes of the form <m>x=a</m>. When looking down the blue and yellow vectors (from the terminal to the initial point), you can see the coordinate axes as being to the right and up (as we would expect on a two dimensional plot). When you look down the purple vector (from the terminal to the initial point), the positive coordinate axes (the <m>x</m> and <m>z</m> axes) go to the left and up. In fact, when we look down the purple vector the <m>xz</m>plane is flipped. So a positive rotation on a plane of the form <m>y=b</m> will correspond to a rotation vector that is in the direction of <m>-/vj</m>. This is really a product of our right handed coordinate system and our right handed idea of rotation.
+    <me>
+      \vi \times \vj = \vk \quad \quad  \vi \times \vk = -\vj \quad \quad  \vj \times \vk = \vi 
+    </me>
+    The above ideas correspond to the cooresponding coordinate vector relationships of a right handed coordinate system.
+  </p>
+  <!-- <p>
     If we look at the same slice of the vector field from the other side in three dimensions, the notion of rotation (clockwise versus counterclockwise) switches exactly with the orientation of the direction. Consider the following to plots of a vector field on the <m>xy</m>-plane when viewed from the positive and negative <m>z</m>-axis.
   </p>
   <figure xml:id="F_12_2-idea-figs">
@@ -368,12 +373,15 @@
     </sidebyside>
   </figure>
   <p>
-    Notice that the orientation of the <m>x</m>-axes switches which what changes the sign of our rotational measurement. With this idea of using a vector to represent the rotation of some element, we have enabled all of the tools that vectors allow, especially the projection and linear combination ideas. Remember that projection of a vector <m>/vec{v}</m> onto a vector <m>/vec{u}</m> will give the vector component of <m>/vec{v}</m> that is parallel to <m>/vec{u}</m>. In other words, the projection of <m>/vec{v}</m> onto <m>/vec{u}</m> is how much of <m>/vec{v}</m> is in the direction of <m>/vec{u}</m>. This will allow us to take the vector form of rotation and pull out how much rotation happens around a given axis of rotation.
+    Notice that the orientation of the <m>x</m>-axes switches which what changes the sign of our rotational measurement. 
+  </p> -->
+  <p>
+    With this idea of using a vector to represent the rotation of some element, we have enabled all of the tools that vectors allow, especially the ideas of projection and linear combinations. Remember that the projection of a vector <m>\vv</m> onto a vector <m>\vu</m> will give the vector component of <m>\vv</m> that is parallel to <m>\vu</m>. In other words, the projection of <m>\vv</m> onto <m>\vu</m> is how much of <m>\vv</m> is parallel to <m>\vu</m>. The projection formula will allow us to take a vector representation of rotation and pull out how much rotation happens around a given axis of rotation.
   </p>
   <p>
     Recall that we have used a set of coordinate vectors (namely <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>) to write other vectors as a linear combination of our base vectors.
     <figure xml:id="ijk_vector_sum">
-      <caption>Trace planes at a point</caption>
+      <caption>The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</caption>
       <interactive xml:id="ijk_sum" platform="sage" width="100%" aspect="1:1">
       <slate surface="sage">
         d=5
@@ -389,26 +397,26 @@
           plot3+=arrow3d((1,2,1),(1,2,1+c),width=2,color="blue")
           plot3+=arrow3d((1,2+b,1),(1+a,2+b,1),width=2,color="red")+arrow3d((1+a,2,1),(1+a,2+b,1),width=2,color="green")
           plot3+=arrow3d((1+a,2+b,1),(1+a,2+b,1+c),width=2,color="blue")
-          print('You can see the black vector, given by $\langle a,b,c \rangle $ decomposed into parts parallel to $\vec{i}$, $\vec{j}$, and $\vec{k}$.')
           show(plot3)
       </slate>
       </interactive>
     </figure>
-  The linear combination of vectors will allow us to build the total rotation vector by measuring the rotational strength in three coordinate direction vectors. Just as in <xref ref="ijk_vector_sum">Figure</xref>, we will build our total rotation vector as a sum of <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. A rotation vector in the direction of <m>\vk</m> at a point <m>(a,b,c)</m> will measure the circulation density at our point restricted to the trace plane <m>z=c</m>.
-
-  will then look at circulation densities parallel to xy-plane, xz-plane, and yz-plane.
-  Mention the corresponding vectors for each of these.
+    The linear combination of vectors will allow us to build the total rotation vector by measuring the rotational strength in the direction of three coordinate direction vectors. Just as in <xref ref="ijk_vector_sum">Figure</xref>, we will build our total rotation vector as a sum of <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. A rotation vector in the direction of <m>\vk</m> at a point <m>(a,b,c)</m> will measure the circulation density at our point restricted to the trace plane <m>z=c</m>. Similarly the rotation vectors in the directions <m>\vi</m> and <m>\vj</m> will measure the circulation density on the trace planes <m>x=a</m> and <m>y=b</m>.
   </p>
 </subsection>
 <subsection xml:id="Curl_defn">
   <title>Measuring the Circulation Density of a 3D Vector Field</title>
   <definition>
     <statement>
-    <p> The definition of the curl goes here. </p>
+    <p> The curl of a three dimensional vector field, <m>\vF=\langle F_1,F_2,F_3\rangle</m>, is given by 
+      <me>
+        \nabla \times \vF= curl(\vF)= (\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z})\vi- (\frac{\partial F_3}{\partial x}-\frac{\partial F_1}{\partial z})\vj + (\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y})\vk
+      </me>
+     </p>
     </statement>
   </definition>
   <p>
-    Remind why the j component seems to be negative.
+    The curl is exactly the rotational description described at the end of <xref ref=""></xref>.
   </p>
   <activity xml:id="curl_activity">
     <title>Curl in 3D</title>
