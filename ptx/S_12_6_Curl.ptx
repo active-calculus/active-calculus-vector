@@ -66,6 +66,9 @@
         </figure>
         <ol>
           <li>
+            <p>Should have a description for how to think about the spinner moving. Maybe have the student put an X centered at the origin. Have them draw the force on each of the four blades of the spinner. Then have them assess which way the spinner turns. Then go through this process at the 1,1 point so they can see how the inner part will work against the rotation but the outer part is stronger and so you get counterclockwise rotation.</p>
+          </li>
+          <li>
             <p>Would a small spinner placed at the origin spin clockwise, counterclockwise, or not spin at all?</p>
           </li>
           <li>
@@ -205,7 +208,7 @@
       = \int_{-h}^h -F_1(a-t,b+h) \enspace dt +  \int_{-h}^h -F_2(a-h,b-t) \enspace dt \\ 
       \quad \quad + \int_{-h}^h F_1(a+t,b-h) \enspace dt + \int_{-h}^h F_2(a+h,b+t) \enspace dt
     </me>
-    Note that the sign on the top and the left sides ends up being switched because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about <q>positive</q> rotation being counterclockwise and "negative" rotation being clockwise when looking at these planar graphs. This will be discussed more fully in <xref ref="Curl_development_3d">Section</xref>.
+    Note that the sign on the top and the left sides ends up being switched because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about <q>positive</q> rotation being counterclockwise and <q>negative</q> rotation being clockwise when looking at these planar graphs. This will be discussed more fully in <xref ref="Curl_development_3d">Section</xref>.
   </p>
   <p>
     We will take a moment here to apply the Mean Value Theorem to the four integrals given above in order to simplify our calculations in the next part. Specifically, we apply the Mean Value Theorem to the first integral to get a value <m>t_{top}^* \in (a-h,a+h)</m> such that
@@ -324,7 +327,7 @@
       <li>the direction of the vector represents the axis of rotation</li>
       <li>the magnitude of the vector represents the strength of the rotation</li>
     </ul>
-    By convention, we consider positive "rotation" to correspond to counterclockwise rotation when the vector field is viewed looking from the end of the vector to the base. Alternatively, if we look along the vector from the base point to the final point, positive rotation corresponds to clockwise rotation. In <xref ref="rotations_in_3d">Figure</xref> you can see that each vector corresponds to the rotation displayed and is consistent with the conventions described above.
+    By convention, we consider positive <q>rotation</q> to correspond to counterclockwise rotation when the vector field is viewed looking from the end of the vector to the base. Alternatively, if we look along the vector from the base point to the final point, positive rotation corresponds to clockwise rotation. In <xref ref="rotations_in_3d">Figure</xref> you can see that each vector corresponds to the rotation displayed and is consistent with the conventions described above.
   </p>
   <figure xml:id="rotations_in_3d">
     <caption>Rotation as a vector on each coordinate plane</caption>
@@ -416,43 +419,86 @@
     </statement>
   </definition>
   <p>
-    The curl is exactly the rotational description described at the end of <xref ref=""></xref>.
+    The curl is exactly the rotational description described at the end of <xref ref="Curl_development_3d"></xref>. When evaluated at a point <m>(a,b,c)</m>, the first component of the curl will measure the circulation density of the vector field restricted to the plane <m>x=a</m>. Similarly, the second and third components of the curl will measure the circulation density of the vector field restricted to the planes <m>y=b</m> and <m>z=c</m>.
   </p>
   <activity xml:id="curl_activity">
     <title>Curl in 3D</title>
     <task xml:id="curl_act_task1">
       <statement>
       <p>
-        Have students look at 3D vector field plot, mention how it is hard to "see" rotation in 3D since we are not used to visualization depth. So we will look at the planes described above.
-        Have a sliced plot with z=c for the appropriate value. Ask about whether a spinner will have positive, negative, or no rotation. What direction will the axis of rotation be for this plane? State your answer as a vector.
+        Look at the vector field plotted in <xref ref="curl_3d_vf">Figure</xref>. You can plot the vector field for different widths and densities around the point <m>(1,1,-2)</m>. Can you see any rotation in the three dimensional vector field plot at the point <m>(1,1,-2)</m>? Can you tell how a spinner placed at <m>(1,1,-2)</m> would rotate? Along which axis? Try to state your answer as a vector representing the rotational strength of the vector field at <m>(1,1,-2)</m>.
       </p>
+      <figure xml:id="curl_3d_vf">
+      <caption>A vector field plotted in a region around the point <m>(1,1,-2)</m></caption>
+      <interactive platform="sage" width="100%" aspect="1:1.25">
+      <slate surface="sage">
+        var('x,y,z,t,s')
+        a=1
+        b=1 
+        c=-1
+        d=3
+        @interact
+        def _(zoom=slider(0,3,1,0),vectors_to_plot=slider(2,5,1,4)):
+          plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+          plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black")
+          plot1+=sphere((a,b,c),size=.10,color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
+          plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
+          w=(1/2)^zoom
+          plot1+=plot_vector_field3d((x-y,y+2*z,x^2),(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=(vectors_to_plot))
+          show(plot1)
+      </slate>
+      </interactive>
+    </figure>
       </statement>
     </task>
     <task xml:id="curl_act_task2">
       <statement>
       <p>
-        Show the other two trace slices of the vector field plots. Ask about value of circulation and axis of rotation for each plane.
+        You probably had a great deal of difficulty deciding on how you thought a spinner might rotate in the three dimensional setting. Let's look at the vector field along the plane <m>z=-2</m>, as displayed in <xref ref="curl_3d_xy">Figure</xref>. Do you think a spinner placed on the blue point would rotate clockwise, counterclockwise, or not rotate? If the spinner will rotate, you should think about what the axis of rotation would be and whether the rotation should be positive or negative. Summarize your result as a vector representing the rotational strength of your vector field in the plane <m>z=-2</m>.
       </p>
+      <figure xml:id="curl_3d_xy">
+        <image width="75%" source="images/curl_3d_xy"/>
+      </figure>
       </statement>
     </task>
-    <task xml:id="curl_act_task3">
+     <task xml:id="curl_act_task3">
       <statement>
       <p>
-        Have students summarize thier rotation predictions as a linear combination of the vectors representing the axes of rotations.
+        Now let's look at the vector field along the plane <m>y=1</m>, as displayed in <xref ref="curl_3d_xz">Figure</xref>. Do you think a spinner placed on the blue point would rotate clockwise, counterclockwise, or not rotate? If the spinner will rotate, you should think about what the axis of rotation would be and whether the rotation should be positive or negative. Summarize your result as a vector representing the rotational strength of your vector field in the plane <m>y=1</m>. Do you think the rotation in this figure is stronger or weaker than in <xref ref="curl_3d_xy">Figure</xref>?
       </p>
+      <figure xml:id="curl_3d_xz">
+        <image width="75%" source="images/curl_3d_xz"/>
+      </figure>
       </statement>
     </task>
-    <task xml:id="curl_act_task4">
+     <task xml:id="curl_act_task4">
       <statement>
       <p>
-        Give the algebraic form of the vf. Have students compute the curl. 
+        Now let's look at the vector field along the plane <m>x=1</m>, as displayed in <xref ref="curl_3d_yz">Figure</xref>. Do you think a spinner placed on the blue point would rotate clockwise, counterclockwise, or not rotate? If the spinner will rotate, you should think about what the axis of rotation would be and whether the rotation should be positive or negative. Summarize your result as a vector representing the rotational strength of your vector field in the plane <m>x=1</m>.
       </p>
+      <figure xml:id="curl_3d_yz">
+        <image width="75%" source="images/curl_3d_yz"/>
+      </figure>
       </statement>
     </task>
     <task xml:id="curl_act_task5">
       <statement>
       <p>
-        Compare the result of the curl to the prediction from <xref ref="curl_act_task3">Question</xref>. 
+        Summarize your prediction to what you think the three dimensional rotational strength of the vector field will be at the point <m>(1,1,-2)</m> in the form of three dimensional vector. Hint: Add you results from the previous 3 tasks.
+      </p>
+      </statement>
+    </task>
+    <task xml:id="curl_act_task6">
+      <statement>
+      <p>
+        Compute the curl of <m>\langle x-y,y+2z,x^2\rangle</m>.
+      </p>
+      </statement>
+    </task>
+    <task xml:id="curl_act_task7">
+      <statement>
+      <p>
+        Compare the result of the curl calculation to the prediction from <xref ref="curl_act_task5">Question</xref>. While you may have gotten the magnitude incorrect, you should make sense of the sign of each component and the relative strength.
       </p>
       </statement>
     </task>
