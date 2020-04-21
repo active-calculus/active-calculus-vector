@@ -1,27 +1,27 @@
 <section xml:id="S_Vector_GreensTheorem">
-    <title>Green's Theorem</title>
-    <objectives>
-      <ul>
-        <li>
-          <p>
-	    How can we calculate the circulation around a closed curve
-	    in a vector field that is not path-independent?
-          </p>
-        </li>
+  <title>Green's Theorem</title>
+  <objectives>
+    <ul>
+      <li>
+        <p>
+	  How can we calculate the circulation around a closed curve
+	  in a vector field that is not path-independent?
+        </p>
+      </li>
 
-        <li>
-          <p>
-	    There's more, right?
-          </p>
-        </li>
+      <li>
+        <p>
+	  There's more, right?
+        </p>
+      </li>
 
-        <li>
-          <p>
-	    And probably another one?
-          </p>
-        </li>
-      </ul>
-    </objectives>
+      <li>
+        <p>
+	  And probably another one?
+        </p>
+      </li>
+    </ul>
+  </objectives>
   <introduction>
     <p>
       We know from <xref ref="S_12_4_FTCLI" text="type-global" /> that
@@ -38,94 +38,94 @@
     </p>
 
     <exploration xml:id="PA_Vector_GreensTheorem">
-        <introduction>
+      <introduction>
         <p>We will consider the vector field <m>\vF = \langle 2y,3x^2
 	y\rangle</m>, which is defined on the entire plane. Suppose
 	that we want to calculate the circulation of <m>\vF</m> around
 	the circle <m>C</m> of radius <m>2</m>, centered at <m>(0,0)</m>, and
 	oriented counterclockwise.
         </p>
-        </introduction>
-        <task xml:id="task_PA_Vector_GreensTheorem_Circ">
-            <statement>
-            <p>Verify that <m>\vF</m> is not path-independent by
-	    calculating the circulation of <m>\vF</m> around the
-	    circle <m>C</m>. The SageMath cell below is set up to
-	    assist you with this, but you will need to supply a
-	    parameterization of <m>C</m> on line 3.
-            </p>
-	    <sage>
-	      <input>
-var('r,t,x,y')
-F = vector([2*y,3*x^2*y])
-C = vector([ , ])# Supply a parameterization of C here inside the [ ]
-integral(F(x=C[0],y=C[1]).dot_product(derivative(C,t)),t,0,2*pi)
-	      </input>
-	    </sage>
-            </statement>
-            <answer>
-	      <p><m>-8\pi</m></p>
-            </answer>
-            <solution>
-	      <p>If we parameterize <m>C</m> as <m>\vr(t) = \langle
-	      2\cos(t),2\sin(t)\rangle</m>, then <m>\oint_C \vF\cdot
-	      d\vr = -8\pi</m>. To use the SageMath cell to do this,
-	      make line 3 read <c>C = vector([2*cos(t),2*sin(t)])</c>
-	      and execute. Because the circulation around <m>C</m> is
-	      not <m>0</m>, we know that <m>\vF</m> is not
-	      path-independent. 
-	      </p>
-            </solution>
-        </task>
-        <task xml:id="task_PA_Vector_GreensTheorem_Integrand">
-            <statement>
-                <p>
-		  Consider <m>\vF = \langle
-		F_1(x,y),F_2(x,y)\rangle</m>. Without doing any
-		calculations, do you think that
-		<m>\displaystyle \frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y}</m> is <m>0</m> for
-		all values of <m>x</m> and <m>y</m>?  Calculate <m>\displaystyle \frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y}</m> to confirm your answer.
-		</p>
-            </statement>
-            <answer>
-	      <p>No; <m>6xy-2</m>.</p>
-            </answer>
-            <solution>
-	      	      <p>Since <m>\vF</m> is not path independent, we
-		      know that <m>\vF</m> is not a gradient vector
-		      field. Thus, we would not expect <m>\displaystyle \frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y}</m> to be <m>0</m> for
-		all values of <m>x</m> and <m>y</m> as would be the
-		case if <m>\vF</m> were the gradient of a smooth function. Here we have that <m>\partial F_2/\partial x
-		      =6xy</m> and <m>\partial F_1/\partial y = 2</m>,
-		      so we have that <m>\partial F_2/\partial x
-		      - \partial F_1/\partial y= 6xy-2</m>.
-		      </p>
-            </solution>
-        </task>
-        <task xml:id="task_PA_Vector_GreensTheorem_Double">
-          <statement>
-	    <p>
-	    In <alert>OK, put something here about what comes in
-		the curl section</alert>. Calculate the double
-		integral of <m>\displaystyle \frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y}</m> over the region
-		inside the circle <m>C</m>. This integral is not the
-		most fun to do by hand, so a SageMath cell has been
-		provided to assist you. 
-            </p>
+      </introduction>
+      <task xml:id="task_PA_Vector_GreensTheorem_Circ">
+        <statement>
+          <p>Verify that <m>\vF</m> is not path-independent by
+	  calculating the circulation of <m>\vF</m> around the
+	  circle <m>C</m>. The SageMath cell below is set up to
+	  assist you with this, but you will need to supply a
+	  parameterization of <m>C</m> on line 3.
+          </p>
 	  <sage>
 	    <input>
-integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)	      
+	      var('r,t,x,y')
+	      F = vector([2*y,3*x^2*y])
+	      C = vector([ , ])# Supply a parameterization of C here inside the [ ]
+	      integral(F(x=C[0],y=C[1]).dot_product(derivative(C,t)),t,0,2*pi)
 	    </input>
 	  </sage>
-	  </statement>
-	  <hint>
-	    <p>If you choose polar coordinates, use <m>\theta</m> for the
-	    first variable and <m>r</m> for the second variable.</p>
-	  </hint>
+        </statement>
+        <answer>
+	  <p><m>-8\pi</m></p>
+        </answer>
+        <solution>
+	  <p>If we parameterize <m>C</m> as <m>\vr(t) = \langle
+	  2\cos(t),2\sin(t)\rangle</m>, then <m>\oint_C \vF\cdot
+	  d\vr = -8\pi</m>. To use the SageMath cell to do this,
+	  make line 3 read <c>C = vector([2*cos(t),2*sin(t)])</c>
+	  and execute. Because the circulation around <m>C</m> is
+	  not <m>0</m>, we know that <m>\vF</m> is not
+	  path-independent. 
+	  </p>
+        </solution>
+      </task>
+      <task xml:id="task_PA_Vector_GreensTheorem_Integrand">
+        <statement>
+          <p>
+	    Consider <m>\vF = \langle
+	    F_1(x,y),F_2(x,y)\rangle</m>. Without doing any
+	    calculations, do you think that
+	    <m>\displaystyle \frac{\partial F_2}{\partial x} -
+	    \frac{\partial F_1}{\partial y}</m> is <m>0</m> for
+	    all values of <m>x</m> and <m>y</m>?  Calculate <m>\displaystyle \frac{\partial F_2}{\partial x} -
+	    \frac{\partial F_1}{\partial y}</m> to confirm your answer.
+	  </p>
+        </statement>
+        <answer>
+	  <p>No; <m>6xy-2</m>.</p>
+        </answer>
+        <solution>
+	  <p>Since <m>\vF</m> is not path independent, we
+	  know that <m>\vF</m> is not a gradient vector
+	  field. Thus, we would not expect <m>\displaystyle \frac{\partial F_2}{\partial x} -
+	  \frac{\partial F_1}{\partial y}</m> to be <m>0</m> for
+	  all values of <m>x</m> and <m>y</m> as would be the
+	  case if <m>\vF</m> were the gradient of a smooth function. Here we have that <m>\partial F_2/\partial x
+	  =6xy</m> and <m>\partial F_1/\partial y = 2</m>,
+	  so we have that <m>\partial F_2/\partial x
+	  - \partial F_1/\partial y= 6xy-2</m>.
+	  </p>
+        </solution>
+      </task>
+      <task xml:id="task_PA_Vector_GreensTheorem_Double">
+        <statement>
+	  <p>
+	    In <alert>OK, put something here about what comes in
+	    the curl section</alert>. Calculate the double
+	    integral of <m>\displaystyle \frac{\partial F_2}{\partial x} -
+	    \frac{\partial F_1}{\partial y}</m> over the region
+	    inside the circle <m>C</m>. This integral is not the
+	    most fun to do by hand, so a SageMath cell has been
+	    provided to assist you. 
+          </p>
+	  <sage>
+	    <input>
+	      integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)	      
+	    </input>
+	  </sage>
+	</statement>
+	<hint>
+	  <p>If you choose polar coordinates, use <m>\theta</m> for the
+	  first variable and <m>r</m> for the second variable.</p>
+	</hint>
 	<answer>
 	  <p><m>-8\pi</m></p>
 	</answer>
@@ -136,23 +136,23 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
 	    \theta\leq 2\pi</m>. Thus, we need to calculate
 	    <md>
 	      <mrow>\iint_D \left(\frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y}\right)\, dA &amp;= \iint_D
+	      \frac{\partial F_1}{\partial y}\right)\, dA &amp;= \iint_D
 	      (6xy-2)\, dA</mrow>
 	      <mrow>&amp;= \int_0^2 \int_0^{2\pi}
 	      (6r^2\cos(\theta)\sin(\theta) - 2)r\, d\theta\, dr</mrow>
-	    </md>.
-	    Using SageMath to calculate this, we obtain <m>-8\pi</m>.
+	      </md>.
+	      Using SageMath to calculate this, we obtain <m>-8\pi</m>.
 	  </p>
 	</solution>
-	</task>
-	<conclusion>
-	  <p>A natural question after completing this Preview Activity
-	  is if there is something special about the vector field
-	  <m>\vF</m> or the curve <m>C</m> that led to the results you
-	  obtained, and investigating this will be our principal task
-	  in this section</p>
-	</conclusion>
-      </exploration>
+      </task>
+      <conclusion>
+	<p>A natural question after completing this Preview Activity
+	is if there is something special about the vector field
+	<m>\vF</m> or the curve <m>C</m> that led to the results you
+	obtained, and investigating this will be our principal task
+	in this section</p>
+      </conclusion>
+    </exploration>
   </introduction>
 
   <subsection>
@@ -163,6 +163,8 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
       break up a region into boxes. I'm too lazy to draw the figures
       right now.
     </p>
+    <p>We also need to define <term>simple closed curve</term>. I'm
+    thinking this is the place to do it.</p>
     <activity>
       <p>
 	Do Green's Theorem for rectangles, but try to build it out of
@@ -186,14 +188,14 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
 	on the region <m>R</m> and its boundary <m>C</m>. The
 	circulation of <m>\vF</m> along <m>C</m> may be calculated as
 	<me>\oint_C \vF\cdot d\vr = \iint_R \left(\frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y}\right)\, dA</me>.</p>
+	\frac{\partial F_1}{\partial y}\right)\, dA</me>.</p>
       </statement>
     </theorem>
 
     <p>
       At first glance, it may seem that <xref ref="thm_Green"
       text="title" /> is of purely intellectual interest. However, we
-      have already encountered a number of instances where
+      have already encountered situations where
       parameterizing a curve can be complicated. This is particularly
       true when the curve has <q>corners</q> that require us to give
       separate parameterizations for several pieces of the
@@ -209,7 +211,7 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
       text="title" /> involves partial derivatives that can sometimes
       result in an integrand that is very easy to work with. The next
       activity asks you to apply <xref ref="thm_Green"
-      text="title" /> in a few instances.
+      text="title" />.
     </p>
 
     <activity>
@@ -233,7 +235,7 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
 	<solution>
 	  <p>Here we find that
 	  <me>\frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y} = (5+2y)-2y =
+	  \frac{\partial F_1}{\partial y} = (5+2y)-2y =
 	  5</me>. Therefore, the integrand in <xref ref="thm_Green"
 	  text="title" /> is the constant <m>5</m>. Thus, the
 	  circulation of <m>\vF</m> around <m>C</m> is <m>5</m> times
@@ -257,7 +259,7 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
 	<solution>
 	  <p>Here we find that
 	  <me>\frac{\partial F_2}{\partial x} -
-		\frac{\partial F_1}{\partial y} = 3y-2y =
+	  \frac{\partial F_1}{\partial y} = 3y-2y =
 	  y</me>. The region inside <m>C_2</m> can be described by
 	  <m>0\leq x\leq 3</m> and <m>0\leq y\leq x</m>. Therefore, by <xref ref="thm_Green"
 	  text="title" />, we have
@@ -295,23 +297,24 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
 	other than at the point <m>(0,0)</m>.</p>
 	<figure xml:id="fig_Vector_GreensTheorem_ccw_field">
 	  <caption>The vector field <m>\vF = 
-	\frac{-y}{\sqrt{x^2+y^2}}\vi + \frac{x}{\sqrt{x^2+y^2}}\vj</m></caption>
-	<image source="images/fig_Vector_GreensTheorem_ccw_field" width="50%" />
+	  \frac{-y}{\sqrt{x^2+y^2}}\vi + \frac{x}{\sqrt{x^2+y^2}}\vj</m></caption>
+	  <image source="images/fig_Vector_GreensTheorem_ccw_field" width="50%" />
 	</figure>
       </introduction>
       <task>
 	<statement>
 	  <p>
 	    Here <xref ref="thm_Green"
-      text="title" /> applies to any simple closed curve <m>C</m> that
+	    text="title" /> applies to any simple closed curve <m>C</m> that
 	    neither passes through <m>(0,0)</m> nor bounds a region
 	    containing <m>(0,0)</m>. Find the integrand of the double
 	    integral in <xref ref="thm_Green"
-      text="title" /> for this vector field.
+	    text="title" /> for this vector field.
 	  </p>
 	</statement>
 	<answer>
-	  <p></p>
+	  <p><me>\frac{\partial F_2}{\partial x} - \frac{\partial
+	  F_1}{\partial y} = \frac{1}{\sqrt{x^2+y^2}}</me></p>
 	</answer>
 	<solution>
 	  <p>For <m>(x,y)\neq (0,0)</m>, we have
@@ -322,7 +325,26 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
 	    <mrow>\frac{\partial F_1}{\partial y} &amp; =
 	    \frac{y^{2}}{{\left(x^{2} + y^{2}\right)}^{\frac{3}{2}}} -
 	    \frac{1}{\sqrt{x^{2} + y^{2}}} = \frac{-x^2}{{\left(x^{2} + y^{2}\right)}^{\frac{3}{2}}}</mrow>
-	  </md>. Thus, </p>
+	    </md>. Thus,
+	  <me>\frac{\partial F_2}{\partial x} - \frac{\partial
+	  F_1}{\partial y} = \frac{x^2+y^2}{(x^2+y^2)^{3/2}} = \frac{1}{\sqrt{x^2+y^2}}</me></p>
+	</solution>
+      </task>
+      <task>
+	<statement>
+	  <p>
+	    Suppose that <m>C</m> is the unit circle centered at the
+	    origin. Find <m>\oint_C \vF\cdot d \vr</m>.
+	  </p>
+	</statement>
+	<answer>
+	  <p><m>2\pi</m></p>
+	</answer>
+	<solution>
+	  <p>Notice that <m>\vF</m> is tangent to <m>C</m>. Thus, by
+	  something that we probably didn't do anywhere but need to
+	  put somewhere, <m>\oint_C \vF\cdot d \vr = \vecmag{\vF}\cdot
+	  (\text{Length of }C) = 2\pi</m>. </p>
 	</solution>
       </task>
     </activity>
@@ -340,122 +362,122 @@ integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
     </p>
 
     <activity xml:id="A_12_1_2">
-        <task>
-            <p>
-            In <xref ref="fig_12_1_level-curves">Figure</xref>
-            there are three sets of axes showing level
-            curves for functions <m>f</m>,
-            <m>g</m>, and <m>h</m>, respectively.
-            Sketch at least six vectors
-            in the gradient vector field for each function.
-            In making your
-            sketches, you don't have to worry about getting vector magnitudes
-            precise, but you should ensure that the relative magnitudes
-            (and directions)
-            are
-            correct for each function independently.
-            </p>
-            <figure xml:id="fig_12_1_level-curves">
-                <caption>Three sets of level curves</caption>
-                <sidebyside widths="30% 30% 30%" margins="0% 5% 5% 0%">
-                    <figure>
-                        <caption><m>f</m></caption>
-                        <image source="images/12_1_ellipses" />
-                    </figure>
-                    <figure>
-                        <caption><m>g</m></caption>
-                        <image source="images/12_1_linear" />
-                    </figure>
-                    <figure>
-                        <caption><m>h</m></caption>
-                        <image source="images/12_1_sine" />
-                    </figure>
-                </sidebyside>
+      <task>
+        <p>
+          In <xref ref="fig_12_1_level-curves">Figure</xref>
+          there are three sets of axes showing level
+          curves for functions <m>f</m>,
+          <m>g</m>, and <m>h</m>, respectively.
+          Sketch at least six vectors
+          in the gradient vector field for each function.
+          In making your
+          sketches, you don't have to worry about getting vector magnitudes
+          precise, but you should ensure that the relative magnitudes
+          (and directions)
+          are
+          correct for each function independently.
+        </p>
+        <figure xml:id="fig_12_1_level-curves">
+          <caption>Three sets of level curves</caption>
+          <sidebyside widths="30% 30% 30%" margins="0% 5% 5% 0%">
+            <figure>
+              <caption><m>f</m></caption>
+              <image source="images/12_1_ellipses" />
             </figure>
-        </task>
-        <task xml:id="part_A12_2-pot">
-          <p>
-            Verify that <m>\vF(x,y) = \langle 6xy,3x^2+9\sqrt{y}\rangle</m> is a
-            gradient vector field by finding a function <m>f</m> such that <m>\nabla
-            f(x,y) = \vF(x,y)</m>.
-            For reasons originating in physics, such a
-            function <m>f</m> is called a <em>potential function</em> for the vector
-            field <m>\vF</m>.
-          </p>
-        </task>
-        <task>
-          <p>
-            Is the function <m>f</m> found in <xref ref="part_A12_2-pot">part</xref> unique?
-            That is, can you find another function <m>g</m> such that <m>\nabla g(x,y)
-            = \vF(x,y)</m> but <m>f\neq g</m>?
-          </p>
-        </task>
-        <task>
-          <p>
-            Is the vector field <m>\vF(x,y) = 6xy\vi +(2x+9\sqrt{y})\vj</m> a
-            gradient vector field?
-            Why or why not?
-          </p>
-        </task>
+            <figure>
+              <caption><m>g</m></caption>
+              <image source="images/12_1_linear" />
+            </figure>
+            <figure>
+              <caption><m>h</m></caption>
+              <image source="images/12_1_sine" />
+            </figure>
+          </sidebyside>
+        </figure>
+      </task>
+      <task xml:id="part_A12_2-pot">
+        <p>
+          Verify that <m>\vF(x,y) = \langle 6xy,3x^2+9\sqrt{y}\rangle</m> is a
+          gradient vector field by finding a function <m>f</m> such that <m>\nabla
+          f(x,y) = \vF(x,y)</m>.
+          For reasons originating in physics, such a
+          function <m>f</m> is called a <em>potential function</em> for the vector
+          field <m>\vF</m>.
+        </p>
+      </task>
+      <task>
+        <p>
+          Is the function <m>f</m> found in <xref ref="part_A12_2-pot">part</xref> unique?
+          That is, can you find another function <m>g</m> such that <m>\nabla g(x,y)
+          = \vF(x,y)</m> but <m>f\neq g</m>?
+        </p>
+      </task>
+      <task>
+        <p>
+          Is the vector field <m>\vF(x,y) = 6xy\vi +(2x+9\sqrt{y})\vj</m> a
+          gradient vector field?
+          Why or why not?
+        </p>
+      </task>
     </activity>
   </subsection>
 
   <subsection>
-      <title>Summary</title>
-      <p>
-    <ul>
-      <li>
-        <p>
-          A <m>2</m>-dimensional vector field is a function defined on part of
-          <m>\R^2</m> whose value is a <m>2</m>-dimensional vector.
-          A <m>3</m>-dimensional
-          vector field is a function defined on part of <m>\R^3</m> whose value is
-          a <m>3</m>-dimensional vector.
-        </p>
-      </li>
+    <title>Summary</title>
+    <p>
+      <ul>
+	<li>
+          <p>
+            A <m>2</m>-dimensional vector field is a function defined on part of
+            <m>\R^2</m> whose value is a <m>2</m>-dimensional vector.
+            A <m>3</m>-dimensional
+            vector field is a function defined on part of <m>\R^3</m> whose value is
+            a <m>3</m>-dimensional vector.
+          </p>
+	</li>
 
-      <li>
-        <p>
-          Vector fields arise in familiar contexts such as wind velocity,
-          fluid velocity, and gravitational force.
-        </p>
-      </li>
+	<li>
+          <p>
+            Vector fields arise in familiar contexts such as wind velocity,
+            fluid velocity, and gravitational force.
+          </p>
+	</li>
 
-      <li>
-        <p>
-          Vector fields are generally plotted in ways that ensure the
-          direction and relative magnitudes of the vectors sketched are
-          correct instead of ensuring that each vector's magnitude is
-          depicted correctly.
-        </p>
-      </li>
+	<li>
+          <p>
+            Vector fields are generally plotted in ways that ensure the
+            direction and relative magnitudes of the vectors sketched are
+            correct instead of ensuring that each vector's magnitude is
+            depicted correctly.
+          </p>
+	</li>
 
-      <li>
-        <p>
-          The gradient of a function <m>f</m> of two or three variables is a vector
-          field defined wherever <m>f</m> has partial derivatives.
-        </p>
-      </li>
-    </ul>
-  </p>
+	<li>
+          <p>
+            The gradient of a function <m>f</m> of two or three variables is a vector
+            field defined wherever <m>f</m> has partial derivatives.
+          </p>
+	</li>
+      </ul>
+    </p>
   </subsection>
-<exercises>
+  <exercises>
     <exercise>
-        <statement>
-            <p>Here is the statement.</p>
-        </statement>
-        <hint><p>A hint! Don't feel obligated to use hints, but they are an option.</p></hint>
-        <answer>
-            <p>
-                The answer. Keep this simple as will be made public <q>back of the book</q>-style. <alert>Do not put anything with a number/or <attr>xml:id</attr> on it in an <tag>answer</tag> or <tag>solution</tag>, because this will mess up the numbering of subsequent things in the book. Techincally <attr>xml:id</attr> is fine, but note that the reference might not be useful in the end. Definitely don't use <tag>figure</tag> or <tag>table</tag> in one of these things; wrap <tag>tabular</tag> and <tag>image</tag> in <tag>sidebyside</tag>.</alert>
-            </p>
-        </answer>
-        <solution>
-            <p>
-                The full solution. Full details go here.
-            </p>
-        </solution>
+      <statement>
+        <p>Here is the statement.</p>
+      </statement>
+      <hint><p>A hint! Don't feel obligated to use hints, but they are an option.</p></hint>
+      <answer>
+        <p>
+          The answer. Keep this simple as will be made public <q>back of the book</q>-style. <alert>Do not put anything with a number/or <attr>xml:id</attr> on it in an <tag>answer</tag> or <tag>solution</tag>, because this will mess up the numbering of subsequent things in the book. Techincally <attr>xml:id</attr> is fine, but note that the reference might not be useful in the end. Definitely don't use <tag>figure</tag> or <tag>table</tag> in one of these things; wrap <tag>tabular</tag> and <tag>image</tag> in <tag>sidebyside</tag>.</alert>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The full solution. Full details go here.
+        </p>
+      </solution>
     </exercise>
-</exercises>
+  </exercises>
 </section>
 
