@@ -528,7 +528,38 @@
       </p>
     </statement>
   </theorem>
+  <figure xml:id="curl_3d_xyz">
+    <caption>A 3D plot of the vector field <m>\langle x,y,z\rangle</m></caption>
+    <interactive platform="sage" width="100%" aspect="1:1.25">
+    <slate surface="sage">
+      var('x,y,z,t,s')
+      a=0
+      b=0
+      c=0
+      d=3
+      w=d
+      F=(x,y,z)
+      @interact
+      def _(beta=slider(-1.5,1.5,0.25,0,label="Angle of Plane"),vectors_to_plot=slider(5,10,1,7)):
+        plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+        plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
+        plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
+        alpha=tan(beta)
+        plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=(vectors_to_plot))
+        plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow")
+        show(plot1)
+        plot2=plot_vector_field((x,y),(x,-d,d),(y,-d,d),frame=False,aspect_ratio=1,ticks=[[],[]])
+        show(plot2)
+    </slate>
+    </interactive>
+  </figure>
   <p>
+    If we look at the vector field <m>\vF=\langle x,y,z\rangle</m> and examine how the vector field will look along any plane through the origin, we will see a vector field that look like <xref ref="curl_xy">Figure</xref>. The 2D vector field in <xref ref="curl_xy">Figure</xref> has no rotation, so for the projection of the curl onto any direction must give the zero vector. The only vector that has a zero projection in every direction is the zero vector. You verify by calculation as well that <m>Curl(\langle{x,y,z}\rangle)</m> is the zero vector.
+    <figure xml:id="curl_xy">
+      <caption>
+      <image width="75%" source="images/curl_xy_noticks"/>
+    </figure>
+
     Have interact with 4 different vector fields in 3d (constant vf, point source, global rotation, interesting field). show them what each looks like on y=z plane. Ask if any other planes through the origin will look qualitatively different. The answer is no for both the constant and point source. Compute curl as zero for these two. emphasize that the output is the zero vector, so by theorem above, there is no rotation on any axis. for global rotation, each slice you take ends up being a distorted version of the xy-plane. calculate curl to show uniform strength of rotation and rotation is always in vector j direction. If you take a slice in xz or yz plane, then no rotation.
   </p>
   <p>
