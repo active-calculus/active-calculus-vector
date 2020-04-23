@@ -66,16 +66,40 @@
         </figure>
         <ol>
           <li>
-            <p>Should have a description for how to think about the spinner moving. Maybe have the student put an X centered at the origin. Have them draw the force on each of the four blades of the spinner. Then have them assess which way the spinner turns. Then go through this process at the 1,1 point so they can see how the inner part will work against the rotation but the outer part is stronger and so you get counterclockwise rotation.</p>
+            <p>
+              On your paper draw a set of axes and make an X at the origin to represent our spinner.
+            </p>
           </li>
           <li>
-            <p>Would a small spinner placed at the origin spin clockwise, counterclockwise, or not spin at all?</p>
+            <p>
+              For this task, think of the vector field in <xref ref="Curl_PA_task1_vf">Figure</xref> as being a wind pattern for points on your plane.
+              <ul>
+                <li>Draw a vector on the top right blade of your spinner that represents how the wind will push on that blade.</li>
+                <li>Draw a vector on each of the other blades of your spinner that will represents how the wind will push on that blade.</li>
+              </ul>
+            </p>
           </li>
           <li>
-            <p>Would a small spinner placed at <m>(1,1)</m> spin clockwise, counterclockwise, or not spin at all?</p>
+            <p>
+              Use your vector representations from the previous part to describe if a small spinner placed at the origin would spin clockwise, counterclockwise, or not spin at all.
+            </p>
           </li>
           <li>
-            <p>Would a small spinner placed at <m>(-2,1)</m> spin clockwise, counterclockwise, or not spin at all?</p>
+            <p>
+              We would like to look at the rotational strength of the vector field in <xref ref="Curl_PA_task1_vf">Figure</xref> at the point <m>(1,1)</m> now. Draw an X on your plane at <m>(1,1)</m> to represent a spinner.
+              <ul>
+                <li>Draw a vector on the top right blade of your spinner at <m>(1,1)</m> that represents how the wind will push on that blade.</li>
+                <li>Draw a vector on each of the other blades of your spinner that will represents how the wind will push on that blade. Be sure to draw the relative lengths of the vectors on each blade to scale so you can see which blades have a larger force due to the wind.</li>
+              </ul>
+            </p>
+          </li>
+          <li>
+            <p>
+              Use your vector representations from the previous part to describe if a small spinner placed at at <m>(1,1)</m> would spin clockwise, counterclockwise, or not spin at all. You should pay attention to which blades will have a stronger force (in comparison to the blade on the other side).
+            </p>
+          </li>
+          <li>
+            <p>Would a small spinner placed at <m>(-2,1)</m> spin clockwise, counterclockwise, or not spin at all? Draw a representation of a spinner if necessary to demonstrate your ideas.</p>
           </li>
           <li>
             <p>Are there any points on the <m>xy</m>-plane where the spinner would not turn counterclockwise?</p>
@@ -135,11 +159,11 @@
           </figure> -->
         <figure xml:id="Curl_PA_task4_vf">
           <caption>A Sage Interact to examine vector fields</caption>
-          <interactive xml:id="sage_curl_interact" platform="sage" width="100%" height="200%">
+          <interactive xml:id="sage_curl_interact" platform="sage" width="100%" aspect="1:1.6">
             <slate surface="sage">
               var('x,y,t')
               @interact
-              def curl_explorer(f=input_box(default=1-x,label="First Component Equation $F_1=$"),g=input_box(default=x*y,label="Second Component Equation $F_2=$"),zoom=slider(-1,3,1,0),x0=input_box(default=1,label="$x_0$"),y0=input_box(default=1,label="$y_0$")):
+              def curl_explorer(f=input_box(default=1-x,label="First Component Equation $F_1=$",width=40),g=input_box(default=x*y,label="Second Component Equation $F_2=$",width=40),zoom=slider(-1,3,1,0),x0=input_box(default=1,label="$x_0$"),y0=input_box(default=1,label="$y_0$")):
                   d=2
                   zoom_level=(1/2)^zoom
                   plot1=plot_vector_field((f,g),(x,x0-(d*zoom_level),x0+(d*zoom_level)),(y,y0-(d*zoom_level),y0+(d*zoom_level)),frame=False,axes_labels=["x","y"],aspect_ratio=1)
@@ -354,7 +378,7 @@
     </interactive>
   </figure>
   <p>
-    If you look carefully at <xref ref="rotations_in_3d">Figure</xref>, you can see that the vector show in blue will be parallel to <m>/vk</m> and will represent rotations on planes of the form <m>z=c</m>. Similarly, the vector shown in yellow will be parallel to <m>/vi</m> and will represent rotations on planes of the form <m>x=a</m>. When looking down the blue and yellow vectors (from the terminal to the initial point), you can see the coordinate axes as being to the right and up (as we would expect on a two dimensional plot). When you look down the purple vector (from the terminal to the initial point), the positive coordinate axes (the <m>x</m> and <m>z</m> axes) go to the left and up. In fact, when we look down the purple vector the <m>xz</m>plane is flipped. So a positive rotation on a plane of the form <m>y=b</m> will correspond to a rotation vector that is in the direction of <m>-/vj</m>. This is really a product of our right handed coordinate system and our right handed idea of rotation.
+    If you look carefully at <xref ref="rotations_in_3d">Figure</xref>, you can see that the vector show in blue will be parallel to <m>\vk</m> and will represent rotations on planes of the form <m>z=c</m>. Similarly, the vector shown in yellow will be parallel to <m>\vi</m> and will represent rotations on planes of the form <m>x=a</m>. When looking down the blue and yellow vectors (from the terminal to the initial point), you can see the coordinate axes as being to the right and up (as we would expect on a two dimensional plot). When you look down the purple vector (from the terminal to the initial point), the positive coordinate axes (the <m>x</m> and <m>z</m> axes) go to the left and up. In fact, when we look down the purple vector the <m>xz</m>plane is flipped. So a positive rotation on a plane of the form <m>y=b</m> will correspond to a rotation vector that is in the direction of <m>-\vj</m>. This is really a product of our right handed coordinate system and our right handed idea of rotation.
     <me>
       \vi \times \vj = \vk \quad \quad  \vi \times \vk = -\vj \quad \quad  \vj \times \vk = \vi 
     </me>
@@ -507,7 +531,7 @@
 <subsection xml:id="curl_interpretation">
   <title>The Interpretation and Usage of Curl </title>
   <p>
-    The curl of a vector field is itself a vector field in that the output of the curl at a point is a vector. As we saw earlier in this section, the vector output of <m>Curl(/vF)</m> represents the rotational strength of the vector field <m>\vF</m> as a linear combination of rotational strength (or circulation densities) from two dimensional planar descriptions. From our description of vectors as a representation of rotations, We can think of rotation in three dimensions as being represented by a vector where
+    The curl of a vector field is itself a vector field in that the output of the curl at a point is a vector. As we saw earlier in this section, the vector output of <m>Curl(\vF)</m> represents the rotational strength of the vector field <m>\vF</m> as a linear combination of rotational strength (or circulation densities) from two dimensional planar descriptions. From our description of vectors as a representation of rotations, We can think of rotation in three dimensions as being represented by a vector where
     <ul>
       <li>the direction of the vector represents the axis of rotation</li>
       <li>the magnitude of the vector represents the strength of the rotation</li>
@@ -515,10 +539,10 @@
     By convention, we consider positive <q>rotation</q> to correspond to counterclockwise rotation when the vector field is viewed looking from the end of the vector to the base.
   </p>
   <p>
-    With these conventions, the output vector of the curl evaluated at a point <m>P</m>, written as <m>curl(/vF)(P)</m>, will have the following properties:
+    With these conventions, the output vector of the curl evaluated at a point <m>P</m>, written as <m>Curl(\vF)(P)</m>, will have the following properties:
     <ol>
       <li>The direction of <m>Curl(\vF)(P)</m> will be the axis of rotation that has the strongest positive rotational strength.</li>
-      <li>The magnitude of <m>Curl(\vF)(P)</m> will be the circulation density of the vector field in the plane with normal vector given by <m>curl(\vF)(P)</m>. </li>
+      <li>The magnitude of <m>Curl(\vF)(P)</m> will be the circulation density of the vector field in the plane with normal vector given by <m>Curl(\vF)(P)</m>. </li>
     </ol>
   </p>
   <theorem>
@@ -530,7 +554,7 @@
   </theorem>
   <figure xml:id="curl_3d_xyz">
     <caption>A 3D plot of the vector field <m>\langle x,y,z\rangle</m></caption>
-    <interactive platform="sage" width="100%" aspect="1:1.25">
+    <interactive platform="sage" width="100%" aspect="1:2.2">
     <slate surface="sage">
       var('x,y,z,t,s')
       a=0
@@ -554,17 +578,71 @@
     </interactive>
   </figure>
   <p>
-    If we look at the vector field <m>\vF=\langle x,y,z\rangle</m> and examine how the vector field will look along any plane through the origin, we will see a vector field that look like <xref ref="curl_xy">Figure</xref>. The 2D vector field in <xref ref="curl_xy">Figure</xref> has no rotation, so for the projection of the curl onto any direction must give the zero vector. The only vector that has a zero projection in every direction is the zero vector. You verify by calculation as well that <m>Curl(\langle{x,y,z}\rangle)</m> is the zero vector.
+    If we look at the vector field <m>\vF=\langle x,y,z\rangle</m> and examine how the vector field will look along any plane through the origin, we will see a vector field in <xref ref="curl_xy">Figure</xref>. The 2D vector field in <xref ref="curl_xy">Figure</xref> has no rotation, so for the projection of the curl onto any direction must give the zero vector. The only vector that has a zero projection in every direction is the zero vector. You can verify by direct calculation as well that <m>Curl(\langle{x,y,z}\rangle)</m> is the zero vector.
     <figure xml:id="curl_xy">
-      <caption>
+      <caption>The vector field <m>\langle{x,y,z}\rangle</m> on every plane through the origin</caption>
       <image width="75%" source="images/curl_xy_noticks"/>
     </figure>
-
-    Have interact with 4 different vector fields in 3d (constant vf, point source, global rotation, interesting field). show them what each looks like on y=z plane. Ask if any other planes through the origin will look qualitatively different. The answer is no for both the constant and point source. Compute curl as zero for these two. emphasize that the output is the zero vector, so by theorem above, there is no rotation on any axis. for global rotation, each slice you take ends up being a distorted version of the xy-plane. calculate curl to show uniform strength of rotation and rotation is always in vector j direction. If you take a slice in xz or yz plane, then no rotation.
   </p>
   <p>
-    Include an example where the curl has different values in different quadrants. Maybe include an interact that will allow the user to input a point, toggle whether the curl vector is displayed and have a slider to zoom in around the point. Probably need to include a slider that will change the density of vectors displayed around the point.
+    If we look at the vector field <m>\vF=\langle{y,x,0}\rangle</m> and examine how the vector field will look along any plane through the origin, we will see the vector field in <xref ref="curl_yx">Figure</xref>. The 2D vector field in <xref ref="curl_yx">Figure</xref> has a positive circulation density similar to our work in <xref ref="Curl_PA_task1">Question</xref>. In this example the curl of our vector field will be <m>2/vk</m> and so the rotational strength of the vector field on the titled plane will be given by <m>2\cos(\theta)</m>, where <m>\theta</m> is the angle between <m>/vk</m> and the normal vector of our tilted plane.
+    <figure xml:id="curl_yx">
+      <caption>A 3D plot of the vector field <m>\langle x,y,z\rangle</m></caption>
+      <interactive platform="sage" width="100%" aspect="1:1.25">
+      <slate surface="sage">
+        var('x,y,z,t,s')
+        a=0
+        b=0
+        c=0
+        d=3
+        w=d
+        F=(y,-x,0)
+        @interact
+        def _(beta=slider(-1.5,1.5,0.25,0,label="Angle of Plane"),vectors_to_plot=slider(5,10,1,7)):
+          plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+          plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
+          plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
+          alpha=tan(beta)
+          plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=(vectors_to_plot))
+          plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow")
+          plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
+          show(plot1)
+          plot2=plot_vector_field(((t),-s*(1/(1+alpha^2))),(s,-d,d),(t,-d,d),frame=False,aspect_ratio=1,ticks=[[],[]])
+          show(plot2)
+      </slate>
+      </interactive>
+    </figure>
   </p>
+  <p>
+    In <xref ref="curl_gen">Figure</xref> you can plot a vector field around a given point in order to look at the rotational properties of the vector field. The selectbox in <xref ref="curl_gen">Figure</xref> will show the output of the curl at the base point given so you can make sense of your vector field and its curl.
+  </p>
+  <figure xml:id="curl_gen">
+    <caption>A 3D plot of the vector field <m>\langle{F1,F2,F3}\rangle</m></caption>
+    <interactive platform="sage" width="100%" aspect="1:1.25">
+    <slate surface="sage">
+      var('x,y,z,t,s')
+      d=3
+      w=2
+      plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+      plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
+      plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
+      @interact
+      def _(F1=input_box(default=x-z),F2=input_box(default=z+x^2),F3=input_box(default=x+sin(y)),p=("Point", input_grid(1, 3, default=[1,2,-1])),vectors_to_plot=slider(3,7,1,5),ct=checkbox(default=False,label="Show Curl Vector")):
+          a=p[0][0]
+          b=p[0][1]
+          c=p[0][2]
+          cd1=(diff(F3,y)-diff(F2,z))(x=a,y=b,z=c)
+          cd2=(diff(F1,z)-diff(F3,x))(x=a,y=b,z=c)
+          cd3=(diff(F2,x)-diff(F1,y))(x=a,y=b,z=c)
+          plot2=plot_vector_field3d((F1,F2,F3),(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=(vectors_to_plot))
+          plot2+=sphere((a,b,c),size=.15,color="black")
+          plot3=arrow3d((a,b,c),(a+cd1,b+cd2,c+cd3))
+          if(ct):
+              plot2+=plot3
+          show(plot1+plot2)
+      </slate>
+      </interactive>
+    </figure>
   <p>
     Talk about vector potential functions?
   </p>
