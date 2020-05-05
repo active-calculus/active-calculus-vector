@@ -4,22 +4,20 @@
     <ul>
       <li>
         <p>
-	  How can we calculate the circulation around a closed curve
-	  in a vector field that is not path-independent?
+	  How can we calculate the circulation of a two-dimensional
+	  vector field <m>\vF</m> around a closed curve when
+	  <m>\vF</m> is not path-independent?
         </p>
       </li>
 
       <li>
         <p>
-	  There's more, right?
+	  What is the meaning of the double integral of the
+	  circulation density of a smooth two-dimensional vector
+	  field on a region <m>R</m> bounded by a simple closed curve?
         </p>
       </li>
 
-      <li>
-        <p>
-	  And probably another one?
-        </p>
-      </li>
     </ul>
   </objectives>
   <introduction>
@@ -80,40 +78,40 @@
       <task xml:id="task_PA_Vector_GreensTheorem_Integrand">
         <statement>
           <p>
-	    Consider <m>\vF = \langle
-	    F_1(x,y),F_2(x,y)\rangle</m>. Without doing any
-	    calculations, do you think that
+	    Consider <m>\vF = \langle F_1(x,y),F_2(x,y)\rangle</m>. In
+	    <xref ref="S_12_6_Curl" text="type-global" />, we
+	    discussed the circulation density of a two-dimensional
+	    vector field at a given point and determined that it can
+	    be algebraically determined by <m>\displaystyle
+	    \frac{\partial F_2}{\partial x} - \frac{\partial
+	    F_1}{\partial y}</m>. Without doing any calculations, do
+	    you think that the circulation density is <m>0</m> for all
+	    values of <m>x</m> and <m>y</m>?  Calculate
 	    <m>\displaystyle \frac{\partial F_2}{\partial x} -
-	    \frac{\partial F_1}{\partial y}</m> is <m>0</m> for
-	    all values of <m>x</m> and <m>y</m>?  Calculate <m>\displaystyle \frac{\partial F_2}{\partial x} -
-	    \frac{\partial F_1}{\partial y}</m> to confirm your answer.
+	    \frac{\partial F_1}{\partial y}</m> to confirm your
+	    answer.
 	  </p>
         </statement>
         <answer>
 	  <p>No; <m>6xy-2</m>.</p>
         </answer>
         <solution>
-	  <p>Since <m>\vF</m> is not path independent, we
-	  know that <m>\vF</m> is not a gradient vector
-	  field. Thus, we would not expect <m>\displaystyle \frac{\partial F_2}{\partial x} -
-	  \frac{\partial F_1}{\partial y}</m> to be <m>0</m> for
-	  all values of <m>x</m> and <m>y</m> as would be the
-	  case if <m>\vF</m> were the gradient of a smooth function. Here we have that <m>\partial F_2/\partial x
-	  =6xy</m> and <m>\partial F_1/\partial y = 2</m>,
-	  so we have that <m>\partial F_2/\partial x
-	  - \partial F_1/\partial y= 6xy-2</m>.
+	  <p>Since <m>\vF</m> is not path independent, we know that
+	  <m>\vF</m> is not a gradient vector field. Thus, we would
+	  not expect the circulation density to be <m>0</m> for all
+	  values of <m>x</m> and <m>y</m> as would be the case if
+	  <m>\vF</m> were the gradient of a smooth function. Here we
+	  have that <m>\partial F_2/\partial x =6xy</m> and
+	  <m>\partial F_1/\partial y = 2</m>, so we have that
+	  <m>\partial F_2/\partial x - \partial F_1/\partial y=
+	  6xy-2</m>.
 	  </p>
         </solution>
       </task>
       <task xml:id="task_PA_Vector_GreensTheorem_Double">
         <statement>
 	  <p>
-	    In <xref ref="S_12_6_Curl" text="type-global" />, we
-	    discussed the circulation density of a two-dimensional
-	    vector field at a given point and determined that it can
-	    be algebraically determined by <m>\displaystyle
-	    \frac{\partial F_2}{\partial x} - \frac{\partial
-	    F_1}{\partial y}</m>. Calculate the double integral of
+	    Calculate the double integral of
 	    <m>\displaystyle \frac{\partial F_2}{\partial x} -
 	    \frac{\partial F_1}{\partial y}</m> over the region inside
 	    the circle <m>C</m>. This integral is not the most fun to
@@ -167,24 +165,242 @@
       break up a region into boxes. I'm too lazy to draw the figures
       right now.
     </p>
-    <p>We also need to define <term>simple closed curve</term>. I'm
-    thinking this is the place to do it.</p>
-    <activity>
-      <p>
-	Do Green's Theorem for rectangles, but try to build it out of
-	NL's work on 2D curl so that they can just grab earlier work.
-      </p>
+    <activity xml:id="act_Vector_GreensTheorem_rectangle">
+      <introduction>
+	<p>
+	  For this activity, we will consider the rectangle <m>R</m>
+	  with sides parallel to the <m>x</m>- and <m>y</m>-axes,
+	  lower-left corner <m>(a,b)</m>, and upper-right corner
+	  <m>(c,d)</m>. The curve <m>C</m> will be the boundary of
+	  <m>R</m>, oriented counterclockwise. Let <m>\vF = \langle
+	  F_1(x,y),F_2(x,y)\rangle</m> be a vector field that is
+	  smooth on <m>C</m> and <m>R</m>. We can write <m>C = C_1 +
+	  C_2 + C_3 + C_4</m>, where <m>C_1</m> is the top edge of the
+	  rectangle and the edges are numbered counterclockwise around the
+	  rectangle.
+	</p>
+      </introduction>
+      <task>
+	<statement>
+	  <p>
+	    Since we know that <me>\oint_C\vF\cdot d\vr =
+	    \int_{C_1}\vF\cdot d\vr + \int_{C_2}\vF\cdot d\vr +
+	    \int_{C_3}\vF\cdot d\vr + \int_{C_4}\vF\cdot d\vr</me>, it
+	    makes sense to parameterize each curve <m>C_i</m> and
+	    write <m>\int_{C_i}\vF\cdot d\vr</m> as a one-variable
+	    integral. For example, <m>C_1</m> can be parameterized as
+	    <m>\vr(x) = \langle x,d\rangle</m> with <m>x</m> running
+	    from <m>c</m> to <m>a</m>. Thus, we have
+	    <me>\int_{C_1}\vF\cdot d\vr = \int_c^a \langle
+	    F_1(x,d),F_2(x,d)\rangle\cdot \langle 1,0\rangle\,
+	    dx</me>. Complete this process to write the integrals for
+	    the remaining three sides as integrals with respect to
+	    <m>x</m> or <m>y</m>, as appropriate.
+	  </p>
+	</statement>
+	<answer>
+	  <p>
+	    <md>
+	      <mrow>
+		\int_{C_2}\vF\cdot d\vr &amp;= \int_d^b \langle
+		F_1(a,y),F_2(a,y)\rangle\cdot \langle 0,1\rangle\, dy
+	      </mrow>
+	      <mrow>
+		\int_{C_3}\vF\cdot d\vr &amp;= \int_a^c \langle
+		F_1(x,b),F_2(x,b)\rangle\cdot \langle 1,0\rangle\, dy
+	      </mrow>
+	      <mrow>
+		\int_{C_4}\vF\cdot d\vr &amp;= \int_b^d \langle
+		F_1(c,y),F_2(c,y)\rangle\cdot \langle 0,1\rangle\, dy
+	      </mrow>
+	    </md>
+	  </p>
+	</answer>
+	<solution>
+	  <p>The parameterizations rely on fixing <m>x=a</m> for
+	  <m>C_2</m>, <m>y=b</m> for <m>C_3</m>, and <m>x=d</m> for
+	  <m>C_4</m>. Note that <m>C_2</m> is oriented from larger
+	  <m>y</m>-values to smaller <m>y</m>-values.
+	    <md>
+	      <mrow>
+		\int_{C_2}\vF\cdot d\vr &amp;= \int_d^b \langle
+		F_1(a,y),F_2(a,y)\rangle\cdot \langle 0,1\rangle\, dy
+	      </mrow>
+	      <mrow>
+		\int_{C_3}\vF\cdot d\vr &amp;= \int_a^c \langle
+		F_1(x,b),F_2(x,b)\rangle\cdot \langle 1,0\rangle\, dy
+	      </mrow>
+	      <mrow>
+		\int_{C_4}\vF\cdot d\vr &amp;= \int_b^d \langle
+		F_1(c,y),F_2(c,y)\rangle\cdot \langle 0,1\rangle\, dy
+	      </mrow>
+	    </md>	    
+	  </p>
+	</solution>
+      </task>
+      <task>
+	<statement>
+	  <p>
+	    Take the integrals from the previous step, write them so
+	    the lower limit of integration is less than the upper
+	    limit of integration, and then combine the two <m>dx</m>
+	    integrals and the two <m>dy</m> integrals so that you have
+	    <m>\oint_C \vF\cdot d\vr</m> equal to the sum of one
+	    integral with respect to <m>x</m> and one integral with
+	    respect to <m>y</m>.
+	  </p>
+	</statement>
+	<answer>
+	  <p>
+	    <m>\displaystyle\oint_C\vF\cdot d\vr = \int_b^d
+	    \left(F_2(c,y) - F_2(a,y)\right)\, dy +
+	    \int_a^c\left(F_1(x,b)-F_1(x,d)\right)\, dx</m>
+	  </p>
+	</answer>
+	<solution>
+	  <p>To get the limits of integration so the lower limit is
+	  less than the upper limit, we must multiply the integrals
+	  for <m>C_1</m> and <m>C_2</m> by <m>-1</m>. At this point,
+	  we can add the two horizontal (<m>dx</m>) integrals and the
+	  two vertical (<m>dy</m>) integrals to obtain
+	    <m>\displaystyle\oint_C\vF\cdot d\vr = \int_b^d
+	    \left(F_2(c,y) - F_2(a,y)\right)\, dy +
+	    \int_a^c\left(F_1(x,b)-F_1(x,d)\right)\, dx</m>.
+	  </p>
+	</solution>
+      </task>
+      <task>
+	<statement>
+	  <p>
+	    We would like to see if the equality of the line integral
+	    and double integral in <xref ref="PA_Vector_GreensTheorem"
+	    text="type-global" /> was a coincidence or holds for more
+	    general vector fields. (Soon we will expand our
+	    curves beyond rectangles, but for the moment, we focus
+	    on the curve <m>C</m> and region <m>R</m>.) To do this, we
+	    have to find some way to take our answer to the previous
+	    part of this activity, which includes two single integrals
+	    and turn them into a double integral over the rectangle
+	    <m>R</m>. 
+	  </p>
+	  <p>
+	    We have assumed that <m>\vF</m> is smooth on <m>C</m> and
+	    <m>R</m>, so the partial derivatives <m>\partial
+	    F_2/\partial x</m> and <m>\partial F_1/\partial y</m> are
+	    continuous functions on <m>C</m> and <m>R</m>. Rewrite the
+	    expression you have for <m>\oint_C\vF\cdot d\vr</m> in the
+	    previous step as the sum of two <em>double</em>
+	    integrals. 
+	  </p>
+	</statement>
+	<hint>
+	  <p>
+	    With <m>x</m> fixed, the integrand in your <m>dx</m>
+	    integral matches what you see on the left-hand side of the
+	    Total Change Theorem <xref
+	    provisional="TotalChangeTheoreminACS" text="title" />, but
+	    now instead of prime notation for the derivative, you will
+	    have a partial derivative with respect to <m>y</m>.
+	  </p>
+	</hint>
+	<answer>
+	  <p>
+	    <m>
+	      \displaystyle \oint_C\vF\cdot d\vr = \int\limits_b^d\!\! \int\limits_{a\mathstrut}^c
+	      \frac{\partial F_2}{\partial x}(x,y)\, dx\, dy +
+	      \int\limits_{a\mathstrut}^c\!\! \int\limits_d^b \frac{\partial F_1}{\partial y}(x,y)\, dy\, dx
+	    </m>
+	  </p>
+	</answer>
+	<solution>
+	  <p>By the Total Change Theorem <xref
+	    provisional="TotalChangeTheoreminACS" text="title" />,
+	  with <m>y</m> fixed, we have that
+	  <md>
+	    <mrow>F_2(c,y) - F_2(a,y) &amp;=
+	    \int_a^c \frac{\partial F_2}{\partial x}(x,y)\,
+	    dx\text{.}</mrow>
+	    <intertext>Similarly,</intertext>
+	    <mrow>F_1(x,b) - F_1(x,d) &amp;=
+	    \int_d^b \frac{\partial F_1}{\partial y}(x,y)\,
+	    dy\text{.}</mrow>
+	  </md>
+	  Therefore, we have
+	    <me>
+	      \oint_C\vF\cdot d\vr = \int\limits_b^d\!\! \int\limits_{a\mathstrut}^c
+	      \frac{\partial F_2}{\partial x}(x,y)\, dx\, dy +
+	      \int\limits_{a\mathstrut}^c\!\! \int\limits_d^b \frac{\partial F_1}{\partial y}(x,y)\, dy\, dx
+	    </me>.
+	  </p>
+	</solution>
+      </task>
+      <task>
+	<statement>
+	  <p>
+	    Rewrite your sum of two double integrals in the previous
+	    step above as a double integral over the rectangle
+	    <m>R</m>, thereby showing that the line integral of
+	    <m>\vF</m> along the curve <m>C</m> is equal to a double
+	    integral of the region inside <m>C</m>.
+	  </p>
+	</statement>
+	<answer>
+	  <p>
+	    <m>\displaystyle\oint_C\vF\cdot d\vr = \iint_R
+	    \left(\frac{\partial F_2}{\partial x}- \frac{\partial
+	    F_1}{\partial y}\right)\, dA</m>
+	  </p>
+	</answer>
+	<solution>
+	  <p>
+	    After interchanging the order of integration so that both
+	    integrals are done <m>dx\, dy</m>, the other step we must
+	    do to add them is to make the integral of <m>\partial
+	    F_1/\partial y</m> have lower limit
+	    <m>b</m> and upper limit <m>d</m> (with respect to
+	    <m>y</m>). We do this by multiplying by <m>-1</m> and then
+	    can add the integrals to obtain
+	    <me>\displaystyle\oint_C\vF\cdot d\vr = \iint_R
+	    \left(\frac{\partial F_2}{\partial x}- \frac{\partial
+	    F_1}{\partial y}\right)\, dA</me>.
+	  </p>
+	</solution>
+      </task>
+      <conclusion>
+	<p>
+	  Now we can see that our result in <xref
+	  ref="PA_Vector_GreensTheorem" text="type-global" /> was not
+	  a coincidence and integrating the circulation
+	  <em>density</em> of a smooth vector field on a rectangular
+	  region gives the same result as calculating the circulation
+	  along the boundary of the region.
+	</p>
+      </conclusion>
     </activity>
+
+    <p>
+      The phenomenon we verified for rectangular regions in <xref
+      ref="act_Vector_GreensTheorem_rectangle" text="type-global" />
+      is a very general result that will be the subject of our next
+      section. 
+    </p>
   </subsection>
 
   <subsection>
     <title>Green's Theorem</title>
+    <p>So far in this section, we have restricted ourselves to
+    relatively nice closed curves when thinking about
+    circulation. While the main theorem of this section will not allow
+    us to consider arbitrary closed curves, it does cover more varied
+    curves than we have discussed so far. A <term>simple closed
+    curve</term> is a closed curve that does not cross itself, and
+    these are the curves to which our next theorem applies.</p>
     <theorem xml:id="thm_Green">
       <title>
 	Green's Theorem
       </title>
       <statement>
-	<p>Let <m>C</m> be a simple, closed curve in the plane that
+	<p>Let <m>C</m> be a simple closed curve in the plane that
 	bounds a region <m>R</m> with <m>C</m> oriented in such a
 	way that when walking along <m>C</m> in the direction of its
 	orientation, the region <m>R</m> is on our left. Suppose that
@@ -196,6 +412,18 @@
       </statement>
     </theorem>
 
+    <p>
+      In <xref ref="act_Vector_GreensTheorem_rectangle"
+      text="type-global" />, we showed that <xref ref="thm_Green"
+      text="title" /> holds when the region <m>R</m> is a rectangle
+      with sides parallel to the coordinate axes. The discussion that
+      introduced the previous subsection may have you convinced that
+      <xref ref="thm_Green" text="title" /> holds in its full form. In
+      <xref ref="ez_Vector_GreensTheorem_ParamRect" text="type-global"
+      />, we will examine how a change of coordinates can give us a
+      proof for regions that can be parameterized by rectangles.
+    </p>
+    
     <p>
       At first glance, it may seem that <xref ref="thm_Green"
       text="title" /> is of purely intellectual interest. However, we
@@ -218,10 +446,13 @@
       text="title" />.
     </p>
 
-    <activity>
+    <activity xml:id="act_Vector_GreensTheorem_verify">
       <introduction>
 	<p>For each of the curves described below, find the
-	circulation of the given vector field around the curve.
+	circulation of the given vector field around the curve. Do
+	this both by calculating the line integral directly as well as
+	by calculating the double integral from <xref ref="thm_Green"
+	text="title" />.
 	</p>
       </introduction>
       <task>
@@ -273,6 +504,17 @@
 	</solution>
       </task>
     </activity>
+    <p>
+      Generally, <xref ref="thm_Green" text="title"/> is useful for
+      allowing us to calculate line integrals by instead calculating a
+      double integral. Going the other direction is harder, since
+      finding a vector field <m>\langle F_1,F_2\rangle</m> so that
+      <m>\partial F_2/\partial x - \partial F_1/\partial y</m> is
+      equal to the integrand in the double integral can be
+      difficult. However, the exercises will explore some situations
+      where calculating a suitable line integral is a viable
+      alternative to the double integral.
+    </p>
   </subsection>
 
   <subsection>
@@ -282,8 +524,8 @@
       text="title" /> require that the region <m>R</m> be bounded by a
       simple closed curve <m>C</m> and that the vector field have continuous
       partial derivatives on <m>R</m> and <m>C</m>. In <xref
-      provisional="ez_Vector_GreensTheorem_hole" text="type-local"
-      />, we will explore what happens when the region <m>R</m> has a
+      ref="ez_Vector_GreensTheorem_region_hole" text="type-local"
+      />, we will explore what happens when the region <m>R</m> 
       cannot be bounded by a simple closed
       curve, as sometimes multiple applications of <xref ref="thm_Green"
       text="title" /> can be used in those circumstances. Now,
@@ -291,18 +533,28 @@
       field <m>\vF</m> is not smooth.
     </p>
 
-    <activity>
+    <activity xml:id="act_Vector_GreensTheorem_not_smooth">
       <introduction>
-	<p>Consider the vector field <m>\vF = 
-	\displaystyle\frac{-y}{\sqrt{x^2+y^2}}\vi+\frac{x}{\sqrt{x^2+y^2}}\vj</m>,
-	which is shown in <xref
-	ref="fig_Vector_GreensTheorem_ccw_field" text="type-global"
-	/>. Notice that <m>\vF</m> is smooth everywhere in the plane
-	other than at the point <m>(0,0)</m>.</p>
+	<p>Consider the vector field <m>\vF =
+	\displaystyle\frac{-y}{{x^2+y^2}}\vi +
+	\frac{x}{{x^2+y^2}}\vj</m>. Notice that <m>\vF</m> is smooth
+	everywhere in the plane other than at the point
+	<m>(0,0)</m>. This vector field is plotted in <xref
+	ref="fig_Vector_GreensTheorem_ccw_field" text="type-global"/>,
+	but we have not plotted the vectors close to the origin as
+	their magnitudes get so large that they make it hard to
+	interpret the figure.</p>
 	<figure xml:id="fig_Vector_GreensTheorem_ccw_field">
-	  <caption>The vector field <m>\vF = 
-	  \frac{-y}{\sqrt{x^2+y^2}}\vi + \frac{x}{\sqrt{x^2+y^2}}\vj</m></caption>
-	  <image source="images/fig_Vector_GreensTheorem_ccw_field" width="50%" />
+	  <caption>The vector field <m>\vF</m></caption>
+	  <image source="images/fig_Vector_GreensTheorem_ccw_field"
+		 width="65%">
+	    <description>A vector field with vectors tangent to
+	    circles oriented counterclockwise and centered at the
+	    origin as well as the unit circle centered at the origin
+	    and oriented counterclockwise. The vectors are longer
+	    close to the origin and shorter farther from the
+	    origin.</description>
+	  </image>
 	</figure>
       </introduction>
       <task>
@@ -311,119 +563,131 @@
 	    Here <xref ref="thm_Green"
 	    text="title" /> applies to any simple closed curve <m>C</m> that
 	    neither passes through <m>(0,0)</m> nor bounds a region
-	    containing <m>(0,0)</m>. Find the integrand of the double
+	    containing <m>(0,0)</m>. Find the circulation density of
+	    <m>\vF</m> (i.e., the integrand of the double
 	    integral in <xref ref="thm_Green"
-	    text="title" /> for this vector field.
+	    text="title" />).
 	  </p>
 	</statement>
 	<answer>
-	  <p><me>\frac{\partial F_2}{\partial x} - \frac{\partial
-	  F_1}{\partial y} = \frac{1}{\sqrt{x^2+y^2}}</me></p>
+	  <p><m>\displaystyle\frac{\partial F_2}{\partial x} - \frac{\partial
+	  F_1}{\partial y} = 0</m> for <m>(x,y)\neq(0,0)</m></p>
 	</answer>
 	<solution>
 	  <p>For <m>(x,y)\neq (0,0)</m>, we have
 	  <md>
 	    <mrow>\frac{\partial F_2}{\partial x} &amp; =
-	    -\frac{x^{2}}{{\left(x^{2} + y^{2}\right)}^{\frac{3}{2}}}
-	    + \frac{1}{\sqrt{x^{2} + y^{2}}} = \frac{y^2}{{\left(x^{2} + y^{2}\right)}^{\frac{3}{2}}}</mrow>
+	    -\frac{2x^{2}}{{\left(x^{2} + y^{2}\right)}^{2}}
+	    + \frac{1}{{x^{2} + y^{2}}} = \frac{y^2-x^2}{{\left(x^{2} + y^{2}\right)}^{2}}</mrow>
 	    <mrow>\frac{\partial F_1}{\partial y} &amp; =
-	    \frac{y^{2}}{{\left(x^{2} + y^{2}\right)}^{\frac{3}{2}}} -
-	    \frac{1}{\sqrt{x^{2} + y^{2}}} = \frac{-x^2}{{\left(x^{2} + y^{2}\right)}^{\frac{3}{2}}}</mrow>
+	    \frac{2y^{2}}{{\left(x^{2} + y^{2}\right)}^{2}} -
+	    \frac{1}{{x^{2} + y^{2}}} = \frac{y^2-x^2}{{\left(x^{2} + y^{2}\right)}^{2}}</mrow>
 	    </md>. Thus,
 	  <me>\frac{\partial F_2}{\partial x} - \frac{\partial
-	  F_1}{\partial y} = \frac{x^2+y^2}{(x^2+y^2)^{3/2}} = \frac{1}{\sqrt{x^2+y^2}}</me></p>
+	  F_1}{\partial y} = 0</me>.</p>
 	</solution>
       </task>
       <task>
 	<statement>
 	  <p>
 	    Suppose that <m>C</m> is the unit circle centered at the
-	    origin. Find <m>\oint_C \vF\cdot d \vr</m>.
+	    origin. Find <m>\oint_C \vF\cdot d \vr</m>. What does this
+	    tell you about  if <m>\vF</m> is path-independent?
 	  </p>
 	</statement>
 	<answer>
-	  <p><m>2\pi</m></p>
+	  <p><m>2\pi</m>; <m>\vF</m> is not path-independent</p>
 	</answer>
 	<solution>
 	  <p>Notice that <m>\vF</m> is tangent to <m>C</m>. Thus, by
 	  something that we probably didn't do anywhere but need to
 	  put somewhere, <m>\oint_C \vF\cdot d \vr = \vecmag{\vF}\cdot
-	  (\text{Length of }C) = 2\pi</m>. </p>
+	  (\text{Length of }C) = 2\pi</m>. Since there is a closed
+	  curve with nonzero circulation, <m>\vF</m> is not path independent.</p>
 	</solution>
       </task>
-    </activity>
-  </subsection>
+      <task>
+	<statement>
+	  <p>Reconcile the results of the previous two parts with <xref ref="thm_Green"
+	  text="title" />.</p>
+	</statement>
+	<answer>
+	  <p><xref ref="thm_Green"
+	  text="title" /> does not apply</p>
+	</answer>
+	<solution>
+	  <p><xref ref="thm_Green"
+	  text="title" /> does not apply here because the region
+	  <m>R</m> inside the curve <m>C</m> includes the point
+	  <m>(0,0)</m>, and <m>\vF</m> is not defined at that
+	  point. Green's Theorem requires that the vector field be
+	  smooth at every point of <m>R</m>.</p>
+	</solution>
+      </task>
+      <task>
+	<statement>
+	  <p>Is the vector field <m>\vG =
+	  \displaystyle\frac{x}{x^2+y^2}\vi +\frac{y}{x^2+y^2}\vj</m>,
+	  which is shown in <xref
+	  ref="fig_Vector_GreensTheorem_outward_field"
+	  text="type-global" />, 
+	  path-independent? Why or why not?</p>
+	  <figure xml:id="fig_Vector_GreensTheorem_outward_field">
+	    <caption>
+	      The vector field <m>\vG</m>
+	    </caption>
+	    <image
+		source="images/fig_Vector_GreensTheorem_outward_field"
+		width="65%">
+	      <description>
+		A vector field with vectors radiating from the origin
+		and orthogonal to circles centered at the
+		origin. Vectors are longest near the origin and get
+		shorter farther from the origin.
+	      </description>
+	    </image>
+	  </figure>
+	</statement>
+	<answer>
+	  <p>Yes</p>
+	</answer>
+	<solution>
+	  <p>Let <m>g(x,y) = \frac{1}{2}\ln(x^2+y^2)</m>. Note that
+	  <m>\grad g = \vG</m>, and the domain of <m>g</m> is the same
+	  as the domain of <m>\vG</m> (all of <m>\R^2</m> except
+	  <m>(0,0)</m>). Thus, <m>\vG</m> is a gradient vector
+	  field and is therefore path-independent.</p>
+	</solution>
+      </task>
+      <task>
+	<statement>
+	  <p> Suppose that <m>C</m> is the unit circle centered at the
+	  origin. Find <m>\oint_C \vG\cdot d \vr</m>. Can you do this
+	  using <xref ref="thm_Green" />?
+	  </p>
+	</statement>
+	<answer>
+	  <p><m>0</m>; No</p>
+	</answer>
+	<solution>
+	  <p>We have already shown that <m>\vG</m> is
+	  path-independent, and therefore <m>\oint_C \vG\cdot d\vr =
+	  0</m> since <m>C</m> is a closed curve. Because <m>\vG</m>
+	  is not defined at the origin, <xref ref="thm_Green"
+	  text="title"/> does not apply to this line integral.</p>
+	</solution>
+      </task>
 
-  <subsection>
-    <title>Gradient Vector Fields</title>
-    <p>
-      Without using the terminology,
-      we've actually already encountered one
-      very important family of vector fields a number of times.
-      Given a function <m>f</m> of two or three variables, the gradient of
-      <m>f</m> is a vector field, since for any point where <m>f</m> has first-order
-      partial derivatives, <m>\nabla f</m> assigns a vector to that point.
+    </activity>
+
+    <p>We can now see that <xref ref="thm_Green" /> is a powerful
+    tool, but it is not one that can be used for all line
+    integrals. In particular, the restriction that the vector field be
+    smooth on the entire region bounded by a simple closed curve
+    <m>C</m> creates limitations at times even when holes in the
+    vector field's domain or points where the vector field is not
+    continuously differentiable lie away from <m>C</m>.
     </p>
-
-    <activity xml:id="A_12_1_2">
-      <task>
-        <p>
-          In <xref ref="fig_12_1_level-curves">Figure</xref>
-          there are three sets of axes showing level
-          curves for functions <m>f</m>,
-          <m>g</m>, and <m>h</m>, respectively.
-          Sketch at least six vectors
-          in the gradient vector field for each function.
-          In making your
-          sketches, you don't have to worry about getting vector magnitudes
-          precise, but you should ensure that the relative magnitudes
-          (and directions)
-          are
-          correct for each function independently.
-        </p>
-        <figure xml:id="fig_12_1_level-curves">
-          <caption>Three sets of level curves</caption>
-          <sidebyside widths="30% 30% 30%" margins="0% 5% 5% 0%">
-            <figure>
-              <caption><m>f</m></caption>
-              <image source="images/12_1_ellipses" />
-            </figure>
-            <figure>
-              <caption><m>g</m></caption>
-              <image source="images/12_1_linear" />
-            </figure>
-            <figure>
-              <caption><m>h</m></caption>
-              <image source="images/12_1_sine" />
-            </figure>
-          </sidebyside>
-        </figure>
-      </task>
-      <task xml:id="part_A12_2-pot">
-        <p>
-          Verify that <m>\vF(x,y) = \langle 6xy,3x^2+9\sqrt{y}\rangle</m> is a
-          gradient vector field by finding a function <m>f</m> such that <m>\nabla
-          f(x,y) = \vF(x,y)</m>.
-          For reasons originating in physics, such a
-          function <m>f</m> is called a <em>potential function</em> for the vector
-          field <m>\vF</m>.
-        </p>
-      </task>
-      <task>
-        <p>
-          Is the function <m>f</m> found in <xref ref="part_A12_2-pot">part</xref> unique?
-          That is, can you find another function <m>g</m> such that <m>\nabla g(x,y)
-          = \vF(x,y)</m> but <m>f\neq g</m>?
-        </p>
-      </task>
-      <task>
-        <p>
-          Is the vector field <m>\vF(x,y) = 6xy\vi +(2x+9\sqrt{y})\vj</m> a
-          gradient vector field?
-          Why or why not?
-        </p>
-      </task>
-    </activity>
   </subsection>
 
   <subsection>
@@ -432,55 +696,332 @@
       <ul>
 	<li>
           <p>
-            A <m>2</m>-dimensional vector field is a function defined on part of
-            <m>\R^2</m> whose value is a <m>2</m>-dimensional vector.
-            A <m>3</m>-dimensional
-            vector field is a function defined on part of <m>\R^3</m> whose value is
-            a <m>3</m>-dimensional vector.
+            <xref ref="thm_Green" text="title" /> tells us that we can
+            calculate the circulation of a smooth vector field along a
+            simple closed curve that bounds a region on which the
+            vector field is also smooth by calculating the double
+            integral of the circulation density instead of the line
+            integral.
           </p>
 	</li>
 
 	<li>
           <p>
-            Vector fields arise in familiar contexts such as wind velocity,
-            fluid velocity, and gravitational force.
-          </p>
+	  Integrating the circulation density of a smooth vector field
+	  on a region bounded by a simple closed curve gives the same
+	  value as calculating the circulation of the vector field
+	  around the boundary of the region with suitable
+	  orientation.</p>
 	</li>
 
-	<li>
-          <p>
-            Vector fields are generally plotted in ways that ensure the
-            direction and relative magnitudes of the vectors sketched are
-            correct instead of ensuring that each vector's magnitude is
-            depicted correctly.
-          </p>
-	</li>
-
-	<li>
-          <p>
-            The gradient of a function <m>f</m> of two or three variables is a vector
-            field defined wherever <m>f</m> has partial derivatives.
-          </p>
-	</li>
       </ul>
     </p>
   </subsection>
   <exercises>
-    <exercise>
+    <exercise xml:id="ez_Vector_Green_AreaViaLineInt">
       <statement>
-        <p>Here is the statement.</p>
+	<p>Sometimes, the value in <xref ref="thm_Green" text="title"
+	/> is in converting a double integral into a line
+	integral. Recall that the area of a region <m>R</m> in the
+	plane can be found by calculating <m>\iint_R 1\, dA</m>.</p>
+	<ol label="a">
+	  <li><p>Find a smooth vector field <m>\vF</m> such that
+	  calculating <m>\oint_C \vF\cdot d\vr</m> gives you the area
+	  of the region <m>R</m> bounded by the simple closed curve
+	  <m>C</m>.</p></li>
+	  <li><p>For positive real numbers <m>a,b</m>, the ellipse
+	  <m>x^2/a^2 + y^2/b^2 = 1</m> can be parameterized as
+	  <m>\vr(t) = \langle a\cos(t),b\sin(t)\rangle</m> with
+	  <m>0\leq t\leq 2\pi</m>. Find the area of this ellipse.</p></li>
+	</ol>
       </statement>
-      <hint><p>A hint! Don't feel obligated to use hints, but they are an option.</p></hint>
+      <hint><p>There are several ways to choose <m>\vF = \langle
+      F_1,F_2\rangle</m> so that <m>\partial F_2/\partial x - \partial
+      F_1/\partial y = 1</m>.</p></hint>
       <answer>
-        <p>
-          The answer. Keep this simple as will be made public <q>back of the book</q>-style. <alert>Do not put anything with a number/or <attr>xml:id</attr> on it in an <tag>answer</tag> or <tag>solution</tag>, because this will mess up the numbering of subsequent things in the book. Techincally <attr>xml:id</attr> is fine, but note that the reference might not be useful in the end. Definitely don't use <tag>figure</tag> or <tag>table</tag> in one of these things; wrap <tag>tabular</tag> and <tag>image</tag> in <tag>sidebyside</tag>.</alert>
-        </p>
+	<p>
+	  <ol label="a">
+	    <li><m>\langle 0, x\rangle </m> (but there are others that
+	    work as well)</li>
+	    <li><m>\pi ab</m></li>
+	  </ol>
+	</p>
       </answer>
       <solution>
-        <p>
-          The full solution. Full details go here.
-        </p>
+	<p>
+	  <ol label="a">
+	    <li><p>We need <m>\partial F_2/\partial x - \partial
+      F_1/\partial y = 1</m>, so solving for <m>\partial
+	    F_2/\partial x</m> gives us <m>\partial F_2/\partial x = 1
+	    + \partial F_1/\partial y</m>. It's thus safe to have
+	    <m>F_1</m> be any function of <m>x</m> only so that the
+	    partial derivative with respect to <m>y</m> is
+	    <m>0</m>. For simplicity, let us choose <m>F_1(x,y) =
+	    0</m>. Now we need <m>\partial F_2/\partial x = 1</m>, so
+	    we may take <m>F_2(x,y) = x</m>. Note that the vector
+	    field <m>-y\vi</m> works equally well, as does
+	    <m>-(y/2)\vi + (x/2)\vj</m>.</p></li>
+	    <li>
+	      <p>With <m>\vF = \langle 0,x\rangle</m>, the double
+	      integral in <xref ref="thm_Green" text="title" /> is
+	      <m>\iint_R 1\, dA</m>, which gives us the area of the
+	      region. By <xref ref="thm_Green" text="title" />, this
+	      double integral is equal to <m>\oint_C \langle
+	      0,x\rangle\cdot d\vr</m>, where <m>C</m> is the ellipse
+	      parameterized as <m>\vr(t) = \langle
+	      a\cos(t),b\sin(t)\angle</m> for <m>0\leq t\leq
+	      2\pi</m>. Thus, we have
+	      <md>
+		<mrow>\text{Area} &amp;= \iint_R 1\, dA = \oint_C\langle
+		0,x\rangle\cdot d\vr = \int_0^{2\pi}
+		(a\cos(t))(b\cos(t))\, dt</mrow>
+		<mrow>&amp;= ab\left[
+		\frac{1}{2}\cos(t)\sin(t) +
+		\frac{1}{2}t\right]_0^{2\pi} = \pi ab
+		</mrow>
+	      </md>.
+	      </p>
+	    </li>
+	  </ol>
+	</p>
       </solution>
+    </exercise>
+    <exercise xml:id="ez_Vector_GreensTheorem_region_hole">
+      <statement>
+	<p>
+	  The types of regions in <m>\R^2</m> to which <xref
+	  ref="thm_Green" text="title" /> applies are formally called
+	  <term>simply connected regions</term>. To be precise, a
+	  simply connected region <m>D</m> in <m>\R^2</m> is a set so
+	  that there is a path between every pair of points in
+	  <m>D</m> that stays inside <m>D</m> and any simple closed
+	  curve in <m>D</m> can be shrunk to a point while remaining
+	  inside <m>D</m>. We can think of a simply connected region
+	  as being a region that does not have any <q>holes</q>. There
+	  are many instances where we can find a way to apply <xref
+	  ref="thm_Green" text="title" /> multiple times to work with
+	  regions that are not simply connected, however.
+	</p>
+
+	  <sidebyside widths="33% 40%">
+	    <figure xml:id="fig_Vector_GreensTheorem_region_hole">
+	      <caption>A region that is not simply connected</caption>
+	      <image source="images/fig_Vector_GreensTheorem_region" />
+	    </figure>
+	    <figure xml:id="fig_Vector_GreensTheorem_region_hole_split">
+	      <caption>Breaking up a region</caption>
+	    <image source="images/fig_Vector_GreensTheorem_region_split" />
+	    </figure>
+	  </sidebyside>
+	<ol>
+	  <li>
+	    <p>Explain why the region <m>R</m> in <xref
+	    ref="fig_Vector_GreensTheorem_region_hole"
+	    text="type-global"/> is not simply connected.
+	    </p>
+	  </li>
+	  <li>
+	    <p>If we let <m>C = C_1 + C_2</m>, then the orientation of
+	    <m>C</m> is as required by <xref
+	    ref="thm_Green" text="title"/><mdash/>when walking along the pieces of
+	    <m>C</m>, the region <m>R</m> is always on the left-hand
+	    side. Assume that <m>\vF</m> is a vector field that is
+	    smooth on <m>R</m> and <m>C</m>. Using <xref
+	    ref="fig_Vector_GreensTheorem_region_hole_split"
+	    text="type-global" /> as a guide, write <m>
+	    \oint_C \vF\cdot d\vr</m> as a sum of double integrals,
+	    one over <m>R_1</m> and the other over <m>R_2</m>.
+	    </p>
+	  </li>
+	  <li xml:id="ez_Vector_GreensTheorem_hole_winding">
+	    <p>
+	      In <xref ref="act_Vector_GreensTheorem_not_smooth"
+	      text="type-global"/>, we considered the vector field <m>\vF =
+	\displaystyle\frac{-y}{{x^2+y^2}}\vi +
+	\frac{x}{{x^2+y^2}}\vj</m> and found that the circulation of
+	<m>\vF</m> around the unit circle centered at the origin
+	(oriented counterclockwise) was <m>2\pi</m>. Show that for
+	every simple closed curve <m>C</m> in the plane that bounds a
+	region containing the origin, <m>\oint_C\vF\cdot d\vr = 2\pi</m>.
+	    </p>
+	  </li>
+	</ol>
+      </statement>
+      <hint>
+	<p>For <xref ref="ez_Vector_GreensTheorem_hole_winding"
+	text="local">part</xref>, create a region <m>R</m> as in <xref
+	ref="fig_Vector_GreensTheorem_region_hole"
+	text="type-global"/> using the curve <m>C</m> in place of <m>C_1</m>.</p>
+      </hint>
+      <answer>
+	<p>
+	  <ol>
+	    <li>A curve enclosing <m>C_2</m> cannot be contracted to a
+	    point.</li>
+	    <li><me>\oint_C\vF\cdot d\vr = \iint_{R_1}
+		\left(\frac{\partial F_2}{\partial x}
+		- \frac{\partial F_1}{\partial y}\right)\, dA +
+		\iint_{R_2}
+		\left(\frac{\partial F_2}{\partial x}
+		- \frac{\partial F_1}{\partial y}\right)\, dA</me></li>
+	    <li>Work as in the previous part with <m>C_1 = C</m> and
+	    <m>C_2</m> being the clockwise-oriented circle
+	    of radius <m>a</m> centered at the origin with <m>a</m>
+	    small enough that <m>C_2</m> lies entirely inside <m>C</m>.</li>
+	  </ol>
+	</p>
+      </answer>
+      <solution>
+	<p>
+	  <ol>
+	    <li>
+	      <p>
+		A simple closed curve lying in the region <m>R</m>
+		that encloses the curve <m>C_2</m> cannot be
+		contracted to a point while remaining in the region
+		<m>R</m>, so this region is not simply connected.
+	      </p>
+	    </li>
+	    <li>
+	      <p>
+		Assume that <m>C_3</m> and <m>C_4</m> are oriented
+		from bottom to top. Then
+		<men xml:id="eqn_ez_Vector_GreensTheorem_region_hole_add">C = C_1 + C_2 = (C_{1,2}-C_4+C_{2,2}-C_3) +
+		(C_{1,1} + C_3 + C_{2,1} + C_4)</men>. The curve in
+		the first set of 
+		parentheses in <xref
+		ref="eqn_ez_Vector_GreensTheorem_region_hole_add" />
+		bounds the region <m>R_1</m>, and the curve in the
+		second set of parentheses bounds the region
+		<m>R_2</m>. Since <m>\vF = \langle F_1,F_2\rangle</m> is smooth on <m>R</m> and
+		<m>C</m>, <xref ref="thm_Green" text="title" />
+		applies and we have
+		<md><mrow>\oint_C\vF\cdot d\vr &amp;= \iint_{R_1}
+		\left(\frac{\partial F_2}{\partial x}
+		- \frac{\partial F_1}{\partial y}\right)\, dA +
+		\iint_{R_2}
+		\left(\frac{\partial F_2}{\partial x}
+		- \frac{\partial F_1}{\partial y}\right)\, dA</mrow>
+		<mrow> &amp;= \iint_{R} \left(\frac{\partial
+		F_2}{\partial x} - \frac{\partial F_1}{\partial
+		y}\right)\, dA</mrow></md>.
+	      </p>
+	    </li>
+	    <li>
+	      <p>
+		Let <m>C_2</m> be the circle of radius <m>a>0</m>,
+		centered at the origin and oriented
+		<em>clockwise</em>, with <m>a</m> chosen to be small
+		enough that <m>C_2</m> lies entirely within
+		<m>C</m>. Then <m>C+C_2</m> is exactly the type of
+		curve considered in the previous part, as <m>\vF</m>
+		is smooth on the curves and the region they
+		bound. Here <m>\frac{\partial F_2}{\partial x}
+		- \frac{\partial F_1}{\partial y} = 0</m> for all
+		points in <m>R_1</m> and <m>R_2</m>, so the double
+		integrals from <xref ref="thm_Green" text="title" />
+		are <m>0</m>. Thus, we have that
+		<me>\oint_C\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr =
+		0\Leftrightarrow \oint_C\vF\cdot d\vr =
+		\oint_{-C_2}\vF\cdot d\vr</me>.
+		Since <m>\vF</m> is tangent to <m>-C_2</m> everywhere,
+		we know that
+		<me>\oint_{-C_2}\vF\cdot d\vr = \vecmag{\vF}\cdot
+		(\text{Length of }-C_2) = \frac{1}{a} (2\pi a) = 2\pi
+		</me>. 
+	      </p>
+	    </li>
+	  </ol>
+	</p>
+      </solution>
+    </exercise>
+    <exercise xml:id="ez_Vector_GreensTheorem_centroid">
+      <statement>
+	<p>This exercise presents another occasion where <xref
+	ref="thm_Green" text="title" /> can be used to convert a
+	double integral into a line integral.
+	  <ol>
+	    <li>
+	      <p>
+	      Recall from <xref
+	      provisional="S-11-4-Double-Integrals-Applications" />
+	      that the centroid of a lamina <m>D</m> of area <m>A</m> is given by
+	      <me>\overline{x} = \frac{1}{A}\iint_D x\, dA \qquad \text{and}\qquad
+	      \overline{y} = \frac{1}{A}\iint_D y\, dA</me>. Find vector fields
+	      <m>\vF</m> and <m>\vG</m> so that
+	      <me>\overline{x} = \oint_{C} \vF\cdot d\vr \qquad \text{and}\qquad
+	      \overline{y} = \oint_C \vG\cdot d\vr</me>,
+	      where <m>C</m> is the boundary of the lamina <m>D</m>.
+	      </p>
+	    </li>
+	    <li>
+	      <p>
+		Find the centroid of the triangle with vertices
+		<m>(0,0)</m>, <m>(a,0)</m>, and <m>(0,b)</m> for real
+		numbers <m>a,b>0</m>.
+	      </p>
+	    </li>
+	  </ol>
+	</p>
+      </statement>
+      <answer>
+	<p>
+	  <ol>
+	    <li>
+	      <p><m>\vF = \frac{1}{2A}x^2\vj</m> and <m>\vG =
+	      -\frac{1}{2A}y^2\vi</m> (other answers are possible)</p>
+	    </li>
+	    <li>
+	      <p><m>\overline{x} = a/3</m> and <m>\overline{y} = b/3</m></p>
+	    </li>
+	</ol></p>
+      </answer>
+      <solution>
+	<p>
+	  <ol>
+	    <li>
+	      <p>
+		For <m>\overline{x}</m>, we need <m>\partial
+		F_2/\partial x - \partial F_1/\partial y = x/A</m>. It
+		works nicely to let <m>F_1 = 0</m>, in which case
+		taking <m>\vF = \frac{1}{2A}x^2\vj</m> gives what we
+		need. For <m>\overline{y}</m>, we need <m>\partial
+		F_2/\partial x - \partial F_1/\partial y = y/A</m>. It
+		works nicely to let <m>F_2 = 0</m>, in which case
+		taking <m>\vG = -\frac{1}{2A}y^2\vi</m> gives what we
+		need. 
+	      </p>
+	    </li>
+	    <li>
+	      <p>Using the vector fields from above, note that the
+	      line integrals along the legs of the triangle are
+	      <m>0</m> for both <m>\vF</m> and <m>\vG</m>. Thus, we
+	      parameterize the hypotenuse as <m>\vr(t) = \langle
+	      a(1-t),bt\rangle</m> with <m>0\leq t\leq 1</m>. The area
+	      of the triangle is <m>ab/2</m>, so we find
+	      <md>
+		<mrow>\overline{x} = \frac{1}{ab}\int_0^1
+		a^2b(1-t)^2\, dt =
+		\frac{a^2b}{ab}\left[-\frac{(1-t)^3}{3}\right]_0^1 =
+		\frac{a}{3} </mrow>
+		<mrow>\overline{y} = \frac{1}{ab}\int_0^1
+		ab^2t^2\, dt =
+		\frac{ab^2}{ab}\left[\frac{t^3}{3}\right]_0^1 =
+		\frac{b}{3} </mrow>
+	      </md>.
+	      </p>
+	    </li>
+	  </ol>
+	</p>
+      </solution>
+    </exercise>
+    <exercise xml:id="ez_Vector_GreensTheorem_ParamRect">
+      <statement>
+	<p>This will be an exercise about using change of coordinates
+	to see how Green's Theorem applies to regions parameterized by
+	rectangles.
+	</p>
+      </statement>
     </exercise>
   </exercises>
 </section>
