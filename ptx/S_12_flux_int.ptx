@@ -16,7 +16,7 @@
 </objectives>
 <introduction>
   <p>
-   Section 11.6 showed how we can use vector valued functions of two variables to give a parameterization of a surface in space. For instance, the function <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> with domain <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere centered at the origin of radius 2. Section 11.6 also gives examples of how to write parameterizations based on other geometric relationships like when one coordinate can be written as a function of the other two. 
+   Section 11.6 showed how we can use vector valued functions of two variables to give a parameterization of a surface in space. For instance, the function <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> with domain <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere centered at the origin of radius 2. Section 11.6 also gives examples of how to write parameterizations based on other geometric relationships like when one coordinate can be written as a function of the other two.
   </p>
   <p>
     In section 11.6.2, we set up a Riemann sum based on a parameterization that would measure the surface area of our curved surfaces in space.
@@ -192,19 +192,73 @@
     So in order to measure the amount of the vector field that moves through the plotted section of our surface, we need to find the accumulation of the lengths of the green vectors in <xref ref="vf_surface3">Figure</xref>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors. 
   </p>
   <p>
-    If we have a parameterization of our surface, then the vector <m>\vr_s \times \vr_t</m> will vary smoothly across our surface and give a consistant way to describe to describe which direction we choose as <q>through</q> the surface. If we define a positive flow through our surface as being consistent with the yellow vector in <xref ref="vf_surface3">Figure</xref>
+    If we have a parameterization of our surface, then the vector <m>\vr_s \times \vr_t</m> will vary smoothly across our surface and give a consistant way to describe which direction we choose as <q>through</q> the surface. If we define a positive flow through our surface as being consistent with the yellow vector in <xref ref="vf_surface3">Figure</xref>, then there will be more positive flow (in terms of both magnitude and area) than negative flow through the surface. Thus the net flow of the vector field through this surface will be positive.
   </p>
   <activity>
     <title>Visualizing Flux through a field</title>
       <task>
         <statement>
           <p>
-            show interact with vector field and a surface (surface should have outward pointing normal). allow a selector to change the vector field and change the surface. ask the student to assess whether the flux through different combinations will be positive, negative, or zero.
-
-            this should have clear pictures but variety of answers.
+            In this Activity, we will compare the net flow of different vector fields through our sample surface. In <xref ref="vf_surface4">Figure</xref> you can select between five different vector fields. Once you select a vector field, the vector field for a set of points on the surface will be plotted in blue. Each blue vector will also be split into its normal component (in green) and its tangential component (in purple). The yellow vector should be used to define the direction for positive flow through the surface.
           </p>
-        </statement>
-      </task>
+          <p>
+            You should look at each vector field and order the vector fields from largest flow through the surface to smallest flow through the surface. Remember that a negative net flow through the surface should be lower in your rankings than any positive net flow.
+          </p>
+        <figure xml:id="vf_surface4">
+          <caption>A 3D vector field evaluated along curved surface</caption>
+          <interactive platform="sage" width="100%" aspect="1:1.1">
+            <slate surface="sage">
+              var('t,s,u,v,z,y,z')
+              f=-x^2/5-3*y^3/8
+              @interact
+              def _(sb=selector(['Vector Field 1','Vector Field 2','Vector Field 3','Vector Field 4','Vector Field 5'],label="Vector Field:")):
+                plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+                for i in range(0,5):
+                  plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+                  plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+                if sb=='Vector Field 1':
+                    Fx=x
+                    Fy=y
+                    Fz=z-x
+                if sb=='Vector Field 2':
+                    Fx=(y-z)*x
+                    Fy=sin(x*z)
+                    Fz=-abs(y)+x*z+.2
+                if sb=='Vector Field 3':
+                    Fx=x
+                    Fy=y+x*z
+                    Fz=-y-(x*z)/2
+                if sb=='Vector Field 4':
+                    Fx=cos(z)
+                    Fy=sin(x*y)
+                    Fz=-cos(y+x)
+                if sb=='Vector Field 5':
+                    Fx=abs(x)-x*y
+                    Fy=x-y
+                    Fz=1.5-x*z
+                for i in range(0,5):
+                  for j in range (0,5):
+                    posx=-1+i/2
+                    posy=-1+j/2
+                    posz=f(x=posx,y=posy)
+                    F1=Fx(x=posx,y=posy,z=posz)
+                    F2=Fy(x=posx,y=posy,z=posz)
+                    F3=Fz(x=posx,y=posy,z=posz)
+                    plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="blue")
+                    N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
+                    Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+                    FNx=Nfrac*N[0]
+                    FNy=Nfrac*N[1]
+                    FNz=Nfrac*N[2]
+                    plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
+                    plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
+                    plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="yellow")
+                show(plot1)
+            </slate>
+          </interactive>
+        </figure>
+      </statement>
+    </task>
   </activity>
   <p>
     Let N be the unit vector normal to the surface. The projection of F onto N will be the amount of the vector field that flows through the surface. We need to look at the accumulation of F dot N, since N is unit vector.
