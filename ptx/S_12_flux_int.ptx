@@ -16,65 +16,145 @@
 </objectives>
 <introduction>
   <p>
-    Recall from 11.6, we can give parameterizations of surfaces. for instance <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> as <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere centered at the origin of radius 2.
-
-      In section 11.6.2, we talked about how to set up a Riemann sum for hte surface area of a curved surface in space based on a parameterization.
-
-      Need to construct a 3D version of Figure 11.6.6.
+   Section 11.6 showed how we can use vector valued functions of two variables to give a parameterization of a surface in space. For instance, the function <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> with domain <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere centered at the origin of radius 2. Section 11.6 also gives examples of how to write parameterizations based on other geometric relationships like when one coordinate can be written as a function of the other two. 
+  </p>
+  <p>
+    In section 11.6.2, we set up a Riemann sum based on a parameterization that would measure the surface area of our curved surfaces in space.
+    <figure xml:id="Para_pic">
+      <caption>A 3D plot of Figure 11.6.6</caption>
+      <interactive xml:id="sage_para_pic" platform="sage" width="100%" aspect="1:1.25">
+        <slate surface="sage">
+          var('t,s,u,v,z,y,z')
+          f=-x^2/2-3*y^3/3
+          @interact
+          def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
+            plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)+sphere((a,b,f(x=a,y=b)),size=.05,color="black")
+            for i in range(0,5):
+              plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="red")
+              plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="yellow")
+            f_val=f(x=a,y=b)
+            pos=(a,b,f_val)
+            fx=diff(f,x)(x=a,y=b)
+            fy=diff(f,y)(x=a,y=b)
+            vt=(1/2+a,b,1/2*fx+f_val)
+            vs=(a,b+1/2,1/2*fy+f_val)
+            cr=(a-fx/2,b-fy/2,1/2+f_val)
+            vectt=arrow3d(pos,vt,color="red")
+            vects=arrow3d(pos,vs,color="yellow")
+            plot1+=vectt+vects
+            plot1+=parametric_plot3d((a+t/2,b+s/2,f_val+t/2*fx+s/2*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
+            plot1+=arrow3d(pos,cr,color="green")
+            show(plot1)
+        </slate>
+      </interactive>
+    </figure>
+    In <xref ref="Para_pic">Figure</xref>, you can see a surface in blue plotted using a parameterization <m>\vr(s,t)=\langle{f(s,t),g(s,t),h(s,t)}\rangle</m>. The red lines represent curves where <m>s</m> varies and <m>t</m> is held constant, while the yellow lines represent curves where <m>t</m> varies and <m>s</m> is held constant. The vector in red is <m>\vr_s=\frac{\partial \vr}{\partial s}=\langle{f_s,g_s,h_s}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when just <m>s</m> is varied. Similarly, the vector in yellow is <m>\vr_t=\frac{\partial \vr}{\partial t}=\langle{f_t,g_t,h_t}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when just <m>t</m> is varied. You can see that the parallelogram that is formed by <m>\vr_s</m> and <m>\vr_t</m>, plotted in orange will be tangent to the blue surface offers an approximation for the surface area of a segment of our curved surface.
+  </p>
+  <p> From Section 9.4, we also know that the cross product of <m>\vr_s</m> and <m>\vr_t</m> (plotted in green) will be orthogonal to both <m>\vr_s</m> and <m>\vr_t</m> and its length will be given by the area of the orange parallelogram.
   </p>
   <exploration>
     <introduction>
       <p>
-        This activity will be about a deeper understanding of the parameterization of a surface.
+        In this activity we will explore the parameterizations of a few familiar surfaces and confirm some of the geometric properties described in the introduction above.
       </p>
     </introduction>
     <task>
       <statement>
         <p>
-          have students parameterize a sphere, a right circular cylinder, and a slanted plane
+          Use the tools from Section 11.6 to give a parameterization, <m>\vr(s,t)</m>, of each of the following figures. Be sure to specify the bounds on each of your parameters.
+          <ul>
+            <li>A sphere centered at the origin of radius 3.</li>
+            <li>A right circular cylinder centered on the <m>x</m>-axis of radius 2 when <m>0\leq x\leq 3</m>.</li>
+            <li>The first octant portion of the plane <m>x+2y+3z=6</m>.</li>
+          </ul>
         </p>
       </statement>
     </task>
     <task>
       <statement>
         <p>
-          have students give the points on each sphere that correspond to (0,0), (0,1), (1,0), and (2,3)
+          Draw a graph of each of your three surfaces and label the points that coorespond to <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
         </p>
       </statement>
     </task>
     <task>
       <statement>
         <p>
-          for each parameterization, have students calculate r_s, r_t, and r_s cross r_t.
+          For each parameterization, calculate <m>\vr_s</m>,<m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>.
         </p>
       </statement>
     </task>
     <task>
       <statement>
         <p>
-          calculate each of the vectors in previous part at our four points and have students interpret the direction of thier results.
+          For each parameterization, find the value for <m>\vr_s</m>,<m>\vr_t</m>, and <m>\vr_s \times \vr_t</m> at the <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
         </p>
       </statement>
     </task>
     <task>
       <statement>
         <p>
-          In summary, which of the vectors is tangent to the surface and which is orthogonal to the surface?
+          Draw your vector results on your graphs from part c and confirm the geometric properties described in the introduction to this section. Namely, <m>\vr_s</m> and <m>\vr_t</m> should be tangent to your surface, while <m>\vr_s \times \vr_t</m> should be orthogonal to your surface (as well as <m>\vr_s</m> and <m>\vr_t</m>).
         </p>
       </statement>
     </task>
   </exploration>
   <p>
-    The formula for surface area in section 11.6 utilized the magnitude of r_x cross r_t to give the surface area element that we summed.
-
-    The direction of r_s cross r_t be orthogonal to the surface traced by the parameterization. this will be a very useful tool in looking at it means to go through a surface. 
-
-    In this way the vector properties (direction and magnitude) of r_s cross r_t will be vital as we explore how much of a vector field moves through a surface. 
+    As we saw in Section 11.6, we can set up a Riemann sum of the areas for the parallelograms in <xref ref="Para_pic">Figure</xref> to approximate the surface area of the region plotted by our parameterization. Equation 11.6.2 shows that we can compute the exact surface by taking a limit of our Riemann sum which will correspond to integrating the magnitude of <m>\vr_s \times \vr_t</m> over the appropriate parameter bounds. What if we wanted to measure a quantity other than the surface area? In the next section, we will explore a specific case of this question: How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface? The geometric tools we have reviewed in this section will be very valuable, especially the vector <m>\vr_s \times \vr_t</m>.
   </p>
 </introduction>
 <subsection>
-  <title>The flux of a vector field through a surface</title>
+  <title>The Flux of a Vector Field through a Surface</title>
   <p>
+    The pricincple picture we want to understand is given in the following figure.
+    <figure xml:id="vf_surface1">
+      <caption>A 3D vector field and a curved surface</caption>
+      <interactive platform="sage" width="100%" aspect="1:1.1">
+        <slate surface="sage">
+          var('t,s,u,v,z,y,z')
+          f=-x^2/5-3*y^3/8
+          Fx=x^2
+          Fy=y
+          Fz=(x+y+z)/3+1
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+          for i in range(0,5):
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+          plot1+=plot_vector_field3d((Fx,Fy,Fz),(x,-1,1),(y,-1,1),(z,-1,1))
+          show(plot1)
+        </slate>
+      </interactive>
+    </figure>
+    We don't care about the vector field away from our surface, so we really would like to just examine what the output vectors for the <m>(x,y,z)</m> points on our surface. So instead, we will look at the following figure.
+    <figure xml:id="vf_surface2">
+      <caption>A 3D vector field evaluated along curved surface</caption>
+      <interactive platform="sage" width="100%" aspect="1:1.1">
+        <slate surface="sage">
+          var('t,s,u,v,z,y,z')
+          a=1
+          b=1/2
+          f=-x^2/5-3*y^3/8
+          Fx=x^2
+          Fy=y
+          Fz=(x+y+z)/3+1
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+          for i in range(0,5):
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+          f_val=f(x=a,y=b)
+          pos=(a,b,f_val)
+          fx=diff(f,x)(x=a,y=b)
+          fy=diff(f,y)(x=a,y=b)
+          vt=(1/2+a,b,1/2*fx+f_val)
+          vs=(a,b+1/2,1/2*fy+f_val)
+          cr=(a-fx/2,b-fy/2,1/2+f_val)
+          for i in range(0,5):
+            for j in range (0,5):
+              plot1+=arrow3d((-1+i/2,-1+j/2,f(x=-1+i/2,y=-1+j/2)),(-1+i/2+Fx(x=-1+i/2,y=-1+j/2), -1+j/2+Fy(x=-1+i/2,y=-1+j/2),f(x=-1+i/2,y=-1+j/2)+Fz(x=-1+i/2,y=-1+j/2,z=f(x=-1+i/2,y=-1+j/2))),color="blue")
+          show(plot1)
+        </slate>
+      </interactive>
+    </figure>
     Show a vector field on a grid over a surface.
 
     If we are trying to measure the amount of the vector field that goes through our surface, we only need to consdier the vector field that goes perpendicular to the surface. Any part of the vector field that goes along the surface will not contribute to flow of the vector field through the surface. We want to pull out the component of the vector field that is tangent to the surface.
