@@ -155,13 +155,43 @@
         </slate>
       </interactive>
     </figure>
-    Show a vector field on a grid over a surface.
+    The central question we would like to consider is <q>How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface?</q>, so we only need to consider the amount of the vector field that flows through the surface. Any portion of our vector field that flows along (or tangent) to the surface will not contribute to the amount that goes through the surface. In the next figure, we have split the vector field along our curves surface into two components, the component that is orthogonal to the surface (plotted in green) and the component that is tangent to the surface (plotted in purple).
+    <figure xml:id="vf_surface3">
+      <caption>A 3D vector field evaluated along curved surface</caption>
+      <interactive platform="sage" width="100%" aspect="1:1.1">
+        <slate surface="sage">
+          var('t,s,u,v,z,y,z')
+          f=-x^2/5-3*y^3/8
+          Fx=x^2
+          Fy=y
+          Fz=(x+y+z)/3+1
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+          for i in range(0,5):
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+          for i in range(0,5):
+            for j in range (0,5):
+              posx=-1+i/2
+              posy=-1+j/2
+              posz=f(x=posx,y=posy)
+              F1=Fx(x=posx,y=posy)
+              F2=Fy(x=posx,y=posy)
+              F3=Fz(x=posx,y=posy,z=posz)
+              plot1+=arrow3d((posx,posy,posz),(posx+Fx(x=posx,y=posy),posy+Fy(x=posx,y=posy), posz+Fz(x=posx,y=posy,z=posz)),color="blue")
+              N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
+              Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+              FNx=Nfrac*N[0]
+              FNy=Nfrac*N[1]
+              FNz=Nfrac*N[2]
+              plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
+              plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
+          show(plot1)
+        </slate>
+      </interactive>
+    </figure>
+    So in order to measure the amount of the vector field that moves through the plotted section of our surface, we need to find the accumulation of the lengths of the green vectors in <xref ref="vf_surface3">Figure</xref>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors. 
 
-    If we are trying to measure the amount of the vector field that goes through our surface, we only need to consdier the vector field that goes perpendicular to the surface. Any part of the vector field that goes along the surface will not contribute to flow of the vector field through the surface. We want to pull out the component of the vector field that is tangent to the surface.
-
-    Show the same vector field with the normal and tangential components.
-
-    We want to accumulate the yellow component of the vector field in above picture. 
+    
 
     make a pictoral argument about outward pointing normal being what positive flow means.
   </p>
