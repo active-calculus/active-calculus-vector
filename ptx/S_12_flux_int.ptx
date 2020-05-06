@@ -16,41 +16,41 @@
 </objectives>
 <introduction>
   <p>
-   Section 11.6 showed how we can use vector valued functions of two variables to give a parameterization of a surface in space. For instance, the function <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> with domain <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere centered at the origin of radius 2. Section 11.6 also gives examples of how to write parameterizations based on other geometric relationships like when one coordinate can be written as a function of the other two.
+   Section 11.6 showed how we can use vector valued functions of two variables to give a parameterization of a surface in space. For instance, the function <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> with domain <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere centered at the origin of radius 2. Section 11.6 also gives examples of how to write parameterizations based on other geometric relationships like when one coordinate can be written as a function of the other two. In section 11.6.2, we set up a Riemann sum based on a parameterization that would measure the surface area of our curved surfaces in space.
   </p>
+  <figure xml:id="Para_pic">
+    <caption>A 3D plot of Figure 11.6.6</caption>
+    <interactive xml:id="sage_para_pic" platform="sage" width="100%" aspect="1:1.1">
+      <slate surface="sage">
+        var('t,s,u,v,z,y,z')
+        f=-x^2/2-3*y^3/3
+        @interact
+        def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)+sphere((a,b,f(x=a,y=b)),size=.05,color="black")
+          for i in range(0,5):
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="red")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="yellow")
+          f_val=f(x=a,y=b)
+          pos=(a,b,f_val)
+          fx=diff(f,x)(x=a,y=b)
+          fy=diff(f,y)(x=a,y=b)
+          vt=(1/2+a,b,1/2*fx+f_val)
+          vs=(a,b+1/2,1/2*fy+f_val)
+          cr=(a-fx/2,b-fy/2,1/2+f_val)
+          vectt=arrow3d(pos,vt,color="red")
+          vects=arrow3d(pos,vs,color="yellow")
+          plot1+=vectt+vects
+          plot1+=parametric_plot3d((a+t/2,b+s/2,f_val+t/2*fx+s/2*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
+          plot1+=arrow3d(pos,cr,color="green")
+          show(plot1)
+      </slate>
+    </interactive>
+  </figure>
   <p>
-    In section 11.6.2, we set up a Riemann sum based on a parameterization that would measure the surface area of our curved surfaces in space.
-    <figure xml:id="Para_pic">
-      <caption>A 3D plot of Figure 11.6.6</caption>
-      <interactive xml:id="sage_para_pic" platform="sage" width="100%" aspect="1:1.25">
-        <slate surface="sage">
-          var('t,s,u,v,z,y,z')
-          f=-x^2/2-3*y^3/3
-          @interact
-          def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
-            plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)+sphere((a,b,f(x=a,y=b)),size=.05,color="black")
-            for i in range(0,5):
-              plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="red")
-              plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="yellow")
-            f_val=f(x=a,y=b)
-            pos=(a,b,f_val)
-            fx=diff(f,x)(x=a,y=b)
-            fy=diff(f,y)(x=a,y=b)
-            vt=(1/2+a,b,1/2*fx+f_val)
-            vs=(a,b+1/2,1/2*fy+f_val)
-            cr=(a-fx/2,b-fy/2,1/2+f_val)
-            vectt=arrow3d(pos,vt,color="red")
-            vects=arrow3d(pos,vs,color="yellow")
-            plot1+=vectt+vects
-            plot1+=parametric_plot3d((a+t/2,b+s/2,f_val+t/2*fx+s/2*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-            plot1+=arrow3d(pos,cr,color="green")
-            show(plot1)
-        </slate>
-      </interactive>
-    </figure>
     In <xref ref="Para_pic">Figure</xref>, you can see a surface in blue plotted using a parameterization <m>\vr(s,t)=\langle{f(s,t),g(s,t),h(s,t)}\rangle</m>. The red lines represent curves where <m>s</m> varies and <m>t</m> is held constant, while the yellow lines represent curves where <m>t</m> varies and <m>s</m> is held constant. The vector in red is <m>\vr_s=\frac{\partial \vr}{\partial s}=\langle{f_s,g_s,h_s}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when just <m>s</m> is varied. Similarly, the vector in yellow is <m>\vr_t=\frac{\partial \vr}{\partial t}=\langle{f_t,g_t,h_t}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when just <m>t</m> is varied. You can see that the parallelogram that is formed by <m>\vr_s</m> and <m>\vr_t</m>, plotted in orange will be tangent to the blue surface offers an approximation for the surface area of a segment of our curved surface.
   </p>
-  <p> From Section 9.4, we also know that the cross product of <m>\vr_s</m> and <m>\vr_t</m> (plotted in green) will be orthogonal to both <m>\vr_s</m> and <m>\vr_t</m> and its length will be given by the area of the orange parallelogram.
+  <p>
+    From Section 9.4, we also know that the cross product of <m>\vr_s</m> and <m>\vr_t</m> (plotted in green) will be orthogonal to both <m>\vr_s</m> and <m>\vr_t</m> and its length will be given by the area of the orange parallelogram.
   </p>
   <exploration>
     <introduction>
@@ -61,12 +61,12 @@
     <task>
       <statement>
         <p>
-          Use the tools from Section 11.6 to give a parameterization, <m>\vr(s,t)</m>, of each of the following figures. Be sure to specify the bounds on each of your parameters.
-          <ul>
+          Use the ideas from Section 11.6 to give a parameterization, <m>\vr(s,t)</m>, of each of the following figures. Be sure to specify the bounds on each of your parameters.
+          <ol>
             <li>A sphere centered at the origin of radius 3.</li>
             <li>A right circular cylinder centered on the <m>x</m>-axis of radius 2 when <m>0\leq x\leq 3</m>.</li>
             <li>The first octant portion of the plane <m>x+2y+3z=6</m>.</li>
-          </ul>
+          </ol>
         </p>
       </statement>
     </task>
@@ -107,89 +107,95 @@
   <title>The Flux of a Vector Field through a Surface</title>
   <p>
     The pricincple picture we want to understand is given in the following figure.
-    <figure xml:id="vf_surface1">
-      <caption>A 3D vector field and a curved surface</caption>
-      <interactive platform="sage" width="100%" aspect="1:1.1">
-        <slate surface="sage">
-          var('t,s,u,v,z,y,z')
-          f=-x^2/5-3*y^3/8
-          Fx=x^2
-          Fy=y
-          Fz=(x+y+z)/3+1
-          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
-          for i in range(0,5):
-            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
-            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-          plot1+=plot_vector_field3d((Fx,Fy,Fz),(x,-1,1),(y,-1,1),(z,-1,1))
-          show(plot1)
-        </slate>
-      </interactive>
-    </figure>
+  </p>
+  <figure xml:id="vf_surface1">
+    <caption>A 3D vector field and a curved surface</caption>
+    <interactive platform="sage" width="100%" aspect="1:1">
+      <slate surface="sage">
+        var('t,s,u,v,z,y,z')
+        f=-x^2/5-3*y^3/8
+        Fx=x^2
+        Fy=y
+        Fz=(x+y+z)/3+1
+        plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+        for i in range(0,5):
+          plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+          plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+        plot1+=plot_vector_field3d((Fx,Fy,Fz),(x,-1,1),(y,-1,1),(z,-1,1))
+        show(plot1)
+      </slate>
+    </interactive>
+  </figure>
+  <p>
     We don't care about the vector field away from our surface, so we really would like to just examine what the output vectors for the <m>(x,y,z)</m> points on our surface. So instead, we will look at the following figure.
-    <figure xml:id="vf_surface2">
-      <caption>A 3D vector field evaluated along curved surface</caption>
-      <interactive platform="sage" width="100%" aspect="1:1.1">
-        <slate surface="sage">
-          var('t,s,u,v,z,y,z')
-          a=1
-          b=1/2
-          f=-x^2/5-3*y^3/8
-          Fx=x^2
-          Fy=y
-          Fz=(x+y+z)/3+1
-          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
-          for i in range(0,5):
-            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
-            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-          f_val=f(x=a,y=b)
-          pos=(a,b,f_val)
-          fx=diff(f,x)(x=a,y=b)
-          fy=diff(f,y)(x=a,y=b)
-          vt=(1/2+a,b,1/2*fx+f_val)
-          vs=(a,b+1/2,1/2*fy+f_val)
-          cr=(a-fx/2,b-fy/2,1/2+f_val)
-          for i in range(0,5):
-            for j in range (0,5):
-              plot1+=arrow3d((-1+i/2,-1+j/2,f(x=-1+i/2,y=-1+j/2)),(-1+i/2+Fx(x=-1+i/2,y=-1+j/2), -1+j/2+Fy(x=-1+i/2,y=-1+j/2),f(x=-1+i/2,y=-1+j/2)+Fz(x=-1+i/2,y=-1+j/2,z=f(x=-1+i/2,y=-1+j/2))),color="blue")
-          show(plot1)
-        </slate>
-      </interactive>
-    </figure>
+  </p>
+  <figure xml:id="vf_surface2">
+    <caption>A 3D vector field evaluated along curved surface</caption>
+    <interactive platform="sage" width="100%" aspect="1:1">
+      <slate surface="sage">
+        var('t,s,u,v,z,y,z')
+        a=1
+        b=1/2
+        f=-x^2/5-3*y^3/8
+        Fx=x^2
+        Fy=y
+        Fz=(x+y+z)/3+1
+        plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+        for i in range(0,5):
+          plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+          plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+        f_val=f(x=a,y=b)
+        pos=(a,b,f_val)
+        fx=diff(f,x)(x=a,y=b)
+        fy=diff(f,y)(x=a,y=b)
+        vt=(1/2+a,b,1/2*fx+f_val)
+        vs=(a,b+1/2,1/2*fy+f_val)
+        cr=(a-fx/2,b-fy/2,1/2+f_val)
+        for i in range(0,5):
+          for j in range (0,5):
+            plot1+=arrow3d((-1+i/2,-1+j/2,f(x=-1+i/2,y=-1+j/2)),(-1+i/2+Fx(x=-1+i/2,y=-1+j/2), -1+j/2+Fy(x=-1+i/2,y=-1+j/2),f(x=-1+i/2,y=-1+j/2)+Fz(x=-1+i/2,y=-1+j/2,z=f(x=-1+i/2,y=-1+j/2))),color="blue")
+        show(plot1)
+      </slate>
+    </interactive>
+  </figure>
+  <p>
     The central question we would like to consider is <q>How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface?</q>, so we only need to consider the amount of the vector field that flows through the surface. Any portion of our vector field that flows along (or tangent) to the surface will not contribute to the amount that goes through the surface. In the next figure, we have split the vector field along our curves surface into two components, the component that is orthogonal to the surface (plotted in green) and the component that is tangent to the surface (plotted in purple).
-    <figure xml:id="vf_surface3">
-      <caption>A 3D vector field evaluated along curved surface</caption>
-      <interactive platform="sage" width="100%" aspect="1:1.1">
-        <slate surface="sage">
-          var('t,s,u,v,z,y,z')
-          f=-x^2/5-3*y^3/8
-          Fx=x^2
-          Fy=y
-          Fz=(x+y+z)/3+1
-          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
-          for i in range(0,5):
-            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
-            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-          for i in range(0,5):
-            for j in range (0,5):
-              posx=-1+i/2
-              posy=-1+j/2
-              posz=f(x=posx,y=posy)
-              F1=Fx(x=posx,y=posy)
-              F2=Fy(x=posx,y=posy)
-              F3=Fz(x=posx,y=posy,z=posz)
-              plot1+=arrow3d((posx,posy,posz),(posx+Fx(x=posx,y=posy),posy+Fy(x=posx,y=posy), posz+Fz(x=posx,y=posy,z=posz)),color="blue")
-              N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
-              Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
-              FNx=Nfrac*N[0]
-              FNy=Nfrac*N[1]
-              FNz=Nfrac*N[2]
-              plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
-              plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
-          show(plot1)
-        </slate>
-      </interactive>
-    </figure>
-    So in order to measure the amount of the vector field that moves through the plotted section of our surface, we need to find the accumulation of the lengths of the green vectors in <xref ref="vf_surface3">Figure</xref>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors. 
+  </p>
+  <figure xml:id="vf_surface3">
+    <caption>A 3D vector field evaluated along curved surface</caption>
+    <interactive platform="sage" width="100%" aspect="1:1.1">
+      <slate surface="sage">
+        var('t,s,u,v,z,y,z')
+        f=-x^2/5-3*y^3/8
+        Fx=x^2
+        Fy=y
+        Fz=(x+y+z)/3+1
+        plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+        for i in range(0,5):
+          plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+          plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+        for i in range(0,5):
+          for j in range (0,5):
+            posx=-1+i/2
+            posy=-1+j/2
+            posz=f(x=posx,y=posy)
+            F1=Fx(x=posx,y=posy)
+            F2=Fy(x=posx,y=posy)
+            F3=Fz(x=posx,y=posy,z=posz)
+            plot1+=arrow3d((posx,posy,posz),(posx+Fx(x=posx,y=posy),posy+Fy(x=posx,y=posy), posz+Fz(x=posx,y=posy,z=posz)),color="blue")
+            N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
+            Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+            FNx=Nfrac*N[0]
+            FNy=Nfrac*N[1]
+            FNz=Nfrac*N[2]
+            plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
+            plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
+        show(plot1)
+      </slate>
+    </interactive>
+  </figure>
+  <p>
+    So in order to measure the amount of the vector field that moves through the plotted section of our surface, we need to find the accumulation of the lengths of the green vectors in <xref ref="vf_surface3">Figure</xref>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors.
   </p>
   <p>
     If we have a parameterization of our surface, then the vector <m>\vr_s \times \vr_t</m> will vary smoothly across our surface and give a consistant way to describe which direction we choose as <q>through</q> the surface. If we define a positive flow through our surface as being consistent with the yellow vector in <xref ref="vf_surface3">Figure</xref>, then there will be more positive flow (in terms of both magnitude and area) than negative flow through the surface. Thus the net flow of the vector field through this surface will be positive.
@@ -269,6 +275,35 @@
 
     take limit as partition elements go to zero in all dimensions to get flux integral. 
   </p>
+  <figure xml:id="vf_surface5">
+          <caption>A 3D vector field evaluated along curved surface</caption>
+          <interactive platform="sage" width="100%" aspect="1:1.1">
+            <slate surface="sage">
+              var('t,s,u,v,z,y,z')
+              f=-x^2/2-3*y^3/3
+              @interact
+              def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
+                  plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.2)
+                  stepsize=2/(n)
+                  for i in range(0,n):
+                      a=-1+i*stepsize
+                      plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
+                      plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
+                      for j in range(0,n):
+                          b=-1+j*stepsize
+                          f_val=f(x=a,y=b)
+                          pos=(a,b,f_val)
+                          fx=diff(f,x)(x=a,y=b)
+                          fy=diff(f,y)(x=a,y=b)
+                          vt=(stepsize+a,b,stepsize*fx+f_val)
+                          vs=(a,b+stepsize,stepsize*fy+f_val)
+                          cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
+                          plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.4)
+                          plot1+=arrow3d(pos,cr,color="green")
+                  show(plot1)
+            </slate>
+          </interactive>
+        </figure>
   <theorem>
     <statement>
       <p>
