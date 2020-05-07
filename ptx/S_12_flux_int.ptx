@@ -266,72 +266,188 @@
       </statement>
     </task>
   </activity>
+</subsection>
+<subsection>
+  <title>Measuring the Flux of a Vector Field through a Surface</title>
   <p>
-    Let N be the unit vector normal to the surface. The projection of F onto N will be the amount of the vector field that flows through the surface. We need to look at the accumulation of F dot N, since N is unit vector.
-
-    From our ideas above, N can be given by r_s cross r_t divided by magnitude. so we have a way to find F dot N on each block of the sum for the surface area. 
-
-    Our Riemann sum becomes Sum F dot N S_ij where Sij is the area of the ij partition element.
-
-    take limit as partition elements go to zero in all dimensions to get flux integral. 
+    Now that we have a better conceptutal understanding of what we are measuring, let's set up the corresponding Riemann sum to measure the flux of a vector field through a section of a curved surface. Let the section of our curved surface, <m>Q</m>, be parameterized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. Remember that the domain of <m>\vr</m> will be a region of the <m>st</m>-plane, which we will call <m>D</m>, and the range of <m>\vr</m> will be <m>Q</m>.
+  </p>
+  <p>
+    In our classic calculus style, we will slice up our region of interest into smaller pieces. Specifically, we will slice <m>a\leq s\leq b</m> into <m>n</m> equally sized subintervals with endpoints, <m>s_1,... s_i,...,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally sized subintervals with endpoints, <m>t_1,... t_i,...,t_n</m>. This will divide <m>D</m> into <m>nm</m> rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>, which we will index as <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in <m>st</m>-space) of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D_{i,j}</m> will also partition <m>Q</m> into <m>nm</m> corresponding pieces which we will call <m>Q_{i,j}=\vr(D_{i,j})</m>. From Section 11.6 (Equation 11.6.1 specifically) the surface area of <m>Q_{i,j}</m> is approximated by <m>S_{i,j}=|\vr_s \times \vr_t|\Delta{s}\Delta{t}</m>.
   </p>
   <figure xml:id="vf_surface5">
-          <caption>A 3D vector field evaluated along curved surface</caption>
-          <interactive platform="sage" width="100%" aspect="1:1.1">
-            <slate surface="sage">
-              var('t,s,u,v,z,y,z')
-              f=-x^2/2-3*y^3/3
-              @interact
-              def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
-                  plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.2)
-                  stepsize=2/(n)
-                  for i in range(0,n):
-                      a=-1+i*stepsize
-                      plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
-                      plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
-                      for j in range(0,n):
-                          b=-1+j*stepsize
-                          f_val=f(x=a,y=b)
-                          pos=(a,b,f_val)
-                          fx=diff(f,x)(x=a,y=b)
-                          fy=diff(f,y)(x=a,y=b)
-                          vt=(stepsize+a,b,stepsize*fx+f_val)
-                          vs=(a,b+stepsize,stepsize*fy+f_val)
-                          cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
-                          plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.4)
-                          plot1+=arrow3d(pos,cr,color="green")
-                  show(plot1)
-            </slate>
-          </interactive>
-        </figure>
+    <caption>A 3D vector field evaluated along curved surface</caption>
+    <interactive platform="sage" width="100%" aspect="1:1.1">
+      <slate surface="sage">
+        var('t,s,u,v,z,y,z')
+        f=-x^2/2-3*y^3/3
+        @interact
+        def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
+          stepsize=2/(n)
+          for i in range(0,n):
+            a=-1+i*stepsize
+            plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
+            plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
+            for j in range(0,n):
+              b=-1+j*stepsize
+              f_val=f(x=a,y=b)
+              pos=(a,b,f_val)
+              fx=diff(f,x)(x=a,y=b)
+              fy=diff(f,y)(x=a,y=b)
+              vt=(stepsize+a,b,stepsize*fx+f_val)
+              vs=(a,b+stepsize,stepsize*fy+f_val)
+              cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
+              plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
+              plot1+=arrow3d(pos,cr,color="green")
+          show(plot1)
+      </slate>
+    </interactive>
+  </figure>
+  <p>
+    We want to measure the total flow of the vector field, <m>\vF</m>, through <m>Q</m>, which we will approximate on each <m>Q_{i,j}</m> and then sum to get the total flow. In other words, the flux of <m>\vF</m> through <m>Q</m> will be given by
+    <me>
+      \verb"Flux"=\sum_{i=1}^n\sum_{j=1}^m|\vF_{\perp Q_{i,j}}|(S_{i,j})
+    </me>
+    where <m>|\vF_{\perp Q_{i,j}}|</m> is the length of the component of <m>\vF</m> orthogonal to <m>Q_{i,j}</m>.
+  </p>
+  <p>
+    For each <m>Q_{i,j}</m>, we will approximate the curved surface by the tangent plane to <m>Q</m> on that partition element. This cooresponds to using the orange planar elements on <xref ref="vf_surface5">Figure</xref>, which have surface area of <m>S_{i,j}</m>. The vector <m>\vw_{i,j}=\vr_s \times \vr_t</m> can be used to measure the orthogonal direction (and thus define which direction we mean by positive flow through the surface <m>Q</m>) on the <m>i,j</m> partition element. This means that
+    <me>
+      \vF_{\perp Q_{i,j}}=|\verb'Projection of '\vF' onto '\vw| \\
+      \quad \quad = \frac{\vF^*\cdot \vw_{i,j}}{|\vw_{i,j}|}
+    </me>
+  </p>
+  <p>
+    Combining these pieces together, we get the flux through <m>Q_{i,j}</m> to be approximated by
+    <me>
+      \verb'Flux through ' Q_{i,j} = |\vF_{\perp Q_{i,j}}|(S_{i,j}) \\
+      \quad \quad = \left(\frac{\vF^*_{i,j}\cdot \vw_{i,j}}{|\vw_{i,j}|} \right) \left(|\vw_{i,j}|\Delta{s}\Delta{t}\right) \\
+      \quad \quad = \left(\vF^*_{i,j} \cdot (\vr_s \times \vr_t)\right) \left(\Delta{s}\Delta{t}\right)
+    </me>
+    Thus our total flux approximation is given by
+    <me>
+      \verb'Total Flux'=\sum_{i=1}^n\sum_{j=1}^m \left(\vF^*_{i,j}\cdot \vw_{i,j}\right) \left(\Delta{s}\Delta{t}\right)
+    </me>
+    Taking the limit as <m>n,m\rightarrow\infty</m> gives the following result
+  </p>
   <theorem>
     <statement>
       <p>
-        flux integral can be computed as double integral of F dot (r_s \cross r_t) ds dt. 
+        Let a smooth surface, <m>Q</m>, be parameterized by <m>\vr(s,t)</m> over a domain <m>D</m>. The total flux of a smooth vector field <m>\vF</m> through <m>Q</m> is given by
+        <me>
+          \iint_D \vF \cdot (\vr_s \times \vr_t) dA
+        </me>
       </p>
     </statement>
   </theorem>
   <p>
-    Might want to mention that surface area is \iint 1 dS. 
-
-    Talk about how the cancelation of magnitudes happens in this formula. 
+    In <xref ref="vf_surface5">Figure</xref>, you can change the number of sections in your partition and see the geometric result of refining the partition.
   </p>
   <activity>
-    <title>Checking visualization of vector field flux</title>
-    <task >
+    <title>Checking the Visualization for Flux</title>
+    <task>
       <statement>
       <p>
-            visualize a paraboloid and vector field.
-
-            Do you expect the flux to be positive, negative, zero.
-
-            parameterize surface
-
-            compute r_s \cross r_t
-
-            set up flux integral
-
-            have sage compute integral
+           In <xref ref="vf_surface6">Figure</xref>, you can see a plot of the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a right circular cylinder of radius 2 and height 3. If we consider the vector field going into the cylinder (toward the z-axis) as coresponding to a positive flux, do you think the flux of <m>\vF</m> throught the cylinder will be positive, negative, or zero?
+      </p>
+      <figure xml:id="vf_surface6">
+        <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a right circular cylinder</caption>
+        <interactive platform="sage" width="100%" aspect="1:1.1">
+          <slate surface="sage">
+            var('s,t,x,y,z')
+            plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="gray",frame=False,aspect_ratio=1)
+            plot1+=plot_vector_field3d((y,z,2+sin(z)),(x,-3,3),(y,-3,3),(z,-1,4),plot_points=7)
+            show(plot1)
+          </slate>
+        </interactive>
+      </figure>
+      </statement>
+    </task>
+    <task>
+      <statement>
+      <p>
+        Parameterize the right circular cylinder of radius 2, centered on the z-axis as <m>0\leq z \leq 3</m>. Be sure to give bounds on your parameters.
+      </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+      <p>
+        Based on your parameterization, compute <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>. You should make sense of these vectors and confirm that these vectors are either orthogonal or tangent to the right circular cylinder. Is your orthogonal vector pointing in the direction of positive flux or negative flux?
+      </p>
+      </statement>
+    </task>
+<task>
+      <statement>
+      <p>
+        Use your parameterization to write <m>\vF</m> as a function of <m>s</m> and <m>t</m>. Hint: the x coordinate is given by the first component of <m>\vr</m>.
+      </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+      <p>
+        Compute the flux of <m>\vF</m> through the parameterized portion of the right circular cylinder. 
+      </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+      <p>
+        Does your computed value for the flux match your prediction from the first part of the activity?
+      </p>
+      <p>
+        Use <xref ref="vf_surface7">Figure</xref> to make an argument about why the flux of <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> through the right circular cylinder is zero.
+      </p>
+      <figure xml:id="vf_surface7">
+        <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a right circular cylinder</caption>
+        <interactive platform="sage" width="100%" aspect="1:1.25">
+          <slate surface="sage">
+            var('t,s,u,v,z,y,z')
+            Fx=y
+            Fy=z
+            Fz=2+sin(x)
+            @interact
+            def _(n=slider(8,20,2,10,label="Angular Partitions="),m=slider(4,8,1,5,label="Height Partitions=")):
+                plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="gray",frame=False,aspect_ratio=1)
+                for i in range(0,m):
+                    plot1+=parametric_plot3d((2*cos(t),2*sin(t),i*3/m),(t,0,2*pi),color="black",frame=False,aspect_ratio=1)
+                for i in range(0,n):
+                    plot1+=parametric_plot3d((2*cos(2*pi*i/n),2*sin(2*pi*i/n),s),(s,0,3),color="black",frame=False,aspect_ratio=1)
+                for i in range(0,n):
+                    posx=2*cos(2*pi*i/n)
+                    posy=2*sin(2*pi*i/n)
+                    for j in range (0,m):
+                        posz=j*3/m
+                        F1=Fx(x=posx,y=posy,z=posz)
+                        F2=Fy(x=posx,y=posy,z=posz)
+                        F3=Fz(x=posx,y=posy,z=posz)
+                        plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="blue")
+                        N=(-posx,-posy,0)
+                        Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+                        FNx=Nfrac*N[0]
+                        FNy=Nfrac*N[1]
+                        FNz=Nfrac*N[2]
+                        plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
+                        plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
+                show(plot1)
+          </slate>
+        </interactive>
+      </figure>
+      </statement>
+    </task>
+    <task>
+      <statement>
+      <p>
+        How would the results of the flux calculations be different if we used the vector field <m>\vF=\langle{y,z,\cosh(xy)+\frac{9}{z^2+6.2}}\rangle</m> and the same right circular cylinder? Explain your reasoning.
+      </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+      <p>
+        How would the results of the flux calculations be different if we used the vector field <m>\vF=\langle{y,-x,3}\rangle</m> and the same right circular cylinder? Explain your reasoning.
       </p>
       </statement>
     </task>
