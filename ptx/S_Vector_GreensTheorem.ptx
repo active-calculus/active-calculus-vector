@@ -14,7 +14,8 @@
         <p>
 	  What is the meaning of the double integral of the
 	  circulation density of a smooth two-dimensional vector
-	  field on a region <m>R</m> bounded by a simple closed curve?
+	  field on a region <m>R</m> bounded by a closed curve that
+	  does not intersect itself?
         </p>
       </li>
 
@@ -24,7 +25,7 @@
     <p>
       We know from <xref ref="S_12_4_FTCLI" text="type-global" /> that
       a vector field is path-independent if and only if the
-      ciruclation around every closed curve in its domain is
+      circulation around every closed curve in its domain is
       <m>0</m>. It is probably not surprising that, given the
       multitude of names we have for path-independent vector fields,
       they are important vector fields that arise frequently. However,
@@ -160,24 +161,94 @@
   <subsection>
     <title>Circulation</title>
     <p>
-      This is where there will be a cartoon with a bunch of tiny
-      circulations and the idea of cancelling circulations when we
-      break up a region into boxes. I'm too lazy to draw the figures
-      right now.
+      In <xref ref="PA_Vector_GreensTheorem" />, you integrated the
+      circulation density of a smooth vector field over a disk and
+      found the result was equal to the circulation of
+      the vector field along the region's circular boundary. This
+      relationship is the theme of this section. To see why this would
+      make sense, consider the region <m>R</m> bounded by the curve
+      <m>C</m> shown in <xref
+      ref="fig_Vector_GreensTheorem_circ_cartoon" text="type-global"
+      />. We have placed a square grid inside <m>R</m> to suggest the
+      idea of breaking <m>R</m> up into many smaller regions, most of
+      which are square. This idea should make you think of the methods
+      we have already seen of breaking up a region into smaller and
+      smaller regions for Riemann sums.
+    </p>
+    <figure xml:id="fig_Vector_GreensTheorem_circ_cartoon">
+      <caption>A region bounded by a curve</caption>
+      <image source="images/fig_Vector_GreensTheorem_circ_cartoon" width="80%">
+	<description>A bean-shaped region in the plane that is bounded
+	by a closed curve. The curve is oriented so that when walking
+	along the curve, the region is always on the left. There is a
+	square grid dividing the up the interior of the region.</description>
+      </image>
+    </figure>
+    <p>
+      The critical idea here is that if we integrate the circulation
+      <em>density</em> over each of the small regions and add those
+      up, this is the same as integrating the circulation density over
+      the entirety of the region <m>R</m>, and integrating circulation
+      <em>per unit area</em> over a two-dimensional region should be
+      related to the total circulation on that region. Now look at
+      <xref ref="fig_Vector_GreensTheorem_circ_squares"
+      text="type-global" /> and think of these four square regions as
+      being four of the square regions inside <m>R</m> in <xref
+      ref="fig_Vector_GreensTheorem_circ_cartoon" text="type-global"
+      />
+    </p>
+    <figure xml:id="fig_Vector_GreensTheorem_circ_squares">
+      <caption>A square region divided into four smaller squares</caption>
+      <image source="images/fig_Vector_GreensTheorem_circ_squares" width="40%">
+	<description>A square region in the plane that is bounded
+	by a closed curve oriented counterclockwise. The square is
+	divided into four squares of equal size, which are labelled as
+	<m>R_1</m>, <m>R_2</m>, <m>R_3</m>, and <m>R_4</m>. There are
+	circular arrows inside each of the smaller regions indicating
+	counterclockwise orientations.</description>
+      </image>
+    </figure>
+    <p>
+      We orient the boundary <m>C_i</m> of square region <m>R_i</m> in
+      the manner suggested by the circular arrows. This means that the
+      vertical boundary in common between <m>R_1</m> and <m>R_2</m> is
+      oriented <em>up</em> when we calculate the line integral
+      <m>\oint_{C_1}\vF\cdot d\vr</m> and oriented <em>down</em> when
+      we evaluate <m>\oint_{C_2}\vF\cdot d\vr</m>. Thus, this line
+      segment does not contribute to the sum
+      <m>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr</m>. The
+      same idea applies to the other three interior line segments so
+      that
+      <me>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr +
+      \oint_{C_3}\vF\cdot d\vr + \oint_{C_4}\vF\cdot d\vr</me>
+      is equal to the line integral of <m>\vF</m> along the boundary
+      of the large square.
+    </p>
+    <p>
+      Returning to <xref ref="fig_Vector_GreensTheorem_circ_cartoon"
+      text="type-global" />, if we find the circulation along the
+      boundary of each of the smaller regions, the line integrals
+      along the boundaries that lie inside the region <m>R</m> will
+      all offset. Thus the value should equal <m>\oint_C\vF\cdot
+      d\vr</m>. If we take our grid fine enough, all of the smaller
+      regions into which <m>R</m> is divided will be very close to
+      rectangular. Our next activity looks at the relationship between
+      the circulation along a rectangular curve with sides parallel to
+      the coordinate axes and the double integral of the circulation
+      density over the rectangular region inside the curve.
     </p>
     <activity xml:id="act_Vector_GreensTheorem_rectangle">
       <introduction>
 	<p>
-	  For this activity, we will consider the rectangle <m>R</m>
-	  with sides parallel to the <m>x</m>- and <m>y</m>-axes,
-	  lower-left corner <m>(a,b)</m>, and upper-right corner
-	  <m>(c,d)</m>. The curve <m>C</m> will be the boundary of
-	  <m>R</m>, oriented counterclockwise. Let <m>\vF = \langle
+	  For this activity, we will consider the region <m>R</m>
+	  satisfying <m>a\leq x\leq c</m> and <m>b\leq y\leq
+	  d</m>. The rectangular curve <m>C</m> will be the boundary
+	  of <m>R</m>, oriented counterclockwise. Let <m>\vF = \langle
 	  F_1(x,y),F_2(x,y)\rangle</m> be a vector field that is
 	  smooth on <m>C</m> and <m>R</m>. We can write <m>C = C_1 +
 	  C_2 + C_3 + C_4</m>, where <m>C_1</m> is the top edge of the
-	  rectangle and the edges are numbered counterclockwise around the
-	  rectangle.
+	  rectangle and the edges are numbered counterclockwise around
+	  the rectangle.
 	</p>
       </introduction>
       <task>
@@ -381,7 +452,7 @@
     <p>
       The phenomenon we verified for rectangular regions in <xref
       ref="act_Vector_GreensTheorem_rectangle" text="type-global" />
-      is a very general result that will be the subject of our next
+      is a more general result that will be the subject of our next
       section. 
     </p>
   </subsection>
@@ -418,10 +489,13 @@
       text="title" /> holds when the region <m>R</m> is a rectangle
       with sides parallel to the coordinate axes. The discussion that
       introduced the previous subsection may have you convinced that
-      <xref ref="thm_Green" text="title" /> holds in its full form. In
+      <xref ref="thm_Green" text="title" /> holds in its full
+      form. Although our argument there was not a rigorous proof, we
+      will not say more about why this theorem is true in full
+      generality.  <!--TODO In
       <xref ref="ez_Vector_GreensTheorem_ParamRect" text="type-global"
       />, we will examine how a change of coordinates can give us a
-      proof for regions that can be parameterized by rectangles.
+      proof for regions that can be parameterized by rectangles.-->
     </p>
     
     <p>
@@ -1015,6 +1089,8 @@
 	</p>
       </solution>
     </exercise>
+    <!--TODO This may be messier than I wanted it to be, so I'm
+	leaving it out for the moment.
     <exercise xml:id="ez_Vector_GreensTheorem_ParamRect">
       <statement>
 	<p>This will be an exercise about using change of coordinates
@@ -1022,7 +1098,7 @@
 	rectangles.
 	</p>
       </statement>
-    </exercise>
+    </exercise>-->
   </exercises>
 </section>
 
