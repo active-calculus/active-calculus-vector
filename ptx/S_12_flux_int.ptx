@@ -332,7 +332,7 @@
     </me>
     Taking the limit as <m>n,m\rightarrow\infty</m> gives the following result
   </p>
-  <theorem>
+  <theorem xml:id="flux_int_calc">
     <statement>
       <p>
         Let a smooth surface, <m>Q</m>, be parameterized by <m>\vr(s,t)</m> over a domain <m>D</m>. The total flux of a smooth vector field <m>\vF</m> through <m>Q</m> is given by
@@ -453,5 +453,104 @@
       </statement>
     </task>
   </activity>
+</subsection>
+<subsection>
+  <title>Efficently Calculating Flux Integrals</title>
+  <p>
+    In this section, we will look at some computational ideas that should allow you to more efficently compute the value of a flux integral. In many cases, the surface you are looking at the flux through can be written with one coordinate as a function of the others. For simplicity, let's consider <m>z=f(x,y)</m>.
+  </p>
+  <activity xml:id="function_flux_ints">
+    <title>Flux Integrals for Surfaces of the Form <m>z=f(x,y)</m></title>
+    <introduction>
+      <p>
+        In this activity, we will look at how to use a basic parameterization of a surface, <m>z=f(x,y)</m>, to efficently calculate flux integrals.
+      </p>
+    </introduction>
+    <task>
+      If a surface <m>S_1</m> is given by <m>z=f(x,y)</m>, use <m>s=x</m> and <m>t=y</m> to parameterize <m>S_1</m>.
+    </task>
+    <task>
+      Using your parameterization from the first part, show that the vector orthogonal to the surface <m>S_1</m> given by <m>\vr_s \times \vr_t</m> has the form
+      <me>
+        \vr_s \times \vr_t=\langle -\frac{\partial{f}}{\partial{x}},-\frac{\partial{f}}{\partial{y}},1 \rangle
+      </me>
+    </task>
+    <task>
+      <p>
+        For each of the three surfaces given below, 
+      <ul>
+        <li>Compute <m>\vr_s \times \vr_t</m> using the previous part</li>
+        <li>Graph your surface</li>
+        <li>Compute <m>\vr_s \times \vr_t</m> for 4 different points. You should make sure your vectors <m>\vr_s \times \vr_t</m> are orthogonal to your surface.</li>
+      </ul>
+      <ol>
+        <li><m>z=x^2+y^2</m></li>
+        <li><m>x+2y+z=-4</m></li>
+        <li><m>z=x^2-y^2</m></li>
+      </ol>
+      </p>
+    </task>
+    <task>
+      <p>
+        For each of the three surfaces,
+      <ol>
+        <li><m>z=x^2+y^2</m></li>
+        <li><m>x+2y+z=-4</m></li>
+        <li><m>z=x^2-y^2</m></li>
+      </ol>
+      use the calculations from <xref re="act_flux1">part</xref> and <xref ref="flux_int_calc">Theorem</xref> to compute the flux of each of the following vector fields through the part of the surface corresponding to the region <m>C</m>.
+      <ol>
+        <li><m>\vF=\langle{x,y,z}\rangle</m> with <m>C</m> given by <m>0\leq x,y\leq 2</m></li>
+        <li><m>\vF=\langle{-y,x,1}\rangle</m> with <m>C</m> as the triangle over the region of the <m>xy</m>-plane with vertices <m>(0,0)</m>, <m>(1,0)</m>, and <m>(1,1)</m>.</li>
+        <li><m>\vF=\langle{z,y-x,(y-x)^2-z^2}\rangle</m> with <m>C</m> given by <m>0\leq x,y\leq 2</m></li>
+      </ol>
+      </p>
+    </task>
+  </activity>
+
+  <activity xml:id="activity-">
+      <title>Calculating the Flux through a Sphere</title>
+      <introduction>
+        <p>
+          For this activity, let <m>S_R</m> be the sphere of radius <m>R</m> centered at the origin.
+        </p>
+      </introduction>
+      <task>
+        <p>
+          Parameterize <m>S_R</m> using spherical coordinate equations with <m>x=\theta</m> and <m>t=\phi</m>. Give your parameterization as <m>\vr(s,t)</m> and be sure to state the bounds of your parameterization.
+        </p>
+      </task>
+      <task xml:id="flux_int_sphere1">
+        <p>
+          Use your parameterization of <m>S_R</m> to compute <m>\vr_s \times \vr_t</m>.
+        </p>
+      </task>
+      <task>
+        <p>
+          Your result for <m>\vr_s \times \vr_t</m> should be a scalar expression times <m>\vr(s,t)</m>. Explain why the outward pointing orthogonal vector on the sphere is a multiple of <m>\vr(s,t)</m> and what that scalar expression means.
+        </p>
+      </task>
+      <task xml:id="flux_int_sphere2">
+        <p>
+          Use your parameterization of <m>S_2</m> and the results of <xref ref="flux_int_sphere1">part</xref> to calculate the flux through <m>S_2</m> for each of the three following vector fields:
+          <ol>
+            <li><m>\vF_1=\langle{x,y,z}\rangle</m></li>
+            <li><m>\vF_2=\langle{-y,x,-1}\rangle</m></li>
+            <li><m>\vF_3=\langle{x-y,y+x,z-1}\rangle</m></li>
+          </ol>
+        </p>
+      </task>
+      <task xml:id="flux_int_sphere3">
+        <p>
+          Use computer software to plot each of the vector fields from <xref ref="flux_int_sphere2">part </xref> and interpret the results of your flux integral calculations.
+        </p>
+      </task>
+      <task>
+        <p>
+          If we used the sphere of radius 4 instead of <m>S_2</m>, explain how each of the flux integrals from <xref ref="flux_int_sphere2">part</xref> would change. You do not need to calculate these new flux integrals, but rather explain if the result would be different and how the result would be different.
+        </p>
+      </task>
+  </activity>
+
 </subsection>
 </section>
