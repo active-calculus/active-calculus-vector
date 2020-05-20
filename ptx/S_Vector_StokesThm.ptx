@@ -1,5 +1,5 @@
 <section xml:id="S_Vector_StokesThm">
-  <title>Stokes Theorem</title>
+  <title>Stokes' Theorem</title>
 <objectives>
   <ul>
     <li>
@@ -7,83 +7,129 @@
 	What is the relationship between the circulation of a vector
 	field <m>\vF</m> along a simple closed curve <m>C</m> in
 	three-dimensional space and the flux integral of
-	<m>\curl\vF</m> through an orientable surface with <m>C</m> as
+	<m>\curl\vF</m> through a surface with <m>C</m> as
 	its boundary?
       </p>
     </li>
     <li>
       <p>
-        Why does the flux integral of <m>\curl\vF</m> through an
-	orientable surface with boundary only depend on the boundary
-	of the surface and not the shape of the surface's interior?
+        Why does the flux integral of <m>\curl\vF</m> through a
+        surface with boundary only depend on the boundary of the
+        surface and not the shape of the surface's interior?
       </p>
     </li>
   </ul>
 </objectives>
 <introduction>
   <p>
-    In this section we will look at how to measure the circulation over 
+    When we studied <xref ref="thm_Green" text="title" /> in <xref
+    ref="S_Vector_GreensTheorem" text="type-global" />, we saw how
+    integrating the circulation density over a region in the plane
+    bounded by a simple closed curve gave an alternative way of
+    calculating the circulation along the boundary curve. When we
+    consider simple closed curves in <m>\R^3</m>, the
+    situation gets more complicated. However, there is an interesting,
+    and perhaps surprising, generalization of <xref ref="thm_Green"
+    text="title" /> for us to examine.
   </p>
-  <exploration xml:id="Stokes_PA">
+  <exploration xml:id="PA_Vector_StokesThm">
     <introduction>
       <p>
-       In this activity, we will look at how we can apply the moral from right after <xref ref="Greens_Thm_PA">Activity</xref> to curves in space.
+       In this activity, we will look at how we can apply the ideas
+       about circulation along overlapping curves from the beginning
+       of <xref ref="SS_Vector_GreensTheorem_Circulation"
+       text="type-global" /> to curves in space.
       </p>
-      <figure xml:id="Stokes_curve1">
-        <caption>Curves in Space!</caption>
-        <interactive xml:id="Stokes_c1" platform="sage" width="100%" aspect="1:1">
+    </introduction>
+    <task xml:id="Stokes_PA_task1">
+      <introduction>
+	<p>
+        For this part, consider the curves in <xref
+	ref="fig_Vector_StokesThm_curves_high_line">Figure</xref>, where the yellow curve is
+	<m>Y</m>, the blue curve is <m>B</m>, and the magenta curve is
+	<m>M</m>. 
+      </p>
+      <figure xml:id="fig_Vector_StokesThm_curves_high_line">
+        <caption>Three curves in space</caption>
+        <interactive xml:id="int_Vector_StokesThm_curves_high_line" platform="sage" width="100%" aspect="1:1">
           <slate surface="sage">
             var('t,s,x,y,z,r,theta')
             @interact
             def _():
-              plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,pi),color="red",thickness=2)+ parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi,2*pi),color="green",thickness=2)+parametric_plot3d((t,0,1),(t,-1,1),color="blue",thickness=2)+arrow3d((-.1,0,1),(.1,0,1),color="blue")
-              show(plot1)
-          </slate>
+              plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,pi),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi,2*pi),color="#FFB000",thickness=2)+parametric_plot3d((t,0,1),(t,-1,1),color="#648FFF",thickness=2)+arrow3d((-.1,0,1),(.1,0,1),color="#648FFF")
+              show(plot1+text3d("B",(0.1,0,1),color="#648FFF")+text3d("Y",(-0.8,-0.6,0.5),color="#FFB000")+text3d("M",(0.5,0.7,-0.5),color="#DC267F"))
+	  </slate>
         </interactive>
       </figure>
-    </introduction>
-    <task xml:id="Stokes_PA_task1">
-      <statement>
-      <p>
-        For this part, look at the in <xref ref="Stokes_curve1">Figure</xref>.
-      </p>
-      <ol>
-        <li>
-          <p>Write out the circulation line integrals of the green and blue closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise. </p>
-        </li>
-        <li>
-          <p>Write out the circulation line integrals of the red and blue closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise.</p>
-        </li>
-        <li>
-          <p>Write out the circulation line integrals of the green and red closed path (remember to consider orientation) when viewed from the positive z-axis and traveled counterclockwise.</p>
-        </li>
-        <li>
-          <p>Why does it make sense that we can add the results of the first two parts and get the third?</p>
-        </li>
-        <li>
-          <p>Would your arguments from above change at all if you considered the following figure?</p>
-          <figure xml:id="Stokes_curve2">
-            <caption>Curves in Space!</caption>
-            <interactive xml:id="Stokes_c2" platform="sage" width="100%" aspect="1:1">
+      </introduction>
+      <task>
+	<statement>
+          <p>Write out the circulation line integrals of the closed
+          curve consisting of the yellow curve <m>Y</m> and the and
+          blue curve <m>B</m>. (Remember to consider orientation!)
+          Assume that this curve is oriented counterclockwise when
+          viewed from the positive <m>z</m>-axis.
+	  </p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+          <p>Write out the circulation line integrals of the closed
+          curve consisting of the magenta curve <m>M</m> and the blue
+          curve <m>B</m>. (Remember to consider orientation!) Assume
+          that this curve is oriented counterclockwise when viewed
+          from the positive <m>z</m>-axis.</p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+          <p>Write out the circulation line integrals of the closed
+          curve consisting of the yellow curve <m>Y</m> and the
+          magenta curve <m>M</m>. As before, assume a counterclockwise
+          orientation for this curve when viewing from the positive
+          <m>z</m>-axis.</p>
+        </statement>
+      </task>
+      <task>
+	<statement>
+          <p>Why does it make sense that we can add the results of the
+          first two parts and get the third?</p>
+        </statement>
+      </task>
+      <task>
+	<statement>
+	  <p>Would your arguments from above change at all if you
+	  considered the curves depicted in <xref
+	  ref="fig_Vector_StokesThm_curves_low_line"
+	  text="type-global" />?</p>
+          <figure xml:id="fig_Vector_StokesThm_curves_low_line">
+            <caption>Three slightly different curves in space</caption>
+            <interactive xml:id="int_Vector_StokesThm_curves_low_line" platform="sage" width="100%" aspect="1:1">
               <slate surface="sage">
                 var('t,s,x,y,z,r,theta')
                 @interact
                 def _():
-                  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi/4,5*pi/4),color="red",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,5*pi/4,9*pi/4),color="green",thickness=2)+parametric_plot3d((t,t,0),(t,-sqrt(2)/2,sqrt(2)/2),color="blue",thickness=2)+arrow3d((-.1,-.1,0),(.1,.1,0),color="blue")
-                  show(plot1)
+                  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi/4,5*pi/4),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,5*pi/4,9*pi/4),color="#FFB000",thickness=2)+parametric_plot3d((t,t,0),(t,-sqrt(2)/2,sqrt(2)/2),color="#648FFF",thickness=2)+arrow3d((-.1,-.1,0),(.1,.1,0),color="#648FFF")
+                  show(plot1+text3d("B",(0.1,0,0),color="#648FFF")+text3d("M",(-0.8,-0.6,0.5),color="#DC267F")+text3d("Y",(0.5,-0.7,-0.5),color="#FFB000"))
               </slate>
             </interactive>
           </figure>
-        </li>
-      </ol>
-      </statement>
+	</statement>
+      </task>
     </task>
     <task xml:id="Stokes_PA_task2">
       <statement>
-      <p> We will now consider the green and the red curve as <m>C</m>, the closed, simple curve which is plotted in red in <xref ref="fill_in_surfaces">Figure</xref>.</p>
-      <figure xml:id="fill_in_surfaces">
-        <caption>Ways to fill in our simple closed curve</caption>
-        <interactive xml:id="pringle_surfaces" platform="sage" width="100%" aspect="1:1">
+      <p> We will now let <m>C</m> be the simple closed curve
+      consisting of the yellow and magenta curves in <xref
+      ref="fig_Vector_StokesThm_curves_high_line" text="type-global"
+      />. You can see <m>C</m> plotted in red in <xref
+      ref="fig_Vector_StokesThm_fill_in_surfaces" text="type-global"
+      />. The drop-down allows you to select three different
+      surfaces. Visually verify that each of the three surfaces
+      contains <m>C</m>.</p>
+      <figure xml:id="fig_Vector_StokesThm_fill_in_surfaces">
+        <caption>Surfaces containing a common simple closed curve</caption>
+        <interactive xml:id="int_Vector_StokesThm_pringle_surfaces" platform="sage" width="100%" aspect="60:65">
         <slate surface="sage">
           var('t,s,x,y,z,r,theta')
           @interact
@@ -99,7 +145,7 @@
         </slate>
         </interactive>
       </figure>
-      <p>Verify that each of the three optional surfaces contains our curve <m>C</m>.</p>
+      <p></p>
       </statement>
     </task>
   </exploration>
