@@ -1,0 +1,588 @@
+<section xml:id="S_Vector_StokesThm">
+  <title>Stokes' Theorem</title>
+<objectives>
+  <ul>
+    <li>
+      <p>
+	What is the relationship between the circulation of a vector
+	field <m>\vF</m> along a simple closed curve <m>C</m> in
+	three-dimensional space and the flux integral of
+	<m>\curl(\vF)</m> through a surface with <m>C</m> as
+	its boundary?
+      </p>
+    </li>
+    <li>
+      <p>
+        Why does the flux integral of <m>\curl(\vF)</m> through a
+        surface with boundary only depend on the boundary of the
+        surface and not the shape of the surface's interior?
+      </p>
+    </li>
+  </ul>
+</objectives>
+<introduction>
+  <p>
+    When we studied <xref ref="thm_Green" text="title" /> in <xref
+    ref="S_Vector_GreensTheorem" text="type-global" />, we saw how
+    integrating the circulation density over a region in the plane
+    bounded by a simple closed curve gave an alternative way of
+    calculating the circulation along the boundary curve. When we
+    consider simple closed curves in <m>\R^3</m>, the
+    situation gets more complicated. However, there is an interesting,
+    and perhaps surprising, generalization of <xref ref="thm_Green"
+    text="title" /> for us to examine.
+  </p>
+  <exploration xml:id="PA_Vector_StokesThm">
+    <introduction>
+      <p>
+       In this activity, we will look at how we can apply the ideas
+       about circulation along overlapping curves from the beginning
+       of <xref ref="SS_Vector_GreensTheorem_Circulation"
+       text="type-global" /> to curves in space.
+      </p>
+    </introduction>
+    <task xml:id="Stokes_PA_task1">
+      <introduction>
+	<p>
+        For this part, consider the curves in <xref
+	ref="fig_Vector_StokesThm_curves_high_line">Figure</xref>, where the yellow curve is
+	<m>Y</m>, the blue curve is <m>B</m>, and the magenta curve is
+	<m>M</m>. 
+      </p>
+      <figure xml:id="fig_Vector_StokesThm_curves_high_line">
+        <caption>Three curves in space</caption>
+        <interactive xml:id="int_Vector_StokesThm_curves_high_line" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            var('t,s,x,y,z,r,theta')
+            @interact
+            def _():
+              plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,pi),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi,2*pi),color="#FFB000",thickness=2)+parametric_plot3d((t,0,1),(t,-1,1),color="#648FFF",thickness=2)+arrow3d((-.1,0,1),(.1,0,1),color="#648FFF")
+              show(plot1+text3d("B",(0.1,0,1),color="#648FFF")+text3d("Y",(-0.8,-0.6,0.5),color="#FFB000")+text3d("M",(0.5,0.7,-0.5),color="#DC267F"))
+	  </slate>
+        </interactive>
+      </figure>
+      </introduction>
+      <task>
+	<statement>
+          <p>Write out the circulation line integrals of the closed
+          curve consisting of the yellow curve <m>Y</m> and the and
+          blue curve <m>B</m>. (Remember to consider orientation!)
+          Assume that this curve is oriented counterclockwise when
+          viewed from the positive <m>z</m>-axis.
+	  </p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+          <p>Write out the circulation line integrals of the closed
+          curve consisting of the magenta curve <m>M</m> and the blue
+          curve <m>B</m>. (Remember to consider orientation!) Assume
+          that this curve is oriented counterclockwise when viewed
+          from the positive <m>z</m>-axis.</p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+          <p>Write out the circulation line integrals of the closed
+          curve consisting of the yellow curve <m>Y</m> and the
+          magenta curve <m>M</m>. As before, assume a counterclockwise
+          orientation for this curve when viewing from the positive
+          <m>z</m>-axis.</p>
+        </statement>
+      </task>
+      <task>
+	<statement>
+          <p>Why does it make sense that we can add the results of the
+          first two parts and get the third?</p>
+        </statement>
+      </task>
+      <task>
+	<statement>
+	  <p>Would your arguments from above change at all if you
+	  considered the curves depicted in <xref
+	  ref="fig_Vector_StokesThm_curves_low_line"
+	  text="type-global" />?</p>
+          <figure xml:id="fig_Vector_StokesThm_curves_low_line">
+            <caption>Three slightly different curves in space</caption>
+            <interactive xml:id="int_Vector_StokesThm_curves_low_line" platform="sage" width="100%" aspect="1:1">
+              <slate surface="sage">
+                var('t,s,x,y,z,r,theta')
+                @interact
+                def _():
+                  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi/4,5*pi/4),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,5*pi/4,9*pi/4),color="#FFB000",thickness=2)+parametric_plot3d((t,t,0),(t,-sqrt(2)/2,sqrt(2)/2),color="#648FFF",thickness=2)+arrow3d((-.1,-.1,0),(.1,.1,0),color="#648FFF")
+                  show(plot1+text3d("B",(0.1,0,0),color="#648FFF")+text3d("M",(-0.8,-0.6,0.5),color="#DC267F")+text3d("Y",(0.5,-0.7,-0.5),color="#FFB000"))
+              </slate>
+            </interactive>
+          </figure>
+	</statement>
+      </task>
+    </task>
+    <task xml:id="Stokes_PA_task2">
+      <statement>
+      <p> We will now let <m>C</m> be the simple closed curve
+      consisting of the yellow and magenta curves in <xref
+      ref="fig_Vector_StokesThm_curves_high_line" text="type-global"
+      />. You can see <m>C</m> plotted in red in <xref
+      ref="fig_Vector_StokesThm_fill_in_surfaces" text="type-global"
+      />. The drop-down allows you to select three different
+      surfaces. Visually verify that each of the three surfaces
+      contains <m>C</m>.</p>
+      <figure xml:id="fig_Vector_StokesThm_fill_in_surfaces">
+        <caption>Surfaces containing a common simple closed curve</caption>
+        <interactive xml:id="int_Vector_StokesThm_pringle_surfaces" platform="sage" width="100%" aspect="60:65">
+        <slate surface="sage">
+          var('t,s,x,y,z,r,theta')
+          @interact
+          def _(s=selector(['Surface1', 'Surface2','Surface3'],label="Surface Selection:")):
+            plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=50)
+            if s=='Surface1':
+              surface=parametric_plot3d((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.25)
+            if s=='Surface2':
+              surface=parametric_plot3d((r*cos(t),r*sin(t),(1-cos(pi*r))*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.45)
+            if s=='Surface3':
+              surface=parametric_plot3d((r*cos(t),r*sin(t),(r^6)*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,1.5), color="gray",opacity=.45,aspect_ratio=(1,1,.1))
+            show(plot1+surface)
+        </slate>
+        </interactive>
+      </figure>
+      <p></p>
+      </statement>
+    </task>
+  </exploration>
+</introduction>
+<subsection xml:id="SS_Vector_StokesThm_Development">
+  <title>Circulation in three dimensions and Stokes' Theorem</title>
+  <p>
+    In <xref ref="PA_Vector_StokesThm" text="type-global" />, we saw
+    that a simple closed curve in <m>\R^3</m> can bound many different
+    surfaces. For now, however, we want to focus on a smooth surface
+    <m>S</m> in <m>\R^3</m> that has a well-defined normal vector
+    <m>\vn</m> at every point and a boundary curve <m>C</m>. We will
+    use the normal vector to define an orientation of <m>C</m> so
+    that if a person were to walk along <m>C</m> in the direction of
+    the orientation with the top of their head pointing in the
+    direction of <m>\vn</m>, their left arm would be over the surface
+    <m>S</m>. Notice that this is the same convention that we used
+    with <xref ref="thm_Green" text="title" /> if we assume that the
+    normal vector being used is <m>\vk</m>.
+  </p>
+
+  <p>
+    In <xref ref="fig_Vector_StokesThm_surface_boundary"
+    text="type-global" />, we show the curve <m>C</m> from <xref
+    ref="PA_Vector_StokesThm" text="type-global" /> in magenta as well
+    as a surface <m>S</m> that has <m>C</m> as its boundary. The
+    chosen normal vector <m>\vn</m> to <m>S</m> is shown, as is
+    the orientation of <m>C</m> that matches <m>\vn</m>.
+  </p>
+
+  <figure xml:id="fig_Vector_StokesThm_surface_boundary">
+    <caption>A surface <m>S</m> (and normal vector) bounded by an
+    oriented simple closed curve <m>C</m></caption>
+    <interactive xml:id="int_Vector_StokesThm_surface_boundary" platform="sage" width="100%" aspect="1:1">
+      <slate surface="sage">
+        var('t,s,x,y,z,r,theta')
+        @interact
+        def _():
+          surface=vector((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)))
+          curve=vector((cos(t),sin(t),cos(2*t)))
+          rtan=surface.diff(r)
+          ttan=surface.diff(t)
+          normal=rtan.cross_product(ttan)
+          unit_normal = normal/normal.norm()
+          pos=(0,0,0)
+          plot1=parametric_plot3d(curve,(t,0,2*pi),color="#DC267F",thickness=2)+parametric_plot3d(surface,(t,0,2*pi),(r,0,1),color="gray",opacity=.75)+arrow3d(surface(r=0.5,t=pi/3),unit_normal(r=0.5,t=pi/3),color="#648FFF")+arrow3d(curve(t=0.5),curve(t=0.55),color="#DC267F")
+          show(plot1)
+    </slate>
+    </interactive>
+  </figure>
+  <p>Thinking back to <xref ref="thm_Green" text="title" />, our main
+  idea was that we could calculate the circulation around a simple
+  closed curve in <m>\R^2</m> by taking the double integral of the
+  circulation density over the region bounded by the curve. As we saw
+  in <xref ref="PA_Vector_StokesThm" text="type-global" />, we can break
+  up <m>\oint_C\vF\cdot d\vr</m> into line integrals around other
+  simple closed curves so that overlapping portions are oriented
+  oppositely just as we did with the square grid for Green's
+  Theorem. To find a three-dimensional analog of Green's Theorem, we
+  require that a simple closed curve <m>C</m> in three
+  dimensions bound a smooth surface <m>S</m> with a 
+  normal vector <m>\vn</m>. In doing this, we can choose our
+  <q>smaller</q> curves similar to the squares we used in Green's
+  Theorem to lie on the surface <m>S</m>. This gives us almost all the
+  ingredients used in Green's Theorem, but we still need to find a
+  suitable replacement for the circulation density.</p>
+  
+  <p>As we saw in <xref ref="S_12_6_Curl" text="type-global" />, the
+  curl of a vector field in <m>\R^3</m> measures the rotation of the
+  vector field. <xref ref="thm_Vector_Curl_rot_strength"
+  text="type-global" /> says that for a unit vector <m>\vv</m>, the
+  scalar <m>(\curl(\vF)(a,b,c))\cdot \vv</m> measures the
+  rotational strength of <m>\vF</m> at the point <m>(a,b,c)</m> around
+  the axis defined by <m>\vv</m>. When <m>\vv</m> is the normal vector
+  to the surface <m>S</m> at the point <m>(a,b,c)</m>, we have the
+  appropriate analog for the circulation density of <m>\vF</m> on
+  <m>S</m> at <m>(a,b,c)</m>. Thus, the equivalent idea to integrating
+  the circulation density of a two-dimensional vector field over a
+  region in the plane is calculating the flux integral <m>\iint_D
+  \curl(\vF)\cdot (\vr_s\times \vr_t)\, dA</m>, where <m>\vr(s,t)</m>
+  on the domain <m>D</m> gives a parameterization of the smooth
+  surface <m>S</m>.
+  </p>
+  <p>A rigorous proof of the following theorem is beyond the scope of
+  this text. However, the previous subsection and our discussion of
+  <xref ref="thm_Green" text="title" /> provide an intuitive
+  description of why this theorem is true.</p>
+  <theorem xml:id="thm_Stokes">
+    <title>Stokes' Theorem</title>
+    <statement>  
+      <p>Let <m>S</m> be a smooth surface in <m>\R^3</m> with a simple
+      closed curve <m>C</m> as its boundary. Let <m>\vF</m> be a
+      vector field that is smooth on <m>S</m> and <m>C</m>. Suppose
+      that <m>\vr(s,t)</m> on the domain <m>D</m> gives a
+      parameterization of <m>S</m> for which <m>C</m> is oriented so
+      that a person walking along <m>C</m> in the direction of its
+      orientation and head pointing in the direction of the normal
+      vector <m>\vr_s\times \vr_t</m> would have their left hand above
+      <m>S</m>. In this setting, the circulation of <m>\vF</m> along
+      <m>C</m> is equal to the flux of <m>\curl(\vF)</m> through
+      <m>S</m>. That is,
+      <me>
+	\oint\limits_C \vF\cdot d\vr = \iint\limits_{D} (\curl(\vF))\cdot
+	(\vr_s\times\vr_t)\, dA
+      </me>.
+      </p>
+    </statement>
+  </theorem>
+  <p>When we looked <xref ref="thm_Green" text="title" />, it was
+  generally most useful when we were given a line integral and we
+  calculated it using a double integral. In fact, except in the
+  circumstances described in exercises <xref
+  ref="ez_Vector_GreensTheorem_AreaViaLineInt" text="global" /> and
+  <xref ref="ez_Vector_GreensTheorem_centroid" text="global" />, we
+  did not use Green's Theorem to rewrite a double integral as a line
+  integral because of the difficulty of finding a suitable vector
+  field. The situation for <xref ref="thm_Stokes" text="title" /> will
+  be similar, with the exception of <xref
+  ref="ez_Vector_StokesThm_potential" text="type-local" /> in this
+  section. However, Stokes' Theorem gives us an interesting additional
+  piece of freedom: selecting the surface <m>S</m> through which we
+  calculate the flux of <m>\curl(\vF)</m> from amongst possibly
+  several reasonable surfaces with boundary <m>C</m>. The next two
+  activities focus on the relationships between surfaces and their
+  boundary.
+  </p>
+  <activity xml:id="act_Vector_StokesThm_boundary">
+    <introduction>
+      <p>
+	Because <xref ref="thm_Stokes" text="title" /> requires us to
+	consider a surface (with normal vector) and the boundary of
+	the surface, this activity will give you a chance to practice
+	identifying the boundary of some surfaces in <m>\R^3</m>. For
+	each surface below, identify its boundary. You may find it
+	useful to first give a description of the boundary in words,
+	but you must also find a parameterization for
+	each boundary and ensure that the orientation of the boundary
+	is such that a person walking along the boundary in the
+	direction of its orientation with head pointing in the
+	direction of the surface's normal vector would hold their left
+	hand over the surface.
+      </p>
+    </introduction>
+    <task xml:id="task_Vector_StokesThm_boundary_sphere">
+      <introduction>
+	<p>The surface <m>S</m> is the portion of the sphere
+	<m>x^2+y^2+z^2=4</m> described below. Assume the outward
+	orientation on the sphere.</p>
+      </introduction>
+      <task xml:id="task_Vector_StokesThm_boundary_sphere_upper">
+	<statement>
+	  <p>The points with <m>z\geq 0</m>.</p>
+	</statement>
+      </task>
+      <task xml:id="task_Vector_StokesThm_boundary_sphere_yx">
+	<statement>
+	  <p>The points with <m>z\geq x</m>.</p>
+	</statement>
+      </task>
+    </task>
+    <task xml:id="task_Vector_StokesThm_boundary_hyppar">
+      <statement>
+	<p>The surface <m>S</m> is the portion of the hyperbolic
+	paraboloid <m>z=x^2-y^2</m> with <m>x^2+y^2\leq 1</m>. Assume
+	the <q>upward</q> orientation, e.g., the normal vector at
+	<m>(0,0,0)</m> is <m>\vk</m>.</p>
+      </statement>
+    </task>
+    <task xml:id="task_Vector_StokesThm_boundary_cylinder">
+      <statement>
+	<p>The surface <m>S</m> is the portion of the cylinder
+	<m>x^2+y^2=4</m> for which <m>-2\leq z\leq 2</m>, assuming the
+	outward orientation.</p>
+      </statement>
+      <hint>
+	<p>It is fine for the boundary of a surface to be made up of
+	more than one curve. Think carefully about how each piece is
+	oriented!</p>
+      </hint>
+    </task>
+  </activity>
+  <activity xml:id="act_Vector_StokesThm_surface">
+    <introduction>
+      <p>In some sense, this activity considers the reverse problem
+      mof that considered in <xref ref="act_Vector_StokesThm_boundary"
+      />. Here, each part of the activity gives you an oriented simple
+      closed curve <m>C</m> in <m>\R^3</m>, and your task is to find a
+      surface <m>S</m> so that <m>C</m> is the boundary of
+      <m>S</m>. You are also expected to specify a normal vector for
+      the surface so that a person walking along <m>C</m> in the
+      direction of the given orientation with head pointing in the
+      direction of your chosen normal vector would have their left
+      hand over <m>S</m>. You are encouraged to think about multiple
+      possible answers, since as we saw in <xref
+      ref="PA_Vector_StokesThm" text="type-global" />, there may be
+      more than one reasonable choice of a surface with a particular boundary.</p>
+    </introduction>
+    <task xml:id="task_Vector_StokesThm_surface_triangle">
+      <statement>
+	<p>
+	  The curve <m>C</m> is the triangle with vertices
+	  <m>(1,0,0)</m>, <m>(0,1,0)</m>, and <m>(0,0,1)</m> with
+	  orientation corresponding to the order the points are listed
+	  here. 
+      </p>
+      </statement>
+    </task>
+    <task xml:id="task_Vector_StokesThm_surface_circle">
+      <statement>
+      <p>
+	The curve <m>C</m> is the circle parameterized as <m>\vr(t) =
+	\langle \sqrt{2}\cos(t), \sqrt{2}\cos(t), 2\sin(t)</m> for
+	<m>0\leq t\leq 2\pi</m>.
+      </p>
+      </statement>
+    </task>
+    <task xml:id="task_Vector_StokesThm_surface_cylinder">
+      <statement>
+      <p>
+	The curve <m>C</m> consists of (given in order of the
+	orientation) the quarter-circle of radius <m>2</m> in the
+	<m>xy</m>-plane from <m>(2,0,0)</m> to <m>(0,2,0)</m>, the
+	line segment from <m>(0,2,0)</m> to <m>(0,2,2)</m>, the
+	quarter-circle of radius <m>2</m> in the plane <m>z=2</m> from
+	<m>(0,2,2)</m> to <m>(2,0,2)</m>, and the line segment from
+	<m>(2,0,2)</m> to <m>(2,0,0)</m>.
+      </p>
+      </statement>
+    </task>
+  </activity>
+</subsection>
+<subsection xml:id="SS_Vector_StokesThm_Verify">
+  <title>Verifying and Applying Stokes' Theorem</title>
+  <p>We close this section with a pair of activities. The first
+  focuses on calculating both of the integrals in <xref
+  ref="thm_Stokes" text="title" />. The second asks you to calculate
+  some line integrals along simple closed curves and gives you the
+  discretion to choose the best method to use for this (as well as the
+  best surface to use, if you choose Stokes' Theorem).
+  </p>
+  <activity xml:id="act_Vector_StokesThm_verify">
+    <introduction>
+      <p>In this activity, your goal is to verify <xref
+      ref="thm_Stokes" text="title" /> by calculating both a line
+      integral and a flux integral.</p>
+    </introduction>
+    <task xml:id="task_Vector_StokesThm_verify_sphere">
+      <introduction>
+      <p>
+	Consider the vector field
+	<m>\vF = \langle x^2 ,y^2 ,z^2 \rangle</m> and the circle <m>C_1</m>
+	parameterized as <m>\vr(t) =
+	\langle \sqrt{2}\cos(t), \sqrt{2}\cos(t), 2\sin(t)\rangle</m> for
+	<m>0\leq t\leq 2\pi</m>.
+      </p>
+      </introduction>
+      <task>
+	<statement>
+	  <p>Calculate <m>\oint_{C_1} \vF\cdot d\vr</m> directly using the
+	  given parameterization.</p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+	  <p>Let <m>S_1</m> be the
+	  hemisphere of the sphere of radius <m>2</m> centered at the
+	  origin with <m>y\leq x</m>. Calculate the flux of
+	  <m>\curl(\vF)</m> through <m>S_1</m>.</p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+	  <p>What could you have observed about <m>\vF</m> that would
+	  have gotten you the same answer without doing either of the
+	  above calculations?</p>
+	</statement>
+      </task>
+    </task>
+    <task xml:id="task_Vector_StokesThm_verify_triangle">
+      <introduction>
+	<p>
+	  Consider the vector field <m>\vG = x\vi + y^2z\vj +
+	  x^2\vk</m> and the curve <m>C_2</m>, which is the triangle
+	  with vertices <m>(1,0,0)</m>, <m>(0,1,0)</m>, and
+	  <m>(0,0,1)</m> with orientation corresponding to the order
+	  the points are listed here.
+	</p>
+      </introduction>
+      <task>
+	<statement>
+	  <p>Find the circulation of <m>\vG</m> along <m>C_2</m> by
+	  calculating the appropriate line integrals.</p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+	  <p>The vertices of <m>C_2</m> lie in a plane. Let <m>S_2</m>
+	  be the portion of this plane lying in the first octant,
+	  i.e., the portion with <m>x,y,z\geq 0</m>. Find the flux of
+	  <m>\curl(\vG)</m> through <m>S_2</m>.</p>
+	</statement>
+      </task>
+      <task>
+	<statement>
+	  <p>Explain why the sign of your answer to the previous two
+	  parts makes sense.</p>
+	</statement>
+      </task>
+    </task>
+  </activity>
+  <activity xml:id="act_Vector_StokesThm_use">
+    <task xml:id="task_act_Vector_StokesThm_use_cylinder">
+      <statement>
+	<p>Find the circulation of <m>\vF = \langle 3yz, xz,
+	-xy\rangle</m> along the curve <m>C</m> consisting of (given
+	in order of the orientation) the quarter-circle of radius
+	<m>1</m> in the plane <m>y=-2</m> from <m>(0,-2,1)</m> to
+	<m>(1,-2,0)</m>, the line segment from <m>(1,-2,0)</m> to
+	<m>(1,5,0)</m>, the quarter-circle of radius <m>1</m> in the
+	plane <m>y=5</m> from <m>(1,5,0)</m> to <m>(0,5,1)</m>, and
+	the line segment from <m>(0,5,1)</m> to <m>(0,-2,1)</m>.
+	</p>
+      </statement>
+    </task>
+    <task xml:id="task_act_Vector_StokesThm_use_circle">
+      <statement>
+	<p>Find the circulation of <m>\vG = 3z^2\vi -z^2 + 2x\vj+zy\vk</m>
+	along the circle in the <m>xy</m>-plane of radius <m>3</m>
+	centered at the origin. Assume the counterclockwise
+	orientation of the circle.
+	</p>
+      </statement>
+    </task>
+  </activity>
+  <p>
+    In part <xref ref="task_act_Vector_StokesThm_use_circle"
+    text="local">part</xref> of <xref ref="act_Vector_StokesThm_use"
+    text="type-global" />, there are two <q>reasonable</q> choices for
+    the surface bounded by the circle. If you did not do so while
+    doing the activity, we encourage you to identify both of them and
+    compare which one makes doing the flux integral easier. In
+    general, this will vary depending on the (curl of the) vector
+    field in question, so we cannot give a rule for determining what
+    surface or coordinate system to use. However, we do encourage you
+    to think about which surface will make evaluating the flux
+    integral easiest.
+  </p>
+</subsection>
+  <subsection>
+    <title>Summary</title>
+    <p>
+      <ul>
+	<li>
+          <p>
+            <xref ref="thm_Stokes" text="title" /> tells us that we
+            can calculate the circulation of a smooth vector field
+            along a simple closed curve in <m>\R^3</m> that bounds a
+            surface (with normal vector) on which the vector field is
+            also smooth by calculating the flux of the curl of the
+	    vector field through the surface.Pe
+          </p>
+	</li>
+
+	<li>
+          <p>
+	  Given two surfaces <m>S_1</m> and <m>S_2</m> with the same
+	  boundary <m>C</m> (and assuming normal vectors that give the
+	  same orientation on <m>C</m>), the flux of <m>\curl(\vF)</m>
+	  through <m>S_1</m> and through <m>S_2</m> is the same
+	  because <xref ref="thm_Stokes" text="title" /> tells us that
+	  this flux is equal to the circulation of <m>\vF</m> along
+	  <m>C</m>.</p>
+	</li>
+
+      </ul>
+    </p>
+  </subsection>
+
+<exercises>
+  <exercise xml:id="ez_Vector_StokesThm_potential">
+    <introduction>
+      <p><xref ref="thm_Stokes" text="title" /> is generally used to
+      turn a line integral into a flux integral. Sometimes it is
+      possible to be given a flux integral and recognize that the
+      given vector field <m>\vF</m> is <m>\curl(\vG)</m> for some
+      vector field <m>\vG</m>, however. When this is the case, we call
+      <m>\vG</m> a <term>vector potential</term> for the vector field
+      <m>\vF</m>, much like a function <m>f</m> so that <m>\vF =
+      \grad(f)</m> is called a potential function for <m>\vF</m>.</p>
+    </introduction>
+    <task xml:id="task_Vector_StokesThm_potential_find">
+      <statement>
+	<p>Find a vector field <m>\vF</m> so that <m>\curl(\vF) =
+	\langle x-y^2,4xy-y-4,-4xz\rangle</m>.</p>
+      </statement>
+      <hint>
+	<p>Your experience in finding potential functions for gradient
+	vector fields will be useful to you here, although you will
+	have more flexibility.</p>
+      </hint>
+    </task>
+    <task xml:id="task_Vector_StokesThm_potential_find2">
+      <statement>
+	<p>When finding an antiderivative of a function of a single
+	variable, you know that there is an infinite family of
+	antiderivatives, but that any two antiderivatives differ by a
+	constant. This is why we write expressions such as
+	<m>\displaystyle\int\cos(x)\, dx = \sin(x) + C</m>. A similar
+	phenomenon occurs with (scalar) potential functions for
+	gradient vector fields. Find a <em>second</em> vector field
+	<m>\vG</m> with the same curl as in <xref
+	ref="task_Vector_StokesThm_potential_find"
+	text="local">part</xref>, and do so in a way that
+	<m>\vF-\vG</m> is <em>not</em> a constant vector. That is,
+	after simplifying fully, <m>\vF-\vG</m> must contain at least
+	one of the variables <m>x,y,z</m>.</p>
+      </statement>
+    </task>
+    <task xml:id="task_Vector_StokesThm_potential_gradient">
+      <statement>
+	<p>Verify that for the vector fields you found above,
+	<m>\vF-\vG</m> is a gradient vector field. Explain why for
+	<em>every</em> pair <m>\vF, \vG</m> of vector potentials for a
+	vector field <m>\vH</m>, you must have that <m>\vF-\vG</m> is
+	a gradient vector field.
+	</p>
+      </statement>
+    </task>
+    <task xml:id="task_Vector_StokesThm_potential_div">
+      <statement>
+	<p>Explain why if <m>\vH</m> is a vector field with a vector
+	potential <m>\vF</m>, <m>\divg(\vH) = 0</m>. Such a vector
+	field is called a <term>solenoidal vector field</term> or
+	<term>divergence-free vector field</term>.</p>
+      </statement>
+    </task>
+  </exercise>
+</exercises>
+
+</section>
