@@ -4,280 +4,338 @@
   <title>The Idea of a Line Integral</title>
     <objectives>
       <ul>
+	<li>
+	  <p>What is an oriented curve and how can we represent one
+	  algebraically?</p>
+	</li>
         <li>
           <p>
-            What is a line integral of a vector-valued function along a curve?
+            What is the meaning of the line integral of a
+            vector-valued function along a curve and how can we
+            estimate if its value is positive, negative, or zero?
           </p>
         </li>
         <li>
           <p>
-            How can we estimate if a line integral of a vector-valued
-            function along a curve is positive, negative, or zero?
+	    What are important properties of the line integral of a
+	    vector-valued functions along a curve?
           </p>
         </li>
       </ul>
     </objectives>
   <introduction>
     <p>
-      As we discussed in <xref ref="S_12_1_VectorFields">section</xref>,
-      vector fields
-      are often useful as representations of forces such as gravity, wind,
-      and flowing water.
-      We learned in <xref provisional="S_9_3_Dot_Product">section</xref> that
-      the dot product of a force vector and a displacement vector tells us
-      how much work the force did on the object as it moved from the tail of
-      its displacement vector to the tip.
-      However, things get more complicated
-      when an object's movement is not in a straight line and when the force
-      is not uniform throughout the area in which the object moves.
-      For
-      example, how much work does a wind of <m>30</m> miles per hour toward the northwest do
-      on an airplane that's flying 500 miles due north?
-      What if the wind
-      gets weaker the farther north the plane gets?
-      In this
-      section, we begin investigating how integration can be used to
-      calculate the work a force field does in such circumstances.
+      As we discussed in <xref ref="S_Vector_VectorFields" />, vector
+      fields are often useful as representations of forces such as
+      gravity, wind, and flowing water.  We learned in <xref
+      provisional="S_9_3_Dot_Product" /> that the dot
+      product of a force vector and a displacement vector tells us how
+      much work the force did on the object as it moved from the tail
+      of its displacement vector to the tip.  However, things get more
+      complicated when an object's movement is not in a straight line
+      and when the force is not uniform throughout the area in which
+      the object moves.  For example, how much work is done by a wind
+      of <quantity><mag>30</mag><unit base="mile" /><per base="hour"
+      /></quantity> toward the northwest on an airplane that's flying
+      <quantity><mag>500</mag><unit base="mile" /></quantity> due
+      north?  What if the wind gets weaker the farther north the plane
+      gets?  In this section, we begin investigating how integration
+      can be used to calculate the work a force field does in such
+      circumstances.
     </p>
 
-    <exploration xml:id="PA_12_2">
+    <exploration xml:id="PA_Vector_IdeaLineIntegral">
         <introduction>
             <p>
-        Recall from <xref provisional="S_9_3_Dot_Product">section</xref> that the work done by a
-        force <m>\vF</m> on an object that moves with displacement vector <m>\vv</m> is
-        <m>\vF\cdot \vv</m>.
-        In this Preview Activity, we will consider the work
-        done by a wind blowing due east at <m>45</m> miles per hour on an airplane
-        at various stages of its journey.
+              Recall from <xref provisional="S_9_3_Dot_Product" />
+              that the work done by a force <m>\vF</m> on an object
+              that moves with displacement vector <m>\vv</m> is
+              <m>\vF\cdot \vv</m>.  In this Preview Activity, we
+              consider the work done by a wind blowing due east at
+              <quantity><mag>45</mag><unit base="mile" /><per
+              base="hour" /></quantity> on an airplane at various
+              stages of its journey.
             </p>
         </introduction>
-        <task>
-            <statement>
-                <p>
-              A pilot flies for an hour and finds that he is <m>300</m> miles from
-              where he started at a heading of <m>20^\circ</m> degrees east of due
-              north.
-              Find the work the wind has done on the airplane during the
-              flight.
+        <task xml:id="task_PA_Vector_IdeaLine_integral_300mph">
+          <statement>
+            <p>
+              A pilot flies for an hour and finds that he is
+              <quantity><mag>300</mag><unit base="mile" /></quantity>
+              from where he started at a heading of
+              <quantity><mag>20</mag><unit base="degree" /></quantity>
+              degrees east of due north.  Find the work the wind has
+              done on the airplane during the flight.
                 </p>
             </statement>
             <answer>
                 <p><m>3078.18</m></p>
             </answer>
             <solution>
-                <p>Here <m>\vF = 45\vi</m>. The displacement vector of the airplane is <m>\vv_1 = \langle 200\cos(70^\circ),200\sin(70^\circ)\rangle \approx \langle 68.404,187.94\rangle</m>. Thus, the work done by the wind is <m>\vF\cdot \vv_1 = 45\cdot 68.404 = 3078.18</m>.</p>
+                <p>Here <m>\vF = 45\vi</m>. The displacement vector of
+                the airplane is <m>\vv_1 = \langle
+                200\cos(70^\circ),200\sin(70^\circ)\rangle \approx
+                \langle 68.404,187.94\rangle</m>. Thus, the work done
+                by the wind is <m>\vF\cdot \vv_1 = 45\cdot 68.404 =
+                3078.18</m>.</p>
             </solution>
         </task>
-        <task>
-            <statement>
-                <p>
-              An hour later,
-              the pilot determines that he is <m>275</m> miles due
-              north of where he previously checked his position.
-              Find the work
-              done by the wind on the airplane during the second hour of the
-              flight.
-                </p>
-            </statement>
-            <answer>
-                <p><m>0</m></p>
-            </answer>
-            <solution>
-                <p>The displacement vector is <m>\vv_2 = 275\vj</m>. Thus, the work done by the wind is <m>\vv_2 \cdot \vF = 0</m>.</p>
-            </solution>
-        </task>
-        <task>
-            <statement>
+        <task xml:id="task_PA_Vector_IdeaLine_integral_275mph">
+          <statement>
             <p>
-              Find the pilot's displacement from his original position after
-              two hours of flying and use that to find the work done by the wind
-              on the airplane during the first two hours of flight.
+              An hour later, the pilot determines that he is
+              <quantity><mag>275</mag><unit base="mile" /></quantity>
+              due north of where he previously checked his position.
+              Find the work done by the wind on the airplane during
+              the second hour of the flight.
+            </p>
+          </statement>
+          <answer>
+            <p><m>0</m></p>
+          </answer>
+          <solution>
+            <p>The displacement vector is <m>\vv_2 = 275\vj</m>. Thus,
+            the work done by the wind is <m>\vv_2 \cdot \vF =
+            0</m>.</p>
+          </solution>
+        </task>
+        <task xml:id="task_PA_Vector_IdeaLine_integral_2hours">
+          <statement>
+            <p>
+              Find the pilot's displacement from his original position
+              after two hours of flying and use that to find the work
+              done by the wind on the airplane during the first two
+              hours of flight.
             </p>
             </statement>
             <answer>
                 <p><m>\langle 68.40, 462.94\rangle</m>; <m>3078.18</m></p>
             </answer>
             <solution>
-                <p>The displacement is <m>\vv = \vv_1 + \vv_2 = \langle 68.40, 462.94\rangle</m>. The work done by the wind is thus <m>\vv\cdot \vF = 3078.18</m>.</p>
+              <p>The displacement is <m>\vv = \vv_1 + \vv_2 = \langle
+              68.40, 462.94\rangle</m>. The work done by the wind is
+              thus <m>\vv\cdot \vF = 3078.18</m>.</p>
             </solution>
         </task>
-        <task>
-            <statement>
+        <task xml:id="task_PA_Vector_IdeaLine_integral_compare">
+          <statement>
             <p>
-              How does your answer to the previous part connect to the answers
-              to the first two parts?
+              How does your answer to the previous part connect to the
+              answers to the first two parts?
             </p>
-            </statement>
-            <answer>
-                <p>Sum.</p>
-            </answer>
-            <solution>
-                <p>It is the sum of the answers to the first two parts.</p>
-            </solution>
+          </statement>
+          <answer>
+            <p>Sum.</p>
+          </answer>
+          <solution>
+            <p>It is the sum of the answers to the first two parts.</p>
+          </solution>
         </task>
-        <task>
-            <statement>
+        <task xml:id="task_PA_Vector_IdeaLine_integral_45deg">
+          <statement>
             <p>
-              Suppose that the pilot then flies <m>45^\circ</m> west of due north
-              for <m>200</m> miles.
-              Find the work done by the wind on the airplane
-              during this part of the journey.
+              Suppose that the pilot then flies
+              <quantity><mag>45</mag><unit base="degree" /></quantity>
+              west of due north for <quantity><mag>200</mag><unit
+              base="mile" /></quantity>.  Find the work done by the
+              wind on the airplane during this part of the journey.
             </p>
-            </statement>
-            <answer>
-                <p><m>-6363.96</m></p>
-            </answer>
-            <solution>
-                <p>The displacement vector is <m>\vv_3 = \langle 200\cos(135^\circ),200\sin(135^\circ)\rangle = \langle -141.42, 141.42\rangle</m>. The work is therefore <m>\vv_3 \cdot \vF = -6363.96</m>.</p>
-            </solution>
+          </statement>
+          <answer>
+            <p><m>-6363.96</m></p>
+          </answer>
+          <solution>
+            <p>The displacement vector is <m>\vv_3 = \langle
+            200\cos(135^\circ),200\sin(135^\circ)\rangle = \langle
+            -141.42, 141.42\rangle</m>. The work is therefore <m>\vv_3
+            \cdot \vF = -6363.96</m>.</p>
+          </solution>
         </task>
     </exploration>
   </introduction>
 
-  <subsection>
+  <subsection xml:id="SS_Vector_IdeaLineIntegral_OrientCurve">
     <title>Orientations of Curves</title>
     <p>
-      Given our motivation for calculating the work that a force field does
-      on an object as it moves through the field, it is natural to concern
-      ourselves with <em>how</em> the object moves.
-      In particular, in many
-      circumstances it will be different if an object moves from the point
-      <m>(0,1)</m> to the point <m>(4,3)</m> by first going up the <m>y</m>-axis to <m>(0,3)</m>
-      and then moving horizontally to <m>(4,3)</m> than if the object moves along
-      the line segment from <m>(0,1)</m> directly to <m>(4,3)</m>.
-      Similarly, given a
-      fixed force field, we would expect the work done to be different (in
-      fact, opposite) if the object moves from <m>(4,3)</m> to <m>(0,1)</m> directly
-      along a line segment.
-      We say that a curve in <m>\R^2</m> or <m>\R^3</m> is
-      <term>oriented</term> if we have specified the direction of travel along the
-      curve.
-      When a curve is given parametrically
-      (including as a
-      vector-valued function),
-      our convention will be that the orientation
-      follows from the smallest allowable value of the parameter to the largest.
+      Given our motivation for calculating the work that a force field
+      does on an object as it moves through the field, it is natural
+      to concern ourselves with <em>how</em> the object moves.  In
+      particular, in many circumstances it will be different if an
+      object moves from the point <m>(0,1)</m> to the point
+      <m>(4,3)</m> by first going up the <m>y</m>-axis to <m>(0,3)</m>
+      and then moving horizontally to <m>(4,3)</m> than if the object
+      moves along the line segment from <m>(0,1)</m> directly to
+      <m>(4,3)</m>.  Similarly, given a fixed force field, we would
+      expect the work done to be different (in fact, opposite) if the
+      object moves from <m>(4,3)</m> to <m>(0,1)</m> directly along a
+      line segment.  We say that a curve in <m>\R^2</m> or <m>\R^3</m>
+      is <term>oriented</term> if we have specified the direction of
+      travel along the curve.  When a curve is given parametrically
+      (including as a vector-valued function), our convention will be
+      that the orientation follows from the smallest allowable value
+      of the parameter to the largest.
     </p>
 
-    <activity xml:id="A_12_2_1">
-        <introduction>
-            <p>
-        Find parameterizations of each of the curves described
-        below.
-        Ensure that each curve's orientation matches the one specified.
-            </p>
+    <activity xml:id="act_Vector_IdeaLineIntegral_OrientCurve">
+      <introduction>
+        <p>
+        For each curve below, find a parameterization of the curve.
+        Ensure that each curve's orientation matches the one
+        specified. 
+        </p>
         </introduction>
         <task>
-            <statement>
+          <statement>
             <p>
-              The line segment in <m>\R^3</m> from <m>(0,1,-2)</m> to <m>(3,-1,2)</m>.
+              The line segment in <m>\R^3</m> from <m>(0,1,-2)</m> to
+              <m>(3,-1,2)</m>.
             </p>
-            </statement>
-            <answer>
-                <p><m>\vr(t) = 3t\vi + (1-2t)\vj + (-2+4t)\vk</m> for <m>0\leq t\leq 1</m></p>
-            </answer>
-            <solution>
-                <p>The direction vector for the line segment is <m>\vv = \langle 3-0, -1-1, 2-(-2)\rangle = \langle 3,-2,4\rangle</m>. The line segment starts at <m>\vr_0 = \langle 0,1,-2\rangle</m>. Thus, the line segment given as the vector-valued function <me>\vr(t) = 3t\vi + (1-2t)\vj + (-2+4t)\vk\qquad\text{for }0\leq t\leq 1</me>.</p>
-            </solution>
+          </statement>
+          <answer>
+            <p><m>\vr(t) = 3t\vi + (1-2t)\vj + (-2+4t)\vk</m> for
+            <m>0\leq t\leq 1</m></p>
+          </answer>
+          <solution>
+            <p>The direction vector for the line segment is <m>\vv =
+            \langle 3-0, -1-1, 2-(-2)\rangle = \langle
+            3,-2,4\rangle</m>. The line segment starts at <m>\vr_0 =
+            \langle 0,1,-2\rangle</m>. Thus, the line segment given as
+            the vector-valued function <me>\vr(t) = 3t\vi + (1-2t)\vj
+            + (-2+4t)\vk\qquad\text{for }0\leq t\leq 1</me>.</p>
+          </solution>
         </task>
         <task>
-            <statement>
+          <statement>
             <p>
-              The line segment in <m>\R^3</m> from <m>(3,-1,2)</m> to <m>(0,1,-2)</m>.
+              The line segment in <m>\R^3</m> from <m>(3,-1,2)</m> to
+              <m>(0,1,-2)</m>.
             </p>
-            </statement>
-            <answer>
-                <p><m>\vr(t) = (3-3t)\vi + (-1+2t)\vj + (2-4t)\vk</m> for <m>0\leq t\leq 1</m></p>
-            </answer>
-            <solution>
-                <p>The direction vector for the line segment is <m>\vv = \langle 0-3, 1-(-1), -2-2\rangle = \langle -3,2,-4\rangle</m>. The line segment starts at <m>\vr_0 = \langle 3,-1,2\rangle</m>. Thus, the line segment given as the vector-valued function <me>\vr(t) = (3-3t)\vi + (-1+2t)\vj + (2-4t)\vk\qquad\text{for }0\leq t\leq 1</me>.</p>
-            </solution>
+          </statement>
+          <answer>
+            <p><m>\vr(t) = (3-3t)\vi + (-1+2t)\vj + (2-4t)\vk</m> for
+            <m>0\leq t\leq 1</m></p>
+          </answer>
+          <solution>
+            <p>The direction vector for the line segment is <m>\vv =
+            \langle 0-3, 1-(-1), -2-2\rangle = \langle
+            -3,2,-4\rangle</m>. The line segment starts at <m>\vr_0 =
+            \langle 3,-1,2\rangle</m>. Thus, the line segment given as
+            the vector-valued function <me>\vr(t) = (3-3t)\vi +
+            (-1+2t)\vj + (2-4t)\vk\qquad\text{for }0\leq t\leq
+            1</me>.</p>
+          </solution>
         </task>
         <task>
-            <statement>
+          <statement>
             <p>
-              The circle of radius <m>3</m>
-              (in <m>\R^2</m>)
-              centered at the origin,
-              beginning at the point <m>(0,-3)</m> and proceeding clockwise around the
-              circle.
+              The circle of radius <m>3</m> (in <m>\R^2</m>) centered
+              at the origin, beginning at the point <m>(0,-3)</m> and
+              proceeding clockwise around the circle.
             </p>
-            </statement>
-            <answer>
-                <p><m>\vr(t) = \langle 3\cos(t),-3\sin(t)\rangle</m> for <m>\pi/2\leq t \leq 5\pi/2</m></p>
-            </answer>
-            <solution>
-                <p>We can parameterize the circle in question in a clockwise direction as <m>\vr(t) = \langle 3\cos(t),-3\sin(t)\rangle</m>. To get the correct starting point, we require <m>\pi/2\leq t \leq 5\pi/2</m>.</p>
-            </solution>
+          </statement>
+          <answer>
+            <p><m>\vr(t) = \langle 3\cos(t),-3\sin(t)\rangle</m> for
+            <m>\pi/2\leq t \leq 5\pi/2</m></p>
+          </answer>
+          <solution>
+            <p>We can parameterize the circle in question in a
+            clockwise direction as <m>\vr(t) = \langle
+            3\cos(t),-3\sin(t)\rangle</m>. To get the correct starting
+            point, we require <m>\pi/2\leq t \leq 5\pi/2</m>.</p>
+          </solution>
         </task>
         <task>
-            <statement>
+          <statement>
             <p>
-              The portion of the parabola <m>y^2 = x</m> from the point <m>(4,2)</m> to
-              the point <m>(1,-1)</m>.
+              In <m>\R^2</m>, the portion of the parabola <m>y^2 =
+              x</m> from the point <m>(4,2)</m> to the point
+              <m>(1,-1)</m>.
             </p>
-                        </statement>
-            <answer>
-                <p><m>\langle t^2,-t\rangle</m> for <m>-2\leq t\leq 1</m></p>
-            </answer>
-            <solution>
-                <p>Here we can let <m>y(t) = -t</m> and <m>x(t) = t^2</m> for <m>-2\leq t\leq 1</m>.</p>
-            </solution>
+          </statement>
+          <answer>
+            <p><m>\langle t^2,-t\rangle</m> for <m>-2\leq t\leq
+            1</m></p>
+          </answer>
+          <solution>
+            <p>Here we can let <m>y(t) = -t</m> and <m>x(t) = t^2</m>
+            for <m>-2\leq t\leq 1</m>.</p>
+          </solution>
         </task>
     </activity>
+    <p>Notice that there are, in general, many ways to parameterize an
+    oriented curve. With line segments, it is common to have the
+    parameter range from <m>0</m> to <m>1</m>, although there are
+    sometimes good reasons to choose another method. For circles and
+    ellipses, you may find it useful to interchage the placement of
+    <m>\cos(t)</m> and <m>\sin(t)</m> to change the orientation, but
+    then careful attention may need to be paid to the start and end
+    points. The interactive graphing applet below allows you to plot
+    parametric curves. Click the <q>Animate</q> button to trace out
+    the curve from your lower value of <m>t</m> to your upper value of
+    <m>t</m>. (Type enter/return on your keyboard to update the graph
+    after editing a text box.) For curves in <m>\R^2</m>, check the
+    <q>Restrict view to 2D</q> for ease of viewing.</p>
+    <figure>
+      <caption>A CalcPlot3D applet to explore oriented curves</caption>
+      <interactive calcplot3d="type=spacecurve;spacecurve=curve;x=cos(5t);y=2sin(3t);z=3-0.5t;visible=true;tmin=0;tmax=10;tsteps=100;color=rgb(255,0,0);showtrace=true;tval=5;constcol=true;twod=false;arrows=5;showpt=true;trace=false;vel=false;acc=false;osc=false;k=false;repeat=false;bounce=false;dashed=false;tanline=false;showtvector=false;shownvector=false;showbvector=false;showtnbeqs=false;showtnblabels=false;showoscplane=false;showrectplane=false;shownormplane=false&amp;type=window;hsrmode=3;nomidpts=true;anaglyph=-1;center=8.236391035463319,4.755282581475766,3.0901699437494745,1;focus=0,0,0,1;up=0,0,2,1;transparent=false;alpha=140;twoviews=false;unlinkviews=false;axisextension=0.7;xaxislabel=x;yaxislabel=y;zaxislabel=z;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.5;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);xmin=-4;xmax=4;ymin=-4;ymax=4;zmin=-4;zmax=4;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;zoom=0.542667;xscalefactor=1;yscalefactor=1;zscalefactor=1" variant="application" width="95%"
+		   aspect="10:16.32" />
+    </figure>
   </subsection>
 
-  <subsection xml:id="SS-12-2-line-integrals">
+  <subsection xml:id="SS_Vector_IdeaLineIntegral_LineIntegrals">
     <title>Line Integrals</title>
     <p>
-      Just as when we differentiated a vector-valued function <m>\vr(t)</m> to
-      find a tangent vector,
-      we begin by dividing a curve <m>C</m> oriented from
-      a point <m>P</m> to a point <m>Q</m> into <m>n</m> small,
-      straight pieces.
-      Each of
-      these pieces is in an area where the vector field <m>\vF</m> is nearly
-      constant.
-      In <xref ref="fig_12_2_curve-vectors" text="type-global" />, we show this
-      situation.
-      Each <m>\vr_i</m> is the tip of a vector that traces out the
-      curve, and then the <m>\Delta\vr_i = \vr_{i+1}-\vr_i</m> (shown in blue)
-      approximate the curve <m>C</m>.
-      The green vectors are the vectors in the
-      vector field <m>\vF</m> at each of the designated points along the curve.
+      Just as when we differentiated a vector-valued function
+      <m>\vr(t)</m> to find a tangent vector, we begin by dividing a
+      curve <m>C</m> oriented from a point <m>P</m> to a point
+      <m>Q</m> into <m>n</m> small, straight pieces.  Each of these
+      pieces is in an area where the vector field <m>\vF</m> is nearly
+      constant, provided we use enough pieces.  In <xref
+      ref="fig_Vector_IdeaLineIntegral_CurveVectors" />, we show this
+      situation.  Each <m>\vr_i</m> is the tip of a vector that traces
+      out the curve, which makes the vectors <m>\Delta\vr_i =
+      \vr_{i+1}-\vr_i</m> (shown in blue) approximate the curve
+      <m>C</m>.  The green vectors are the vectors in the vector field
+      <m>\vF</m> at each of the designated points along the curve.
     </p>
 
-    <figure xml:id="fig_12_2_curve-vectors">
-      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point
-      <m>Q</m>. The tips of the vectors <m>\vr_i</m> that trace out the curve are
-      shown as points. The blue vectors are the <m>\Delta\vr_i</m>, while the
-      green vectors are the vectors associated to each of the points by a
-      vector field <m>\vF</m>.</caption>
-      <image width="45%" source="images/fig_12_2_curve_vec_field" />
+    <figure xml:id="fig_Vector_IdeaLineIntegral_CurveVectors">
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to
+      the point <m>Q</m>. The tips of the vectors <m>\vr_i</m> that
+      trace out the curve are shown as points. The blue vectors are
+      the <m>\Delta\vr_i</m>, while the green vectors are the vectors
+      associated to each of the points by a vector field
+      <m>\vF</m>.</caption>
+      <image width="50%" source="images/fig_12_2_curve_vec_field">
+	<description>An oriented curve from a point <m>P</m> to a
+	point <m>Q</m>. The curve is broken up by points
+	<m>\vr_0,\dots,\vr_n</m> that are the tips of position vectors
+	as points along the curve. Blue vectors from <m>\vr_i</m> to
+	<m>\vr_{i+1}</m> are drawn to approximate the curve. At each
+	<m>\vr_i</m>, there is also a green vector depicting the
+	element of the vector field <m>\vF</m> with tail at that
+	point.</description>
+      </image>
     </figure>
 
     <p>
-      If we are trying to figure out how much a wind current helps or
-      hinders an aircraft flying along a path determined by the curve, then
-      calculating the dot product <m>\vF(\vr_i)\cdot \Delta\vr_i</m> makes sense for
-      the local amount of help or hindrance. This is because
-       if the vector <m>\vr_i</m> along the
-      curve and the force field vector <m>\vF(\vr_i)</m> point in similar
-      directions, the dot product will be positive.<fn>
-      We are abusing
-      notation here a tiny bit, since technically the domain of <m>\vF</m> is
-      points in <m>\R^2</m> or <m>\R^3</m>,
-      and <m>\vr_i</m> is a vector.
-      By <m>\vF(\vr)</m>,
-      we mean <m>\vF(r_1,r_2)</m>, where <m>\vr= \langle r_1,r_2\rangle</m>.
-      </fn> On the other hand, if
-      the angle between them is obtuse,
-      the dot product will be negative and
-      we also would note that the force field is hindering the aircraft's
-      progress.
-      Taking the sum over <m>i=0,\dots,n-1</m>, we have a Riemann sum
-      that approximates the work done by the vector field on the aircraft as
-      it flies along <m>C</m>:
+      If we are trying to determine how much a wind current helps or
+      hinders an aircraft flying along a path determined by the curve,
+      then calculating the dot product <m>\vF(\vr_i)\cdot
+      \Delta\vr_i</m> makes sense for the local amount of help or
+      hindrance. This is because if the vector <m>\vr_i</m> along the
+      curve and the force field vector <m>\vF(\vr_i)</m> point in
+      similar directions, the dot product will be positive.<fn> We are
+      abusing notation here a tiny bit, since technically the domain
+      of <m>\vF</m> is points in <m>\R^2</m> or <m>\R^3</m>, and
+      <m>\vr_i</m> is a vector.  By <m>\vF(\vr)</m>, we mean
+      <m>\vF(r_1,r_2)</m>, where <m>\vr= \langle r_1,r_2\rangle</m>.
+      </fn> On the other hand, if the angle between them is obtuse,
+      the dot product will be negative and we also would note that the
+      force field is hindering the aircraft's progress.  Taking the
+      sum over <m>i=0,\dots,n-1</m>, we have a Riemann sum that
+      approximates the work done by the vector field on the aircraft
+      as it flies along <m>C</m>:
       <me>
         \sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta \vr_i
       </me>.
@@ -287,14 +345,14 @@
       This suggests the following definition.
     </p>
 
-    <definition xml:id="def_12_2_line-integral">
+    <definition xml:id="def_Vector_IdeaLineIntegral_LineIntegral">
       <statement>
         <p>
-          Let <m>C</m> be an oriented curve and
-          <m>\vF</m> a vector field defined in a region containing <m>C</m>.
-          The
-          <term>line integral</term><idx><h>line integral</h><h>definition</h></idx> of <m>\vF</m>
-          along <m>C</m> is
+          Let <m>C</m> be an oriented curve and <m>\vF</m> a vector
+          field defined in a region containing <m>C</m>.  The
+          <term>line integral</term><idx><h>line
+          integral</h><h>definition</h></idx> of <m>\vF</m> along
+          <m>C</m> is
           <me>
             \int_C \vF\cdot d\vr = \lim_{|\Delta\vr_i|\to 0}
             \sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta\vr_i
@@ -305,379 +363,481 @@
     </definition>
 
     <p>
-      The limit in <xref ref="def_12_2_line-integral" text="type-global" /> exists provided
-      that <m>\vF</m> is a continuous vector field,
-      by which we mean that each
-      component function of <m>\vF</m> is continuous as a function of <m>2</m> or <m>3</m>
-      variables, and that <m>C</m> is a piecewise smooth curved traced out from
-      its initial point to its terminal point without retracing any portion
-      of the curve.
+      The limit in <xref
+      ref="def_Vector_IdeaLineIntegral_LineIntegral" /> exists
+      provided that <m>\vF</m> is a continuous vector field, by which
+      we mean that each component function of <m>\vF</m> is continuous
+      as a function of <m>2</m> or <m>3</m> variables, and that
+      <m>C</m> is a piecewise smooth curved traced out from its
+      initial point to its terminal point without retracing any
+      portion of the curve.
     </p>
 
     <p>
       Because the dot products in the definition of the line integral
-      <m>\int_C\vF\cdot d\vr</m> can each be viewed as the work done by <m>\vF</m> as
-      an object moves along the
-      (very small)
-      vector <m>\Delta\vr_i</m>, the line
-      integral gives the total work done by the vector field on an object
-      that moves along <m>C</m>
-      (in the direction of its orientation).
+      <m>\int_C\vF\cdot d\vr</m> can each be viewed as the work done
+      by <m>\vF</m> as an object moves along the (very small) vector
+      <m>\Delta\vr_i</m>, the line integral gives the total work done
+      by the vector field on an object that moves along <m>C</m> (in
+      the direction of its orientation).
     </p>
 
-    <activity xml:id="A_12_2_2">
-        <introduction>
-            <p>
-        Shown in
-        <xref ref="F_12_2-idea-figs" text="type-global" />
-        are two vector fields, <m>\vF</m> and <m>\vG</m>
-        and four oriented curves, as labeled in the plots.
-        For each of the
-        line integrals below, determine if its value should be positive,
-        negative, or zero.
-            </p>
-            <figure xml:id="F_12_2-idea-figs">
-                <caption>Vector fields</caption>
-                <sidebyside widths="47% 47%" margins="0% 6% 0%">
-                    <figure>
-                        <caption><m>\vF</m></caption>
-                        <image source="images/fig_12_2_idea_field_1"/>
-                    </figure>
-                    <figure>
-                        <caption><m>\vG</m></caption>
-                        <image source="images/fig_12_2_idea_field_2"/>
-                    </figure>
-                </sidebyside>
+    <activity xml:id="act_Vector_IdeaLineIntegral_Sign">
+      <introduction>
+        <p>
+          Shown in
+          <xref ref="fig_Vector_IdeaLineIntegral_Sign" />
+          are two vector fields, <m>\vF</m> and <m>\vG</m> and four
+          oriented curves, as labeled in the plots.  For each of the
+          line integrals below, determine if its value should be
+          positive, negative, or zero. Do this by thinking about if
+	  the vector field is helping or hindering a particle moving
+	  along the oriented curve, rather than by doing calculations.
+        </p>
+        <figure xml:id="fig_Vector_IdeaLineIntegral_Sign">
+          <caption>Vector fields and oriented curves</caption>
+          <sidebyside widths="47% 47%" margins="0% 6% 0%">
+            <figure>
+              <caption><m>\vF</m></caption>
+              <image source="images/fig_12_2_idea_field_1">
+		<description>A vector field radiating from the origin
+		with vectors getting longer as distance from the
+		origin increases. There is an oriented line segment
+		labeled <m>C_1</m> from <m>(-2,-2)</m> to <m>(2,2)</m>
+		and an oriented line segment labeled <m>C_2</m> from
+		<m>(2,-2)</m> to <m>(0,-2)</m>.</description>
+	      </image>
             </figure>
-        </introduction>
-        <task>
-            <statement>
-                <p>
-                    <m>\displaystyle\int_{C_1}\vF\cdot d\vr</m>
-                </p>
-            </statement>
-            <answer>
-                <p><m>0</m></p>
-            </answer>
-            <solution>
-                <p>The portion of <m>C_1</m> that lies in the third quadrant is oriented in the opposite direction of the vector field. On the other hand, the portion of <m>C_1</m> in the first quadrant is oriented in the same direction as <m>\vF</m>. By symmetry, this forces <m>\displaystyle\int_{C_1}\vF\cdot d\vr=0</m>.</p>
-            </solution>
-        </task>
-        <task>
-            <statement>
-            <p>
-              <m>\displaystyle\int_{C_2}\vF\cdot d\vr</m>
-            </p>
-            </statement>
-            <answer>
-                <p>Negative</p>
-            </answer>
-            <solution>
-                <p>The angle between the vectors of <m>\vF</m> and <m>C_2</m> are all obtuse. Thus, the line integral is negative.</p>
-            </solution>
-        </task>
-        <task>
-            <statement>
-            <p>
-              <m>\displaystyle\int_{C_3}\vG\cdot d\vr</m>
-            </p>
-            </statement>
-            <answer>
-                <p>Negative</p>
-            </answer>
-            <solution>
-                <p>The angle between the vectors of <m>\vG</m> and <m>C_3</m> are all obtuse (except for <m>x=0</m>, where there is no angle), and thus the line integral is negative.</p>
-            </solution>
-        </task>
-        <task>
-            <statement>
-            <p>
-              <m>\displaystyle\int_{C_4}\vG\cdot d\vr</m>
-            </p>
-            </statement>
-            <answer>
-                <p>0</p>
-            </answer>
-            <solution>
-                <p>The vector field <m>\vG</m> is always orthogonal to <m>C_4</m>. Thus, the line integral is <m>0</m>.</p>
-            </solution>
-        </task>
+            <figure>
+              <caption><m>\vG</m></caption>
+              <image source="images/fig_12_2_idea_field_2">
+		<description>A vector field with all vectors parallel
+		to the <m>y</m>-axis. Vectors get longer as distance
+		from the <m>y</m>-axis increases. Vectors with
+		<m>x>0</m> point in the positive <m>y</m>-direction,
+		while vectors with <m>x\lt 0</m> point in the negative
+		<m>y</m>-direction. The top half of the circle of
+		radius <m>2.5</m> centered at the origin and oriented
+		clockwise is labeled <m>C_3</m>. There is an oriented
+		line segment labeled <m>C_4</m> from <m>(2,-2)</m> to
+		<m>(0,-2)</m>.</description>
+	      </image>
+            </figure>
+          </sidebyside>
+        </figure>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle\int_{C_1}\vF\cdot d\vr</m>
+          </p>
+        </statement>
+        <answer>
+          <p><m>0</m></p>
+        </answer>
+        <solution>
+          <p>The portion of <m>C_1</m> that lies in the third quadrant
+          is oriented in the opposite direction of the vector
+          field. On the other hand, the portion of <m>C_1</m> in the
+          first quadrant is oriented in the same direction as
+          <m>\vF</m>. By symmetry, this forces
+          <m>\displaystyle\int_{C_1}\vF\cdot d\vr=0</m>.</p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle\int_{C_2}\vF\cdot d\vr</m>
+          </p>
+        </statement>
+        <answer>
+          <p>Negative</p>
+        </answer>
+        <solution>
+          <p>The angle between the vectors of <m>\vF</m> and
+          <m>C_2</m> are all obtuse. Thus, the line integral is
+          negative.</p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle\int_{C_3}\vG\cdot d\vr</m>
+          </p>
+        </statement>
+        <answer>
+          <p>Negative</p>
+        </answer>
+        <solution>
+          <p>The angle between the vectors of <m>\vG</m> and
+          <m>C_3</m> are all obtuse (except for <m>x=0</m>, where
+          there is no angle), and thus the line integral is
+          negative.</p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle\int_{C_4}\vG\cdot d\vr</m>
+          </p>
+        </statement>
+        <answer>
+          <p>0</p>
+        </answer>
+        <solution>
+          <p>The vector field <m>\vG</m> is always orthogonal to
+          <m>C_4</m>. Thus, the line integral is <m>0</m>.</p>
+        </solution>
+      </task>
     </activity>
 
     <p>
       The next several sections will be devoted to determining ways to
-      calculate line integrals, since the limit in the definition,
-      just like
-      the limit in the definition of every other type of integral we've
-      studied so far, is cumbersome to work with in most cases.
-      However, in
-      the case where the oriented curve <m>C</m> is composed of horizontal and
-      vertical line segments, we can make a rather quick reduction to a
+      calculate line integrals. As with the limits in the definition
+      of every other type of integral we've studied so far, the limit
+      in the definition of the line integral is is cumbersome to work
+      with in most cases.  However, in the case where the oriented
+      curve <m>C</m> is composed of horizontal and vertical line
+      segments, we can make a rather quick reduction to a
       single-variable integral, as the following example shows.
     </p>
 
-    <example xml:id="ex_12_2_line-int">
+    <example xml:id="ex_Vector_IdeaLineIntegral_HorizVert">
       <statement>
         <p>
           Consider the constant vector field <m>\vF(x,y) = \langle
-          2,1\rangle</m>.
-          Let <m>C</m> be the curve that follows the horizontal line
-          segment from <m>(1,1)</m> to <m>(4,1)</m> and then continues down the vertical
-          line segment to <m>(4,-2)</m>.
-          <xref ref="fig_12_2_curve-field" text="type-global" /> shows
-          <m>\vF</m> and <m>C</m>, including the orientation. Calculate <m>\displaystyle\int_C\vF\cdot d\vr</m>
+          2,1\rangle</m>.  Let <m>C</m> be the curve that follows the
+          horizontal line segment from <m>(1,1)</m> to <m>(4,1)</m>
+          and then continues down the vertical line segment to
+          <m>(4,-2)</m>.  <xref
+          ref="fig_Vector_IdeaLineIntegral_ConstantField" /> shows
+          <m>\vF</m> and <m>C</m>, including the
+          orientation. Calculate <m>\displaystyle\int_C\vF\cdot
+          d\vr</m>
         </p>
 
-        <figure xml:id="fig_12_2_curve-field">
+        <figure xml:id="fig_Vector_IdeaLineIntegral_ConstantField">
           <caption>An oriented curve from <m>(1,1)</m> to <m>(4,-2)</m> in a vector
           field <m>\vF</m>.</caption>
-          <image width="45%" source="images/fig_12_2_field_line_segs" />
+          <image width="45%" source="images/fig_12_2_field_line_segs">
+	    <description>The constant vector field <m>\langle
+	    2,1\rangle</m> as well as an oriented curve consisting of
+	    the line segment from <m>(1,1)</m> to <m>(4,1)</m>
+	    followed by the line segment from <m>(4,1)</m> to
+	    <m>(4,-2)</m>.</description>
+	  </image>
         </figure>
       </statement>
       <solution>
         <p>
-          To calculate <m>\int_C\vF\cdot d\vr</m>,
-          we start by working with the
-          horizontal line segment.
-          Along that part of <m>C</m>, notice that
-          <m>d\vr\approx \Delta\vr = \Delta x\vi</m>.
-          Thus, the Riemann sum that
-          calculates the line integral along this portion of <m>C</m> consists of
-          terms of the form <m>\langle 2,1\rangle\cdot (\Delta x \vi) = 2\Delta
-          x</m>.
-          Along this part of <m>C</m>,
-          <m>x</m> ranges from <m>1</m> to <m>4</m>, and thus we
-          can turn the Riemann sum here into the definite integral <m>\int_1^4 2\,
-          dx = 6</m>.
+          To calculate <m>\int_C\vF\cdot d\vr</m>, we start by working
+          with the horizontal line segment.  Along that part of
+          <m>C</m>, notice that <m>d\vr\approx \Delta\vr = \Delta
+          x\vi</m>.  Thus, the Riemann sum that calculates the line
+          integral along this portion of <m>C</m> consists of terms of
+          the form <m>\langle 2,1\rangle\cdot (\Delta x \vi) = 2\Delta
+          x</m>.  Along this part of <m>C</m>, <m>x</m> ranges from
+          <m>1</m> to <m>4</m>, and thus we can turn the Riemann sum
+          here into the definite integral <m>\int_1^4 2\, dx = 6</m>.
           Since the vectors are generally pointing in a direction that
-          agrees with the orientation of <m>C</m>,
-          we are not surprised to have a
-          positive value here.
+          agrees with the orientation of <m>C</m>, we are not
+          surprised to have a positive value here.
         </p>
 
         <p>
-          Now we turn our attention to the vertical portion of <m>C</m>.
-          Here <m>d\vr
-          \approx \Delta\vr = \Delta y\vj</m>,
-          which means that <m>\vF\cdot
-          d\vr\approx 1\Delta y</m>.
-          Hence, our Riemann sum can
-          be calculated by the definite integral <m>\int_1^{-2} 1\, dy =
-          -3</m>.
-          Notice that the limits of integration here were set up to match
-          the orientation of <m>C</m>.
-          Also, the negative value should not be
-          unexpected, since <m>C</m> is oriented in a direction for which the vectors
-          of <m>\vF</m> point in a direction that would hinder motion along <m>C</m>.
+          Now we turn our attention to the vertical portion of
+          <m>C</m>.  Here <m>d\vr \approx \Delta\vr = \Delta y\vj</m>,
+          which means that <m>\vF\cdot d\vr\approx 1\Delta y</m>.
+          Hence, our Riemann sum can be calculated by the definite
+          integral <m>\int_1^{-2} 1\, dy = -3</m>.  Notice that the
+          limits of integration here were set up to match the
+          orientation of <m>C</m>.  Also, the negative value should
+          not be unexpected, since <m>C</m> is oriented in a direction
+          for which the vectors of <m>\vF</m> point in a direction
+          that would hinder motion along <m>C</m>.
         </p>
 
         <p>
-          Combining these two calculations,
-          we find that <m>\int_C \vF\cdot d\vr
-          = 6 - 3 = 3</m>.
+          Combining these two calculations, we find that <m>\int_C
+          \vF\cdot d\vr = 6 - 3 = 3</m>.
         </p>
       </solution>
     </example>
   </subsection>
 
-  <subsection>
+  <subsection xml:id="SS_Vector_IdeaLineIntegral_Properties">
     <title>Properties of Line Integrals</title>
     <p>
-      In <xref ref="ex_12_2_line-int" text="type-global" />,
-      we implicitly made use of the idea
-      that if <m>C</m> can be broken up into two curves <m>C_1</m> and <m>C_2</m> such that
-      the endpoint of <m>C_1</m> is the start point of <m>C_2</m>,
-      then the line
-      integral of <m>\vF</m> along <m>C</m> is the sum of the line integrals of <m>\vF</m>
-      along <m>C_1</m> and along <m>C_2</m>.
-      This probably seems natural, based on the
-      property for definite integrals which tells us that
+      In <xref ref="ex_Vector_IdeaLineIntegral_HorizVert"/>, we
+      implicitly made use of the idea that if <m>C</m> can be broken
+      up into two curves <m>C_1</m> and <m>C_2</m> such that the
+      terminal point of <m>C_1</m> is the initial point of <m>C_2</m>,
+      then the line integral of <m>\vF</m> along <m>C</m> is the sum
+      of the line integrals of <m>\vF</m> along <m>C_1</m> and along
+      <m>C_2</m>.  Recalling the property for definite integrals that
+      tells us
       <me>
         \int_a^b f(x)\, dx = \int_a^c f(x)\, dx + \int_c^b f(x)\, dx
-      </me>.
+      </me>, the ability to work with line integrals in this way is
+      probably not surprising.
     </p>
 
     <p>
-      The list below summarizes some other properties of line integrals,
-      each of which has a familiar analogue amongst the properties of
-      definite integrals.
-      If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m>
-      from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we
-      denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows
-      <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.
-      Also, if <m>C</m> is an
-      oriented curve,
-      <m>-C</m> denotes the same curve but with the opposite
-      orientation.
+      Before stating some useful properties of line integrals, we will
+      establish some convenient notation. If <m>C_1</m> and <m>C_2</m>
+      are oriented curves, with <m>C_1</m> from a point <m>P</m> to a
+      point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>,
+      we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to
+      <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues
+      along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented
+      curve, <m>-C</m> denotes the same curve but with the opposite
+      orientation. The list below summarizes some other properties of
+      line integrals, each of which has a familiar analogue amongst
+      the properties of definite integrals.
     </p>
-    <assemblage>
-        <title>Properties of Line Integrals</title>
-    <p>
-      For a constant scalar <m>k</m>,
-      vector fields <m>\vF</m> and <m>\vG</m>, and
-      oriented curves <m>C</m>,
-      <m>C_1</m>, and <m>C_2</m>, the following properties hold:
+    <assemblage xml:id="asm_Vector_IdeaLineIntegral_Properties">
+      <title>Properties of Line Integrals</title>
+      <p>
+	For a constant scalar <m>k</m>, vector fields <m>\vF</m> and
+	<m>\vG</m>, and oriented curves <m>C</m>, <m>C_1</m>, and
+	<m>C_2</m>, the following properties hold:
 
-      <ol label="a.">
-        <li>
-          <p>
-            <m>\displaystyle\int_C (k\vF)\cdot d\vr = k\int_C\vF\cdot d\vr</m>
-          </p>
-        </li>
-
-        <li>
-          <p>
-            <m>\displaystyle\int_C(\vF+\vG)\cdot d\vr = \int_C \vF\cdot d\vr +
-            \int_C\vG\cdot d\vr</m>
-          </p>
-        </li>
-
-        <li>
-          <p>
-            <m>\displaystyle\int_{-C}\vF\cdot d\vr = -\int_C \vF\cdot d\vr</m>
-          </p>
-        </li>
-
-        <li>
-          <p>
-            <m>\displaystyle\int_{C_1+C_2} \vF\cdot d\vr = \int_{C_1}\vF\cdot d\vr +
-            \int_{C_2}\vF\cdot d\vr</m>.
-          </p>
-        </li>
-      </ol>
-    </p>
-    </assemblage>
-
-    <activity xml:id="act_12_2_3">
-        <introduction>
+	<ol label="a.">
+          <li>
             <p>
-          <xref ref="F_12_2-field-practice" text="type-global" />
-        shows a vector field <m>\vF</m> as
-        well as six oriented curves, as labeled in the plot.
+              <m>\displaystyle\int_C (k\vF)\cdot d\vr = k\int_C\vF\cdot
+              d\vr</m>
+            </p>
+          </li>
+	  
+          <li>
+            <p>
+              <m>\displaystyle\int_C(\vF+\vG)\cdot d\vr = \int_C \vF\cdot d\vr +
+              \int_C\vG\cdot d\vr</m>
+            </p>
+          </li>
+	  
+          <li>
+            <p>
+              <m>\displaystyle\int_{-C}\vF\cdot d\vr = -\int_C \vF\cdot d\vr</m>
+            </p>
+          </li>
+	  
+          <li>
+            <p>
+              <m>\displaystyle\int_{C_1+C_2} \vF\cdot d\vr = \int_{C_1}\vF\cdot d\vr +
+              \int_{C_2}\vF\cdot d\vr</m>.
+            </p>
+          </li>
+	</ol>
       </p>
-
-      <figure xml:id="F_12_2-field-practice">
-        <caption>A vector field <m>\vF</m> and six oriented curves.</caption>
-        <image width="65%" source="images/fig_12_2_field_practice"/>
-      </figure>
-        </introduction>
-        <task>
-            <statement>
-          <p>
-            Is <m>\int_{C_5}\vF\cdot d\vr</m> positive, negative, or zero?
-            Explain.
-          </p>
-            </statement>
-            <answer>
-                <p>Negative</p>
-            </answer>
-            <solution>
-                <p>The portion of the vector field that produces acute angles with <m>C_5</m> has small magnitude than the portion that produces obtuse angles. Thus, the line integral must be negative.</p>
-            </solution>
-        </task>
-        <task>
-            <statement>
-          <p>
-            Let <m>C = C_1+C_2+C_3+C_4</m>.
-            Determine if <m>\displaystyle\int_C\vF\cdot d\vr</m> is
-            positive, negative, or zero.
-          </p>
-            </statement>
-            <answer>
-                <p>Negative</p>
-            </answer>
-            <solution>
-                <p>Notice that <m>\vF</m> is orthogonal to <m>C_1</m> and <m>C_3</m>. Thus, <m>\displaystyle\int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr = 0</m>. Where the magnitude of the vectors in <m>\vF</m> is larger, <m>\vF</m> points in the opposite direction as the orientation of <m>C</m>. Thus, <m>\int_C\vF\cdot d\vr</m> is negative.</p>
-            </solution>
-        </task>
-        <task>
-            <statement>
+    </assemblage>
+    
+    <activity xml:id="act_Vector_IdeaLineIntegral_Order">
+      <introduction>
         <p>
+          <xref ref="fig_Vector_IdeaLineIntegral_Order" />
+          shows a vector field <m>\vF</m> as well as six oriented
+          curves, as labeled in the plot.
+	</p>
+
+	<figure xml:id="fig_Vector_IdeaLineIntegral_Order">
+          <caption>A vector field <m>\vF</m> and six oriented curves.</caption>
+          <image width="65%" source="images/fig_12_2_field_practice">
+	    <description>A vector field in the first quadrant with
+	    <m>x,y\leq 5</m>. Vectors are parallel to the
+	    <m>y</m>-axis and point in the negative
+	    <m>y</m>-direction. Vectors get longer as distance from
+	    the <m>y</m>-axis increases. There are six labeled
+	    oriented curves. The curve <m>C_1</m> is the line segment
+	    from <m>(3,3)</m> to <m>(4,3)</m>. The curve <m>C_2</m> is
+	    the line segment from <m>(4,3)</m> to <m>(4,5)</m>. The
+	    curve <m>C_3</m> is the line segment from <m>(4,5)</m> to
+	    <m>(3,5)</m>. The curve <m>C_4</m> is the line segment
+	    from <m>(3,5)</m> to <m>(3,3)</m>. The curve <m>C_5</m> is
+	    the lower half of the circle of radius <m>1</m> centered
+	    at <m>(3,2)</m> oriented counterclockwise. The curve
+	    <m>C_6</m> is the line segment from <m>(1,1)</m> to
+	    <m>(1,5)</m>. 
+	    </description>
+	  </image>
+	</figure>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Is <m>\int_{C_5}\vF\cdot d\vr</m> positive, negative, or
+            zero?  Explain.
+          </p>
+        </statement>
+        <answer>
+          <p>Negative</p>
+        </answer>
+        <solution>
+          <p>The portion of the vector field that produces acute
+          angles with <m>C_5</m> has small magnitude than the portion
+          that produces obtuse angles. Thus, the line integral must be
+          negative.</p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Let <m>C = C_1+C_2+C_3+C_4</m>.  Determine if
+            <m>\displaystyle\int_C\vF\cdot d\vr</m> is positive,
+            negative, or zero.
+          </p>
+        </statement>
+        <answer>
+          <p>Negative</p>
+        </answer>
+        <solution>
+          <p>Notice that <m>\vF</m> is orthogonal to <m>C_1</m> and
+          <m>C_3</m>. Thus, <m>\displaystyle\int_{C_1}\vF\cdot d\vr =
+          \int_{C_3}\vF\cdot d\vr = 0</m>. Where the magnitude of the
+          vectors in <m>\vF</m> is larger, <m>\vF</m> points in the
+          opposite direction as the orientation of <m>C</m>. Thus,
+          <m>\int_C\vF\cdot d\vr</m> is negative.</p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
             Order the line integrals below from smallest to largest.
             <me>
               \int_{C_1}\vF\cdot d\vr\quad \int_{C_2}\vF\cdot d\vr\quad \int_{C_3}\vF\cdot d\vr\quad \int_{C_4}\vF\cdot d\vr\quad \int_{C_5}\vF\cdot d\vr\quad \int_{C_6}\vF\cdot d\vr
             </me>
           </p>
-            </statement>
-            <answer>
-                <p><m></m></p>
-            </answer>
-            <solution>
-                <p>Notice that <m>\displaystyle\int_{C_4}\vF\cdot d\vr</m> is the only one of the six line integrals that is positive, so it is the largest. Since <m>\vF</m> is orthogonal to <m>C_1</m> and <m>C_3</m>, <m>\displaystyle\int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr = 0</m>. Note that while <m>C_6</m> is twice as long as <m>C_2</m>, the vectors in the vector field that are hindering <m>C_2</m> are more than twice as long as those hindering <m>C_6</m> Thus, <m>\displaystyle\int_{C_2}\vF\cdot d\vr \lt \displaystyle\int_{C_6}\vF\cdot d\vr</m>. We do not yet have all the tools necessary to calculate the exact value of <m>\displaystyle\int_{C_5}\vF\cdot d\vr</m>. However, it is greater than <m>\displaystyle\int_{C_6}\vF\cdot d\vr</m>. Thus, the ordering is
-                <me>\int_{C_4}\vF\cdot d\vr > \int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr > \int_{C_5}\vF\cdot d\vr > \int_{C_6}\vF\cdot d\vr > \int_{C_2}\vF\cdot d\vr</me>.
-                </p>
-            </solution>
-        </task>
-    </activity>
-  </subsection>
-
-  <subsection xml:id="SS_12_2-circulation">
-    <title>The Circulation of a Vector Field</title>
-    <p>
-      If an oriented curve <m>C</m> ends at the same point where it started, we
-      say that <m>C</m> is <term>closed</term>.<idx><h>oriented curve</h><h>closed</h></idx>
-      The line integral of a vector field
-      <m>\vF</m> along a closed curve <m>C</m> is called the <term>circulation</term><idx><h>circulation</h></idx> of
-      <m>\vF</m> around <m>C</m>.
-      To emphasize the fact that <m>C</m> is closed, we
-      sometimes write <m>\oint_C \vF\cdot d\vr</m> for <m>\int_C \vF\cdot
-      d\vr</m>.
-      Circulation serves as a measure of a vector field's tendency
-      to rotate in a manner consistent with the orientation of the curve.
-    </p>
-
-    <activity xml:id="A_12_2_4">
-        <statement>
-            <p>
-        Determine if the circulation of the vector field around each of the
-        closed curves shown in <xref ref="F_12_2-circ" text="type-global" />
-        is positive, negative, or zero.
-      </p>
-
-      <figure xml:id="F_12_2-circ">
-        <caption>Vector fields and closed curves</caption>
-        <sidebyside widths="45% 45%" margins="2% 6% 2%">
-            <image width="45%" source="images/fig_12_2_circ_circle" />
-            <image width="45%" source="images/fig_12_2_circ_box" />
-        </sidebyside>
-      </figure>
         </statement>
         <answer>
-            <p>Circular curve has positive circulation. Larger rectangular curve has positive circulation. Smaller rectangular curve has negative circulation.
-            </p>
+          <p><m></m></p>
         </answer>
         <solution>
-            <p>
-                The circular curve is oriented consistently with the vector field. Thus, the circulation is positive. The larger rectangular curve is either orthogonal to the vector field or oriented consistently with the vector field. Thus, the circulation is positive. The smaller rectangular curve is orthogonal to the vector field or has the opposite orientation. Thus, its circulation is negative.
-            </p>
+          <p>Notice that <m>\displaystyle\int_{C_4}\vF\cdot d\vr</m>
+          is the only one of the six line integrals that is positive,
+          so it is the largest. Since <m>\vF</m> is orthogonal to
+          <m>C_1</m> and <m>C_3</m>,
+          <m>\displaystyle\int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot
+          d\vr = 0</m>. Note that while <m>C_6</m> is twice as long as
+          <m>C_2</m>, the vectors in the vector field that are
+          hindering <m>C_2</m> are more than twice as long as those
+          hindering <m>C_6</m> Thus,
+          <m>\displaystyle\int_{C_2}\vF\cdot d\vr \lt
+          \displaystyle\int_{C_6}\vF\cdot d\vr</m>. We do not yet have
+          all the tools necessary to calculate the exact value of
+          <m>\displaystyle\int_{C_5}\vF\cdot d\vr</m>. However, it is
+          greater than <m>\displaystyle\int_{C_6}\vF\cdot
+          d\vr</m>. Thus, the ordering is <me>\int_{C_4}\vF\cdot d\vr
+          > \int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr >
+          \int_{C_5}\vF\cdot d\vr > \int_{C_6}\vF\cdot d\vr >
+          \int_{C_2}\vF\cdot d\vr</me>.
+          </p>
         </solution>
+      </task>
     </activity>
   </subsection>
 
+  <subsection xml:id="SS_Vector_IdeaLineIntegral_Circulation">
+    <title>The Circulation of a Vector Field</title>
+    <p>
+      If an oriented curve <m>C</m> ends at the same point where it
+      started, we say that <m>C</m> is
+      <term>closed</term>.<idx><h>oriented
+      curve</h><h>closed</h></idx> The line integral of a vector field
+      <m>\vF</m> along a closed curve <m>C</m> is called the
+      <term>circulation</term><idx><h>circulation</h></idx> of
+      <m>\vF</m> around <m>C</m>.  To emphasize the fact that <m>C</m>
+      is closed, we sometimes write <m>\oint_C \vF\cdot d\vr</m> for
+      <m>\int_C \vF\cdot d\vr</m>.  Circulation serves as a measure of
+      a vector field's tendency to rotate in a manner consistent with
+      the orientation of the curve.
+    </p>
+
+    <activity xml:id="act_Vector_IdeaLineIntegral_Circulation">
+      <statement>
+        <p>
+          Determine if the circulation of the vector field around each
+          of the closed curves shown in <xref
+          ref="fig_Vector_IdeaLineIntegral_Circulation" /> is
+          positive, negative, or zero.
+      </p>
+
+      <figure xml:id="fig_Vector_IdeaLineIntegral_Circulation">
+        <caption>Vector fields and closed curves</caption>
+        <sidebyside widths="45% 45%" margins="2% 6% 2%">
+          <image width="45%" source="images/fig_12_2_circ_circle">
+	    <description>A vector field with vectors pointing along
+	    circles centered at the origin and in a clockwise
+	    direction. Vectors get longer as distance from the origin
+	    increases. Also shown is the circle of radius <m>1.5</m>
+	    centered at the origin. The circle is oriented
+	    clockwise.</description>
+	  </image>
+          <image width="45%" source="images/fig_12_2_circ_box">
+	    <description>A vector field with all vectors parallel to
+	    the <m>y</m>-axis. Vectors get longer as distance from the
+	    <m>y</m>-axis increases. Vectors with <m>x>0</m> point in
+	    the positive <m>y</m>-direction, while vectors with
+	    <m>x\lt 0</m> point in the negative
+	    <m>y</m>-direction. Also shown are two rectangles with
+	    sides parallel to the axes. One rectangle is oriented
+	    counterclockwise; its lower-left corner is at
+	    <m>(-2.25,-1.5)</m> and its upper-right corner is at
+	    <m>(1,2.5)</m>. The other rectangle is oriented clockwise;
+	    its lower-left corner is at <m>(-1.75,-3.2)</m> and its
+	    upper-right corner is at <m>(1.5,-2.1)</m>.</description>
+	  </image>
+        </sidebyside>
+      </figure>
+      </statement>
+      <answer>
+        <p>Circular curve has positive circulation. Larger rectangular
+        curve has positive circulation. Smaller rectangular curve has
+        negative circulation.
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The circular curve is oriented consistently with the vector
+          field. Thus, the circulation is positive. The larger
+          rectangular curve is either orthogonal to the vector field
+          or oriented consistently with the vector field. Thus, the
+          circulation is positive. The smaller rectangular curve is
+          orthogonal to the vector field or has the opposite
+          orientation. Thus, its circulation is negative.
+        </p>
+      </solution>
+    </activity>
+  </subsection>
+  
   <subsection>
     <title>Summary</title>
     <p>
     <ul>
       <li>
+	<p>An oriented curve is a vector-valued function of one
+	variable <m>\vr(t)</m> where we interpret the initial and
+	terminal values of the domain of <m>\vr</m> as giving an
+	orientation to the curve. A curve that ends at the same point
+	where it started is said to be closed.
+	</p>
+      </li>
+      <li>
         <p>
           A line integral measures of a vector field along an oriented
-          curve measures the extent to which the vector field points in a
-          direction consistent with the orientation of the curve.
+          curve measures the extent to which the vector field points
+          in a direction consistent with the orientation of the curve.
         </p>
       </li>
 
-      <li>
-        <p>
-          Line integrals are defined using Riemann sums by breaking the
-          curve into many small segments along which the vector field is
-          essentially constant.
-        </p>
-      </li>
 
       <li>
         <p>
-          Line integrals have many properties that are analogous to those
-          of definite integrals of functions of a single variable.
+          Line integrals have many properties that are analogous to
+          those of definite integrals of functions of a single
+          variable. The line integral of a vector field along a closed
+	  curve is called the circulation of the vector field along
+	  the curve.
         </p>
       </li>
     </ul>
