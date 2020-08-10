@@ -56,7 +56,7 @@
             var('t,s,x,y,z,r,theta')
             @interact
             def _():
-              plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,pi),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi,2*pi),color="#FFB000",thickness=2)+parametric_plot3d((t,0,1),(t,-1,1),color="#648FFF",thickness=2)+arrow3d((-.1,0,1),(.1,0,1),color="#648FFF")
+              plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,pi),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi,2*pi),color="#FFB000",thickness=2)+parametric_plot3d((t,0,1),(t,-1,1),color="#648FFF",thickness=2)+arrow3d((-.1,0,1),(.1,0,1),color="#648FFF")+arrow3d((cos(pi/2),sin(pi/2),cos(2*pi/2)),((cos(pi/2+0.2),sin(pi/2+0.2),cos(2*(pi/2+0.2)))),color="#DC267F")+arrow3d((cos(3*pi/2),sin(3*pi/2),cos(2*3*pi/2)),((cos(3*pi/2+0.2),sin(3*pi/2+0.2),cos(2*(3*pi/2+0.2)))),color="#FFB000")
               show(plot1+text3d("B",(0.1,0,1),color="#648FFF")+text3d("Y",(-0.8,-0.6,0.5),color="#FFB000")+text3d("M",(0.5,0.7,-0.5),color="#DC267F"))
 	  </slate>
         </interactive>
@@ -67,8 +67,6 @@
           <p>Write out the circulation line integrals of the closed
           curve consisting of the yellow curve <m>Y</m> and the and
           blue curve <m>B</m>. (Remember to consider orientation!)
-          Assume that this curve is oriented counterclockwise when
-          viewed from the positive <m>z</m>-axis.
 	  </p>
 	</statement>
       </task>
@@ -76,18 +74,14 @@
 	<statement>
           <p>Write out the circulation line integrals of the closed
           curve consisting of the magenta curve <m>M</m> and the blue
-          curve <m>B</m>. (Remember to consider orientation!) Assume
-          that this curve is oriented counterclockwise when viewed
-          from the positive <m>z</m>-axis.</p>
+          curve <m>B</m>. (Remember to consider orientation!) </p>
 	</statement>
       </task>
       <task>
 	<statement>
           <p>Write out the circulation line integrals of the closed
           curve consisting of the yellow curve <m>Y</m> and the
-          magenta curve <m>M</m>. As before, assume a counterclockwise
-          orientation for this curve when viewing from the positive
-          <m>z</m>-axis.</p>
+          magenta curve <m>M</m>. </p>
         </statement>
       </task>
       <task>
@@ -109,7 +103,7 @@
                 var('t,s,x,y,z,r,theta')
                 @interact
                 def _():
-                  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi/4,5*pi/4),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,5*pi/4,9*pi/4),color="#FFB000",thickness=2)+parametric_plot3d((t,t,0),(t,-sqrt(2)/2,sqrt(2)/2),color="#648FFF",thickness=2)+arrow3d((-.1,-.1,0),(.1,.1,0),color="#648FFF")
+                  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,pi/4,5*pi/4),color="#DC267F",thickness=2)+parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,5*pi/4,9*pi/4),color="#FFB000",thickness=2)+parametric_plot3d((t,t,0),(t,-sqrt(2)/2,sqrt(2)/2),color="#648FFF",thickness=2)+arrow3d((-.1,-.1,0),(.1,.1,0),color="#648FFF")+arrow3d((cos(pi/2),sin(pi/2),cos(2*pi/2)),((cos(pi/2+0.2),sin(pi/2+0.2),cos(2*(pi/2+0.2)))),color="#DC267F")+arrow3d((cos(3*pi/2),sin(3*pi/2),cos(2*3*pi/2)),((cos(3*pi/2+0.2),sin(3*pi/2+0.2),cos(2*(3*pi/2+0.2)))),color="#FFB000")
                   show(plot1+text3d("B",(0.1,0,0),color="#648FFF")+text3d("M",(-0.8,-0.6,0.5),color="#DC267F")+text3d("Y",(0.5,-0.7,-0.5),color="#FFB000"))
               </slate>
             </interactive>
@@ -126,7 +120,8 @@
       ref="fig_Vector_StokesThm_fill_in_surfaces" text="type-global"
       />. The drop-down allows you to select three different
       surfaces. Visually verify that each of the three surfaces
-      contains <m>C</m>.</p>
+      contains <m>C</m>. Notice that the scale on the <m>z</m>-axis
+      changes as you select different surfaces.</p>
       <figure xml:id="fig_Vector_StokesThm_fill_in_surfaces">
         <caption>Surfaces containing a common simple closed curve</caption>
         <interactive xml:id="int_Vector_StokesThm_pringle_surfaces" platform="sage" width="100%" aspect="60:65">
@@ -279,14 +274,15 @@
 	consider a surface (with normal vector) and the boundary of
 	the surface, this activity will give you a chance to practice
 	identifying the boundary of some surfaces in <m>\R^3</m>. For
-	each surface below, identify its boundary. You may find it
-	useful to first give a description of the boundary in words,
-	but you must also find a parameterization for
-	each boundary and ensure that the orientation of the boundary
-	is such that a person walking along the boundary in the
-	direction of its orientation with head pointing in the
+	each surface below:
+	<ul>
+	  <li>Describe the boundary in words.</li>
+	  <li>Find a parameterization for the boundary.</li>
+	  <li>Ensure that a person walking along the boundary in the
+	direction of your parameterization with head pointing in the
 	direction of the surface's normal vector would hold their left
-	hand over the surface.
+	hand over the surface.</li>
+	</ul>
       </p>
     </introduction>
     <task xml:id="task_Vector_StokesThm_boundary_sphere">
@@ -330,15 +326,21 @@
   <activity xml:id="act_Vector_StokesThm_surface">
     <introduction>
       <p>In some sense, this activity considers the reverse problem
-      mof that considered in <xref ref="act_Vector_StokesThm_boundary"
+      of that considered in <xref ref="act_Vector_StokesThm_boundary"
       />. Here, each part of the activity gives you an oriented simple
-      closed curve <m>C</m> in <m>\R^3</m>, and your task is to find a
+      closed curve <m>C</m> in <m>\R^3</m>, and your task is to find
+      <ul>
+	<li>a
       surface <m>S</m> so that <m>C</m> is the boundary of
-      <m>S</m>. You are also expected to specify a normal vector for
-      the surface so that a person walking along <m>C</m> in the
+	<m>S</m> and</li>
+	<li>a normal vector for
+      the <m>S</m> so that a person walking along <m>C</m> in the
       direction of the given orientation with head pointing in the
       direction of your chosen normal vector would have their left
-      hand over <m>S</m>. You are encouraged to think about multiple
+      hand over <m>S</m>.
+	</li>
+      </ul>
+      You are encouraged to think about multiple
       possible answers, since as we saw in <xref
       ref="PA_Vector_StokesThm" text="type-global" />, there may be
       more than one reasonable choice of a surface with a particular boundary.</p>
@@ -366,12 +368,21 @@
       <statement>
       <p>
 	The curve <m>C</m> consists of (given in order of the
-	orientation) the quarter-circle of radius <m>2</m> in the
-	<m>xy</m>-plane from <m>(2,0,0)</m> to <m>(0,2,0)</m>, the
-	line segment from <m>(0,2,0)</m> to <m>(0,2,2)</m>, the
-	quarter-circle of radius <m>2</m> in the plane <m>z=2</m> from
-	<m>(0,2,2)</m> to <m>(2,0,2)</m>, and the line segment from
-	<m>(2,0,2)</m> to <m>(2,0,0)</m>.
+	orientation)
+	<ul>
+	  <li>the quarter-circle <m>C_1</m>of radius <m>2</m> centered
+	  at the origin in the
+	  <m>xy</m>-plane from <m>(2,0,0)</m> to <m>(0,2,0)</m>,</li>
+	  <li>the
+	line segment <m>C_2</m> from <m>(0,2,0)</m> to
+	  <m>(0,2,2)</m>,</li>
+	  <li>the
+	quarter-circle <m>C_3</m> of radius <m>2</m> centered at <m>(0,0,2)</m> in the plane <m>z=2</m> from
+	  <m>(0,2,2)</m> to <m>(2,0,2)</m>, and</li>
+	  <li>the line segment <m>C_4</m> from
+	  <m>(2,0,2)</m> to <m>(2,0,0)</m>.
+	  </li>
+	</ul>
       </p>
       </statement>
     </task>
@@ -388,7 +399,7 @@
   </p>
   <activity xml:id="act_Vector_StokesThm_verify">
     <introduction>
-      <p>In this activity, your goal is to verify <xref
+      <p>In this activity, we will verify <xref
       ref="thm_Stokes" text="title" /> by calculating both a line
       integral and a flux integral.</p>
     </introduction>
@@ -462,9 +473,10 @@
 	<p>Find the circulation of <m>\vF = \langle 3yz, xz,
 	-xy\rangle</m> along the curve <m>C</m> consisting of (given
 	in order of the orientation) the quarter-circle of radius
-	<m>1</m> in the plane <m>y=-2</m> from <m>(0,-2,1)</m> to
+	<m>1</m> centered at <m>(0,-2,0)</m> in the plane <m>y=-2</m> from <m>(0,-2,1)</m> to
 	<m>(1,-2,0)</m>, the line segment from <m>(1,-2,0)</m> to
-	<m>(1,5,0)</m>, the quarter-circle of radius <m>1</m> in the
+	<m>(1,5,0)</m>, the quarter-circle of radius <m>1</m> centered
+	at <m>(0,5,0)</m> in the
 	plane <m>y=5</m> from <m>(1,5,0)</m> to <m>(0,5,1)</m>, and
 	the line segment from <m>(0,5,1)</m> to <m>(0,-2,1)</m>.
 	</p>
@@ -505,7 +517,7 @@
             along a simple closed curve in <m>\R^3</m> that bounds a
             surface (with normal vector) on which the vector field is
             also smooth by calculating the flux of the curl of the
-	    vector field through the surface.Pe
+	    vector field through the surface.
           </p>
 	</li>
 
