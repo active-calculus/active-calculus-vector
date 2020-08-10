@@ -59,10 +59,9 @@ include Makefile.paths
 PRJSRC    = $(PRJ)/ptx
 OUTPUT    = $(PRJ)/output
 IMAGESSRC = $(PRJSRC)/images
-AC3IMAGESSRC = $(PRJSRC)/AC3/images
 
 # The project's main hub file
-MAINFILE  = $(PRJSRC)/acmv-index.ptx
+MAINFILE  = $(PRJSRC)/index.ptx
 
 # These paths are subdirectories of
 # the PreTeXt distribution
@@ -90,8 +89,8 @@ SERVER = https://webwork-ptx.aimath.org
 
 acmv-extraction:
 	install -d $(WWOUT)
-	-rm $(WWOUT)/webwork-representations.xml
-	$(PTX)/pretext/pretext -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
+	-rm $(WWOUT)/webwork-representations.ptx
+	PYTHONWARNINGS=module $(PTX)/pretext/pretext -vv -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
 
 #  HTML output 
 #  Output lands in the subdirectory:  $(HTMLOUT)
@@ -108,10 +107,11 @@ html:
 	install -b xsl/acmv-html.xsl $(PTXUSR)
 	install -b xsl/acmv-common.xsl $(PTXUSR)
 	-rm $(HTMLOUT)/*.html
-	cp -a $(AC3IMAGESSRC) $(HTMLOUT)
+	cp -a $(IMAGESOUT) $(HTMLOUT)
 	cp -a $(IMAGESSRC) $(HTMLOUT)
 	cd $(HTMLOUT); \
 	xsltproc -xinclude -stringparam publisher $(PRJ)/pub/html.xml $(PTXUSR)/acmv-html.xsl $(MAINFILE)
+
 
 
 ###########
