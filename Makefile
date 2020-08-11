@@ -59,9 +59,10 @@ include Makefile.paths
 PRJSRC    = $(PRJ)/ptx
 OUTPUT    = $(PRJ)/output
 IMAGESSRC = $(PRJSRC)/images
+AC3IMAGESSRC = $(PRJSRC)/AC3/images
 
 # The project's main hub file
-MAINFILE  = $(PRJSRC)/index.ptx
+MAINFILE  = $(PRJSRC)/acmv-index.ptx
 
 # These paths are subdirectories of
 # the PreTeXt distribution
@@ -107,7 +108,7 @@ html:
 	install -b xsl/acmv-html.xsl $(PTXUSR)
 	install -b xsl/acmv-common.xsl $(PTXUSR)
 	-rm $(HTMLOUT)/*.html
-	cp -a $(IMAGESOUT) $(HTMLOUT)
+	cp -a $(AC3IMAGESSRC) $(HTMLOUT)
 	cp -a $(IMAGESSRC) $(HTMLOUT)
 	cd $(HTMLOUT); \
 	xsltproc -xinclude -stringparam publisher $(PRJ)/pub/html.xml $(PTXUSR)/acmv-html.xsl $(MAINFILE)
