@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-11-4-Double-Integrals-Applications">
+  <title>Applications of Double Integrals</title>
+  
+    <objectives>
+        <ul>
+          <li>
+            <p>
+              If we have a mass density function for a lamina (thin plate), how does a double integral determine the mass of the lamina?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              How may a double integral be used to find the area between two curves?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Given a mass density function on a lamina, how can we find the lamina's center of mass?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What is a joint probability density function? How do we determine the probability of an event if we know a probability density function?
+            </p>
+          </li>
+        </ul>
+    </objectives>
+
+    <introduction>
+    <p>
+      So far, we have interpreted the double integral of a function <m>f</m> over a domain <m>D</m> in two different ways. First, <m>\iint_D f(x,y) \, dA</m> tells us a difference of volumes <mdash /> the volume the surface defined by <m>f</m> bounds above the <m>xy</m>-plane on <m>D</m> minus the volume the surface bounds below the <m>xy</m>-plane on <m>D</m>. In addition, <m>\frac{1}{A(D)} \iint_D f(x,y) \, dA</m> determines the average value of <m>f</m> on <m>D</m>. In this section, we investigate several other applications of double integrals, using the integration process as seen in <xref ref="PA_11_4">Preview Activity</xref>: we partition into small regions, approximate the desired quantity on each small region, then use the integral to sum these values exactly in the limit.
+    </p>
+
+    <p>
+      The following preview activity explores how a double integral can be used to determine the density of a thin plate with a mass density distribution. Recall that in single-variable calculus, we considered a similar problem and computed the mass of a one-dimensional rod with a mass-density distribution. There, as here, the key idea is that if density is constant, mass is the product of density and volume.
+    </p>
+
+    <exploration xml:id="PA_11_4">
+      <p>
+        Suppose that we have a flat, thin object (called a <term>lamina</term>) whose density varies across the object. We can think of the density on a lamina as a measure of mass per unit area. As an example, consider a circular plate <m>D</m> of radius 1 cm centered at the origin whose density <m>\delta</m> varies depending on the distance from its center so that the density in grams per square centimeter at point <m>(x, y)</m> is
+        <me>
+          \delta(x,y) = 10-2(x^2+y^2).
+        </me>
+        <ol label="a.">
+          <li>
+            <p>
+              Suppose that we partition the plate into subrectangles <m>R_{ij}</m>, where <m>1 \leq i \leq m</m> and <m>1 \leq j \leq n</m>, of equal area <m>\Delta A</m>, and select a point <m>(x_{ij}^*,y_{ij}^*)</m> in <m>R_{ij}</m> for each <m>i</m> and <m>j</m>.
+    
+                  What is the meaning of the quantity <m>\delta(x_{ij}^*,y_{ij}^*) \Delta A</m>?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              State a double Riemann sum that provides an approximation of the mass of the plate.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Explain why the double integral
+              <me>
+                \iint_D \delta(x,y) \, dA
+              </me>
+              tells us the exact mass of the plate.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Determine an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <xref ref="S-11-5-Double-Integrals-Polar">Section</xref>.)
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </exploration>
+  </introduction>
+
+  <subsection>
+    <title>Mass</title>
+    <p>
+      Density is a measure of some quantity per unit area or volume. For example, we can measure the human population density of some region as the number of humans in that region divided by the area of that region. In physics, the mass density of an object is the mass of the object per unit area or volume. As suggested by <xref ref="PA_11_4">Preview Activity</xref>, the following holds in general.
+    </p>
+
+    <assemblage xml:id="Lamina-mass">
+      <title>The mass of a lamina</title>
+    <p>
+      If <m>\delta(x, y)</m> describes the density of a lamina defined by a planar region <m>D</m>, then the <em>mass</em><idx><h>double integral</h><h>mass of lamina</h></idx> of <m>D</m> is given by the double integral <m>\iint_D \delta(x,y) \, dA</m>.
+    </p>
+    </assemblage>
+    
+
+    <activity xml:id="A_11_4_3">
+      <p>
+        Let <m>D</m> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as shown in <xref ref="F_11_4_Mass_exercise">Figure</xref>. Assume the density at point <m>(x,y)</m> is given by <m>\delta(x,y) = x+y</m>. Find the exact mass of the lamina.
+      </p>
+
+      <figure xml:id="F_11_4_Mass_exercise" >
+        <caption>A half disk lamina.</caption>
+        <image width="50%" source="images/fig_11_4_half_circle" />
+      </figure>
+      
+    </activity>
+  </subsection>
+
+
+
+  <subsection>
+    <title>Area</title>
+    <p>
+      If we consider the situation where the mass-density distribution is constant, we can also see how a double integral may be used to determine the area of a region. Assuming that <m>\delta(x,y) = 1</m> over a closed bounded region <m>D</m>, where the units of <m>\delta</m> are <q>mass per unit of area,</q> it follows that <m>\iint_D 1 \, dA</m> is the mass of the lamina. But since the density is constant, the numerical value of the integral is simply the area.
+    </p>
+
+    <p>
+      As the following activity demonstrates, we can also see this fact by considering a three-dimensional solid whose height is always 1.
+    </p>
+
+    <activity xml:id="A_11_4_1">
+      <p>
+        Suppose we want to find the area of the bounded region <m>D</m> between the curves
+        <me>
+          y = 1-x^2 \ \ \ \ \ \text{ and }  \ \ \ \ \ y=x-1.
+        </me>
+      </p>
+
+      <p>
+        A picture of this region is shown in <xref ref="F_11_4_Area_ex_1">Figure</xref>.
+        <ol label="a.">
+          <li>
+            <p>
+              The volume of a solid with constant height is given by the area of the base times the height.  Hence, we may interpret the area of the region <m>D</m> as the volume of a solid with base <m>D</m> and of uniform height 1. That is, the area of <m>D</m> is given by <m>\iint_D 1 \, dA</m>. Write an iterated integral whose value is <m>\iint_D 1 \, dA</m>. (Hint: Which order of integration might be more efficient? Why?)
+
+              <figure xml:id="F_11_4_Area_ex_1" >
+                <caption>The graphs of <m>y = 1-x^2</m> and <m>y=x-1</m>.</caption>
+                <image width="50%" source="images/fig_11_4_area" />
+              </figure>
+              
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Evaluate the iterated integral from (a). What does the result tell you? 
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      We now formally state the conclusion from our earlier discussion and <xref ref="A_11_4_1">Activity</xref>.
+    </p>
+
+    <assemblage xml:id="Double-integral-area">
+      <title>The double integral and area</title>
+    <p>
+      Given a closed, bounded region <m>D</m> in the plane, the area of <m>D</m>, denoted <m>A(D)</m>, is given by the double integral
+      <me>
+        A(D) = \iint_D 1 \, dA.
+      </me>
+    </p>
+    </assemblage>
+
+    
+  </subsection>
+
+
+  <subsection>
+    <title>Center of Mass</title>
+    <p>
+      The center of mass of an object is a point at which the object will balance perfectly. For example, the center of mass of a circular disk of uniform density is located at its center. For any object, if we throw it through the air, it will spin around its center of mass and behave as if all the mass is located at the center of mass.
+    </p>
+
+    <p>
+      In order to understand the role that integrals play in determining the center of a mass of an object with a nonuniform mass distribution, we start by finding the center of mass of a collection of <m>N</m> distinct point-masses in the plane.
+    </p>
+
+    <p>
+      Let <m>m_1</m>, <m>m_2</m>, <m>\ldots</m>, <m>m_N</m> be <m>N</m> masses located in the plane. Think of these masses as connected by rigid rods of negligible weight from some central point <m>(x,y)</m>. A picture with four masses is shown in <xref ref="F_11_4_COM">Figure</xref>. Now imagine balancing this system by placing it on a thin pole at the point <m>(x,y)</m> perpendicular to the plane containing the masses. Unless the masses are perfectly balanced, the system will fall off the pole. The point <m>(\overline{x}, \overline{y})</m> at which the system will balance perfectly is called the <em>center of mass</em> of the system. Our goal is to determine the center of mass of a system of discrete masses, then extend this to a continuous lamina.
+    </p>
+
+    <figure xml:id="F_11_4_COM" >
+      <caption>A center of mass <m>(\overline{x}, \overline{y})</m> of four masses.</caption>
+      <image width="50%" source="images/fig_11_4_masses" />
+    </figure>
+
+    <p>
+      Each mass exerts a force (called a <em>moment</em>) around the lines <m>x=\overline{x}</m> and <m>y=\overline{y}</m> that causes the system to tilt in the direction of the mass. These moments are dependent on the mass and the distance from the given line. Let <m>(x_1,y_1)</m> be the location of mass <m>m_1</m>, <m>(x_2,y_2)</m> the location of mass <m>m_2</m>, etc. In order to balance perfectly, the moments in the <m>x</m> direction and in the <m>y</m> direction must be in equilibrium. We determine these moments and solve the resulting system to find the equilibrium point <m>(\overline{x}, \overline{y})</m> at the center of mass.
+    </p>
+
+    <p>
+      The force that mass <m>m_1</m> exerts to tilt the system from the line <m>y=\overline{y}</m> is
+      <me>
+        m_1g(\overline{y} - y_1),
+      </me>
+      where <m>g</m> is the gravitational constant. Similarly, the force mass <m>m_2</m> exerts to tilt the system from the line <m>y= \overline{y}</m> is
+      <me>
+        m_2g(\overline{y}-y_2).
+      </me>
+    </p>
+
+    <p>
+      In general, the force that mass <m>m_k</m> exerts to tilt the system from the line <m>y= \overline{y}</m> is
+      <me>
+        m_kg(\overline{y}-y_k).
+      </me>
+    </p>
+
+    <p>
+      For the system to balance, we need the forces to sum to 0, so that
+      <me>
+        \sum_{k=1}^N m_kg(\overline{y}-y_k) = 0.
+      </me>
+    </p>
+
+    <p>
+      Solving for <m>\overline{y}</m>, we find that
+      <me>
+        \overline{y} = \frac{\sum_{k=1}^N m_ky_k}{\sum_{k=1}^N m_k}.
+      </me>
+    </p>
+
+    <p>
+      A similar argument shows that
+      <me>
+        \overline{x} = \frac{\sum_{k=1}^N m_kx_k}{\sum_{k=1}^N m_k}.
+      </me>
+    </p>
+
+    <p>
+      The value <m>M_x~=~\sum_{k=1}^N m_ky_k</m> is called the <em>total moment</em> with respect to the <m>x</m>-axis; <m>M_y~=~\sum_{k=1}^N m_kx_k</m> is the <em>total moment</em> with respect to the <m>y</m>-axis. Hence, the respective quotients of the moments to the total mass, <m>M</m>, determines the center of mass of a point-mass system:
+      <me>
+        (\overline{x}, \overline{y}) = \left(\frac{M_y}{M}, \frac{M_x}{M}\right).
+      </me>
+    </p>
+
+    <p>
+      Now, suppose that rather than a point-mass system, we have a continuous lamina with a variable mass-density <m>\delta(x, y)</m>. We may estimate its center of mass by partitioning the lamina into <m>mn</m> subrectangles of equal area <m>\Delta A</m>, and treating the resulting partitioned lamina as a point-mass system. In particular, we select a point <m>(x_{ij}^*,y_{ij}^*)</m> in the <m>ij</m>th subrectangle, and observe that the quanity
+      <me>
+        \delta(x_{ij}^*,y_{ij}^*) \Delta A
+      </me>
+      is density times area, so <m>\delta(x_{ij}^*,y_{ij}^*) \Delta A</m> approximates the mass of the small portion of the lamina determined by the subrectangle <m>R_{ij}</m>.
+    </p>
+
+    <p>
+      We now treat <m>\delta(x_{ij}^*,y_{ij}^*) \Delta A</m> as a point mass at the point <m>(x_{ij}^*,y_{ij}^*)</m>. The coordinates <m>(\overline{x}, \overline{y})</m> of the center of mass of these <m>mn</m> point masses are thus given by
+      <me>
+        \overline{x} = \frac{\sum_{j=1}^n \sum_{i=1}^m x_{ij}^*\delta(x_{ij}^*,y_{ij}^*) \Delta A}{\sum_{j=1}^n\sum_{i=1}^m \delta(x_{ij}^*,y_{ij}^*) \Delta A} \ \ \ \ \ \text{ and }  \ \ \ \ \ \overline{y} = \frac{\sum_{j=1}^n \sum_{i=1}^m y_{ij}^*\delta(x_{ij}^*,y_{ij}^*) \Delta A}{\sum_{j=1}^n\sum_{i=1}^m \delta(x_{ij}^*,y_{ij}^*) \Delta A}.
+      </me>
+    </p>
+
+    <p>
+      If we take the limit as <m>m</m> and <m>n</m> go to infinity, we obtain the exact center of mass <m>(\overline{x}, \overline{y})</m> of the continuous lamina.
+    </p>
+
+    <assemblage xml:id="Lamina-center-of-mass">
+      <title>The center of mass of a lamina</title>
+    <p>
+      The coordinates <m>(\overline{x}, \overline{y})</m> of the <em>center of mass of a lamina</em><idx><h>center of mass</h><h>of a lamina</h></idx> <m>D</m> with density <m>\delta = \delta(x,y)</m> are given by
+      <me>
+        \overline{x} = \frac{\iint_D x\delta(x,y) \, dA}{\iint_D \delta(x,y) \, dA} \ \ \ \ \ \text{ and }  \ \ \ \ \ \overline{y} = \frac{\iint_D y\delta(x,y) \, dA}{\iint_D \delta(x,y) \, dA}.
+      </me>
+    </p>
+    </assemblage>
+
+    <p> 
+    The center of mass of a lamina can then be thought of as a weighted average of all of the points in the lamina with the weights given by the density at each point. The <em>centroid</em><idx><h>centroid</h><h>of a lamina</h></idx> of a lamina is the just the average of all of the points in the lamina, or the center of mass if the density at each point is 1.
+    </p>
+
+    
+
+    <p>
+      The numerators of <m>\overline{x}</m> and <m>\overline{y}</m> are called the respective <em>moments</em><idx><h>moments about coordinate axes</h></idx> of the lamina about the coordinate axes. Thus, the moment of a lamina <m>D</m> with density <m>\delta = \delta(x,y)</m> about the <m>y</m>-axis is
+      <me>
+        M_y = \iint_D x\delta(x,y) \, dA
+      </me>
+      and the moment of <m>D</m> about the <m>x</m>-axis is
+      <me>
+        M_x = \iint_D y\delta(x,y) \, dA.
+      </me>
+    </p>
+
+    <p>
+      If <m>M</m> is the mass of the lamina, it follows that the center of mass is 
+      <me>
+        (\overline{x}, \overline{y}) = \left(\frac{M_y}{M}, \frac{M_x}{M}\right)
+      </me>.
+    </p>
+
+    <activity xml:id="A_11_4_4">
+      <p>
+        In this activity we determine integrals that represent the center of mass of a lamina <m>D</m> described by the triangular region bounded by the <m>x</m>-axis and the lines <m>x = 1</m> and <m>y = 2x</m> in the first quadrant if the density at point <m>(x, y)</m> is <m>\delta(x, y) = 6x + 6y + 6</m>. A picture of the lamina is shown in <xref ref="F_11_4_COM_ex_1">Figure</xref>.
+      </p>
+
+      <figure xml:id="F_11_4_COM_ex_1" >
+        <caption>The lamina bounded by the <m>x</m>-axis and the lines <m>x = 1</m> and <m>y = 2x</m> in the first quadrant.</caption>
+        <image width="50%" source="images/fig_11_4_triangle" />
+      </figure>
+
+      <ol label="a.">
+        <li>
+          <p>
+            Set up an iterated integral that represents the mass of the lamina.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Assume the mass of the lamina is 14. Set up two iterated integrals that represent the coordinates of the center of mass of the lamina.
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+  </subsection>
+
+
+
+  <subsection>
+    <title>Probability</title>
+    <p>
+      Calculating probabilities is a very important application of integration in the physical, social, and life sciences. To understand the basics, consider the game of darts in which a player throws a dart at a board and tries to hit a particular target. Let us suppose that a dart board is in the form of a disk <m>D</m> with radius 10 inches. If we assume that a player throws a dart at random, and is not aiming at any particular point, then it is equally probable that the dart will strike any single point on the board. For instance, the probability that the dart will strike a particular 1 square inch region is <m>\frac{1}{100 \pi}</m>, or the ratio of the area of the desired target to the total area of <m>D</m> (assuming that the dart thrower always hits the board itself at some point). Similarly, the probability that the dart strikes a point in the disk <m>D_3</m> of radius 3 inches is given by the area of <m>D_3</m> divided by the area of <m>D</m>. In other words, the probability that the dart strikes the disk <m>D_3</m> is
+      <me>
+        \frac{9 \pi}{100\pi} = \iint_{D_3} \frac{1}{100 \pi} \, dA.
+      </me>
+    </p>
+
+    <p>
+      The integrand, <m>\frac{1}{100\pi}</m>, may be thought of as a <em>distribution function</em>, describing how the dart strikes are distributed across the board. In this case the distribution function is constant since we are assuming a uniform distribution, but we can easily envision situations where the distribution function varies. For example, if the player is fairly good and is aiming for the bulls eye (the center of <m>D</m>), then the distribution function <m>f</m> could be skewed toward the center, say
+      <me>
+        f(x,y) = K e^{-(x^2+y^2)}
+      </me>
+      for some constant positive <m>K</m>. If we assume that the player is consistent enough so that the dart always strikes the board, then the probability that the dart strikes the board somewhere is 1, and the distribution function <m>f</m> will have to satisfy<fn>This makes <m>K = \frac{1}{\pi\left(1-e^{-100}\right)}</m>, which you can check.</fn>
+      <me>
+        \iint_D f(x,y) \, dA = 1.
+      </me>
+    </p>
+
+    <p>
+      For such a function <m>f</m>, the probability that the dart strikes in the disk <m>D_1</m> of radius 1 would be
+      <me>
+        \iint_{D_1} f(x,y) \, dA.
+      </me>
+    </p>
+
+    <p>
+      Indeed, the probability that the dart strikes in any region <m>R</m> that lies within <m>D</m> is given by
+      <me>
+        \iint_R f(x,y) \, dA.
+      </me>
+    </p>
+
+    <p>
+      The preceding discussion highlights the general idea behind calculating probabilities. We assume we have a <em>joint probability density function</em><idx><h>joint probability density function</h></idx> <m>f</m>, a function of two independent variables <m>x</m> and <m>y</m> defined on a domain <m>D</m> that satisfies the conditions
+      <ul>
+        <li>
+          <p>
+            <m>f(x,y) \geq 0</m> for all <m>x</m> and <m>y</m> in <m>D</m>,
+          </p>
+        </li>
+
+        <li>
+          <p>
+            the probability that <m>x</m> is between some values <m>a</m> and <m>b</m> while <m>y</m> is between some values <m>c</m> and <m>d</m> is given by
+            <me>
+              \int_a^b \int_c^d f(x,y) \, dy \, dx,
+            </me>
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The probability<idx><h>double integral</h><h>probability</h></idx> that the point <m>(x,y)</m> is in <m>D</m> is 1, that is
+            <men xml:id="eq_11_4_pdf" >
+              \iint_D f(x,y) \, dA = 1.
+            </men>
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Note that it is possible that <m>D</m> could be an infinite region and the limits on the integral in Equation<nbsp /><xref ref="eq_11_4_pdf" /> could be infinite. When we have such a probability density function <m>f=f(x,y)</m>, the probability that the point <m>(x,y)</m> is in some region <m>R</m> contained in the domain <m>D</m> (the notation we use here is <q><m>P((x,y)\in R)</m></q>) is determined by
+      <me>
+        P((x,y)\in R) = \iint_R f(x,y) \, dA.
+      </me>
+    </p>
+
+    <activity xml:id="A_11_4_6">
+      <p>
+        A firm manufactures smoke detectors. Two components for the detectors come from different suppliers <mdash /> one in Michigan and one in Ohio. The company studies these components for their reliability and their data suggests that if <m>x</m> is the life span (in years) of a randomly chosen component from the Michigan supplier and <m>y</m> the life span (in years) of a randomly chosen component from the Ohio supplier, then the joint probability density function <m>f</m> might be given by
+        <me>
+          f(x,y) = e^{-x} e^{-y}.
+        </me>
+        <ol label="a.">
+          <li>
+            <p>
+              Theoretically, the components might last forever, so the domain <m>D</m> of the function <m>f</m> is the set <m>D</m> of all <m>(x,y)</m> such that <m>x \ge 0</m> and <m>y \ge 0</m>. To show that <m>f</m> is a probability density function on <m>D</m> we need to demonstrate that
+              <me>
+                \int \int_D f(x,y) \, dA = 1,
+              </me>
+              or that
+              <me>
+                \int_0^{\infty} \int_0^{\infty} f(x,y) \, dy \, dx = 1.
+              </me>
+              Use your knowledge of improper integrals to verify that <m>f</m> is indeed a probability density function.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Assume that the smoke detector fails only if both of the supplied components fail. To determine the probability that a randomly selected detector will fail within one year, we will need to determine the probability that the life span of each component is between 0 and 1 years. Set up an appropriate iterated integral, and evaluate the integral to determine the probability.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What is the probability that a randomly chosen smoke detector will fail between years 3 and 7?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Suppose that the manufacturer determines that one of the components is more likely to fail than the other, and hence conjectures that the probability density function is instead <m>f(x,y) = K e^{-x} e^{-2y}.</m>  What is the value of <m>K</m>?
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          The mass of a lamina <m>D</m> with a mass density function <m>\delta = \delta(x,y)</m> is  <m>\iint_D \delta(x,y) \, dA.</m>
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The area of a region <m>D</m> in the plane has the same numerical value as the volume of a solid of uniform height 1 and base <m>D</m>, so the area of <m>D</m> is given by <m>\iint_D 1 \, dA.</m>
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The center of mass, <m>(\overline{x},\overline{y})</m>, of a continuous lamina with a variable density <m>\delta(x,y)</m> is given by
+          <me>
+            \overline{x} = \frac{\iint_D x\delta(x,y) \, dA}{\iint_D \delta(x,y) \, dA} \ \ \ \ \ \text{ and }  \ \ \ \ \ \overline{y} = \frac{\iint_D y\delta(x,y) \, dA}{\iint_D \delta(x,y) \, dA}.
+          </me>
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Given a joint probability density function <m>f</m> is a function of two independent variables <m>x</m> and <m>y</m> defined on a domain <m>D</m>, 
+          if <m>R</m> is some subregion of <m>D</m>, then the probability that <m>(x,y)</m> is in <m>R</m> is given by
+          <me>
+            \iint_R f(x,y) \, dA.
+          </me>
+        </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+
+    <exercises>
+
+    <exercise xml:id="ex-11-4-WW-center-mass">
+      <!--<title>Finding the center of discrete set of masses</title>-->
+         <webwork source="Library/Rochester/setIntegrals24Centroid/ur_in_24_1.pg" />
+         </exercise>
+
+
+    <exercise xml:id="ex-11-4-WW-centroid-triangle">
+      <!--<title>Finding the centroid of a triangle</title>-->
+         <webwork source="Library/Rochester/setIntegrals24Centroid/ur_in_24_2.pg" />
+         </exercise>
+
+      <exercise xml:id="ex-11-4-WW-mass-rectangle">
+      <!--<title>Calculating the mass of a rectangular region</title>-->
+         <webwork source="Library/272/setStewart15_5/problem_3.pg" />
+         </exercise>
+
+      <exercise xml:id="ex-11-4-WW-mass-triangle">
+      <!--<title>Calculating the mass of a triangular region</title>-->
+         <webwork source="Library/272/setStewart15_5/problem_3a.pg" />
+         </exercise>
+
+         <exercise xml:id="ex-11-4-WW-com-lamina">
+      <!--<title>Calculating the center of mass of a lamina</title>-->
+         <webwork source="Library/272/setStewart15_5/problem_5.pg" />
+         </exercise>
+
+         <exercise xml:id="ex-11-4-WW-sprinkler">
+      <!--<title>Calculating amount of water from a sprinkler</title>-->
+         <webwork source="Library/272/setStewart15_5/problem_1.pg" />
+         </exercise>
+
+         <exercise xml:id="ex-11-4-WW-joint-density">
+      <!--<title>Calculating a fraction of a population</title>-->
+         <webwork source="Library/Michigan/Chap16Sec6/Q03.pg" />
+         </exercise>
+
+         <exercise xml:id="ex-11-4-WW-lamp">
+      <!--<title>Probability of a lamp</title>-->
+         <webwork source="Library/maCalcDB/setVMultIntegrals3Appl/UR_VC_9_9.pg" />
+         </exercise>
+
+         <exercise xml:id="ex-11-4-WW-determining-density">
+      <!--<title>Determining joint density functions</title>-->
+         <webwork source="Library/Michigan/Chap16Sec6/Q09.pg" />
+         </exercise>
+
+         <exercise xml:id="ex-11-4-WW-using-density">
+      <!--<title>Using a joint density functions</title>-->
+         <webwork source="Library/Michigan/Chap16Sec6/Q15.pg" />
+         </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            A triangular plate is bounded by the graphs of the equations <m>y = 2x</m>, <m>y = 4x</m>, and <m>y = 4</m>. The plate's density at <m>(x,y)</m> is given by <m>\delta(x,y) = 4xy^2 + 1</m>, measured in grams per square centimeter (and <m>x</m> and <m>y</m> are measured in centimeters).
+            <ol label="a.">
+              <li>
+                <p>
+                  Set up an iterated integral whose value is the mass of the plate. Include a labeled sketch of the region of integration.  Why did you choose the order of integration you did?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine the mass of the plate.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine the exact center of mass of the plate.  Draw and label the point you find on your sketch from (a).
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  What is the average density of the plate?  Include units on your answer.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            Let <m>D</m> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as in <xref ref="A_11_4_3">Activity</xref>. Assume the density at point <m>(x,y)</m> is equal to <m>x</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Before doing any calculations, what do you expect the <m>y</m>-coordinate of the center of mass to be? Why?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up iterated integral expressions which, if evaluated, will determine the exact center of mass of the lamina.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use appropriate technology to evaluate the integrals to find the center of mass numerically.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            Let <m>x</m> denote the time (in minutes) that a person spends waiting in a checkout line at a grocery store and <m>y</m> the time (in minutes) that it takes to check out. Suppose the joint probability density for <m>x</m> and <m>y</m> is
+            <me>
+              f(x,y) = \frac{1}{8} e^{-x/4-y/2}.
+            </me>
+            <ol label="a.">
+              <li>
+                <p>
+                  What is the exact probability that a person spends between 0 to 5 minutes waiting in line, and then 0 to 5 minutes waiting to check out?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up, but do not evaluate, an iterated integral whose value determines the exact probability that a person spends at most 10 minutes total both waiting in line and checking out at this grocery store.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up, but do not evaluate, an iterated integral expression whose value determines the exact probability that a person spends at least 10 minutes total both waiting in line and checking out, but not more than 20 minutes.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+    </exercises>
+</section>

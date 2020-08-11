@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-11-9-Change-of-Variable">
+  <title>Change of Variables</title>
+  
+    <objectives>
+        <ul>
+          <li>
+            <p>
+              What is a change of variables?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What is the Jacobian, and how is it related to a change of variables?
+            </p>
+          </li>
+        </ul>
+    </objectives>
+
+    <introduction>
+    <p>
+      In single variable calculus, we encountered the idea of a change of variable in a definite integral through the method of substitution. For example, given the definite integral
+      <me>
+        \int_0^2 2x(x^2+1)^3 \, dx,
+      </me>
+      we naturally consider the change of variable <m>u = x^2+1</m>. From this substitution, it follows that <m>du = 2x \, dx</m>, and since <m>x = 0</m> implies <m>u = 1</m> and <m>x = 2</m> implies <m>u = 5</m>, we have transformed the original integral in <m>x</m> into a new integral in <m>u</m>. In particular,
+      <me>
+        \int_0^2 2x(x^2+1)^3 \, dx = \int_1^5 u^3 \, du.
+      </me>
+    </p>
+
+    <p>
+      The latter integral, of course, is far easier to evaluate.
+    </p>
+
+    <p>
+      Through our work with polar, cylindrical, and spherical coordinates, we have already implicitly seen some of the issues that arise in using a change of variables with two or three variables present. In what follows, we seek to understand the general ideas behind any change of variables in a multiple integral.
+    </p>
+
+    <exploration xml:id="PA_11_9">
+      <p>
+        Consider the double integral
+        <men xml:id="eq_11_9_COV_PA" >
+          I = \iint_D x^2+y^2 \, dA,
+        </men>
+        where <m>D</m> is the upper half of the unit disk.
+      </p>
+        <ol label="a.">
+          <li>
+          <ol label="i.">
+            <li>
+              <p>
+                Write the double integral <m>I</m> given in Equation<nbsp /><xref ref="eq_11_9_COV_PA" /> as an iterated integral in rectangular coordinates.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Write the double integral <m>I</m> given in Equation<nbsp /> <xref ref="eq_11_9_COV_PA" /> as an iterated integral in polar coordinates.
+              </p>
+            </li>
+          </ol>
+          </li>
+
+          <li>
+            <p>
+            When we write the double integral <xref ref="eq_11_9_COV_PA" /> as an iterated integral in polar coordinates we make a change of variables, namely
+            <men xml:id="eq_11_9_pol_to_rect" >
+            x = r \cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r \sin(\theta).
+            </men>
+            </p>
+
+            <p>
+              We also then have to change <m>dA</m> to <m>r \, dr \, d\theta</m>. This process also identifies a <q>polar rectangle</q> <m>[r_1, r_2] \times [\theta_1, \theta_2]</m> with the original Cartesian rectangle, under the transformation<fn>A <em>transformation</em> is another name for function:  here, the equations <m>x = r\cos(\theta)</m> and <m>y = r\sin(\theta)</m> define a function <m>T</m> by <m>T(r, \theta) = (r\cos(\theta), r\sin(\theta))</m> so that <m>T</m> is a function (transformation) from <m>\R^2</m> to <m>\R^2</m>.  We view this transformation as mapping a version of the <m>xy</m>-plane where the axes are viewed as representing <m>r</m> and <m>\theta</m> (the <m>r \theta</m>-plane) to the familiar <m>xy</m>-plane.</fn> in Equation <xref ref="eq_11_9_pol_to_rect" />. The vertices of the polar rectangle are transformed into the vertices of a closed and bounded region in rectangular coordinates.
+            </p>
+
+            <p>
+              To work with a numerical example, let's now consider the polar rectangle <m>P</m> given by <m>[1, 2] \times [\frac{\pi}{6}, \frac{\pi}{4}]</m>, so that <m>r_1 = 1</m>, <m>r_2=2</m>, <m>\theta_1 = \frac{\pi}{6}</m>, and <m>\theta_2 = \frac{\pi}{4}</m>.
+            </p>
+            
+            <ol label="i.">
+              <li>
+                <p>
+                  Use the transformation determined by the equations in<nbsp /><xref ref="eq_11_9_pol_to_rect" /> to find the rectangular vertices that correspond to the polar vertices in the polar rectangle <m>P</m>. In other words, by substituting appropriate values of <m>r</m> and <m>\theta</m> into the two equations in<nbsp /><xref ref="eq_11_9_pol_to_rect" />, find the values of the corresponding <m>x</m> and <m>y</m> coordinates for the vertices of the polar rectangle <m>P</m>. Label the point that corresponds to the polar vertex <m>(r_1, \theta_1)</m> as <m>(x_1, y_1)</m>, the point corresponding to the polar vertex <m>(r_2, \theta_1)</m> as <m>(x_2, y_2)</m>, the point corresponding to the polar vertex <m>(r_1, \theta_2)</m> as <m>(x_3, y_3)</m>, and the point corresponding to the polar vertex <m>(r_2, \theta_2)</m> as <m>(x_4, y_4)</m>.
+                </p>
+              </li>
+
+              <li>
+               <p>
+                  Draw a picture of the figure in rectangular coordinates that has the points <m>(x_1,y_1)</m>, <m>(x_2,y_2)</m>, <m>(x_3, y_3)</m>, and <m>(x_4,y_4)</m> as vertices. (Note carefully that because of the trigonometric functions in the transformation, this region will not look like a Cartesian rectangle.) What is the area of this region in rectangular coordinates? How does this area compare to the area of the original polar rectangle?
+                </p>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      
+    </exploration>
+  </introduction>
+
+  <subsection>
+    <title>Change of Variables in Polar Coordinates</title>
+    <p>
+      The general idea behind a change of variables is suggested by <xref ref="PA_11_9">Preview Activity</xref>. There, we saw that in a change of variables from rectangular coordinates to polar coordinates, a polar rectangle <m>[r_1, r_2] \times [\theta_1, \theta_2]</m> gets mapped to a Cartesian rectangle under the transformation
+      <me>
+        x = r \cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r \sin(\theta).
+      </me>
+    </p>
+
+    <p>
+      The vertices of the polar rectangle <m>P</m> are transformed into the vertices
+      of a closed and bounded region <m>P'</m> in rectangular coordinates. If we view the standard coordinate system as having the horizontal axis represent <m>r</m> and the vertical axis represent <m>\theta</m>, then the polar rectangle <m>P</m> appears to us at left in <xref ref="F_11_9_Change_vars1_a">Figure</xref>. The image <m>P'</m> of the polar rectangle <m>P</m> under the transformation given by <xref ref="eq_11_9_pol_to_rect" /> is shown at right in <xref ref="F_11_9_Change_vars1_a">Figure</xref>. We thus see that there is a correspondence between a simple region (a traditional, right-angled rectangle) and a more complicated region (a fraction of an annulus) under the function <m>T</m> given by <m>T(r, \theta) = (r\cos(\theta), r\sin(\theta))</m>.
+    </p>
+
+    <figure xml:id="F_11_9_Change_vars1_a" >
+      <caption>A rectangle <m>P</m> and its image <m>P'</m>.</caption>
+      <image width="100%" source="images/fig_11_9_polar_change" />
+    </figure>
+
+    <p>
+      Furthermore, as <xref ref="PA_11_9">Preview Activity</xref> suggests, it follows generally that for an original polar rectangle <m>P = [r_1, r_2] \times [\theta_1, \theta_2]</m>, the area of the transformed rectangle <m>P'</m> is given by <m>\frac{r_2+r_1}{2} \Delta r \Delta \theta</m>. Therefore, as <m>\Delta r</m> and <m>\Delta \theta</m> go to 0 this area becomes the familiar area element <m>dA = r \, dr \, d\theta</m> in polar coordinates. When we proceed to working with other transformations for different changes in coordinates, we have to understand how the transformation affects area so that we may use the correct area element in the new system of variables.
+    </p>
+  </subsection>
+
+
+
+  <subsection>
+    <title>General Change of Coordinates</title>
+    <p>
+      We first focus on double integrals. As with single integrals, we may be able to simplify a double integral of the form
+      <me>
+        \iint_D f(x,y) \, dA
+      </me>
+      by making a change of variables (that is, a substitution) of the form
+      <me>
+        x = x(s, t) \ \ \ \ \ \text{ and }  \ \ \ \ \  y = y(s, t)
+      </me>
+      where <m>x</m> and <m>y</m> are functions of new variables <m>s</m> and <m>t</m>. This transformation introduces a correspondence between a problem in the <m>xy</m>-plane and one in the the <m>st</m>-plane. The equations <m>x=x(s,t)</m> and <m>y=y(s,t)</m> convert <m>s</m> and <m>t</m> to <m>x</m> and <m>y</m>; we call these formulas the <em>change of variable</em> formulas. To complete the change to the new <m>s,t</m> variables, we need to understand the area element, <m>dA</m>, in this new system. The following activity helps to illustrate the idea.
+    </p>
+
+    <activity xml:id="A_11_9_1">
+      <p>
+        Consider the change of variables
+        <me>
+          x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
+        </me>
+      </p>
+
+      <p>
+        Let's see what happens to the rectangle <m>T = [0,1] \times [1,4]</m> in the <m>st</m>-plane under this change of variable.
+        <ol label="a.">
+          <li>
+            <p>
+              Draw a labeled picture of <m>T</m> in the <m>st</m>-plane.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find the image of the <m>st</m>-vertex <m>(0,1)</m> in the <m>xy</m>-plane.  Likewise, find the respective images of the other three vertices of the rectangle <m>T</m>: <m>(0,4)</m>, <m>(1,1)</m>, and <m>(1,4)</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              In the <m>xy</m>-plane, draw a labeled picture of the image, <m>T'</m>, of the original <m>st</m>-rectangle <m>T</m>. What appears to be the shape of the image, <m>T'</m>?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              To transform an integral with a change of variables,  we need to determine the area element <m>dA</m> for image of the  transformed rectangle. Note that <m>T'</m> is not exactly a parallelogram since the equations that define the transformation are not lienar. But we can approximate the area of <m>T'</m> with the area of a parallelogram. How would we find the area of a parallelogram that approximates the area of the <m>xy</m>-figure <m>T'</m>? (Hint: Remember what the cross product of two vectors tells us.)
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      <xref ref="A_11_9_1">Activity</xref> presents the general idea of how a change of variables works. We partition a rectangular domain in the <m>st</m> system into subrectangles. Let <m>T = [a, b] \times [a+\Delta s, b+\Delta t]</m> be one of these subrectangles. Then we transform this into a region <m>T'</m> in the standard <m>xy</m> Cartesian coordinate system. The region <m>T'</m> is called the <em>image</em> of <m>T</m>; the region <m>T</m> is the <em>pre-image</em> of <m>T'</m>. Although the sides of this <m>xy</m> region <m>T'</m> aren't necessarily straight (linear), we will approximate the element of area <m>dA</m> for this region with the area of the parallelogram whose sides are given by the vectors <m>\vv</m> and <m>\vw</m>, where <m>\vv</m> is the vector from <m>(x(a, b), y(a, b))</m> to <m>(x(a + \Delta s, b), y(a + \Delta s, b))</m>, and <m>\vw</m> is the vector from <m>(x(a, b), y(a, b))</m> to <m>(x(a, b + \Delta t), y(a, b + \Delta t))</m>.
+    </p>
+
+    <p>
+      An example of an image <m>T'</m> in the <m>xy</m>-plane that results from a transformation of a rectangle <m>T</m> in the <m>st</m>-plane is shown in <xref ref="F_11_9_Change_vars_ex">Figure</xref>.
+    </p>
+
+    <figure xml:id="F_11_9_Change_vars_ex" >
+      <caption>Approximating an area of an image resulting from a transformation.</caption>
+      <image width="100%" source="images/fig_11_9_general_change" />
+    </figure>
+
+    <p>
+      The components of the vector <m>\vv</m> are
+      <md>
+        <mrow>\vv \amp = \left\langle x(a+ \Delta s, b) - x(a,b), y(a+ \Delta s, b) - y(a,b), 0 \right\rangle</mrow>
+      </md>
+      and similarly those for <m>\vw</m> are
+      <md>
+        <mrow>\vw \amp = \left\langle x(a, b+ \Delta t) - x(a,b), y(a, b+ \Delta s) - y(a,b), 0 \right\rangle.</mrow>
+      </md>
+    </p>
+
+    <p>
+      Slightly rewriting <m>\vv</m> and <m>\vw</m>, we have
+      <md>
+        <mrow>\vv \amp = \left\langle \frac{x(a+ \Delta s, b) - x(a,b)}{\Delta s}, \frac{y(a+ \Delta s, b) - y(a,b)}{\Delta s}, 0 \right\rangle \Delta s, \ \mbox{and}</mrow>
+        <mrow>\vw \amp = \left\langle \frac{x(a, b+ \Delta t) - x(a,b)}{\Delta t}, \frac{y(a, b+ \Delta s) - y(a,b)}{\Delta t}, 0 \right\rangle \Delta t.</mrow>
+      </md>
+    </p>
+
+    <p>
+      For small <m>\Delta s</m> and <m>\Delta t</m>, the definition of the partial derivative tells us that
+      <me>
+        \vv \approx \left\langle \frac{\partial x}{\partial s}(a,b), \frac{\partial y}{\partial s}(a,b), 0 \right\rangle \Delta s \ \ \ \ \ \text{ and }  \ \ \ \ \  \vw \approx \left\langle \frac{\partial x}{\partial t}(a,b), \frac{\partial y}{\partial t}(a,b), 0 \right\rangle \Delta t.
+      </me>
+    </p>
+
+    <p>
+      Recall that the area of the parallelogram with sides <m>\vv</m> and <m>\vw</m> is the length of the cross product of the two vectors, <m>|\vv \times \vw|</m>. From this, we observe that
+      <md>
+        <mrow>\vv \times \vw \amp \approx \left\langle \frac{\partial x}{\partial s}(a,b), \frac{\partial y}{\partial s}(a,b), 0 \right\rangle \Delta s \times \left\langle \frac{\partial x}{\partial t}(a,b), \frac{\partial y}{\partial t}(a,b), 0 \right\rangle \Delta t</mrow>
+        <mrow>\amp = \left\langle 0, \ 0, \ \frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b) \right\rangle \Delta s \, \Delta t.</mrow>
+      </md>
+    </p>
+
+    <p>
+      Finally, by computing the magnitude of the cross product, we see that
+      <md>
+        <mrow>|\vv \times \vw| \amp \approx \left|\left\langle 0,0, \frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b) \right\rangle \Delta s \, \Delta t\right|</mrow>
+        <mrow>\amp = \left|\frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b)\right| \Delta s \, \Delta t.</mrow>
+      </md>
+    </p>
+
+    <p>
+      Therefore, as the number of subdivisions increases without bound in each direction, <m>\Delta s</m> and <m>\Delta t</m> both go to zero, and we have
+      <men xml:id="E_Area_Element" >
+        dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s} \right| ds \, dt.
+      </men>
+    </p>
+
+    <p>
+      Equation<nbsp /><xref ref="E_Area_Element" /> hence determines the general change of variable formula in a double integral, and we can now say that
+      <me>
+        \iint_T f(x,y) \, dy \, dx = \iint_{T'} f(x(s,t),y(s,t)) \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| ds \, dt.
+      </me>
+    </p>
+
+    <p>
+      The quantity
+      <me>
+        \frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}
+      </me>
+      is called the <em>Jacobian</em><idx><h>Jacobian</h></idx>, and we denote the Jacobian using the shorthand notation
+      <me>
+        \frac{\partial (x,y)}{\partial (s,t)}  =  \frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}.
+      </me>
+      Recall from <xref ref="S-9-4-Cross-Product">Section</xref> that we can also write this Jacobian as the determinant of the <m>2 \times 2</m> matrix
+        <m>\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} 
+        \end{array}  \right] </m>.
+      Note that, as discussed in <xref ref="S-9-4-Cross-Product">Section</xref>, the absolute value of the determinant of <m>\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} 
+        \end{array}  \right]</m> is the area of the parallelogram determined by the vectors <m>\vv</m> and <m>\vw</m>, and so the area element <m>dA</m> in <m>xy</m>-coordinates is also represented by the area element <m>\left| \frac{\partial (x,y)}{\partial (s,t)} \right| \, ds \, dt</m> in <m>st</m>-coordinates, and <m>\left| \frac{\partial (x,y)}{\partial (s,t)} \right|</m> is the factor by which the transformation magnifies area. 
+    </p>
+
+    <p>
+      To summarize, the preceding change of variable formula that we have derived now follows.
+    </p>
+    <assemblage xml:id="Change-of-variable">
+      <title>Change of Variables in a Double Integral<idx><h>change of variable</h><h>double integral</h></idx></title>
+    <p>
+      Suppose a change of variables <m>x = x(s,t)</m> and <m>y = y(s,t)</m> transforms a closed and bounded region <m>R</m> in the <m>st</m>-plane into a closed and bounded region <m>R'</m> in the <m>xy</m>-plane. Under modest conditions (that are studied in advanced calculus), it follows that
+      <me>
+        \iint_{R'} f(x,y) \, dA = \iint_{R} f(x(s,t), y(s,t)) \left|\frac{\partial (x,y)}{\partial (s,t)}\right| \, ds \, dt.
+      </me>
+    </p>
+    </assemblage>
+  
+
+    <activity xml:id="A_11_9_2">
+      <p>
+        Find the Jacobian when changing from rectangular to polar coordinates. That is, for the transformation given by <m>x = r\cos(\theta)</m>, <m>y = r\sin(\theta)</m>, determine a simplified expression for the quantity
+        <me>
+          \frac{\partial x}{\partial r} \frac{\partial y}{\partial \theta} - \frac{\partial x}{\partial \theta} \frac{\partial y}{\partial r}.
+        </me>
+      </p>
+
+      <p>
+        What do you observe about your result? How is this connected to our earlier work with double integrals in polar coordinates?
+      </p>
+    
+    </activity>
+
+    <activity xml:id="A_11_9_4">
+      <p>
+        Let <m>D'</m> be the region in the <m>xy</m>-plane bounded by the lines <m>y=0</m>, <m>x=0</m>, and <m>x+y=1</m>. We will evaluate the double integral
+        <men xml:id="eq_11_9_COV_ex" >
+          \iint_{D'} \sqrt{x+y}(x-y)^2 \, dA
+        </men>
+        with a change of variables.
+      </p>
+      <ol label="a.">
+      <li>
+        <p>
+          Sketch the region <m>D'</m> in the <m>xy</m>-plane.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          We would like to make a substitution that makes the integrand easier to antidifferentiate. Let <m>s = x+y</m> and <m>t = x-y</m>. Explain why this should make antidifferentiation easier by making the corresponding substitutions and writing the new integrand in terms of <m>s</m> and <m>t</m>.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Solve the equations <m>s = x+y</m> and <m>t = x-y</m> for <m>x</m> and <m>y</m>. (Doing so determines the standard form of the transformation, since we will have <m>x</m> as a function of <m>s</m> and <m>t</m>, and <m>y</m> as a function of <m>s</m> and <m>t</m>.)
+        </p>
+      </li>
+
+      <li>
+        <p>
+          To actually execute this change of variables, we need to know the <m>st</m>-region <m>D</m> that corresponds to the <m>xy</m>-region <m>D'</m>.
+        </p>
+        <ol label="i.">
+          <li>
+            <p>
+              What <m>st</m> equation corresponds to the <m>xy</m> equation <m>x+y=1</m>?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What <m>st</m> equation corresponds to the <m>xy</m> equation <m>x=0</m>?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What <m>st</m> equation corresponds to the <m>xy</m> equation <m>y=0</m>?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Sketch the <m>st</m> region <m>D</m> that corresponds to the <m>xy</m> domain <m>D'</m>.
+            </p>
+          </li>
+        </ol>
+      </li>
+
+      <li>
+        <p>
+          Make the change of variables indicated by <m>s = x+y</m> and <m>t = x-y</m> in the double integral <xref ref="eq_11_9_COV_ex" /> and set up an iterated integral in <m>st</m> variables whose value is the original given double integral. Finally, evaluate the iterated integral.
+        </p>
+      </li>
+      </ol>
+      
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Change of Variables in a Triple Integral</title>
+
+    <p>
+     The argument for the change of variable formula for triple integrals is complicated, and we will not go into the details. The general process, though, is the same as the two-dimensional case. Given a solid <m>S'</m> in the <m>xyz</m>-coordinate system in <m>\R^3</m>, a change of variables transformation <m>x=x(s,t,u)</m>, <m>y=y(s,t,u)</m>, and <m>z = z(s,t,u)</m> transforms <m>S'</m> into a region <m>S</m> in <m>stu</m>-coordinates. Any function <m>f = f(x,y,z)</m> defined on <m>S'</m> can be considered as a function <m>f = f(x(s,t,u), y(s,y,u), z(s,t,u))</m> in <m>stu</m>-coordinates defined on <m>S</m>. The volume element <m>dV</m> in <m>xyz</m>-coordinates cooresponds to a scaled volume element in <m>stu</m>-coordinates, where the scale factor is given by the absolute value of the Jacobian, <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m>, which is the determinant of the <m>3 \times 3</m> matrix
+        <me>
+          \left[ \begin{array}{ccc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t} \amp  \frac{\partial x}{\partial u} \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \amp  \frac{\partial y}{\partial u} \\ \frac{\partial z}{\partial s} \amp  \frac{\partial z}{\partial t} \amp  \frac{\partial z}{\partial u}
+        \end{array}  \right]
+        </me>. 
+      (Recall that this determinant was introduced in <xref ref="S-9-4-Cross-Product">Section</xref>.) That is, <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m> is given by  
+       <me>
+        \frac{\partial x}{\partial s}\left[\frac{\partial y}{\partial t}\frac{\partial z}{\partial u} - \frac{\partial y}{\partial u}\frac{\partial z}{\partial t}\right] - \frac{\partial x}{\partial t}\left[\frac{\partial y}{\partial s}\frac{\partial z}{\partial u} - \frac{\partial y}{\partial u}\frac{\partial z}{\partial s}\right] + \frac{\partial x}{\partial u}\left[\frac{\partial y}{\partial s}\frac{\partial z}{\partial t} - \frac{\partial y}{\partial t}\frac{\partial z}{\partial s}\right].
+      </me>
+    </p>
+
+
+    <p>
+      To summarize,
+    <assemblage xml:id="Change-of-variable-3D">
+      <title>Change of Variables in a Triple Integral<idx><h>change of variable</h><h>triple integral</h></idx></title>
+    <p>
+      Suppose a change of variables <m>x = x(s,t,u)</m>, <m>y = y(s,t,u)</m>, and <m>z = z(s,t,u)</m> transforms a closed and bounded region <m>S</m> in <m>stu</m>-coordinates into a closed and bounded region <m>S'</m> in <m>xyz</m>-coordinates. Under modest conditions (that are studied in advanced calculus), the triple integral <m>\iiint_{S'} f(x,y,z) \, dV </m> is equal to 
+      <me>
+        \iiint_{S} f(x(s,t,u),y(s,t,u),z(s,t,u)) \ \left| \frac{\partial(x,y,z)}{\partial(s,t,u)} \right| \, ds \, dt \, du.
+      </me>
+    </p>
+    </assemblage>
+    </p>
+
+      
+
+    <activity xml:id="A_11_9_3">
+      <p>
+        Find the Jacobian when changing from Cartesian to cylindrical coordinates. That is, for the transformation given by <m>x = r\cos(\theta)</m>, <m>y = r\sin(\theta)</m>, and <m>z = z</m>, determine a simplified expression for the quantity
+        <me>
+          \frac{\partial(x,y,z)}{\partial(r,\theta,z)}.
+        </me>
+      </p>
+
+      <p>
+        What do you observe about your result? How is this connected to our earlier work with triple integrals in cylindrial coordinates?
+      </p>
+    
+    </activity>
+
+    <activity xml:id="A_11_9_5">
+      <p>
+        Consider the solid <m>S'</m> defined by the inequalities <m>0 \leq x \leq 2</m>, <m>\frac{x}{2} \leq y \leq \frac{x}{2}+1</m>, and <m>0 \leq z \leq 6</m>. Consider the transformation defined by <m>s = \frac{x}{2}</m>, <m>t = \frac{x-2y}{2}</m>,  and <m>u = \frac{z}{3}</m>. Let <m>f(x,y,x) = x-2y+z</m>. 
+        <ol label="a.">
+          <li>
+            <p>
+              The transformation turns the solid <m>S'</m> in <m>xyz</m>-coordinates into a box <m>S</m> in  <m>stu</m>-coordinates. Apply the transformation to the boundries of the solid <m>S'</m> to find <m>stu</m>-coordinatte descriptions of the box <m>S</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Find the Jacobian <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m>. 
+            </p>
+          </li>
+          <li>
+          <p>
+              Use the transformation to perform a change of variables and evaluate <m>\iiint_{S'} f(x,y,z) \, dV</m> by evaluating 
+              <me>\iiint_{S} f(x(s,t,u),y(s,t,u),z(s,t,u)) \ \left| \frac{\partial(x,y,z)}{\partial(s,t,u)} \right| \, ds \, dt \, du</me>.
+            </p>
+          </li>
+        </ol>
+    </p>  
+  </activity>
+
+  </subsection>
+
+  
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          If an integral is described in terms of one set of variables, we may write that set of variables in terms of another set of the same number of variables. If the new variables are chosen appropriately, the transformed integral may be easier to evaluate.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The Jacobian is a scalar function that relates the area or volume element in one coordinate system to the corresponding element in a new system determined by a change of variables.
+        </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+    <exercises>
+
+    <exercise xml:id="ex-11-9-WW-Jacobian-2">
+      <!--<title>Calculate a Jacobian with two variables</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q01.pg" />
+      </exercise>
+
+    <exercise xml:id="ex-11-9-WW-Jacobian-3">
+      <!--<title>Calculate a Jacobian with three variables</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q05.pg" />
+      </exercise>
+
+
+    <exercise xml:id="ex-11-9-WW-square">
+      <!--<title>Change of variables on a square</title>-->
+         <webwork source="Library/maCalcDB/setVectorCalculus1/UR_VC_11_1.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-9-WW-quadratics">
+      <!--<title>Change of variables with quadratics</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q23.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-9-WW-ellipse">
+      <!--<title>Change of variables to find the area of an ellipse</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q21.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-9-WW-double">
+      <!--<title>Change of variables to evaluate a double integral</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q25.pg" />
+      </exercise>
+
+       <exercise xml:id="ex-11-9-WW-unknowns">
+      <!--<title>Find values of two parameters to perform a specified change of variables</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q09.pg" />
+      </exercise> 
+
+      <exercise xml:id="ex-11-9-WW-unknown">
+      <!--<title>Find a value of a parameter to perform a specified change of variables</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q13.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-9-WW-parallelogram">
+      <!--<title>Change of variables on a parallelogram</title>-->
+         <webwork source="Library/Michigan/Chap16Sec7/Q19.pg" />
+      </exercise> 
+
+      <exercise>
+        <statement>
+          <p>
+            Let <m>D'</m> be the region in the <m>xy</m>-plane that is the parallelogram with vertices <m>(3,3)</m>, <m>(4,5)</m>, <m>(5,4)</m>, and <m>(6,6)</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Sketch and label the region <m>D'</m> in the <m>xy</m>-plane.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Consider the integral <m>\iint_{D'} (x+y) \, dA</m>.  Explain why this integral would be difficult to set up as an iterated integral.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Let a change of variables be given by <m>x = 2u + v</m>, <m>y = u + 2v</m>.  Using substitution or elimination, solve this system of equations for <m>u</m> and <m>v</m> in terms of <m>x</m> and <m>y</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use your work in (c) to find the pre-image, <m>D</m>, which lies in the <m>uv</m>-plane, of the originally given region <m>D'</m>, which lies in the <m>xy</m>-plane.  For instance, what <m>uv</m> point corresponds to <m>(3,3)</m> in the <m>xy</m>-plane?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use the change of variables in (c) and your other work to write a new iterated integral in <m>u</m> and <m>v</m> that is equivalent to the original <m>xy</m> integral <m>\iint_{D'} (x+y) \, dA</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Finally, evaluate the <m>uv</m> integral, and write a sentence to explain why the change of variables made the integration easier.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            Consider the change of variables
+            <me>
+              x(\rho, \theta, \phi) = \rho \sin(\phi) \cos(\theta) \ \ \ \ \ y(\rho, \theta, \phi) = \rho \sin(\phi) \sin(\theta) \ \ \ \ \ z(\rho, \theta, \phi) = \rho \cos(\phi),
+            </me>
+            which is the transformation from spherical coordinates to rectangular coordinates. Determine the Jacobian of the transformation. How is the result connected to our earlier work with iterated integrals in spherical coordinates?
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            In this problem, our goal is to find the volume of the ellipsoid <m>\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Set up an iterated integral in rectangular coordinates whose value is the volume of the ellipsoid.  Do so by using symmetry and taking 8 times the volume of the ellipsoid in the first octant where <m>x</m>, <m>y</m>, and <m>z</m> are all nonnegative.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Explain why it makes sense to use the substitution <m>x = as</m>, <m>y = bt</m>, and <m>z = cu</m> in order to make the region of integration simpler.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Compute the Jacobian of the transformation given in (b).
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Execute the given change of variables and set up the corresponding new iterated integral in <m>s</m>, <m>t</m>, and <m>u</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Explain why this new integral is better, but is still difficult to evaluate.  What additional change of variables would make the resulting integral easier to evaluate?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Convert the integral from (d) to a new integral in spherical coordinates.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Finally, evaluate the iterated integral in (f) and hence determine the volume of the ellipsoid.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+    </exercises>
+</section>
