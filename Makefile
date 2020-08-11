@@ -91,7 +91,7 @@ SERVER = https://webwork-ptx.aimath.org
 acmv-extraction:
 	install -d $(WWOUT)
 	-rm $(WWOUT)/webwork-representations.ptx
-	PYTHONWARNINGS=module $(PTX)/pretext/pretext -vv -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
+	$(PTX)/pretext/pretext -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
 
 #  HTML output 
 #  Output lands in the subdirectory:  $(HTMLOUT)
