@@ -90,7 +90,7 @@ SERVER = https://webwork-ptx.aimath.org
 
 acmv-extraction:
 	install -d $(WWOUT)
-	-rm $(WWOUT)/webwork-representations.ptx
+	-rm $(WWOUT)/webwork-representations.xml
 	$(PTX)/pretext/pretext -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
 
 #  HTML output 
@@ -112,26 +112,6 @@ html:
 	cp -a $(IMAGESSRC) $(HTMLOUT)
 	cd $(HTMLOUT); \
 	xsltproc -xinclude -stringparam publisher $(PRJ)/pub/html.xml $(PTXUSR)/acmv-html.xsl $(MAINFILE)
-
-#  HTML output for MULTI
-#  Output lands in the subdirectory:  $(HTMLOUT)/multi
-#    Remove the entire $(HTMLOUT)/multi/knowl directory because of how PTX now
-#    seems to make a knowl for everything and rm throws an error.
-multi-html: 
-	install -d $(HTMLOUT)/multi
-	-rm -rf $(HTMLOUT)/multi/knowl
-	install -d $(HTMLOUT)/multi/knowl
-	install -d $(HTMLOUT)/multi/images
-	install -d $(OUTPUT)/multi
-	install -d $(OUTPUT)/multi/images
-	install -d $(PTXUSR)
-	install -b xsl/acmv-html.xsl $(PTXUSR)
-	install -b xsl/acmv-common.xsl $(PTXUSR)
-	-rm $(HTMLOUT)/multi/*.html
-	cp -a $(AC3IMAGESSRC) $(HTMLOUT)/multi
-	cp -a $(IMAGESSRC) $(HTMLOUT)/multi
-	cd $(HTMLOUT)/multi; \
-	xsltproc -xinclude -stringparam publisher $(PRJ)/ptx/AC3/multi-html.xml $(PTXUSR)/acmv-html.xsl $(PRJ)/ptx/AC3/index.mbx
 
 
 ###########
