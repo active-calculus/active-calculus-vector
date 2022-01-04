@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-10-3-Second-Order-Partial-Derivatives">
+  <title>Second-Order Partial Derivatives</title>
+  
+    <objectives>
+      <ul>
+        <li>
+          <p>
+            Given a function <m>f</m> of two independent
+            variables <m>x</m> and <m>y</m>, how are the second-order
+            partial derivatives of <m>f</m> defined?
+          </p>
+        </li> 
+        <li>
+          <p>
+          What do the second-order
+          partial derivatives <m>f_{xx}</m>, <m>f_{yy}</m>, <m>f_{xy}</m>, and <m>f_{yx}</m>
+          of a function <m>f</m> tell us about the function's behavior?
+          </p>
+        </li>
+      </ul>
+    </objectives>
+
+    <introduction>
+
+    <p>
+      Recall that for a single-variable function <m>f</m>, the second derivative of <m>f</m> is defined to be the derivative of the first derivative. That is, <m>f''(x) = \frac{d}{dx}[f'(x)]</m>, which can be stated in terms of the limit definition of the derivative by writing
+      <me>
+        f''(x) = \lim_{h \to 0} \frac{f'(x+h) - f'(x)}{h}.
+      </me>
+    </p>
+
+    <p>
+      In what follows, we begin exploring the four different second-order partial derivatives of a function of two variables and seek to understand what these various derivatives tell us about the function's behavior.
+    </p>
+
+    <exploration xml:id="PA_10_3">
+      <p>
+        Once again, let's consider the function <m>f</m> defined by <m>f(x,y) = \frac{x^2\sin(2y)}{32}</m> that measures a projectile's range as a function of its initial speed <m>x</m> and launch angle <m>y</m>. The graph of this function, including traces with <m>x=150</m> and <m>y=0.6</m>, is shown in <xref ref="F_10_3_preview">Figure</xref>.
+      </p>
+
+      <figure xml:id="F_10_3_preview" >
+        <caption>The distance function with traces <m>x=150</m> and <m>y=0.6</m>.</caption>
+        <sidebyside widths="50% 50%">
+        <image source="images/fig_10_2_trace_x_a" />
+        <image source="images/fig_10_2_trace_y_a" />
+        </sidebyside>
+      </figure>
+
+      <p>
+        <ol label="a.">
+          <li>
+            <p>
+              Compute the partial derivative <m>f_x</m>. Notice that <m>f_x</m> itself is a
+                  new function of <m>x</m> and <m>y</m>, so we may now compute the partial derivatives of <m>f_x</m>. Find the partial derivative <m>f_{xx} = (f_x)_x</m> and show that <m>f_{xx}(150,0.6) \approx 0.058</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <xref ref="F_10_3_preview_xx">Figure</xref> shows the trace of <m>f</m> with <m>y=0.6</m> with three tangent lines included.  Explain how your result from part (a) of this preview activity is reflected in this figure.
+
+              <figure xml:id="F_10_3_preview_xx" >
+                <caption>The trace with <m>y=0.6</m>.</caption>
+                <image width="50%" source="images/fig_10_3_preview_xx" />
+              </figure>
+
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Determine the partial derivative <m>f_y</m>, and then find the partial derivative <m>f_{yy}=(f_y)_y</m>.  Evaluate <m>f_{yy}(150, 0.6)</m>.
+
+              <figure xml:id="F_10_3_preview_y" >
+                <caption>More traces of the range function.</caption>
+                <image width="50%" source="images/fig_10_3_preview_yy" />
+              </figure>
+
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <xref ref="F_10_3_preview_y">Figure</xref> shows the
+                  trace <m>f(150, y)</m> and includes three tangent lines.
+                  Explain how the value of <m>f_{yy}(150,0.6)</m> is reflected in this figure.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Because <m>f_x</m> and <m>f_y</m> are each functions of both <m>x</m> and <m>y</m>, they each have two partial derivatives.  Not only can we compute <m>f_{xx} = (f_x)_x</m>, but also <m>f_{xy} = (f_x)_y</m>; likewise, in addition to <m>f_{yy} = (f_y)_y</m>, but also <m>f_{yx} = (f_y)_x</m>.  For the range function <m>f(x,y) = \frac{x^2\sin(2y)}{32}</m>, use your earlier computations of <m>f_x</m> and <m>f_y</m> to now determine <m>f_{xy}</m> and <m>f_{yx}</m>.  Write one sentence to explain how you calculated these <q>mixed</q> partial derivatives.
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </exploration>
+  </introduction>
+
+  <subsection>
+    <title>Second-Order Partial Derivatives</title>
+    <p>
+      A function <m>f</m> of two independent variables <m>x</m> and <m>y</m> has two first order partial derivatives, <m>f_x</m> and <m>f_y</m>. As we saw in Preview <xref ref="PA_10_3">Activity</xref>, each of these first-order partial derivatives has two partial derivatives, giving a total of four <em>second-order</em> partial derivatives<idx><h>partial derivatives</h><h>second-order</h></idx>:
+      <ul>
+        <li>
+          <p>
+            <m>f_{xx} = (f_x)_x = \frac{\partial}{\partial x} 
+              \left(\frac{\partial
+                f}{\partial x}\right) = 
+              \frac{\partial^2 f}{\partial x^2}</m>,
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>f_{yy} = (f_y)_y=\frac{\partial}{\partial y} 
+              \left(\frac{\partial
+                f}{\partial y}\right) = 
+              \frac{\partial^2 f}{\partial y^2}</m>,
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>f_{xy} = (f_x)_y=\frac{\partial}{\partial y} 
+              \left(\frac{\partial
+                f}{\partial x}\right) = 
+              \frac{\partial^2 f}{\partial y \partial x}</m>,
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>f_{yx}=(f_y)_x=\frac{\partial}{\partial x} 
+              \left(\frac{\partial
+                f}{\partial y}\right) = 
+              \frac{\partial^2 f}{\partial x \partial y}</m>.
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The first two are called <em>unmixed</em> second-order partial
+      derivatives<idx><h>partial derivatives</h><h>second-order, unmixed</h></idx> while the
+      last two are called the <em>mixed</em> second-order partial
+      derivatives<idx><h>partial derivatives</h><h>second-order, mixed</h></idx>.
+    </p>
+
+    <p>
+      One aspect of this notation can be a little confusing. The notation
+      <me>
+        \frac{\partial^2 f}{\partial y\partial x} = \frac{\partial}{\partial
+          y}\left(\frac{\partial f}{\partial x}\right)
+      </me>
+      means that we first differentiate with respect to <m>x</m> and then with
+      respect to <m>y</m>; this can be expressed in the alternate notation <m>f_{xy} = (f_x)_y</m>. However, to find the second partial derivative
+      <me>
+        f_{yx} = (f_y)_x
+      </me>
+      we first differentiate with respect to <m>y</m> and then <m>x</m>. This means
+      that
+      <me>
+        \frac{\partial^2 f}{\partial y\partial x} = f_{xy}, 
+        \ 
+        \mbox{and} 
+        \ 
+        \frac{\partial^2 f}{\partial x\partial y} = f_{yx}.
+      </me>
+    </p>
+
+    <p>
+      Be sure to note carefully the difference between Leibniz notation and subscript notation and the order in which <m>x</m> and <m>y</m> appear in each. In addition, remember that anytime we compute a partial derivative, we hold constant the variable(s) other than the one we are differentiating with respect to.
+    </p>
+
+    <activity xml:id="A_10_3_1">
+      <p>
+        Find all second order partial
+        derivatives of the following functions. For each partial derivative you calculate, state explicitly which variable is being held constant.
+        <ol label="a.">
+          <li>
+            <p>
+              <m>f(x,y) = x^2y^3</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>f(x,y) = y\cos(x)</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>g(s,t) = st^3 + s^4</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              How many second order partial derivatives does the function <m>h</m> defined by <m>h(x,y,z) = 9x^9z-xyz^9 + 9</m> have?  Find <m>h_{xz}</m> and <m>h_{zx}</m> (you do not need to find the other second order partial derivatives).
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      In <xref ref="PA_10_3">Preview Activity</xref> and <xref ref="A_10_3_1">Activity</xref>, you may have noticed
+      that the mixed second-order partial derivatives are equal.
+      This observation holds generally and is known as Clairaut's Theorem.
+    </p>
+
+    <assemblage xml:id="Clairaut">
+      <title>Clairaut's Theorem</title>
+    <p>
+      Let <m>f</m> be a function of several variables for which the partial derivatives <m>f_{xy}</m> and <m>f_{yx}</m> are continuous near the point <m>(a,b)</m>. Then
+      <me>
+        f_{xy}(a,b) = f_{yx}(a,b).
+      </me>
+    </p>
+    </assemblage>
+
+
+    
+  </subsection>
+
+  <subsection>
+    <title>Interpreting the Second-Order Partial Derivatives</title>
+    <p>
+      Recall from single variable calculus that the second derivative
+      measures the instantaneous rate of change of the derivative. This observation is
+      the key to understanding the meaning of the second-order partial
+      derivatives.
+    </p>
+
+    <figure xml:id="F_10_3_fxx" >
+      <caption>The tangent lines to a trace with increasing <m>x</m>.</caption>
+      <sidebyside widths="33% 33% 33%">
+      <image source="images/fig_10_3_fxx_1" />
+      <image source="images/fig_10_3_fxx_2" />
+      <image source="images/fig_10_3_fxx_3" />
+      </sidebyside>
+    </figure>
+
+    <p>
+      Furthermore, we remember that the second derivative of a function at a
+      point provides us with information about the concavity of the function
+      at that point. Since the unmixed second-order partial derivative
+      <m>f_{xx}</m> requires us to hold <m>y</m> constant and differentiate twice with
+      respect to <m>x</m>, we may simply view <m>f_{xx}</m> as the second derivative
+      of a trace of <m>f</m> where <m>y</m> is fixed. As such, <m>f_{xx}</m> will measure
+      the concavity of this trace.
+    </p>
+
+    <p>
+      Consider, for example, <m>f(x,y) = \sin(x) e^{-y}</m>. <xref ref="F_10_3_fxx">Figure</xref> shows the graph of this function along with the
+      trace given by <m>y=-1.5</m>. Also shown are three tangent lines to this
+      trace, with increasing <m>x</m>-values from left to right among the three plots in <xref ref="F_10_3_fxx">Figure</xref>.
+    </p>
+
+    <p>
+      That the slope of the tangent line is decreasing as <m>x</m> increases is
+      reflected, as it is in one-variable calculus, in the fact that the
+      trace is concave down. Indeed, we see that <m>f_x(x,y)=\cos(x)e^{-y}</m> and so
+      <m>f_{xx}(x,y)=-\sin(x)e^{-y} \lt  0</m>, since <m>e^{-y} > 0</m> for all values of <m>y</m>, including <m>y = -1.5</m>.
+    </p>
+
+    <p>
+      In the following activity, we further explore what second-order partial derivatives tell us about the geometric behavior of a surface.
+    </p>
+
+    <activity xml:id="A_10_3_2a">
+      <p>
+        We continue to consider the function <m>f</m> defined by <m>f(x,y) = \sin(x) e^{-y}</m>.
+        <ol label="a.">
+          <li>
+            <p>
+              In <xref ref="F_10_3_fyy">Figure</xref>, we see the trace of <m>f(x,y) = \sin(x) e^{-y}</m> that has <m>x</m> held constant with <m>x = 1.75</m>. We also see three different lines that are tangent to the trace of <m>f</m> in the <m>y</m> direction at values of <m>y</m> that are increasing from left to right in the figure. Write a couple of sentences that describe whether the slope of the tangent lines to this curve increase or decrease as <m>y</m> increases, and, after computing <m>f_{yy}(x,y)</m>, explain how this observation is related to the value of <m>f_{yy}(1.75,y)</m>.  Be sure to address the notion of concavity in your response.(You need to be careful about the directions in which <m>x</m> and <m>y</m> are increasing.)
+
+              <figure xml:id="F_10_3_fyy" >
+                <caption>The tangent lines to a trace with increasing <m>y</m>.</caption>
+                <sidebyside widths="33% 33% 33%">
+                <image source="images/fig_10_3_fyy_1" />
+                <image source="images/fig_10_3_fyy_2" />
+                <image source="images/fig_10_3_fyy_3" />
+                </sidebyside>
+              </figure>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              In <xref ref="F_10_3_fxy">Figure</xref>, we start to think about the mixed partial derivative, <m>f_{xy}</m>.  Here, we first hold <m>y</m> constant to generate the first-order partial derivative <m>f_x</m>, and then we hold <m>x</m> constant to compute <m>f_{xy}</m>.  This leads to first thinking about a trace with <m>x</m> being constant, followed by slopes of tangent lines in the <m>x</m>-direction that slide along the original trace.  You might think of sliding your pencil down the trace with <m>x</m> constant in a way that its slope indicates <m>(f_x)_y</m> in order to further animate the three snapshots shown in the figure.
+
+              <figure xml:id="F_10_3_fxy" >
+                <caption>The trace of <m>z = f(x,y) = \sin(x)e^{-y}</m> with <m>x = 1.75</m>, along with tangent lines in the <m>y</m>-direction at three different points.</caption>
+                <sidebyside widths="33% 33% 33%">
+                <image source="images/fig_10_3_fxy_1" />
+                <image source="images/fig_10_3_fxy_2" />
+                <image source="images/fig_10_3_fxy_3" />
+                </sidebyside>
+              </figure>
+
+              <p>
+
+              </p>
+
+              Based on <xref ref="F_10_3_fxy">Figure</xref>, is <m>f_{xy}(1.75, -1.5)</m> positive or negative?  Why?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Determine the formula for <m>f_{xy}(x,y)</m>, and hence evaluate <m>f_{xy}(1.75, -1.5)</m>.  How does this value compare with your observations in (b)?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              We know that <m>f_{xx}(1.75, -1.5)</m> measures the concavity of the <m>y = -1.5</m> trace, and that <m>f_{yy}(1.75, -1.5)</m> measures the concavity of the <m>x = 1.75</m> trace.  What do you think the quantity <m>f_{xy}(1.75, -1.5)</m> measures?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              On <xref ref="F_10_3_fxy">Figure</xref>, sketch the trace with <m>y = -1.5</m>, and sketch three tangent lines whose slopes correspond to the value of <m>f_{yx}(x,-1.5)</m> for three different values of <m>x</m>, the middle of which is <m>x = -1.5</m>.  Is <m>f_{yx}(1.75, -1.5)</m> positive or negative?  Why?  What does <m>f_{yx}(1.75, -1.5)</m> measure?
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      Just as with the first-order partial derivatives, we can
+      approximate second-order partial derivatives in the situation where we have only
+      partial information about the function.
+    </p>
+
+    <activity xml:id="A_10_3_6">
+      <p>
+        As we saw in <xref ref="A_10_2_12">Activity</xref>, the wind chill <m>w(v,T)</m>, in degrees Fahrenheit, is
+        a function of the
+        wind speed, in miles per hour, and the air temperature, in degrees Fahrenheit. Some values of the wind chill are
+        recorded in <xref ref="T_10_3_wind_chill">Table</xref>.
+      </p>
+
+      <table xml:id="T_10_3_wind_chill" >
+        <title>Wind chill as a function of wind speed and temperature.</title>
+        <tabular halign="center" bottom="minor" top="minor">
+          <row bottom="medium">
+            <cell><m>v \backslash T</m></cell>
+            <cell>-30</cell>
+            <cell>-25</cell>
+            <cell>-20</cell>
+            <cell>-15</cell>
+            <cell>-10</cell>
+            <cell>-5</cell>
+            <cell>0</cell>
+            <cell>5</cell>
+            <cell>10</cell>
+            <cell>15</cell>
+            <cell>20</cell>
+          </row>
+          <row>
+            <cell>5</cell>
+            <cell>-46</cell>
+            <cell>-40</cell>
+            <cell>-34</cell>
+            <cell>-28</cell>
+            <cell>-22</cell>
+            <cell>-16</cell>
+            <cell>-11</cell>
+            <cell>-5</cell>
+            <cell>1</cell>
+            <cell>7</cell>
+            <cell>13</cell>
+          </row>
+          <row>
+            <cell>10</cell>
+            <cell>-53</cell>
+            <cell>-47</cell>
+            <cell>-41</cell>
+            <cell>-35</cell>
+            <cell>-28</cell>
+            <cell>-22</cell>
+            <cell>-16</cell>
+            <cell>-10</cell>
+            <cell>-4</cell>
+            <cell>3</cell>
+            <cell>9</cell>
+          </row>
+          <row>
+            <cell>15</cell>
+            <cell>-58</cell>
+            <cell>-51</cell>
+            <cell>-45</cell>
+            <cell>-39</cell>
+            <cell>-32</cell>
+            <cell>-26</cell>
+            <cell>-19</cell>
+            <cell>-13</cell>
+            <cell>-7</cell>
+            <cell>0</cell>
+            <cell>6</cell>
+          </row>
+          <row>
+            <cell>20</cell>
+            <cell>-61</cell>
+            <cell>-55</cell>
+            <cell>-48</cell>
+            <cell>-42</cell>
+            <cell>-35</cell>
+            <cell>-29</cell>
+            <cell>-22</cell>
+            <cell>-15</cell>
+            <cell>-9</cell>
+            <cell>-2</cell>
+            <cell>4</cell>
+          </row>
+          <row>
+            <cell>25</cell>
+            <cell>-64</cell>
+            <cell>-58</cell>
+            <cell>-51</cell>
+            <cell>-44</cell>
+            <cell>-37</cell>
+            <cell>-31</cell>
+            <cell>-24</cell>
+            <cell>-17</cell>
+            <cell>-11</cell>
+            <cell>-4</cell>
+            <cell>3</cell>
+          </row>
+          <row>
+            <cell>30</cell>
+            <cell>-67</cell>
+            <cell>-60</cell>
+            <cell>-53</cell>
+            <cell>-46</cell>
+            <cell>-39</cell>
+            <cell>-33</cell>
+            <cell>-26</cell>
+            <cell>-19</cell>
+            <cell>-12</cell>
+            <cell>-5</cell>
+            <cell>1</cell>
+          </row>
+          <row>
+            <cell>35</cell>
+            <cell>-69</cell>
+            <cell>-62</cell>
+            <cell>-55</cell>
+            <cell>-48</cell>
+            <cell>-41</cell>
+            <cell>-34</cell>
+            <cell>-27</cell>
+            <cell>-21</cell>
+            <cell>-14</cell>
+            <cell>-7</cell>
+            <cell>0</cell>
+          </row>
+          <row>
+            <cell>40</cell>
+            <cell>-71</cell>
+            <cell>-64</cell>
+            <cell>-57</cell>
+            <cell>-50</cell>
+            <cell>-43</cell>
+            <cell>-36</cell>
+            <cell>-29</cell>
+            <cell>-22</cell>
+            <cell>-15</cell>
+            <cell>-8</cell>
+            <cell>-1</cell>
+          </row>
+        </tabular>
+      </table>
+
+      <ol label="a.">
+        <li>
+          <p>
+            Estimate the partial derivatives <m>w_{T}(20,-15)</m>, <m>w_{T}(20,-10)</m>, and <m>w_T(20,-5)</m>.  Use these results to estimate the second-order partial
+              <m>w_{TT}(20, -10)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            In a similar way, estimate the second-order partial <m>w_{vv}(20,-10)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Estimate the partial derivatives <m>w_T(20,-10)</m>, <m>w_T(25,-10)</m>, and <m>w_T(15,-10)</m>, and use your results to
+              estimate the partial <m>w_{Tv}(20,-10)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            In a similar way, estimate the partial derivative <m>w_{vT}(20,-10)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Write several sentences that explain what the values <m>w_{TT}(20, -10)</m>,  <m>w_{vv}(20,-10)</m>, and <m>w_{Tv}(20,-10)</m> indicate regarding the behavior of <m>w(v,T)</m>.
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+
+    <p>
+      As we have found in <xref ref="A_10_3_2a">Activities</xref> and <xref ref="A_10_3_6"></xref>, we may think of <m>f_{xy}</m> as measuring the
+      <q>twist</q> of the graph as we increase <m>y</m> along a particular trace where <m>x</m> is held constant. In the same way, <m>f_{yx}</m> measures how
+      the graph twists as we increase <m>x</m>. If we remember that Clairaut's
+      theorem tells us that <m>f_{xy} = f_{yx}</m>, we see that the amount of
+      twisting is the same in both directions. This twisting is perhaps
+      more easily seen in <xref ref="F_10_3_ruled">Figure</xref>, which shows the graph
+      of <m>f(x,y) = -xy</m>, for which <m>f_{xy} = -1</m>.
+    </p>
+
+    <figure xml:id="F_10_3_ruled" >
+      <caption>The graph of <m>f(x,y) = -xy</m>.</caption>
+      <image width="50%" source="images/fig_10_3_ruled" />
+    </figure>
+  </subsection>
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          There are four second-order partial derivatives of a function
+            <m>f</m> of two independent variables <m>x</m> and <m>y</m>:
+          <me>
+            f_{xx} = (f_x)_x,
+              f_{xy} = (f_x)_y,
+              f_{yx} = (f_y)_x,\ \mbox{and}  \ 
+              f_{yy} = (f_y)_y.
+          </me>
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The unmixed second-order partial derivatives, <m>f_{xx}</m> and
+              <m>f_{yy}</m>, tell us about the concavity of the traces. The mixed second-order partial derivatives, <m>f_{xy}</m> and
+              <m>f_{yx}</m>, tell us how the graph of <m>f</m> twists.
+        </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+    <exercises>
+      
+      <exercise xml:id="ex-10-3-WW-partials_polynomials">
+      <!--<title>Calculating partial derivatives with polynomials</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-01-Second-order-partials.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-partials">
+      <!--<title>Calculating partial derivatives with trigonometric functions</title>-->
+         <webwork source="Library/maCalcDB/setVmultivariable3ParDer/UR_VC_5_14.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-partials-exponentials">
+      <!--<title>Calculating partial derivatives with exponential functions</title>-->
+         <webwork source="Library/272/setStewart14_3/problem_5.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-second_partials">
+      <!--<title>Calculating second order partial derivatives</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-08-Second-order-partials.pg" />
+      </exercise>
+
+
+      <exercise xml:id="ex-10-3-WW-more-second_partials">
+      <!--<title>Calculating more second order partial derivatives</title>-->
+         <webwork source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.3_Partial_Derivatives/14.3.67.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-Clairaut">
+      <!--<title>Checking Clairaut's Theorem</title>-->
+         <webwork source="Library/Michigan/Chap14Sec7/Q05.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-second_partials_all">
+      <!--<title>Calculating all second order partial derivatives</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-06-Second-order-partials.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-third_partials">
+      <!--<title>Calculating second and third order partials</title>-->
+         <webwork source="Library/Union/setMVderivatives/an14_3_80.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-partials_Clairaut">
+      <!--<title>Interpreting partials from a given second order partial</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-35-Second-order-partials.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-3-WW-partials_unknown_function">
+      <!--<title>Interpreting partials involving an unknown function</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-34-Second-order-partials.pg" />
+      </exercise>
+
+       <!--MBX exception
+      <exercise xml:id="ex-10-3-WW-partials_surface">
+      <title>Interpreting partials from a surface</title>
+         <webwork source="Library/FortLewis/Calc3/14-1-Partial-derivatives/HGM4-14-1-18-The-partial-derivative/HGM4-14-1-18-The-partial-derivative.pg" />
+      </exercise>
+
+      
+      <exercise xml:id="ex-10-3-WW-partials_level_curves">
+      <title>Interpreting partials from level curves</title>
+         <webwork source="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-28-Second-order-partials/HGM4-14-7-28-Second-order-partials.pg" />
+      </exercise> -->     
+
+
+      <exercise xml:id="Ez_10_3_0">
+        <statement>
+          <p>
+            Shown in <xref ref="F_10_3_activity_contour">Figure</xref> is a contour
+            plot of a function <m>f</m> with the values of <m>f</m> labeled on the
+            contours. The point <m>(2,1)</m> is highlighted in red.
+          </p>
+
+          <figure xml:id="F_10_3_activity_contour" >
+            <caption>A contour plot of <m>f(x,y)</m>.</caption>
+            <image width="50%" source="images/fig_10_3_activity_contour" />
+          </figure>
+
+          <ol label="a.">
+            <li>
+              <p>
+                Estimate the partial derivatives <m>f_x(2,1)</m> and <m>f_y(2,1)</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Determine whether the second-order partial derivative
+                  <m>f_{xx}(2,1)</m> is positive or negative, and explain your thinking.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Determine whether the second-order partial derivative
+                  <m>f_{yy}(2,1)</m> is positive or negative, and explain your thinking.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Determine whether the second-order partial derivative
+                  <m>f_{xy}(2,1)</m> is positive or negative, and explain your thinking.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Determine whether the second-order partial derivative
+                  <m>f_{yx}(2,1)</m> is positive or negative, and explain your thinking.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Consider a function <m>g</m> of the variables <m>x</m> and <m>y</m> for which <m>g_x(2,2) > 0</m> and
+                  <m>g_{xx}(2,2) \lt  0</m>.  Sketch possible behavior of some contours around <m>(2,2)</m> on the left axes in <xref ref="F_10_3_activity_grad">Figure</xref>.
+
+                <figure xml:id="F_10_3_activity_grad" >
+                  <caption>Plots for contours of <m>g</m> and <m>h</m>.</caption>
+                  <sidebyside widths="50% 50%">
+                  <image source="images/fig_10_2_activity_grad" />
+                  <image source="images/fig_10_2_activity_grad" />
+                  </sidebyside>
+                </figure>
+
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Consider a function <m>h</m> of the variables <m>x</m> and <m>y</m> for which <m>h_x(2,2) > 0</m> and
+                  <m>h_{xy}(2,2) \lt  0</m>.  Sketch possible behavior of some contour
+                  lines around <m>(2,2)</m> on the right axes in <xref ref="F_10_3_activity_grad">Figure</xref>.
+              </p>
+            </li>
+          </ol>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_10_3_1">
+        <statement>
+          <p>
+            The Heat Index, <m>I</m>, (measured in <em>apparent degrees F</em>) is a function of the actual temperature <m>T</m> outside (in degrees F) and the relative humidity <m>H</m> (measured as a percentage). A portion of the table which gives values for this function, <m>I(T,H)</m>, is reproduced in <xref ref="T_10_3_heat_index">Table</xref>.
+          </p>
+
+        <table xml:id="T_10_3_heat_index" >
+        <title>Heat index.</title>
+            <tabular halign="center" bottom="minor" top="minor">
+            <row bottom="medium">
+              <cell><em>T</em> <m>\downarrow \backslash</m> <em>H</em> <m>\rightarrow</m></cell>
+              <cell>70</cell>
+              <cell>75</cell>
+              <cell>80</cell>
+              <cell>85</cell>
+            </row>
+            <row>
+              <cell>90</cell>
+              <cell>106</cell>
+              <cell>109</cell>
+              <cell>112</cell>
+              <cell>115</cell>
+            </row>
+            <row>
+              <cell>92</cell>
+              <cell>112</cell>
+              <cell>115</cell>
+              <cell>119</cell>
+              <cell>123</cell>
+            </row>
+            <row>
+              <cell>94</cell>
+              <cell>118</cell>
+              <cell>122</cell>
+              <cell>127</cell>
+              <cell>132</cell>
+            </row>
+            <row>
+              <cell>96</cell>
+              <cell>125</cell>
+              <cell>130</cell>
+              <cell>135</cell>
+              <cell>141</cell>
+            </row>
+          </tabular>
+          </table>
+          <ol label="a.">
+            <li>
+              <p>
+                State the limit definition of the value <m>I_{TT}(94,75)</m>.  Then, estimate <m>I_{TT}(94,75)</m>, and write one complete sentence that carefully explains the meaning of this value, including units.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                State the limit definition of the value <m>I_{HH}(94,75)</m>.  Then, estimate <m>I_{HH}(94,75)</m>, and write one complete sentence that carefully explains the meaning of this value, including units.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Finally, do likewise to estimate <m>I_{HT}(94,75)</m>, and write a sentence to explain the meaning of the value you found.
+              </p>
+            </li>
+          </ol>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_10_3_2">
+        <statement>
+          <p>
+            The temperature on a heated metal plate positioned in the first quadrant of the <m>xy</m>-plane is given by
+            <me>
+              C(x,y) = 25e^{-(x-1)^2 - (y-1)^3}.
+            </me>
+          </p>
+
+          <p>
+            Assume that temperature is measured in degrees Celsius and that <m>x</m> and <m>y</m> are each measured in inches.
+            <ol label="a.">
+              <li>
+                <p>
+                  Determine <m>C_{xx}(x,y)</m> and <m>C_{yy}(x,y)</m>.  Do not do any additional work to algebraically simplify your results.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Calculate <m>C_{xx}(1.1, 1.2)</m>.  Suppose that an ant is walking past the point <m>(1.1, 1.2)</m> along the line <m>y = 1.2</m>.  Write a sentence to explain the meaning of the value of <m>C_{xx}(1.1, 1.2)</m>, including units.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Calculate <m>C_{yy}(1.1, 1.2)</m>.  Suppose instead that an ant is walking past the point <m>(1.1, 1.2)</m> along the line <m>x = 1.1</m>.  Write a sentence to explain the meaning of the value of <m>C_{yy}(1.1, 1.2)</m>, including units.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine <m>C_{xy}(x,y)</m> and hence compute <m>C_{xy}(1.1, 1.2)</m>.  What is the meaning of this value?  Explain, in terms of an ant walking on the heated metal plate.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_10_3_3">
+        <statement>
+          <p>
+            Let <m>f(x,y) = 8 - x^2 - y^2</m> and <m>g(x,y) = 8 - x^2 + 4xy - y^2</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Determine <m>f_x</m>, <m>f_y</m>, <m>f_{xx}</m>, <m>f_{yy}</m>, <m>f_{xy}</m>, and <m>f_{yx}</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Evaluate each of the partial derivatives in (a) at the point <m>(0,0)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  What do the values in (b) suggest about the behavior of <m>f</m> near <m>(0,0)</m>?  Plot a graph of <m>f</m> and compare what you see visually to what the values suggest.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine <m>g_x</m>, <m>g_y</m>, <m>g_{xx}</m>, <m>g_{yy}</m>, <m>g_{xy}</m>, and <m>g_{yx}</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Evaluate each of the partial derivatives in (d) at the point <m>(0,0)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  What do the values in (e) suggest about the behavior of <m>g</m> near <m>(0,0)</m>?  Plot a graph of <m>g</m> and compare what you see visually to what the values suggest.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  What do the functions <m>f</m> and <m>g</m> have in common at <m>(0,0)</m>?  What is different?  What do your observations tell you regarding the importance of a certain second-order partial derivative?
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            Let <m>f(x,y) = \frac{1}{2}xy^2</m> represent the kinetic energy in Joules of an object of mass <m>x</m> in
+            kilograms with velocity <m>y</m> in meters per second. Let <m>(a,b)</m> be the point <m>(4,5)</m> in the domain of <m>f</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Calculate <m>\frac{ \partial^2 f}{\partial x^2}</m> at the point <m>(a,b)</m>. Then explain as best you can what this second order partial
+                  derivative tells us about kinetic energy.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Calculate <m>\frac{ \partial^2 f}{\partial y^2}</m> at the point <m>(a,b)</m>. Then explain as best you can what this second order partial
+                  derivative tells us about kinetic energy.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Calculate <m>\frac{ \partial^2 f}{\partial y \partial x}</m> at the point <m>(a,b)</m>. Then explain as best you can what this second order
+                  partial derivative tells us about kinetic energy.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Calculate <m>\frac{ \partial^2 f}{\partial x \partial y}</m> at the point <m>(a,b)</m>. Then explain as best you can what this second order
+                  partial derivative tells us about kinetic energy.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+    </exercises>
+</section>

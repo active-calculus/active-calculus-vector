@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-10-6-Directional-Derivative">
+  <title>Directional Derivatives and the Gradient</title>
+  
+    <objectives>
+        <ul>
+          <li>
+            <p>
+              The partial derivatives of a function <m>f</m> tell us the rate of change of
+                  <m>f</m> in the direction of the coordinate axes.  How can we measure
+                  the rate of change of <m>f</m> in other directions?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What is the gradient of a function and what does it tell us?
+            </p>
+          </li>
+        </ul>
+    </objectives>
+
+    <introduction>
+    <p>
+      The partial derivatives of a function tell us the instantaneous rate at which the function changes as we hold all but one independent variable constant and allow the remaining independent variable to change. It is natural to wonder how we can measure the rate at which a function changes in directions other than parallel to a coordinate axes. In what follows, we investigate this question, and see how the rate of change in any given direction is connected to the rates of change given by the standard partial derivatives.
+    </p>
+
+    <exploration xml:id="PA_10_6">
+      <p>
+        Let's consider the function <m>f</m> defined by
+        <me>
+          f(x,y) = 30 - x^2 - \frac 12 y^2,
+        </me>
+        and suppose that <m>f</m> measures the temperature, in degrees Celsius, at a given point in the plane, where <m>x</m> and <m>y</m> are measured in feet. Assume that the positive <m>x</m>-axis points due east, while the positive <m>y</m>-axis points due north. A contour plot of <m>f</m> is shown in <xref ref="F_10_6_preview_1">Figure</xref>
+      </p>
+
+      <figure xml:id="F_10_6_preview_1" >
+        <caption>A contour plot of <m>f(x,y) = 30-x^2-\frac12 y^2</m>.</caption>
+        <image width="50%" source="images/fig_10_6_preview_1" />
+      </figure>
+
+      <ol label="a.">
+        <li>
+          <p>
+            Suppose that a person is walking due east, and thus parallel to the <m>x</m>-axis.  At what instantaneous rate is the temperature changing with respect to <m>x</m> at the moment the walker passes the point <m>(2,1)</m>?  What are the units on this rate of change?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Next, determine the instantaneous rate of change of temperature with respect to distance at the point <m>(2,1)</m> if the person is instead walking due north.  Again, include units on your result.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Now, rather than walking due east or due north, let's suppose that the person is walking with velocity given by the vector <m>\vv = \langle 3, 4 \rangle</m>, where time is measured in seconds.  Note that the person's speed is thus <m>| \vv | = 5</m> feet per second.
+  
+              Find parametric equations for the person's path; that is, parameterize the line through <m>(2,1)</m> using the direction vector <m>\vv = \langle 3, 4 \rangle</m>.  Let <m>x(t)</m> denote the <m>x</m>-coordinate of the line, and <m>y(t)</m> its <m>y</m>-coordinate. Make sure your parameterization places the walker at the point <m>(2,1)</m> when <m>t=0</m>. 
+          </p>
+        </li>
+
+        <li>
+          <p>
+            With the parameterization in (c), we can now view the temperature <m>f</m> as not only a function of <m>x</m> and <m>y</m>, but also of time, <m>t</m>.  Hence, use the chain rule to determine the value of <m>\frac{df}{dt}\bigm|_{t=0}</m>.  What are the units on your answer?  What is the practical meaning of this result?
+          </p>
+        </li>
+      </ol>
+    </exploration>
+  </introduction>
+
+  <subsection>
+    <title>Directional Derivatives</title>
+    <p>
+      Given a function <m>z = f(x,y)</m>, the partial derivative <m>f_x(x_0,y_0)</m> measures the instantaneous rate of change of <m>f</m> as only the <m>x</m> variable changes; likewise, <m>f_y(x_0,y_0)</m> measures the rate of change of <m>f</m> at <m>(x_0,y_0)</m> as only <m>y</m> changes. Note particularly that <m>f_x(x_0,y_0)</m> is measured in <q>units of <m>f</m> per unit of change in <m>x</m>,</q> and that the units on <m>f_y(x_0,y_0)</m> are similar.
+    </p>
+
+    <p>
+      In <xref ref="PA_10_6">Preview Activity</xref>, we saw how we could measure the rate of change of <m>f</m> in a situation where both <m>x</m> and <m>y</m> were changing; in that activity, however, we found that this rate of change was measured in <q>units of <m>f</m> per unit of <em>time</em>.</q> In a given unit of time, we may move more than one unit of distance. In fact, in <xref ref="PA_10_6">Preview Activity</xref>, in each unit increase in time we move a distance of <m>| \vv | = 5</m> feet. To generalize the notion of partial derivatives to any direction of our choice, we instead want to have a rate of change whose units are <q>units of <m>f</m> per unit of distance in the given direction.</q>
+    </p>
+
+    <p>
+      In this light, in order to formally define the derivative in a particular direction of motion, we want to represent the change in <m>f</m> for a given <em>unit</em> change in the direction of motion. We can represent this unit change in direction with a unit vector, say <m>\vu = \langle u_1, u_2 \rangle</m>. If we move a distance <m>h</m> in the direction of <m>\vu</m> from a fixed point <m>(x_0,y_0)</m>, we then arrive at the new point <m>(x_0+u_1h, y_0+u_2h)</m>. It now follows that the slope of the secant line to the curve on the surface through <m>(x_0,y_0)</m> in the direction of <m>\vu</m> through the points <m>(x_0,y_0)</m> and <m>(x_0+u_1h, y_0+u_2h)</m> is
+      <men xml:id="eq_10_6_diff_quot" >
+        m_{\mbox{sec} } = \frac{f(x_0+u_1h, y_0+u_2h) - f(x_0,y_0)}{h}.
+      </men>
+    </p>
+
+    <p>
+      To get the instantaneous rate of change of <m>f</m> in the direction <m>\vu = \langle u_1, u_2 \rangle</m>, we must take the limit of the quantity in Equation<nbsp /><xref ref="eq_10_6_diff_quot" /> as <m>h \to 0</m>. Doing so results in the formal definition of the directional derivative.
+    </p>
+
+    <definition>
+      <statement>
+        <p>
+          Let <m>f = f(x,y)</m> be given. The <term>derivative of <m>f</m> at the point <m>(x,y)</m> in the direction of the unit vector <m>\vu = \langle u_1, u_2 \rangle</m></term><idx><h>directional derivative</h></idx> is denoted <m>D_{\vu}f(x,y)</m> and is given by
+          <men xml:id="E_DirDerDef" >
+            D_{\vu}f(x,y) = \lim_{h \to 0} \frac{f(x+u_1h, y+u_2h) - f(x,y)}{h}
+          </men>
+          for those values of <m>x</m> and <m>y</m> for which the limit exists.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      The quantity <m>D_{\vu} f(x,y)</m> is called a <em>directional derivative</em>. When we evaluate the directional derivative <m>D_{\vu} f(x,y)</m> at a point <m>(x_0, y_0)</m>, the result <m>D_{\vu} f(x_0,y_0)</m> tells us the instantaneous rate at which <m>f</m> changes at <m>(x_0, y_0)</m> per unit increase in the direction of the vector <m>\vu</m>. In addition, the quantity <m>D_{\vu} f(x_0,y_0)</m> tells us the slope of the line tangent to the surface in the direction of <m>\vu</m> at the point <m>(x_0,y_0,f(x_0,y_0))</m>.
+    </p>
+  </subsection>
+
+
+  <subsection>
+    <title>Computing the Directional Derivative</title>
+    <p>
+      In a similar way to how we developed shortcut rules for standard derivatives in single variable calculus, and for partial derivatives in multivariable calculus, we can also find a way to evaluate directional derivatives without resorting to the limit definition found in Equation<nbsp /><xref ref="E_DirDerDef" />. We do so using a very similar approach to our work in <xref ref="PA_10_6">Preview Activity</xref>.
+    </p>
+
+    <p>
+      Suppose we consider the situation where we are interested in the instantaneous rate of change of <m>f</m> at a point <m>(x_0,y_0)</m> in the direction <m>\vu = \langle u_1, u_2 \rangle</m>, where <m>\vu</m> is a unit vector. The variables <m>x</m> and <m>y</m> are therefore changing according to the parameterization
+      <me>
+        x = x_0 + u_1t \ \ \ \ \ \text{ and }  \ \ \ \ \  y = y_0 + u_2t.
+      </me>
+    </p>
+
+    <p>
+      Observe that <m>\frac{dx}{dt} = u_1</m> and <m>\frac{dy}{dt} = u_2</m> for all values of <m>t</m>. Since <m>\vu</m> is a unit vector, it follows that a point moving along this line moves one unit of distance per one unit of time; that is, each single unit of time corresponds to movement of a single unit of distance in that direction. This observation allows us to use the Chain Rule to calculate the directional derivative, which measures the instantaneous rate of change of <m>f</m> with respect to change in the direction <m>\vu</m>.
+    </p>
+
+    <p>
+      In particular, by the Chain Rule, it follows that
+      <md>
+        <mrow>D_{\vu}f(x_0,y_0) \amp = f_x(x_0,y_0)\frac{dx}{dt}\biggm|_{(x_0,y_0)} + f_y(x_0,y_0)\frac{dy}{dt}\biggm|_{(x_0,y_0)} </mrow>
+        <mrow> \amp = f_x(x_0,y_0)u_1 + f_y(x_0,y_0)u_2. </mrow>
+      </md>
+    </p>
+
+    <p>
+      This now allows us to compute the directional derivative at an arbitrary point according to the following formula.
+    </p>
+
+    <assemblage xml:id="Directional-derivative">
+      <title>Calculating a directional derivative</title>
+    <p>
+      Given a differentiable function <m>f = f(x,y)</m> and a unit vector <m>\vu = \langle u_1, u_2 \rangle</m>, we may compute <m>D_{\vu}f(x,y)</m> by
+      <men xml:id="eq_10_6_DD" >
+        D_{\vu}f(x,y) = f_x(x,y)u_1 + f_y(x,y)u_2.
+      </men>
+    </p>
+    </assemblage>
+
+
+    <p>
+      <em>Note well:</em> To use Equation <xref ref="eq_10_6_DD" />, we must have a <em>unit</em> vector <m>\vu = \langle u_1, u_2 \rangle</m> in the direction of motion. In the event that we have a direction prescribed by a non-unit vector, we must first scale the vector to have length 1.
+    </p>
+
+    <activity xml:id="A_10_6_2">
+      <p>
+        Let <m>f(x,y) = 3xy-x^2y^3</m>.
+        <ol label="a.">
+          <li>
+            <p>
+              Determine <m>f_x(x,y)</m> and <m>f_y(x,y)</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Use Equation<nbsp /><xref ref="eq_10_6_DD" /> to determine <m>D_{\vi} f(x,y)</m> and <m>D_{\vj} f(x,y)</m>. What familiar function is <m>D_{\vi} f</m>? What familiar function is <m>D_{\vj} f</m>? (Recall that <m>\vi</m> is the unit vector in the positive <m>x</m>-direction and <m>\vj</m> is the unit vector in the positive <m>y</m>-direction.)
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Use Equation<nbsp /><xref ref="eq_10_6_DD" /> to find the derivative of <m>f</m> in the direction of the vector <m>\vv = \langle 2, 3 \rangle</m> at the point <m>(1,-1)</m>.  Remember that a unit direction vector is needed.
+            </p>
+          </li>
+        </ol>
+      </p>
+
+    </activity>
+  </subsection>
+
+
+
+  <subsection>
+    <title>The Gradient</title>
+    <p>
+      Via the Chain Rule, we have seen that for a given function <m>f = f(x,y)</m>, its instantaneous rate of change in the direction of a unit vector <m>\vu = \langle u_1, u_2 \rangle</m> is given by
+      <men xml:id="E_DDrevisited" >
+        D_{\vu}f(x_0,y_0) = f_x(x_0,y_0)u_1 + f_y(x_0,y_0)u_2.
+      </men>
+    </p>
+
+    <p>
+      Recalling that the dot product of two vectors <m>\vv = \langle v_1, v_2 \rangle</m> and <m>\vu = \langle u_1, u_2 \rangle</m> is computed by
+      <me>
+        \vv \cdot \vu = v_1 u_1 + v_2 u_2,
+      </me>
+      we see that we may recast Equation<nbsp /><xref ref="E_DDrevisited" /> in a way
+      that has geometric meaning. In particular, we see that <m>D_{\vu}f(x_0,y_0)</m> is the dot product of the vector <m>\left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle</m> and the vector <m>\vu</m>.
+    </p>
+
+    <p>
+      We call this
+      vector formed by the partial derivatives of <m>f</m> the <em>gradient</em> of <m>f</m> and denote it
+      <me>
+        \nabla f(x_0,y_0) = \left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle.
+      </me>
+    </p>
+
+    <p>
+      We read <m>\nabla f</m> as <q>the gradient of <m>f</m>,</q> <q>grad <m>f</m></q> or <q>del <m>f</m></q>.<fn>The symbol
+        <m>\nabla</m> is called <em>nabla</em>, which comes from a Greek word for a
+        certain type of harp that has a similar shape.</fn>
+      Notice that <m>\nabla f</m> varies from point to point, and also provides an alternate formulation of the directional derivative.
+
+      <assemblage xml:id="Directional-derivative-gradient">
+      <title>The directional derivative and the gradient</title>
+    <p>
+      Given a differentiable function <m>f = f(x,y)</m> and a unit vector <m>\vu = \langle u_1, u_2 \rangle</m>, we may compute <m>D_{\vu}f(x,y)</m> by
+      <men xml:id="eq_10_6_DD_grad" >
+        D_{\vu}f(x,y) = \nabla f(x,y) \cdot \vu.
+      </men>
+    </p>
+    </assemblage>
+
+     In the following activity, we investigate some of what the gradient tells us about the behavior of a function <m>f</m>.
+    </p>
+
+    <activity xml:id="A_10_6_10">
+      <p>
+        Let's consider the function <m>f</m> defined by <m>f(x,y) = x^2 - y^2</m>. Some contours for this function are shown in <xref ref="F_10_6_activity_1">Figure</xref>.
+      </p>
+
+      <figure xml:id="F_10_6_activity_1" >
+        <caption>Contours of <m>f(x,y) = x^2 - y^2</m>.</caption>
+        <image width="50%" source="images/fig_10_6_contours_1" />
+      </figure>
+
+      <ol label="a.">
+        <li>
+          <p>
+            Find the gradient <m>\nabla f (x,y)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            For each of the following points <m>(x_0,y_0)</m>, evaluate the gradient <m>\nabla f(x_0,y_0)</m> and sketch the gradient vector with its tail at
+                <m>(x_0,y_0)</m>.  Some of the vectors are too long
+                to fit onto the plot, but we'd like to draw them to scale;  to do so, scale each vector by a factor of 1/4.
+            <ul>
+              <li>
+                <p>
+                  <m>(x_0,y_0) = (2,0)</m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>(x_0,y_0) = (0,2)</m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>(x_0,y_0) = (2,2)</m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>(x_0,y_0) = (2,1)</m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>(x_0,y_0) = (-3,2)</m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>(x_0,y_0) = (-2,-4)</m>
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>(x_0,y_0) = (0,0)</m>
+                </p>
+              </li>
+            </ul>
+          </p>
+        </li>
+
+        <li>
+          <p>
+            What do you notice about the relationship between the gradient at
+                <m>(x_0,y_0)</m> and the contour passing through that point?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Does <m>f</m> increase or decrease in the direction of <m>\nabla
+                f(x_0,y_0)</m>?  Provide a justification for your response.
+          </p>
+        </li>
+      </ol>
+    </activity>
+
+    <p>
+      As a vector, <m>\nabla f(x_0,y_0)</m> defines a direction and a length. As we will soon see, both
+      of these convey important information about the behavior of <m>f</m> near
+      <m>(x_0,y_0)</m>.
+    </p>
+  </subsection>
+
+
+  <subsection>
+    <title>The Direction of the Gradient</title>
+    <p>
+      Remember that the dot product also conveys information about the angle
+      between the two vectors. If <m>\theta</m> is the angle between <m>\nabla
+      f(x_0,y_0)</m> and <m>\vu</m> (where <m>\vu</m> is a unit vector),
+      then we also have that
+      <me>
+        D_{\vu}f(x_0,y_0) = \nabla f(x_0,y_0)\cdot\vu = |\nabla f(x_0,y_0)||\vu|
+        \cos(\theta).
+      </me>
+    </p>
+
+    <p>
+      In particular, when <m>\theta</m> is a right angle, as shown on the left of
+      <xref ref="F_10_6_gradient_sign">Figure</xref>, then <m>D_{\vu}f(x_0,y_0) = 0</m>, because <m>\cos(\theta) = 0</m>. Since the value of the directional derivative is 0, this means that <m>f</m> is unchanging in this direction, and hence <m>\vu</m> must be tangent to the contour of <m>f</m> that passes through <m>(x_0,y_0)</m>. In other words, <m>\nabla f(x_0,y_0)</m> is orthogonal to the
+      contour through <m>(x_0,y_0)</m>. This shows that the gradient vector at a given point is always perpendicular to the contour passing through the point, confirming that what we saw in part (c) of <xref ref="A_10_6_10">Activity</xref> holds in general.
+    </p>
+
+    <figure xml:id="F_10_6_gradient_sign" >
+      <caption>The sign of <m>D_{\vu} f(x_0,y_0)</m> is determined by <m>\theta</m>.</caption>
+      <sidebyside widths="33% 33% 33%">
+      <image source="images/fig_10_6_gradient_angle_1" />
+      <image source="images/fig_10_6_gradient_angle_2" />
+      <image source="images/fig_10_6_gradient_angle_3" />
+      </sidebyside>
+    </figure>
+
+    <p>
+      Moreover, when <m>\theta</m> is an acute angle, it follows that <m>\cos(\theta) > 0</m> so since
+      <me>
+        D_{\vu}f(x_0,y_0) = |\nabla f(x_0,y_0)||\vu|
+        \cos(\theta),
+      </me>
+      and therefore <m>D_{\vu}f(x_0,y_0) > 0</m>, as shown in the middle image in <xref ref="F_10_6_gradient_sign">Figure</xref>. This means that <m>f</m> is increasing in any direction where
+      <m>\theta</m> is acute. In a similar way, when <m>\theta</m> is an obtuse angle, then <m>\cos(\theta) \lt  0</m> so <m>D_{\vu}f(x_0,y_0) \lt  0</m>, as seen on the right in <xref ref="F_10_6_gradient_sign">Figure</xref>. This
+      means that <m>f</m> is decreasing in any direction for which <m>\theta</m> is obtuse.
+    </p>
+
+    <p>
+      Finally, as we can see in the following activity, we may also use the gradient to determine the directions in which the function is increasing and decreasing most rapidly.
+    </p>
+
+    <activity xml:id="A_10_6_3">
+      <p>
+        In this activity we investigate how the gradient is related to the directions of greatest increase and decrease of a function. Let <m>f</m> be a differentiable function and <m>\vu</m> a unit vector.
+        <ol label="a.">
+          <li>
+            <p>
+              Let <m>\theta</m> be the angle between <m>\nabla f(x_0,y_0)</m> and <m>\vu</m>.  Use the relationship between the dot product and the angle between two vectors to explain why
+              <men xml:id="eq_10_6_DD_grad2" >
+                D_{\vu} f(x_0,y_0) = |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle | \cos(\theta).
+              </men>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              At the point <m>(x_0,y_0)</m>, the only quantity in Equation<nbsp /><xref ref="eq_10_6_DD_grad2" /> that can change is <m>\theta</m> (which determines the direction <m>\vu</m> of travel). Explain why <m>\theta = 0</m> makes the quantity
+              <me>
+                |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle| \cos(\theta)
+              </me>
+              as large as possible.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              When <m>\theta = 0</m>, in what direction does the unit vector <m>\vu</m> point relative to <m>\nabla f(x_0,y_0)</m>? Why? What does this tell us about the direction of greatest increase of <m>f</m> at the point <m>(x_0,y_0)</m>?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              In what direction, relative to <m>\nabla f(x_0,y_0)</m>, does <m>f</m> decrease most rapidly at the point <m>(x_0,y_0)</m>?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              State the unit vectors <m>\vu</m> and <m>\vv</m> (in terms of <m>\nabla f(x_0,y_0)</m>) that provide the directions of greatest increase and decrease for the function <m>f</m> at the point <m>(x_0,y_0)</m>.  What important assumption must we make regarding <m>\nabla f(x_0,y_0)</m> in order for these vectors to exist?
+            </p>
+          </li>
+        </ol>
+      </p>
+    </activity>
+  </subsection>
+
+
+
+  <subsection>
+    <title>The Length of the Gradient</title>
+    <p>
+      Having established in <xref ref="A_10_6_3">Activity</xref> that the direction in which a function increases most rapidly at a point <m>(x_0,y_0)</m> is the unit vector <m>\vu</m> in the direction of the gradient, (that is, <m>\vu = \frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)</m>, provided that <m>\nabla f(x_0,y_0) \ne \vzero</m>), it is also natural to ask, <q>in the direction of greatest increase for <m>f</m> at <m>(x_0,y_0)</m>, what is the <em>value</em> of the rate of increase?</q> In this situation, we are asking for the value of <m>D_{\vu} f(x_0,y_0)</m> where <m>\vu = \frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)</m>.
+    </p>
+
+    <p>
+      Using the now familiar way to compute the directional derivative, we see that
+      <me>
+        D_{\vu} f(x_0,y_0) = \nabla f(x_0,y_0) \cdot \left(\frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0) \right).
+      </me>
+    </p>
+
+    <p>
+      Next, we recall two important facts about the dot product: (i) <m>\vw\cdot (c \vv) = c (\vw \cdot \vv)</m> for any scalar <m>c</m>, and (ii) <m>\vw \cdot \vw = |\vw|^2</m>. Applying these properties to the most recent equation involving the directional derivative, we find that
+      <me>
+        D_{\vu} f(x_0,y_0) = \frac{1}{|\nabla f(x_0,y_0)|}  (\nabla f(x_0,y_0) \cdot \nabla f(x_0,y_0)) = \frac{1}{|\nabla f(x_0,y_0)|} |\nabla f(x_0,y_0)|^2.
+      </me>
+    </p>
+
+    <p>
+      Finally, since <m>\nabla f(x_0,y_0)</m> is a nonzero vector, its length <m>|\nabla f(x_0,y_0)|</m> is a nonzero scalar, and thus we can simplify the preceding equation to establish that
+      <me>
+        D_{\vu} f(x_0,y_0) = |\nabla f(x_0,y_0)|.
+      </me>
+    </p>
+
+    <p>
+      We summarize our most recent work by stating two important facts about the gradient.
+    </p>
+
+    <assemblage xml:id="Gradient">
+      <title>Important facts about the gradient</title>
+     <p>
+      Let <m>f</m> be a differentiable function and <m>(x_0,y_0)</m> a point for which <m>\nabla f(x_0,y_0) \ne \vzero</m>. Then <m>\nabla f(x_0,y_0)</m> points in the direction of greatest increase of <m>f</m> at <m>(x_0,y_0)</m>, and the instantaneous rate of change of <m>f</m> in that direction is the length of the gradient vector. That is, if <m>\vu = \frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)</m>, then <m>\vu</m> is a unit vector in the direction of greatest increase of <m>f</m> at <m>(x_0,y_0)</m>, and <m>D_{\vu} f(x_0,y_0) = |\nabla f(x_0,y_0)|</m>.
+    </p>
+    </assemblage>
+   
+
+    <activity xml:id="A_10_6_11">
+      <p>
+        Consider the function <m>f</m> defined by <m>f(x,y) = -x + 2xy - y</m>.
+        <ol label="a.">
+          <li>
+            <p>
+              Find the gradient <m>\nabla f(1,2)</m> and sketch it on <xref ref="F_10_6_activity_empty">Figure</xref>.
+
+              <figure xml:id="F_10_6_activity_empty" >
+                <caption>A plot for the gradient <m>\nabla f(1,2)</m>.</caption>
+                <image width="50%" source="images/fig_10_6_activity_empty" />
+              </figure>
+
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Sketch the unit vector <m>\vz = \left\langle-\frac1{\sqrt{2}},
+                  -\frac1{\sqrt{2}}\right\rangle</m> on <xref ref="F_10_6_activity_empty">Figure</xref> with its tail at <m>(1,2)</m>.
+                Now find the directional derivative <m>D_{\vz}f(1,2)</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What is the slope of the graph of <m>f</m> in the direction <m>\vz</m>?  
+                What does the sign of the directional derivative tell you?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Consider the vector <m>\vv = \langle 2,-1\rangle</m> and sketch <m>\vv</m>
+                on <xref ref="F_10_6_activity_empty">Figure</xref> with its tail at <m>(1,2)</m>.
+                Find a unit vector <m>\vw</m> pointing in the same direction of <m>\vv</m>.
+                Without computing <m>D_{\vw}f(1,2)</m>, what do you know about the sign
+                of this directional derivative?  Now verify your observation by
+                computing <m>D_{\vw}f(1,2)</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              In which direction (that is, for what unit vector <m>\vu</m>) is <m>D_{\vu}f(1,2)</m>
+                the greatest?  What is the slope of the graph in this direction?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Corresponding, in which direction is <m>D_{\vu}f(1,2)</m> least?  What is the slope of the graph in this direction?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Sketch two unit vectors <m>\vu</m> for which <m>D_{\vu}f(1,2) = 0</m> and
+                then find component representations of these vectors.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Suppose you are standing at the point <m>(3,3)</m>.  In which
+                direction should you move to cause <m>f</m> to increase as rapidly as
+                possible?  At what rate does <m>f</m> increase in this direction?
+            </p>
+          </li>
+        </ol>
+      </p>
+
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Applications</title>
+    <p>
+      The gradient finds many natural applications. For example, situations often arise <mdash /> for instance, constructing a road through the mountains or planning the flow of water across a landscape <mdash /> where we are
+      interested in knowing the direction in which a function is increasing
+      or decreasing most rapidly.
+    </p>
+
+    <p>
+      For example, consider a two-dimensional version of how a heat-seeking
+      missile might work.(This application is borrowed from United
+        States Air Force Academy Department of Mathematical Sciences.)
+        <!-- Out of date url at
+        <url href="http://www.nku.edu/˜longa/classes/mat320/mathematica/multcalc.htm"><c>http://www.nku.edu/˜longa/classes/mat320/mathematica/multcalc.htm</c></url>.) -->
+      Suppose that the temperature surrounding a fighter jet can be
+      modeled by the function <m>T</m> defined by
+      <me>
+        T(x,y) = \frac{100}{1+(x-5)^2 + 4(y-2.5)^2},
+      </me>
+      where <m>(x,y)</m> is a
+      point in the plane of the fighter jet and <m>T(x,y)</m> is measured in
+      degrees
+      Celsius. Some contours and gradients <m>\nabla T</m> are shown on
+      the left in <xref ref="F_10_6_missile">Figure</xref>.
+    </p>
+
+    <figure xml:id="F_10_6_missile" >
+      <caption>Contours and gradient for <m>T(x,y)</m> and the missile's path.</caption>
+      <sidebyside widths="50% 50%">
+      <image source="images/fig_10_6_missile_grad" />
+      <image source="images/fig_10_6_missile_path" />
+      </sidebyside>
+    </figure>
+
+    <p>
+      A heat-seeking missile will always travel in the direction in which
+      the temperature increases most rapidly; that is, it will always
+      travel in the direction of the gradient <m>\nabla T</m>. If a missile is
+      fired from the point <m>(2,4)</m>, then its path will be that shown on the
+      right in <xref ref="F_10_6_missile">Figure</xref>.
+    </p>
+
+    <p>
+      In the final activity of this section, we consider several questions related to this context of a heat-seeking missile, and foreshadow some upcoming work in <xref ref="S-10-7-Optimization">Section</xref>.
+    </p>
+
+    <activity xml:id="A_10_6_13">
+      <ol label="a.">
+        <li>
+          <p>
+            The temperature <m>T(x,y)</m> has its maximum value at the fighter
+              jet's location.  State the fighter jet's location and explain
+              how <xref ref="F_10_6_missile">Figure</xref> tells you this.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Determine <m>\nabla T</m> at the fighter jet's location and give a
+              justification for your response.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Suppose that a different function <m>f</m> has a local maximum value at
+              <m>(x_0,y_0)</m>.  Sketch the behavior of some possible contours near this point. 
+              What is <m>\nabla f(x_0,y_0)</m>? (Hint: What is the direction of greatest increase in <m>f</m> at the local maximum?)
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Suppose that a function <m>g</m> has a local minimum value at
+              <m>(x_0,y_0)</m>.  Sketch the behavior of some possible contours near this point.
+              What is <m>\nabla g(x_0,y_0)</m>?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If a function <m>g</m> has a local minimum at  <m>(x_0,y_0)</m>, what is the direction of greatest increase of <m>g</m> at <m>(x_0,y_0)</m>?
+          </p>
+        </li>
+      </ol>
+ 
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          The directional derivative of <m>f</m> at the point <m>(x,y)</m> in the direction of the unit vector <m>\vu = \langle u_1, u_2 \rangle</m> is
+          <me>
+            D_{\vu}f(x,y) = \lim_{h \to 0} \frac{f(x+u_1h, y+u_2h) - f(x,y)}{h}
+          </me>
+          for those values of <m>x</m> and <m>y</m> for which the limit exists.  In addition, <m>D_{\vu}f(x,y)</m> measures the slope of the graph of <m>f</m> when we move in the direction
+            <m>\vu</m>.   Alternatively, <m>D_{\vu} f(x_0,y_0)</m> measures the instantaneous rate of change of <m>f</m> in the direction <m>\vu</m> at <m>(x_0,y_0)</m>.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The gradient of a function <m>f=f(x,y)</m> at a point <m>(x_0,y_0)</m> is
+            the vector
+          <me>
+            \nabla f(x_0,y_0) = \left\langle f_x(x_0,y_0),
+                f_y(x_0,y_0)\right\rangle.
+          </me>
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The directional derivative in the direction <m>\vu</m> may be computed by
+          <me>
+            D_{\vu}f(x_0,y_0) = \nabla f(x_0,y_0)\cdot \vu.
+          </me>
+        </p>
+      </li>
+
+      <li>
+        <p>
+          At any point where the gradient is nonzero,  gradient is orthogonal to the contour through
+            that point and points in the direction in which <m>f</m> increases most
+            rapidly; moreover, the slope of <m>f</m> in this direction equals the length of the
+            gradient <m>|\nabla f(x_0,y_0)|</m>.  Similarly, the opposite of the gradient points in the direction of greatest decrease, and that rate of decrease is the opposite of the length of the gradient.
+        </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+
+    <exercises>
+      <exercise xml:id="ex-10-6-WW-DD-gradiant">
+      <!--<title>Calculating a directional derivative and gradient</title>-->
+         <webwork source="Library/272/setStewart14_6/problem_4.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-calculation-1">
+      <!--<title>Calculating a directional derivative at a point</title>-->
+         <webwork source="Library/maCalcDB/setVmultivariable6Gradient/ur_vc_6_11.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-max">
+      <!--<title>Derivative in the direction of maximum rate of change</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-5-Gradients-in-space/HGM4-14-5-16-Gradients-etc.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-temperature">
+      <!--<title>Gradient and temperature</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-66-Gradients-etc.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-Grad-temperature">
+      <!--<title>Directional derivative, gradient, and temperature</title>-->
+         <webwork source="Library/Dartmouth/setStewartCh15S6/problem_10.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-Grad-calculation">
+      <!--<title>Gradient calculation</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-5-Gradients-in-space/HGM4-14-5-09-Gradients-etc.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-3-variable">
+      <!--<title>A three-variable example</title>-->
+         <webwork source="Library/Michigan/Chap14Sec5/Q53.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-DD-Grad-calculation">
+      <!--<title>A directional derivative given a gradient</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-67-Gradients-etc.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-6-WW-DD-hill">
+      <!--<title>Climbing a hill</title>-->
+         <webwork source="Library/Dartmouth/setStewartCh15S6/problem_11.pg" />
+      </exercise>
+      
+      <exercise xml:id="ex-10-6-WW-DD-TF">
+      <!--<title>Directional derivative true/false</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-5-Gradients-in-space/HGM4-14-CYU-01-Gradients-etc.pg" />
+      </exercise>
+
+      <!-- MBX exception
+      <exercise xml:id="ex-10-6-WW-DD-contours">
+      <title>Directional derivatives from contours</title>
+         <webwork source="Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-40-Gradients-etc/HGM4-14-4-40-Gradients-etc.pg" />
+      </exercise> 
+
+      <exercise xml:id="ex-10-6-WW-DD-surface">
+      <title>Directional derivatives from a surface</title>
+         <webwork source="Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-48-Gradients-etc/HGM4-14-4-48-Gradients-etc.pg" />
+      </exercise> 
+
+      <exercise xml:id="ex-10-6-WW-DD-TF-2">
+      <title>Another directional derivative true/false</title>
+         <webwork source="Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-Review-46-Gradients-etc/HGM4-14-Review-46-Gradients-etc.pg" />
+      </exercise> -->
+
+      <!--PTX issue
+      <exercise xml:id="ex-10-6-WW-DD-3-variable">
+      <title>A three-variable example</title>
+         <webwork source="Library/Union/setMVderivatives/an14_6_5.pg" />
+      </exercise>
+      -->
+
+
+      <exercise>
+        <statement>
+          <p>
+            Let <m>E(x,y) = \frac{100}{1+(x-5)^2 + 4(y-2.5)^2}</m> represent the elevation on a land mass at location <m>(x,y)</m>. Suppose that <m>E</m>, <m>x</m>, and <m>y</m> are all measured in meters.
+            <ol label="a.">
+              <li>
+                <p>
+                  Find <m>E_x(x,y)</m> and <m>E_y(x,y)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Let <m>\vu</m> be a unit vector in the direction of <m>\langle -4,3 \rangle</m>.  Determine <m>D_{\vu} E(3,4)</m>.  What is the practical meaning of <m>D_{\vu} E(3,4)</m> and what are its units?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find the direction of greatest increase in <m>E</m> at the point <m>(3,4)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find the instantaneous rate of change of <m>E</m> in the direction of greatest decrease at the point <m>(3,4)</m>.  Include units on your answer.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  At the point <m>(3,4)</m>, find a direction <m>\vw</m> in which the instantaneous rate of change of <m>E</m> is 0.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Find all directions in which the directional derivative of <m>f(x,y) = ye^{-xy}</m> is 1 at the point <m>(0,2)</m>. 
+          </p>
+        </statement>
+
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Find, if possible, a function <m>f</m> such that 
+            <me> 
+              \nabla f = \left\langle \sin(yz), xz\cos(yz)+2y, xy\cos(yz)+\frac{5}{z} \right\rangle
+            </me>. 
+            If not possible, explain why. 
+          </p>
+        </statement>
+
+      </exercise>
+
+      <exercise>
+        <statement>
+          <p>
+            Let <m>f(x,y) = x^2+3y^2</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Find <m>\nabla f(x,y)</m> and <m>\nabla f(1,2)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find the direction of greatest increase in <m>f</m> at the point <m>(1,2)</m>. Explain. A graph of the surface defined by <m>f</m> is shown at left in <xref ref="F_10_6_Grad_ex_1">Figure</xref>. Illustrate this direction on the surface.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  A contour diagram of <m>f</m> is shown at right in <xref ref="F_10_6_Grad_ex_1">Figure</xref>. Illustrate your calculation from (b) on this contour diagram.
+
+                  <figure xml:id="F_10_6_Grad_ex_1" >
+                    <caption>Left: Graph of <m>f(x,y) = x^2+3y^2</m>. Right: Contours.</caption>
+                    <sidebyside widths="50% 50%">
+                      <image source="images/fig_10_6_exercise_graph" />
+                      <image source="images/fig_10_6_exercise_contour" />
+                      </sidebyside>
+                  </figure>
+                  
+
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a direction <m>\vw</m> for which the derivative of <m>f</m> in the direction of <m>\vw</m> is zero.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            The properties of the gradient that we have observed for functions of two variables also hold for functions of more variables. In this problem, we consider a situation where there are three independent variables. Suppose that the temperature in a region of space is described by
+            <me>
+              T(x,y,z) = 100e^{-x^2-y^2-z^2}
+            </me>
+            and that you are standing at the point <m>(1,2,-1)</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Find the instantaneous rate of change of the temperature in the direction of
+                    <m>\vv=\langle 0, 1, 2\rangle</m> at the point <m>(1,2,-1)</m>.  Remember that you should first find a
+                    <em>unit</em> vector in the direction of <m>\vv</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  In what direction from the point <m>(1,2,-1)</m> would you move to cause the temperature to
+                    decrease as quickly as possible?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  How fast does the temperature decrease in this direction?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a direction in which the temperature does
+                    not change at <m>(1,2,-1)</m>.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+ 
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            <xref ref="F_10_6_gradient_field">Figure</xref> shows a plot of the gradient
+            <m>\nabla f</m> at several points for some function <m>f=f(x,y)</m>.
+          </p>
+
+          <figure xml:id="F_10_6_gradient_field" >
+            <caption>The gradient <m>\nabla f</m>.</caption>
+            <image width="50%" source="images/fig_10_6_gradient_field" />
+          </figure>
+
+          <ol label="a.">
+            <li>
+              <p>
+                Consider each of the three indicated points, and draw, as best
+                  as you can, the contour through that point.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Beginning at each point, draw a curve on which <m>f</m> is continually
+                  decreasing.
+              </p>
+            </li>
+          </ol>
+        </statement>
+ 
+      </exercise>
+    </exercises>
+
+</section>

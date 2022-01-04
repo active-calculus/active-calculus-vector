@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-11-6-Parametric-Surfaces-Surface-Area">
+  <title>Surfaces Defined Parametrically and Surface Area</title>
+  
+    <objectives>
+        <ul>
+          <li>
+            <p>
+              What is a parameterization of a surface?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              How do we find the surface area of a parametrically defined surface?
+            </p>
+          </li>
+        </ul>
+    </objectives>
+
+    <introduction>
+    <p>
+      We have now studied at length how curves in space can be defined parametrically by functions of the form <m>\vr(t) = \langle x(t), y(t), z(t) \rangle</m>, and surfaces can be represented by functions <m>z = f(x,y)</m>. In what follows, we will see how we can also define surfaces parametrically. A one-dimensional curve in space results from a vector function that relies upon one parameter, so a two-dimensional surface naturally involves the use of two parameters. If <m>x = x(s, t)</m>, <m>y = y(s, t)</m>, and <m>z = z(s, t)</m> are functions of independent parameters <m>s</m> and <m>t</m>, then the terminal points of all vectors of the form
+      <me>
+        \vr(s, t) = x(s, t) \vi + y(s, t) \vj + z(s, t) \vk
+      </me>
+      form a surface in space. The equations <m>x=x(s,t)</m>, <m>y=y(s,t)</m>, and <m>z=z(s,t)</m> are the <em>parametric equations</em><idx><h>parameterization</h><h>surface</h></idx> for the surface, or a <em>parametrization</em> of the surface. In <xref ref="PA_11_6">Preview Activity</xref> we investigate how to parameterize a cylinder and a cone.
+    </p>
+
+    <exploration xml:id="PA_11_6">
+      <p>
+        Recall the standard parameterization of the unit circle that is given by
+        <me>
+          x(t) = \cos(t) \ \ \ \ \text{ and }  \ \ \ \ y(t) = \sin(t),
+        </me>
+        where <m>0 \le t \le 2\pi</m>.
+        <ol label="a.">
+          <li>
+            <p>
+              Determine a parameterization of the circle of radius 1 in <m>\R^3</m> that has its center at <m>(0,0,1)</m> and lies in the plane <m>z=1</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Determine a parameterization of the circle of radius 1 in 3-space that has its center at <m>(0,0,-1)</m> and lies in the plane <m>z=-1</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Determine a parameterization of the circle of radius 1 in 3-space that has its center at <m>(0,0,5)</m> and lies in the plane <m>z=5</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Taking into account your responses in (a), (b), and (c), describe the graph that results from the set of parametric equations
+              <me>
+                x(s,t) = \cos(t), \ \ \ \ y(s,t) = \sin(t), \ \ \ \ \text{ and }  \ \ \ \ z(s,t) = s,
+              </me>
+              where <m>0 \le t \le 2\pi</m> and <m>-5 \le s \le 5</m>.         Explain your thinking.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Just as a cylinder can be viewed as a <q>stack</q> of circles of constant radius, a cone can be viewed as a stack of circles with varying radius.  Modify the parametrizations of the circles above in order to construct the parameterization of a cone whose vertex lies at the origin, whose base radius is 4, and whose height is 3, where the base of the cone lies in the plane <m>z = 3</m>. Use appropriate technology to plot the parametric equations you develop. (Hint: The cross sections parallel to the <m>xy</m>-plane are circles, with the radii varying linearly as <m>z</m> increases.)
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </exploration>
+  </introduction>
+
+  <subsection>
+    <title>Parametric Surfaces</title>
+    <p>
+      In a single-variable setting, any function may have its graph expressed parametrically. For instance, given <m>y = g(x)</m>, by considering the parameterization <m>\langle t, g(t) \rangle</m> (where <m>t</m> belongs to the domain of <m>g</m>), we generate the same curve. What is more important is that certain curves that are not functions may be represented parametrically; for instance, the circle (which cannot be represented by a single function) can be parameterized by <m>\langle \cos(t), \sin(t) \rangle</m>, where <m>0 \le t \le 2\pi</m>.
+    </p>
+
+    <p>
+      In the same way, in a two-variable setting, the surface <m>z = f(x,y)</m> may be expressed parametrically by considering
+      <me>
+        \langle x(s,t), y(s,t), z(s,t) \rangle = \langle s, t, f(s,t) \rangle,
+      </me>
+      where <m>(s,t)</m> varies over the entire domain of <m>f</m>. Therefore, any familiar surface that we have studied so far can be generated as a parametric surface. But what is more powerful is that there are surfaces that cannot be generated by a single function <m>z = f(x,y)</m> (such as the unit sphere), but that can be represented parametrically. We now consider an important example.
+    </p>
+
+    <example xml:id="ex_11_6_Torus">
+      <statement>
+        <p>
+          Consider the
+          torus (or doughnut) shown in <xref ref="F_11_6_torus">Figure</xref>.
+        </p>
+
+        <figure xml:id="F_11_6_torus" >
+          <caption>A torus.</caption>
+          <image width="50%" source="images/fig_11_6_torus" />
+        </figure>
+
+        <p>
+          To find a parametrization of this torus, we recall our work in Preview
+          <xref ref="PA_11_6">Activity</xref>. There, we saw that a circle of radius <m>r</m>
+          that has its center at the point <m>(0,0,z_0)</m> and is contained in the
+          horizontal plane <m>z = z_0</m>, as shown in <xref ref="F_11_6_revolve">Figure</xref>, can be
+          parametrized using the vector-valued function <m>\vr</m> defined by
+          <me>
+            \vr(t) = r\cos(t)\vi + r\sin(t)\vj + z_0\vk
+          </me>
+          where <m>0\leq t\leq 2\pi</m>.
+        </p>
+
+        <figure xml:id="F_11_6_revolve" >
+          <caption>A circle in a horizontal plane centered at <m>(0,0,z_0)</m>.</caption>
+          <image width="50%" source="images/fig_11_6_revolve" />
+        </figure>
+
+        <p>
+          To obtain the torus in <xref ref="F_11_6_torus">Figure</xref>, we begin with a circle of radius <m>a</m> in the
+          <m>xz</m>-plane centered at <m>(b,0)</m>, as shown
+          on the left of <xref ref="F_11_6_torus_revolve">Figure</xref>. We may parametrize
+          the points on this circle, using the parameter <m>s</m>, by using the equations
+          <me>
+            x(s) = b + a\cos(s)\ \mbox{and} \ 
+            z(s) = a\sin(s),
+          </me>
+          where <m>0\leq s \leq 2\pi</m>.
+        </p>
+
+        <figure xml:id="F_11_6_torus_revolve" >
+          <caption>Revolving a circle to obtain a torus.</caption>
+          <sidebyside widths="50% 50%">
+          <image source="images/fig_11_6_torus_cross" />
+          <image source="images/fig_11_6_torus_revolve" />
+          </sidebyside>
+        </figure>
+
+        <p>
+          Let's focus our attention on one point on this circle, such as the
+          indicated point, which has coordinates <m>(x(s), 0, z(s))</m>
+          for a fixed value of the
+          parameter <m>s</m>. When this point is revolved about the <m>z</m>-axis, we
+          obtain a circle contained in a horizontal plane centered at
+          <m>(0,0,z(s))</m> and having radius <m>x(s)</m>, as shown on the right of <xref ref="F_11_6_torus_revolve">Figure</xref>. If we let <m>t</m> be the new parameter that generates the circle for the rotation about the <m>z</m>-axis, this circle may be
+          parametrized by
+          <me>
+            \vr(s,t) = x(s)\cos(t)\vi + x(s)\sin(t)\vj + z(s)\vk.
+          </me>
+        </p>
+
+        <p>
+          Now using our earlier parametric equations for <m>x(s)</m> and <m>z(s)</m> for the original smaller circle, we have an overall parameterization of the torus given by
+          <me>
+            \vr(s,t) =(b+a\cos(s))\cos(t)\vi + 
+            (b+a\cos(s))\sin(t)\vj + 
+            a\sin(s)\vk.
+          </me>
+        </p>
+
+        <p>
+          To trace out the entire torus, we require that the parameters vary through the values <m>0\leq s\leq 2\pi</m> and
+          <m>0\leq t\leq 2\pi</m>.
+        </p>
+      </statement>
+    </example>
+
+    <activity xml:id="A_11_6_10">
+      <p>
+        In this activity, we seek a
+        parametrization of the sphere of radius <m>R</m> centered at the origin, as
+        shown on the left in <xref ref="F_11_6_sphere">Figure</xref>.
+        Notice that this sphere may be obtained by revolving a half-circle
+        contained in the <m>xz</m>-plane about the <m>z</m>-axis, as shown on the right.
+      </p>
+
+      <figure xml:id="F_11_6_sphere" >
+        <caption>A sphere obtained by revolving a half-circle.</caption>
+        <sidebyside widths="50% 50%">
+        <image source="images/fig_11_6_sphere" />
+        <image source="images/fig_11_6_sphere_half" />
+        </sidebyside>
+      </figure>
+
+      <ol label="a.">
+        <li>
+          <p>
+            Begin by writing a parametrization of this half-circle using
+                the parameter <m>s</m>:
+
+            <me>
+              x(s) = \ldots \ \ \ \ \ \ \ \ \ 
+                  z(s) = \ldots.
+            </me>
+            Be sure to state the domain of the parameter <m>s</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            By revolving the points on this half-circle about the
+                <m>z</m>-axis, obtain a parametrization <m>\vr(s,t)</m> of the points on the
+                sphere of radius <m>R</m>.  Be sure to include the domain of both
+                parameters <m>s</m> and <m>t</m>. (Hint: What is the radius of the circle obtained when revolving a point on the half-circle around the <m>z</m> axis?)
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Draw the surface defined by your parameterization with
+                appropriate technology.
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+  </subsection>
+
+
+  <subsection xml:id="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces">
+    <title>The Surface Area of Parametrically Defined Surfaces</title>
+    <p>
+      Recall that a differentiable function is locally linear <mdash /> that is, if we zoom in on the surface around a point, the surface looks like its tangent plane. We now exploit this idea in order to determine the surface area generated by a parametrization <m>\langle x(s,t), y(s,t), z(s,t) \rangle</m>. The basic idea is a familiar one: we will subdivide the surface into small pieces, in the approximate shape of small parallelograms, and thus estimate the entire the surface area by adding the areas of these approximation parallelograms. Ultimately, we use an integral to sum these approximations and determine the exact surface area.
+    </p>
+
+    <p>
+      Let
+      <me>
+        \vr(s,t) = x(s,t) \vi + y(s,t) \vj + z(s,t) \vk
+      </me>
+      define a surface over a rectangular domain <m>a \leq s \leq b</m> and <m>c \leq t \leq d</m>. As a function of two variables, <m>s</m> and <m>t</m>, it is natural to consider the two partial derivatives of the vector-valued function <m>\vr</m>, which we define by
+      <md>
+        <mrow>
+        \vr_s(s,t) \amp = x_s(s,t) \vi + y_s(s,t) \vj + z_s(s,t) \vk
+        </mrow>
+        <mrow> 
+        \vr_t(s,t) \amp = x_t(s,t) \vi + y_t(s,t) \vj + z_t(s,t) \vk.
+        </mrow>
+      </md>
+    </p>
+
+    <p>
+      In the usual way, we slice the domain into small rectangles. In particular, we partition the interval <m>[a,b]</m> into <m>m</m> subintervals of length <m>\Delta s = \frac{b-a}{n}</m> and let <m>s_0</m>, <m>s_1</m>, <m>\ldots</m>, <m>s_m</m> be the endpoints of these subintervals, where <m>a = s_0\lt s_1\lt s_2 \lt  \cdots \lt  s_m = b</m>. Also partition the interval <m>[c,d]</m> into <m>n</m> subintervals of equal length <m>\Delta t = \frac{d-c}{n}</m> and let <m>t_0</m>, <m>t_1</m>, <m>\ldots</m>, <m>t_n</m> be the endpoints of these subintervals, where <m>c = t_0\lt t_1\lt t_2 \lt  \cdots \lt  t_n = d</m>. These two partitions create a partition of the rectangle <m>R = [a,b] \times [c,d]</m> in <m>st</m>-coordinates into <m>mn</m> sub-rectangles <m>R_{ij}</m> with opposite vertices <m>(s_{i-1},t_{j-1})</m> and <m>(s_i, t_j)</m> for <m>i</m> between <m>1</m> and <m>m</m> and <m>j</m> between <m>1</m> and <m>n</m>. These rectangles all have equal area <m>\Delta A = \Delta s \cdot \Delta t</m>.
+    </p>
+
+    <p>
+      Now we want to think about the small piece of area on the surface itself that lies above one of these small rectangles in the domain.
+      Observe that if we increase <m>s</m> by a small amount <m>\Delta s</m> from the point
+      <m>(s_{i-1},t_{j-1})</m> in the domain, then <m>\vr</m> changes by approximately
+      <m>\vr_s(s_{i-1},t_{j-1}) \Delta s</m>. Similarly, if we increase <m>t</m> by a
+      small amount <m>\Delta t</m> from the point <m>(s_{i-1},t_{j-1})</m>, then <m>\vr</m>
+      changes by approximately <m>\vr_t(s_{i-1},t_{j-1}) \Delta t</m>. So we can
+      approximate the surface defined by <m>\vr</m> on the <m>st</m>-rectangle
+      <m>[s_{i-1},s_i] \times [t_{j-1}, t_{j}]</m> with the
+      parallelogram determined by the vectors <m>\vr_s(s_{i-1},t_{j-1}) \Delta
+      s</m> and <m>\vr_t(s_{i-1},t_{j-1}) \Delta t</m>, as seen in <xref ref="F_11_6_approx">Figure</xref>.
+    </p>
+
+    <figure xml:id="F_11_6_approx" >
+      <caption>Approximation surface area with a parallelogram.</caption>
+      <image width="50%" source="images/fig_11_6_approx" />
+    </figure>
+
+    <p>
+      Say that the small parallelogram has area <m>S_{ij}</m>. If we can find its area, then all that remains is to sum the areas of all of the generated parallelograms and take a limit. Recall from our earlier work in the course that given two vectors <m>\vu</m> and <m>\vv</m>, the area of the parallelogram spanned by <m>\vu</m> and <m>\vv</m> is given by the magnitude of their cross product, <m>| \vu \times \vv|</m>. In the present context, it follows that the area, <m>S_{ij}</m>, of the parallelogram determined by the vectors <m>\vr_s(s_{i-1},t_{j-1}) \Delta s</m> and <m>\vr_t(s_{i-1},t_{j-1}) \Delta t</m> is
+      <mdn>
+        <mrow number="no">
+        S_{ij} \amp = |(\vr_s(s_{i-1},t_{j-1}) \Delta s) \times (\vr_t(s_{i-1},t_{j-1}) \Delta t)| 
+        </mrow>
+        <mrow xml:id="eq_11_6_parallelogram_area" >
+          \amp = |\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})| \Delta s \Delta t,
+        </mrow>
+      </mdn>
+      where the latter equality holds from standard properties of the cross product and length.
+    </p>
+
+    <p>
+      We sum the surface area approximations from Equation<nbsp /><xref ref="eq_11_6_parallelogram_area" /> over all sub-rectangles to obtain an estimate for the total surface area, <m>S</m>, given by
+      <me>
+        S \approx \sum_{i=1}^m \sum_{j=1}^n |\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})| \Delta s \Delta t.
+      </me>
+    </p>
+
+    <p>
+      Taking the limit as <m>m, n \to \infty</m> shows that the surface area of the surface defined by <m>\vr</m> over the domain <m>D</m> is given as follows.
+    </p>
+
+    <assemblage xml:id="Surface-area">
+      <title>Surface area</title>
+    <p>
+      Let <m>\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle</m> be a parameterization of a smooth surface over a domain <m>D</m>. The <em>area of the surface</em><idx><h>surface area</h></idx> defined by <m>\vr</m> on <m>D</m> is given by
+      <men xml:id="E_surface_area" >
+        S = \iint_D |\vr_s \times \vr_t | \ dA.
+      </men>
+    </p>
+    </assemblage>
+
+    
+
+    <activity xml:id="A_11_6_4">
+      <p>
+        Consider the cylinder with radius <m>a</m> and height <m>h</m> defined parametrically by
+        <me>
+          \vr(s,t) = a\cos(s) \vi + a\sin(s) \vj + t \vk
+        </me>
+        for <m>0 \leq s \leq 2\pi</m> and <m>0 \leq t \leq h</m>, as shown in <xref ref="F_11_6_SA_cylinder_ex">Figure</xref>.
+      </p>
+
+      <figure xml:id="F_11_6_SA_cylinder_ex" >
+        <caption>A cylinder.</caption>
+        <image width="50%" source="images/fig_11_6_cylinder" />
+      </figure>
+
+      <ol label="a.">
+        <li>
+          <p>
+            Set up an iterated integral to determine the surface area of this cylinder.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Evaluate the iterated integral.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Recall that one way to think about the surface area of a cylinder is to cut the cylinder horizontally and find the perimeter of the resulting cross sectional circle, then multiply by the height.  Calculate the surface area of the given cylinder using this alternate approach, and compare your work in (b).
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+
+    <p>
+      As we noted earlier, we can take any surface <m>z = f(x,y)</m> and generate a corresponding parameterization for the surface by writing <m>\langle s, t, f(s,t) \rangle</m>. Hence, we can use our recent work with parametrically defined surfaces to find the surface area that is generated by a function <m>f = f(x,y)</m> over a given domain.
+    </p>
+
+    <activity xml:id="A_11_6_6">
+      <p>
+        Let <m>z = f(x,y)</m> define a smooth surface, and consider the corresponding parameterization <m>\vr(s,t) = \langle s, t, f(s,t) \rangle</m>.
+        <ol label="a.">
+          <li>
+            <p>
+              Let <m>D</m> be a region in the domain of <m>f</m>.  Using <xref ref="E_surface_area">Equation</xref>, show that the area, <m>S</m>, of the surface defined by the graph of <m>f</m> over <m>D</m> is
+              <me>
+                S = \iint_D \sqrt{\left(f_x(x,y)\right)^2 + \left(f_y(x,y)\right)^2 + 1} \ dA.
+              </me>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Use the formula developed in (a) to calculate the area of the surface defined by <m>f(x,y) = \sqrt{4-x^2}</m> over the rectangle <m>D = [-2,2] \times [0,3]</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Observe that the surface of the solid describe in (b) is half of a circular cylinder.  Use the standard formula for the surface area of a cylinder to calculate the surface area in a different way, and compare your result from (b).
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+  </subsection>
+
+
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          A parameterization of a curve describes the coordinates of a point on the curve in terms of a single parameter <m>t</m>, while a parameterization of a surface describes the coordinates of points on the surface in terms of two independent parameters.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          If <m>\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle</m> describes a smooth surface in 3-space on a domain <m>D</m>, then the area, <m>S</m>, of that surface is given by
+          <me>
+            S = \iint_D |\vr_s \times \vr_t| \ dA.
+          </me>
+        </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+    <exercises>
+
+
+      <exercise xml:id="ex-11-6-WW-cone-parameterization">
+      <!--<title>Parameterize a cone</title>-->
+         <webwork source="Library/Michigan/Chap17Sec5/Q31.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-plane-parameterization">
+      <!--<title>Parameterize a plane</title>-->
+         <webwork source="Library/Michigan/Chap17Sec5/Q17.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-vase-parameterization">
+      <!--<title>Parameterize a vase</title>-->
+         <webwork source="Library/Michigan/Chap17Sec5/Q33.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-sphere-parameterization">
+      <!--<title>Parameterize a sphere</title>-->
+         <webwork source="Library/Michigan/Chap17Sec5/Q27.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-plane-surface-area">
+      <!--<title>Calculate the area of a surface determined by a plane</title>-->
+         <webwork source="Library/272/setStewart16_6/problem_2.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-paraboloid-surface-area">
+      <!--<title>Calculate the area of a surface determined by a paraboliod</title>-->
+         <webwork source="Library/maCalcDB/setVMultIntegrals4Surface/ur_vc_10_2.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-surface-area-plane-inside-cylinder">
+      <!--<title>Calculate the surface area of a plane inside a cylinder</title>-->
+         <webwork source="Library/maCalcDB/setVMultIntegrals4Surface/ur_vc_10_1.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-surface-area-set-up">
+      <!--<title>Set up an iterated integral to find surface area</title>-->
+         <webwork source="Library/Dartmouth/setMTWCh6S3/problem_1.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-6-WW-surface-area-post">
+      <!--<title>Describe the surface area of a decorative post</title>-->
+         <webwork source="Library/Michigan/Chap17Sec5/Q25.pg" />
+      </exercise>
+
+
+      <exercise>
+        <statement>
+          <p>
+            Consider the ellipsoid given by the equation
+            <me>
+              \frac{x^2}{16} + \frac{y^2}{25} + \frac{z^2}{9} = 1.
+            </me>
+          </p>
+
+          <p>
+            In <xref ref="A_11_6_10">Activity</xref>, we found that a parameterization of the sphere <m>S</m> of radius <m>R</m> centered at the origin is
+            <me>
+              x(r,s) = R\cos(s) \cos(t), \ y(s,t) = R \cos(s) \sin(t), \ \text{ and }  \ z(s,t) = R\sin(s)
+            </me>
+            for <m>-\frac{\pi}{2} \leq s \leq \frac{\pi}{2}</m> and <m>0 \leq t \leq 2\pi</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Let <m>(x,y,z)</m> be a point on the ellipsoid and let <m>X = \frac{x}{4}</m>, <m>Y = \frac{y}{5}</m>, and <m>Z = \frac{z}{3}</m>. Show that <m>(X,Y,Z)</m> lies on the sphere <m>S</m>. Hence, find a parameterization of <m>S</m> in terms of <m>X</m>, <m>Y</m>, and <m>Z</m> as functions of <m>s</m> and <m>t</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use the result of part (a) to find a parameterization of the ellipse in terms of <m>x</m>, <m>y</m>, and <m>z</m> as functions of <m>s</m> and <m>t</m>. Check your parametrization by substituting <m>x</m>, <m>y</m>, and <m>z</m> into the equation of the ellipsoid. Then check your work by plotting the surface defined by your parameterization. 
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+       
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            In this exercise, we explore how to use a parametrization and iterated integral to determine the surface area of a sphere.
+            <ol label="a.">
+              <li>
+                <p>
+                  Set up an iterated integral whose value is the portion of the surface area of a sphere of radius <m>R</m> that lies in the first octant (see the parameterization you developed in <xref ref="A_11_6_10">Activity</xref>).
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Then, evaluate the integral to calculate the surface area of this portion of the sphere.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  By what constant must you multiply the value determined in (b) in order to find the total surface area of the entire sphere.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Finally, compare your result to the standard formula for the surface area of sphere.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+       
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            Consider the plane generated by <m>z = f(x,y) = 24 - 2x - 3y</m> over the region <m>D = [0,2]\times[0,3]</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  Sketch a picture of the overall solid generated by the plane over the given domain.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine a parameterization <m>\vr(s,t)</m> for the plane over the domain <m>D</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use <xref ref="E_surface_area">Equation</xref> to determine the surface area generated by <m>f</m> over the domain <m>D</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Observe that the vector <m>\vu = \langle 2, 0, -4 \rangle</m> points from <m>(0,0,24)</m> to <m>(2,0,20)</m> along one side of the surface generated by the plane <m>f</m> over <m>D</m>.  Find the vector <m>\vv</m> such that <m>\vu</m> and <m>\vv</m> together span the parallelogram that represents the surface defined by <m>f</m> over <m>D</m>, and hence compute <m>| \vu \times \vv |</m>.  What do you observe about the value you find?
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+       
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            A cone with base radius <m>a</m> and height <m>h</m> can be realized as the surface defined by <m>z = \frac{h}{a} \sqrt{x^2+y^2}</m>, where <m>a</m> and <m>h</m> are positive.
+            <ol label="a.">
+              <li>
+                <p>
+                  Find a parameterization of the cone described by <m>z = \frac{h}{a} \sqrt{x^2+y^2}</m>. (Hint: Compare to the parameterization of a cylinder as seen in <xref ref="A_11_6_4">Activity</xref>.)
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up an iterated integral to determine the surface area of this cone.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Evaluate the iterated integral to find a formula for the lateral surface area of a cone of height <m>h</m> and base <m>a</m>.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+       
+      </exercise>
+    </exercises>
+</section>
