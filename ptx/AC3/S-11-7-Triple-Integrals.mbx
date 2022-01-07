@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-11-7-Triple-Integrals">
+  <title>Triple Integrals</title>
+  
+    <objectives>
+        <ul>
+          <li>
+            <p>
+              How are a triple Riemann sum and the corresponding triple integral of a continuous function <m>f = f(x,y,z)</m> defined?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What are two things the triple integral of a function can tell us?
+            </p>
+          </li>
+        </ul>
+    </objectives>
+
+    <introduction>
+    <p>
+      We have now learned that we define the double integral of a continuous function <m>f = f(x,y)</m> over a rectangle <m>R = [a,b] \times [c,d]</m> as a limit of a double Riemann sum, and that these ideas parallel the single-variable integral of a function <m>g = g(x)</m> on an interval <m>[a,b]</m>. Moreover, this double integral has natural interpretations and applications, and can even be considered over non-rectangular regions, <m>D</m>. For instance, given a continuous function <m>f</m> over a region <m>D</m>, the average value of <m>f</m>, <m>f_{\operatorname{AVG}(D)}</m>, is given by
+      <me>
+        f_{\operatorname{AVG}(D)} = \frac{1}{A(D)} \iint_D f(x,y) \, dA,
+      </me>
+      where <m>A(D)</m> is the area of <m>D</m>. Likewise, if <m>\delta(x,y)</m> describes a mass density function on a lamina over <m>D</m>, the mass, <m>M</m>, of the lamina is given by
+      <me>
+        M = \iint_D \delta(x,y) \, dA.
+      </me>
+    </p>
+
+    <p>
+      It is natural to wonder if it is possible to extend these ideas of double Riemann sums and double integrals for functions of two variables to triple Riemann sums and then triple integrals for functions of three variables. We begin investigating in <xref ref="PA_11_7">Preview Activity</xref>.
+    </p>
+
+    <exploration xml:id="PA_11_7">
+      <p>
+        Consider a solid piece of granite in the shape of a box <m>B = \{(x,y,z) : 0 \leq x \leq 4, 0 \leq y \leq 6, 0 \leq z \leq 8\}</m>, whose density varies from point to point. Let <m>\delta(x, y, z)</m> represent the mass density of the piece of granite at point <m>(x,y,z)</m> in kilograms per cubic meter (so we are measuring <m>x</m>, <m>y</m>, and <m>z</m> in meters). Our goal is to find the mass of this solid.
+      </p>
+
+      <p>
+        Recall that if the density was constant, we could find the mass by multiplying the density and volume; since the density varies from point to point, we will use the approach we did with two-variable lamina problems, and slice the solid into small pieces on which the density is roughly constant.
+      </p>
+
+      <p>
+        Partition the interval <m>[0,4]</m> into 2 subintervals of equal length, the interval <m>[0,6]</m> into 3 subintervals of equal length, and the interval <m>[0,8]</m> into 2 subintervals of equal length. This partitions the box <m>B</m> into sub-boxes as shown in <xref ref="F_11_7_Box_domain">Figure</xref>.
+      </p>
+
+      <figure xml:id="F_11_7_Box_domain" >
+        <caption>A partitioned three-dimensional domain.</caption>
+        <image width="50%" source="images/fig_11_7_preview" />
+      </figure>
+
+      <ol label="a.">
+        <li>
+          <p>
+            Let <m>0=x_0 \lt  x_1 \lt  x_2=4</m> be the endpoints of the subintervals of <m>[0,4]</m> after partitioning. Draw a picture of <xref ref="F_11_7_Box_domain">Figure</xref> and label these endpoints on your drawing. Do likewise with <m>0=y_0 \lt  y_1 \lt  y_2 \lt  y_3=6</m> and <m>0=z_0 \lt  z_1 \lt  z_2=8</m>
+    
+                What is the length <m>\Delta x</m> of each subinterval <m>[x_{i-1},x_i]</m> for <m>i</m> from 1 to 2?  the length of <m>\Delta y</m>?  of <m>\Delta z</m>?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The partitions of the intervals <m>[0,4]</m>, <m>[0,6]</m> and <m>[0,8]</m> partition the box <m>B</m> into sub-boxes. How many sub-boxes are there? What is volume <m>\Delta V</m> of each sub-box?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Let <m>B_{ijk}</m> denote the sub-box <m>[x_{i-1},x_i] \times [y_{j-1},y_j] \times [z_{k-1}, z_k]</m>.
+              Say that we choose a point <m>(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*)</m> in the <m>i,j,k</m>th sub-box for each possible combination of <m>i,j,k</m>.  What is the meaning of <m>\delta(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*)</m>?  What physical quantity will <m>\delta(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \Delta V</m> approximate?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            What final step(s) would it take to determine the exact mass of the piece of granite?
+          </p>
+        </li>
+      </ol>
+      
+    </exploration>
+  </introduction>
+
+  <subsection>
+    <title>Triple Riemann Sums and Triple Integrals</title>
+    <p>
+      Through the application of a mass density distribution over a three-dimensional solid, <xref ref="PA_11_7">Preview Activity</xref> suggests that the generalization from double Riemann sums of functions of two variables to triple Riemann sums of functions of three variables is natural. In the same way, so is the generalization from double integrals to triple integrals. By simply adding a <m>z</m>-coordinate to our earlier work, we can define both a triple Riemann sum and the corresponding triple integral.
+    </p>
+
+
+    <definition>
+      <statement>
+        <p>
+          Let <m>f = f(x,y,z)</m> be a continuous function on a box <m>B = [a,b] \times [c,d] \times [r,s]</m>. The <term>triple Riemann sum of <m>f</m> over <m>B</m></term><idx><h>triple Riemann sum</h></idx> is created as follows.
+          <ul>
+            <li>
+              <p>
+                Partition the interval <m>[a,b]</m> into <m>m</m> subintervals of equal length <m>\Delta x = \frac{b-a}{m}</m>. Let <m>x_0</m>, <m>x_1</m>, <m>\ldots</m>, <m>x_m</m> be the endpoints of these subintervals, where <m>a = x_0\lt x_1\lt x_2 \lt  \cdots \lt  x_m = b</m>.
+                Do likewise with the interval <m>[c,d]</m> using <m>n</m> subintervals of equal length <m>\Delta y = \frac{d-c}{n}</m> to generate <m>c = y_0\lt y_1\lt y_2 \lt  \cdots \lt  y_n = d</m>, and with the interval <m>[r,s]</m> using <m>\ell</m> subintervals of equal length <m>\Delta z = \frac{s-r}{\ell}</m> to have <m>r = z_0\lt z_1\lt z_2 \lt  \cdots \lt  z_l = s</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Let <m>B_{ijk}</m> be the sub-box of <m>B</m> with opposite vertices <m>(x_{i-1},y_{j-1},z_{k-1})</m> and <m>(x_i, y_j, z_k)</m> for <m>i</m> between <m>1</m> and <m>m</m>, <m>j</m> between <m>1</m> and <m>n</m>, and <m>k</m> between 1 and <m>\ell</m>. The volume of each <m>B_{ijk}</m> is <m>\Delta V = \Delta x \cdot \Delta y \cdot \Delta z</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Let <m>(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*)</m> be a point in box <m>B_{ijk}</m> for each <m>i</m>, <m>j</m>, and <m>k</m>. The resulting triple Riemann sum for <m>f</m> on <m>B</m> is
+                <me>
+                  \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^{\ell} f(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \cdot \Delta V.
+                </me>
+              </p>
+            </li>
+          </ul>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      If <m>f(x,y,z)</m> represents the mass density of the box <m>B</m>, then, as we saw in <xref ref="PA_11_7">Preview Activity</xref>, the triple Riemann sum approximates the total mass of the box <m>B</m>. In order to find the exact mass of the box, we need to let the number of sub-boxes increase without bound (in other words, let <m>m</m>, <m>n</m>, and <m>\ell</m> go to infinity); in this case, the finite sum of the mass approximations becomes the actual mass of the solid <m>B</m>. More generally, we have the following definition of the triple integral.
+    </p>
+
+
+    <definition>
+      <statement>
+        <p>
+          With following notation defined as in a triple Riemann sum, the <term>triple integral of <m>f</m> over <m>B</m></term><idx><h>triple integral</h></idx> is
+          <me>
+            \iiint_B f(x,y,z) \, dV = \lim_{m,n,\ell \to \infty} \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^{\ell} f(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \cdot \Delta V.
+          </me>
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      As we noted earlier, if <m>f(x, y, z)</m> represents the density of the solid <m>B</m> at each point <m>(x, y, z)</m>, then
+      <me>
+        M = \iiint_B f(x,y,z) \, dV
+      </me>
+      is the mass of <m>B</m>.<idx><h>mass</h><h>of a solid</h></idx> Even more importantly, for any continuous function <m>f</m> over the solid <m>B</m>, we can use a triple integral to determine the average value of <m>f</m> over <m>B</m>, <m>f_{\operatorname{AVG}(B)}</m>. We note this generalization of our work with functions of two variables along with several others in the following important boxed information. Note that each of these quantities may actually be considered over a general domain <m>S</m> in <m>\R^3</m>, not simply a box, <m>B</m>.
+      <ul>
+        <li>
+          <p>
+            The triple integral
+            <me>
+              \displaystyle V(S) = \iiint_S 1 \, dV
+            </me>
+            represents the <em>volume</em> of the solid <m>S</m><idx><h>volume of a solid</h></idx>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The <em>average value</em> of the function <m>f = f(x,y,x)</m> over a solid domain <m>S</m><idx><h>average value over a solid</h></idx> is given by
+            <me>
+              f_{\operatorname{AVG}(S)} = \displaystyle \left(\frac{1}{V(S)} \right) \iiint_S f(x,y,z) \, dV,
+            </me>
+            where <m>V(S)</m> is the volume of the solid <m>S</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The <em>center of mass</em><idx><h>center of mass</h><h>of a solid</h></idx> of the solid <m>S</m> with density <m>\delta = \delta(x,y,z)</m> is <m>(\overline{x}, \overline{y}, \overline{z})</m>, where
+            <md>
+              <mrow> \overline{x} \amp = \frac{\iiint_S x \ \delta(x,y,z) \, dV}{M},</mrow>
+              <mrow>  \overline{y} \amp = \frac{\iiint_S y \ \delta(x,y,z) \, dV}{M}, </mrow>  <mrow> \overline{z} \amp = \frac{\iiint_S z \ \delta(x,y,z) \, dV}{M}, </mrow>
+            </md>
+            and <m>M = \displaystyle \iiint_S \delta(x,y,z) \, dV</m> is the mass of the solid <m>S</m>.
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      In the Cartesian coordinate system, the volume element <m>dV</m> is <m>dz \, dy \, dx</m>, and, as a consequence, a triple integral of a function <m>f</m> over a box <m>B = [a,b] \times [c,d] \times [r,s]</m> in Cartesian coordinates can be evaluated as an iterated integral of the form
+      <me>
+        \iiint_B f(x,y,z) \, dV = \int_a^b \int_c^d \int_r^s f(x,y,z) \, dz \, dy \, dx.
+      </me>
+    </p>
+
+    <p>
+      If we want to evaluate a triple integral as an iterated integral over a solid <m>S</m> that is not a box, then we need to describe the solid in terms of variable limits.
+    </p>
+
+    <activity xml:id="A_11_7_3">
+      <ol label="a.">
+      <li>
+        <p>
+          Set up and evaluate the triple integral of <m>f(x,y,z) = x-y+2z</m> over the box <m>B = [-2,3] \times [1,4] \times [0,2]</m>.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Let <m>S</m> be the solid cone bounded by <m>z = \sqrt{x^2+y^2}</m> and <m>z=3</m>. A picture of <m>S</m> is shown at right in <xref ref="F_11_7_Cone_and_Cone_proj">Figure</xref>. Our goal in what follows is to set up an iterated integral of the form
+          <men xml:id="eq_11_7_TI_not_box" >
+            \int_{x=?}^{x=?} \int_{y=?}^{y=?} \int_{z=?}^{z=?} \delta(x,y,z) \, dz \, dy \, dx
+          </men>
+          to represent the mass of <m>S</m> in the setting where <m>\delta(x,y,z)</m> tells us the density of <m>S</m> at the point <m>(x,y,z)</m>. Our particular task is to find the limits on each of the three integrals.
+
+          <figure xml:id="F_11_7_Cone_and_Cone_proj" >
+            <caption>Left: The cone. Right: Its projection.</caption>
+            <sidebyside widths="50% 50%">
+            <image source="images/fig_11_7_cone_project" />
+            <image source="images/fig_11_7_cone" />
+            </sidebyside>
+          </figure>
+
+          <ol label="i.">
+            <li>
+              <p>
+                If we think about slicing up the solid, we can consider slicing the domain of the solid's projection onto the <m>xy</m>-plane (just as we would slice a two-dimensional region in <m>\R^2</m>), and then slice in the <m>z</m>-direction as well. The projection of the solid onto the <m>xy</m>-plane is shown at left in <xref ref="F_11_7_Cone_and_Cone_proj">Figure</xref>. If we decide to first slice the domain of the solid's projection perpendicular to the <m>x</m>-axis, over what range of constant <m>x</m>-values would we have to slice?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                If we continue with slicing the domain, what are the limits on <m>y</m> on a typical slice?  How do these depend on <m>x</m>?   What, therefore, are the limits on the middle integral?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Finally, now that we have thought about slicing up the two-dimensional domain that is the projection of the cone, what are the limits on <m>z</m> in the innermost integral? Note that over any point <m>(x,y)</m> in the plane, a vertical slice in the <m>z</m> direction will involve a range of values from the cone itself to its flat top.  In particular, observe that at least one of these limits is not constant but depends on <m>x</m> and <m>y</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                In conclusion, write an iterated integral of the form <xref ref="eq_11_7_TI_not_box" /> that represents the mass of the cone <m>S</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </li>
+      </ol>
+      
+    </activity>
+
+    <p>
+      <em>Note well: </em> When setting up iterated integrals, the limits on a given variable can be <em>only</em> in terms of the remaining variables. In addition, there are multiple different ways we can choose to set up such an integral. For example, two possibilities for iterated integrals that represent a triple integral <m>\iiint_S f(x,y,z) \, dV</m> over a solid <m>S</m> are
+      <ul>
+        <li>
+          <p>
+            <m>\int_a^b \int_{g_1(x)}^{g_2(x)} \int_{h_1(x,y)}^{h_2(x,y)} f(x,y,z) \, dz \, dy \, dx</m>
+          </p>
+        </li>
+
+        <li>
+          <p>
+            <m>\int_r^s \int_{p_1(z)}^{p_2(z)} \int_{q_1(x,z)}^{q_2(x,z)} f(x,y,z) \, dy \, dx \, dz</m>
+          </p>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      where <m>g_1</m>, <m>g_2</m>, <m>h_1</m>, <m>h_2</m>, <m>p_1</m>, <m>p_2</m>, <m>q_1</m>, and <m>q_2</m> are functions of the indicated variables. There are four other options beyond the two stated here, since the variables <m>x</m>, <m>y</m>, and <m>z</m> can (theoretically) be arranged in any order. Of course, in many circumstances, an insightful choice of variable order will make it easier to set up an iterated integral, just as was the case when we worked with double integrals.
+    </p>
+
+    <example xml:id="ex_11_7_Tetrahedron_mass">
+      <statement>
+        <p>
+          Find the mass of the tetrahedron in the first octant bounded by the coordinate planes and the plane <m>x + 2 y + 3 z = 6</m> if the density at point <m>(x,y,z)</m> is given by <m>\delta(x, y, z) = x + y + z</m>. A picture of the solid tetrahedron is shown at left in <xref ref="F_11_7_Tetrahedron_ex">Figure</xref>.
+        </p>
+
+        <figure xml:id="F_11_7_Tetrahedron_ex" >
+          <caption>Left: The tetrahedron. Right: Its projection.</caption>
+          <sidebyside widths="50% 50%">
+          <image source="images/fig_11_7_tetrahedron" />
+          <image source="images/fig_11_7_tetrahedron_project" />
+          </sidebyside>
+        </figure>
+
+        <p>
+          We find the mass, <m>M</m>, of the tetrahedron by the triple integral
+          <me>
+            M = \iiint_S \delta(x,y,z) \, dV,
+          </me>
+          where <m>S</m> is the solid tetrahedron described above. In this example, we choose to integrate with respect to <m>z</m> first for the innermost integral. The top of the tetrahedron is given by the equation
+          <me>
+            x + 2 y + 3 z = 6;
+          </me>
+          solving for <m>z</m> then yields
+          <me>
+            z = \frac{1}{3}(6 - x - 2y).
+          </me>
+        </p>
+
+        <p>
+          The bottom of the tetrahedron is the <m>xy</m>-plane, so the limits on <m>z</m> in the iterated integral will be <m>0 \leq z \leq \frac{1}{3}(6-x-2y)</m>.
+        </p>
+
+        <p>
+          To find the bounds on <m>x</m> and <m>y</m> we project the tetrahedron onto the <m>xy</m>-plane; this corresponds to setting <m>z = 0</m> in the equation <m>z = \frac{1}{3}(6 - x - 2y)</m>. The resulting relation between <m>x</m> and <m>y</m> is
+          <me>
+            x + 2 y = 6.
+          </me>
+        </p>
+
+        <p>
+          The right image in <xref ref="F_11_7_Tetrahedron_ex">Figure</xref> shows the projection of the tetrahedron onto the <m>xy</m>-plane.
+        </p>
+
+        <p>
+          If we choose to integrate with respect to <m>y</m> for the middle integral in the iterated integral, then the lower limit on <m>y</m> is the <m>x</m>-axis and the upper limit is the hypotenuse of the triangle. Note that the hypotenuse joins the points <m>(6,0)</m> and <m>(0,3)</m> and so has equation <m>y = 3 - \frac{1}{2}x</m>. Thus, the bounds on <m>y</m> are <m>0 \leq y \leq 3 - \frac{1}{2}x</m>. Finally, the <m>x</m> values run from 0 to 6, so the iterated integral that gives the mass of the tetrahedron is
+          <men xml:id="eq_11_7_Tetrahedron_mass" >
+            M = \int_{0}^{6} \int_{0}^{3-(1/2)x} \int_{0}^{(1/3)(6-x-2y)} x+y+z \, dz \, dy \, dx.
+          </men>
+        </p>
+
+        <p>
+          Evaluating the triple integral gives us
+          <md>
+            <mrow>M \amp  = \int_{0}^{6} \int_{0}^{3-(1/2)x} \int_{0}^{(1/3)(6-x-2y)} x+y+z \, dz \, dy \, dx</mrow>
+            <mrow>\amp = \int_{0}^{6} \int_{0}^{3-(1/2)x} \left[xz+yz+\frac{z}{2}\right]\biggm|_{0}^{(1/3)(6-x-2y)} \, dy \, dx</mrow>
+            <mrow>\amp = \int_{0}^{6} \int_{0}^{3-(1/2)x} \frac{4}{3}x - \frac{5}{18}x^2 - \frac{}{9}xy + \frac{2}{3}y - \frac{4}{9}y^2 + 2 \, dy \, dx</mrow>
+            <mrow>\amp = \int_{0}^{6} \left[\frac{4}{3}xy - \frac{5}{18}x^2y - \frac{7}{18}xy^2 + \frac{1}{3}y^2 - \frac{4}{27}y^3 + 2y \right]\biggm|_{0}^{3-(1/2)x}  \, dx</mrow>
+            <mrow>\amp = \int_{0}^{6} 5 + \frac{1}{2}x - \frac{7}{12}x^2 + \frac{13}{216}x^3 \, dx</mrow>
+            <mrow>\amp =  \left[5x + \frac{1}{4}x^2 - \frac{7}{36}x^3 + \frac{13}{864}x^4 \right] \biggm|_{0}^{6}</mrow>
+            <mrow>\amp = \frac{33}{2}.</mrow>
+          </md>
+        </p>
+      </statement>
+    </example>
+
+    <p>
+      Setting up limits on iterated integrals can require considerable geometric intuition. It is important to not only create carefully labeled figures, but also to think about how we wish to slice the solid. Further, note that when we say <q>we will integrate first with respect to <m>x</m>,</q> by <q>first</q> we are referring to the innermost integral in the iterated integral. The next activity explores several different ways we might set up the integral in the preceding example.
+    </p>
+
+    <activity xml:id="A_11_7_4">
+      <p>
+        There are several other ways we could have set up the integral to give the mass of the tetrahedron in <xref ref="ex_11_7_Tetrahedron_mass">Example</xref>.
+        <ol label="a.">
+          <li>
+            <p>
+              How many different iterated integrals could be set up that are equal to the integral in Equation<nbsp /><xref ref="eq_11_7_Tetrahedron_mass" />?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Set up an iterated integral, integrating first with respect to <m>z</m>, then <m>x</m>, then <m>y</m> that is equivalent to the integral in Equation<nbsp /><xref ref="eq_11_7_Tetrahedron_mass" />.  Before you write down the integral, think about <xref ref="F_11_7_Tetrahedron_ex">Figure</xref>, and draw an appropriate two-dimensional image of an important projection.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Set up an iterated integral, integrating first with respect to <m>y</m>, then <m>z</m>, then <m>x</m> that is equivalent to the integral in Equation<nbsp /><xref ref="eq_11_7_Tetrahedron_mass" />.  As in (b), think carefully about the geometry first.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Set up an iterated integral, integrating first with respect to <m>x</m>, then <m>y</m>, then <m>z</m> that is equivalent to the integral in Equation<nbsp /><xref ref="eq_11_7_Tetrahedron_mass" />.
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      Now that we have begun to understand how to set up iterated triple integrals, we can apply them to determine important quantities, such as those found in the next activity.
+    </p>
+
+    <activity xml:id="A_11_7_6">
+      <p>
+        A solid <m>S</m> is bounded below by the square <m>z=0</m>, <m>-1 \leq x \leq 1</m>, <m>-1 \leq y \leq 1</m> and above by the surface <m>z = 2-x^2-y^2</m>. A picture of the solid is shown in <xref ref="F_11_7_COM3D">Figure</xref>.
+      </p>
+
+      <figure xml:id="F_11_7_COM3D" >
+        <caption>The solid bounded by the surface <m>z = 2-x^2-y^2</m>.</caption>
+        <image width="50%" source="images/fig_11_7_volume" />
+      </figure>
+
+      <ol label="a.">
+        <li>
+          <p>
+            First, set up an iterated double integral to find the volume of the solid <m>S</m> as a double integral of a solid under a surface. Then set up an iterated triple integral that gives the volume of the solid <m>S</m>. You do not need to evaluate either integral. Compare the two approaches. 
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Set up (but do not evaluate) iterated integral expressions that will tell us the center of mass of <m>S</m>, if the density at point <m>(x,y,z)</m> is <m>\delta(x,y,z)=x^2+1</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Set up (but do not evaluate) an iterated integral to find the average density on <m>S</m> using the density function from part (b).
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Use technology appropriately to evaluate the iterated integrals you determined in (a), (b), and (c); does the location you determined for the center of mass make sense?
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+    <li>
+      <p>
+        Let <m>f = f(x,y,z)</m> be a continuous function on a box <m>B = [a,b] \times [c,d] \times [r,s]</m>. 
+         The triple integral of <m>f</m> over <m>B</m> is defined as
+        <me>
+          \iiint_B f(x,y,z) \, dV = \lim_{\Delta V \to 0} \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^l f(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \cdot \Delta V,
+        </me>
+        where the triple Riemann sum is defined in the usual way. 
+        The definition of the triple integral naturally extends to non-rectangular solid regions <m>S</m>.
+      </p>
+    </li>
+
+    <li>
+      <p>
+        The triple integral <m>\iiint_S f(x,y,z) \, dV</m> can tell us
+        <ul>
+          <li>
+            <title>-</title>
+            <p>
+              the volume of the solid <m>S</m> if <m>f(x,y,z) = 1</m>,
+            </p>
+          </li>
+
+          <li>
+            <title>-</title>
+            <p>
+              the mass of the solid <m>S</m> if <m>f</m> represents the density of <m>S</m> at the point <m>(x,y,z)</m>.
+            </p>
+          </li>
+        </ul>
+      
+
+      Moreover,
+      <me>
+        f_{\operatorname{AVG}(S)} = \displaystyle \frac{1}{V(S)} \iiint_S f(x,y,z) \, dV,
+      </me>
+      is the average value of <m>f</m> over <m>S</m>.
+      </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+
+    <exercises>
+
+      <exercise xml:id="ex-11-7-WW-triple-cube">
+      <!--<title>Triple integral over a cube</title>-->
+         <webwork source="Library/FortLewis/Calc3/16-3-Triple-integrals/HGM5-16-3-04-Triple-integrals.pg" />
+      </exercise>
+
+    <exercise xml:id="ex-11-7-WW-evaluate">
+      <!--<title>Evaluate a triple integral</title>-->
+         <webwork source="Library/Rochester/setVMultIntegrals5Triple/ur_vc_10_5.pg" />
+      </exercise>
+
+    <exercise xml:id="ex-11-7-WW-prism-mass">
+      <!--<title>Find the mass of a prism</title>-->
+         <webwork source="Library/272/setStewart15_7/problem_1.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-average-value">
+      <!--<title>Average value calculation</title>-->
+         <webwork source="Library/272/setStewart15_7/problem_5.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-plane-volume">
+      <!--<title>Volume of a solid bound by planes</title>-->
+         <webwork source="Library/Rochester/setVMultIntegrals1Double/ur_vc_8_11.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-plane-mass">
+      <!--<title>Mass of a solid bound by planes</title>-->
+         <webwork source="Library/Michigan/Chap16Sec3/Q35.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-moment">
+      <!--<title>Moment of inertia</title>-->
+         <webwork source="Library/Michigan/Chap16Sec3/Q61.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-six-ways">
+      <!--<title>Set up an iterated integral in six ways</title>-->
+         <webwork source="Library/ASU-topics/setCalculus/stef/stef15_7p8.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-paraboloid-volume">
+      <!--<title>Volume under an elliptic paraboloid</title>-->
+         <webwork source="Library/Rochester/setVMultIntegrals1Double/ur_vc_8_6.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-com-cone">
+      <!--<title>Center of mass of a cone</title>-->
+         <webwork source="Library/Michigan/Chap16Sec5/Q55.pg" />
+      </exercise>
+
+
+
+      <exercise xml:id="ex-11-7-WW-signs">
+      <!--<title>Determining signs of triple integrals</title>-->
+         <webwork source="Library/FortLewis/Calc3/16-3-Triple-integrals/HGM4-16-3-30-Triple-integrals.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-11-7-WW-tetrahedron-mass">
+      <!--<title>Mass of a tetrhedron</title>-->
+         <webwork source="Library/FortLewis/Calc3/16-3-Triple-integrals/HGM5-16-3-35-Triple-integrals.pg" />
+      </exercise>
+
+      <!--MBX exception
+      <exercise xml:id="ex-11-7-WW-limits">
+      <title>Determine limits to find the volume of a solid</title>
+         <webwork source="Library/FortLewis/Calc3/16-5-Rectangular-integrals/HGM5-16-5-31-Rectangular-integrals/HGM5-16-5-31-Rectangular-integrals.pg" />
+      </exercise> -->
+      
+      <exercise>
+        <statement>
+          <p>
+            Consider the solid <m>S</m> that is bounded by the parabolic cylinder <m>y = x^2</m> and the planes <m>z=0</m> and <m>z=1-y</m> as shown in <xref ref="F_11_7_TI_Example_2">Figure</xref>.
+          </p>
+
+          <figure xml:id="F_11_7_TI_Example_2" >
+            <caption>The solid bounded by <m>y = x^2</m> and the planes <m>z=0</m> and <m>z=1-y</m>.</caption>
+            <image width="50%" source="images/fig_11_7_solid" />
+          </figure>
+
+          <p>
+            Assume the density of <m>S</m> is given by <m>\delta(x,y,z) = z</m>
+            <ol label="a.">
+              <li>
+                <p>
+                  Set up (but do not evaluate) an iterated integral that represents the mass of <m>S</m>.  Integrate first with respect to <m>z</m>, then <m>y</m>, then <m>x</m>.  A picture of the projection of <m>S</m> onto the <m>xy</m>-plane is shown at left in <xref ref="F_11_7_TI_Example_2_xy">Figure</xref>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up (but do not evaluate) an iterated integral that represents the mass of <m>S</m>.  In this case, integrate first with respect to <m>y</m>, then <m>z</m>, then <m>x</m>.  A picture of the projection of <m>S</m> onto the <m>xz</m>-plane is shown at center in <xref ref="F_11_7_TI_Example_2_xy">Figure</xref>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up (but do not evaluate) an iterated integral that represents the mass of <m>S</m>.  For this integral, integrate first with respect to <m>x</m>, then <m>y</m>, then <m>z</m>.  A picture of the projection of <m>S</m> onto the <m>yz</m>-plane is shown at right in <xref ref="F_11_7_TI_Example_2_xy">Figure</xref>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Which of these three orders of integration is the most natural to you?  Why?
+                </p>
+              </li>
+            </ol>
+          </p>
+
+          <figure xml:id="F_11_7_TI_Example_2_xy" >
+            <caption>Projections of <m>S</m> onto the <m>xy</m>, <m>xz</m>, and <m>yz</m>-planes.</caption>
+            <sidebyside widths="33% 33% 33%">
+              <image source="images/fig_11_7_solid_proj_1" />
+              <image source="images/fig_11_7_solid_proj_2" />
+              <image source="images/fig_11_7_solid_proj_3" />
+              </sidebyside>
+          </figure>
+          
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            This problem asks you to investigate the average value of some different quantities.
+            <ol label="a.">
+              <li>
+                <p>
+                  Set up, but do not evaluate, an iterated integral expression whose value is the average sum of all real numbers <m>x</m>, <m>y</m>, and <m>z</m> that have the following property: <m>y</m> is between 0 and 2, <m>x</m> is greater than or equal to 0 but cannot exceed <m>2y</m>, and <m>z</m> is greater than or equal to 0 but cannot exceed <m>x+y</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up, but do not evaluate, an integral expression whose value represents the average value of <m>f(x,y,z) = x + y + z</m> over the solid region in the first octant bounded by the surface <m>z = 4 - x - y^2</m> and the coordinate planes <m>x=0</m>, <m>y=0</m>, <m>z=0</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  How are the quantities in (a) and (b) similar?  How are they different?
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            Consider the solid that lies between the paraboloids <m>z = g(x,y) = x^2 + y^2</m> and <m>z = f(x,y) = 8 - 3x^2 - 3y^2</m>.
+            <ol label="a.">
+              <li>
+                <p>
+                  By eliminating the variable <m>z</m>, determine the curve of intersection between the two paraboloids, and sketch this curve in the <m>xy</m>-plane.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up, but do not evaluate, an iterated integral expression whose value determines the mass of the solid, integrating first with respect to <m>z</m>, then <m>y</m>, then <m>x</m>. Assume the the solid's density is given by <m>\delta(x,y,z) = \frac{1}{x^2 + y^2 + z^2 + 1}</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up, but do not evaluate, iterated integral expressions whose values determine the mass of the solid using all possible remaining orders of integration. Use <m>\delta(x,y,z) = \frac{1}{x^2 + y^2 + z^2 + 1}</m> as the density of the solid.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Set up, but do not evaluate, iterated integral expressions whose values determine the center of mass of the solid. Again, assume the the solid's density is given by <m>\delta(x,y,z) = \frac{1}{x^2 + y^2 + z^2 + 1}</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Which coordinates of the center of mass can you determine <em>without</em> evaluating any integral expression?  Why?
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise>
+        <statement>
+          <p>
+            In each of the following problems, your task is to
+            <ul>
+              <li>
+                <title>(i)</title>
+                <p>
+                  sketch, by hand, the region over which you integrate
+                </p>
+              </li>
+
+              <li>
+                <title>(ii)</title>
+                <p>
+                  set up iterated integral expressions which, when evaluated, will determine the value sought
+                </p>
+              </li>
+
+              <li>
+                <title>(iii)</title>
+                <p>
+                  use appropriate technology to evaluate each iterated integral expression you develop
+                </p>
+              </li>
+            </ul>
+          </p>
+
+          <p>
+            Note well: in some problems you may be able to use a double rather than a triple integral, and polar coordinates may be helpful in some cases.
+            <ol label="a.">
+              <li>
+                <p>
+                  Consider the solid created by the region enclosed by the circular paraboloid <m>z = 4 - x^2 - y^2</m> over the region <m>R</m> in the <m>xy</m>-plane enclosed by <m>y = -x</m> and the circle <m>x^2 + y^2 = 4</m> in the first, second, and fourth quadrants. 
+  
+                    Determine the solid's volume.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Consider the solid region that lies beneath the circular paraboloid <m>z = 9 - x^2 - y^2</m> over the triangular region between <m>y = x</m>, <m>y = 2x</m>, and <m>y = 1</m>.   Assuming that the solid has its density at point <m>(x,y,z)</m> given by <m>\delta(x,y,z) = xyz + 1</m>, measured in grams per cubic cm, determine the center of mass of the solid.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  In a certain room in a house, the walls can be thought of as being formed by the lines <m>y = 0</m>, <m>y = 12 + x/4</m>, <m>x = 0</m>, and <m>x = 12</m>, where length is measured in feet.  In addition, the ceiling of the room is vaulted and is determined by the plane <m>z = 16 - x/6 - y/3</m>.  A heater is stationed in the corner of the room at <m>(0,0,0)</m> and causes the temperature in the room at a particular time to be given by
+                  <me>
+                    T(x,y,z) = \frac{80}{1 + \frac{x^2}{1000} + \frac{y^2}{1000} + \frac{z^2}{1000}}
+                  </me>
+                  What is the average temperature in the room?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Consider the solid enclosed by the cylinder <m>x^2 + y^2 = 9</m> and the planes <m>y + z = 5</m> and <m>z = 1</m>.   Assuming that the solid's density is given by <m>\delta(x,y,z) = \sqrt{x^2 + y^2}</m>, find the mass and center of mass of the solid.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+    </exercises>
+</section>
