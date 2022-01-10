@@ -13,7 +13,7 @@
 <!-- Exercises have hint (sporadically), answer, and solution -->
 <xsl:param name="exercise.divisional.statement" select="'yes'" />
 <xsl:param name="exercise.divisional.hint" select="'yes'" />
-<xsl:param name="exercise.divisional.answer" select="'no'" />
+<xsl:param name="exercise.divisional.answer" select="'yes'" />
 <xsl:param name="exercise.divisional.solution" select="'no'" />
 
 <!-- activity is a project-like, so we need to set those stringparams -->
@@ -27,4 +27,5 @@
 <!-- Specify options for WeBWorK exercises -->
 <xsl:param name="webwork.divisional.static" select="'no'" />
 
+<xsl:template match="exercise/answer|task/answer|webwork-reps/static/answer" />
 </xsl:stylesheet>

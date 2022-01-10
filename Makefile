@@ -89,8 +89,8 @@ SERVER = https://webwork-ptx.aimath.org
 #  Also locally store images from the WeBWorK server.
 
 acmv-extraction:
+	-rm -rf $(WWOUT)
 	install -d $(WWOUT)
-	-rm $(WWOUT)/webwork-representations.xml
 	$(PTX)/pretext/pretext -c webwork -d $(WWOUT) -s $(SERVER) $(MAINFILE)
 
 #  HTML output 
@@ -100,6 +100,7 @@ acmv-extraction:
 html: 
 	install -d $(HTMLOUT)
 	-rm -rf $(HTMLOUT)/knowl
+	-rm -rf $(HTMLOUT)/images
 	install -d $(HTMLOUT)/knowl
 	install -d $(HTMLOUT)/images
 	install -d $(OUTPUT)
@@ -110,6 +111,7 @@ html:
 	-rm $(HTMLOUT)/*.html
 	cp -a $(AC3IMAGESSRC) $(HTMLOUT)
 	cp -a $(IMAGESSRC) $(HTMLOUT)
+	cp -a $(WWOUT)/* $(HTMLOUT)/images
 	cd $(HTMLOUT); \
 	xsltproc -xinclude -stringparam publisher $(PRJ)/pub/html.xml $(PTXUSR)/acmv-html.xsl $(MAINFILE)
 
