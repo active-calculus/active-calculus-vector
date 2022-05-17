@@ -9,6 +9,16 @@ http://activecalculus.org/vector/.
 
 ## Building instructions
 
-1. Run `make acmv-extraction`
-1. Run `make html`
-1. Find all the relevant files in output/html
+1. Install the pretext CLI. See the PreTeXt documentation for how to
+install it
+1. Make changes to paths in the `executables` portion of `project.ptx`
+   if necessary. (At present, no changes are required. Changes may be
+   ncessary when support for building formats other than HTML is added.)
+1. Run `pretext build -w vector`. This will ensure that WeBWorK
+   exercises are properly extracted. This command only needs to be run
+   with the `-w` flag if changes are made to WeBWorK
+   exercise. Otherwise, just run `pretext build vector`.
+1. Run `pretext view vector`, which will give you a URL you can use to
+   view the HTML output. Note that for speed purposes, only Chapter 12
+   will be built and can be read, although the full table of contents
+   will appear and cross references will be correct.
