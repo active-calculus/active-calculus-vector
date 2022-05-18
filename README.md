@@ -22,3 +22,9 @@ install it
    view the HTML output. Note that for speed purposes, only Chapter 12
    will be built and can be read, although the full table of contents
    will appear and cross references will be correct.
+
+
+On first run of a this repository on a new machine, you should run 
+`pretext build -w html` to build the overall html structure (since the 
+html output will not be built yet). After this lengthy build, updates to 
+the vector calc chapter will be done by `pretext build vector` command.
