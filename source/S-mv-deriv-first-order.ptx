@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-10-2-First-Order-Partial-Derivatives">
+  <title>First-Order Partial Derivatives</title>
+  
+    <objectives>
+        <ul>
+          <li>
+            <p>
+              How are the first-order partial derivatives of a function <m>f</m> of
+                the independent variables <m>x</m> and <m>y</m> defined?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Given a function
+                <m>f</m> of the independent variables <m>x</m> and <m>y</m>, what do the first-order partial derivatives <m>\frac{\partial
+                  f}{\partial x}</m> and <m>\frac{\partial f}{\partial y}</m> tell us about <m>f</m>?
+            </p>
+          </li>
+        </ul>
+    </objectives>
+
+    <introduction>
+    <p>
+      The derivative plays a central role in first semester calculus
+      because it provides important information about a function. Thinking
+      graphically, for instance, the derivative at a point tells us the
+      slope of the tangent line to the graph at that point. In addition, the
+      derivative at a point also provides the instantaneous rate of change of
+      the function with respect to changes in the independent variable.
+    </p>
+
+    <p>
+      Now that we are investigating functions of two or more variables, we can still ask how fast the function is changing, though we have to be careful about what we mean. Thinking
+      graphically again, we can try to measure how steep the graph of the function is in a particular direction. Alternatively, we may want to know how fast a function's output changes in response to a change in one of the inputs. Over the next few sections, we will develop tools for addressing issues such as these. Preview
+      <xref ref="PA_10_2">Activity</xref> explores some issues with what we will come to call <em>partial derivatives</em>.
+    </p>
+
+    <exploration xml:id="PA_10_2">
+      <p>
+        Suppose we take out an $18,000 car loan at interest rate <m>r</m> and we agree to pay off the loan in <m>t</m> years. The monthly payment, in dollars, is
+        <me>
+          M(r,t) =
+            \frac{1500r}{1-\left(1+\frac{r}{12}\right)^{-12t}}.
+        </me>
+        <ol marker="a.">
+          <li>
+            <p>
+              What is the monthly payment if the interest rate is <m>3\%</m> so that <m>r =
+                  0.03</m>, and we pay the loan off in <m>t=4</m> years?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Suppose the interest rate is fixed at <m>3\%</m>.  Express <m>M</m> as a function <m>f</m> of <m>t</m> alone using <m>r=0.03</m>. That is, let <m>f(t) = M(0.03, t)</m>. Sketch the graph of <m>f</m> on the left of
+                  <xref ref="F_10_2_preview_1">Figure</xref>.  Explain the meaning of the function <m>f</m>.
+
+              <figure xml:id="F_10_2_preview_1" >
+                <caption>Left: Graphs <m>f(t)= M(0.03, t)</m>. Right: Graph <m>g(r) = M(r,4)</m>.</caption>
+                <sidebyside widths="50% 50%">
+                <image source="images/fig_10_2_preview_1" />
+                <image source="images/fig_10_2_preview_2" />
+                </sidebyside>
+              </figure>
+
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find the instantaneous rate of change <m>f'(4)</m> and state the units on
+                  this quantity.  What information does <m>f'(4)</m> tell us about our
+                  car loan?  What information does <m>f'(4)</m> tell us about the graph
+                  you sketched in (b)?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Express <m>M</m> as a function of <m>r</m> alone, using a fixed time of <m>t=4</m>.  That is, let <m>g(r) = M(r, 4)</m>. Sketch the graph of <m>g</m> on the right of
+                  <xref ref="F_10_2_preview_1">Figure</xref>.  Explain the meaning of the function <m>g</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find the instantaneous rate of change <m>g'(0.03)</m> and state the units on
+                  this quantity.  What information does <m>g'(0.03)</m> tell us about our
+                  car loan?  What information does <m>g'(0.03)</m> tell us about the graph
+                  you sketched in (d)?
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </exploration>
+  </introduction>
+
+  <subsection>
+    <title>First-Order Partial Derivatives</title>
+    <p>
+      In <xref ref="S-9-1-Functions">Section</xref>, we studied the behavior
+      of a function of two or more variables by considering the <em>traces</em>
+      of the function. Recall that in one example, we considered the function <m>f</m> defined by
+      <me>
+        f(x,y) = \frac{x^2 \sin(2 y)}{32},
+      </me>
+      which measures the range, or horizontal distance, in feet, traveled by a
+      projectile launched with an initial
+      speed of <m>x</m> feet per second at an angle <m>y</m> radians to the
+      horizontal. The graph of this function is given again on the left in <xref ref="F_10_2_trace_y">Figure</xref>. Moreover, if we fix the angle <m>y = 0.6</m>, we may view the trace <m>f(x,0.6)</m> as a
+      function of <m>x</m> alone, as seen at right in <xref ref="F_10_2_trace_y">Figure</xref>.
+    </p>
+
+    <figure xml:id="F_10_2_trace_y" >
+      <caption>Left: The trace of <m>z=\frac{x^2 \sin(2 y)}{32}</m> with <m>y = 0.6</m>.</caption>
+      <sidebyside widths="50% 50%">
+      <image source="images/fig_10_2_trace_y_a" />
+      <image source="images/fig_10_2_trace_y" />
+      </sidebyside>
+    </figure>
+
+    <p>
+      Since the trace is a one-variable function, we may consider its
+      derivative just as we did in the first semester of calculus. With
+      <m>y=0.6</m>, we have
+      <me>
+        f(x,0.6) = \frac{\sin(1.2)}{32}x^2,
+      </me>
+      and therefore
+      <me>
+        \frac{d}{dx}[f(x,0.6)] = \frac{\sin(1.2)}{16}x.
+      </me>
+    </p>
+
+    <p>
+      When <m>x=150</m>, this gives
+      <me>
+        \frac{d}{dx}[f(x,0.6)]|_{x=150} = \frac{\sin(1.2)}{16}150 \approx
+        8.74~\mbox{feet per feet per second} ,
+      </me>
+      which gives the slope of the tangent line shown on the right of <xref ref="F_10_2_trace_y">Figure</xref>. Thinking of this derivative as an instantaneous
+      rate of change implies that if we increase the initial speed of the projectile by
+      one foot per second, we expect the horizontal distance traveled to
+      increase by approximately 8.74 feet if we hold the launch angle constant at <m>0.6</m> radians.
+    </p>
+
+    <p>
+      By holding <m>y</m> fixed and differentiating with respect to <m>x</m>, we
+      obtain the first-order <em>partial derivative of <m>f</m> with respect to
+      <m>x</m></em>. Denoting this partial derivative as <m>f_x</m>, we have seen that
+      <me>
+        f_x(150, 0.6) = \frac{d}{dx}f(x,0.6)|_{x=150} = \lim_{h\to
+          0}\frac{f(150+h, 0.6) - f(150, 0.6)}{h}.
+      </me>
+    </p>
+
+    <p>
+      More generally, we have
+      <me>
+        f_x(a,b) = \lim_{h\to0} \frac{f(a+h, b)-f(a,b)}{h},
+      </me>
+      provided this limit exists.
+    </p>
+
+    <p>
+      In the same way, we may obtain a trace by setting, say, <m>x=150</m> as shown
+      in <xref ref="F_10_2_trace_x">Figure</xref>.
+    </p>
+
+    <figure xml:id="F_10_2_trace_x" >
+      <caption>The trace of <m>z=\frac{x^2 \sin(2 y)}{32}</m> with <m>x = 150</m>.</caption>
+      <sidebyside widths="50% 50%">
+      <image source="images/fig_10_2_trace_x_a" />
+      <image source="images/fig_10_2_trace_x" />
+      </sidebyside>
+    </figure>
+
+    <p>
+      This gives
+      <me>
+        f(150, y) = \frac{150^2}{32}\sin(2y),
+      </me>
+      and therefore
+      <me>
+        \frac{d}{dy}[f(150,y)] = \frac{150^2}{16}\cos(2y).
+      </me>
+    </p>
+
+    <p>
+      If we evaluate this quantity at <m>y=0.6</m>, we have
+      <me>
+        \frac{d}{dy}[f(150,y)]|_{y=0.6} = \frac{150^2}{16}\cos(1.2) \approx 509.5
+        ~\mbox{feet per radian} .
+      </me>
+    </p>
+
+    <p>
+      Once again, the derivative gives the slope of the tangent line shown
+      on the right in <xref ref="F_10_2_trace_x">Figure</xref>. Thinking of the
+      derivative as an instantaneous rate of change, we expect that the
+      range of the projectile increases by 509.5 feet for every radian we increase the launch angle
+      <m>y</m> if we keep the initial speed of the projectile constant at 150 feet per second.
+    </p>
+
+    <p>
+      By holding <m>x</m> fixed and differentiating with respect to <m>y</m>, we
+      obtain the first-order <em>partial derivative of <m>f</m> with respect to <m>y</m></em>.
+      As before, we denote this partial derivative as <m>f_y</m> and write
+      <me>
+        f_y(150, 0.6) = \frac{d}{dy}f(150,y)|_{y=0.6} = \lim_{h\to
+          0}\frac{f(150, 0.6+h) - f(150, 0.6)}{h}.
+      </me>
+    </p>
+
+    <p>
+      As with the partial derivative with respect to <m>x</m>, we may express this quantity more generally at an arbitrary point <m>(a,b)</m>.
+      To recap, we have now arrived at the formal definition of the first-order partial derivatives of a function of two variables.
+    </p>
+
+    <definition>
+      <statement>
+        <p>
+          The first-order <term>partial
+          derivatives of <m>f</m> with respect to <m>x</m> and <m>y</m></term><idx><h>partial
+          derivatives</h><h>first-order</h></idx> at a point <m>(a,b)</m> are, respectively,
+          <md>
+            <mrow>f_x(a,b) \amp  = \lim_{h \to 0} \frac{f(a+h,b)-f(a,b)}{h}, \ \mbox{and}</mrow>
+            <mrow>f_y(a,b) \amp  = \lim_{h \to 0} \frac{f(a,b+h)-f(a,b)}{h},</mrow>
+          </md>
+          provided the limits exist.
+        </p>
+      </statement>
+    </definition>
+
+    <activity xml:id="A_10_2_10">
+      <p>
+        Consider the function <m>f</m> defined by
+        <me>
+          f(x,y) = \frac{xy^2}{x+1}
+        </me>
+        at the point <m>(1,2)</m>.
+        <ol marker="a.">
+          <li>
+            <p>
+              Write the trace <m>f(x,2)</m> at the fixed value <m>y=2</m>.   
+                   On the left side of <xref ref="F_10_2_activity_trace">Figure</xref>,
+                   draw the graph of the trace with <m>y=2</m> around the point where <m>x=1</m>, indicating the scale and labels on the axes.  Also, sketch 
+                   the tangent line at the point <m>x=1</m>.
+
+              <figure xml:id="F_10_2_activity_trace" >
+                <caption>Traces of <m>f(x,y) = \frac{xy^2}{x+1}</m>.</caption>
+                <sidebyside widths="50% 50%">
+                <image source="images/fig_10_2_empty" />
+                <image source="images/fig_10_2_empty" />
+                </sidebyside>
+              </figure>
+
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find the partial derivative <m>f_x(1,2)</m> and relate its value
+                   to the sketch you just made.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Write the trace <m>f(1,y)</m> at the fixed value <m>x=1</m>.  
+                   On the right side of <xref ref="F_10_2_activity_trace">Figure</xref>,
+                   draw the graph of the trace with <m>x=1</m> indicating the scale and
+                   labels on the axes.  Also, sketch 
+                   the tangent line at the point <m>y=2</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find the partial derivative <m>f_y(1,2)</m> and relate its value
+                   to the sketch you just made.
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      As these examples show, each partial derivative at a point arises as
+      the derivative of a one-variable function defined by fixing one of the
+      coordinates. In addition, we may consider each partial derivative as defining a new
+      function of the point <m>(x,y)</m>, just as the derivative <m>f'(x)</m> defines
+      a new function of <m>x</m> in single-variable calculus. Due to the connection between one-variable
+      derivatives and partial derivatives, we will often use Leibniz-style
+      notation to denote partial derivatives by writing
+      <me>
+        \frac{\partial f}{\partial x}(a, b) = f_x(a,b),
+        \ 
+        \mbox{and} 
+        \ 
+        \frac{\partial f}{\partial y}(a, b) = f_y(a,b).
+      </me>
+    </p>
+
+    <p>
+      To calculate the partial
+      derivative <m>f_x</m>, we hold <m>y</m> fixed and thus we treat <m>y</m> as a
+      constant. In Leibniz notation, observe that
+      <me>
+        \frac{\partial }{\partial x} (x) = 1
+        \ 
+        \mbox{and} 
+        \ 
+        \frac{\partial }{\partial x}(y) = 0.
+      </me>
+    </p>
+
+    <p>
+      To see the contrast between how we calculate single variable derivatives and partial derivatives, and the difference between the notations <m>\frac{d}{dx}[ \ ]</m> and <m>\frac{\partial}{\partial x}[ \ ]</m>, observe that
+      <md>
+        <mrow>\amp  \frac{d}{dx}[3x^2 - 2x + 3] = 3\frac{d}{dx}[x^2] - 2\frac{d}{dx}[x]
+          + \frac{d}{dx}[3] = 3\cdot 2x - 2,</mrow>
+        <mrow>\mbox{and} \  \amp  \frac{\partial}{\partial x}[x^2y - xy + 2y] =
+          y\frac{\partial}{\partial x}[x^2] -
+          y\frac{\partial}{\partial x}[x]
+          + \frac{\partial}{\partial x}[2y] = y\cdot 2x - y</mrow>
+      </md>
+    </p>
+
+    <p>
+      Thus, computing partial derivatives is straightforward: we use the standard rules of single variable calculus, but do so while holding one (or more) of the variables constant.
+    </p>
+
+    <activity xml:id="A_10_2_2">
+      <ol marker="a.">
+        <li>
+          <p>
+            If <m>f(x,y) = 3x^3 - 2x^2y^5</m>, find the partial derivatives <m>f_x</m>
+              and <m>f_y</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If <m>f(x,y) = \displaystyle\frac{xy^2}{x+1}</m>, find the partial
+              derivatives <m>f_x</m> and <m>f_y</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If <m>g(r,s) = rs\cos(r)</m>, find the partial derivatives <m>g_r</m> and
+              <m>g_s</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Assuming <m>f(w,x,y) = (6w+1)\cos(3x^2+4xy^3+y)</m>, find the partial
+              derivatives <m>f_w</m>, <m>f_x</m>, and <m>f_y</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Find all possible first-order partial derivatives of <m>q(x,t,z) =
+              \displaystyle \frac{x2^tz^3}{1+x^2}.</m>
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Interpretations of First-Order Partial Derivatives</title>
+    <p>
+      Recall that the derivative of a single variable function has a
+      geometric interpretation as the slope of the line tangent to the graph
+      at a given point. Similarly, we have seen that the partial
+      derivatives measure the slope of a line tangent to a trace of a
+      function of two variables as shown in <xref ref="F_10_2_trace_tangent">Figure</xref>.
+    </p>
+
+    <figure xml:id="F_10_2_trace_tangent" >
+      <caption>Tangent lines to two traces of the distance function.</caption>
+      <sidebyside widths="50% 50%">
+      <image source="images/fig_10_2_trace_tangent_y" />
+      <image source="images/fig_10_2_trace_tangent_x" />
+      </sidebyside>
+    </figure>
+
+    <p>
+      Now we consider the first-order partial derivatives in context. Recall
+      that the difference quotient <m>\frac{f(a+h)-f(a)}{h}</m> for a function
+      <m>f</m> of a single variable <m>x</m> at a point where <m>x=a</m> tells us the
+      average rate of change of <m>f</m> over the interval <m>[a,a+h]</m>, while the
+      derivative <m>f'(a)</m> tells us the instantaneous rate of change of <m>f</m> at
+      <m>x=a</m>.
+      We can use these same concepts to
+      explain the meanings of the partial derivatives in context.
+    </p>
+
+    <activity xml:id="A_10_2_11">
+      <p>
+        The speed of sound <m>C</m> traveling through ocean water is a function of
+        temperature, salinity and depth. It may be modeled by the function
+        <me>
+          C=1449.2+4.6T-0.055T^2+0.00029T^3+(1.34-0.01T)(S-35)+0.016D.
+        </me>
+      </p>
+
+      <p>
+        Here <m>C</m> is the speed of sound in meters/second, <m>T</m> is the
+        temperature in degrees Celsius, <m>S</m> is the salinity in grams/liter of
+        water, and <m>D</m> is the depth below the ocean surface in meters.
+        <ol marker="a.">
+          <li>
+            <p>
+              State the units in which each of the partial derivatives,
+                <m>C_T</m>, <m>C_S</m> and <m>C_D</m>, are expressed and explain the physical
+                meaning of each.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find the partial derivatives <m>C_T</m>, <m>C_S</m> and <m>C_D</m>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Evaluate each of the three partial derivatives at the point where <m>T=10</m>, <m>S=35</m> and
+                <m>D=100</m>.  What does the sign of each partial derivatives tell us about the behavior of the function <m>C</m> at the point <m>(10,35, 100)</m>?
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+  </subsection>
+
+
+
+  <subsection>
+    <title>Using tables and contours to estimate partial
+      derivatives</title>
+    <p>
+      Remember that functions of two variables are often represented as either
+      a table of data or a contour plot.
+      In single variable calculus, we saw how we can use the difference
+      quotient to approximate derivatives if, instead of an algebraic
+      formula, we only know the value of the
+      function at a few points.
+      The same idea applies to partial derivatives.
+    </p>
+
+    <activity xml:id="A_10_2_12">
+      <p>
+        The wind chill, as frequently reported, is a measure of how cold it feels outside when
+        the wind is blowing. In <xref ref="T_10_2_wind_chill">Table</xref>, the wind chill <m>w</m>, measured in degrees Fahrenheit, is a function of the wind speed <m>v</m>, measured in miles per hour, and the ambient air temperature <m>T</m>, also measured in degrees Fahrenheit. We thus view <m>w</m> as being of the form <m>w = w(v, T)</m>.
+      </p>
+
+
+      <table xml:id="T_10_2_wind_chill" >
+        <title>Wind chill as a function of wind speed and temperature.</title>
+        <tabular halign="center" bottom="minor" top="minor">
+          <row bottom="medium">
+            <cell><m>v \backslash T</m></cell>
+            <cell><m>-30</m></cell>
+            <cell><m>-25</m></cell>
+            <cell><m>-20</m></cell>
+            <cell><m>-15</m></cell>
+            <cell><m>-10</m></cell>
+            <cell><m>-5</m></cell>
+            <cell><m>0</m></cell>
+            <cell><m>5</m></cell>
+            <cell><m>10</m></cell>
+            <cell><m>15</m></cell>
+            <cell><m>20</m></cell>
+          </row>
+          <row>
+            <cell><m>5</m></cell>
+            <cell><m>-46</m></cell>
+            <cell><m>-40</m></cell>
+            <cell><m>-34</m></cell>
+            <cell><m>-28</m></cell>
+            <cell><m>-22</m></cell>
+            <cell><m>-16</m></cell>
+            <cell><m>-11</m></cell>
+            <cell><m>-5</m></cell>
+            <cell><m>1</m></cell>
+            <cell><m>7</m></cell>
+            <cell><m>13</m></cell>
+          </row>
+          <row>
+            <cell><m>10</m></cell>
+            <cell><m>-53</m></cell>
+            <cell><m>-47</m></cell>
+            <cell><m>-41</m></cell>
+            <cell><m>-35</m></cell>
+            <cell><m>-28</m></cell>
+            <cell><m>-22</m></cell>
+            <cell><m>-16</m></cell>
+            <cell><m>-10</m></cell>
+            <cell><m>-4</m></cell>
+            <cell><m>3</m></cell>
+            <cell><m>9</m></cell>
+          </row>
+          <row>
+            <cell><m>15</m></cell>
+            <cell><m>-58</m></cell>
+            <cell><m>-51</m></cell>
+            <cell><m>-45</m></cell>
+            <cell><m>-39</m></cell>
+            <cell><m>-32</m></cell>
+            <cell><m>-26</m></cell>
+            <cell><m>-19</m></cell>
+            <cell><m>-13</m></cell>
+            <cell><m>-7</m></cell>
+            <cell><m>0</m></cell>
+            <cell><m>6</m></cell>
+          </row>
+          <row>
+            <cell><m>20</m></cell>
+            <cell><m>-61</m></cell>
+            <cell><m>-55</m></cell>
+            <cell><m>-48</m></cell>
+            <cell><m>-42</m></cell>
+            <cell><m>-35</m></cell>
+            <cell><m>-29</m></cell>
+            <cell><m>-22</m></cell>
+            <cell><m>-15</m></cell>
+            <cell><m>-9</m></cell>
+            <cell><m>-2</m></cell>
+            <cell><m>4</m></cell>
+          </row>
+          <row>
+            <cell><m>25</m></cell>
+            <cell><m>-64</m></cell>
+            <cell><m>-58</m></cell>
+            <cell><m>-51</m></cell>
+            <cell><m>-44</m></cell>
+            <cell><m>-37</m></cell>
+            <cell><m>-31</m></cell>
+            <cell><m>-24</m></cell>
+            <cell><m>-17</m></cell>
+            <cell><m>-11</m></cell>
+            <cell><m>-4</m></cell>
+            <cell><m>3</m></cell>
+          </row>
+          <row>
+            <cell><m>30</m></cell>
+            <cell><m>-67</m></cell>
+            <cell><m>-60</m></cell>
+            <cell><m>-53</m></cell>
+            <cell><m>-46</m></cell>
+            <cell><m>-39</m></cell>
+            <cell><m>-33</m></cell>
+            <cell><m>-26</m></cell>
+            <cell><m>-19</m></cell>
+            <cell><m>-12</m></cell>
+            <cell><m>-5</m></cell>
+            <cell><m>1</m></cell>
+          </row>
+          <row>
+            <cell><m>35</m></cell>
+            <cell><m>-69</m></cell>
+            <cell><m>-62</m></cell>
+            <cell><m>-55</m></cell>
+            <cell><m>-48</m></cell>
+            <cell><m>-41</m></cell>
+            <cell><m>-34</m></cell>
+            <cell><m>-27</m></cell>
+            <cell><m>-21</m></cell>
+            <cell><m>-14</m></cell>
+            <cell><m>-7</m></cell>
+            <cell><m>0</m></cell>
+          </row>
+          <row>
+            <cell><m>40</m></cell>
+            <cell><m>-71</m></cell>
+            <cell><m>-64</m></cell>
+            <cell><m>-57</m></cell>
+            <cell><m>-50</m></cell>
+            <cell><m>-43</m></cell>
+            <cell><m>-36</m></cell>
+            <cell><m>-29</m></cell>
+            <cell><m>-22</m></cell>
+            <cell><m>-15</m></cell>
+            <cell><m>-8</m></cell>
+            <cell><m>-1</m></cell>
+          </row>
+        </tabular>
+      </table>
+
+      <ol marker="a.">
+        <li>
+          <p>
+            Estimate the partial derivative <m>w_v(20,-10)</m>.  What are the
+              units on this quantity and what does it mean? (Recall that we can estimate a partial derivative of a single variable function <m>f</m> using the symmetric difference quotient <m>\frac{f(x+h)-f(x-h)}{2h}</m> for small values of <m>h</m>. A partial derivative is a derivative of an appropriate trace.) 
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Estimate the partial derivative <m>w_T(20,-10)</m>.  What are the
+              units on this quantity and what does it mean?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Use your results to estimate the wind chill <m>w(18, -10)</m>. (Recall from single variable calculus that for a function <m>f</m> of <m>x</m>, <m>f(x+h) \approx f(x) + hf'(x)</m>.)
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Use your results to estimate the wind chill <m>w(20, -12)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Consider how you might combine your previous results to estimate the wind chill <m>w(18, -12)</m>. Explain your process. 
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+
+    <activity xml:id="A_10_2_13">
+      <p>
+        Shown below in <xref ref="F_10_2_activity_contour">Figure</xref> is a contour
+        plot of a function <m>f</m>. The values of the function on a few of the contours are indicated to the left of the figure.
+      </p>
+
+      <figure xml:id="F_10_2_activity_contour" >
+        <caption>A contour plot of <m>f</m>.</caption>
+        <image width="50%" source="images/fig_10_2_activity_contours" />
+      </figure>
+
+      <ol marker="a.">
+        <li>
+          <p>
+            Estimate the partial derivative <m>f_x(-2,-1)</m>. (Hint: How can you find values of <m>f</m> that are of the form <m>f(-2+h)</m> and <m>f(-2-h)</m> so that you can use a symmetric difference quotient?)
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Estimate the partial derivative <m>f_y(-2,-1)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Estimate the partial derivatives <m>f_x(-1,2)</m> and <m>f_y(-1,2)</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Locate, if possible, one point <m>(x,y)</m> where <m>f_x(x,y)=
+              0</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Locate, if possible, one point <m>(x,y)</m> where <m>f_x(x,y)\lt 0</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Locate, if possible, one point <m>(x,y)</m> where <m>f_y(x,y)>0</m>.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Suppose you have a different function <m>g</m>, and you know that <m>g(2,2) =
+              4</m>, <m>g_x(2,2) > 0</m>, and <m>g_y(2,2) > 0</m>.  Using this information,
+              sketch a possibility for the contour <m>g(x,y)=4</m> passing through
+              <m>(2,2)</m> on the left side of <xref ref="F_10_2_activity_grad">Figure</xref>.  Then
+              include possible contours <m>g(x,y) = 3</m> and <m>g(x,y) = 5</m>.
+
+            <figure xml:id="F_10_2_activity_grad" >
+              <caption>Plots for contours of <m>g</m> and <m>h</m>.</caption>
+              <sidebyside widths="50% 50%">
+              <image source="images/fig_10_2_activity_grad" />
+              <image source="images/fig_10_2_activity_grad" />
+              </sidebyside>
+            </figure>
+
+          </p>
+        </li>
+
+        <li>
+          <p>
+            Suppose you have yet another function <m>h</m>, and you know that <m>h(2,2) =
+              4</m>, <m>h_x(2,2) \lt  0</m>, and <m>h_y(2,2) > 0</m>.  Using this information,
+              sketch a possible contour <m>h(x,y)=4</m> passing through
+              <m>(2,2)</m> on the right side of <xref ref="F_10_2_activity_grad">Figure</xref>.
+              Then include possible contours <m>h(x,y) = 3</m> and <m>h(x,y) = 5</m>.
+          </p>
+        </li>
+      </ol>
+      
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          If <m>f=f(x,y)</m> is a function of two variables, there are two first
+            order partial derivatives of <m>f</m>: the partial derivative of <m>f</m> with respect to <m>x</m>,
+          <me>
+            \frac{\partial f}{\partial x}(x,y) = f_x(x,y) = \lim_{h \to 0}
+                  \frac{f(x+h,y) - f(x,y)}{h},
+          </me>
+          and the partial derivative of <m>f</m> with respect to <m>y</m>,
+          <me>
+            \frac{\partial f}{\partial y}(x,y) = f_y(x,y) = \lim_{h \to 0}
+                  \frac{f(x,y+h) - f(x,y)}{h},
+          </me>
+          where each partial derivative exists only at those points <m>(x,y)</m> for which
+                the limit exists.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The partial derivative <m>f_x(a,b)</m> tells us the instantaneous rate of
+              change of <m>f</m> with respect to <m>x</m> at <m>(x,y) = (a,b)</m> when <m>y</m> is fixed at <m>b</m>.  Geometrically,
+              the partial derivative <m>f_x(a,b)</m> tells us the slope of the line
+              tangent to the <m>y=b</m> trace of the function <m>f</m> at the point
+              <m>(a,b,f(a,b))</m>.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          The partial derivative <m>f_y(a,b)</m> tells us the instantaneous rate of
+              change of <m>f</m> with respect to <m>y</m> at <m>(x,y) = (a,b)</m> when <m>x</m> is fixed at <m>a</m>.  Geometrically,
+              the partial derivative <m>f_y(a,b)</m> tells us the slope of the line
+              tangent to the <m>x=a</m> trace of the function <m>f</m> at the point
+              <m>(a,b,f(a,b))</m>.
+        </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+    <exercises>
+      <exercise xml:id="ex-10-2-WW-partial_ex_1">
+      <!--<title>Finding partial derivatives of a rational function at a point</title>-->
+         <webwork source="Library/maCalcDB/setVmultivariable3ParDer/UR_VC_5_10.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-partial_ex_2">
+      <!--<title>Finding partial derivatives of a trigonometric function at a point</title>-->
+         <webwork source="Library/maCalcDB/setVmultivariable3ParDer/UR_VC_5_12.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-partial_ex_3-var">
+      <!--<title>Finding partial derivatives of a function of 3 variables</title>-->
+         <webwork source="Library/272/setStewart14_3/problem_3.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-tangent-approx">
+      <!--<title>Using linear approximations</title>-->
+         <webwork source="Library/272/setStewart14_3/problem_1.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-ideal-gas-law">
+      <!--<title>Ideal gas law partials</title>-->
+         <webwork source="Library/Dartmouth/setStewartCh15S3/problem_6.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-partial_ex_3">
+      <!--<title>Finding partial derivatives of an arctangent at a point</title>-->
+         <webwork source="Library/maCalcDB/setVmultivariable3ParDer/UR_VC_5_11.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-partial_ex_6">
+      <!--<title>Partial derivatives of an integral function</title>-->
+         <webwork source="Library/272/setStewart14_3/problem_4.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-difference_quotient">
+      <!--<title>Estimating partial derivatives with difference quotients</title>-->
+         <webwork source="Library/FortLewis/Calc3/14-1-Partial-derivatives/HGM4-14-1-02-The-partial-derivative.pg" />
+      </exercise>
+
+
+
+      <exercise xml:id="ex-10-2-WW-contour_2">
+      <!--<title>Signs of partials from a contour diagram</title>-->
+         <webwork source="Library/Michigan/Chap14Sec1/Q09.pg" />
+      </exercise>
+
+
+
+      <exercise xml:id="ex-10-2-WW-payments">
+      <!--<title>Interpreting partial derivatives from a loan payment funtion</title>-->
+         <webwork source="Library/Michigan/Chap14Sec1/Q05.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-toxicity">
+      <!--<title>Estimating partial derivatives from data</title>-->
+         <webwork source="Library/Michigan/Chap14Sec1/Q19.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-10-2-WW-fog">
+      <!--<title>Estimating partial derivatives from cross sections</title>-->
+         <webwork source="Library/Michigan/Chap14Sec1/Q26.pg" />
+      </exercise>
+
+      <!-- MBX exception
+      <exercise xml:id="ex-10-2-WW-contour_1">
+      <title>Interpreting partials from contour diagrams</title>
+         <webwork source="Library/FortLewis/Calc3/14-1-Partial-derivatives/HGM4-14-1-20-The-partial-derivative/HGM4-14-1-20-The-partial-derivative.pg" />
+      </exercise> -->
+
+      <!--MBX exception
+       <exercise xml:id="ex-10-2-WW-surface">
+       <title>Interpreting partial derivatives from a surface</title>
+         <webwork source="Library/FortLewis/Calc3/14-1-Partial-derivatives/HGM4-14-1-17a-The-partial-derivative/HGM4-14-1-17a-The-partial-derivative.pg" />
+      </exercise> -->
+
+      <exercise xml:id="Ez_10_2_1">
+        <statement>
+          <p>
+            The Heat Index, <m>I</m>, (measured in <em>apparent degrees F</em>) is a function of the actual temperature <m>T</m> outside (in degrees F) and the relative humidity <m>H</m> (measured as a percentage). A portion of the table which gives values for this function, <m>I=I(T,H)</m>, is reproduced in <xref ref="T_10_2_wind_chill_partial">Table</xref>.
+          </p>
+          <table xml:id="T_10_2_wind_chill_partial" >
+          <title>A portion of the wind chill data.</title>
+          <tabular halign="center" bottom="minor" top="minor">
+            <row bottom="medium">
+              <cell><em>T</em> <m>\downarrow \backslash</m> <em>H</em> <m>\rightarrow</m></cell>
+              <cell>70</cell>
+              <cell>75</cell>
+              <cell>80</cell>
+              <cell>85</cell>
+            </row>
+            <row>
+              <cell>90</cell>
+              <cell>106</cell>
+              <cell>109</cell>
+              <cell>112</cell>
+              <cell>115</cell>
+            </row>
+            <row>
+              <cell>92</cell>
+              <cell>112</cell>
+              <cell>115</cell>
+              <cell>119</cell>
+              <cell>123</cell>
+            </row>
+            <row>
+              <cell>94</cell>
+              <cell>118</cell>
+              <cell>122</cell>
+              <cell>127</cell>
+              <cell>132</cell>
+            </row>
+            <row>
+              <cell>96</cell>
+              <cell>125</cell>
+              <cell>130</cell>
+              <cell>135</cell>
+              <cell>141</cell>
+            </row>
+          </tabular>
+          </table>
+          <ol marker="a.">
+            <li>
+              <p>
+                State the limit definition of the value <m>I_T(94,75)</m>.  Then, estimate <m>I_T(94,75)</m>, and write one complete sentence that carefully explains the meaning of this value, including its units.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                State the limit definition of the value <m>I_H(94,75)</m>.  Then, estimate <m>I_H(94,75)</m>, and write one complete sentence that carefully explains the meaning of this value, including its units.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Suppose you are given that <m>I_T(92,80) = 3.75</m> and <m>I_H(92,80) = 0.8</m>.  Estimate the values of <m>I(91,80)</m> and <m>I(92,78)</m>.  Explain how the partial derivatives are relevant to your thinking.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                On a certain day, at 1 p.m. the temperature is 92 degrees and the relative humidity is 85%.  At 3 p.m., the temperature is 96 degrees and the relative humidity 75%.  What is the average rate of change of the heat index over this time period, and what are the units on your answer?  Write a sentence to explain your thinking.
+              </p>
+            </li>
+          </ol>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_10_2_1_5">
+        <statement>
+          <p>
+            Let <m>f(x,y) = \frac{1}{2}xy^2</m> represent the kinetic energy in Joules of an object of mass <m>x</m> in kilograms with velocity <m>y</m> in meters per second. Let <m>(a,b)</m> be the point <m>(4,5)</m> in the domain of <m>f</m>.
+            <ol marker="a.">
+              <li>
+                <p>
+                  Calculate <m>f_x(a,b)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Explain as best you can in the context of kinetic energy what the partial derivative
+                  <me>
+                    f_x(a,b) = \lim_{h \to 0} \frac{f(a+h,b) - f(a,b)}{h}
+                  </me>
+                  tells us about kinetic energy.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Calculate <m>f_y(a,b)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Explain as best you can in the context of kinetic energy what the partial derivative
+                  <me>
+                    f_y(a,b) = \lim_{h \to 0} \frac{f(a,b+h) - f(a,b)}{h}
+                  </me>
+                  tells us about kinetic energy.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Often we are given certain graphical information about a function instead of a rule. We can use that information to approximate partial derivatives. For example, suppose that we are given a contour plot of the kinetic energy function (as in <xref ref="F_10_2_pd_contour">Figure</xref>) instead of a formula. Use this contour plot to approximate <m>f_x(4,5)</m> and <m>f_y(4,5)</m> as best you can. Compare to your calculations from earlier parts of this exercise.
+
+                  <figure xml:id="F_10_2_pd_contour" >
+                    <caption>The graph of <m>f(x,y) = \frac{1}{2}xy^2</m>.</caption>
+                    <image width="50%" source="images/fig_10_2_ke_contour" />
+                  </figure>
+
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_10_2_2">
+        <statement>
+          <p>
+            The temperature on an unevenly heated metal plate positioned in the first quadrant of the <m>xy</m>-plane is given by
+            <me>
+              C(x,y) = \frac{25xy+25}{(x-1)^2 + (y-1)^2 + 1}.
+            </me>
+          </p>
+
+          <p>
+            Assume that temperature is measured in degrees Celsius and that <m>x</m> and <m>y</m> are each measured in inches. (<em>Note:</em> At no point in the following questions should you expand the denominator of <m>C(x,y)</m>.)
+            <ol marker="a.">
+              <li>
+                <p>
+                  Determine <m>\frac{\partial C}{\partial x}|_{(x,y)}</m> and <m>\frac{\partial C}{\partial y}|_{(x,y)}</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  If an ant is on the metal plate, standing at the point <m>(2,3)</m>, and starts walking in the direction parallel to the positive <m>y</m> axis, at what rate will the temperature the ant is experiencing change?  Explain, and include appropriate units.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  If an ant is walking along the line <m>y = 3</m> in the positive <m>x</m> direction, at what instantaneous rate will the temperature the ant is experiencing change when the ant passes the point <m>(1,3)</m>?
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Now suppose the ant is stationed at the point <m>(6,3)</m> and walks in a straight line towards the point <m>(2,0)</m>.  Determine the <em>average</em> rate of change in temperature (per unit distance traveled) the ant encounters in moving between these two points.  Explain your reasoning carefully.  What are the units on your answer?
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      
+      <exercise xml:id="Ez_10_2_3">
+        <statement>
+          <p>
+            Consider the function <m>f</m> defined by <m>f(x,y) = 8 - x^2 -  3y^2</m>.
+            <ol marker="a.">
+              <li>
+                <p>
+                  Determine <m>f_x(x,y)</m> and <m>f_y(x,y)</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find parametric equations in <m>\R^3</m> for the tangent line to the trace <m>f(x,1)</m> at <m>x=2</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find parametric equations in <m>\R^3</m> for the tangent line to the trace <m>f(2,y)</m> at <m>y=1</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  State respective direction vectors for the two lines determined in (b) and (c).
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine the equation of the plane that passes through the point <m>(2,1,f(2,1))</m> whose normal vector is orthogonal to the direction vectors of the two lines found in (b) and (c).
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use a graphing utility to plot both the surface <m>z = 8 - x^2 - 3y^2</m> and the plane from (e) near the point <m>(2,1)</m>.  What is the relationship between the surface and the plane?
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+
+      <exercise xml:id="Ez_10_2_4">
+        <statement>
+          <p>
+            Recall from single variable calculus that, given the derivative of a single variable function and an initial condition, we can integrate to find the original function. We can sometimes use the same process for functions of more than one variable. For example, suppose that a function <m>f</m> satisfies <m>f_x(x,y) = \cos(y)e^x+2x+y^2</m>,  <m>f_y(x,y) = -\sin(y)e^x+2xy+3</m>, and <m>f(0,0) = 5</m>.
+            <ol marker="a.">
+              <li>
+                <p>
+                  Find all possible functions <m>f</m> of <m>x</m> and <m>y</m> such that <m>f_x(x,y) = \cos(y)e^x+2x+y^2</m>. Your function will have both <m>x</m> and <m>y</m> as independent variables and may also contain summands that are functions of <m>y</m> alone. 
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use the fact that <m>f_y(x,y) = -\sin(y)e^x+2xy+3</m> to determine any unknown non-constant summands in your result from part (a).
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Complete the problem by determining the specific function <m>f</m> that satisfies the given conditions. 
+                </p>
+              </li>
+
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+    </exercises>
+</section>

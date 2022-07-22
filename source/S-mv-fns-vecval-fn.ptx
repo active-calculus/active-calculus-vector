@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2018                                                   -->
+<!-- Steven Schlicker                                                      -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+
+<section xml:id="S-9-6-Vector-Valued-Functions">
+  <title>Vector-Valued Functions</title>
+
+    <objectives>
+        <ul>
+          <li>
+            <p>
+              What is a vector-valued function? What do we mean by the graph
+                  of a vector-valued function?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              What is a parameterization of a curve in <m>\R^2</m>? In <m>\R^3</m>?
+                  What can the parameterization of a curve tell us?
+            </p>
+          </li>
+        </ul>
+    </objectives>
+  <introduction>
+    <p>
+      So far, we have seen several different examples of curves in space,
+      including traces and contours of functions of two variables, as well
+      as lines in 3-space. Recall that for a line through a fixed point
+      <m>\vr_0</m> in the direction of vector <m>\vv</m>, we may express the line
+      parametrically through the single vector equation
+      <me>
+        \vr(t) = \vr_0 + t\vv.
+      </me>
+    </p>
+
+    <p>
+      From this perspective, the vector <m>\vr(t)</m> is a function that depends
+      on the parameter <m>t</m>, and the terminal points of this vector trace out
+      the line in space.
+    </p>
+
+    <p>
+      Like lines, other curves in space are one-dimensional objects, and
+      thus we aspire to similarly express the coordinates of points on a
+      given curve in terms of a single variable. Vectors are a perfect
+      vehicle for doing so <mdash /> we can use vectors based at the origin to
+      identify points in space, and connect the terminal points of these
+      vectors to draw a curve in space. This approach will allow us to draw
+      an incredible variety of graphs in 2- and 3-space, as well as to
+      identify and describe curves in <m>n</m>-space for any <m>n</m>. It will also allow us to represent traces and cross sections of surfaces in space. 
+    </p>
+
+    <exploration xml:id="PA_9_6">
+      <p>
+        In this activity we consider how we might use vectors to define a curve in space.
+        <ol marker="a.">
+          <li>
+            <p>
+              On a single set of axes in <m>\R^2</m>, draw the vectors 
+              <ul>
+                <li>
+                  <p>
+                    <m>\left\langle \cos(0), \sin(0) \right\rangle</m>, 
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\left\langle \cos\left(\frac{\pi}{2}\right), \sin\left(\frac{\pi}{2}\right) \right\rangle</m>, 
+                  </p>
+                </li>
+                <li>
+                  <p>   
+                    <m>\left\langle \cos\left(\pi\right), \sin\left(\pi\right) \right\rangle </m>, and  
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\left\langle \cos\left(\frac{3\pi}{2}\right), \sin\left(\frac{3\pi}{2}\right) \right\rangle</m> 
+                  </p>
+                </li>
+              </ul>
+              with their initial points at the origin.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              On the same set of axes, draw the vectors 
+              <ul>
+                <li>
+                  <p>
+                    <m>\left\langle \cos\left(\frac{\pi}{4}\right), \sin\left(\frac{\pi}{4}\right) \right\rangle</m>, 
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\left\langle \cos\left(\frac{3\pi}{4}\right), \sin\left(\frac{3\pi}{4}\right) \right\rangle</m>,
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\left\langle \cos\left(\frac{5\pi}{4}\right), \sin\left(\frac{5\pi}{4}\right) \right\rangle</m>,  and  
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <m>\left\langle \cos\left(\frac{7\pi}{4}\right), \sin\left(\frac{7\pi}{4}\right) \right\rangle</m> 
+                  </p>
+                </li>
+              </ul>
+              with their initial points at the origin.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Based on the pictures from parts (a) and (b), sketch the set
+                   of <em>terminal</em> points of all of the vectors of the form
+                   <m>\langle \cos(t), \sin(t) \rangle</m>, where <m>t</m> assumes values from
+                   0 to <m>2 \pi</m>. What is the resulting figure? Why?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Suppose we sketched the terminal points of all vectors of the form <m>\langle \cos(t), \sin(t) \rangle</m>, where <m>t</m> assumes values from
+                   0 to <m>\pi</m>. How does the resulting picture differ from the one in part (c)? What about for <m>t</m> from 0 to <m>4 \pi</m>? 
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </exploration>
+  </introduction>
+
+
+  <subsection>
+    <title>Vector-Valued Functions</title>
+    <p>
+      Consider the curve shown in <xref ref="F_9_6_VVF_graph">Figure</xref>. As in
+      <xref ref="PA_9_6">Preview Activity</xref>, we can think of a point on this curve
+      as resulting from a vector from the origin to the point. As the point
+      travels along the curve, the vector changes in order to terminate at
+      the desired point.
+      A few still pictures of this motion are shown in <xref ref="F_9_6_VVF_graph">Figure</xref>.
+    </p>
+
+    <figure xml:id="F_9_6_VVF_graph" >
+      <caption>The graph of a curve in space.</caption>
+      <sidebyside widths="33% 33% 33%" margins="0%">
+      <image source="images/fig_9_6_curve_animate_01" />
+      <image source="images/fig_9_6_curve_animate_25" />
+      <image source="images/fig_9_6_curve_animate_40" />
+      </sidebyside>
+    </figure>
+
+    <p>
+      Thus, we can think of the curve as a collection of terminal points of
+      vectors emanating from the origin. We therefore view a point traveling
+      along this curve as a function of time <m>t</m>, and define a function
+      <m>\vr</m> whose input is the variable <m>t</m> and whose output is the vector
+      from the origin to the point on the curve at time <m>t</m>. In so doing,
+      we have introduced a new type of function, one whose input is a scalar
+      and whose output is a vector.
+    </p>
+
+    <p>
+      The terminal points of the vector outputs of <m>\vr</m> then trace out the
+      curve in space. From this perspective, the <m>x</m>, <m>y</m>, and <m>z</m>
+      coordinates of the point are functions of time, <m>t</m>, say
+      <me>
+        x = x(t), \ \ \ y = y(t), \ \ \ \text{ and }  \ \ \ \ \ z = z(t),
+      </me>
+      and thus we have three coordinate functions that enable us to
+      represent the curve. The variable <m>t</m> is called a <em>parameter</em> and
+      the equations <m>x = x(t)</m>, <m>y = y(t)</m>, and <m>z = z(t)</m> are called
+      <em>parametric equations</em> (or a <em>parameterization of the
+      curve</em>). The function <m>\vr</m> whose output is the vector from the
+      origin to a point on the curve is defined by
+      <me>
+        \vr(t) = \langle x(t), y(t), z(t) \rangle.
+      </me>
+    </p>
+
+    <p>
+      Note that the input of <m>\vr</m> is the real-valued parameter <m>t</m> and the
+      corresponding output is vector <m>\langle x(t), y(t), z(t)
+      \rangle</m>. Such a function is called a <em>vector-valued function</em>
+      because each real number input generates a vector output. More
+      formally, we state the following definition.
+    </p>
+
+    <definition>
+      <statement>
+        <p>
+          A <term>vector-valued
+          function</term><idx><h>vector-valued function</h><h>definition</h></idx> is a
+          function whose input is a real parameter <m>t</m> and whose output is
+          a vector that depends on <m>t</m>. The <term>graph</term><idx><h>graph of a
+          vector-valued function</h><h>definition</h></idx> of a vector-valued function
+          is the set of all terminal points of the output vectors with
+          their initial points at the origin.
+        </p>
+
+        <p>
+          <term>Parametric equations</term><idx><h>parametric equations for a
+          curve</h></idx><idx><h>parameterization</h><h>curve</h></idx> for a curve are equations of the form
+          <me>
+            x = x(t), \ \ \ y = y(t), \ \ \ \text{ and }  \ \ \ \ \ z = z(t)
+          </me>
+          that describe the <m>(x,y,z)</m> coordinates of a point on a curve in <m>\R^3</m>.
+        </p>
+
+      </statement>
+    </definition>
+
+    
+    <p>
+      Note particularly that every set of parametric equations determines a
+      vector-valued function of the form
+      <me>
+        \vr(t) = \langle x(t), y(t), z(t) \rangle,
+      </me>
+      and every vector-valued function defines a set of parametric equations
+      for a curve. Moreover, we can consider vector-valued functions and
+      parameterizations in <m>\R^2</m>, <m>\R^4</m>, or indeed a real space of any
+      dimension. As a reminder, in <xref ref="S-9-5-Lines-Planes">Section</xref>, we
+      determined the parametric equations of a line in space using a point
+      and a direction vector. For a nonlinear example, the curve in <xref ref="F_9_6_VVF_graph">Figure</xref> has the parametric equations
+      <me>
+        x(t) = \cos(t), \ \ \ y(t) = \sin(t), \ \ \ \text{ and }  \ \ \ z(t)
+        = \cos(t) \sin(t).
+      </me>
+    </p>
+
+    <p>
+      Represented as a vector-valued function <m>\vr</m>,
+      the curve in <xref ref="F_9_6_VVF_graph">Figure</xref> is the graph of
+      <me>
+        \vr(t) = \langle \cos(t), \sin(t), \cos(t) \sin(t) \rangle.
+      </me>
+    </p>
+
+    <activity xml:id="A_9_6_1">
+      <p>
+        The same curve can be represented with different parameterizations. Use appropriate technology to plot the curves generated by the following vector-valued functions for values of <m>t</m> from <m>0</m> to <m>2 \pi </m>. Compare and contrast the graphs <mdash /> explain how they are alike and how they are different. 
+        
+        <ol marker="a.">
+          <li>
+            <p>
+              <m>\vr(t) = \langle \sin(t), \cos(t) \rangle</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>\vr(t) = \langle \sin(2t), \cos(2t) \rangle</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>\vr(t) = \langle \cos(t+\pi), \sin(t+\pi) \rangle</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>\vr(t) = \langle \cos(t^2), \sin(t^2) \rangle</m>
+            </p>
+          </li>
+
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      The examples in <xref ref="A_9_6_1">Activity</xref> illustrate that a
+      parameterization allows us to look not only at the graph, but at the
+      direction and speed at which the graph is traversed as <m>t</m> changes. In
+      the different parameterizations of the circle, we see that we can
+      start at different points and move around the circle in either
+      direction. The calculus of vector-valued functions <mdash /> which we will
+      begin to investigate in
+      <xref ref="S-9-7-Vector-Valued-Functions-Derivatives">Section</xref> <mdash /> will enable
+      us to precisely quantify the direction, speed, and acceleration of a
+      particle moving along a curve in space. As such, describing curves
+      parametrically will allow us to not only indicate the curve itself,
+      but also to describe how motion occurs along the curve.
+    </p>
+
+    <p>
+      Using parametric equations to define vector-valued functions in two
+      dimensions is much more versatile than just defining <m>y</m> as a function
+      of <m>x</m>. In fact, if <m>y = f(x)</m> is a function of <m>x</m>, then we can
+      parameterize the graph of <m>f</m> by
+      <me>
+        \vr(t) = \langle t, f(t) \rangle,
+      </me>
+      and thus every single-variable function may be described
+      parametrically. In addition, as we saw in <xref ref="PA_9_6">Preview Activity</xref> and <xref ref="A_9_6_1">Activity</xref>, we can use vector-valued
+      functions to represent curves in the plane that do not define <m>y</m> as a
+      function of <m>x</m> (or <m>x</m> as a function of <m>y</m>). (As a side note: vector-valued functions make it easy to plot the inverse of a one-to-one function in two dimensions. To see how, if <m>y = f(x)</m>defines a one-to-one function, then we can parameterize this function by <m>\vr(t) = \langle t, f(t) \rangle</m>. Since the inverse function just reverses the role of input and output, a parameterization for <m>f^{-1}</m> is <m>\langle f(t), t \rangle</m>.)
+    </p>
+
+    <activity xml:id="A_9_6_3">
+      <p>
+        Vector-valued functions can be used to generate many interesting curves. Graph each of the following using an appropriate technological tool, and then write one sentence for each function to describe the behavior of the resulting curve.
+        <ol marker="a.">
+          <li>
+            <p>
+              <m>\vr(t) = \langle t\cos(t), t\sin(t) \rangle</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>\vr(t) = \langle \sin(t)\cos(t), t\sin(t) \rangle</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>\vr(t) = \langle \sin(5t), \sin(4t) \rangle</m>
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <m>\vr(t) = \langle t^2\sin(t)\cos(t), 0.9t\cos(t^2), \sin(t) \rangle</m> (Note that this defines a curve in 3-space.)
+            </p>
+          </li>
+
+
+
+          <li>
+            <p>
+              Experiment with different formulas for <m>x(t)</m> and <m>y(t)</m> and ranges for <m>t</m> to see what other interesting curves you can generate.  Share your best results with peers.
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+
+    <p>
+      Recall from our earlier work that the traces and level curves of a
+      function are themselves curves in space. Thus, we may determine
+      parameterizations for them. For example, if <m>z = f(x,y) = \cos(x^2 +
+      y^2)</m>, the <m>y = 1</m> trace of the function is given by setting <m>y = 1</m>
+      and letting <m>x</m> be parameterized by the variable <m>t</m>; then, the trace
+      is the curve whose parameterization is <m>\langle t, 1, \cos(t^2 + 1)
+      \rangle.</m>
+    </p>
+
+    <activity xml:id="A_9_6_4">
+      <p>
+        Consider the paraboloid defined by <m>f(x,y) = x^2+y^2</m>.
+        <ol marker="a.">
+          <li>
+            <p>
+              Find a parameterization for the <m>x=2</m> trace of <m>f</m>. What type of curve does this trace describe?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find a parameterization for the <m>y=-1</m> trace of <m>f</m>. What type of curve does this trace describe?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Find a parameterization for the level curve <m>f(x,y) = 25</m>. What type of curve does this trace describe?
+            </p>
+          </li>
+
+          <li>
+            <p>
+              How do your responses change to all three of the preceding questions if you instead consider the function <m>g</m> defined by <m>g(x,y) = x^2 - y^2</m>? (Hint for generating one of the parameterizations: <m>\sec^2(t)-\tan^2(t) = 1</m>.)
+            </p>
+          </li>
+        </ol>
+      </p>
+      
+    </activity>
+  </subsection>
+
+
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          A vector-valued function is a function whose input is a real
+            parameter <m>t</m> and whose output is a vector that depends on <m>t</m>. The
+            graph of a vector-valued function is the set of all terminal points
+            of the output vectors with their initial points at the origin.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Every vector-valued function provides a parameterization of a
+            curve. In <m>\R^2</m>, a parameterization of a curve is a pair of
+            equations <m>x = x(t)</m> and <m>y = y(t)</m> that describes the coordinates
+            of a point <m>(x,y)</m> on the curve in terms of a parameter <m>t</m>. In
+            <m>\R^3</m>, a parameterization of a curve is a set of three equations <m>x
+            = x(t)</m>, <m>y=y(t)</m>, and <m>z = z(t)</m> that describes the coordinates of
+            a point <m>(x,y,z)</m> on the curve in terms of a parameter <m>t</m>.
+        </p>
+      </li>
+    </ul>
+
+    </subsection>
+
+    <exercises>
+
+      <exercise xml:id="ex-9-6-WW-domain">
+        <!--<title>Find a domain</title>-->
+         <webwork source="Library/Dartmouth/setStewartCh14S1/problem_1.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-circle_1">
+        <!--<title>Parameterizing a circle</title>-->
+         <webwork source="Library/FortLewis/Calc3/17-1-Parametrized-curves/HGM4-17-1-16a-Parametrized-curves.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-circle_2">
+      <!--<title>Finding a different parameterization of a circle</title>-->
+         <webwork source="Library/FortLewis/Calc3/17-1-Parametrized-curves/HGM4-17-1-16bb-Parametrized-curves.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-lines_1">
+      <!--<title>Parameterizing a line</title>-->
+         <webwork source="Library/FortLewis/Calc3/17-1-Parametrized-curves/HGM4-17-1-39-Parametrized-curves.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-lines_2">
+      <!--<title>Parameterizing a line segment</title>-->
+         <webwork source="Library/Rochester/setParametric1Curves/ur_pa_1_2.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-quadratic">
+      <!--<title>Parameterizing a quadratic curve</title>-->
+         <webwork source="Library/FortLewis/Calc3/17-1-Parametrized-curves/HGM5-17-1-26a-Parametrized-curves.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-ellipse">
+      <!--<title>Parameterizing a quarter ellipse</title>-->
+         <webwork source="Library/FortLewis/Calc3/17-1-Parametrized-curves/HGM5-17-1-38a-Parametrized-curves.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-TF">
+      <!--<title>True or false</title>-->
+         <webwork source="Library/FortLewis/Calc3/17-1-Parametrized-curves/HGM4-17-CYU-04-06-10-Parametrized-curves.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-intersection">
+      <!--<title>Parameterize an intersection</title>-->
+         <webwork source="Library/Dartmouth/setStewartCh14S1/problem_4.pg" />
+      </exercise>
+
+      <exercise xml:id="ex-9-6-WW-bicycle">
+      <!--<title>A parameterization of a point on a wheel</title>-->
+         <webwork source="Library/Rochester/setParametric1Curves/ur_pa_1_11.pg" />
+      </exercise>
+
+      <!--PTX issue
+      <exercise xml:id="ex-9-6-WW-graphs">
+      <title>Matching parameterizations to graphs</title>
+         <webwork source="Library/Rochester/setParametric1Curves/ur_pa_1_13/ur_pa_1_13.pg" />
+      </exercise>
+      -->
+      
+      
+
+      <exercise xml:id="Ez_9_6_1">
+        <statement>
+          <p>
+            A standard parameterization for the unit circle is <m>\langle \cos(t), \sin(t) \rangle</m>, for <m>0 \le t \le 2\pi</m>.
+            <ol marker="a.">
+              <li>
+                <p>
+                  Find a vector-valued function <m>\vr</m> that describes a point traveling along the unit circle so that at time <m>t=0</m> the point is at <m>\left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2} \right)</m> and travels clockwise along the circle as <m>t</m> increases.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a vector-valued function <m>\vr</m> that describes a point traveling along the unit circle so that at time <m>t=0</m> the point is at <m>\left(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2} \right)</m> and travels counter-clockwise along the circle as <m>t</m> increases.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a vector-valued function <m>\vr</m> that describes a point traveling along the unit circle so that at time <m>t=0</m> the point is at <m>\left(-\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2} \right)</m> and travels clockwise along the circle as <m>t</m> increases.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a vector-valued function <m>\vr</m> that describes a point traveling along the unit circle so that at time <m>t=0</m> the point is at <m>(0,1)</m> and makes one complete revolution around the circle in the counter-clockwise direction on the interval <m>[0,\pi]</m>.
+                </p>
+              </li>
+
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_9_6_2">
+        <statement>
+          <p>
+            Let <m>a</m> and <m>b</m> be positive real numbers. You have probably seen the equation <m>\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1</m> that generates an ellipse, centered at <m>(h,k)</m>, with a horizontal axis of length <m>2a</m> and a vertical axis of length <m>2b</m>.
+            <ol marker="a.">
+              <li>
+                <p>
+                  Explain why the vector function <m>\vr</m> defined by <m>\vr(t) = \langle a\cos(t), b\sin(t) \rangle</m>, <m>0 \le t \le 2\pi</m> is one parameterization of the ellipse <m>\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a parameterization of the ellipse <m>\frac{x^2}{4} + \frac{y^2}{16} = 1</m> that is traversed counterclockwise.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a parameterization of the ellipse <m>\frac{(x+3)^2}{4} + \frac{(y-2)^2}{9} = 1</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine the <m>x</m>-<m>y</m> equation of the ellipse that is parameterized by
+                  <me>
+                    \vr(t) = \langle 3 + 4\sin(2t), 1 + 3\cos(2t) \rangle.
+                  </me>
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_9_6_3">
+        <statement>
+          <p>
+            Consider the two-variable function <m>z = f(x,y) = 3x^2 + 4y^2 - 2</m>.
+            <ol marker="a.">
+              <li>
+                <p>
+                  Determine a vector-valued function <m>\vr</m> that parameterizes the curve which is the <m>x = 2</m> trace of <m>z = f(x,y)</m>.  Plot the resulting curve.  Do likewise for <m>x = -2, -1, 0,</m> and <m>1</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine a vector-valued function <m>\vr</m> that parameterizes the curve which is the <m>y = 2</m> trace of <m>z = f(x,y)</m>.  Plot the resulting curve.  Do likewise for <m>y = -2, -1, 0,</m> and <m>1</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine a vector-valued function <m>\vr</m> that parameterizes the curve which is the <m>z = 2</m> contour of <m>z = f(x,y)</m>.  Plot the resulting curve.  Do likewise for <m>z = -2, -1, 0,</m> and <m>1</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Use the traces and contours you've just investigated to create a wireframe plot of the surface generated by <m>z = f(x,y)</m>.  In addition, write two sentences to describe the characteristics of the surface.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+      <exercise xml:id="Ez_9_6_4">
+        <statement>
+          <p>
+            Recall that any line in space may be represented parametrically by a vector-valued function.
+            <ol marker="a.">
+              <li>
+                <p>
+                  Find a vector-valued function <m>\vr</m> that parameterizes the line through <m>(-2,1,4)</m> in the direction of the vector <m>\vv = \langle 3, 2, -5 \rangle</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Find a vector-valued function <m>\vr</m> that parameterizes the line of intersection of the planes <m>x + 2y - z = 4</m> and <m>3x + y - 2z = 1</m>.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Determine the point of intersection of the lines given by
+                  <me>
+                    x = 2 + 3t, \ y = 1 - 2t, \ z = 4t,
+                  </me>
+                  <me>
+                    x = 3 + 1s, \ y = 3-2s, \ z = 2s.
+                  </me>
+                  Then, find a vector-valued function <m>\vr</m> that parameterizes the line that passes through the point of intersection you just found and is perpendicular to both of the given lines.
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+
+      <exercise xml:id="Ez_9_6_5">
+        <statement>
+          <p>
+            For each of the following, describe the effect of the parameter <m>s</m> on the parametric curve for <m>t</m> in the interval <m>[0,2 \pi]</m>. 
+            <ol marker="a.">
+              <li>
+                <p>
+                  <m>\vr(t) = \langle \cos(t), \sin(t) + s \rangle</m> 
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\vr(t) = \langle \cos(t)-s, \sin(t) \rangle</m> 
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\vr(t) = \langle s\cos(t), \sin(t) \rangle</m> 
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\vr(t) = \langle s\cos(t), s\sin(t) \rangle</m> 
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  <m>\vr(t) = \langle \cos(st), \sin(st) \rangle</m> 
+                </p>
+              </li>
+
+            </ol>
+          </p>
+        </statement>
+        
+      </exercise>
+
+    </exercises>
+</section>
