@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S_ScalarLineIntergral">
   <title>Line Integrals of Scalar Functions</title>
     <objectives>
@@ -18,13 +17,14 @@
     </objectives>
   <introduction>
   <p>
-    In 12.2, the idea of a line integral was introduced by looking at the work done by a vector field when traveling along a path C. In particular, the line integral measured the amount of the vector field that is in the direction of travel (along the path C).
-  </p>
-  <p>
-    Theorem 12.3.2 shows how (insert line integral notation here) is calculated by parameterizing C and measures the accumulation of F dot v (where v is the velocity vector along C).
-
-    Question: How could we measure the accumluation of other scalar valued function along curves in space?
-  </p>
+    In Section <xref xml:id="S_Vector_IdeaLineIntegral"/>, the idea of a line integral was introduced by looking at the work done by a vector field when traveling along <m>C</m>, a path in space. In particular, the line integral measured the acculumualted amount of the vector field that is in the direction of travel (along the path <m>C</m>). Definition <xref xml:id="def_Vector_IdeaLineIntegral_LineIntegral" /> shows how to use a Riemann sum to measure the accumulation of the vector field in the direction of travel along the given curve. Additionally, Theorem <xref xml:id="thm_LineIntParam" /> shows how the line integral <m>\int_C \vF\cdot d\vr </m> can be efficently calculated in terms of the vector field and the derivative of <em>any</em> paramaterization of <m>C</m>. Philosophically, the Riemann sum in Definition <xref xml:id="def_Vector_IdeaLineIntegral_LineIntegral" /> is adding up the scalar function given by the dot product of the vector field and the unit vector in the direction of travel (along the curve).
+</p>
+<p>
+  The following questions ask how much we can generalize the ideas of the previous sections and we will devote the rest of this section answering these as fully as possible.
+</p>
+  <question xml:id="question-scalarlineint">
+    How could we measure the accumulation of a scalar valued function along a curve in space? What would that accumulation measure? What is the most efficent way to calculate this?
+  </question>
   <p>
     This should be the preview activity, I guess. Activity about whether scalar line integrals are positive, negative, or zero based on algebraic function and graphical representation of  curves. should include functions like x+y, y-z, x^2, x^2-y and curves like part of unit circle above the line y=-x. Should also ask user to give a function (non-constant) that will have a zero line integral over the path given by the unit circle above the line y=-x.
   </p>
@@ -36,17 +36,17 @@
     <exploration xml:id="PA_ScalarLI">
         <introduction>
             <p>
-              In order to pay for tutition, you take a job driving a mining machine that collects a very valuable mineral called Copium. Copium is only produced on the surface and is mined by scooping up the soil at the front of your machine, so the amoung of copium ore collected depends on the density of the ore and the distance driven by the mining machine.
+              In order to pay for tutition, you take a job driving a mining machine that collects a very valuable mineral called Copium. Copium is only produced on the surface and is mined by scooping up the soil at the front of your machine, so the amoung of copium ore collected depends on the density of the ore and the distance driven by the mining machine. The plot of land you are mining has been surveyed for the density of copium ore and is presented in the contour plot below.
             </p>
-            <p>
-              The plot of land you are mining has been surveyed for the density of copium ore and is presented in the contour plot below.
-              (make a rhombus plot with contours for the copium density)
-            </p>
+            <figure>
+              <image src="/images/CopiumDensityPlot.png" />
+              <caption> A plot of land with density of Copium deposits </caption>
+            </figure>
         </introduction>
         <task xml:id="task_PA_ScalarLI_1">
           <statement>
             <p>
-              Estimate the amount of copium that would be mined from driving along the left side of plot. You should write a few sentences about how you got your estimate based on the copium density and length of the path. (Did you use more than one piece?)
+              Estimate the amount of Copium that would be mined from driving along the left side of plot. You should write a few sentences about how you got your estimate based on the copium density and length of the path. (Did you use more than one piece?)
             </p>
             </statement>
             <answer>
@@ -59,7 +59,7 @@
         <task xml:id="task_PA_ScalarLI_2">
           <statement>
             <p>
-              Estimate the amount of copium that would be mined from the entire outer edge of the plot. You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
+              Estimate the amount of Copium that would be mined from the entire outer edge of the plot. You should write a few sentences about how you got your estimate based on the Copium density and length of the paths.
             </p>
             </statement>
             <answer>
@@ -74,6 +74,27 @@
             <p>
               Estimate the amount of copium that would be mined from the scraping the path given below. You should use at least 3 segments in your estimate. (put a curved path on the plot) You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
             </p>
+            <figure>
+              <image src="images/CopiumDensityPlot_withPath.png"/>
+              <caption> A plot of land with Copium Density and a path plotted in blue</caption>
+            </figure>
+            </statement>
+            <answer>
+                <p>multiplied the density by the length to get the amount</p>
+            </answer>
+            <solution>
+                <p>Write out a longer description?</p>
+            </solution>
+        </task>
+        <task xml:id="task_PA_ScalarLI_4">
+          <statement>
+            <p>
+              Estimate the amount of copium that would be mined from the scraping the path given below. You should use at least 3 segments in your estimate. You should explain how and why your answer to this question is different or similar to the previous task.
+            </p>
+            <figure>
+              <image src="images/CopiumDensityPlot_withPath2.png"/>
+              <caption> A plot of land with Copium Density and a path plotted in blue</caption>
+            </figure>
             </statement>
             <answer>
                 <p>multiplied the density by the length to get the amount</p>
@@ -85,23 +106,27 @@
     </exploration>
   </introduction>
   <p>
-    In the previous questions, you needed to approximate the distance traveled for various paths and multiply by the density of the ore on each piece of the path. In contrast to the line integral of a vector field, the calculations of the ore mined does not depend on what direction the path was traveled.
+    In Activity <xref xml:id="PA_ScalarLI"/>, you approximated the distance traveled for various paths and multiplied by the density of the Copium on each piece of the path. In contrast to the line integral of a vector field, the calculations of the ore mined does not depend on what direction the path was traveled. We will now use these same ideas to give precise meaning to the measurement of the acculumation of a scalar function's output over a path in space.
   </p>
   <p>
-    We will now look at how to define and calculate the accumulation of a scalar function for set of inputs given as a curve in space.
-
-    Let f be a function of x,y,z and let C be a curve from P to Q.
-
-    If we break the curve C into peices between points P=r_0, r_1,...r_k-1,r=k=Q, then we can approximate the accumulation of f over C with the following sum
-
-    Sum as i goes from 1 to k f(r_i^*) ||r_i-r_{i-1}|| will be approximation to accumulation of f over the curve C, where r_i* is some point on the curve C between r_i and r_{i-1}
-
-    This Riemann sum will become a better approximation of the actual accumulation of f over C as the pieces of the curve become smaller. The limit as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of f over C. 
-
-    State Definition of scalar line integral here. 
-    Use the int f ds notation here.
-
-
+    Let <m>f</m> be a contiunuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>, a curve from a point <m>P</m> to a point <m>Q</m>. We will begin to approximate the acculumlation of the output of <m>f</m> over <m>C</m> by breaking <m>C</m> into pieces with boundary points <m>P=r_0, r_1, ..., r_k-1, r_k=Q</m>. (need to replicate fig_12_2_curve_vec_field.svg without the vector field part of the plot.)
+  </p>
+  <p>
+    We can approximate the accumulation of <m>f</m> over <m>C</m> with the following sum:
+    <me> \sum_{i=0}^{k-1} f(r_i^{*}) \Vert{r_{i+1}-r_{i}}\Vert</me>
+    where <m>f(r_i^{*})</m> is the output of <m>f</m> for some <m>r_i^{*} \in [r_i,r_{i+1}]</m>. As this sum is made with more pieces and all of the lengths of the pieces goes to zero (i.e. <m>\Vert{r_{i+1}-r_{i}}\Vert \rightarrow 0</m>), we would expect that the sum will approach the actual acculumation of <m>f</m> over <m>C</m>. Notice that it won't matter how we select the point <m>r_i</m> that used in each piece to evaluate the output of <m>f</m> since evaluating the limit as the pieces gets smaller will ensure that the output value will be within a shrinking error from the average value on each piece.
+    Evaluating the limit as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <m>f</m> over <m>C</m>.
+  </p>
+  <definition>
+    <title>The Line Integral of a Scalar Function</title>
+    <p>
+      Let <m>f</m> be a contiunuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>, a curve from a point <m>P</m> to a point <m>Q</m> in space. The line integral of <m>f</m> over <m>C</m> is defined as
+      <me>\int_C f ds =\lim__{k\rightarrow \infty} \sum_{i=0}^{k-1} f(r_i^{*}) \Vert{r_{i+1}-r_{i}}\Vert</me>
+      where <m>r_i</m> are points such that <m>P=r_0, r_1, ..., r_k-1, r_k=Q</m> and as <m>k\rightarrow \infty</m> the distance between <m>r_{i-1}</m> and <m>r_i</m> goes to zero.
+    </p>
+  </definition>
+  <p>
+    Do we need to talk more about why this limit of ths sum will converge?
   </p>
 
   <p>
