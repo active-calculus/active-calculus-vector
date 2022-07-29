@@ -47,8 +47,8 @@
             <p>
               In order to pay for tutition, you take a job driving a mining machine that collects a very valuable mineral called Copium. Copium is only produced on the surface and is mined by scooping up the soil at the front of your machine, so the amoung of copium ore collected depends on the density of the ore and the distance driven by the mining machine. The plot of land you are mining has been surveyed for the density of copium ore and is presented in the contour plot below.
             </p>
-            <figure>
-              <image source="/images/CopiumDensityPlot.png" />
+            <figure xml:id="CopiumPlot">
+              <image source="/images/CopiumMinePlot.svg" />
               <caption> A plot of land with density of Copium deposits </caption>
             </figure>
         </introduction>
@@ -84,7 +84,7 @@
               Estimate the amount of copium that would be mined from the scraping the path given below. You should use at least 3 segments in your estimate. (put a curved path on the plot) You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
             </p>
             <figure>
-              <image source="images/CopiumDensityPlot_withPath.png"/>
+              <image source="images/CopiumPlotwithPath.svg"/>
               <caption> A plot of land with Copium Density and a path plotted in blue</caption>
             </figure>
             </statement>
@@ -101,7 +101,7 @@
               Estimate the amount of copium that would be mined from the scraping the path given below. You should use at least 3 segments in your estimate. You should explain how and why your answer to this question is different or similar to the previous task.
             </p>
             <figure>
-              <image source="images/CopiumDensityPlot_withPath2.png"/>
+              <image source="images/CopiumPlotwithPath2.svg"/>
               <caption> A plot of land with Copium Density and a path plotted in blue</caption>
             </figure>
             </statement>
@@ -303,7 +303,7 @@
       This result should make sense from your earlier explainations of Task <xref ref="Act_ScalarLI1_part2" />. Specifically, we can break the line integral of <m>f_1</m> into three parts according to the following plot.
     </p>
     <figure>
-      <image source="/fig_ScalarLinInt_Example1.svg" />
+      <image source="images/fig_ScalarLinInt_Example1.svg" />
       <caption> A subdivided plot of <m>C_1</m></caption>
     </figure>
     <p>
@@ -318,7 +318,7 @@
       This result should make sense from your earlier explainations of Task <xref ref="Act_ScalarLI1_part2" />. Specifically, we can break the line integral of <m>f_1</m> into three parts according to the following plot.
     </p>
     <figure>
-      <image source="/fig_ScalarLinInt_Example2.svg" />
+      <image source="images/fig_ScalarLinInt_Example2.svg" />
       <caption> A subdivided plot of <m>C_1</m></caption>
     </figure>
     <p>
@@ -428,19 +428,69 @@
       We will spend the last part of this section talking about a way to try to visualize the scalar line integral as an area under a curve (in the same way that we visualized 1D integrals.) Let's return to our Copium analogy from <xref ref="PA_ScalarLI" />. In particular, we can look the left side of the mining area.
     </p>
     <figure>
-      <image source="/images/CopiumDensityPlot.png" />
+      <image source="images/CopiumMinePlot.svg" />
       <caption> A plot of land with density of Copium deposits </caption>
     </figure>
     <p>
-      In particular, we could visualize the linear density of Copium along the left side of the area using a plot like this. 
-
-      Perhaps use the left side of the copium analogy plot.
-      then show a helix with a function that moves vertically
-
+      In particular, we could visualize the linear density of Copium along the left side of the area using a plot like Figure <xref ref="LeftSideofCopiumMine" />.
+      <figure xml:id="LeftSideofCopiumMine">
+        <image source="images/leftsideplot.svg" />
+        <caption> A plot of the Copium density on the left side of the mine shown above </caption>
+      </figure>
+      In Figure <xref ref="LeftSideofCopiumMine" />, the horizontal axis gives the distance traveled along the left side of Figure <xref ref="CopiumPlot" />. Because this is a stright path, we could plot the density above the path of the Copium mining plot. In fact, we could plot the density above the plot for all of the sides of the mining plot.
+    </p>
+    <figure xml:id="CopiumMinewithSides">
+      <caption>A three-dimensional plot of the Copium Density plotted for the edges of the mining area</caption>
+      <interactive xml:id="sage_copium_mine_sides" platform="sage" width="100%" aspect="1:1.1">
+        <slate surface="sage">
+          var('t,s,x,y')
+          f=-x^2/2-3*y^3/3
+          @interact
+          def _():
+            f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)
+            plot8=polygon3d([[212.5,425,0],[512.5,525,0],[300,100,0],[0,0,0]],color='grey',opacity=.5)
+            plot11=parametric_plot3d((t,2*t,0),(t,0,212.5),color='red')+parametric_plot3d((t,2*t,f(t,2*t)),(t,0,212.5),color='green')+parametric_plot3d((t,2*t,s*f(t,2*t)),(t,0,212.5),(s,0,1),color='yellow')
+            plot11+=parametric_plot3d((212.5+3*t,425+t,0),(t,0,100),color='red')+parametric_plot3d((212.5+3*t,425+t,f(212.5+3*t,425+t)),(t,0,100),color='green')+parametric_plot3d((212.5+3*t,425+t,s*f(212.5+3*t,425+t)),(t,0,100),(s,0,1),color='yellow')
+            plot11+=parametric_plot3d((300+t,100+2*t,0),(t,0,212.5),color='red')+parametric_plot3d((300+t,100+2*t,f(300+t,100+2*t)),(t,0,212.5),color='green')+parametric_plot3d((300+t,100+2*t,s*f(300+t,100+2*t)),(t,0,212.5),(s,0,1),color='yellow')
+            plot11+=parametric_plot3d((3*t,t,0),(t,0,100),color='red')+parametric_plot3d((3*t,t,f(3*t,t)),(t,0,100),color='green')+parametric_plot3d((3*t,t,s*f(3*t,t)),(t,0,100),(s,0,1),color='yellow')
+            show(plot11+plot8,aspect_ratio=(1,1,40))
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      Figure <xref ref="CopiumMinewithSides" /> shows the Copium Mine plot (in gray) and the paths that are the boundary of the plot in red. The curve in green shows the Copium Density at each point on the boundary of the mine plot. The area in yellow would be the scalar line integral for the path that is the boundary of the mine plot. In particular, the area in yellow would give the total Copium mined from driving our mining machine around the boundary of the mine plot.
     </p>
     <p>
-
+      Because the curve we are looking at in Figure <xref ref="CopiumMinewithSides" /> involves straight lines and simple heights, there is no confusion when looking at this plot and using an area under the curve analogy. What if we looked at the scalar line integral of a function like <m>f(x,y,z)=x-y</m> along the helix given below?
     </p>
+    <figure xml:id="HelixPlot">
+      <caption>A three-dimensional plot of a helix</caption>
+      <interactive xml:id="helixplot1" platform="sage" width="100%" aspect="1:1.1">
+        <slate surface="sage">
+          var('t,s')
+          @interact
+          def _():
+            plot1=parametric_plot3d((cos(t),sin(t),t/8),(t,0,11),color='green')+parametric_plot3d((cos(t),sin(t),t/8+cos(t)-sin(t)),(t,0,11),color='blue')
+            show(plot1,aspect_ratio=(1,1,1))
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      You can already see part of the problem involved here since if we used the <m>z</m>-coordinate to plot the output of our scalar function, then our area might intersect other parts of the curve. The plot below shows the confused plot we would have if we looked at <m>f(x,y,z)=x-y</m> as the height above our curve in blue.
+    </p>
+    <figure xml:id="HelixPlot2">
+      <caption>A three-dimensional plot of a helix with height given by <m>f(x,y,z)=x-y</m></caption>
+      <interactive xml:id="helixplot2" platform="sage" width="100%" aspect="1:1.1">
+        <slate surface="sage">
+          var('t,s')
+          @interact
+          def _():
+            plot6=parametric_plot3d((cos(t),sin(t),t/8),(t,0,11),color='green')+parametric_plot3d((cos(t),sin(t),t/8+cos(t)-sin(t)),(t,0,11),color='blue')
+            plot7=parametric_plot3d((cos(t),sin(t),t/8+s*(cos(t)-sin(t))),(t,0,11),(s,0,1),color='yellow')
+            show(plot6+plot7, aspect_ratio=(1,1,1))
+        </slate>
+      </interactive>
+    </figure>
 </subsection>
 </section>
 
