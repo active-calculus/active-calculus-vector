@@ -75,10 +75,11 @@
   </figure>
   <p>
     So to measure the accumulation of the output of <m>f(x,y,z)</m> over <m>S_1</m> we use the following Riemann sum:
-    <me>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}= 
-      \sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}= 
-      \sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(s_{i}^*,t_{j}^*))\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}
-    </me>
+    <md>
+      <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}= </mrow>
+      <mrow> \sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}= </mrow>
+      <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(s_{i}^*,t_{j}^*))\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</mrow>
+    </md>
     This Riemann sum ends up being the double integral (over the variables <m>s</m> and <m>t</m>) of the function <m>f(x(t,s),y(s,t),z(s,t)) \vecmag{(\vr_s \times \vr_t)(s,t)}</m>, which leads to the following theorem.
   </p>
   <theorem xml:id="ScalarSurfaceIntDef">
@@ -86,39 +87,37 @@
     <p>
       Let a smooth surface <m>S_1</m> be parametrized by <m>\vr(s,t)</m> over a domain <m>D</m> and let <m>f</m> be a continuous function on a neighborhood around <m>S_1</m>. The acculumation of <m>f(x,y,z)</m> over <m>S_1</m> is deonted by <m>\iint_{S_1} f dS</m> and is called the scalar surface integral of <m>f</m> over <m>S_1</m>. The scalar surface integral of <m>f</m> over <m>S_1</m> is computed as
         <me>
-          \iint_{S_1} f dS = \iint_D f(s,t) \vecmag{(\vr_s \times \vr_t)(s,t)} dA
+          \iint_{S_1} f \enspace dS = \iint_D f(s,t) \vecmag{(\vr_s \times \vr_t)(s,t)} \enspace dA
         </me>.
     </p>
     </statement>
   </theorem>
-  <p>
-    Activity
-    would the accumulation of scalar functions over given surfaces be positive, negative, or zero?
-    start with the top half of a sphere and f(x,y,z)=z. Show the surface with an outward pointing N.
-    Ask same question with an inward point N.
-    Explain why the direction of the normal vector doesn't matter for this accumulation.
-    Look at f=x
-    Look at f=x+z (hint: how would the accumulation of this be related to previous questions)
-   </p>
 
   <activity xml:id="ScalarSurfaceInt_Sensemaking" >
     <introduction>
       <p>
-        In order to pay for tutition, you take a job driving a mining machine that collects a very valuable mineral called Copium. Copium is only produced on the surface and is mined by scooping up the soil at the front of your machine, so the amoung of copium ore collected depends on the density of the ore and the distance driven by the mining machine. The plot of land you are mining has been surveyed for the density of copium ore and is presented in the contour plot below.
+        In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over a common surfaces.
       </p>
-      <figure xml:id="CopiumPlot">
-        <image source="/images/CopiumMinePlot.svg" />
-        <caption> A plot of land with density of Copium deposits </caption>
-      </figure>
     </introduction>
     <task xml:id="task_SSIS_1">
       <statement>
         <p>
-          Estimate the amount of Copium that would be mined from driving along the left side of plot. You should write a few sentences about how you got your estimate based on the copium density and length of the path. (Did you use more than one piece?)
+          Throughout this activity we will use one of three surfaces. For each of the three surfaces given, you need to draw a plot of the surface and make sure you have labeled a proper scale for each coordinate direction.
+          <ol>
+            <li>
+              <m>S_1</m> is the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin in 3-space
+            </li>
+            <li>
+              <m>S_2</m> is the bottom half (<m>z \leq 0</m>) of the sphere of radius one centered at the origin in 3-space
+            </li>
+            <li>
+              <m>S_3</m> is the disc of radius one centered at <m>(1,0,0)</m> on the <m>x=1</m> fundamental plane
+            </li>
+          </ol>
         </p>
         </statement>
         <answer>
-            <p>multiplied the density by the length to get the amount</p>
+            <p>pictures go here</p>
         </answer>
         <solution>
             <p>Write out a longer description?</p>
@@ -127,11 +126,11 @@
     <task xml:id="task_SSIS_2">
       <statement>
         <p>
-          Estimate the amount of Copium that would be mined from the entire outer edge of the plot. You should write a few sentences about how you got your estimate based on the Copium density and length of the paths.
+          State whether <m>\iint_{S_1} x \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
         </p>
         </statement>
         <answer>
-            <p>multiplied the density by the length to get the amount</p>
+            <p>zero</p>
         </answer>
         <solution>
             <p>Write out a longer description?</p>
@@ -140,15 +139,11 @@
     <task xml:id="task_SSIS_3">
       <statement>
         <p>
-          Estimate the amount of copium that would be mined from the scraping the path given below. You should use at least 3 segments in your estimate. (put a curved path on the plot) You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
+          State whether <m>\iint_{S_2} z \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
         </p>
-        <figure>
-          <image source="images/CopiumPlotwithPath.svg"/>
-          <caption> A plot of land with Copium Density and a path plotted in blue</caption>
-        </figure>
         </statement>
         <answer>
-            <p>multiplied the density by the length to get the amount</p>
+            <p>negative</p>
         </answer>
         <solution>
             <p>Write out a longer description?</p>
@@ -157,19 +152,28 @@
     <task xml:id="task_SSIS_4">
       <statement>
         <p>
-          Estimate the amount of copium that would be mined from the scraping the path given below. You should use at least 3 segments in your estimate. You should explain how and why your answer to this question is different or similar to the previous task.
+          State whether <m>\iint_{S_3} x+z \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
         </p>
-        <figure>
-          <image source="images/CopiumPlotwithPath2.svg"/>
-          <caption> A plot of land with Copium Density and a path plotted in blue</caption>
-        </figure>
-        </statement>
-        <answer>
-            <p>multiplied the density by the length to get the amount</p>
-        </answer>
-        <solution>
-            <p>Write out a longer description?</p>
-        </solution>
+      </statement>
+      <answer>
+          <p>positive</p>
+      </answer>
+      <solution>
+          <p>Write out a longer description?</p>
+      </solution>
+    </task>
+    <task xml:id="task_SSIS_5">
+      <statement>
+        <p>
+          State whether <m>\iint_{S_1} x+z \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
+        </p>
+      </statement>
+      <answer>
+          <p>positive</p>
+      </answer>
+      <solution>
+          <p>Write out a longer description?</p>
+      </solution>
     </task>
   </activity>
 
@@ -186,22 +190,22 @@
           <ol marker="b.">
             <li>
               <p>
-                <m>\displaystyle \iint_{S_1} (k f) dS = k \iint_{S_1} f dS</m>
+                <m>\displaystyle \iint_{S_1} (k f) \enspace dS = k \iint_{S_1} f \enspace dS</m>
               </p>
             </li>
             <li>
               <p>
-                <m>\displaystyle\iint_{S_1} (f+g) dS = \iint_{S_1} f dS + \iint_{S_1} g dS </m>
+                <m>\displaystyle\iint_{S_1} (f+g) \enspace dS = \iint_{S_1} f dS + \iint_{S_1} g \enspace dS </m>
               </p>
             </li>
             <li>
               <p>
-                <m>\displaystyle\iint_{-S_1} f dS = \iint_{S_1} f dS</m>
+                <m>\displaystyle\iint_{-S_1} f \enspace dS = \iint_{S_1} f \enspace dS</m>
               </p>
             </li>
             <li>
               <p>
-                <m>\displaystyle\iint_{S_1+S_2} f dS = \iint_{S_1} f dS + \iint_{S_2} f dS</m>
+                <m>\displaystyle\iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS</m>
               </p>
             </li>
           </ol>
@@ -217,29 +221,18 @@
       </introduction>
       <task>
         <p>
-          Explain in your own words what <m>\iint_{S_1} f dS</m> means in the above analogy and what exactly would be measured by this scalar line integral.
+          Explain in your own words what <m>\iint_{S_1} f \enspace dS</m> means in the above analogy and what exactly would be measured by this scalar line integral.
         </p>
         <answer>
-          The scalar line integral <m>\int_C f ds</m> would calculate the accumulation of Copium mined along the path given by <m>C</m> where <m>f</m> gives the density of Copium at each location in the area. In particular, <m>\int_C f ds</m> measures the total Copium mined along the path <m>C</m>.
+          The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
         </answer>
         <solution>
-          The scalar line integral <m>\int_C f ds</m> would calculate the accumulation of Copium mined along the path given by <m>C</m> where <m>f</m> gives the density of Copium at each location in the area. In particular, <m>\int_C f ds</m> measures the total Copium mined along the path <m>C</m>.
+          The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
         </solution>
       </task>
       <task>
         <p>
-          Explain in your own words what <m>\displaystyle \int_C (k f) ds = k \int_C f ds</m> means in the Copium analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
-        </p>
-        <answer>
-          asdf
-        </answer>
-        <solution>
-          asdf
-        </solution>
-      </task>
-      <task>
-        <p>
-          Explain in your own words what <m>\displaystyle\int_C (f+g) ds = \int_C f ds + \int_C g ds</m> means in the Copium analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{S_1} (k f) \enspace dS = k \iint_{S_1} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
         <answer>
           asdf
@@ -250,7 +243,7 @@
       </task>
       <task>
         <p>
-          Explain in your own words what <m>\displaystyle\int_{-C} f ds = \int_C f ds</m> means in the Copium analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{S_2} (f+g) \enspace dS = \iint_{S_2} f \enspace dS + \iint_{S_2} g \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
         <answer>
           asdf
@@ -261,7 +254,18 @@
       </task>
       <task>
         <p>
-          Explain in your own words what <m>\displaystyle\int_{C_1+C_2} f ds = \int_{C_1} f ds + \int_{C_2} f ds</m> means in the Copium analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{-S_2} f \enspace dS = \iint_{S_2} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+        </p>
+        <answer>
+          asdf
+        </answer>
+        <solution>
+          asdf
+        </solution>
+      </task>
+      <task>
+        <p>
+          Explain in your own words what <m>\displaystyle \iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
         <answer>
           asdf
@@ -272,73 +276,57 @@
       </task>
     </activity>
     <p>
-      We will spend the last part of this section talking about a way to try to visualize the scalar line integral as an area under a curve (in the same way that we visualized 1D integrals.) Let's return to our Copium analogy from <xref ref="PA_ScalarLI" />. In particular, we can look the left side of the mining area.
+      We will spend the last part of this section looking at a couple of examples of how to compute scalar surface integrals using parameterizations of surfaces.
     </p>
-    <figure>
-      <image source="images/CopiumMinePlot.svg" />
-      <caption> A plot of land with density of Copium deposits </caption>
-    </figure>
+    <example xml:id="ScalarSurfaceInt_Example1">
+      <p>
+        Let us return to some of the problems from Activity <xref ref="ScalarSurfaceInt_Sensemaking" />. Specifically, we will compute the answer to <xref ref="task_SSIS_2"/>. We will compute <m>\iint_{S_1} x \enspace dS</m> where <m>S_1</m> is the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin in 3-space. Our surface can be parameterized by <m>\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle</m> where <m>s \in [0,2\pi]</m> and <m>t \in [0,\pi]</m>. Using Theorem <xref ref="ScalarSurfaceIntDef" />, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>\Vert{\vr_s \times \vr_t}\Vert </m>. For our parameterization, we get
+        <md>
+          <mrow>\vr_s = \langle -\sin(s)\sin(t),\cos(s)\sin(t),0\rangle </mrow>
+          <mrow>\vr_t = \langle \cos(s)\cos(t),\sin(s)\cos(t),-\sin(t)\rangle </mrow>
+          <mrow>\vr_s \times \vr_t = \langle -(\sin(t))^2 \cos(s), - (\sin(t))^2 \sin(s), -(\cos(s))^2 \cos(t) \sin(t) -(\sin(s))^2 \cos(t) \sin(t) \rangle </mrow>
+        </md>
+        Simplifying <m>\vr_s \times \vr_t</m> we get
+        <me> \vr_s \times \vr_t =\sin(t) \langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t) \rangle </me>
+        Note that <m> \vr_s \times \vr_t = \sin(t) \vr(s,t)</m>. This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <m>\Vert{\vr_s \times \vr_t}\Vert = \sin(t)</m> because <m>\Vert{\vr(s,t)}\Vert = 1</m> for any <m>s</m> or <m>t</m>.
+      </p>
+      <p>
+        We can now use Theorem <xref ref="ScalarSurfaceIntDef" /> to compute the scalar surface integral as 
+        <me> 
+          \iint_{S_1} x \enspace dS = \int_0^{\pi}\int_0^{2\pi} \cos(s)\sin(t) (\sin(t)) \enspace dS dt \newline
+          = \int_0^{\pi}(\sin(t))^2 dt [\sin(s)]|_{0}^{2\pi} = \int_0^{\pi}(\sin(t))^2 dt [0] =0
+        </me>
+      </p>
+      <p>
+        This result should match your answer for <xref ref="task_SSIS_2"/> since the output of the function <m>f(x,y,z)=x</m> would be symmetric but opposite in sign for the parts of the surface in octants 1 and 4 as compared to octants 2 and 3.
+      </p>
+    </example>
+    <example xml:id="ScalarSurfaceInt_Example2">
     <p>
-      In particular, we could visualize the linear density of Copium along the left side of the area using a plot like Figure <xref ref="LeftSideofCopiumMine" />.
-      <figure xml:id="LeftSideofCopiumMine">
-        <image source="images/leftsideplot.svg" />
-        <caption> A plot of the Copium density on the left side of the mine shown above </caption>
-      </figure>
-      In Figure <xref ref="LeftSideofCopiumMine" />, the horizontal axis gives the distance traveled along the left side of Figure <xref ref="CopiumPlot" />. Because this is a stright path, we could plot the density above the path of the Copium mining plot. In fact, we could plot the density above the plot for all of the sides of the mining plot.
-    </p>
-    <figure xml:id="CopiumMinewithSides">
-      <caption>A three-dimensional plot of the Copium Density plotted for the edges of the mining area</caption>
-      <interactive xml:id="sage_copium_mine_sides" platform="sage" width="100%" aspect="1:1.1">
-        <slate surface="sage">
-          var('t,s,x,y')
-          f=-x^2/2-3*y^3/3
-          @interact
-          def _():
-            f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)
-            plot8=polygon3d([[212.5,425,0],[512.5,525,0],[300,100,0],[0,0,0]],color='grey',opacity=.5)
-            plot11=parametric_plot3d((t,2*t,0),(t,0,212.5),color='red')+parametric_plot3d((t,2*t,f(t,2*t)),(t,0,212.5),color='green')+parametric_plot3d((t,2*t,s*f(t,2*t)),(t,0,212.5),(s,0,1),color='yellow')
-            plot11+=parametric_plot3d((212.5+3*t,425+t,0),(t,0,100),color='red')+parametric_plot3d((212.5+3*t,425+t,f(212.5+3*t,425+t)),(t,0,100),color='green')+parametric_plot3d((212.5+3*t,425+t,s*f(212.5+3*t,425+t)),(t,0,100),(s,0,1),color='yellow')
-            plot11+=parametric_plot3d((300+t,100+2*t,0),(t,0,212.5),color='red')+parametric_plot3d((300+t,100+2*t,f(300+t,100+2*t)),(t,0,212.5),color='green')+parametric_plot3d((300+t,100+2*t,s*f(300+t,100+2*t)),(t,0,212.5),(s,0,1),color='yellow')
-            plot11+=parametric_plot3d((3*t,t,0),(t,0,100),color='red')+parametric_plot3d((3*t,t,f(3*t,t)),(t,0,100),color='green')+parametric_plot3d((3*t,t,s*f(3*t,t)),(t,0,100),(s,0,1),color='yellow')
-            show(plot11+plot8,aspect_ratio=(1,1,40))
-        </slate>
-      </interactive>
-    </figure>
-    <p>
-      Figure <xref ref="CopiumMinewithSides" /> shows the Copium Mine plot (in gray) and the paths that are the boundary of the plot in red. The curve in green shows the Copium Density at each point on the boundary of the mine plot. The area in yellow would be the scalar line integral for the path that is the boundary of the mine plot. In particular, the area in yellow would give the total Copium mined from driving our mining machine around the boundary of the mine plot.
-    </p>
-    <p>
-      Because the curve we are looking at in Figure <xref ref="CopiumMinewithSides" /> involves straight lines and simple heights, there is no confusion when looking at this plot and using an area under the curve analogy. What if we looked at the scalar line integral of a function like <m>f(x,y,z)=x-y</m> along the helix given below?
-    </p>
-    <figure xml:id="HelixPlot">
-      <caption>A three-dimensional plot of a helix</caption>
-      <interactive xml:id="helixplot1" platform="sage" width="100%" aspect="1:1.1">
-        <slate surface="sage">
-          var('t,s')
-          @interact
-          def _():
-            plot1=parametric_plot3d((cos(t),sin(t),t/8),(t,0,11),color='green')+parametric_plot3d((cos(t),sin(t),t/8+cos(t)-sin(t)),(t,0,11),color='blue')
-            show(plot1,aspect_ratio=(1,1,1))
-        </slate>
-      </interactive>
-    </figure>
-    <p>
-      You can already see part of the problem involved here since if we used the <m>z</m>-coordinate to plot the output of our scalar function, then our area might intersect other parts of the curve. The plot below shows the confused plot we would have if we looked at <m>f(x,y,z)=x-y</m> as the height above our curve in blue.
-    </p>
-    <figure xml:id="HelixPlot2">
-      <caption>A three-dimensional plot of a helix with height given by <m>f(x,y,z)=x-y</m></caption>
-      <interactive xml:id="helixplot2" platform="sage" width="100%" aspect="1:1.1">
-        <slate surface="sage">
-          var('t,s')
-          @interact
-          def _():
-            plot6=parametric_plot3d((cos(t),sin(t),t/8),(t,0,11),color='green')+parametric_plot3d((cos(t),sin(t),t/8+cos(t)-sin(t)),(t,0,11),color='blue')
-            plot7=parametric_plot3d((cos(t),sin(t),t/8+s*(cos(t)-sin(t))),(t,0,11),(s,0,1),color='yellow')
-            show(plot6+plot7, aspect_ratio=(1,1,1))
-        </slate>
-      </interactive>
-    </figure>
-</subsection>
+        For this example, we will compute the answer to <xref ref="task_SSIS_4"/>. We will compute <m>\iint_{S_3} x+z \enspace dS</m> where <m>S_3</m> is the disc of radius one centered at <m>(1,0,0)</m> on the <m>x=1</m> fundamental plane. Our surface can be parameterized by <m>\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle</m> where <m>s \in [0,1]</m> and <m>t \in [0,2\pi]</m>. Using Theorem <xref ref="ScalarSurfaceIntDef" />, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>\Vert{\vr_s \times \vr_t}\Vert </m>. For our parameterization, we get
+        <md>
+          <mrow> \vr_s = \langle 0, \cos(t), \sin(t) \rangle </mrow>
+          <mrow> \vr_t = \langle 0, -s\sin(t), s\cos(t) \rangle </mrow>
+          <mrow> \vr_s \times \vr_t = \langle 0, 0, s (\cos(t))^2+s (\sin(t))^2 \rangle </mrow>
+        </md>
+        Simplifying <m>\vr_s \times \vr_t</m> we get
+        <me> \vr_s \times \vr_t =s \langle 0, 0, 1 \rangle </me>
+        and thus <m>\Vert{\vr_s \times \vr_t}\Vert = s</m>. This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates (<m>dA = dx dy = r dr d\theta</m>).
+      </p>
+      <p>
+        We can now use Theorem <xref ref="ScalarSurfaceIntDef" /> to compute the scalar surface integral as
+        <md>
+        <mrow> \iint_{S_3} x+z \enspace dS = \int_0^{2\pi}\int_0^{1} (1+s\sin(t)) (s) ds dt </mrow>
+        <mrow> = \int_0^{2\pi} \int_0^{1} s+s^2\sin(t) ds dt </mrow>
+        <mrow>  = \int_0^{2\pi} \frac{1}{2}+\frac{1}{3}\sin(t) dt </mrow>
+        <mrow>  = \frac{1}{2} (2\pi) + 0 = \pi </mrow>
+        </md>
+      </p>
+      <p>
+        This result should match your answer for <xref ref="task_SSIS_4"/> since the output of the function <m>f(x,y,z) x+z</m> equals <m> 1+z</m>. The values of <m>z</m> will be symmetric but opposite in sign for the parts of the surface above and below the <m>xy</m>-plane. Thus the scalar surface integral will be one times the area of <m>S_3</m> which gives the value <m>\pi</m>.
+      </p>
+    </example>
+  </subsection>
 </section>
 
 
