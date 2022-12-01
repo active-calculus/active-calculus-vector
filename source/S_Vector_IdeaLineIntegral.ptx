@@ -2,83 +2,57 @@
 
 <section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S_Vector_IdeaLineIntegral">
   <title>The Idea of a Line Integral</title>
-    <objectives>
-      <ul>
-	<li>
-	  <p>What is an oriented curve and how can we represent one
-	  algebraically?</p>
-	</li>
-        <li>
-          <p>
-            What is the meaning of the line integral of a
-            vector-valued function along a curve and how can we
-            estimate if its value is positive, negative, or zero?
-          </p>
-        </li>
-        <li>
-          <p>
-	    What are important properties of the line integral of a
-	    vector-valued functions along a curve?
-          </p>
-        </li>
-      </ul>
-    </objectives>
+  <objectives>
+    <ul>
+      <li>
+        <p>
+          What is an oriented curve and how can we represent one algebraically?
+        </p>
+      </li>
+      <li>
+        <p>
+          What is the meaning of the line integral of a vector-valued function along a curve and how can we estimate if its value is positive, negative, or zero?
+        </p>
+      </li>
+      <li>
+        <p>
+          What are important properties of the line integral of a vector-valued functions along a curve?
+        </p>
+      </li>
+    </ul>
+  </objectives>
   <introduction>
     <p>
-      As we discussed in <xref ref="S_Vector_VectorFields" />, vector
-      fields are often useful as representations of forces such as
-      gravity, wind, and flowing water.  We learned in <xref
-      ref="S-9-3-Dot-Product" /> that the dot
-      product of a force vector and a displacement vector tells us how
-      much work the force did on the object as it moved from the tail
-      of its displacement vector to the tip.  However, things get more
-      complicated when an object's movement is not in a straight line
-      and when the force is not uniform throughout the area in which
-      the object moves.  For example, how much work is done by a wind
-      of <quantity><mag>30</mag><unit base="mile" /><per base="hour"
-      /></quantity> toward the northwest on an airplane that's flying
-      <quantity><mag>500</mag><unit base="mile" /></quantity> due
-      north?  What if the wind gets weaker the farther north the plane
-      gets?  In this section, we begin investigating how integration
-      can be used to calculate the work a force field does in such
-      circumstances.
+      As we discussed in <xref ref="S_Vector_VectorFields" />, vector fields are often useful as representations of forces such as gravity or electromagnetism, as well as representing the velocity of movement for things like wind or flowing water.
+      <aside>
+        <title>Velocity versus Force</title>
+        <p>
+          Movement by things like air or water will exert a force on objects, so wind velocity vector fields are related to a force field but the relationship between a moving fluid and an object in the fuild can be complicated. Specifically, issues like drag/friction and cross sectional area are a critical part of this relationship and are not something that we will focus on in our discussion. In the exploration below, we will look at a simplified version of this situation.
+        </p>
+      </aside>
+      We learned in <xref ref="S-9-3-Dot-Product" /> that the dot product of a force vector and a displacement vector tells us how much work the force did on the object as it moved from the tail of its displacement vector to the tip. However, this calculation assumes that the force is constant in the region of movement and that the object moves in a straight line along the displacement vector. The situation is more complicated than a dot product calculation when an object's movement is not in a straight line and when the force is not uniform throughout the area in which the object moves.
     </p>
-
     <exploration xml:id="PA_Vector_IdeaLineIntegral">
         <introduction>
             <p>
-              Recall from <xref ref="S-9-3-Dot-Product" />
-              that the work done by a force <m>\vF</m> on an object
-              that moves with displacement vector <m>\vv</m> is
-              <m>\vF\cdot \vv</m>.  In this Preview Activity, we
-              consider the work done by a wind blowing due east at
-              <quantity><mag>45</mag><unit base="mile" /><per
-              base="hour" /></quantity> on an airplane at various
-              stages of its journey.
+              Recall from <xref ref="S-9-3-Dot-Product" /> that the work done by a force <m>\vF</m> on an object that moves with displacement vector <m>\vv</m> is <m>\vF\cdot \vv</m>. In this Preview Activity, we consider the work done by a wind blowing due east at <quantity><mag>45</mag><unit base="mile" /><per base="hour" /></quantity> on an airplane at various stages of its journey.
             </p>
         </introduction>
         <task xml:id="task_PA_Vector_IdeaLine_integral_300mph">
           <statement>
             <p>
-              A pilot flies for an hour and finds that he is
-              <quantity><mag>300</mag><unit base="mile" /></quantity>
-              from where he started at a heading of
-              <quantity><mag>20</mag><unit base="degree" /></quantity>
-              degrees east of due north.  Find the work the wind has
-              done on the airplane during the flight.
-                </p>
-            </statement>
-            <answer>
-                <p><m>3078.18</m></p>
-            </answer>
-            <solution>
-                <p>Here <m>\vF = 45\vi</m>. The displacement vector of
-                the airplane is <m>\vv_1 = \langle
-                200\cos(70^\circ),200\sin(70^\circ)\rangle \approx
-                \langle 68.404,187.94\rangle</m>. Thus, the work done
-                by the wind is <m>\vF\cdot \vv_1 = 45\cdot 68.404 =
-                3078.18</m>.</p>
-            </solution>
+              A pilot flies for an hour and finds that he is <quantity><mag>300</mag><unit base="mile" /></quantity> from where he started at a heading of <quantity><mag>20</mag><unit base="degree" /></quantity>
+              degrees east of due north. Find the work the wind has done on the airplane during the flight.
+            </p>
+          </statement>
+          <answer>
+            <p><m>3078.18</m></p>
+          </answer>
+          <solution>
+            <p>
+              Here <m>\vF = 45\vi</m>. The displacement vector of the airplane is <m>\vv_1 = \langle 200\cos(70^\circ),200\sin(70^\circ)\rangle \approx \langle 68.404,187.94\rangle</m>. Thus, the work done by the wind is <m>\vF\cdot \vv_1 = 45\cdot 68.404 = 3078.18</m>.
+            </p>
+          </solution>
         </task>
         <task xml:id="task_PA_Vector_IdeaLine_integral_275mph">
           <statement>
