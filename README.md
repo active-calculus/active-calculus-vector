@@ -22,7 +22,7 @@ install it
    view the HTML output. Note that for speed purposes, only Chapter 12
    will be built and can be read, although the full table of contents
    will appear and cross references will be correct.
-
+5. Run 'pretext deploy' to upload your current build of the web/html version to github.io. You should get links in your command window to the viewable state on github, but it is of the form  https://github.com/<username>/<repository>/settings/pages. You can view the uploaded page at https://<username>.github.io/<repository>/
 
 On first run of a this repository on a new machine, you should run 
 `pretext build -w html` to build the overall html structure (since the 
