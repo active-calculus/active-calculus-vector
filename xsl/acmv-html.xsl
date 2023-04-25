@@ -10,5 +10,8 @@
 <!-- Assumes next file can be found in mathbook/user, so it must be copied there -->
 <xsl:import href="acmv-common.xsl" />
 
+<!-- Specify options for WeBWorK exercises -->
+<xsl:param name="webwork.divisional.static" select="'no'" />
+
 <xsl:template match="exercise/answer|task/answer|webwork-reps/static/answer" />
 </xsl:stylesheet>
