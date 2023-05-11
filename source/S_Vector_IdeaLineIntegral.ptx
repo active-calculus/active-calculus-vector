@@ -98,7 +98,7 @@
         <task xml:id="task_PA_Vector_IdeaLine_integral_45deg">
           <statement>
             <p>
-              In order to get further away from the storm, the pilot turns and flies <quantity><mag>45</mag><unit base="degree" /></quantity> west of due north for <quantity><mag>50</mag><unit base="meter" prefix="kilo" /></quantity>. The storm the pilot was avoiding has caused the wind to change as well. For this portion of the flight, the wind is exerting a force on the helicopter of <quantity><mag>125</mag> <unit base="Newton"/></quantity> in the south direction.
+              In order to get further away from the storm, the pilot turns and flies <quantity><mag>45</mag><unit base="degree" /></quantity> west of due north for <quantity><mag>50</mag><unit base="meter" prefix="kilo" /></quantity>. The storm the pilot was avoiding has caused the wind to change as well. For this portion of the flight, the wind is exerting a force on the helicopter of <quantity><mag>125</mag> <unit base="newton" /></quantity> in the south direction.
 
               Find the work done by the wind on the helicopter during this part of the flight.
             </p>
@@ -198,16 +198,22 @@
         </task>
       </activity>
     <p>
-      Notice that there are, in general, many ways to parametrize an oriented curve. With line segments, it is common to have the parameter range from <m>0</m> to <m>1</m>, although there are sometimes good reasons to choose another method. For circles and ellipses, you may find it useful to interchange the placement of <m>\cos(t)</m> and <m>\sin(t)</m> to change the orientation, but then careful attention will need to be paid to the start and end points. The interactive graphing applet below allows you to plot parametric curves. Click the <q>Animate</q> button to trace out the curve from your lower value of <m>t</m> to your upper value of <m>t</m>. (Type enter/return on your keyboard to update the graph after editing a text box.) For curves in <m>\R^2</m>, check the <q>Restrict view to 2D</q> for ease of viewing.
+      Notice that there are, in general, many ways to parametrize an oriented curve. With line segments, it is common to have the parameter range from <m>0</m> to <m>1</m>, although there are sometimes good reasons to choose another method. For circles and ellipses, you may find it useful to interchange the placement of <m>\cos(t)</m> and <m>\sin(t)</m> to change the orientation, but then careful attention will need to be paid to the start and end points. The interactive graph below allows you to plot parametric curves. You should experiment with the graph below and try to make sense of how the different changes changes affect the graph below. Remember that you can change the highlighted point using the slider. At least try the following:
+      <ol>
+        <li>Change the upper bound of the plot to <m> 2 \pi</m></li>
+        <li>Exchange the sine and cosine functions in <m>r_1</m> and <m>r_2</m> (but do not change the coefficents)</li>
+        <li>Change the <m>t</m> in each of the component functions to <m>-t</m></li>
+        <li>Change the <m>-t</m> to <m>e^t</m> (you may need to use the exp(t) function in Sage)</li>
+        <li>Change the upper and lower bounds to get the same curve plotted as in the earlier parts</li>
+      </ol>
     </p>
     <figure>
-      <caption>A three-dimensional plot of a parametric curve</caption>
+      <caption>The interactive below assumes a parametric curve <m>\mathbf{r}(t)=\langle r_1(t),r_2(t),r_3(t)\rangle</m>. For two-dimensional curves, put 0 for <m>r_3(t)</m>. The interval over which to plot the curve is <m>a\leq t\leq b</m>.</caption>
       <interactive xml:id="para_curve_example" platform="sage" width="100%" aspect="1:1.1">
         <slate surface="sage">
           var('x,y,t')
-          instructions = pretty_print("The interactive below assumes a parametric curve $\mathbf{r}(t)=\langle r_1(t),r_2(t),r_3(t)\\rangle$. For two-dimensional curves, put 0 for $r_3(t)$. The interval over which to plot the curve is $a\leq t\leq b$.")
           @interact
-          def orient_curve_explorer(instr = text_control(instructions,label=""),r1=input_box(default=cos(t),label="$r_1(t)=$"),r2=input_box(default=2*sin(t),label="$r_2(t)=$"),r3=input_box(default=3-t,label="$r_3(t)=$"), a=input_box(default=0,label="Lower Bound on $t$"), b=input_box(default=1,label="Upper Bound on $t$"),pval=slider(0,1,max_steps=20,default=0.5,label="Parameter Value of Plotted Point")):
+          def curve_explorer(r1=input_box(default=cos(t),label="$r_1(t)=$"), r2=input_box(default=2*sin(t),label="$r_2(t)=$"), r3=input_box(default=3-t,label="$r_3(t)=$"), a=input_box(default=0,label="Lower Bound on $t$"), b=input_box(default=1,label="Upper Bound on $t$"), pval=slider(0,1,default=0.5,label="Parameter Value of Plotted Point")):
             tval=a+pval*(b-a)
             plot1=parametric_plot3d((r1,r2,r3),(t,a,b),color="blue")
             plot1+=point3d((r1(t=tval),r2(t=tval),r3(t=tval)),color='red')
@@ -270,7 +276,7 @@
       </p>
     </aside>
     <p>
-      The limit in <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> exists provided that <m>\vF</m> is a continuous vector field, by which we mean that each component function of <m>\vF</m> is continuous as a function of <m>2</m> or <m>3</m> variables, and that <m>C</m> is a piecewise smooth curved traced out from its initial point to its terminal point without retracing any portion of the curve.
+      The limit in <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> exists provided that <m>\vF</m> is a continuous vector field, by which we mean that each component function of <m>\vF</m> is continuous as a function of <m>2</m> or <m>3</m> variables, and that <m>C</m> is a piecewise smooth curved traced out from its initial point to its terminal point without retracing any portion of the curve. <term>Piecewise smooth</term> means that the curve can be separated into parts which are individually smooth (can be parameterized with functions that are infinitely differentiable).
     </p>
 
     <p>
@@ -431,11 +437,12 @@
       </me>, the ability to work with line integrals in this way is
       probably not surprising.
     </p>
-    <notation>
+    <convention xml:id="path_convention">
+      <title>Convention for Describing Paths in Line Integrals</title>
       <p>
         Before stating some useful properties of line integrals, we will establish some convenient notation. If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m> from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented curve, <m>-C</m> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar analogue amongst the properties of definite integrals.
       </p>
-    </notation>
+    </convention>
     <assemblage xml:id="asm_Vector_IdeaLineIntegral_Properties">
       <title>Properties of Line Integrals</title>
       <p>
