@@ -1,91 +1,59 @@
 <?xml version="1.0"?>
 <section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S_Vector_ParamLineIntegrals">
   <title>Using Parametrizations to Calculate Line Integrals</title>
-  <objectives>
-    <ul>
-      <li>
-	<p>
-          How can we use a parametrization of an oriented curve <m>C</m> to calculate <m>\int_C\vF\cdot d\vr</m>?
-	</p>
-      </li>
-
-      <li>
-	<p>
-          How does the parametrization chosen for an oriented curve
-	  <m>C</m> alter the value of the line integral
-	  <m>\int_C\vF\cdot d\vr</m>?
-	</p>
-      </li>
-      <li>
-	<p>What can be said about the line integral of a vector field
-	along two different oriented curves when the curves have the
-	same starting point and same ending point?
-	</p>
-      </li>
-    </ul>
-  </objectives>
-  <introduction>
-    <p>
-      We begin this section by taking a look at how we can calculate a
-      line integral of a vector field along some line segments and use
-      this calculation as inspiration to see how treating oriented
-      curves as vector-valued functions will allow us to quickly turn
-      a line integral of a vector field into a single variable
-      integral.
-    </p>
-    <exploration xml:id="PA_Vector_ParamLineIntegrals">
-      <introduction>
-	<p>
-          Let <m>\vF=\langle xy,y^2\rangle</m>, let <m>C_1</m> be the
-          line segment from <m>(1,1)</m> to <m>(4,1)</m>, let
-          <m>C_2</m> be the line segment from <m>(4,1)</m> to
-          <m>(4,3)</m>, and let <m>C_3</m> be the line segment from
-          <m>(1,1)</m> to <m>(4,3)</m>. Also let <m>C = C_1 +
-          C_2</m>. This vector field and the curves are shown in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/>.
-	</p>
-	<figure xml:id="fig_Vector_ParamLineIntegrals_FieldSegments">
-          <caption>A vector field <m>\vF</m> and three oriented
-          curves</caption>
-          <image width="60%" source="/fig_12_3_preview_field_segments_rev">
-	    <description>
-	      The vector field <m>\vF=\langle xy,y^2\rangle</m>
-	      plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq
-	      4</m>. This vector field radiates from the origin with
-	      vector length increasing as distance from the origin
-	      increases. The graph includes the line segment
-	      <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line
-	      segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>,
-	      and the line segment <m>C_3</m> from <m>(1,1)</m> to
-	      <m>(4,3)</m>.
-	    </description>
-	  </image>
-	</figure>
-      </introduction>
-      <task xml:id="PA_Vector_ParamLineIntegrals_C2">
-	<statement>
-	  <p>
-            Every point along <m>C_1</m> has <m>y=1</m>. Therefore,
-            along <m>C_1</m>, the vector field <m>\vF</m> can be
-            viewed purely as a function of <m>x</m>. In particular,
-            along <m>C_1</m>, we have <m>\vF(x,1) = \langle
-            x,1\rangle</m>. Since every point along <m>C_2</m> has the
-            same <m>x</m>-value, what (in terms of <m>y</m> only) is
-            <m>\vF</m> along <m>C_2</m>?
-	  </p>
-	</statement>
-	<answer> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </answer>
-	<solution> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </solution>
-      </task>
-      <task xml:id="PA_Vector_ParamLineIntegrals_C1">
-	<introduction>
-	  <p>
-            Recall that <m>d\vr \approx \Delta \vr</m>, and along
-            <m>C_1</m>, we have that <m>\Delta\vr = \Delta x\vi
-            \approx dx\vi</m>. Thus, <m>d\vr = \langle
-            dx,0\rangle</m>. We know that along <m>C_1</m>, <m>\vF =
-            \langle x,1\rangle</m>.
-	  </p>
-	</introduction>
+<objectives>
+  <ul>
+    <li>
+    	<p>
+        How can we use a parametrization of an oriented curve <m>C</m> to calculate <m>\int_C\vF\cdot d\vr</m>?
+			</p>
+    </li>
+    <li>
+    	<p>
+        How does the parametrization chosen for an oriented curve <m>C</m> affect the value of the line integral <m>\int_C\vF\cdot d\vr</m>?
+      </p>
+    </li>
+    <!-- <li>
+    	<p>
+    		What can be said about the line integral of a vector field along two different oriented curves when the curves have the same starting point and same ending point?
+    	</p>
+    </li> -->
+  </ul>
+</objectives>
+<introduction>
+  <p>
+    We begin this section by taking a look at how to calculate a line integral of a vector field along different line segments and use this calculation as inspiration to see how treating oriented curves as vector-valued functions will allow us to quickly turn a line integral of a vector field into a single variable integral.
+  </p>
+  <exploration xml:id="PA_Vector_ParamLineIntegrals">
+    <introduction>
+    	<p>
+        Let <m>\vF=\langle xy,y^2\rangle</m>, let <m>C_1</m> be the line segment from <m>(1,1)</m> to <m>(4,1)</m>, let <m>C_2</m> be the line segment from <m>(4,1)</m> to <m>(4,3)</m>, and let <m>C_3</m> be the line segment from <m>(1,1)</m> to <m>(4,3)</m>. Also let <m>C = C_1 + C_2</m>. This vector field and the curves are shown in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/>.
+       </p>
+			<figure xml:id="fig_Vector_ParamLineIntegrals_FieldSegments">
+        <caption>A vector field <m>\vF</m> and three oriented curves</caption>
+        <image width="60%" source="/fig_12_3_preview_field_segments_rev">
+		    <description>
+		    	The vector field <m>\vF=\langle xy,y^2\rangle</m> plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq
+		      4</m>. This vector field radiates from the origin with vector length increasing as distance from the origin increases. The graph includes the line segment <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>, and the line segment <m>C_3</m> from <m>(1,1)</m> to <m>(4,3)</m>.
+		    </description>
+  			</image>
+			</figure>
+    </introduction>
+    <task xml:id="PA_Vector_ParamLineIntegrals_C2">
+			<statement>
+	  		<p>
+	  			Every point along <m>C_1</m> has <m>y=1</m>. Therefore, along <m>C_1</m>, the vector field <m>\vF</m> can be viewed purely as a function of <m>x</m>. In particular, along <m>C_1</m>, we have <m>\vF(x,1) = \langle x,1\rangle</m>. Since every point along <m>C_2</m> has the same <m>x</m>-value, what (in terms of <m>y</m> only) is <m>\vF</m> along <m>C_2</m>?
+	  		</p>
+	  	</statement>
+			<answer> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </answer>
+			<solution> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </solution>
+    </task>
+    <task xml:id="PA_Vector_ParamLineIntegrals_C1">
+			<introduction>
+	  		<p>
+          Recall that <m>d\vr \approx \Delta \vr</m>, and along <m>C_1</m>, we have that <m>\Delta\vr = \Delta x\vi \approx dx\vi</m>. Thus, <m>d\vr = \langle dx,0\rangle</m>. We know that along <m>C_1</m>, <m>\vF = \langle x,1\rangle</m>.
+	  		</p>
+	  	</introduction>
 	<task>
 	  <statement>
 	    <p>Write <m>\vF\cdot d\vr</m> along <m>C_1</m> without
