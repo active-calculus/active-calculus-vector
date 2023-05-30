@@ -13,6 +13,11 @@
         How does the parametrization chosen for an oriented curve <m>C</m> affect the value of the line integral <m>\int_C\vF\cdot d\vr</m>?
       </p>
     </li>
+    <li>
+    	<p>
+        Under what conditions will changing the path taken from <m>P</m> to <m>Q</m> change the the value of the line integral?
+      </p>
+    </li>
     <!-- <li>
     	<p>
     		What can be said about the line integral of a vector field along two different oriented curves when the curves have the same starting point and same ending point?
@@ -22,797 +27,552 @@
 </objectives>
 <introduction>
   <p>
-    We begin this section by taking a look at how to calculate a line integral of a vector field along different line segments and use this calculation as inspiration to see how treating oriented curves as vector-valued functions will allow us to quickly turn a line integral of a vector field into a single variable integral.
+    We begin this section by taking a look at how to calculate a line integral of a vector field along different line segments. We will use this calculation as inspiration to see how treating oriented curves as vector-valued functions will allow us to quickly turn a line integral of a vector field into a single variable integral.
   </p>
-  <exploration xml:id="PA_Vector_ParamLineIntegrals">
-    <introduction>
-    	<p>
-        Let <m>\vF=\langle xy,y^2\rangle</m>, let <m>C_1</m> be the line segment from <m>(1,1)</m> to <m>(4,1)</m>, let <m>C_2</m> be the line segment from <m>(4,1)</m> to <m>(4,3)</m>, and let <m>C_3</m> be the line segment from <m>(1,1)</m> to <m>(4,3)</m>. Also let <m>C = C_1 + C_2</m>. This vector field and the curves are shown in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/>.
-       </p>
-			<figure xml:id="fig_Vector_ParamLineIntegrals_FieldSegments">
-        <caption>A vector field <m>\vF</m> and three oriented curves</caption>
-        <image width="60%" source="/fig_12_3_preview_field_segments_rev">
-		    <description>
-		    	The vector field <m>\vF=\langle xy,y^2\rangle</m> plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq
-		      4</m>. This vector field radiates from the origin with vector length increasing as distance from the origin increases. The graph includes the line segment <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>, and the line segment <m>C_3</m> from <m>(1,1)</m> to <m>(4,3)</m>.
-		    </description>
-  			</image>
-			</figure>
-    </introduction>
-    <task xml:id="PA_Vector_ParamLineIntegrals_C2">
-			<statement>
-	  		<p>
-	  			Every point along <m>C_1</m> has <m>y=1</m>. Therefore, along <m>C_1</m>, the vector field <m>\vF</m> can be viewed purely as a function of <m>x</m>. In particular, along <m>C_1</m>, we have <m>\vF(x,1) = \langle x,1\rangle</m>. Since every point along <m>C_2</m> has the same <m>x</m>-value, what (in terms of <m>y</m> only) is <m>\vF</m> along <m>C_2</m>?
-	  		</p>
-	  	</statement>
-			<answer> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </answer>
-			<solution> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </solution>
-    </task>
-    <task xml:id="PA_Vector_ParamLineIntegrals_C1">
-			<introduction>
-	  		<p>
-          Recall that <m>d\vr \approx \Delta \vr</m>, and along <m>C_1</m>, we have that <m>\Delta\vr = \Delta x\vi \approx dx\vi</m>. Thus, <m>d\vr = \langle dx,0\rangle</m>. We know that along <m>C_1</m>, <m>\vF = \langle x,1\rangle</m>.
-	  		</p>
-	  	</introduction>
-	<task>
-	  <statement>
-	    <p>Write <m>\vF\cdot d\vr</m> along <m>C_1</m> without
-	    using a dot product.
-	    </p>
-	  </statement>
-	  <answer><p><m>x\, dx</m></p></answer>
-	  <solution>
-	    <p> Along the path <m>C_1</m>, <m> \vF \cdot d\vr=\langle
-	    x,1 \rangle \cdot \langle dx, 0\rangle=x dx</m>.
-	    </p>
-	  </solution>
-	</task>
-	<task>
-	  <statement>
-	    <p> What interval of <m>x</m>-values describes <m>C_1</m>?
-	    </p>
-	  </statement>
-	  <answer>
-	    <p><m>1\leq x\leq 4</m></p>
-	  </answer>
-	  <solution>
-	    <p>Since <m>C_1</m> is the line segment from <m>(1,1)</m>
-	    to <m>(4,1)</m>, we have that <m>1\leq x\leq 4</m>.
-	    </p>
-	  </solution>
-	</task>
-	<task>
-	  <statement>
-	    <p>Write <m>\int_{C_1} \vF\cdot d\vr</m> as an integral of
-	    the form <m>\int_a^b f(x)\, dx</m> and evaluate the
-	    integral.
-	    </p>
-	  </statement>
-	  <answer><p><m> \frac{15}{2} </m></p></answer>
-	  <solution>
-	    <p>From the previous parts, <me> \int_{C_1}
-	    \vF\cdot d\vr=\int_1^4 x dx = 8-\frac{1}{2} =
-	    \frac{15}{2}</me>.
-	    </p>
-	  </solution>
-	</task>
-      </task>
-      <task xml:id="PA_Vector_ParamLineIntegrals_C2Int">
-	<statement>
-	  <p>
-            Use an analogous approach to write <m>\int_{C_2} \vF\cdot
-            d\vr</m> as an integral of the form <m>\int_c^d g(y)\,
-            dy</m> and evaluate the integral.
-	  </p>
-	</statement>
-	<answer><p><m>\frac{26}{3}</m> </p> </answer>
-	<solution>
-	  <p>Along <m>C_2</m>, <m>d\vr = \langle 0,dy\rangle</m> and
-	  <m>1\leq y\leq 3</m>. Thus, we have <me> \int_{C_2} \vF\cdot
-	  d\vr = \int_1^3 y^2 dy = 9-\frac{1}{3} = \frac{26}{3}</me>.
-	  </p>
-	</solution>
-      </task>
-      <task xml:id="PA_Vector_ParamLineIntegrals_C">
-	<statement>
-	  <p>
-            Use the previous parts and a property of line integrals to calculate <m>\int_C\vF\cdot d\vr</m> without having to evaluate any additional integrals.
-	  </p>
-	</statement>
-	<answer><p><m>\frac{97}{6}</m></p></answer>
-	<solution><p> <me> \int_{C} \vF\cdot d\vr =\int_{C_1} \vF\cdot d\vr+\int_{C_2} \vF\cdot d\vr= \frac{15}{2}+\frac{26}{3}=\frac{97}{6} </me></p> </solution>
-      </task>
-      <task xml:id="PA_Vector_ParamLineIntegrals_C3">
-	<introduction><p>
-          Evaluating <m>\int_{C_3}\vF\cdot d\vr</m> takes more work at
-	  this stage, so let's break the process into smaller pieces.
-	</p>
-	</introduction>
-	<task>
-	  <statement>
-            <p>
-	      Find the slope-intercept (<m>y=mx+b</m>) form of the
-	      equation of the line containing the line segment
-	      <m>C_3</m>.
-            </p>
-	  </statement>
-          <answer><p><m>y=\frac{2}{3}x+\frac{1}{3}</m></p></answer>
-          <solution>
-	    <p>The slope is <m>(3-1)/(4-1) = 2/3</m>. Using this with
-	    either point gives <m>b=1/3</m>, so the slope-intercept
-	    form of the line's equation is
-	    <m>y=\frac{2}{3}x+\frac{1}{3}</m>.</p>
-	  </solution>
-	</task>
-	<task>
-	  <statement>
-            <p>
-              Just as we noticed that along <m>C_1</m> we always had
-              <m>y=1</m>, we now know how to express <m>y</m> in terms
-              of <m>x</m> for all points along <m>C_3</m>. Use this to
-              to express <m>\vF</m> as a vector purely in terms of
-              <m>x</m> for the points along <m>C_3</m>.
-            </p>
-	  </statement>
-          <answer><p> <m> \vF=\langle
-	  \frac{2}{3}x^2+\frac{1}{3}x,(\frac{2}{3}x+\frac{1}{3})^2\rangle
-	  </m> along <m> C_3</m>.</p> </answer>
-	  
-          <solution>
-	    <p>We know that along <m>C_3</m>, <m>y = \frac{2}{3}x +
-	    \frac{1}{3}</m>. Thus, <me>\vF(x,y) =
-	    \vF(x,\frac{2}{3}x+\frac{1}{3})=\langle
-	    \frac{2}{3}x^2+\frac{1}{3}x,(\frac{2}{3}x+\frac{1}{3})^2\rangle
-	    </me> along <m> C_3</m>.</p>
-	  </solution>
-	</task>
-	<task>
-          <statement>
-	    <p>
-              We often think of the slope of a line as being <m>\Delta
-              y/\Delta x</m>. Use this fact and the slope of the line
-              containing <m>C_3</m> to express <m>\Delta y</m> as a
-              multiple of <m>\Delta x</m>.
-            </p>
-	  </statement>
-          <answer><p> <m> \Delta y =\frac{2}{3} \Delta x</m></p></answer>
-          <solution>
-	    <p>Since the line's slope is <m>2/3</m>, we have <m>\Delta
-	    y/\Delta x = 2/3</m>, which implies that <m> \Delta y
-	    =\frac{2}{3} \Delta x</m></p>
-	  </solution>
-	</task>
-	<task>
-	  <statement>
-            <p>
-              We may view <m>\Delta\vr</m> as <m>\langle \Delta
-              x,\Delta y\rangle</m>. Since <m>\Delta x\approx dx</m>
-              and <m>\Delta y\approx dy</m>, write <m>d\vr</m> as a
-              vector in terms of <m>dx</m>. You should be able to
-              factor out <m>dx</m> from your result and write your
-              answer in the form <m>\langle a_1,a_2 \rangle\, dx</m>.
-            </p>
-	  </statement>
-          <answer>
-	    <p><m> d\vr = \langle 1,\frac{2}{3} \rangle dx</m>
-	    </p>
-	  </answer>
-          <solution>
-	    <p>
-	      <me> d\vr = \left\langle dx,\frac{2}{3}dx\right\rangle =
-	      \langle 1,\frac{2}{3} \rangle\, dx</me>
-	    </p>
-	  </solution>
-	</task>
-	<task>
-	  <statement>
-            <p>
-              Use the range of <m>x</m>-values covered by the line
-              segment <m>C_3</m> to write <m>\int_{C_3}\vF\cdot
-              d\vr</m> as a single-variable integral of the form
-              <m>\int_a^b f(x)\, dx</m> and evaluate the integral.
-            </p>
-	  </statement>
-          <answer>
-	    <p> <m>\frac{151}{6} </m>
-	    </p>
-	  </answer>
-          <solution>
-	    <p>From the coordinates of its endpoints, we know that
-	    <m>C_3</m> has <m>1\leq x\leq 4</m>. Combining the
-	    previous parts, we obtain
-	    <me> \int_{C_3} \vF\cdot d\vr = \int_1^4 \frac{2}{3}
-	    x^2+\frac{1}{3} x+\frac{2}{3} (\frac{2}{3}
-	    x+\frac{1}{3})^2 dx = \frac{151}{6} </me>.
-	    </p>
-	  </solution>
-	</task>
-      </task>
-      <task xml:id="PA_Vector_ParamLineIntegrals_Compare">
-	<statement>
-	  <p>
-            Notice that <m>C</m> and <m>C_3</m> both start at
-            <m>(1,1)</m> and end at <m>(4,3)</m>. How do the values of
-            <m>\int_C\vF\cdot d\vr</m> and <m>\int_{C_3}\vF\cdot
-            d\vr</m> compare?
-	  </p>
-	</statement>
-	<answer>
-	  <p>Different values.
-	  </p>
-	</answer>
-	<solution>
-	  <p> The results of the calculations for <m>\int_{C} \vF\cdot
-	  d\vr</m> and <m>\int_{C_3} \vF\cdot d\vr</m> are different.
-	  </p>
-	</solution>
-      </task>
-      <task xml:id="PA_Vector_ParamLineIntegrals_Gradient">
-	<statement>
-	  <p>
-          Is <m>\vF</m> a gradient vector field? Why or why not?
-          </p>
-	</statement>
-	<hint>
-	  <p>
-	     What would <xref ref="Clairaut" text="title"/>
-	     tell you about a potential function <m>f</m> such that
-	     <m>\vF = \grad{f}</m>?
-	  </p>
-	</hint>
-	<answer>
-	  <p>No.</p>
-	</answer>
-	<solution>
-	  <p> The vector field <m>\vF</m> is not a gradient vector
-	  field because there is no scalar-valued function <m>f</m> of
-	  two variables such that <m> \frac{\partial f}{\partial x} =
-	  xy </m> and <m> \frac{\partial f}{\partial y} = y^2
-	  </m>. According to Clairaut's Theorem, if such a function
-	  <m>f</m> existed, then <m> \frac{\partial}{\partial
-	  y}(\frac{\partial f}{\partial x}) = \frac{\partial}{\partial
-	  x}(\frac{\partial f}{\partial y})</m>, but <m>
-	  \frac{\partial}{\partial y}(xy) = y \neq
-	  \frac{\partial}{\partial x}(y^2)=2y</m>.
-	  </p>
-	</solution>
-      </task>
-    </exploration>
-  </introduction>
-
-  <subsection xml:id="SS_Vector_ParamLineIntegrals_Evaluation">
-    <title>Parametrizations in the Definition of <m>\int_C\vF\cdot d\vr</m></title>
+<exploration xml:id="PA_Vector_ParamLineIntegrals">
+  <introduction>
     <p>
-      <xref ref="PA_Vector_ParamLineIntegrals"/> has shown us that it
-      is possible to evaluate line integrals without needing to resort
-      to working with Riemann sums directly. However, the approaches
-      taken there seem rather cumbersome to use for oriented curves
-      that are not line segments. It was not critical that the paths
-      in <xref ref="PA_Vector_ParamLineIntegrals"/> were straight
-      lines, but rather that the paths had a description where both
-      <m>x</m> and <m>y</m> could be expressed in terms of one
-      variable. Fortunately, parametrizing the oriented curve along
-      which a line integral is calculated provides a powerful tool for
-      evaluating line integrals.
+      Let <m>\vF=\langle xy,y^2\rangle</m>, let <m>C_1</m> be the line segment from <m>(1,1)</m> to <m>(4,1)</m>, let <m>C_2</m> be the line segment from <m>(4,1)</m> to <m>(4,3)</m>, and let <m>C_3</m> be the line segment from <m>(1,1)</m> to <m>(4,3)</m>. Also let <m>C = C_1 + C_2</m>. This vector field and the curves are shown in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/>.
     </p>
-    <p>
-      Suppose that <m>C</m> is an oriented curve traced out by the
-      vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq b</m>,
-      and let <m>\vF</m> be a continuous vector field defined on a
-      region containing <m>C</m>. We can divide the interval
-      <m>[a,b]</m> into <m>n</m> sub-intervals, each of length
-      <m>\Delta t = (b-a)/n</m>, by letting <m>t_i = a + i\Delta t</m>
-      for <m>i = 0,1,\dots,n</m>. This subdivision of <m>[a,b]</m>
-      then can be used to break <m>C</m> up into <m>n</m> pieces by
-      letting <m>\Delta \vr_i = \vr(t_{i+1}) - \vr(t_{i})</m> for
-      <m>i=0,1,\dots,n-1</m> as we did in <xref ref="fig_Vector_IdeaLineIntegral_CurveVectors"/>. Now notice
-      that <me> \Delta \vr_i = \vr(t_{i+1}) - \vr(t_{i}) = \vr(t_{i} +
-      \Delta t) - \vr(t_{i}) = \left(\frac{\vr(t_{i} + \Delta t) -
-      \vr(t_{i})}{\Delta t}\right) \Delta t </me>.
-    </p>
-    <p>
-      <!-- NL- I have added a slightly different description here.
-	   Since the ratio in the last expression for <m>\Delta \vr_i</m> is approximately <m>\vr'(t_{i})</m>, we can say that <m>\Delta\vr_i\approx \vr'(t_i)\Delta t</m>. Substituting this into the Riemann sum in the definition of the line integral, we have -->
-      Looking at the definition of the line integral and substituting
-      this new expression for <m>\Delta \vr_i </m> gives
-      <me>
-	\int_C \vF\cdot d\vr = \lim_{|\Delta\vr_i|\to 0}
-	\sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta\vr_i =
-	\lim_{|\Delta\vr_i|\to 0} \sum_{i=0}^{n-1}\vF(\vr_i)\cdot
-	\left(\frac{\vr(t_{i} + \Delta t) - \vr(t_{i})}{\Delta
-	t}\right) \Delta t </me>.  When evaluating the limit as
-	<m>\Delta t\to 0</m>, the expression in the parentheses will
-	is <m>\vr'(t_i)</m>. We then have a Riemann sum that
-	reduces the evaluation of a line integral of a vector-valued
-	function along an oriented curve to a definite integral of a
-	function of one variable. Note that after evaluating the dot
-	product, <m>\vF(\vr(t))\cdot \vr'(t)</m> is (scalar) function
-	of <m>t</m>. We restate this result below for easy reference.
-    </p>
-    <theorem xml:id="thm_LineIntParam">
-      <statement>
-	<p>
-	  Let <m>C</m> be a smooth, oriented curve traced out by the
-	  vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq
-	  b</m>. If <m>\vF</m> is a continuous vector field
-	  defined near <m>C</m>, then
-	  <me>
-            \int\limits_C \vF\cdot d\vr = \int\limits_a^b
-            \vF(\vr(t))\cdot \vr'(t)\, dt
-	  </me>.
-	</p>
-      </statement>
-    </theorem>
-    <example xml:id="ex_Vector_ParamLineIntegrals_QuarterCircle">
-      <statement>
-	<p>
-	  Let <m>\vF(x,y) = x\vi + y^2\vj</m> and let <m>C</m> be the
-	  quarter of the circle of radius <m>3</m> from <m>(0,3)</m>
-	  to <m>(3,0)</m>. This vector field and curve are shown in
-	  <xref ref="fig_Vector_ParamLineIntegrals_FieldQuarterCircle"/>. By properties of line integrals, we know that <m>\int_C
-	  \vF\cdot d\vr = -\int_{-C}\vF\cdot d\vr</m>, and we will use
-	  this property since <m>-C</m> is the usual clockwise
-	  orientation of a circle, meaning we can parametrize
-	  <m>-C</m> by <m>\vr(t) = \langle
-	  3\cos(t),3\sin(t)\rangle</m> for <m>0\leq t\leq \pi/2</m>.
-	</p>
-	<figure xml:id="fig_Vector_ParamLineIntegrals_FieldQuarterCircle">
-	  <caption>The vector field <m>\vF = x\vi + y^2\vj</m> and an oriented curve <m>C</m> </caption>
-	  <image width="50%" source="/fig_12_3_vf_quarter_circle">
+		<figure xml:id="fig_Vector_ParamLineIntegrals_FieldSegments">
+      <caption>A vector field <m>\vF</m> and three oriented curves</caption>
+      <image width="60%" source="/fig_12_3_preview_field_segments_rev">
 	    <description>
-	      The region in the <m>xy</m>-plane with <m>0\leq x\leq
-	      4</m> and <m>0\leq y\leq 4</m>. The quarter circle of
-	      radius <m>3</m> centered at the origin and oriented
-	      clockwise is shown along with the vector field <m>x\vi +
-	      y^2\vj</m>, which contains vectors whose magnitudes
-	      increase more as <m>y</m> increases than as <m>x</m>
-	      increases. Also vectors farther from the <m>x</m>-axis
-	      have steeper positive slope than those close to the
-	      <m>x</m>-axis, which are close to horiznotal.
-	    </description>
-	  </image>
-	</figure>
-	<p>
-	  To evaluate <m>\int_{-C}\vF\cdot d\vr</m> using this
-	  parametrization, we need to note that
-	  <me>
-            \vF(\vr(t)) = \langle 3\cos(t) , 9\sin^2(t)\rangle\qquad\text{ and } \qquad \vr'(t) = \langle -3\sin(t),3\cos(t)\rangle
-	    </me>.
-	</p>
-
-	<p>
-	  Thus, we have
-	  <md>
-            <mrow>\int_C\vF\cdot d\vr \amp = -\int_{-C}\vF\cdot d\vr = -\int_0^{\pi/2} \langle 3\cos(t),9\sin^2(t)\rangle\cdot\langle-3\sin(t),3\cos(t)\rangle\, dt</mrow>
-            <mrow>\amp = -\int_0^{\pi/2} \left(-9\sin(t)\cos(t) + 27\sin^2(t)\cos(t)\right)\, dt \quad \text{where } u =\sin(t) </mrow>
-            <mrow>\amp  = -\int_0^1 (-9 u + 27u^2)\, du = -\left[ -\frac{9}{2}u^2 + 9u^3\right]_0^1 = -\left(-\frac{9}{2} + 9\right) = -\frac{9}{2}</mrow>
-	    </md>.
-	</p>
-      </statement>
-    </example>
-
-    <p>As the example above shows, <xref ref="thm_LineIntParam"/>
-    allows us to reduce the problem of calculating a line integral of
-    a vector-valued function along an oriented curve to one of finding
-    a suitable parametrization for the curve. Once we have such a
-    parametrization, evaluating the line integral becomes evaluating
-    a single-variable integral, which is something you have done many
-    times before. The example also illustrates that using the
-    properties of line integrals can allow us to use a more
-    <q>natural</q> parametrization. You may find it interesting to
-    use the parametrization <m>\langle 3\sin(t),3\cos(t)\rangle</m>
-    for <m>0\leq t\leq \pi/2</m> to evaluate the line integral. Do you
-    get the same result?
-    </p>
-    
-    <activity xml:id="act_Vector_ParamLineIntegrals_CalculateTwoFields">
-      <task xml:id="task_Vector_ParamLineIntegrals_CalculateTwoFields_3D">
-	<statement>  
-          <p>
-            Find the work done by the vector field <m>\vF(x,y,z) =
-            6x^2z\vi + 3y^2\vj + x\vk</m> on a particle that moves
-            from the point <m>(3,0,0)</m> to the point
-            <m>(3,0,6\pi)</m> along the helix given by <m>\vr(t) =
-            \langle 3\cos(t),3\sin(t),t\rangle</m>.
-          </p>
-	</statement>
-        <answer><p> <m> 324 \pi </m></p></answer>
-        <solution> <p> <m> \vr(t)=\langle 3\cos(t), 3\sin(t), t\rangle</m> for <m> 0\leq t\leq 6\pi</m>, so <m> \vr'(t) = \langle -3\sin(t), 3 \cos(t), 1 \rangle </m>, so <m> \vF(t) =\langle 54t(\cos(t))^2, 27(s\sin(t))^2,3 \cos(t)\rangle </m> and <me>\int_C \vF \cdot d\vr =\int_0^{6\pi} -162t(\cos(t))^2\sin(t)+81(\sin(t))^2 \cos(t)+3\cos(t) \enspace dt=324 \pi</me></p></solution>
-	<!--TODO: 
-	     Perhaps we should have a calcplot3d graph of this curve and vector field. I am having trouble getting it to look nice...
-	-->
-
-      </task>
-      <task xml:id="task_Vector_ParamLineIntegrals_CalculateTwoFields_2D">
-	<statement>    
-          <p>
-            Let <m>\vF(x,y) = \langle 0,x\rangle</m>. Let <m>C</m> be the closed curve consisting of the top half of the circle of radius <m>2</m> centered at the origin and the portion of the <m>x</m>-axis from <m>(2,0)</m> to <m>(-2,0)</m>, oriented clockwise. Find the circulation of <m>\vF</m> around <m>C</m>.
-          </p>
-	</statement>
-	<answer><p><m>-2\pi</m></p></answer>
-	<solution>
-          <p>
-            Let <m>C_1</m> be given by <m> \vr(t) =\langle 2\cos(-t),2\sin(-t)\rangle</m> where <m>-\pi \leq t\leq 0</m>. This means that <m>\vF(t) = \langle 0, 2\cos(-t) \rangle</m> and <me> \int_{C_1} \vF\cdot d\vr =-4\int_{-\pi}^0 (\cos(t))^2 \enspace dt = -2 \pi</me>.
-          </p>
-          <p>
-            Let <m>C_2</m> be given by <m> \vr(t) =\langle t,0\rangle</m> where <m>-2 \leq t\leq 2</m>. This means that <m>\vF(t) = \langle 0, t \rangle</m> and <me> \int_{C_2} \vF\cdot d\vr =\int_{-2}^2 0 \enspace dt = 0</me>.
-          </p>
-          <p>
-            Thus the line integral over <m>C_1</m> then <m>C_2</m> will give a result of <m>-2\pi</m>.
-          </p>
-	</solution>
-      </task>
-    </activity>
-
-    <p>The next activity has you investigate the line integrals of a
-    fixed vector field along different curves. This will be an
-    important, recurring theme as we study a variety of different
-    integrals and vector fields in this chapter.</p>
-    <activity xml:id="act_Vector_ParamLineIntegrals_DifferentPaths">
-      <introduction><p>
-	Let <m>\vF(x,y) = \langle y^2,2xy+3\rangle</m>.
-      </p>
-      </introduction>
-      <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Cubic">
-	<statement>
-          <p>
-            Let <m>C_1</m> be the portion of the graph of <m>y=2x^3+3x^2-12x-15</m> from <m>(-2,5)</m> to <m>(3,30)</m>. Calculate <m>\int_{C_1}\vF\cdot d\vr</m>.
-          </p>
-	</statement>
-	<answer><p><m>2825 </m></p></answer>
-	<solution>
-	  <p> If <m> \vF=\langle y^2,2xy+3\rangle </m> and the curve
-	  <m>C_1</m> is traced out by <m>\vr(t) = \langle t,
-	  2t^3+3t^2-12t-15 \rangle </m> for <m>-2 \leq t\leq 3 </m>,
-	  then <me>\int_{C_1} \vF\cdot d\vr =\int_{-2}^3
-	  28t^{6} + 72t^{5} - 195t^{4} - 528 t^{3} + 180 t^{2} + 738 t + 189\, dt =
-	  2825</me></p></solution>
-      </task>
-      <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Segment">
-	<statement>
-          <p>
-            Let <m>C_2</m> be the line segment from <m>(-2,5)</m> to <m>(3,30)</m>. Calculate <m>\int_{C_2}\vF\cdot d\vr</m>.
-          </p>
-	</statement>
-	<answer><p><m>2825</m></p></answer>
-	<solution><p>In this part, the curve <m>C_2</m> is traced out
-	by <m>\vr(t) =\langle -2+5t,5+25t \rangle</m> for <m>0 \leq
-	t\leq 1</m>. So <me> \int_{C_2} \vF\cdot d\vr =\int_{0}^1
-	\langle (5+25t)^2,2(-2+5t)(5+25t)+3\rangle \cdot \langle
-	5,25\rangle \,dt = 2825</me> </p>
-	</solution>
-      </task>
-      <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Circle">
-	<statement>
-          <p>
-            Let <m>C_3</m> be the circle of radius <m>3</m> centered at the origin, oriented counterclockwise. Calculate <m>\oint_{C_3} \vF\cdot d\vr</m>.
-          </p>
-	</statement>
-	<answer><p><m>0</m></p></answer>
-	<solution> <p>In this part, the curve <m>C_3</m> is traced out by <m>\vr(t) =\langle 3\cos(t),3\sin(t) \rangle</m> as <m>0 \leq t\leq 2\pi</m>. So <me> \int_{C_3} \vF\cdot d\vr =\int_{0}^{2\pi} \langle 9(\sin(t))^2,2\cos(t)\sin(t)+3 \rangle \cdot \langle -3\sin(t),3\cos(t) \rangle \, dt = 0</me> </p>
-	</solution>
-      </task>
-      <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Connect">
+		    The vector field <m>\vF=\langle xy,y^2\rangle</m> plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq 4</m>. This vector field radiates from the origin with vector length increasing as distance from the origin increases. The graph includes the line segment <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>, and the line segment <m>C_3</m> from <m>(1,1)</m> to <m>(4,3)</m>.
+		  </description>
+  		</image>
+		</figure>
+  </introduction>
+  <task xml:id="PA_Vector_ParamLineIntegrals_C2">
+		<statement>
+			<p>
+	  		Every point along <m>C_1</m> has <m>y=1</m>. Therefore, along <m>C_1</m>, the vector field <m>\vF</m> can be viewed purely as a function of <m>x</m>. In particular, along <m>C_1</m>, we have <m>\vF(x,1) = \langle x,1\rangle</m>. Since every point along <m>C_2</m> has the same <m>x</m>-value, write <m>\vF</m> as a function of <m>y</m> only (for the points on <m>C_2</m>).
+	  		</p>
+	  </statement>
+		<answer> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </answer>
+		<solution> <p> <m>\vF=\langle 4y,y^2\rangle </m> along <m>C_2</m>. </p> </solution>
+  </task>
+  <task xml:id="PA_Vector_ParamLineIntegrals_C1">
+		<introduction>
+	  	<p>
+        Recall that <m>d\vr \approx \Delta \vr</m>, and along <m>C_1</m>, we have that <m>\Delta\vr = \Delta x\vi \approx dx\vi</m>. Thus, <m>d\vr = \langle dx,0\rangle</m>. We know that along <m>C_1</m>, <m>\vF = \langle x,1\rangle</m>.
+	  	</p>
+	  </introduction>
+		<task>
+	  	<statement>
+	    	<p>
+	    		Write <m>\vF\cdot d\vr</m> along <m>C_1</m> without using a dot product.
+	    	</p>
+	  	</statement>
+	  	<answer><p><m>x\, dx</m></p></answer>
+	  	<solution>
+	    	<p>
+	    		Along the path <m>C_1</m>, <m> \vF \cdot d\vr=\langle x,1 \rangle \cdot \langle dx, 0\rangle=x dx</m>.
+	    	</p>
+	  	</solution>
+		</task>
+		<task>
+		  <statement>
+		    <p> What interval of <m>x</m>-values describes <m>C_1</m>?
+		    </p>
+		  </statement>
+		  <answer>
+		    <p><m>1\leq x\leq 4</m></p>
+		  </answer>
+		  <solution>
+		    <p>Since <m>C_1</m> is the line segment from <m>(1,1)</m>
+		    to <m>(4,1)</m>, we have that <m>1\leq x\leq 4</m>.
+		    </p>
+		  </solution>
+		</task>
+		<task>
+		  <statement>
+		    <p>Write <m>\int_{C_1} \vF\cdot d\vr</m> as an integral of
+		    the form <m>\int_a^b f(x)\, dx</m> and evaluate the
+		    integral.
+		    </p>
+		  </statement>
+		  <answer><p><m> \frac{15}{2} </m></p></answer>
+		  <solution>
+		    <p>From the previous parts, <me> \int_{C_1}
+		    \vF\cdot d\vr=\int_1^4 x dx = 8-\frac{1}{2} =
+		    \frac{15}{2}</me>.
+		    </p>
+		  </solution>
+		</task>
+  </task>
+  <task xml:id="PA_Vector_ParamLineIntegrals_C2Int">
+		<statement>
+	  	<p>
+      	Use an analogous approach to write <m>\int_{C_2} \vF\cdot d\vr</m> as an integral of the form <m>\int_c^d g(y)\, dy</m> and evaluate the integral.
+	  	</p>
+		</statement>
+		<answer><p><m>\frac{26}{3}</m> </p> </answer>
+		<solution>
+		  <p>
+		  	Along <m>C_2</m>, <m>d\vr = \langle 0,dy\rangle</m> and <m>1\leq y\leq 3</m>. Thus, we have <me> \int_{C_2} \vF\cdot d\vr = \int_1^3 y^2 dy = 9-\frac{1}{3} = \frac{26}{3}</me>.
+		  </p>
+		</solution>
+  </task>
+  <task xml:id="PA_Vector_ParamLineIntegrals_C">
+		<statement>
+	  	<p>
+      	Use the previous parts and a property of line integrals to calculate <m>\int_C\vF\cdot d\vr</m> without having to evaluate any additional integrals.
+	  	</p>
+		</statement>
+		<answer><p><m>\frac{97}{6}</m></p></answer>
+		<solution><p> <me> \int_{C} \vF\cdot d\vr =\int_{C_1} \vF\cdot d\vr+\int_{C_2} \vF\cdot d\vr= \frac{15}{2}+\frac{26}{3}=\frac{97}{6} </me></p> </solution>
+  </task>
+</exploration>
+<activity>
 	<introduction>
-	  <p>To connect the previous parts of this activity, use a
-	  graphing utility to plot the curves <m>C_1</m> and
-	  <m>C_2</m> on the same axes. </p>
+		<p>
+			In this activity, we will look at a process to write a line integral of a line segment as a definite integral in one variable. This uses the same set up as the Preview Activity including <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments" />. In particular, evaluating <m>\int_{C_3}\vF\cdot d\vr</m> takes more work at this stage, so let's break the process into a few steps.
+		</p>
 	</introduction>
 	<task>
-	  <statement>
-	    <p> What type of curve is <m>C_1 - C_2</m>?</p>
-	  </statement>
-	  <answer>
-	    <p>Closed</p>
-	  </answer>
-	  <solution>
-	    <p>Since the curves have the same endpoints but
-	    <m>-C_2</m> is oriented oppositely, <m>C_1-C_2</m> forms a
-	    closed curve.</p>
-	  </solution>
+  	<statement>
+      <p>
+      	Find the slope-intercept (<m>y=mx+b</m>) form of the equation of the line containing the line segment <m>C_3</m>.
+      </p>
+  	</statement>
+    <answer><p><m>y=\frac{2}{3}x+\frac{1}{3}</m></p></answer>
+    <solution> <p>The slope is <m>(3-1)/(4-1) = 2/3</m>. Using this with either point gives <m>b=1/3</m>, so the slope-intercept form of the line's equation is <m>y=\frac{2}{3}x+\frac{1}{3}</m>.</p>
+  	</solution>
+	</task>
+	<task>
+  	<statement>
+      <p>
+        We now know how to express <m>y</m> in terms of <m>x</m> for all points along <m>C_3</m>. Use this to express the components of <m>\vF</m>  in terms of only <m>x</m> for the points along <m>C_3</m>.
+      </p>
+  	</statement>
+    <answer><p> <m> \vF=\langle \frac{2}{3}x^2+\frac{1}{3}x,(\frac{2}{3}x+\frac{1}{3})^2\rangle </m> along <m> C_3</m>.</p> </answer>
+    <solution><p>We know that along <m>C_3</m>, <m>y = \frac{2}{3}x + \frac{1}{3}</m>. Thus, <me>\vF(x,y) = \vF(x,\frac{2}{3}x+\frac{1}{3})=\langle \frac{2}{3}x^2+\frac{1}{3}x,(\frac{2}{3}x+\frac{1}{3})^2\rangle </me> along <m> C_3</m>.</p> </solution>
+	</task>
+	<task>
+    <statement>
+    	<p>
+        We often think of the slope of a line as being <m>\Delta y/\Delta x</m>. Use this fact and the slope of the line containing the segment <m>C_3</m> to express <m>\Delta y</m> as a multiple of <m>\Delta x</m>.
+      </p>
+  	</statement>
+    <answer><p> <m> \Delta y =\frac{2}{3} \Delta x</m></p></answer>
+    <solution><p>Since the line's slope is <m>2/3</m>, we have <m>\Delta y/\Delta x = 2/3</m>, which implies that <m> \Delta y =\frac{2}{3} \Delta x</m></p> </solution>
+	</task>
+	<task>
+  	<statement>
+      <p>
+      	We may view <m>\Delta\vr</m> as <m>\langle \Delta x,\Delta y\rangle</m>. Since <m>\Delta x\approx dx</m> and <m>\Delta y\approx dy</m>, write <m>d\vr</m> as a vector in terms of <m>dx</m>. You should be able to factor out <m>dx</m> from your result and write your answer in the form <m>\langle a_1,a_2 \rangle\, dx</m>.
+      </p>
+  	</statement>
+    <answer> <p><m> d\vr = \langle 1,\frac{2}{3} \rangle dx</m> </p> </answer>
+    <solution> <p> <me> d\vr = \left\langle dx,\frac{2}{3}dx\right\rangle = \langle 1,\frac{2}{3} \rangle\, dx</me></p> </solution>
 	</task>
 	<task>
 	  <statement>
-	    <p>What is the value of <m>\oint_{C_1-C_2}\vF\cdot
-	    d\vr</m>?</p>
+      <p>
+        Use the range of <m>x</m>-values covered by the line segment <m>C_3</m> to write <m>\int_{C_3}\vF\cdot d\vr</m> as a single-variable integral of the form <m>\int_a^b f(x)\, dx</m> and evaluate the integral.
+      </p>
 	  </statement>
-	  <answer>
-	    <p><m>0</m></p>
-	  </answer>
-	  <solution>
-	    <p>Since <m>\int_{C_1}\vF\cdot d\vr = \int_{C_2}\vF\cdot
-	    d\vr</m>, we have that <me>\oint_{C_1 - C_2}\vF\cdot d\vr
-	    = \int_{C_1}\vF\cdot d\vr - \int_{C_2}\vF\cdot d\vr =
-	    0</me>.</p>
-	  </solution>
+    <answer> <p> <m>\frac{151}{6} </m> </p> </answer>
+    <solution> <p>From the coordinates of its endpoints, we know that <m>C_3</m> has <m>1\leq x\leq 4</m>. Combining the
+	    previous parts, we obtain <me> \int_{C_3} \vF\cdot d\vr = \int_1^4 \frac{2}{3} x^2+\frac{1}{3} x+\frac{2}{3} (\frac{2}{3} x+\frac{1}{3})^2 dx = \frac{151}{6} </me>. </p> </solution>
 	</task>
-	<task>
-	  <statement>
-	    <p>What does your answer to <xref ref="task_Vector_ParamLineIntegrals_DifferentPaths_Circle" text="local">part</xref> allow you to say about the value
-	    of the line integral of <m>\vF</m> along the top half of
-	    <m>C_3</m> compared to the line integral of <m>\vF</m>
-	    from <m>(3,0)</m> to <m>(-3,0)</m> along the bottom half
-	    of the circle of radius <m>3</m> centered at the
-	    origin?</p>
-	  </statement>
-	  <answer><p>They are equal.</p></answer>
-	  <solution>
-	    <p>If we reverse the orientation of the bottom half, these
-	    curves combine to form <m>C_3</m>. Thus, the sum of the
-	    two line integrals is <m>0</m>, and so when changing the
-	    orientation of the bottom portion of the circle, we get
-	    that the line integrals are equal.</p>
-	  </solution>
-	</task>
-      </task>
-    </activity>
-  </subsection>
-  <subsection>
-    <title>Alternative Notation for Line Integrals</title>
-    <p>
-      In contexts where the fact that the quantity we are measuring
-      via a line integral is best measured via a dot product (such as
-      calculating work), the notation we have used thus far for line
-      integrals is fairly common. However, sometimes the vector field
-      is such that the units on <m>x</m>, <m>y</m>, and <m>z</m> are
-      not distances. In this case, a dot product may not have a
-      physical meaning, and an alternative notation using
-      differentials can be common. Specifically, if <m>\vF(x,y,z) =
-      F_1(x,y,z)\vi + F_2(x,y,z)\vj + F_3(x,y,z)\vk</m>, then
-      <me>
-	\int_C\vF\cdot d\vr = \int_C \langle F_1, F_2, F_3 \rangle \cdot \langle dx, dy, dz \rangle= \int_C F_1\, dx + F_2\, dy + F_3\, dz
-	</me>.
-	A line integral in the form of <m>\int_C F_1\, dx + F_2\, dy +
-	F_3\, dz</m> is called the <term>differential form of a line
-	integral</term><idx><h>line integral</h><h>differential form of</h></idx>.
-    </p>
-    <p>
-      (If <m>\vF</m> is a vector field in <m>\R^2</m>, the <m>F_3\,
-      dz</m> term is omitted.) As a concrete example, if <m>\vF(x,y,z)
-      = \langle x^2y,z^3,x\cos(z)\rangle</m> and <m>C</m> is some
-      oriented curve in <m>\R^3</m>, then
-      <me>
-	\int_C\vF\cdot d\vr = \int_C x^2y\, dx + z^3\, dy + x\cos(z)\,
-	dz </me>. 
-    </p>
-    <p>
-      It is important to recognize that the integral on the right-hand
-      side is <em>still a line integral</em> and must be evaluated
-      using techniques for evaluating line integrals. We cannot simply
-      try to treat it as if it were a definite integral of a function
-      of one variable. Because the notation <m>\int_C\vF\cdot d\vr</m>
-      provides a reminder that this is a line integral and
-      <em>not</em> a definite integral of the types calculated earlier
-      in your study of calculus, we will only use the vector notation
-      for line integrals in the body of the text. However, some
-      exercises may require use of the differential form.
-    </p>
-  </subsection>
-  <subsection>
-    <title>Independence of Parametrization for a Fixed Curve</title>
-    <p>
-      Up to this point, we have chosen whatever parametrization of an
-      oriented curve <m>C</m> came to mind, and our argument for how
-      we can use parametrizations to calculate line integrals did not
-      depend on the specific choice of parametrization. However, it
-      is not immediately obvious that different parametrizations
-      don't result in different values of the line integral. Our next
-      example explores this question.
-    </p>
-    <example xml:id="ex_Vector_ParamLineIntegrals_ParamIndep">
-      <p>
-	Let <m>\vF = x\vi</m>. We consider two different oriented
-	curves from <m>(0,1)</m> to <m>(3,3)</m>. The first oriented
-	curve <m>C</m> travels horiznotally to <m>(3,1)</m> and then
-	proceeds vertically to <m>(3,3)</m>. The second oriented curve
-	<m>C_3</m> is the line segment from <m>(0,1)</m> to
-	<m>(3,3)</m>. Notice that, as depicted in <xref ref="fig_Vector_ParamLineIntegrals_xFieldTriangle"/>, we can
-	break <m>C</m> up into two oriented curves <m>C_1</m> (the
-	horiznotal portion) and <m>C_2</m> (the vertical portion) so
-	that <m>C = C_1 + C_2</m>.
+  <task xml:id="PA_Vector_ParamLineIntegrals_Compare">
+		<statement>
+	  	<p>
+    		Notice that <m>C</m> and <m>C_3</m> both start at <m>(1,1)</m> and end at <m>(4,3)</m>. How do the values of <m>\int_C\vF\cdot d\vr</m> and <m>\int_{C_3}\vF\cdot d\vr</m> compare?
+    	</p>
+		</statement>
+		<answer> <p>Different values.</p> </answer>
+		<solution> <p> The results of the calculations for <m>\int_{C} \vF\cdot d\vr</m> and <m>\int_{C_3} \vF\cdot d\vr</m> are different. </p> </solution>
+  </task>
+  <task xml:id="PA_Vector_ParamLineIntegrals_Gradient">
+		<statement>
+	  	<p>
+      	Is <m>\vF</m> a gradient vector field? Why or why not?
       </p>
-      <figure xml:id="fig_Vector_ParamLineIntegrals_xFieldTriangle">
-	<caption>The vector field <m>\vF = x\vi</m> and some oriented curves.</caption>
-	<image width="65%" source="/fig_12_3_field_triangle_rev">
-	  <description>The vector field <m>x\vi</m>, which consists of
-	  horiznotal vectors that increase in length as distance from
-	  the <m>y</m>-axis increases. Three oriented line segments
-	  are also depicted. The line segment <m>C_1</m> is from
-	  <m>(0,1)</m> to <m>(3,1)</m>. The line segment <m>C_2</m> is
-	  from <m>(3,1)</m> to <m>(3,3)</m>. The line segment
-	  <m>C_3</m> is from <m>(0,1)</m> to
-	  <m>(3,3)</m>.</description>
-	  <!-- Below is the code to generate the graphic for the above image. I'm can't get it to work on a Windows system with a Sage install...
-	       <sageplot>
-		 plot2=parametric_plot((3*t,1+2*t),(t,0,1),color="green",thickness=2,axes_labels=["$x$","$y$"])+arrow((0,1),(1.5,2),color="green",xmin=-.25,xmax=3.9,ymin=-.25,ymax=3.9)
-		 plot2=plot2+parametric_plot((t,1),(t,0,3),color="red",thickness=2)+arrow((1,1),(2,1),color="red")
-		 plot2=plot2+parametric_plot((3,t),(t,1,3),color='red',thickness=2)+arrow((3,1),(3,2),color='red')
-		 plot1=plot_vector_field((x,0),(x,0,3.5),(y,0,3.5),color="blue",frame=False)
-		 text1=text(r"$C_3$",(1.2,2.1),color='green',fontsize='x-large',clip=True)
-		 text2=text(r"$C_2$",(3.4,1.95),color='red',fontsize='x-large',clip=True)
-		 text3=text(r"$C_1$",(2,0.8),color="red",fontsize='x-large',clip=True)
-		 plot1=plot1+text1+text2+text3
-		 final_plot3=plot2+plot1
-		 final_plot3
-		 </sageplot> -->
-	</image>
-      </figure>
-      <p>
-	We first note that since <m>\vF</m> is orthogonal to
-	<m>C_2</m>, <m>\int_{C_2}\vF\cdot d\vr=0</m>; therefore
-	<m>\int_C\vF\cdot d\vr =\int_{C_1}\vF\cdot d\vr</m>. We can
-	parametrize <m>C_1</m> as <m>t\vi+\vj</m> for <m>0\leq
-	t\leq 3</m> (<m>t</m> is treated like the coordinate
-	<m>x</m>), which leads to
-	<me>
-          \int_{C_1}\vF\cdot d\vr = \int_0^3\langle t,0\rangle\cdot \langle 1,0\rangle\, dt = \int_0^3 t\, dt = \frac{9}{2}
-	  </me>.
-      </p>
-      <p>
-	Thus, <m>\int_C\vF\cdot d\vr = 9/2</m>.
-      </p>
-      <p>
-	Now we look at <m>\int_{C_3}\vF\cdot d\vr</m>, but we
-	parametrize <m>C_3</m> in a nonstandard way by letting
-	<m>\vr(t) = \langle 3\sin(t),1+2\sin(t)\rangle</m> for
-	<m>0\leq t\leq \frac{\pi}{2}</m>. (You should use a graphing
-	utility to plot this parametrization to help convince yourself
-	that it really does give <m>C_3</m>.) This gives <m>\vr'(t) =
-	\langle 3\cos(t),2\cos(t)\rangle</m>, and
-	<me>
-          \int_{C_3}\vF\cdot d\vr = \int_0^{\pi/2}\langle 3\sin(t),0\rangle\cdot\langle 3\cos(t),2\cos(t)\rangle\, dt = \int_0^{\pi/2} 9\sin(t)\cos(t)\, dt = \frac{9}{2}
-	</me>
-      </p>
-      <p>
-	In the next activity, you are asked to consider the more
-	typical parametrization of <m>C_3</m> and verify that using
-	it gives the same value for the line integral.
-      </p>
-      <p>
-	It's also worth observing here that <m>\int_C\vF\cdot d\vr =
-	\int_{C_3}\vF\cdot d\vr</m>, so at least two (very different)
-	paths from <m>(0,1)</m> to <m>(3,3)</m> give the same value of
-	the line integral here. The next section will further
-	investigate when line integrals over different paths (with the
-	same initial point and final point) will evaluate to the same
-	value.
-      </p>
-    </example>
-    <p>As promised, the final activity of this section asks you to
-    look at another parametrization of the curve <m>C_3</m> from the
-    previous example. It also asks you to look at two different
-    oriented curves between a pair of points, similarly to what you
-    did in <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>.</p>
-    
-    <activity xml:id="act_Vector_ParamLineIntegrals_ParamIndep">
-      <task xml:id="task_Vector_ParamLineIntegrals_ParamIndep_FinishEx">
-        <statement>
-          <p>
-            The typical parametrization of the line segment from
-            <m>(0,1)</m> to <m>(3,3)</m> (the oriented curve
-            <m>C_3</m> in <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>) is
-            <m>\vr(t) = \langle 3t,1+2t\rangle</m> where <m>0 \leq
-            t\leq 1</m>. Use this parametrization to calculate
-            <m>\int_{C_3}\vF\cdot d\vr</m> for the vector field <m>\vF
-            = x\vi</m> and compare your answer to the result of <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>.
-          </p>
-        </statement>
-        <answer><p><m>\frac{9}{2}</m></p></answer>
-        <solution> 
-          <p>
-            Using the parametrization given the line integral becomes
-            <me> \int_0^{1} \langle 3t,0\rangle \cdot \langle 3,2 \rangle \enspace dt = \int_0^1 9t \, dt = \frac{9}{2} </me>
-            This is the same result as in <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>.
-          </p>
-        </solution>
-      </task>
-      <task xml:id="task_Vector_ParamLineIntegrals_ParamIndep_TwoSegs">
-	<statement>
-          <p>
-            Calculate <m>\int_C \langle (3xy+e^z), x^2,
-            (4z+xe^z)\rangle\cdot d\vr</m> where <m>C</m> is the
-            oriented curve consisting of the line segment from the
-            origin to <m>(1,1,1)</m> followed by the line segment from
-            <m>(1,1,1)</m> to <m>(0,0,2)</m>.
-          </p>
-	</statement>
-	<answer><p><m> 2e^2-2e+8</m></p></answer>
-	<solution>
-          <p>
-            Let <m>\vr_1(t) = \langle t,t,t \rangle</m> where<m> 0 \leq t \leq 1</m> and <m>\vr_2(t) = \langle 1-t,1-t,1+t \rangle</m> where<m> 0 \leq t \leq 1</m>. Our line integral can be computed with
-            <me>
-              \int_{C_1} \vF \cdot d\vr = \int_0^1 \langle 3t^2+e^t,t^2,4t+te^t\rangle \cdot \langle 1,1,1\rangle \enspace dt= e+\frac{10}{3}
-            </me>
-            <me>
-              \int_{C_2} \vF \cdot d\vr =  \\
-              \int_0^1 \langle 3(1-t)^2+e^{1-t},(1-t)^2,4(1+t)+(1-t)e^{1+t} \rangle \cdot \langle -1,-1,1\rangle \enspace dt \\
-              = 2e^2-3e+\frac{14}{3} 
-            </me>
-            Thus the line integral over <m>C_1</m> then <m>C_2</m> is <m> 2e^2-2e+8</m>
-          </p>
-        </solution>
-      </task>
-      <task xml:id="task_Vector_ParamLineIntegrals_ParamIndep_OneSeg">
-	<statement>
-          <p>
-            Calculate <m>\int_{C'} \langle 3xy+e^z, x^2,
-            4z+xe^z\rangle\cdot d\vr</m> where <m>C'</m> is the line
-            segment from <m>(0,0,0)</m> to <m>(0,0,2)</m>.
-          </p>
-	</statement>
-	<answer><p><m>16</m></p></answer>
-	<solution>
-          <p> 
-            The line segment from <m>(0,0,0)</m> to <m>(0,0,2)</m> can
-            be given by <m> \vr(t) = \langle 0,0,t \rangle</m> with
-            <m> 0\leq t\leq 2</m>. Note that <m>d\vr(t)= \langle 0,0,1
-            \rangle dt</m>, so <me>\int_{C'}\vF\cdot d\vr = \int_0^2
-            4t\enspace dt = 16</me>
-          </p>
-	</solution>
-      </task>
-      <task>
-	<statement>
-	  <p>Is the vector field you considered in the previous two
-	  parts a gradient vector field? Why or why not? How does this
-	  compare to the vector field <m>\vF</m> of <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>?</p>
-	</statement>
-	<answer><p>No</p></answer>
-	<solution>
-	  <p>No. One way to observe this would be to check the partial
-	  derivative with respect to <m>y</m> of the <m>\vi</m>
-	  component and compare it to the partial derivative with
-	  respect to <m>x</m> of the <m>\vj</m> component. Since they
-	  are not equal, <xref ref="Clairaut" text="title"/>
-	  tells us that this vector field is not a gradient vector
-	  field.</p>
-	</solution>
-      </task>
-    </activity>
-    <p>
-      Although we have not given a proof or even an intuitive
-      argument, the phenomenon you observed in <xref ref="task_Vector_ParamLineIntegrals_ParamIndep_FinishEx" text="local">part</xref> of <xref ref="act_Vector_ParamLineIntegrals_ParamIndep"/> is not
-      particular to this curve or this vector field. The value of
-      <m>\int_C\vF\cdot d\vr</m> does not depend on the
-      parametrization of <m>C</m> used to calculate the line integral
-      when using <xref ref="thm_LineIntParam"/>. We will take this
-      for granted in the remainder of the chapter. The next section
-      will engage in a serious exploration of when a vector field has
-      the property that the line integral from a point <m>P</m> to a
-      point <m>Q</m> does not depend not he choice of oriented path
-      between them.
-    </p>
-  </subsection>
+		</statement>
+		<hint> <p> What would <xref ref="Clairaut" text="title"/> tell you about a potential function <m>f</m> such that <m>\vF = \grad{f}</m>? </p> </hint>
+		<answer> <p>No.</p> </answer>
+		<solution> <p> The vector field <m>\vF</m> is not a gradient vector field because there is no scalar-valued function <m>f</m> of two variables such that <m> \frac{\partial f}{\partial x} = xy </m> and <m> \frac{\partial f}{\partial y} = y^2 </m>. According to Clairaut's Theorem, if such a function <m>f</m> existed, then <m> \frac{\partial}{\partial y}(\frac{\partial f}{\partial x}) = \frac{\partial}{\partial x}(\frac{\partial f}{\partial y})</m>, but <m> \frac{\partial}{\partial y}(xy) = y \neq \frac{\partial}{\partial x}(y^2)=2y</m>. </p> </solution>
+  </task>
+</activity>
+</introduction>
 
-  <subsection>
-    <title>Summary</title>
-    <p>
-      <ul>
-	<li>
-	  <p>
-            Line integrals of vector fields along oriented curves can be evaluated by parametrizing the curve in terms of <m>t</m> and then calculating the integral of <m>\vF(\vr(t))\cdot \vr'(t)</m> on the interval <m>[a,b]</m>.
-	  </p>
-	</li>
-	<li>
-	  <p>The parametrization chosen for an oriented curve
-	  <m>C</m> when calculating the line integral
-	  <m>\int_C\vF\cdot d\vr</m> using the formula <m>\int_a^b
-	  \vF(\vr(t))\cdot \vr'(t)\, dt</m> does not impact the value
-	  of the line integral.</p>
-	</li>
-	<li>
-	  <p>
-            If <m>C_1</m> and <m>C_2</m> are different paths from <m>P</m> to <m>Q</m>, it is possible for <m>\int_{C_1}\vF\cdot d\vr</m> to have a different value to <m>\int_{C_2}\vF\cdot d\vr</m>.
-	  </p>
-	</li>
-<!--	<li>
-	  <p>
-            The line integral <m>\int_C\vF\cdot d\vr</m> can also be written as <m>\int_C F_1\, dx + F_2\, dy</m> if <m>\vF = \langle F_1,F_2\rangle</m> is a vector field in <m>\R^2</m> or <m>\int_C F_1\, dx + F_2\, dy + F_3\, dz</m> if <m>\vF = \langle F_1,F_2,F_3\rangle</m> is a vector field in <m>\R^3</m>. This notation is known as the differential form of a line integral of a vector field.
-	  </p>
-	  </li>
-	  -->
-      </ul>
+<subsection xml:id="SS_Vector_ParamLineIntegrals_Evaluation">
+  <title>Parametrizations in the Definition of <m>\int_C\vF\cdot d\vr</m></title>
+  <p>
+    <xref ref="PA_Vector_ParamLineIntegrals"/> has shown us that it is possible to evaluate line integrals without needing to work with Riemann sums directly. However, the approaches taken there seem rather cumbersome to use for oriented curves that are not line segments. It was not critical that the paths in <xref ref="PA_Vector_ParamLineIntegrals"/> were straight lines, but rather that the paths had a description where both <m>x</m> and <m>y</m> could be expressed in terms of one variable. Fortunately, parametrizing the oriented curve along   which a line integral is calculated provides exactly the tool we are looking for. Namely a parameterization gives a way to express the <m>(x,y,z)</m> poinss of the oriented curve in terms of a single variable (the parameter). Note that given a parameterization, we can also translate the vector field component equations into functions of the parameter as well.
+  </p>
+  <example xml:id="equal_space_param">
+  	<p>
+  		In this example, we will look at the particulars of applying a parameterization of <m>C</m> (given by <m>\vr(t) =\langle f(t),g(t),h(t)\rangle</m> with <m>t \in [a,b]</m>) to <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" />. In particular, we will use this parameterization and a set of points along <m>C</m> that are equally spaced in terms of parameter values.
+  	</p>
+  	<p>
+    	Suppose that <m>C</m> is an oriented curve traced out by the vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq b</m>, and let <m>\vF</m> be a continuous vector field defined on a region containing <m>C</m>. We can divide the interval <m>[a,b]</m> into <m>n</m> sub-intervals, each of length <m>\Delta t = (b-a)/n</m>, by letting <m>t_i = a + i\Delta t</m> for <m>i = 0,1,\dots,n</m>. Dividing the interval <m>[a,b]</m> into <m>n</m> pieces using <m>t_i</m> then can be used to break <m>C</m> up into <m>n</m> pieces by letting <m>C_i</m> be the part of the curve from <m>\vr(t_{i})</m> to <m>\vr(t_{i-1})</m> for <m>i=1,\dots,n</m>.
     </p>
-  </subsection>
-  <xi:include href="exercises/ez-S_Vector_ParamLineIntegrals.ptx"/>
+    <figure xml:id="fig_param_line_int">
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the paramter <m>t</m></caption>
+      <image width="90%" source="/param_line_int1">
+        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
+      </image>
+    </figure>
+    <p>
+    	We can approximate the path <m>C_i</m> with the displacement vector <m>\Delta \vr_i = \vr(t_{i}) - \vr(t_{i-1})</m> as we did in <xref ref="fig_line_int_defn3" />. Now notice that <me> \Delta \vr_i = \vr(t_{i}) - \vr(t_{i-1}) = \vr(t_{i} ) - \vr(t_{i} - \Delta t) = \left(\frac{\vr(t_{i} ) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t </me>.
+	  </p>
+	  <figure xml:id="fig_param_line_int2">
+	      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the paramter <m>t</m> with displacement vectors <m>\Delta r_i</m></caption>
+	      <image width="90%" source="/param_line_int2">
+	        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
+	      </image>
+	    </figure>
+	  <p>
+	    Our vector field for <m>\int_C \vF \cdot d\vr</m> can also be transformed into a function of <m>t</m> by substituting the <m>x</m>, <m>y</m>, and <m>z</m> inputs with the corresponding components of the parameterization. If <m>\vF= \langle F_1(x,y,z),F_2(x,y,z),F_3(x,y,z)\rangle</m>, then the parameterization given by <m>\vr(t) =\langle f(t),g(t),h(t)\rangle</m> means we can rewrite <m>\vF</m> as a function of <m>t</m>.
+	    <me>
+	    	\vF(t)=\langle F_1(f(t),g(t),h(t)),F_2(f(t),g(t),h(t)),F_3(f(t),g(t),h(t))\rangle
+	    </me>
+	  </p>
+	  <p>
+	  	We can now substitute these pieces into <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> to get the following
+      <md>
+      	<mrow>
+      		\int_C \vF\cdot d\vr = \lim_{|\Delta \vr_i \to 0} \sum_{i=1}^{n}\vF(\vr_i)\cdot\Delta\vr_i
+      	</mrow>
+      	<mrow>
+      		\lim_{|\Delta t \to 0} \sum_{i=1}^{n} \vF(t_i) \cdot	\left(\frac{\vr(t_{i}) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t 
+      	</mrow>
+    	</md>
+    When evaluating the limit as <m>\Delta t\to 0</m>, the expression in the parentheses will be <m>\frac{d\vr}{dt}(t_i)</m>. We then have a Riemann sum that changes the evaluation of a line integral of a vector field along an oriented curve to a definite integral of a function of one variable. In particular,
+    <me>
+    	\int_C \vF \cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\, dt
+  	</me>
+    Note that after evaluating the dot product, <m>\vF(\vr(t))\cdot \frac{d\vr}{dt}(t)</m> is (scalar) function of <m>t</m>. This process will work with other ways of spliting the curve <m>C</m> into different parts, but the algebra is more complex and not any more illuminating for understanding underlying ideas.
+  </p>
+</example>
+  <theorem xml:id="thm_LineIntParam">
+    <statement>
+			<p>
+	  		Let <m>C</m> be a smooth, oriented curve traced out by the vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq b</m>. If <m>\vF</m> is a continuous vector field defined near <m>C</m>, then
+	  			<me>
+            \int\limits_C \vF\cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\, dt
+	  			</me>
+			</p>
+    </statement>
+  </theorem>
+<example xml:id="ex_Vector_ParamLineIntegrals_QuarterCircle">
+  <statement>
+		<p>
+	  	Let <m>\vF(x,y) = x\vi + y^2\vj</m> and let <m>C</m> be the quarter of the circle of radius <m>3</m> from <m>(0,3)</m> to <m>(3,0)</m>. This vector field and curve are shown in <xref ref="fig_Vector_ParamLineIntegrals_FieldQuarterCircle"/>. By properties of line integrals, we know that <m>\int_C \vF\cdot d\vr = -\int_{-C}\vF\cdot d\vr</m>, and we will use this property since <m>-C</m> is the usual clockwise orientation of a circle, meaning we can parametrize <m>-C</m> by <m>\vr(t) = \langle 3\cos(t),3\sin(t)\rangle</m> for <m>0\leq t\leq \pi/2</m>.
+		</p>
+		<figure xml:id="fig_Vector_ParamLineIntegrals_FieldQuarterCircle">
+		  <caption>The vector field <m>\vF = x\vi + y^2\vj</m> and an oriented curve <m>C</m> </caption>
+		  <image width="50%" source="/fig_12_3_vf_quarter_circle">
+		    <description>
+		      The region in the <m>xy</m>-plane with <m>0\leq x\leq 4</m> and <m>0\leq y\leq 4</m>. The quarter circle of
+		      radius <m>3</m> centered at the origin and oriented clockwise is shown along with the vector field <m>x\vi +
+		      y^2\vj</m>, which contains vectors whose magnitudes increase more as <m>y</m> increases than as <m>x</m>
+		      increases. Also vectors farther from the <m>x</m>-axis have steeper positive slope than those close to the
+		      <m>x</m>-axis, which are close to horiznotal.
+		    </description>
+		  </image>
+		</figure>
+		<p>
+		  To evaluate <m>\int_{-C}\vF\cdot d\vr</m> using this parametrization, we need to note that
+		  <me>
+	      \vF(\vr(t)) = \langle 3\cos(t) , 9\sin^2(t)\rangle\qquad\text{ and } \qquad \frac{d\vr}{dt}(t) = \langle -3\sin(t),3\cos(t)\rangle
+		  </me>
+		</p>
+		<p>
+		  Thus, we have
+		  <md>
+	      <mrow>\int_C\vF\cdot d\vr \amp = -\int_{-C}\vF\cdot d\vr = -\int_0^{\pi/2} \langle 3\cos(t),9\sin^2(t)\rangle\cdot\langle-3\sin(t),3\cos(t)\rangle\, dt</mrow>
+	      <mrow>\amp = -\int_0^{\pi/2} \left(-9\sin(t)\cos(t) + 27\sin^2(t)\cos(t)\right)\, dt \quad \text{where } u =\sin(t) </mrow>
+	      <mrow>\amp  = -\int_0^1 (-9 u + 27u^2)\, du = -\left[ -\frac{9}{2}u^2 + 9u^3\right]_0^1 = -\left(-\frac{9}{2} + 9\right) = -\frac{9}{2}</mrow>
+		  </md>
+		</p>
+  </statement>
+</example>
+  <p>
+  	As <xref ref="ex_Vector_ParamLineIntegrals_QuarterCircle" /> shows, <xref ref="thm_LineIntParam"/> allows us to reduce the problem of calculating a line integral of a vector-valued function along an oriented curve to one of finding a suitable parametrization for the curve. Once we have such a parametrization, evaluating the line integral becomes evaluating a single-variable integral, which is something you have done many times before. The example also illustrates that using the properties of line integrals can allow us to use a more <q>natural</q> parametrization. You may find it interesting to use the parametrization <m>\langle 3\sin(t),3\cos(t)\rangle</m> for <m>0\leq t\leq \pi/2</m> to evaluate the line integral. Do you get the same result?
+  </p>
+<activity xml:id="act_Vector_ParamLineIntegrals_CalculateTwoFields">
+  <task xml:id="task_Vector_ParamLineIntegrals_CalculateTwoFields_3D">
+		<statement>
+      <p>
+        Find the work done by the vector field <m>\vF(x,y,z) = 6x^2z\vi + 3y^2\vj + x\vk</m> on a particle that moves  from the point <m>(3,0,0)</m> to the point <m>(3,0,6\pi)</m> along the helix given by <m>\vr(t) = \langle 3\cos(t),3\sin(t),t\rangle</m>.
+      </p>
+		</statement>
+    <answer><p> <m> 324 \pi </m></p></answer>
+    <solution> <p> <m> \vr(t)=\langle 3\cos(t), 3\sin(t), t\rangle</m> for <m> 0\leq t\leq 6\pi</m>, so <m> \frac{d\vr}{dt}(t) = \langle -3\sin(t), 3 \cos(t), 1 \rangle </m>, so <m> \vF(t) =\langle 54t(\cos(t))^2, 27(s\sin(t))^2,3 \cos(t)\rangle </m> and <me>\int_C \vF \cdot d\vr =\int_0^{6\pi} -162t(\cos(t))^2\sin(t)+81(\sin(t))^2 \cos(t)+3\cos(t) \enspace dt=324 \pi</me></p></solution>
+		<!--TODO: 
+		     Perhaps we should have a calcplot3d graph of this curve and vector field. I am having trouble getting it to look nice...
+		-->
+  </task>
+  <task xml:id="task_Vector_ParamLineIntegrals_CalculateTwoFields_2D">
+		<statement>
+      <p>
+        Let <m>\vF(x,y) = \langle 0,x\rangle</m>. Let <m>C</m> be the closed curve consisting of the top half of the circle of radius <m>2</m> centered at the origin and the portion of the <m>x</m>-axis from <m>(2,0)</m> to <m>(-2,0)</m>, oriented clockwise. Find the circulation of <m>\vF</m> around <m>C</m>.
+      </p>
+		</statement>
+		<answer><p><m>-2\pi</m></p></answer>
+		<solution>
+      <p>
+        Let <m>C_1</m> be given by <m> \vr(t) =\langle 2\cos(-t),2\sin(-t)\rangle</m> where <m>-\pi \leq t\leq 0</m>. This means that <m>\vF(t) = \langle 0, 2\cos(-t) \rangle</m> and <me> \int_{C_1} \vF\cdot d\vr =-4\int_{-\pi}^0 (\cos(t))^2 \enspace dt = -2 \pi</me>.
+      </p>
+      <p>
+        Let <m>C_2</m> be given by <m> \vr(t) =\langle t,0\rangle</m> where <m>-2 \leq t\leq 2</m>. This means that <m>\vF(t) = \langle 0, t \rangle</m> and <me> \int_{C_2} \vF\cdot d\vr =\int_{-2}^2 0 \enspace dt = 0</me>.
+      </p>
+      <p>
+        Thus the line integral over <m>C_1</m> then <m>C_2</m> will give a result of <m>-2\pi</m>.
+      </p>
+		</solution>
+  </task>
+</activity>
+
+<p>
+	<xref ref="act_Vector_ParamLineIntegrals_DifferentPaths" /> will have you look at line integrals of the same vector field over several different types of curves. This will be an important, recurring theme as we study a variety of different integrals and vector fields in this chapter. In particular, we will use this approach of varying the region of integration for a fixed function several times in later activities.
+</p>
+<activity xml:id="act_Vector_ParamLineIntegrals_DifferentPaths">
+  <introduction>
+  	<p>
+			Let <m>\vF(x,y) = \langle y^2,2xy+3\rangle</m>.
+    </p>
+  </introduction>
+  <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Cubic">
+		<statement>
+      <p>
+        Let <m>C_1</m> be the portion of the graph of <m>y=2x^3+3x^2-12x-15</m> from <m>(-2,5)</m> to <m>(3,30)</m>. Calculate <m>\int_{C_1}\vF\cdot d\vr</m>.
+      </p>
+		</statement>
+		<answer><p><m>2825 </m></p></answer>
+		<solution> <p> If <m> \vF=\langle y^2,2xy+3\rangle </m> and the curve <m>C_1</m> is traced out by <m>\vr(t) = \langle t,
+	  2t^3+3t^2-12t-15 \rangle </m> for <m>-2 \leq t\leq 3 </m>, then <me>\int_{C_1} \vF\cdot d\vr =\int_{-2}^3
+	  28t^{6} + 72t^{5} - 195t^{4} - 528 t^{3} + 180 t^{2} + 738 t + 189\, dt = 2825</me></p></solution>
+  </task>
+  <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Segment">
+		<statement>
+      <p>
+        Let <m>C_2</m> be the line segment from <m>(-2,5)</m> to <m>(3,30)</m>. Calculate <m>\int_{C_2}\vF\cdot d\vr</m>.
+      </p>
+		</statement>
+		<answer><p><m>2825</m></p></answer>
+		<solution><p>In this part, the curve <m>C_2</m> is traced out by <m>\vr(t) =\langle -2+5t,5+25t \rangle</m> for <m>0 \leq	t\leq 1</m>. So <me> \int_{C_2} \vF\cdot d\vr =\int_{0}^1	\langle (5+25t)^2,2(-2+5t)(5+25t)+3\rangle \cdot \langle 5,25\rangle \,dt = 2825</me> </p> </solution>
+  </task>
+  <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Circle">
+		<statement>
+      <p>
+        Let <m>C_3</m> be the circle of radius <m>3</m> centered at the origin, oriented counterclockwise. Calculate <m>\oint_{C_3} \vF\cdot d\vr</m>.
+    	</p>
+		</statement>
+		<answer><p><m>0</m></p></answer>
+		<solution> <p>In this part, the curve <m>C_3</m> is traced out by <m>\vr(t) =\langle 3\cos(t),3\sin(t) \rangle</m> as <m>0 \leq t\leq 2\pi</m>. So <me> \int_{C_3} \vF\cdot d\vr =\int_{0}^{2\pi} \langle 9(\sin(t))^2,2\cos(t)\sin(t)+3 \rangle \cdot \langle -3\sin(t),3\cos(t) \rangle \, dt = 0</me> </p> </solution>
+  </task>
+  <task xml:id="task_Vector_ParamLineIntegrals_DifferentPaths_Connect">
+		<introduction>
+	  	<p>
+	  		To connect the previous parts of this activity, use a graphing utility to plot the curves <m>C_1</m> and <m>C_2</m> on the same axes.
+	  	</p>
+		</introduction>
+		<task>
+	  	<statement>
+	    	<p> What type of curve is <m>C_1 - C_2</m>?</p>
+	  	</statement>
+	  	<answer> <p>Closed</p> </answer>
+	  	<solution> <p>Since the curves have the same endpoints but <m>-C_2</m> is oriented oppositely, <m>C_1-C_2</m> forms a closed curve.</p> </solution>
+		</task>
+		<task>
+	  	<statement>
+	    	<p>What is the value of <m>\oint_{C_1-C_2}\vF\cdot d\vr</m>?</p>
+	  	</statement>
+	  	<answer> <p><m>0</m></p> </answer>
+	  	<solution> <p>Since <m>\int_{C_1}\vF\cdot d\vr = \int_{C_2}\vF\cdot d\vr</m>, we have that <me>\oint_{C_1 - C_2}\vF\cdot d\vr = \int_{C_1}\vF\cdot d\vr - \int_{C_2}\vF\cdot d\vr = 0</me>.</p> </solution>
+		</task>
+		<task>
+	  	<statement>
+	    	<p>
+	    		What does your answer to <xref ref="task_Vector_ParamLineIntegrals_DifferentPaths_Circle" text="local">part</xref> allow you to say about the value of the line integral of <m>\vF</m> along the top half of <m>C_3</m> compared to the line integral of <m>\vF</m> from <m>(3,0)</m> to <m>(-3,0)</m> along the bottom half of the circle of radius <m>3</m> centered at the origin?
+	    	</p>
+	  	</statement>
+	  	<answer><p>They are equal.</p></answer>
+	  	<solution> <p>If we reverse the orientation of the bottom half, these curves combine to form <m>C_3</m>. Thus, the sum of the two line integrals is <m>0</m>, and so when changing the orientation of the bottom portion of the circle, we get that the line integrals are equal.</p> </solution>
+		</task>
+  </task>
+</activity>
+</subsection>
+<subsection>
+  <title>Alternative Notation for Line Integrals</title>
+  <p>
+  	In contexts where the fact that the quantity we are measuring via a line integral is best measured via a dot product (such as calculating work), the notation we have used thus far for line integrals is fairly common. However, sometimes the vector field is such that the units on <m>x</m>, <m>y</m>, and <m>z</m> are not distances. In this case, a dot product may not have quite the same physical meaning, and an alternative notation using differentials can be common. Specifically, if <m>\vF(x,y,z) = F_1(x,y,z)\vi + F_2(x,y,z)\vj + F_3(x,y,z)\vk</m>, then
+  	<me>
+			\int_C\vF\cdot d\vr = \int_C \langle F_1, F_2, F_3 \rangle \cdot \langle dx, dy, dz \rangle= \int_C F_1\, dx + F_2\, dy + F_3\, dz
+		</me>.
+		A line integral in the form of <m>\int_C F_1\, dx + F_2\, dy + F_3\, dz</m> is called the <term>differential form of a line integral</term><idx><h>line integral</h><h>differential form of</h></idx>.
+  </p>
+  <p>
+    (If <m>\vF</m> is a vector field in <m>\R^2</m>, the <m>F_3\, dz</m> term is omitted.) For example, if <m>\vF(x,y,z) = \langle x^2y,z^3,x\cos(z)\rangle</m> and <m>C</m> is some oriented curve in <m>\R^3</m>, then
+    <me>
+			\int_C\vF\cdot d\vr = \int_C x^2y\, dx + z^3\, dy + x\cos(z)\,dz 
+		</me>
+  </p>
+  <p>
+    It is important to recognize that the integral on the right-hand side is <em>still a line integral</em> and must be evaluated using techniques for evaluating line integrals. We cannot simply try to treat the line integral (of the form <m>\int_C F_1\, dx + F_2\, dy + F_3\, dz</m>) as if it were a definite integral of a function of one variable. Because the notation <m>\int_C\vF\cdot d\vr</m> provides a reminder that this is a line integral and <em>not</em> a definite integral of the types calculated earlier in your study of calculus, we will only use the vector notation for line integrals in the body of the text. However, some exercises may require the use of the differential form.
+  </p>
+</subsection>
+<subsection>
+  <title>Independence of Parametrization for a Fixed Curve</title>
+	<p>
+    Up to this point, we have chosen whatever parametrization of an  oriented curve <m>C</m> was most convienent, and our argument for how we can use parametrizations to calculate line integrals did not depend on the specific choice of parametrization. However, it is not immediately obvious that different parametrizations don't result in different values of the line integral. Our next example explores this question.
+  </p>
+  <example xml:id="ex_Vector_ParamLineIntegrals_ParamIndep">
+    <p>
+			Let <m>\vF = x\vi</m>. We consider two different oriented curves from <m>(0,1)</m> to <m>(3,3)</m>. The first oriented curve <m>C</m> travels horiznotally to <m>(3,1)</m> and then proceeds vertically to <m>(3,3)</m>. The second oriented curve <m>C_3</m> is the line segment from <m>(0,1)</m> to <m>(3,3)</m>. Notice that, as depicted in <xref ref="fig_Vector_ParamLineIntegrals_xFieldTriangle"/>, we can break <m>C</m> up into two oriented curves <m>C_1</m> (the horiznotal portion) and <m>C_2</m> (the vertical portion) so that <m>C = C_1 + C_2</m>.
+    </p>
+    <figure xml:id="fig_Vector_ParamLineIntegrals_xFieldTriangle">
+			<caption>The vector field <m>\vF = x\vi</m> and some oriented curves.</caption>
+			<image width="65%" source="/fig_12_3_field_triangle_rev">
+			 	<description>The vector field <m>x\vi</m>, which consists of horiznotal vectors that increase in length as distance from the <m>y</m>-axis increases. Three oriented line segments are also depicted. The line segment <m>C_1</m> is from <m>(0,1)</m> to <m>(3,1)</m>. The line segment <m>C_2</m> is from <m>(3,1)</m> to <m>(3,3)</m>. The line segment <m>C_3</m> is from <m>(0,1)</m> to <m>(3,3)</m>.</description>
+			  <!-- Below is the code to generate the graphic for the above image. I'm can't get it to work on a Windows system with a Sage install...
+			       <sageplot>
+				 plot2=parametric_plot((3*t,1+2*t),(t,0,1),color="green",thickness=2,axes_labels=["$x$","$y$"])+arrow((0,1),(1.5,2),color="green",xmin=-.25,xmax=3.9,ymin=-.25,ymax=3.9)
+				 plot2=plot2+parametric_plot((t,1),(t,0,3),color="red",thickness=2)+arrow((1,1),(2,1),color="red")
+				 plot2=plot2+parametric_plot((3,t),(t,1,3),color='red',thickness=2)+arrow((3,1),(3,2),color='red')
+				 plot1=plot_vector_field((x,0),(x,0,3.5),(y,0,3.5),color="blue",frame=False)
+				 text1=text(r"$C_3$",(1.2,2.1),color='green',fontsize='x-large',clip=True)
+				 text2=text(r"$C_2$",(3.4,1.95),color='red',fontsize='x-large',clip=True)
+				 text3=text(r"$C_1$",(2,0.8),color="red",fontsize='x-large',clip=True)
+				 plot1=plot1+text1+text2+text3
+				 final_plot3=plot2+plot1
+				 final_plot3
+				 </sageplot> -->
+			</image>
+    </figure>
+    <p>
+			We first note that since <m>\vF</m> is orthogonal to <m>C_2</m>, <m>\int_{C_2}\vF\cdot d\vr=0</m>; therefore <m>\int_C\vF\cdot d\vr =\int_{C_1}\vF\cdot d\vr</m>. We can parametrize <m>C_1</m> as <m>t\vi+\vj</m> for <m>0\leq	t\leq 3</m> (<m>t</m> is treated like the coordinate <m>x</m>), which leads to
+			<me>
+        \int_{C_1}\vF\cdot d\vr = \int_0^3\langle t,0\rangle\cdot \langle 1,0\rangle\, dt = \int_0^3 t\, dt = \frac{9}{2}
+	  	</me>.
+    </p>
+    <p>
+			Thus, <m>\int_C\vF\cdot d\vr = 9/2</m>.
+    </p>
+    <p>
+			Now we look at <m>\int_{C_3}\vF\cdot d\vr</m>, but we parametrize <m>C_3</m> in a nonstandard way by letting <m>\vr(t) = \langle 3\sin(t),1+2\sin(t)\rangle</m> for <m>0\leq t\leq \frac{\pi}{2}</m>. (You should use a graphing utility to plot this parametrization to help convince yourself that it really does give <m>C_3</m>.) This gives <m>\frac{d\vr}{dt}(t) =	\langle 3\cos(t),2\cos(t)\rangle</m>, and
+			<me>
+    		\int_{C_3}\vF\cdot d\vr = \int_0^{\pi/2}\langle 3\sin(t),0\rangle\cdot\langle 3\cos(t),2\cos(t)\rangle\, dt = \int_0^{\pi/2} 9\sin(t)\cos(t)\, dt = \frac{9}{2}
+			</me>
+    </p>
+    <p>
+    	I the next activity, you are asked to consider the more typical parametrization of <m>C_3</m> and verify that using it gives the same value for the line integral.
+    </p>
+    <p>
+    	It's also worth observing here that <m>\int_C\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr</m>, so at least two (very different) paths from <m>(0,1)</m> to <m>(3,3)</m> give the same value of the line integral here. The next section will further investigate when line integrals over different paths (with the same initial point and final point) will evaluate to the same value.
+    </p>
+  </example>
+  <p>
+  	As promised, the final activity of this section (<xref ref="act_Vector_ParamLineIntegrals_ParamIndep" />) asks you to look at another parametrization of the curve <m>C_3</m> from the previous example. It also asks you to look at two different oriented curves between a pair of points, similarly to what you did in <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>.
+  </p>
+  <activity xml:id="act_Vector_ParamLineIntegrals_ParamIndep">
+    <task xml:id="task_Vector_ParamLineIntegrals_ParamIndep_FinishEx">
+      <statement>
+        <p>
+          The typical parametrization of the line segment from <m>(0,1)</m> to <m>(3,3)</m> (the oriented curve <m>C_3</m> in <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>) is <m>\vr(t) = \langle 3t,1+2t\rangle</m> where <m>0 \leq t\leq 1</m>. Use this parametrization to calculate <m>\int_{C_3}\vF\cdot d\vr</m> for the vector field <m>\vF = x\vi</m> and compare your answer to the result of <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>.
+        </p>
+      </statement>
+      <answer><p><m>\frac{9}{2}</m></p></answer>
+      <solution>
+      	<p>
+      		Using the parametrization given the line integral becomes
+          <me> \int_0^{1} \langle 3t,0\rangle \cdot \langle 3,2 \rangle \enspace dt = \int_0^1 9t \, dt = \frac{9}{2} </me>
+          This is the same result as in <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>.
+        </p>
+      </solution>
+    </task>
+    <task xml:id="task_Vector_ParamLineIntegrals_ParamIndep_TwoSegs">
+			<statement>
+        <p>
+          Calculate <m>\int_C \langle (3xy+e^z), x^2, (4z+xe^z)\rangle\cdot d\vr</m> where <m>C</m> is the oriented curve consisting of the line segment from the origin to <m>(1,1,1)</m> followed by the line segment from
+          <m>(1,1,1)</m> to <m>(0,0,2)</m>.
+        </p>
+			</statement>
+			<answer><p><m> 2e^2-2e+8</m></p></answer>
+			<solution>
+        <p>
+          Let <m>\vr_1(t) = \langle t,t,t \rangle</m> where<m> 0 \leq t \leq 1</m> and <m>\vr_2(t) = \langle 1-t,1-t,1+t \rangle</m> where<m> 0 \leq t \leq 1</m>. Our line integral can be computed with
+          <me>
+            \int_{C_1} \vF \cdot d\vr = \int_0^1 \langle 3t^2+e^t,t^2,4t+te^t\rangle \cdot \langle 1,1,1\rangle \enspace dt= e+\frac{10}{3}
+          </me>
+          <me>
+            \int_{C_2} \vF \cdot d\vr =  \\
+            \int_0^1 \langle 3(1-t)^2+e^{1-t},(1-t)^2,4(1+t)+(1-t)e^{1+t} \rangle \cdot \langle -1,-1,1\rangle \enspace dt \\
+            = 2e^2-3e+\frac{14}{3} 
+          </me>
+          Thus the line integral over <m>C_1</m> then <m>C_2</m> is <m> 2e^2-2e+8</m>
+        </p>
+      </solution>
+    </task>
+    <task xml:id="task_Vector_ParamLineIntegrals_ParamIndep_OneSeg">
+			<statement>
+        <p>
+          Calculate <m>\int_{C'} \langle 3xy+e^z, x^2, 4z+xe^z\rangle\cdot d\vr</m> where <m>C_3</m> is the line
+          segment from <m>(0,0,0)</m> to <m>(0,0,2)</m>.
+        </p>
+			</statement>
+			<answer><p><m>16</m></p></answer>
+			<solution>
+        <p> 
+          The line segment from <m>(0,0,0)</m> to <m>(0,0,2)</m> can be given by <m> \vr(t) = \langle 0,0,t \rangle</m> with <m> 0\leq t\leq 2</m>. Note that <m>d\vr(t)= \langle 0,0,1 \rangle dt</m>, so <me>\int_{C_3}\vF\cdot d\vr = \int_0^2 4t\enspace dt = 16</me>
+        </p>
+			</solution>
+    </task>
+    <task>
+			<statement>
+  			<p>
+  				Is the vector field you considered in the previous two parts a gradient vector field? Why or why not? How does this compare to the vector field <m>\vF</m> of <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>?
+  			</p>
+			</statement>
+			<answer><p>No</p></answer>
+			<solution>
+  			<p>No. One way to observe this would be to check the partial derivative with respect to <m>y</m> of the <m>\vi</m> component and compare it to the partial derivative with respect to <m>x</m> of the <m>\vj</m> component. Since they are not equal, <xref ref="Clairaut" text="title"/> tells us that this vector field is not a gradient vector field.</p>
+			</solution>
+    </task>
+  </activity>
+  <p>
+    Although we have not given a proof or even an intuitive argument, the phenomenon you observed in <xref ref="task_Vector_ParamLineIntegrals_ParamIndep_FinishEx" text="local">part</xref> of <xref ref="act_Vector_ParamLineIntegrals_ParamIndep"/> is not particular to this curve or this vector field. The value of <m>\int_C\vF\cdot d\vr</m> does not depend on the parametrization of <m>C</m> used to calculate the line integral when using <xref ref="thm_LineIntParam"/>. 
+    <!-- We will take this for granted in the remainder of the chapter. The next section will engage in a serious exploration of when a vector field has the property that the line integral from a point <m>P</m> to a point <m>Q</m> does not depend on the choice of oriented path. -->
+  </p>
+</subsection>
+<subsection>
+  <title>Summary</title>
+  <p>
+    <ul>
+			<li>
+	  		<p>
+          Line integrals of vector fields along oriented curves can be evaluated by parametrizing the curve in terms of <m>t</m> and then calculating the integral of <m>\vF(\vr(t))\cdot \frac{d\vr}{dt}(t)</m> on the interval <m>[a,b]</m>.
+	  		</p>
+			</li>
+			<li>
+			  <p>The parametrization chosen for an oriented curve <m>C</m> when calculating the line integral <m>\int_C\vF\cdot d\vr</m> using the formula <m>\int_a^b \vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\, dt</m> does not impact the value
+			  of the line integral.</p>
+			</li>
+			<li>
+	  		<p>
+          If <m>C_1</m> and <m>C_2</m> are different paths from <m>P</m> to <m>Q</m>, it is possible for <m>\int_{C_1}\vF\cdot d\vr</m> to have a different value to <m>\int_{C_2}\vF\cdot d\vr</m>.
+	  		</p>
+			</li>
+			<!--	<li>
+			  <p>
+		            The line integral <m>\int_C\vF\cdot d\vr</m> can also be written as <m>\int_C F_1\, dx + F_2\, dy</m> if <m>\vF = \langle F_1,F_2\rangle</m> is a vector field in <m>\R^2</m> or <m>\int_C F_1\, dx + F_2\, dy + F_3\, dz</m> if <m>\vF = \langle F_1,F_2,F_3\rangle</m> is a vector field in <m>\R^3</m>. This notation is known as the differential form of a line integral of a vector field.
+			  </p>
+			  </li>
+			  -->
+    </ul>
+  </p>
+</subsection>
+<xi:include href="exercises/ez-S_Vector_ParamLineIntegrals.ptx"/>
+<subsection>
+ <title>Notes to Instructors and Dependencies</title>
+  <p>
+    This section relies heavily on the idea of line integrals developed in <xref ref="S_Vector_IdeaLineIntegral" />, understanding curves in space (from <xref ref="S-9-6-Vector-Valued-Functions" />), and the work interpretation of the dot product from <xref ref="S-9-3-Dot-Product" />.
+  </p>
+</subsection>
 </section>
