@@ -17,10 +17,10 @@
     </objectives>
   <introduction>
   <p>
-    In <xref ref="S_Vector_IdeaLineIntegral" />, the idea of a line integral was introduced by looking at the work done by a vector field when traveling along <m>C</m>, a path in space. In particular, the line integral measured the acculumulated amount of the vector field that is in the direction of travel (along the path <m>C</m>). <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> shows how to use a Riemann sum to measure the accumulation of the vector field in the direction of travel along the given curve. Additionally, <xref ref="thm_LineIntParam" /> shows how the line integral <m>\int_C \vF\cdot d\vr </m> can be efficently calculated in terms of the vector field and the derivative of <em>any</em> paramaterization of <m>C</m>. Philosophically, the Riemann sum in <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> is adding up the scalar function given by the dot product of the vector field and the unit vector in the direction of travel (along the curve).
+    In <xref ref="S_Vector_IdeaLineIntegral" />, the idea of a line integral was introduced by looking at the work done by a vector field when traveling along <m>C</m>, a path in space. In particular, the line integral measured the accumulated amount of the vector field that is along the path <m>C</m> (in the direction of travel.) <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> shows how to use a Riemann sum to measure the accumulation of the vector field in the direction of travel along the given curve. Additionally, <xref ref="thm_LineIntParam" /> shows how the line integral <m>\int_C \vF\cdot d\vr </m> can be efficently calculated in terms of the vector field and the derivative of <em>any</em> paramaterization of <m>C</m>. Philosophically, the Riemann sum in <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> is adding up the scalar function given by the dot product of the vector field and the unit vector in the direction of travel (along the curve).
   </p>
   <p>
-    The following questions ask how much we can generalize the ideas of the previous sections and we will devote the rest of this section to answering these as fully as possible.
+    We will devote the rest of this section to answering these questions about generalizing the ideas of line integrals as fully as possible.
   </p>
   <p>
     <ul>
@@ -28,10 +28,10 @@
         How can we measure the accumulation of a scalar valued function along a curve in space?
       </li>
       <li>
-        What would that accumulation measure?
+        What would that accumulation measure physically?
       </li>
       <li>
-        What is the most efficent way to calculate this?
+        What is the most efficent way to calculate this accumulation?
       </li>
     </ul>
   </p>
@@ -61,7 +61,7 @@
     <task xml:id="task_PA_ScalarLI_2">
       <statement>
         <p>
-          Estimate the amount of Copium that would be mined from the entire outer edge of the plot. You should write a few sentences about how you got your estimate based on the Copium density and length of the paths.
+          Estimate the amount of Copium that would be mined by driving along the entire outer edge of the plot. You should write a few sentences about how you got your estimate based on the Copium density and length of the paths.
         </p>
         </statement>
         <answer>
@@ -74,7 +74,7 @@
     <task xml:id="task_PA_ScalarLI_3">
       <statement>
         <p>
-          Estimate the amount of copium that would be mined from the scraping the path given below (shown graphically in blue.) You should use at least 3 segments in your estimate. You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
+          Estimate the amount of Copium that would be mined from the scraping the path given below (shown graphically in blue.) You should use at least 3 segments in your estimate. You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
         </p>
         <figure>
           <caption>A plot of land with Copium Density and a path plotted in blue</caption>
@@ -113,7 +113,7 @@
     In <xref ref="PA_ScalarLI" />, you approximated the distance traveled for various paths and multiplied by the density of the Copium on each piece of the path. In contrast to the line integral of a vector field, the calculations of the ore mined does not depend on what direction the path was traveled. We will now use these same ideas to give precise meaning to the measurement of the acculumation of a scalar function's output over a path in space.
   </p>
   <p>
-    Let <m>f</m> be a contiunuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>, a curve from a point <m>P</m> to a point <m>Q</m>. We will begin to approximate the acculumlation of the output of <m>f</m> over <m>C</m> by breaking <m>C</m> into pieces with boundary points <m>P=r_0, r_1, ..., r_k-1, r_k=Q</m>.
+    Let <m>f</m> be a contiunuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>, a curve from a point <m>P</m> to a point <m>Q</m>. We will begin to approximate the acculumlation of the output of <m>f</m> over <m>C</m> by breaking <m>C</m> into pieces with boundary points <m>P=r_0, r_1, ..., r_n-1, r_n=Q</m>. The curve <m>C_i</m> is the part of <m>C</m> that goes from <m>\vr_{i-1}</m> to <m>\vr_i</m> and <m>\Delta \vr_i</m> is the displacement vector from <m>\vr_{i-1}</m> to <m>\vr_i</m>
   </p>
   <figure>
     <caption>A curve in space with segments given by $\mathbf{r}_i$</caption>
@@ -121,16 +121,15 @@
   </figure>
   <p>
     We can approximate the accumulation of <m>f</m> over <m>C</m> with the following sum:
-    <me> \sum_{i=0}^{k-1} f(r_i^{*}) \Vert{r_{i+1}-r_{i}}\Vert</me>
-    where <m>f(r_i^{*})</m> is the output of <m>f</m> for some <m>r_i^{*} \in [r_i,r_{i+1}]</m>. As this sum is made with more pieces and all of the lengths of the pieces goes to zero (i.e. <m>\Vert{r_{i+1}-r_{i}}\Vert \rightarrow 0</m>), we would expect that the sum will approach the actual acculumation of <m>f</m> over <m>C</m>. Notice that it won't matter how we select the point <m>r_i^*</m> that is used in each piece to evaluate the output of <m>f</m> since evaluating the limit as the pieces gets smaller will ensure that the output value will be within a shrinking error from the average value on each piece.
-    Evaluating the limit as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <m>f</m> over <m>C</m>.
+    <me> \sum_{i=1}^{n} f(r_i^*) \Vert{r_{i}-r_{i-1}}\Vert</me>
+    where <m>f(r_i^{*})</m> is the output of <m>f</m> for some <m>r_i^{*} \in C_i</m>. As this sum uses more pieces and all of the lengths of the pieces goes to zero (i.e. <m>\Vert{\Delta \vr_i}\Vert \rightarrow 0</m>), we would expect that the sum will approach the actual acculumation of <m>f</m> over <m>C</m>. Notice that it won't matter how we select the point <m>r_i^*</m> that is used in each piece to evaluate the output of <m>f</m> since evaluating the limit as the length of <m>C_i</m> gets smaller will ensure that the output value choosen will be within a shrinking error from the average value on each piece. Evaluating the limit of the sum above as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <m>f</m> over <m>C</m>.
   </p>
   <definition xml:id="ScalarLineIntegral_def">
     <title>The Line Integral of a Scalar Function</title>
     <p>
       Let <m>f</m> be a contiunuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>, a curve from a point <m>P</m> to a point <m>Q</m> in space. The line integral of <m>f</m> over <m>C</m> is defined as
-      <me>\int_C f ds =\lim_{k\rightarrow \infty} \sum_{i=0}^{k-1} f(r_i^{*}) \Vert{r_{i+1}-r_{i}}\Vert</me>
-      where <m>r_i</m> are points such that <m>P=r_0, r_1, ..., r_k-1, r_k=Q</m> and as <m>k\rightarrow \infty</m> the distance between <m>r_{i-1}</m> and <m>r_i</m> goes to zero.
+      <me>\int_C f ds =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(r_i^{*}) \Vert{r_{i}-r_{i-1}}\Vert</me>
+      where <m>r_i</m> are points such that <m>P=r_0, r_1, ..., r_n-1, r_n=Q</m> and as <m>n\rightarrow \infty</m> the distance between <m>r_{i-1}</m> and <m>r_i</m> goes to zero.
     </p>
     <p>The integral
       <me>\int_C f \enspace ds </me>
@@ -141,7 +140,7 @@
     Do we need to talk more about why this limit of ths sum will converge?
   </p> -->
   <p>
-    The notation for a scalar line integral (<m>\int_C f \enspace ds </m>) may not immediately make sense. As with the other types of integration we have done (double integrals, line integrals of vector fields, single variable integration, etc.), the subscript of the integral symbol denotes the region of integration. In the case of a scalar line integral, the region of integration is a collection of points given by a curve in space. The function we are integrating is <m>f</m>, a scalar valued funciton of multiple variables. The differential <m>ds</m> probably looks suspicious to you. If you remember from <xref ref="S-9-8-Arc-Length-Curvature" />, <m>s</m> is the arc length of a curve in space. So the differential <m>ds</m> in the scalar line integral notation means that we are adding up the output of <m>f</m> over steps in arc length. This should make sense in terms of how we set up our Riemann sums. We did not set up the pieces of our curve as steps in <m>x</m>, <m>y</m>, or <m>z</m>, but rather as steps in arc length (estimated by <m>\Vert{r_{i+1}-r_{i}}\Vert</m>).
+    The notation for a scalar line integral (<m>\int_C f \enspace ds </m>) may not immediately make sense. As with the other types of integration we have done (double integrals, line integrals of vector fields, single variable integration, etc.), the subscript of the integral symbol denotes the region of integration. In the case of a scalar line integral, the region of integration is a collection of points given by a curve in space. The function we are integrating is <m>f</m>, a scalar-valued functiton of multiple variables. The differential <m>ds</m> probably looks suspicious to you. If you remember from <xref ref="S-9-8-Arc-Length-Curvature" />, <m>s</m> is the arc length of a curve in space. So the differential <m>ds</m> in the scalar line integral notation means that we are adding up the output of <m>f</m> over steps in arc length. This should make sense in terms of how we set up our Riemann sums. We did not set up the pieces of our curve as steps in <m>x</m>, <m>y</m>, or <m>z</m>, but rather as steps in arc length (estimated by <m>\Vert{r_{i+1}-r_{i}}\Vert</m>).
   </p>
 
   <activity xml:id="Act_ScalarLI1">
