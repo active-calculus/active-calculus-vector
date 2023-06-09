@@ -154,7 +154,7 @@
       <image source="/fig_scalarlineint_pmexample1"/>
     </figure>
   </introduction>
-  <task>
+  <task xml:id="task1_sli_pm">
     <p>
       For our first case, we will consider the line integral <me> \int_C f \enspace ds </me>. Remember that the line integral of <m>f</m> over <m>C</m> will measure the accumulation of the output of <m>f</m> over the points on the curve <m>C</m>. <xref ref="fig_sli_pm3"/> shows that the blue branch of the curve <m>C</m> will have positive output and the red part will have negative output for <m>f</m>. Intuitively, there is more of the curve with positive <m>f</m> outputs than negative <m>f</m> outputs, so we would expect <m>\int_C f \enspace ds</m> to be positive.
     </p>
@@ -175,7 +175,7 @@
       <image source="/fig_scalarlineint_pmexample2" />
     </figure>
     <p>
-      The argument for why <m>\int_{C_1} f \enspace ds = \int_{C_2} f \enspace ds</m> requires that both the points on the curves <m>C_1</m> and <m>C_2</m> and the output of <m>f</m> on those parts is symmetric. In <xref ref="sli_caution" /> you will see examples where having only one part of this symmetry is not sufficent to make this type of argument.
+      The argument for why <m>\int_{C_1} f \enspace ds = -\int_{C_2} f \enspace ds</m> requires that both the points on the curves <m>C_1</m> and <m>C_2</m> and the output of <m>f</m> on those parts is symmetric. In <xref ref="sli_caution" /> you will see examples where having only one part of this symmetry is not sufficent to make this type of argument.
     </p>
     <p>
       We have shown that <m>\int_C f \enspace ds =  \int_{C_3} f \enspace ds </m> and want to demonstrate why <m>\int_{C_3} f \enspace ds </m> will be positive. Because the output of <m>f</m> is positive for all of the points on the curve <m>C_3</m>, all elements of the associated Riemann sum in <xref ref="ScalarLineIntegral_def" /> will be positive (the length of the displacement vectors and corresponding arc lengths are always positive). Thus <m>\int_C f \enspace ds =  int_{C_3} f \enspace ds \gt 0</m>. This argument would work well for any curve that was only in the first and second octants because the outpuf of <m>g</m> for all of those points would be negative.
@@ -352,6 +352,30 @@
     </figure>
     <p>
       The scalar line integal on the blue and the red paths will cancel each other out exactly since the paths are symmetric and the output of <m>g</m> will be opposite in sign on the blue and red. Thus the line integral of <m>g</m> over <m>C_1</m> will be zero.
+    </p>
+  </example>
+  <example xml:id="sli_caution">
+    <p>
+      For our last example, we will compute the scalar line integral
+      <me>\int_{C_1+C_2} x \enspace ds </me>
+      where the paths <m>C_1</m> and <m>C_2</m> are given in <xref ref="fig_sli_caution" />.
+    </p>
+    <figure xml:id="fig_sli_caution">
+      <caption> A plot of paths <m>C_1</m> and <m>C_2</m></caption>
+      <image source="/sli_caution_plot" />
+    </figure>
+    <p>
+      The function we are integrating in this example gives an output of the x-coordinates of the points on the curve. So we are adding up the <m>x</m>-values of the points on <m>C_1</m> and <m>C_2</m>, but since the <m>x</m>-coordinates on <m>C_1</m> go from -1 to 0 and the <m>x</m>-coordinates on <m>C_2</m> go from 0 to 1, you may argue that the values of <m>\int_{C_1} x \enspace ds </m> and <m>\int_{C_2} x \enspace ds </m> will cancel out to zero. This is not correct though because the scalar line integrals are not just adding up the output of our scalar function. The Riemann sum used in the scalar line integral is adding up the product of the scalar function's output multiplied by the displacement of the segment used. Because the displacement used in <m>C_1</m> and <m>C_2</m> will not be symmetric, we cannot make the geometric cancelation argument as in <xref ref="task1_sli_pm" />.
+    </p>
+    <p>
+      We will use <xref ref="scalarlineit_param_thm" /> to evaluate our line integral. We parameterize <m>C_1</m> with
+      <m>\vr_1(t)= \langle -1=t,2-2t\rangle</m> and parameterize <m>C_2</m> with <m> \vr_2(t) =\langle t,t\rangle </m>. Both parameterizations use parameter values in the interval <m>[0,1]</m>. We can calculate <m>\Vert{\vr_1}\Vert = \sqrt{5}</m> and <m>\Vert{\vr_2}\Vert = \sqrt{2}</m>. Thus we can evaluate our scalar line integral as
+      <md>
+        <mrow>\int_{C_1+C_2} x \enspace ds = \int_{C_1} x \enspace ds +\int_{C_2} x \enspace ds</mrow>
+        <mrow>\quad = \int_0^1 (-1+t) \sqrt{5} \enspace dt + \int_0^1 (t) \sqrt{2} \enspace dt</mrow>
+        <mrow> \quat = -\sqrt{5}+\frac{\sqrt{5}}{2}+\frac{\sqrt{2}}{2} \neq 0 </mrow>
+      </md>
+      In the calculation above, you can see how the difference in displacements manifests differently in the two integrals (as <m>\sqrt{5}</m> and <m>\sqrt{2}</m>) which makes the final result not quite cancel out to zero.
     </p>
   </example>
 </subsection>
