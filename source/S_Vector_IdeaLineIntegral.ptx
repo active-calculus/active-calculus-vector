@@ -225,19 +225,23 @@
     </p>
     <figure>
       <caption>This is a plot of a parametric curve of the form <m>\mathbf{r}(t)=\langle r_1(t),r_2(t),r_3(t)\rangle</m>. For two-dimensional curves, put 0 for <m>r_3(t)</m>. The interval of parameter values plotted is <m>a\leq t\leq b</m>.</caption>
-      <interactive xml:id="para_curve_example" platform="sage" width="90%" aspect="1:1.1">
+      <interactive xml:id="para_curve_example" platform="sage" width="100%" aspect="1:1.4">
         <slate surface="sage">
-          var('x,y,t')
-          @interact
-          def curve_explorer(r1=input_box(default=cos(t),label="$r_1(t)=$"), r2=input_box(default=2*sin(t),label="$r_2(t)=$"), r3=input_box(default=2*cos(2*t),label="$r_3(t)=$"), a=input_box(default=0,label="Lower Bound on $t$"), b=input_box(default=5,label="Upper Bound on $t$"), pval=slider(0,1,default=0.5,label="Parameter Value of Plotted Point")):
-            tval=a+pval*(b-a)
-            plot1=parametric_plot3d((r1,r2,r3),(t,a,b),color="blue")
-            plot1+=point3d((r1(t=tval),r2(t=tval),r3(t=tval)),color='red')
-            valstring='('+str(N(r1(t=tval),digits=2))+','+str(N(r2(t=tval),digits=2))+','+str(N(r3(t=tval),digits=2))+')'
-            plot1+=text3d(valstring,(r1(t=tval),r2(t=tval),r3(t=tval)+0.1),color='red')
-            plot1+=text3d("t="+str(N(tval,digits=2)),(r1(t=tval),r2(t=tval),r3(t=tval)-0.1),color='purple')
-            show(plot1,aspect_ratio=1)
-        </slate>
+var('x,y,t')
+@interact
+def curve_explorer(r1=input_box(default=cos(t),label='r1(t)=',width=30), 
+                   r2=input_box(default=2*sin(t),label="r2(t)=",width=30), 
+                   r3=input_box(default=3-t,label="r3(t)=",width=30), 
+                   a=input_box(default=0,label="Lower Bound on t",width=6), 
+                   b=input_box(default=1,label="Upper Bound on t",width=6), 
+                   pval=slider(0,1,default=0.5,label="Parameter Value",display_value=False)):
+	tval=a+pval*(b-a)
+	plot1=parametric_plot3d((r1,r2,r3),(t,a,b),color="blue")
+	plot1+=point3d((r1(t=tval),r2(t=tval),r3(t=tval)),color='red')
+	valstring='('+str(N(r1(t=tval),digits=2))+','+str(N(r2(t=tval),digits=2))+','+str(N(r3(t=tval),digits=2))+')'
+	plot1+=text3d(valstring,(r1(t=tval),r2(t=tval),r3(t=tval)+0.1),color='red')
+	plot1+=text3d("t="+str(N(tval,digits=2)),(r1(t=tval),r2(t=tval),r3(t=tval)-0.1),color='purple')
+	show(plot1,aspect_ratio=1)        </slate>
       </interactive>
       <!-- <caption>A CalcPlot3D applet to explore oriented curves</caption>
       <interactive calcplot3d="type=spacecurve;spacecurve=curve;x=cos(5t);y=2sin(3t);z=3-0.5t;visible=true;tmin=0;tmax=10;tsteps=200;color=rgb(255,0,0);showtrace=true;tval=5;constcol=true;twod=false;arrows=5;showpt=true;trace=false;vel=false;acc=false;osc=false;k=false;repeat=false;bounce=false;dashed=false;tanline=false;showtvector=false;shownvector=false;showbvector=false;showtnbeqs=false;showtnblabels=false;showoscplane=false;showrectplane=false;shownormplane=false&amp;type=window;hsrmode=3;nomidpts=true;anaglyph=-1;center=8.236391035463319,4.755282581475766,3.0901699437494745,1;focus=0,0,0,1;up=0,0,2,1;transparent=false;alpha=140;twoviews=false;unlinkviews=false;axisextension=0.7;xaxislabel=x;yaxislabel=y;zaxislabel=z;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.5;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);xmin=-4;xmax=4;ymin=-4;ymax=4;zmin=-4;zmax=4;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;zoom=0.542667;xscalefactor=1;yscalefactor=1;zscalefactor=1" variant="application" width="95%"
@@ -255,7 +259,7 @@
       For example, let's consider who to measure the work done by <m>\vF</m>, a vector field, along <m>C</m>, the curve show below that goes from <m>P</m> to <m>Q</m>.
     </p>
     <figure xml:id="fig_line_int_defn1">
-      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> with the plot of <m>\VF</m> our vector field</caption>
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> with the plot of <m>\vF</m> our vector field</caption>
       <image width="90%" source="/line_int_defn1">
         <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
       </image>
