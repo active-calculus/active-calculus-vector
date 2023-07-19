@@ -5,18 +5,13 @@
     <ul>
       <li>
         <p>
-	  How can we calculate the circulation of a two-dimensional
-	  vector field <m>\vF</m> around a closed curve when
-	  <m>\vF</m> is not path-independent?
+        	How can we calculate the circulation of a two-dimensional vector field <m>\vF</m> around a closed curve when <m>\vF</m> is not path-independent?
         </p>
       </li>
 
       <li>
         <p>
-	  What is the meaning of the double integral of the
-	  circulation density of a smooth two-dimensional vector
-	  field on a region <m>R</m> bounded by a closed curve that
-	  does not intersect itself?
+        	What is the meaning of the double integral of the circulation density of a smooth two-dimensional vector field on a region <m>R</m> bounded by a closed curve that does not intersect itself?
         </p>
       </li>
 
@@ -24,70 +19,54 @@
   </objectives>
   <introduction>
     <p>
-      We know from <xref ref="S_Vector_FTCLI"/> that
-      a vector field is path-independent if and only if the
-      circulation around every closed curve in its domain is
-      <m>0</m>. It is probably not surprising that, given the
-      multitude of names we have for path-independent vector fields,
-      they are important vector fields that arise frequently. However,
-      not every vector field is path-independent, and many times we
-      will want to calculate the circulation around a closed curve in
-      a vector field that is not path-independent. This section
-      explores a connection between line integrals and double
-      integrals that you may find surprising.
+      We know from <xref ref="S_Vector_FTCLI"/> that a vector field is path-independent if and only if the circulation around every closed curve in its domain is <m>0</m>. It is probably not surprising that, given the multitude of names we have for path-independent vector fields, they are important vector fields that arise frequently. However, not every vector field is path-independent, and many times we will want to calculate the circulation around a closed curve in a vector field that is not path-independent. This section explores a connection between line integrals and double integrals that you may find surprising.
     </p>
-
     <exploration xml:id="PA_Vector_GreensTheorem">
       <introduction>
-        <p>We will consider the vector field <m>\vF = \langle 2y,3x^2
-	y\rangle</m>, which is defined on the entire plane. Suppose
-	that we want to calculate the circulation of <m>\vF</m> around
-	the circle <m>C</m> of radius <m>2</m>, centered at <m>(0,0)</m>, and
-	oriented counterclockwise.
+        <p>
+        	We will consider the vector field <m>\vF = \langle 2y,3x^2 y\rangle</m>, which is defined on the entire <m>xy</m>-plane. Suppose that we want to calculate the circulation of <m>\vF</m> around the circle <m>C</m> of radius <m>2</m>, centered at <m>(0,0)</m>, and oriented counterclockwise.
         </p>
       </introduction>
       <task xml:id="task_PA_Vector_GreensTheorem_Circ">
         <statement>
-          <p>Verify that <m>\vF</m> is not path-independent by
-	  calculating the circulation of <m>\vF</m> around the
-	  circle <m>C</m>. The SageMath cell below is set up to
-	  assist you with this, but you will need to supply a
-	  parametrization of <m>C</m> on line 3.
+          <p>
+          	Verify that <m>\vF</m> is not path-independent by calculating the circulation of <m>\vF</m> around the circle <m>C</m>. The SageMath cell below is set up to assist you with this, but you will need to supply a parametrization of <m>C</m> on line 4.
           </p>
-	  <sage>
-	    <input>
-	      var('r,t,x,y')
-	      F = vector([2*y,3*x^2*y])
-	      C = vector([ , ])# Supply a parametrization of C here inside the [ ]
-	      integral(F(x=C[0],y=C[1]).dot_product(derivative(C,t)),t,0,2*pi)
-	    </input>
-	  </sage>
+				<sage>
+				<input>
+					var('r,t,x,y')
+					F = vector([2*y,3*x^2*y])
+					#Supply a parametrization of C on the next line inside the [ ]
+					C = vector([ , ])
+					integral(F(x=C[0],y=C[1]).dot_product(derivative(C,t)),t,0,2*pi)
+				</input>
+				</sage>
         </statement>
         <answer>
-	  <p><m>-8\pi</m></p>
+	  		<p><m>-8\pi</m></p>
         </answer>
         <solution>
-	  <p>If we parametrize <m>C</m> as <m>\vr(t) = \langle
-	  2\cos(t),2\sin(t)\rangle</m>, then <m>\oint_C \vF\cdot
-	  d\vr = -8\pi</m>. To use the SageMath cell to do this,
-	  make line 3 read <c>C = vector([2*cos(t),2*sin(t)])</c>
-	  and execute. Because the circulation around <m>C</m> is
-	  not <m>0</m>, we know that <m>\vF</m> is not
-	  path-independent. 
-	  </p>
+			<p>
+				If we parametrize <m>C</m> as <m>\vr(t) = \langle 2\cos(t),2\sin(t)\rangle</m>, then <m>\oint_C \vF\cdot d\vr = -8\pi</m>. To use the SageMath cell to do this, make line 3 read <c>C = vector([2*cos(t),2*sin(t)])</c> and execute. Because the circulation around <m>C</m> is not <m>0</m>, we know that <m>\vF</m> is not path-independent. 
+	  		</p>
         </solution>
       </task>
       <task xml:id="task_PA_Vector_GreensTheorem_Integrand">
         <statement>
           <p>
-	    Consider <m>\vF = \langle F_1(x,y),F_2(x,y)\rangle</m>. In
-	    <xref ref="S_Vector_Curl"/>, we
+			Recall from <xref ref="S_Vector_Curl" /> that if <m>\vF = \langle F_1(x,y),F_2(x,y)\rangle</m> is a vector field, then the circulation density (in 2D) is given by
+				<me> 
+					\text{Circulation Density at the point }(a,b)= \frac{\partial F_2}{\partial x} (a,b)-\frac{\partial F_1}{\partial y} (a,b)
+			  	</me>
+			What is the circulation density of <m>\vF = \langle 2y,3x^2 y\rangle</m>? 
+
+	    <!--Consider . In <xref ref="S_Vector_Curl"/>, we
 	    discussed the circulation density of a two-dimensional
 	    vector field at a given point and determined that it can
 	    be algebraically determined by <m>\displaystyle
 	    \frac{\partial F_2}{\partial x} - \frac{\partial
 	    F_1}{\partial y}</m>. Calculate the circulation density
-	    for this vector field. <!-- Without doing any calculations, do
+	    for this vector field.  Without doing any calculations, do
 	    you think that the circulation density is <m>0</m> for all
 	    values of <m>x</m> and <m>y</m>?  Calculate
 	    <m>\displaystyle \frac{\partial F_2}{\partial x} -
@@ -113,158 +92,102 @@
 	</task>
 	<task xml:id="task_PA_Vector_GreensTheorem_Region">
 	  <statement>
-	    <p>Sketch the curve <m>C</m> and shade the region inside
-	    it. Describe the region bounded by <m>C</m> in both
-	    rectangular and polar coordinates.
+	    <p>
+			Sketch the curve <m>C</m> and shade the region it. Describe the region bounded by <m>C</m> in both rectangular and polar coordinates.
 	    </p>
 	  </statement>
 	  <answer>
-	    <p>Polar: <m>0\leq r\leq 2</m>, <m>0\leq \theta\leq
-	    2\pi</m>. Rectangular: <m>-2\leq x\leq 2</m>,
-	    <m>-\sqrt{4-x^2}\leq y\leq \sqrt{4-x^2}</m>.
+	    <p>Polar: <m>0\leq r\leq 2</m>, <m>0\leq \theta\leq  2\pi</m>. Rectangular: <m>-2\leq x\leq 2</m>, <m>-\sqrt{4-x^2}\leq y\leq \sqrt{4-x^2}</m>.
 	    </p>
 	  </answer>
 	  <solution>
-	    <p>Since we know the radius of <m>C</m> is <m>2</m>, the
-	    region the circle bounds is covered by all values of
-	    <m>r</m> with <m>0\leq r\leq 2</m>. For <m>\theta</m>,
-	    since we have the full disk, the bounds are <m>0\leq \theta\leq
-	    2\pi</m>. In rectangular coordinates, the circle is
-	    <m>x^2+y^2=4</m>. The range for <m>x</m> is <m>-2\leq
-	    x\leq 2</m>, and solving the equation of the circle for
-	    <m>y</m> gives us
-	    <m>-\sqrt{4-x^2}\leq y\leq \sqrt{4-x^2}</m> as the bounds
-	    for <m>y</m>.
+	    <p>
+			Since we know the radius of <m>C</m> is <m>2</m>, the region the circle bounds is covered by all values of <m>r</m> with <m>0\leq r\leq 2</m>. For <m>\theta</m>, since we have the full disk, the bounds are <m>0\leq \theta\leq 2\pi</m>. In rectangular coordinates, the circle is <m>x^2+y^2=4</m>. The range for <m>x</m> is <m>-2\leq x\leq 2</m>, and solving the equation of the circle for <m>y</m> gives us <m>-\sqrt{4-x^2}\leq y\leq \sqrt{4-x^2}</m> as the bounds for <m>y</m>.
 	    </p>
 	  </solution>
 	</task>
-      <task xml:id="task_PA_Vector_GreensTheorem_Double">
+    <task xml:id="task_PA_Vector_GreensTheorem_Double">
         <statement>
-	  <p>
-	    Calculate the double integral of
-	    <m>\displaystyle \frac{\partial F_2}{\partial x} -
-	    \frac{\partial F_1}{\partial y}</m> over the region inside
-	    the circle <m>C</m>. This integral is not the most fun to
-	    do by hand, so a SageMath cell has been provided to assist
-	    you.
-          </p>
-	  <sage>
-	    <input>
-	      integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)	      
-	    </input>
-	  </sage>
-	</statement>
-	<hint>
-	  <p>If you choose polar coordinates, use <m>\theta</m> for the
-	  first variable and <m>r</m> for the second variable.</p>
-	</hint>
-	<answer>
-	  <p><m>-8\pi</m></p>
-	</answer>
-	<solution>
-	  <p>
-	    Denote by <m>D</m> the region inside the circle <m>C</m>. We can describe <m>D</m> readily in polar coordinates
-	    with the inequalities <m>0\leq r \leq 2</m> and <m>0\leq
-	    \theta\leq 2\pi</m>. Thus, we need to calculate
-	    <md>
-	      <mrow>\iint_D \left(\frac{\partial F_2}{\partial x} -
-	      \frac{\partial F_1}{\partial y}\right)\, dA &amp;= \iint_D
-	      (6xy-2)\, dA</mrow>
-	      <mrow>&amp;= \int_0^2 \int_0^{2\pi}
-	      (6r^2\cos(\theta)\sin(\theta) - 2)r\, d\theta\, dr</mrow>
-	      </md>.
-	      Using SageMath to calculate this, we obtain <m>-8\pi</m>.
-	  </p>
-	</solution>
-      </task>
-      <conclusion>
-	<p>A natural question after completing this Preview Activity
-	is if there is something special about the vector field
-	<m>\vF</m> or the curve <m>C</m> that led to the results you
-	obtained, and investigating this will be our principal task
-	in this section</p>
-      </conclusion>
-    </exploration>
-  </introduction>
+	  		<p>
+	    		Calculate the double integral of <m>\displaystyle \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}</m> over the region inside the circle <m>C</m>. This integral is not the most fun to do by hand, so a SageMath cell has been provided to assist you.
+    		</p>
+			<sage>
+				<input>
+				integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)	      
+				</input>
+			</sage>
+		</statement>
+		<hint>
+		<p>If you choose polar coordinates, use <m>\theta</m> for the first variable and <m>r</m> for the second variable.</p>
+		</hint>
+		<answer>
+		<p><m>-8\pi</m></p>
+		</answer>
+		<solution>
+		<p>
+			Denote by <m>D</m> the region inside the circle <m>C</m>. We can describe <m>D</m> readily in polar coordinates with the inequalities <m>0\leq r \leq 2</m> and <m>0\leq \theta\leq 2\pi</m>. Thus, we need to calculate
+			<md>
+			<mrow>\iint_D \left(\frac{\partial F_2}{\partial x} -
+			\frac{\partial F_1}{\partial y}\right)\, dA &amp;= \iint_D
+			(6xy-2)\, dA</mrow>
+			<mrow>&amp;= \int_0^2 \int_0^{2\pi}
+			(6r^2\cos(\theta)\sin(\theta) - 2)r\, d\theta\, dr</mrow>
+			</md>.
+			Using SageMath to calculate this, we obtain <m>-8\pi</m>.
+		</p>
+		</solution>
+    </task>
+	<task>
+		<statement>
+			<p>
+				What do you notice about your results to parts (a) and (d)? Do you think this will happen in general? Write a sentence or two about what you think is happening here.
+			</p>
+		</statement>
+	</task>
+    <conclusion>
+		<p>
+			A natural question after completing this Preview Activity is if there is something special about the vector field <m>\vF</m> or the curve <m>C</m> that led to the results you obtained, and investigating this will be our principal task in this section.
+		</p>
+    </conclusion>
+</exploration>
+</introduction>
 
-  <subsection xml:id="SS_Vector_GreensTheorem_Circulation">
+<subsection xml:id="SS_Vector_GreensTheorem_Circulation">
     <title>Circulation</title>
     <p>
-      In <xref ref="PA_Vector_GreensTheorem"/>, you integrated the
-      circulation density of a smooth vector field over a disk and
-      found the result was equal to the circulation of
-      the vector field along the region's circular boundary. This
-      relationship is the theme of this section. To see why this would
-      make sense, consider the region <m>R</m> bounded by the curve
-      <m>C</m> shown in <xref ref="fig_Vector_GreensTheorem_circ_cartoon"/>. We have placed a square grid inside <m>R</m> to suggest the
-      idea of breaking <m>R</m> up into many smaller regions, most of
-      which are square. This idea should make you think of the methods
-      we have already seen of breaking up a region into smaller and
-      smaller regions for Riemann sums.
+      In <xref ref="PA_Vector_GreensTheorem"/>, you integrated the circulation density of a smooth vector field over a disk and found the result was equal to the circulation of the vector field along the region's circular boundary. This relationship is the theme of this section. To see why this would make sense, consider the region <m>R</m> bounded by the curve <m>C</m> shown in <xref ref="fig_Vector_GreensTheorem_circ_cartoon"/>. We have placed a square grid inside <m>R</m> to suggest the idea of breaking <m>R</m> up into many smaller regions, most of which are square. This idea should make you think of the methods we have already seen of breaking up a region into smaller and smaller regions for Riemann sums.
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_circ_cartoon">
       <caption>A region bounded by a curve</caption>
       <image source="/fig_Vector_GreensTheorem_circ_cartoon" width="80%">
-	<description>A bean-shaped region in the plane that is bounded
-	by a closed curve. The curve is oriented so that when walking
-	along the curve, the region is always on the left. There is a
-	square grid dividing the up the interior of the region.</description>
+		<description>A bean-shaped region in the plane that is bounded by a closed curve. The curve is oriented so that when walking along the curve, the region is always on the left. There is a square grid dividing the up the interior of the region.</description>
       </image>
     </figure>
     <p>
-      The critical idea here is that if we integrate the circulation
-      <em>density</em> over each of the small regions and add those
-      up, this is the same as integrating the circulation density over
-      the entirety of the region <m>R</m> because of the fundamental
-      properties of integrals. Also, integrating circulation <em>per
-      unit area</em> over a two-dimensional region should be related
-      to the total circulation on that region. Now look at <xref ref="fig_Vector_GreensTheorem_circ_squares"/> and think of these four square regions as being four of the
-      square regions inside <m>R</m> in <xref ref="fig_Vector_GreensTheorem_circ_cartoon"/>.
+      The critical idea here is that if we integrate the circulation <em>density</em> over each of the small regions and add those up, this is the same as integrating the circulation density over the entirety of the region <m>R</m> because of the fundamental properties of integrals. Also, integrating circulation <em>per
+      unit area</em> over a two-dimensional region should be related to the total circulation on that region. Now look at <xref ref="fig_Vector_GreensTheorem_circ_squares2" /> and think of these two square regions as being two of the square regions inside <m>R</m> in <xref ref="fig_Vector_GreensTheorem_circ_cartoon" />.
     </p>
-    <figure xml:id="fig_Vector_GreensTheorem_circ_squares">
-      <caption>A square region divided into four smaller squares</caption>
-      <image source="/fig_Vector_GreensTheorem_circ_squares" width="40%">
-	<description>A square region in the plane that is bounded
-	by a closed curve oriented counterclockwise. The square is
-	divided into four squares of equal size, which are labeled as
-	<m>R_1</m>, <m>R_2</m>, <m>R_3</m>, and <m>R_4</m>. There are
-	circular arrows inside each of the smaller regions indicating
-	counterclockwise orientations.</description>
+    <figure xml:id="fig_Vector_GreensTheorem_circ_squares2">
+      <caption>A square region divided into two smaller squares</caption>
+      <image source="/fig_Vector_GreensTheorem_circ_squares2.pdf" width="40%">
+		<description>A rectangular region in the plane that is bounded by a closed curve oriented counterclockwise. The square is divided into two squares of equal size, which are labeled as <m>R_1</m> and <m>R_2</m>. There are circular arrows inside each of the smaller regions indicating counterclockwise orientations.</description>
       </image>
     </figure>
     <p>
-      We orient the boundary <m>C_i</m> of square region <m>R_i</m> in
-      the manner suggested by the circular arrows. This means that the
-      vertical boundary in common between <m>R_1</m> and <m>R_2</m> is
-      oriented <em>up</em> when we calculate the line integral
-      <m>\oint_{C_1}\vF\cdot d\vr</m> and oriented <em>down</em> when
-      we evaluate <m>\oint_{C_2}\vF\cdot d\vr</m>. Thus, this line
-      segment does not contribute to the sum
-      <m>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr</m>. The
-      same idea applies to the other three interior line segments so
-      that
-      <me>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr +
-      \oint_{C_3}\vF\cdot d\vr + \oint_{C_4}\vF\cdot d\vr</me>
-      is equal to the line integral of <m>\vF</m> along the boundary
-      of the large square.
+      We orient the boundary <m>C_i</m> of square region <m>R_i</m> in the manner suggested by the circular arrows. This means that the vertical boundary in common between <m>R_1</m> and <m>R_2</m> is oriented <em>up</em> when we calculate the line integral <m>\oint_{C_1}\vF\cdot d\vr</m> and oriented <em>down</em> when
+      we evaluate <m>\oint_{C_2}\vF\cdot d\vr</m>. Thus, this line  segment does not contribute to the sum
+      <m>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr</m>. Therefore, <me>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr </me>
+      is equal to the line integral of <m>\vF</m> along the boundary of the large square.
     </p>
     <p>
-      Returning to <xref ref="fig_Vector_GreensTheorem_circ_cartoon"/>, if we find the circulation along the
-      boundary of each of the smaller regions, the line integrals
-      along the boundaries that lie inside the region <m>R</m> will
-      all offset. Thus the value should equal <m>\oint_C\vF\cdot
-      d\vr</m>. If we make our grid fine enough, all of the smaller
-      regions into which <m>R</m> is divided will be very close to
-      rectangular. Our next activity looks at the relationship between
-      the circulation along a rectangular curve with sides parallel to
-      the coordinate axes and the double integral of the circulation
-      density over the rectangular region inside the curve.
+      Returning to <xref ref="fig_Vector_GreensTheorem_circ_cartoon"/>, if we find the circulation along the boundary of each of the smaller regions, the line integrals
+      along the boundaries that lie inside the region <m>R</m> will all offset. Thus the value should equal <m>\oint_C\vF\cdot d\vr</m>. If we make our grid fine enough, all of the smaller regions into which <m>R</m> is divided will be very close to rectangular. Our next activity looks at the relationship between
+      the circulation along a rectangular curve with sides parallel to the coordinate axes and the double integral of the circulation density over the rectangular region inside the curve.
     </p>
-    <activity xml:id="act_Vector_GreensTheorem_rectangle">
+    <!-- <activity xml:id="act_Vector_GreensTheorem_rectangle">
       <introduction>
 	<p>
-	  For this activity, we will consider the region <m>R</m>
-	  satisfying <m>a\leq x\leq c</m> and <m>b\leq y\leq
+	  For this activity, we will consider the region <m>R</m> satisfying <m>a\leq x\leq c</m> and <m>b\leq y\leq
 	  d</m>. The rectangular curve <m>C</m> will be the boundary
 	  of <m>R</m>, oriented counterclockwise. Let <m>\vF = \langle
 	  F_1(x,y),F_2(x,y)\rangle</m> be a vector field that is
@@ -467,163 +390,151 @@
 	  along the boundary of the region.
 	</p>
       </conclusion>
-    </activity>
+    </activity> -->
 
-    <p>
+    <!-- <p>
       The phenomenon we verified for rectangular regions in <xref ref="act_Vector_GreensTheorem_rectangle"/>
       is a more general result that will be the subject of our next
       section. 
-    </p>
+    </p> -->
+	<p>
+		In our earlier explanation, we saw how the calculation of circulation around a nice closed curve will be the sum of the circulation over pieces that enclose the same area, regardless of the size or number of the pieces used. In other words, 
+		<me>\oint_C \vF \cdot d\vr = \sum_{R_i} \oint_{C_i} \vF\cdot d\vr</me>
+		where <m>C_i</m> is a bounding curve for one of the subregions <m>R_i</m>. We defined our circulation density as the ratio of circulation to area, so we can also subsititute the circulation around a region for the circulation density times the area of that region. Additionally, we can take the limit as our regions get smaller (because size and the number of regions does not affect the sum!) to get the following 
+		<md>
+			<mrow>\oint_C \vF \cdot d\vr \amp = \lim_{\Delta R_i \rightarrow 0} \sum_{R_i} \oint_{C_i} \vF\cdot d\vr </mrow>
+			<mrow> \amp = \lim_{\Delta R_i \rightarrow 0} \sum_{R_i} \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y} \Delta R_i</mrow>
+		</md>
+		where <m>\Delta R_i</m> is the area of the region <m>R_i</m> with boundary curve <m>C_i</m>. Hopefully the above expression looks familiar to you as the Reimann sum definition for the double integral of <m>\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}</m> over the region <m>R</m>. For <q>nice</q> closed curves we can equate the circulation around the boundary (computed as a line integral) with a double integral of the circulation density over the region enclosed (computed with a double integral). 
+	</p>
   </subsection>
 
   <subsection>
     <title>Green's Theorem</title>
-    <p>So far in this section, we have restricted ourselves to
-    relatively nice closed curves when thinking about
-    circulation. While the main theorem of this section will not allow
-    us to consider arbitrary closed curves, it does cover more varied
-    curves than we have discussed so far. A <term>simple closed
-    curve</term> is a closed curve that does not cross itself, and
-    these are the curves to which our next theorem applies.</p>
+    <p>
+		So far in this section, we have restricted ourselves to relatively nice closed curves when thinking about circulation. While the main theorem of this section will not allow us to consider arbitrary closed curves, it does cover more varied curves than we have discussed so far. A <term>simple closed curve</term> is a closed curve that does not cross itself, and these are the curves to which our next theorem applies.
+	</p>
     <aside>
       <title>A closed curve that is not simple</title>
-      <p>The restriction that the curve in <xref ref="thm_Green" text="title"/> prohibits curves such as the one below, which
-      crosses itself.</p>
-      <image source="/image_Vector_GreensTheorem_FigureEight">
-	<description>A curve in the shape of a figure eight</description>
-      </image>
+      	<p>
+			The restriction that the curve in <xref ref="thm_Green" text="title"/> prohibits curves such as the one below, which crosses itself.
+		</p>
+		<image source="/image_Vector_GreensTheorem_FigureEight">
+			<description>A curve in the shape of a figure eight</description>
+		</image>
     </aside>
     <theorem xml:id="thm_Green">
       <title>
-	Green's Theorem
+		Green's Theorem
       </title>
       <statement>
-	<p>Let <m>C</m> be a simple closed curve in the plane that
-	bounds a region <m>R</m> with <m>C</m> oriented in such a
-	way that when walking along <m>C</m> in the direction of its
-	orientation, the region <m>R</m> is on our left. Suppose that
-	<m>\vF=\langle F_1,F_2\rangle</m> is vector field with continuous partial derivatives
-	on the region <m>R</m> and its boundary <m>C</m>. The
-	circulation of <m>\vF</m> along <m>C</m> may be calculated as
-	<me>\oint_C \vF\cdot d\vr = \iint_R \left(\frac{\partial F_2}{\partial x} -
-	\frac{\partial F_1}{\partial y}\right)\, dA</me>.</p>
+		<p>
+			Let <m>C</m> be a simple closed curve in the plane that	bounds a region <m>R</m> with <m>C</m> oriented in such a way that when walking along <m>C</m> in the direction of its orientation, the region <m>R</m> is on our left. Suppose that <m>\vF=\langle F_1,F_2\rangle</m> is vector field with continuous partial derivatives on the region <m>R</m> and its boundary <m>C</m>. The circulation of <m>\vF</m> along <m>C</m> may be calculated as
+				<me>\oint_C \vF\cdot d\vr = \iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA</me>.
+			</p>
       </statement>
     </theorem>
-
-    <p>
+	
+    <!--<p>
       In <xref ref="act_Vector_GreensTheorem_rectangle"/>, we showed that <xref ref="thm_Green" text="title"/> holds when the region <m>R</m> is a rectangle
       with sides parallel to the coordinate axes. The discussion that
       introduced the previous subsection may have you convinced that
       <xref ref="thm_Green" text="title"/> holds in its full
       form. Although our argument there was not a rigorous proof, we
       will not say more about why this theorem is true in full
-      generality.  <!--TODO In
+      generality.  TODO In
       <xref ref="ez_Vector_GreensTheorem_ParamRect" 
       />, we will examine how a change of coordinates can give us a
-      proof for regions that can be parametrized by rectangles.-->
-    </p>
+      proof for regions that can be parametrized by rectangles.
+    </p> -->
     
     <p>
-      At first glance, it may seem that <xref ref="thm_Green" text="title"/> is of purely intellectual interest. However, we
-      have already encountered situations where parametrization a curve
-      can be complicated. This is particularly true when the curve has
-      <q>corners</q> that require us to give separate
-      parametrizations for several pieces of the curve, such as with
-      the rectangular curve pictured in <xref ref="fig_Vector_GreensTheorem_Rectangle"/>. However, as with
-      this rectangle, is often the case that a curve that is difficult
-      to parametrize bounds a region that is not too complex to
-      describe using rectangular or polar coordinates. For instance,
-      the rectangular region in <xref ref="fig_Vector_GreensTheorem_Rectangle"/> can be described as
-      <m>1\leq x\leq 4</m> and <m>2\leq y\leq 4</m>, rather than
-      parametrization each of the four sides of the rectangle
-      separately. Additionally, the integrand of the double integral
-      in <xref ref="thm_Green" text="title"/> involves partial
-      derivatives that can sometimes result in an integrand that is
-      very easy to work with. The purpose of <xref ref="thm_Green" text="title"/> is, at its core, to allow you to exchange one
-      type of integration problem (a line integral) for another type
-      of integration problem (a double integral). This will be a
+      At first glance, it may seem that <xref ref="thm_Green" text="title"/> is of purely intellectual interest. However, we have already encountered situations where parametrization a curve can be complicated. This is particularly true when the curve has <q>corners</q> that require us to give separate parametrizations for several pieces of the curve, such as with the rectangular curve pictured in <xref ref="fig_Vector_GreensTheorem_Rectangle"/>. However, as with this rectangle, is often the case that a curve that is difficult to parametrize bounds a region that is not too complex to describe using rectangular or polar coordinates. For instance, the rectangular region in <xref ref="fig_Vector_GreensTheorem_Rectangle"/> can be described as <m>1\leq x\leq 4</m> and <m>2\leq y\leq 4</m>, rather than
+      parametrization each of the four sides of the rectangle separately. Additionally, the integrand of the double integral in <xref ref="thm_Green" text="title"/> involves partial derivatives that can sometimes result in an integrand that is very easy to work with. The purpose of <xref ref="thm_Green" text="title"/> is, at its core, to allow you to exchange one type of integration problem (a line integral) for another type of integration problem (a double integral). This will be a
       recurring theme as this chapter continues.
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_Rectangle">
       <caption>A rectangular curve</caption>
       <image width="55%" source="/image_Vector_GreensTheorem_rectangle">
 	<description>
-	  A rectangular curve in the <m>xy</m>-plane. The lower-left
-	  corner is labeled <m>(1,2)</m>. The upper-right corner is
-	  labeled <m>(4,4)</m>. The curve is oriented
+	  A rectangular curve in the <m>xy</m>-plane. The lower-left corner is labeled <m>(1,2)</m>. The upper-right corner is labeled <m>(4,4)</m>. The curve is oriented
 	  counterclockwise.
 	</description>
       </image>
     </figure>
-
-      <p>The next activity asks you to apply
-      <xref ref="thm_Green" text="title"/>.
-    </p>
+	<example>
+		<p>
+			We will verify Green's Theorem by computing both sides of the equation separately when <m>\vF =\langle x^2-xy,y^2-2x \rangle </m> and <m>C</m> is the bounding curve given in <xref ref="fig_Vector_GreensTheorem_Rectangle" />.
+		</p>
+		<p>
+			First we will calculate the double integral (the right hand side of the equation in Green's Theorem). The circulation density of <m>\vF = \langle x^2-xy,y^2-2x \rangle </m> will be <m>-2-x</m>, which is continuous everywhere in the region <m>R</m>. Our iterated itegral becomes
+			<md>
+				<mrow>\iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA \amp = </mrow>
+				<mrow> \amp = \int_2^4 \int_1^4 (-2+x) \enspace dx \enspace dy </mrow>
+				<mrow> \amp = \int_2^4    (-2x+x^2/2)_{|_{x=1}^{x=4}} \enspace dy </mrow>
+				<mrow> \amp = \int_2^4 \frac{3}{2} \enspace dy </mrow>
+				<mrow> \amp = 3 </mrow>
+			</md>
+			Note how easy it is to set up and evaluate this double integral.
+		</p>
+		<p>
+			We will need to compute the line integral of <m>\vF</m> over the four segements of the bounding rectangle. We will use the following parameterizations:
+			<ul>
+				<li><m>\vr_{bottom}(t) = \langle 1+3t,2 \rangle </m></li>
+				<li><m>\vr_{right}(t) = \langle 4,2+2t \rangle </m></li>
+				<li><m>\vr_{top}(t) = \langle 4-3t,4 \rangle </m></li>
+				<li><m>\vr_{left}(t) = \langle 1,4-2t \rangle </m></li>
+			</ul>
+			where each paramterization uses <m>0\leq t\leq 1</m>. These parameterizations will yeild the following line integrals:
+			<ul>
+				<li><m>\int_{bottom} \vF \cdot d\vr = \int_0^1 ( (1+3t)^2 -(1+3t)(2) ) 3 \enspace dt = 6 </m></li>
+				<li><m>\int_{right} \vF \cdot d\vr = \int_0^1 ( (2+2t)^2 -(2)(4) ) 2 \enspace dt = 8/3  </m></li>
+				<li><m>\int_{top} \vF \cdot d\vr = \int_0^1 ( (4-3t)^2 -(4-3t)(4) ) (-3) \enspace dt = 9 </m></li>
+				<li><m>\int_{left} \vF \cdot d\vr = \int_0^1 ( (4-2t)^2 -(2)(1) ) (-2) \enspace dt = -44/3  </m></li>
+			</ul>
+			Note that the sum of these line integrals is 3, and thus Green's Theorem is verified for our case since 
+			<me>\oint_C \vF\cdot d\vr = 3 = \iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA</me>
+		</p>
+	</example>
 
     <activity xml:id="act_Vector_GreensTheorem_verify">
       <introduction>
-	<p>For each of the curves described below, find the
-	circulation of the given vector field around the curve. Do
-	this both by calculating the line integral directly as well as
-	by calculating the double integral from <xref ref="thm_Green" text="title"/>.
-	</p>
+		<p>
+			For each of the curves described below, find the circulation of the given vector field around the curve. Do this both by calculating the line integral directly as well as by calculating the double integral from <xref ref="thm_Green" text="title"/>.
+		</p>
       </introduction>
       <task>
-	<statement>
-	  <p>
-	    The curve <m>C_1</m> is the circle of radius <m>3</m>
-	    centered at the point <m>(2,1)</m> (oriented
-	    counterclockwise) and the vector field is <m>\vF = \langle
-	    y^2, 5x+2xy\rangle</m>.
-	  </p>
-	</statement>
-	<answer>
-	  <p><m>45\pi</m></p>
-	</answer>
-	<solution>
-	  <p>Here we find that
-	  <me>\frac{\partial F_2}{\partial x} -
-	  \frac{\partial F_1}{\partial y} = (5+2y)-2y =
-	  5</me>. Therefore, the integrand in <xref ref="thm_Green" text="title"/> is the constant <m>5</m>. Thus, the
-	  circulation of <m>\vF</m> around <m>C</m> is <m>5</m> times
-	  the area of the region inside <m>C</m>. That area is
-	  <m>\pi\cdot 3^2 = 9\pi</m>, which means that the circulation
-	  is <m>45\pi</m>.</p>
-	</solution>
+		<statement>
+		<p>
+			The curve <m>C_1</m> is the circle of radius <m>3</m> centered at the point <m>(2,1)</m> (oriented counterclockwise) and the vector field is <m>\vF = \langle
+			y^2, 5x+2xy\rangle</m>.
+		</p>
+		</statement>
+		<answer>
+		<p><m>45\pi</m></p>
+		</answer>
+		<solution>
+			<p>Here we find that <me>\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} = (5+2y)-2y = 5</me>. Therefore, the integrand in <xref ref="thm_Green" text="title"/> is the constant <m>5</m>. Thus, the circulation of <m>\vF</m> around <m>C</m> is <m>5</m> times the area of the region inside <m>C</m>. That area is <m>\pi\cdot 3^2 = 9\pi</m>, which means that the circulation is <m>45\pi</m>.</p>
+		</solution>
       </task>
       <task>
-	<statement>
-	  <p>
-	    The curve <m>C_2</m> is the triangle with vertices
-	    <m>(0,0)</m>, <m>(3,0)</m>, and <m>(3,3)</m> (oriented
-	    counterclockwise) and the vector field is <m>\vG = \langle y^2
-	    , 3xy\rangle</m>.
-	  </p>
-	</statement>
-	<answer>
-	  <p><m>27/6</m></p>
-	</answer>
-	<solution>
-	  <p>Here we find that
-	  <me>\frac{\partial F_2}{\partial x} -
-	  \frac{\partial F_1}{\partial y} = 3y-2y =
-	  y</me>. The region inside <m>C_2</m> can be described by
-	  <m>0\leq x\leq 3</m> and <m>0\leq y\leq x</m>. Therefore, by <xref ref="thm_Green" text="title"/>, we have
-	  <me>\oint_{C_2} \vG\cdot d\vr  = \int_0^3\!\int_0^x y\, dy\,
-	  dx = \int_0^3 \left.\frac{y^2}{2}\right|_0^x\, dx = \int_0^3
-	  \frac{x^2}{2}\, dx = \left.\frac{x^3}{6}\right|_0^3 = \frac{27}{6}</me>.</p>
-	</solution>
+		<statement>
+		<p>
+			The curve <m>C_2</m> is the triangle with vertices <m>(0,0)</m>, <m>(3,0)</m>, and <m>(3,3)</m> (oriented counterclockwise) and the vector field is <m>\vG = \langle y^2, 3xy\rangle</m>.
+		</p>
+		</statement>
+		<answer>
+			<p><m>27/6</m></p>
+		</answer>
+		<solution>
+			<p>
+				Here we find that <me>\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} = 3y-2y = y</me>. The region inside <m>C_2</m> can be described by <m>0\leq x\leq 3</m> and <m>0\leq y\leq x</m>. Therefore, by <xref ref="thm_Green" text="title"/>, we have <me>\oint_{C_2} \vG\cdot d\vr  = \int_0^3\!\int_0^x y\, dy\,	dx = \int_0^3 \left.\frac{y^2}{2}\right|_0^x\, dx = \int_0^3 \frac{x^2}{2}\, dx = \left.\frac{x^3}{6}\right|_0^3 = \frac{27}{6}</me>.
+			</p>
+		</solution>
       </task>
     </activity>
     <p>
-      Generally, <xref ref="thm_Green" text="title"/> is useful for
-      allowing us to calculate line integrals by instead calculating a
-      double integral. Going the other direction is harder, since
-      finding a vector field <m>\langle F_1,F_2\rangle</m> so that
-      <m>\partial F_2/\partial x - \partial F_1/\partial y</m> is
-      equal to the integrand in the double integral can be
-      difficult. However, the exercises will explore some situations
-      where calculating a suitable line integral is a viable
+      Generally, <xref ref="thm_Green" text="title"/> is useful for allowing us to calculate line integrals by instead calculating a double integral. Going the other direction is harder, since finding a vector field <m>\langle F_1,F_2\rangle</m> so that <m>\partial F_2/\partial x - \partial F_1/\partial y</m> is equal to the integrand in the double integral can be difficult. However, the exercises will explore some situations where calculating a suitable line integral is a viable
       alternative to the double integral.
     </p>
   </subsection>
