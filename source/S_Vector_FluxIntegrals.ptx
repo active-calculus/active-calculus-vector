@@ -122,12 +122,7 @@
 <subsection xml:id="SS_Vector_FluxInt_Idea">
   <title>The Idea of the Flux of a Vector Field through a Surface</title>
   <p>
-    In this section we will look at how to measure the amount of a vector field that flows through a surface in space.  <xref ref="fig_Vector_FluxInt_FieldSurface1"/> illustrates 
-    the situation that we wish to study in the remainder of this
-    section. We have a piece of a surface, shown by using
-    shading. There is also a vector field, perhaps representing some
-    fluid that is flowing. We are interested in measuring the flow of
-    the fluid through the shaded surface portion.
+    In this section we will look at how to measure the amount of a vector field that flows through a surface in space.  <xref ref="fig_Vector_FluxInt_FieldSurface1"/> illustrates a plot that demonstrates this idea. Our definition of divergence in <xref ref="S_Vector_Div" /> looked at measuring the amount of vector field flowing out of a small region on a 2D plane. In this subsection, we will set up a precise measurement of this same measurement but over a region of a curved surface in 3D.
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface1">
     <caption>A three-dimensional vector field and a surface</caption>
@@ -148,10 +143,7 @@
     </interactive>
   </figure>
   <p>
-    We don't care about the vector field away from the surface, so we
-    really would like to just examine what the output vectors for the
-    <m>(x,y,z)</m> points on our surface. So instead, we will look at
-    <xref ref="fig_Vector_FluxInt_FieldSurface2"/>.
+    We don't care about the output of the vector field at points away from the surface. We would really would like to  examine what the output vectors for the <m>(x,y,z)</m> points on our surface. So instead, we will look at <xref ref="fig_Vector_FluxInt_FieldSurface2"/> which plots the output of our vector field at an array of points on our surface.
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface2">
     <caption>A three-dimensional vector field evaluated along a surface</caption>
@@ -183,16 +175,7 @@
     </interactive>
   </figure>
   <p>
-    The central question we would like to consider is <q>How can we
-    measure the amount of a three dimensional vector field that flows
-    through a particular section of a curved surface?</q>, so we only
-    need to consider the amount of the vector field that flows through
-    the surface. Any portion of our vector field that flows along (or
-    tangent) to the surface will not contribute to the amount that
-    goes through the surface. In the next figure, we have split the
-    vector field along our surface into two components. One component,
-    plotted in green, is orthogonal to the surface. The component that
-    is tangent to the surface is plotted in purple.
+    The central question we would like to consider is <q>How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface?</q>, so we only need to consider the amount of the vector field that flows <alert>through</alert> the surface. Any portion of our vector field that flows along (or tangent) to the surface will not contribute to the amount that goes through the surface. In <xref ref="fig_Vector_FluxInt_FieldSurface3" />, we have split the vector field for points on our surface into two components. One component, plotted in green, is orthogonal to the surface. The component that is tangent to the surface is plotted in purple.
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface3">
     <caption>The decomposition of three-dimensional vector field
@@ -223,120 +206,92 @@
             FNy=Nfrac*N[1]
             FNz=Nfrac*N[2]
             plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
-            plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
+            plot1+=arrow3d((posx,posy,posz),(posx+F1-FNx,posy+F2-FNy,posz+F3-FNz),color="purple")
             plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="yellow")
         show(plot1)
       </slate>
     </interactive>
   </figure>
   <p>
-    In order to measure the amount of the vector field that moves
-    through the plotted section of the surface, we must find the
-    accumulation of the lengths of the green vectors in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors.
+    In order to measure the amount of the vector field that moves through the plotted section of the surface, we must find the accumulation of the lengths of the green vectors in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors.
   </p>
   <p>
-    If we have a parametrization of the surface, then the vector
-    <m>\vr_s \times \vr_t</m> varies smoothly across our surface and
-    gives a consistent way to describe which direction we choose as
-    <q>through</q> the surface. If we define a positive flow through
-    our surface as being consistent with the yellow vector in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>, then there is more positive flow (in terms of both magnitude and area) than negative flow through the surface. Thus, the <em>net</em> flow of the vector field through this surface is positive.
+    If we have a parametrization of the surface, then the vector <m>\vr_s \times \vr_t</m> varies smoothly across our surface and gives a consistent way to describe which direction we choose as <q>through</q> the surface. If we define a positive flow through our surface as being consistent with the yellow vector in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>, then there is more positive flow (in terms of both magnitude and area) than negative flow through the surface. Thus, the <em>net</em> flow of the vector field through this surface is positive.
   </p>
   <activity>
     <title>Visualizing flux through a surface</title>
     <statement>
       <p>
-        In this activity, you will compare the net flow of different
-	vector fields through our sample surface. In <xref ref="fig_Vector_FluxInt_FieldPicker"/> you can select between five different vector fields. Once you select a vector field, the vector field for a set of points on the surface will be plotted in blue. Each blue vector will also be split into its normal component (in green) and its tangential component (in purple). The yellow vector defines the direction for positive flow through the surface.
-          </p>
-          <p>
-           Look at each vector field and order the vector fields from
-	   greatest flow through the surface to least flow through the surface. Remember that a negative net flow through the surface should be lower in your rankings than any positive net flow.
-          </p>
-        <figure xml:id="fig_Vector_FluxInt_FieldPicker">
-          <caption>Five vector fields flowing through a surface, with
-	  decomposition into normal and tangential components</caption>
-          <interactive platform="sage" width="100%" aspect="1:1.05">
-            <slate surface="sage">
-              var('t,s,u,v,z,y,z')
-              f=-x^2/5-3*y^3/8
-              @interact
-              def _(sb=selector(['Vector Field 1','Vector Field 2','Vector Field 3','Vector Field 4','Vector Field 5'],label="Vector Field:")):
-                plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
-                for i in range(0,5):
-                  plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
-                  plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-                if sb=='Vector Field 1':
-                    Fx=x
-                    Fy=y
-                    Fz=z-x
-                if sb=='Vector Field 2':
-                    Fx=(y-z)*x
-                    Fy=sin(x*z)
-                    Fz=-abs(y)+x*z+.2
-                if sb=='Vector Field 3':
-                    Fx=x
-                    Fy=y+x*z
-                    Fz=-y-(x*z)/2
-                if sb=='Vector Field 4':
-                    Fx=cos(z)
-                    Fy=sin(x*y)
-                    Fz=-cos(y+x)
-                if sb=='Vector Field 5':
-                    Fx=abs(x)-x*y
-                    Fy=x-y
-                    Fz=1.5-x*z
-                for i in range(0,5):
-                  for j in range (0,5):
-                    posx=-1+i/2
-                    posy=-1+j/2
-                    posz=f(x=posx,y=posy)
-                    F1=Fx(x=posx,y=posy,z=posz)
-                    F2=Fy(x=posx,y=posy,z=posz)
-                    F3=Fz(x=posx,y=posy,z=posz)
-                    plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="blue")
-                    N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
-                    Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
-                    FNx=Nfrac*N[0]
-                    FNy=Nfrac*N[1]
-                    FNz=Nfrac*N[2]
-                    plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
-                    plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
-                    plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="yellow")
-                show(plot1)
-            </slate>
-          </interactive>
-        </figure>
-      </statement>
+        In this activity, you will compare the net flow of different vector fields through our sample surface. In <xref ref="fig_Vector_FluxInt_FieldPicker"/> you can select between five different vector fields. Once you select a vector field, the vector field for a set of points on the surface will be plotted in blue. Each blue vector will also be split into its normal component (in green) and its tangential component (in purple). The yellow vector defines the direction for positive flow through the surface.
+      </p>
+      <p>
+        Look at each vector field and order the vector fields from greatest flow through the surface to least flow through the surface. Remember that a negative net flow through the surface should be lower in your rankings than any positive net flow.
+      </p>
+      <figure xml:id="fig_Vector_FluxInt_FieldPicker">
+        <caption>Five vector fields flowing through a surface, with decomposition into normal and tangential components</caption>
+        <interactive platform="sage" width="100%" aspect="1:1.05">
+          <slate surface="sage">
+            var('t,s,u,v,z,y,z')
+            f=-x^2/5-3*y^3/8
+            @interact
+            def _(sb=selector(['Vector Field 1','Vector Field 2','Vector Field 3','Vector Field 4','Vector Field 5'],label="Vector Field:")):
+              plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+              for i in range(0,5):
+                plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+                plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+              if sb=='Vector Field 1':
+                  Fx=x
+                  Fy=y
+                  Fz=z-x
+              if sb=='Vector Field 2':
+                  Fx=(y-z)*x
+                  Fy=sin(x*z)
+                  Fz=-abs(y)+x*z+.2
+              if sb=='Vector Field 3':
+                  Fx=x
+                  Fy=y+x*z
+                  Fz=-y-(x*z)/2
+              if sb=='Vector Field 4':
+                  Fx=cos(z)
+                  Fy=sin(x*y)
+                  Fz=-cos(y+x)
+              if sb=='Vector Field 5':
+                  Fx=abs(x)-x*y
+                  Fy=x-y
+                  Fz=1.5-x*z
+              for i in range(0,5):
+                for j in range (0,5):
+                  posx=-1+i/2
+                  posy=-1+j/2
+                  posz=f(x=posx,y=posy)
+                  F1=Fx(x=posx,y=posy,z=posz)
+                  F2=Fy(x=posx,y=posy,z=posz)
+                  F3=Fz(x=posx,y=posy,z=posz)
+                  plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="blue")
+                  N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
+                  Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+                  FNx=Nfrac*N[0]
+                  FNy=Nfrac*N[1]
+                  FNz=Nfrac*N[2]
+                  plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
+                  plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
+                  plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="yellow")
+              show(plot1)
+          </slate>
+        </interactive>
+      </figure>
+    </statement>
   </activity>
 </subsection>
 <subsection>
-  <title>Measuring the Flux of a Vector Field through a Surface</title>
+  <title>The Details of Measuring the Flux of a Vector Field through a Surface</title>
   <p>
-    Now that we have a better conceptual understanding of what we are
-    measuring, we can set up the corresponding Riemann sum to measure
-    the flux of a vector field through a section of a surface. Let
-    <m>Q</m> be the section of our surface and suppose that <m>Q</m>
-    is parametrized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and
-    <m>c \leq t \leq d</m>. The domain of <m>\vr</m> is a region of
-    the <m>st</m>-plane, which we call <m>D</m>, and the range of
-    <m>\vr</m> is <m>Q</m>.
+    Now that we have a better conceptual understanding of what we are measuring, we can set up the corresponding Riemann sum to measure the flux of a vector field through a section of a surface. Let <m>Q</m> be the section of our surface and suppose that <m>Q</m> is parametrized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. The domain of <m>\vr</m> is a region of the <m>st</m>-plane, which we call <m>D</m>, and the range of <m>\vr</m> is <m>Q</m>.
   </p>
   <p>
-    In our classic calculus style, we slice our region of interest
-    into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m>
-    into <m>n</m> equally-sized subintervals with endpoints
-    <m>s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m>
-    equally-sized subintervals with endpoints
-    <m>t_1,\ldots,t_n</m>. This divides <m>D</m> into <m>nm</m>
-    rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by
-    <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as
-    <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane)
-    of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> 
-    also partitions <m>Q</m> into <m>nm</m> corresponding pieces which
-    we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>
-    (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is
-    approximated by <m>S_{i,j}=\vecmag{(\vr_s \times
-    \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
+    In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_1,\ldots,t_n</m>. This divides <m>D</m> into <m>nm</m>
+    rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as
+    <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>Q</m> into <m>nm</m> corresponding pieces which we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>S_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
   </p>
   <figure xml:id="fig_Vector_FluxInt_SurfaceSections">
     <caption>Pieces of the tangent planes that approximate a surface</caption>
@@ -376,9 +331,7 @@
     where <m>\vecmag{\vF_{\perp Q_{i,j}}}</m> is the length of the component of <m>\vF</m> orthogonal to <m>Q_{i,j}</m>.
   </p>
   <p>
-    For each <m>Q_{i,j}</m>, we approximate the surface <m>Q</m> by
-    the tangent plane to <m>Q</m> at a corner of that partition
-    element. This corresponds to using the planar elements in <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, which have surface area <m>S_{i,j}</m>. The vector <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m> can be used to measure the orthogonal direction (and thus define which direction we mean by positive flow through <m>Q</m>) on the <m>i,j</m> partition element. This means that
+    For each <m>Q_{i,j}</m>, we approximate the surface <m>Q</m> by the tangent plane to <m>Q</m> at a corner of that partition element. This corresponds to using the planar elements in <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, which have surface area <m>S_{i,j}</m>. The vector <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m> can be used to measure the orthogonal direction (and thus define which direction we mean by positive flow through <m>Q</m>) on the <m>i,j</m> partition element. This means that
     <me>
       \vF_{\perp Q_{i,j}} =\vecmag{\proj_{\vw_{i,j}}\vF(s_i,t_j)}
       = \frac{\vF(s_i,t_j)\cdot \vw_{i,j}}{\vecmag{\vw_{i,j}}}
@@ -403,6 +356,9 @@
     </me>.
     Taking the limit as <m>n,m\rightarrow\infty</m> gives the following result.
   </p>
+  <p>
+    Conceptually, the above limit shows how the argument in <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" /> generalizes when measuring the flux of a vector field through a surface rather than just the surface area. The key difference between the Riemann sum above and Riemann sum used to set up <xref ref="Surface-area" /> is that we are using the dot product of the vector field with the normal vector to the surface (given by <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m>) as the scalar value in our sum. This realization give the following theorem which states that the flux through a curved surface in space can be computed using a parameterization of the surface and a double integral over a flat region in the plane of parameter values. 
+  </p>
   <theorem xml:id="thm_flux_int_calc">
     <statement>
       <p>
@@ -414,21 +370,22 @@
     </statement>
   </theorem>
   <p>
-    In <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, you can
-    change the number of sections in your partition and see the
-    geometric result of refining the partition. The next activity asks
-    you to carefully go through the process of calculating the flux of
-    some vector fields through a cylindrical surface.
+    In <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, you can change the number of sections in your partition and see the geometric result of refining the partition. In the next example, we will look at how <xref ref="thm_flux_int_calc" /> is used on a part of a cone and make sense of the vector <m>\vw(t,s)=\vr_s \times \vr_t</m> and the scalar <m>\vF \cdot (\vr_s \times \vr_t)</m>.
+  </p>
+  <example>
+    <p>
+      
+    </p>
+  </example>
+  <p>
+    The next activity asks you to carefully go through the process of calculating the flux of some vector fields through a cylindrical surface.
   </p>
   <activity>
     <title>Checking the Visualization for Flux</title>
     <task>
       <introduction>
       <p>
-        <xref ref="fig_Vector_FluxInt_yzsine"/> shows a plot of the
-	vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a
-	right circular cylinder of radius <m>2</m> and height <m>3</m>
-	(with open top and bottom). Consider the vector field going into the cylinder (toward the <m>z</m>-axis) as corresponding to a positive flux.
+        <xref ref="fig_Vector_FluxInt_yzsine"/> shows a plot of the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a	right circular cylinder of radius <m>2</m> and height <m>3</m> (with open top and bottom). Consider the vector field going into the cylinder (toward the <m>z</m>-axis) as corresponding to a positive flux.
       </p>
       <figure xml:id="fig_Vector_FluxInt_yzsine">
         <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a right circular cylinder</caption>
