@@ -381,9 +381,9 @@
       <me>\vr_s = \langle \cos(t), \sin(t), 1 \rangle </me>
       <me>\vr_t = \langle -s \sin(t), s \cos(t), 0 \rangle </me>
       Taking the cross product of <m>\vr_s</m> and <m>\vr_t</m> will give the following vector valued function for <m>\vw</m>:
-      <me>\vw= \vr_s \times \vr_t = <-s \cos(t), -s \sin(t), s (\cos(t)^2 +\sin(t)^2) \rangle </me>
+      <me>\vw= \vr_s \times \vr_t = \langle -s \cos(t), -s \sin(t), s (\cos(t)^2 +\sin(t)^2) \rangle </me>
       which will simplify to 
-      <me>\vw=<-s \cos(t), -s \sin(t), s \rangle </me>
+      <me>\vw=\langle-s \cos(t), -s \sin(t), s \rangle </me>
       This should look familiar-ish because <m>\vw</m> is very close to <m>\vr</m>. If we think of <m>\vr</m> as giving <m>\langle x,y,z\rangle </m>, then <m>\vw = \langle -x, -y, z \rangle </m>. The interact below shows the vectors <m>\vr</m> and <m>\vw</m> for a point on the surface we are examining.
     </p>
     <figure xml:id="fig_Vector_FluxInt_Cone1">
@@ -401,7 +401,38 @@
       </interactive>
     </figure>
     <p>
-      We can see that our parameterization is given by
+      In <xref ref="fig_Vector_FluxInt_Cone1" /> you can see that that the normal vector (as calculated from the parameterization) points inside of the cone and this will be the direction of positive flow when measuring the flux of the vector field. Our parameterization will also transform our vector field into a function of <m>s</m> and <m>t</m>; specifcally 
+      <me>\vF(s,t)= \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle</me>
+      Applying <xref ref="thm_flux_int_calc" /> to our parameterization and vector field gives the following iterated integral:
+      <md>
+        <mrow> \iint_D \vF \cdot (\vr_s \times \vr_t)\, dA </mrow>
+        <mrow> \int_0^{2\pi}\int_1^3 \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle \cdot \langle -s \cos(t), -s \sin(t), s \rangle \enspace ds \enspace dt </mrow>
+        <mrow> \int_0^{2\pi}\int_1^3 ((s \cos(t))(s) -2)  (-s \cos(t)) +(-s \sin(t)) (s \sin(t) + s \cos(t)) +s </mrow>
+        <mrow> -\frac{62}{3}\pi </mrow>
+      </md>
+      Note that the result of this flux integral is negative, which means more of the vector field is going out of the cone than is going into the cone. 
+    </p>
+    <figure xml:id="fig_Vector_FluxInt_Cone2">
+      <caption>A plot of our surface with the vector field <m>\vF</m> for an array of points on the surface. The vector field has been scaled down by a factor of 5 in this plot.</caption>
+      <interactive platform="sage" width="100%" aspect="1:1.12">
+        <slate surface="sage">
+          var('x,y,z,s,t')
+          N=10
+          M=5
+          k=5
+          plot3=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0, 2*pi),color='blue', opacity=.50)
+          for i in range(0,N):
+            for j in range(0,M):
+              a=1+j/M*2
+              b=0+i/N*2*pi 
+              #(a,b)
+              plot3+=arrow3d((a*cos(b),a*sin(b),a),(a*cos(b)+1/k*((a*cos(b))*(a)-2), a*sin(b)+1/k*(a*sin(b) + a*cos(b)), 1/k+a),color='orange')
+          show(plot3,aspect_ratio=1)
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      In <xref ref="fig_Vector_FluxInt_Cone2" /> you can see much more of the vector field is going through to the outside of the cone than inside, which matches with our result of calculating the flux as negative. 
     </p>
   </example>
   <p>
@@ -428,7 +459,7 @@
       </introduction>
       <task>
 	<statement>
-	  <p>Reasoning graphically, do you think the flux of <m>\vF</m> throught the cylinder will be positive, negative, or zero?</p>
+	  <p>Reasoning graphically, do you think the flux of <m>\vF</m> throught the cylinder will be positive, negative, or zero? Be sure to write a few sentences jutifying your answer.</p>
 	</statement>
       </task>
     <task>
@@ -445,14 +476,14 @@
       </p>
       </statement>
     </task>
-<task>
+    <task>
       <statement>
       <p>
         Use your parametrization to write <m>\vF</m> as a function of <m>s</m> and <m>t</m>.
       </p>
       </statement>
       <hint>
-	<p>The <m>x</m> coordinate is given by the first component of <m>\vr</m>.</p>
+	      <p>The <m>x</m> coordinate is given by the first component of <m>\vr</m>.</p>
       </hint>
     </task>
     <task>
@@ -465,8 +496,7 @@
     <task>
       <statement>
       <p>
-        Does your computed value for the flux match your prediction
-	from earlier?
+        Does your computed value for the flux match your prediction	from earlier?
       </p>
       </statement>
     </task>
@@ -476,9 +506,7 @@
         Use <xref ref="fig_Vector_FluxInt_yzsine_sliders"/> to make an argument about why the flux of <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> through the right circular cylinder is zero.
       </p>
       <figure xml:id="fig_Vector_FluxInt_yzsine_sliders">
-        <caption>The vector field
-	<m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> with normal and
-	tangential components plotted on a right circular cylinder</caption>
+        <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> with normal and tangential components plotted on a right circular cylinder</caption>
         <interactive platform="sage" width="93%" aspect="1:1.26">
           <slate surface="sage">
             var('t,s,u,v,z,y,z')
@@ -530,197 +558,16 @@
       </statement>
     </task>
   </activity>
-</subsection>
-<subsection xml:id="SS_Vector_FluxInt_Calculate">
-  <title>Efficiently Calculating Flux Integrals</title>
+<!-- <subsection xml:id="SS_Vector_FluxInt_Calculate">
+  <title>Efficiently Calculating Flux Integrals</title> -->
   <p>
-    In this section, we will look at some computational ideas to help
-    us more efficiently compute the value of a flux integral. In many
-    cases, the surface we are looking at the flux through can be written with one coordinate as a function of the others. For simplicity, we consider <m>z=f(x,y)</m>.
+    In the exercises for this section, we will look at some computational ideas to help us more efficiently compute the value of a flux integral. In many
+    cases, the surface we are looking at the flux through can be written with one coordinate as a function of the others. For simplicity, we consider <m>z=f(x,y)</m>. Additionally, there will be exercises that guide you through common surfaces like spheres and cylinder surfaces. 
   </p>
-  <activity xml:id="act_Vector_FluxInt_Function">
-    <title>Flux Through Surfaces of the Form <m>z=f(x,y)</m></title>
-    <introduction>
-      <p>
-        In this activity, we will look at how to use a
-	parametrization of a surface that can be described as
-	<m>z=f(x,y)</m> to efficiently calculate flux integrals.
-      </p>
-    </introduction>
-    <task>
-      <statement>
-	<p>
-	  Suppose that <m>S</m> is a surface given by
-	  <m>z=f(x,y)</m>. Find a parametrization <m>\vr(s,t)</m> of <m>S</m>.
-	</p>
-      </statement>
-      <hint>
-	<p>Use <m>s=x</m> and <m>t=y</m>.</p>
-      </hint>
-    </task>
-    <task>
-      <statement>
-	<p>
-	  Show that the
-      vector orthogonal to the surface <m>S</m> has the form
-      <me>
-        \vr_s \times \vr_t=\left\langle -\frac{\partial{f}}{\partial{x}},-\frac{\partial{f}}{\partial{y}},1 \right\rangle
-      </me>.
-	</p>
-      </statement>
-    </task>
-    <task xml:id="task_act_Vector_FluxInt_Function_Normals">
-      <introduction>
-	<p>
-        For each of the three surfaces given below, compute <m>\vr_s
-        \times \vr_t</m>, graph the surface, and compute <m>\vr_s
-        \times \vr_t</m> for four different points of your
-        choosing. You should make sure your vectors <m>\vr_s \times
-        \vr_t</m> are orthogonal to your surface.
-	</p>
-      </introduction>
-      <task>
-	<statement>
-	  <p><m>z=x^2+y^2</m>
-	  </p>
-	</statement>
-      </task>
-      <task>
-	<statement>
-	  <p><m>x+2y+z=-4</m>
-	  </p>
-	</statement>
-      </task>
-      <task>
-	<statement>
-	  <p><m>z=x^2-y^2</m>
-	  </p>
-	</statement>
-      </task>
-    </task>
-    <task>
-      <introduction>
-	<p>
-        For each of the three surfaces in <xref ref="task_act_Vector_FluxInt_Function_Normals" text="local">part</xref>, use your calculations and <xref ref="thm_flux_int_calc"/> to compute the flux of each of the
-        following vector fields through the part of the surface
-        corresponding to the region <m>D</m> in the <m>xy</m>-plane.
-	</p>
-      </introduction>
-      <task>
-	<statement>
-	  <p><m>\vF=\langle{x,y,z}\rangle</m> with <m>D</m> given by
-	  <m>0\leq x,y\leq 2</m></p>
-	</statement>
-      </task>
-      <task>
-	<statement>
-	  <p><m>\vF=\langle{-y,x,1}\rangle</m> with <m>D</m> as the
-	  triangular region of the <m>xy</m>-plane with vertices
-	  <m>(0,0)</m>, <m>(1,0)</m>, and <m>(1,1)</m></p>
-	</statement>
-      </task>
-      <task>
-	<statement>
-	  <p><m>\vF=\langle{z,y-x,(y-x)^2-z^2}\rangle</m> with
-	  <m>D</m> given by <m>0\leq x,y\leq 2</m>
-	  </p>
-	</statement>
-      </task>
-    </task>
-  </activity>
-
-  <p>Spheres and portions of spheres are another common type of
-  surface through which you may wish to calculate flux.</p>
-  <activity xml:id="act_Vector_FluxInt_Sphere"> 
-      <title>Calculating the Flux through a Sphere</title>
-      <introduction>
-        <p>
-          For this activity, let <m>S_R</m> be the sphere of radius <m>R</m> centered at the origin.
-        </p>
-      </introduction>
-      <task>
-	<statement>
-          <p>
-            Parametrize <m>S_R</m> using spherical coordinates. Give
-            your parametrization as <m>\vr(s,t)</m>, and be sure to
-            state the bounds of your parametrization.
-          </p>
-	</statement>
-	<hint>
-	  <p>Use <m>s=\theta</m> and <m>t=\phi</m>.</p>
-	</hint>
-      </task>
-      <task xml:id="task_act_Vector_FluxInt_Sphere_Normal">
-        <p>
-          Use your parametrization of <m>S_R</m> to compute <m>\vr_s \times \vr_t</m>.
-        </p>
-      </task>
-      <task>
-        <p>
-          Your result for <m>\vr_s \times \vr_t</m> should be a scalar expression times <m>\vr(s,t)</m>. Explain why the outward pointing orthogonal vector on the sphere is a multiple of <m>\vr(s,t)</m> and what that scalar expression means.
-        </p>
-      </task>
-      <task xml:id="task_act_Vector_FluxInt_Sphere_Calculate">
-	<introduction>
-          <p>
-            Use your parametrization of <m>S_2</m> and the results of
-            <xref ref="task_act_Vector_FluxInt_Sphere_Normal" text="local">part</xref> to calculate the
-            flux through <m>S_2</m> for each of the three following
-            vector fields.
-	  </p>
-	</introduction>
-	<task>
-	  <statement>
-	    <p><m>\vF_1=\langle{x,y,z}\rangle</m></p>
-	  </statement>
-	</task>
-	<task>
-	  <statement>
-	    <p><m>\vF_2=\langle{-y,x,-1}\rangle</m></p>
-	  </statement>
-	</task>
-	<task>
-	  <statement>
-            <p><m>\vF_3=\langle{x-y,y+x,z-1}\rangle</m></p>
-	  </statement>
-	</task>
-      </task>
-      <task>
-        <p>
-          Use computer software to plot each of the vector fields from
-          <xref ref="task_act_Vector_FluxInt_Sphere_Calculate" text="local">part</xref> and interpret the results of your
-          flux integral calculations.
-        </p>
-      </task>
-      <task>
-        <p>
-          If we used the sphere of radius 4 instead of <m>S_2</m>,
-          explain how each of the flux integrals from <xref ref="task_act_Vector_FluxInt_Sphere_Calculate" text="local">part</xref> would change. You do not need to
-          calculate these new flux integrals, but rather explain if
-          the result would be different and how the result would be
-          different.
-        </p>
-      </task>
-  </activity>
+  
   <remark>
     <p>
-      Note that throughout this section, we have implicitly assumed
-      that we can parametrize the surface <m>S</m> in such a way that
-      <m>\vr_s\times \vr_t</m> gives a well-defined normal
-      vector. Technically, this means that the surface be
-      <term>orientable</term>. Most <q>reasonable</q> surfaces are
-      orientable. However, there are surfaces that are not
-      orientable. Perhaps the most famous is formed by taking a long,
-      narrow piece of paper, giving one end a half twist, and then
-      gluing the ends together. Try doing this yourself, but before
-      you twist and glue (or tape), poke a tiny hole through the paper
-      on the line halfway between the long edges of your strip of paper
-      and circle your hole. After gluing, place a pencil with its
-      eraser end on your dot and the tip pointing away. Think of this
-      as a potential normal vector. Keep the eraser on the paper, and
-      follow the middle of your surface around until the first time
-      the eraser is again on the dot. Is your pencil still pointing
-      the same direction relative to the surface that it was before?
+      Note that throughout this section, we have implicitly assumed that we can parametrize the surface <m>S</m> in such a way that <m>\vr_s\times \vr_t</m> gives a well-defined normal vector. Technically, this means that the surface be <term>orientable</term>. Most <q>reasonable</q> surfaces are orientable. However, there are surfaces that are not orientable. Perhaps the most famous is formed by taking a long, narrow piece of paper, giving one end a half twist, and then gluing the ends together. Try doing this yourself, but before you twist and glue (or tape), poke a tiny hole through the paper on the line halfway between the long edges of your strip of paper and circle your hole. After gluing, place a pencil with its eraser end on your dot and the tip pointing away. Think of this as a potential normal vector. Keep the eraser on the paper, and follow the middle of your surface around until the first time the eraser is again on the dot. Is your pencil still pointing the same direction relative to the surface that it was before?
     </p>
   </remark>
 </subsection>
