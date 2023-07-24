@@ -40,7 +40,7 @@
   <subsection>
   <title>Defining surface integrals of scalar functions</title>  
   <p>
-    In order to create a Riemann sum that will measure the acculumation of <m>f(x,y,z)</m>, a scalar valued function, over <m>S_1</m>. a bounded smooth surface in space, we will break our surface into smaller piecese where we can approximate the output of <m>f</m> and the surface area of each piece. In <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> and <xref ref="S_Vector_FluxInt"/>, we developed the way to measure surface area given a parameterization for the surface.
+    In order to create a Riemann sum that will measure the acculumation of <m>f(x,y,z)</m>, a scalar valued function, over <m>S_1</m>, a smooth, bounded surface in space, we will break our surface into smaller piecese where we can approximate the output of <m>f</m> and the surface area of each piece. In <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> and <xref ref="S_Vector_FluxInt"/>, we developed the way to measure surface area given a parameterization for the surface.
   </p>
   <p>
     Suppose that <m>S_1</m> is parametrized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_1,\ldots,t_m</m>. This divides <m>D</m> into <m>nm</m>
@@ -75,7 +75,7 @@
     </interactive>
   </figure>
   <p>
-    So to measure the accumulation of the output of <m>f(x,y,z)</m> over <m>S_1</m> we use the following Riemann sum:
+    So to measure the accumulation of the output of <m>f(x,y,z)</m> over <m>S_1</m>, we use the following Riemann sum:
     <md>
       <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}= </mrow>
       <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}= </mrow>
@@ -94,6 +94,51 @@
     </statement>
   </theorem>
 
+  <example>
+    <task>
+      <statement>
+        <p>
+          For our first part of our example, we will calculuate the scalar integral of <m>f(x,y,z)=x</m> on the surface <m>S_1</m> given by <m>x^2+y^2=z^2</m> such that <m>1\leq z \leq 3</m>. This is the same part of the cone used in <xref ref="flux_int_example1" />. Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <xref ref="fig_Scalar_Surface_Int_Example1" />, you can see that we can symmetrically break our surface <m>S_1</m> into two regions that have exactly the same surface area properties <alert>and</alert> symmetric output values for our scalar function, <m>f</m>. The only difference between the red (<m>S_2</m>) and green (<m>S_3</m>) of <xref ref="fig_Scalar_Surface_Int_Example1" /> is that the output of <m>f</m> will be negative on the red surface <m>S_3</m> and positive on the green surface <m>S_2</m>. No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the red side will give the same result but with an opposite sign. In other words,
+          <me>\int_{S_3} f \enspace dS = - \int_{S_2} f \enspace dS</me>.
+        </p>
+        <figure xml:id="fig_Scalar_Surface_Int_Example1">
+          <caption>The surface <m>S_1</m> divided into regions <m>S_2</m> with positive x-coordinate in green and <m>S_3</m> with negative x-coordinate in red</caption>
+          <interactive platform="sage" width="100%" aspect="1:1.12">
+            <slate surface="sage">
+              @interact
+              def asdf():
+                var('s,t')
+                plot1=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,-pi/2,pi/2),color='green', opacity=.50)
+                plot1+=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,pi/2,3*pi/2),color='red', opacity=.50)
+                show(plot1,aspect_ratio=1)
+            </slate>
+          </interactive>
+        </figure>
+        <p>
+          Therefore, 
+          <me>\int_{S_1} f \enspace dS = \int_{S_2} f \enspace dS + \int_{S_3} f \enspace dS = \int_{S_2} f \enspace dS - \int_{S_2} f \enspace dS =0</me>
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          From a calculation standpoint, we can still verify this result using our parameterization from <xref ref="flux_int_example1" /> and <xref ref="ScalarSurfaceIntDef" />. Specifically, we will use the parameterization of <m>S_1</m> given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with bounds <m>1\leq s \leq 3</m> and <m>0 \leq t \lt 2 \pi</m>. We also know from <xref ref="flux_int_example1" /> that 
+          <me>\vw= \vr_s \times \vr_t = \langle-s \cos(t), -s \sin(t), s \rangle </me>
+          The length of <m>\vw</m> will be <m>\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
+          <me> \int_{S_1} f \enspace dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \enspace 2s dt ds =0</me>
+          because the inside integral is <m>\int_0^{2\pi} \cos(t) dt = 0</m>.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          If we want to 
+        </p>
+      </statement>
+    </task>     
+  </example>
   <activity xml:id="ScalarSurfaceInt_Sensemaking">
     <introduction>
       <p>
