@@ -134,10 +134,54 @@
     <task>
       <statement>
         <p>
-          If we want to 
+          If we want to calculate the integral of <m>f(x,y,z) = x</m> over <m>S_2</m> given by <m>x^2+y^2=z^2</m> such that <m>1\leq z \leq 3</m> and <m>0\leq x </m>, then we have very little extra work to do. Only the bounds on the integral will change since we are using the same parameterization and function from the first example. We can use the parameterization given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with <m>1\leq s \leq 3</m> and <m>-\frac{\pi}{2} \leq t \lt \frac{\pi}{2} </m>. The length of <m>\vw</m> will be <m>\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
+          <md>
+            <mrow>\int_{S_2} f \enspace dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \enspace 2s dt ds</mrow>
+            <mrow> \amp = \int_1^3 2s^2 [\sin(t)]_{|_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \enspace  ds</mrow>
+            <mrow> \amp = \int_1^3 4s^2   \enspace  ds</mrow>
+            <mrow> \amp = \int_1^3 4s^2  = 104/3 \enspace  ds</mrow>
+          </md>
+        </p>
+        <p>
+          It should make sense to you why the result of <m>\int_{S_2} f \enspace dS</m> is positive because the output of our function is non-negative for all points on <m>S_2</m>. Remember that the Riemann sum used in calculating surface integrals of scalar functions is the product of the function's output on each piece times the estimate of the surface area. Thus, if the function's output is positive for all points on the surface, then the scalar surface integral will also be positive.
         </p>
       </statement>
     </task>     
+    <task>
+      <statement>
+        <p>
+          For our last example, we will calculate
+          <me>
+            \int_{S_1} z-x^2 \enspace dS 
+          </me>
+          We can reuse the parameterization and calculations above for <m>S_1</m> here and skip right to setting up the iterated integral. We will take a moment here to note that converting our scalar function <m>g(x,y,z)= z-x^2</m> to a function of <m>s</m> and <m>t</m> will give <m>g(s,t)=s-s^2 \cos(t)^2</m>. Therefore, we get the following iterated integral
+          <md>
+            <mrow>\int_{S_1} z-x^2 \enspace dS \amp =  \int_1^3 \int_{0}^{2 \pi} (s-s^2 \cos(t)^2) \enspace 2s dt ds</mrow>
+            <mrow> \amp = \int_1^3 2s^2 [t-s(\frac{2t+\sin(2t)}{4})]_{|_{t=0}^{2 \pi}} \enspace  ds</mrow>
+            <mrow> \amp = \int_1^3 2s^2 (-\pi (s-2)) \enspace  ds = -\frac{16\pi}{3}</mrow>
+          </md>
+        </p>
+        <p>
+          This result is a bit more difficult to to make sense of as being negative. In <xref ref="fig_Scalar_Surface_Int_Example2" /> we have a plot of the surface <m>S_1</m> in blue and the parabolic cylinder surface given by <m>z-x^2=0</m> is plotted in yellow. The points on the yellow surface correspond to where our scalar function (<m>g(x,y,z)= z-x^2</m>) gives an output of zero. The points inside the parabolic cylinder have a <m>z</m>-coordinate greater than <m>x^2</m> (which means that <m>g</m> will have a positive output for these points.) The points outside of the parabolic cylinder have a <m>z</m>-coordinate less than <m>x^2</m> (which means that <m>g</m> will have a negative output for these points.) In order to make an argument about whether <m>\int_{S_1} z-x^2 \enspace dS</m> is positive/negative/zero, we will need to assess whether there is more surface area with a positive output of <m>g</m>, more with a negative output, or an equal amount of positive-negative outputs. Actually, our problem is even harder than this. Beacuse the Riemann sum is the product of the output for each piece of our surface times the surface area estimate, we will need to think about which points/pieces have larger or smaller outputs for <m>g</m>. This is <alert>VERY</alert> difficult in general because you will need to a systematic way of estimating both the output of <m>g</m> and the surface area of different pieces of your surface. 
+        </p>
+        <figure xml:id="fig_Scalar_Surface_Int_Example2">
+          <caption>The surface <m>S_1</m> is plotted with the surface given by <m>z-x^2=0</m></caption>
+          <interactive platform="sage" width="100%" aspect="1:1.12">
+            <slate surface="sage">
+              @interact
+              def asdf():
+                var('s,t')
+                plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0,2*pi),color='blue', opacity=.75)
+                plot2+=parametric_plot3d((s,t,s^2),(s,-3,3),(t,-3,3),color='yellow', opacity=.50)
+                show(plot2,aspect_ratio=1) 
+            </slate>
+          </interactive>
+        </figure>
+        <p>
+          In our case, there is more surface area of <m>S_1</</m> inside the parabolic cylinder than outside. For <m>(x,y,z)</m> points that are far away from the yellow surface, the magnitude of the output of <m>g</m> for that point will be large. For <m>(x,y,z)</m> points that are close to the yellow surface, thier <m>z</m>-coordinates will be close to <m>x^2</m> and thus the output of <m>g</m> will be close to zero. This means that in order to properly estimate the scalar surface integral, we will need to assess whether there is a greater weighted surface area inside the parabolic cylinder than outside, where the weight of each surface area piece is given by how far the piece is from the yellow surface (the parabolic cylinder surface). This is not an easy argument to make and is not easy to verify visually for this example. For some examples you may be able to make a nice geometric arguement about the size of scalar surface integrals, but the algebraic calculation given by <xref ref="ScalarSurfaceIntDef" /> gives an exact value. 
+        </p>
+      </statement>
+    </task>
   </example>
   <activity xml:id="ScalarSurfaceInt_Sensemaking">
     <introduction>
@@ -226,7 +270,7 @@
 <subsection>
   <title>Properties of Scalar Surface Integrals</title>
   <p>
-    Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m> from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented curve, <m>-C</m> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar analogue amongst the properties of definite integrals.
+    Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m> from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented curve, <m>-C</m> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar analogue amongst the properties of definite integrals. 
   </p>
   <assemblage xml:id="asm_ScalarSurfaceInt_Properties">
       <title>Properties of Scalar Line Integrals</title>
@@ -277,7 +321,7 @@
       </task>
       <task>
         <p>
-          Explain in your own words what <m>\displaystyle \iint_{S_1} (k f) \enspace dS = k \iint_{S_1} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{S_1} (2 f) \enspace dS = 2 \iint_{S_1} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
         <answer>
           asdf
