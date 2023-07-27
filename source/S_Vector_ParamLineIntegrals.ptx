@@ -36,10 +36,23 @@
     </p>
 		<figure xml:id="fig_Vector_ParamLineIntegrals_FieldSegments">
       <caption>A vector field <m>\vF</m> and three oriented curves</caption>
-      <image width="60%" source="/fig_12_3_preview_field_segments_rev">
-	    <description>
-		    The vector field <m>\vF=\langle xy,y^2\rangle</m> plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq 4</m>. This vector field radiates from the origin with vector length increasing as distance from the origin increases. The graph includes the line segment <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>, and the line segment <m>C_3</m> from <m>(1,1)</m> to <m>(4,3)</m>.
-		  </description>
+      <image width="60%" xml:id="fig_12_3_preview_field_segments_rev">
+				<description>
+					The vector field <m>\vF=\langle xy,y^2\rangle</m> plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq 4</m>. This vector field radiates from the origin with vector length increasing as distance from the origin increases. The graph includes the line segment <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>, and the line segment <m>C_3</m> from <m>(1,1)</m> to <m>(4,3)</m>.
+				</description>
+				<sageplot>
+					var('x,y,t')
+					plot2=parametric_plot((1+3*t,1+2*t),(t,0,1),color="purple",thickness=2,axes_labels=["$x$","$y$"])+arrow((1,1),(2.5,2),color="purple")
+					plot2=plot2+parametric_plot((t,1),(t,1,4),color="red",thickness=2)+arrow((1,1),(2.5,1),color="red")
+					plot2=plot2+parametric_plot((4,t),(t,1,3),color='green',thickness=2)+arrow((4,1),(4,2.5),color='green')
+					plot1=plot_vector_field((x,y),(x,0,5),(y,0,4),color="blue",frame=False,xmin=-.25,xmax=5.5,ymin=-.25,ymax=4.5)
+					text1=text(r"$C_3$",(1.7,2.05),color='purple',fontsize='xx-large',clip=True,background_color='white')
+					text2=text(r"$C_2$",(4.4,1.8),color='green',fontsize='xx-large',clip=True,background_color='white')
+					text3=text(r"$C_1$",(2.75,0.7),color="red",fontsize='xx-large',clip=True,background_color='white')
+					plot1=plot1+text1+text2+text3
+					final_plot1=plot1+plot2
+					final_plot1					
+				</sageplot>
   		</image>
 		</figure>
   </introduction>
@@ -213,8 +226,24 @@
     </p>
     <figure xml:id="fig_param_line_int">
       <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the paramter <m>t</m></caption>
-      <image width="90%" source="/param_line_int1">
-        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
+      <image width="80%" xml:id="param_line_int1">
+        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m> broken into <m>n</m> pieces</description>
+				<sageplot>
+					tpoints=[4,3.5,3,2.5,1.5,1,0.5]
+					offsetx=[0.1,-0.2,0.3,0.2,0,-0.1,0.2]
+					offsety=[-0.2,-0.1,0,0.2,-0.2,-0.2,-0.2]
+					labels=['$P=\\mathbf{r}(t_0)$','$\\mathbf{r}(t_1)$','$\\mathbf{r}(t_2)$','$\\cdots$','$\\mathbf{r}(t_{n-2})$','$\\mathbf{r}(t_{n-1})$','$Q=\\mathbf{r}(t_{n})$']
+					
+					var('t');
+					r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+					plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+					for i in range(len(tpoints)):
+						position=r1(tpoints[i])
+						withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+						plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=20,color='black')
+					plot99+=arrow(r1(t=2),r1(t=1.99),color='black')	
+					plot99				
+				</sageplot>
       </image>
     </figure>
     <p>
@@ -222,8 +251,27 @@
 	  </p>
 	  <figure xml:id="fig_param_line_int2">
 	      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the paramter <m>t</m> with displacement vectors <m>\Delta r_i</m></caption>
-	      <image width="90%" source="/param_line_int2">
-	        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
+	      <image width="80%" xml:id="param_line_int2">
+	        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m> along with vectors <m>\Delta\vr_i</m> that approximate the curve</description>
+					<sageplot>
+						tpoints=[4,3.5,3,2.5,1.5,1,0.5]
+						offsetx=[0.1,-0.2,0.3,0.2,0,-0.2,0.2]
+						offsety=[-0.2,-0.1,0,0.2,-0.2,-0.2,-0.2]
+						labels=['$P=\\mathbf{r}(t_0)$','$\\mathbf{r}(t_1)$','$\\mathbf{r}(t_2)$','','$\\mathbf{r}(t_{n-2})$','$\\mathbf{r}(t_{n-1})$','$Q=\\mathbf{r}(t_{n})$']
+						var('t');
+						r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+						plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+						for i in range(len(tpoints)):
+							position=r1(tpoints[i])
+							withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+							if(i!=len(tpoints)-1 and i!=3):
+								plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='blue')
+							if(i==3):
+								plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+							plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=20,color='black')
+						plot99+=text('$\\Delta \\mathbf{r}_i=\\mathbf{r}(t_{i})-\\mathbf{r}(t_{i-1})$',(-1,0.7),color='red',fontsize=20)
+						plot99
+					</sageplot>
 	      </image>
 	    </figure>
 	  <p>
@@ -266,7 +314,7 @@
 		</p>
 		<figure xml:id="fig_Vector_ParamLineIntegrals_FieldQuarterCircle">
 		  <caption>The vector field <m>\vF = x\vi + y^2\vj</m> and an oriented curve <m>C</m> </caption>
-		  <image width="50%" source="/fig_12_3_vf_quarter_circle">
+		  <image width="50%" xml:id="fig_12_3_vf_quarter_circle">
 		    <description>
 		      The region in the <m>xy</m>-plane with <m>0\leq x\leq 4</m> and <m>0\leq y\leq 4</m>. The quarter circle of
 		      radius <m>3</m> centered at the origin and oriented clockwise is shown along with the vector field <m>x\vi +
@@ -274,6 +322,14 @@
 		      increases. Also vectors farther from the <m>x</m>-axis have steeper positive slope than those close to the
 		      <m>x</m>-axis, which are close to horiznotal.
 		    </description>
+				<sageplot>
+					var('x,y,t')
+					plot2=parametric_plot((3*sin(t),3*cos(t)),(t,0,pi/2),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((3,.15),(3,0),color="red")
+					plot1=plot_vector_field((x,y^2),(x,0,3.5),(y,0,3.5),color="blue",frame=False,plot_points=15,xmin=-.25,xmax=4,ymin=-.25,ymax=4)
+					text3=text(r"$C_1$",(2.5,0.75),color="red",fontsize='x-large',clip=True)
+					final_plot2=plot2+plot1
+					final_plot2					
+				</sageplot>
 		  </image>
 		</figure>
 		<p>
@@ -429,21 +485,23 @@
     </p>
     <figure xml:id="fig_Vector_ParamLineIntegrals_xFieldTriangle">
 			<caption>The vector field <m>\vF = x\vi</m> and some oriented curves.</caption>
-			<image width="65%" source="/fig_12_3_field_triangle_rev">
-			 	<description>The vector field <m>x\vi</m>, which consists of horiznotal vectors that increase in length as distance from the <m>y</m>-axis increases. Three oriented line segments are also depicted. The line segment <m>C_1</m> is from <m>(0,1)</m> to <m>(3,1)</m>. The line segment <m>C_2</m> is from <m>(3,1)</m> to <m>(3,3)</m>. The line segment <m>C_3</m> is from <m>(0,1)</m> to <m>(3,3)</m>.</description>
-			  <!-- Below is the code to generate the graphic for the above image. I'm can't get it to work on a Windows system with a Sage install...
-			       <sageplot>
-				 plot2=parametric_plot((3*t,1+2*t),(t,0,1),color="green",thickness=2,axes_labels=["$x$","$y$"])+arrow((0,1),(1.5,2),color="green",xmin=-.25,xmax=3.9,ymin=-.25,ymax=3.9)
-				 plot2=plot2+parametric_plot((t,1),(t,0,3),color="red",thickness=2)+arrow((1,1),(2,1),color="red")
-				 plot2=plot2+parametric_plot((3,t),(t,1,3),color='red',thickness=2)+arrow((3,1),(3,2),color='red')
-				 plot1=plot_vector_field((x,0),(x,0,3.5),(y,0,3.5),color="blue",frame=False)
-				 text1=text(r"$C_3$",(1.2,2.1),color='green',fontsize='x-large',clip=True)
-				 text2=text(r"$C_2$",(3.4,1.95),color='red',fontsize='x-large',clip=True)
-				 text3=text(r"$C_1$",(2,0.8),color="red",fontsize='x-large',clip=True)
-				 plot1=plot1+text1+text2+text3
-				 final_plot3=plot2+plot1
-				 final_plot3
-				 </sageplot> -->
+			<image width="65%" xml:id="fig_12_3_field_triangle_rev">
+			 	<description>
+					The vector field <m>x\vi</m>, which consists of horiznotal vectors that increase in length as distance from the <m>y</m>-axis increases. Three oriented line segments are also depicted. The line segment <m>C_1</m> is from <m>(0,1)</m> to <m>(3,1)</m>. The line segment <m>C_2</m> is from <m>(3,1)</m> to <m>(3,3)</m>. The line segment <m>C_3</m> is from <m>(0,1)</m> to <m>(3,3)</m>.
+				</description>
+				<sageplot>
+					var('x,y,t')
+					plot2=parametric_plot((3*t,1+2*t),(t,0,1),color="green",thickness=2,axes_labels=["$x$","$y$"])+arrow((0,1),(1.5,2),color="green",xmin=-.25,xmax=3.9,ymin=-.25,ymax=3.9)
+					plot2=plot2+parametric_plot((t,1),(t,0,3),color="red",thickness=2)+arrow((1,1),(2,1),color="red")
+					plot2=plot2+parametric_plot((3,t),(t,1,3),color='red',thickness=2)+arrow((3,1),(3,2),color='red')
+					plot1=plot_vector_field((x,0),(x,0,3.5),(y,0,3.5),color="blue",frame=False)
+					text1=text(r"$C_3$",(1.2,2.2),color='green',fontsize='xx-large',clip=True,background_color='white')
+					text2=text(r"$C_2$",(3.35,1.95),color='red',fontsize='xx-large',clip=True,background_color='white')
+					text3=text(r"$C_1$",(2,0.65),color="red",fontsize='xx-large',clip=True,background_color='white')
+					plot1=plot1+text1+text2+text3
+					final_plot3=plot2+plot1
+					final_plot3					
+				</sageplot>
 			</image>
     </figure>
     <p>
