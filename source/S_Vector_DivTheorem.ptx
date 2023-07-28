@@ -5,14 +5,12 @@
   <ul>
     <li>
       <p>
-	What is a closed surface in <m>\R^3</m>?
+	      What is a closed surface in <m>\R^3</m>?
       </p>
     </li>
     <li>
       <p>
-        How can we efficiently calculate the flux through a closed
-	surface in <m>\R^3</m> when that surface must be
-	parametrized in several pieces?
+        How can we efficiently calculate the flux through a closed surface in <m>\R^3</m> when that surface must be parametrized in several pieces?
       </p>
     </li>
     <!--<li>
@@ -24,26 +22,13 @@
 </objectives>
 <introduction>
   <p>
-    In <xref ref="S_Vector_Div"/> we examined vector fields for how
-    the strength of a vector field changes in different regions. In
-    particular, we developed the <xref ref="defn_Div" text="custom">divergence</xref> of a vector field as a local
-    measurement (based on density) of how the strength of the vector field changes. In particular, we did this by looking at the flux of the vector field through a closed path in two dimensions, then generalizing these ideas to higher dimensions.
+    In <xref ref="S_Vector_Div"/> we examined vector fields for how the strength of a vector field changes in different regions. In particular, we developed the <xref ref="defn_Div" text="custom">divergence</xref> of a vector field as a local measurement (based on density) of how the strength of the vector field changes. In particular, we did this by looking at the flux of the vector field through a closed path in two dimensions, then generalizing these ideas to higher dimensions.
   </p>
   <p>
-    In <xref ref="S_Vector_FluxInt"/>, we measured how much of a
-    vector field flowed through a section of a surface in three
-    dimensions as a generalization of our argument from <xref ref="S_Vector_Div"/>. In this section, we will connect the ideas
-    of flux of a vector field through a closed surface in three
-    dimensions and the divergence of that vector field.
+    In <xref ref="S_Vector_FluxInt"/>, we measured how much of a vector field flowed through a section of a surface in three dimensions as a generalization of our argument from <xref ref="S_Vector_Div"/>. In this section, we will connect the ideas of flux of a vector field through a closed surface in three dimensions and the divergence of that vector field.
   </p>
   <p>
-    A surface in three dimensions is said to be <term>closed</term> if
-    it has no boundary. Recalling the surfaces we studied in <xref ref="S_Vector_StokesThm"/> where we applied <xref ref="thm_Stokes" text="title"/>, <em>none</em> of those surfaces
-    were closed because the boundary of the surface through which we
-    calculated the flux was the curve along which we calculated the
-    circulation. In <xref ref="fig_Vector_DivThm_NotClosedSurfaces"/>, we show two surfaces that are <em>not</em> closed, as
-    demonstrated by the red curves marking the edge where the surface
-    ends.
+    A surface in three dimensions is said to be <term>closed</term> if it has no boundary. Recalling the surfaces we studied in <xref ref="S_Vector_StokesThm"/> where we applied <xref ref="thm_Stokes" text="title"/>, <em>none</em> of those surfaces were closed because the boundary of the surface through which we calculated the flux was the curve along which we calculated the circulation. In <xref ref="fig_Vector_DivThm_NotClosedSurfaces"/>, we show two surfaces that are <em>not</em> closed, as demonstrated by the red curves marking the edge where the surface ends.
   </p>
     <figure xml:id="fig_Vector_DivThm_NotClosedSurfaces">
       <caption>Two surfaces that are <em>not</em> closed</caption>
@@ -66,15 +51,11 @@
       </interactive>
     </figure>
     <p>
-    In fact, the yellow cylinder has two edges where the surface ends
-    (does not meet itself). The surfaces in <xref ref="fig_Vector_DivThm_ClosedSurfaces"/> <em>are</em> closed
-    because there is no edge to the surface. Note that the cylinder
-    has been <q>filled in</q> with a cap at top and bottom (plotted in
-    gray and green, respectively) to become a closed surface.
-  </p>
+      In fact, the yellow cylinder has two edges where the surface ends (does not meet itself). The surfaces in <xref ref="fig_Vector_DivThm_ClosedSurfaces"/> <em>are</em> closed because there is no edge to the surface. Note that the cylinder has been <q>filled in</q> with a cap at top and bottom (plotted in gray and green, respectively) to become a closed surface.
+    </p>
     <figure xml:id="fig_Vector_DivThm_ClosedSurfaces">
       <caption>Two closed surfaces</caption>
-      <interactive platform="sage" width="87%" aspect="1:2">
+      <interactive platform="sage" width="87%" aspect="1:2.02">
         <slate surface="sage">
           var('t,s')
           plot6=parametric_plot3d((2*sin(s)*cos(t),2*sin(s)*sin(t),2*cos(s)),(s,0,pi),(t,0,2*pi),frame=False,color='red',opacity=.5)
@@ -91,57 +72,44 @@
       </interactive>
     </figure>
   <p>
-    Closed surfaces can be used to define the boundary of a volume in
-    space. If we have the top and bottom on our cylinder, we have a
-    well-defined volume of space, in that we know which points are
-    <q>inside</q> the volume and which are <q>outside</q> of the
-    volume. With different top and bottom surfaces, the enclosed
-    volume would be different. <xref ref="fig_Vector_DivThm_TopsAndBottoms"/> illustrates three
-    different ways to complete the cylindrical surface into a closed surface.
+    Closed surfaces can be used to define the boundary of a volume in space. If we have the top and bottom on our cylinder, we have a well-defined volume of space, in that we know which points are <q>inside</q> the volume and which are <q>outside</q> of the volume. With different top and bottom surfaces, the enclosed volume would be different. <xref ref="fig_Vector_DivThm_TopsAndBottoms"/> illustrates three different ways to complete the cylindrical surface into a closed surface.
   </p>
-<figure xml:id="fig_Vector_DivThm_TopsAndBottoms">
-      <caption>Three ways to close a cylindrical surface by adding a
-      top and bottom</caption>
-      <interactive platform="sage" width="100%" aspect="1:1.07">
-        <slate surface="sage">
-var('t,s')
-plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='yellow',opacity=.25)
-plot1+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
-plot1+=text3d("x",(2.75,0,0),fontweight='bold')+text3d("y",(0,2.75,0),fontweight='bold')+text3d("z",(0,0,2.75),fontweight='bold')
-plot2=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),2*cos(s)+2),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
-plot2+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),-2*cos(s)),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
-plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='green',opacity=.5)
-plot3+=parametric_plot3d((s*cos(t),s*sin(t),2),(s,0,2),(t,0,2*pi),frame=False,color='gray',opacity=.5)
-plot4=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1-s^2/4)),(t,0,2*pi),(s,0,2),color="blue",opacity=.5)
-plot4+=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1+s^2/4)+1),(t,0,2*pi),(s,0,2),color="blue",opacity=.5)
-@interact
-def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],label="Top and Bottom to Display")):
-    if s =='Top and Bottom 1':
-        show(plot1+plot2,frame=False)
-    elif s =='Top and Bottom 2':
-        show(plot1+plot3,frame=False)
-    elif s =='Top and Bottom 3':
-        show(plot1+plot4,frame=False)
-        </slate>
-      </interactive>
-    </figure>
+  <figure xml:id="fig_Vector_DivThm_TopsAndBottoms">
+    <caption>Three ways to close a cylindrical surface by adding a top and bottom</caption>
+    <interactive platform="sage" width="100%" aspect="1:1.07">
+      <slate surface="sage">
+        var('t,s')
+        plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='yellow',opacity=.25)
+        plot1+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
+        plot1+=text3d("x",(2.75,0,0),fontweight='bold')+text3d("y",(0,2.75,0),fontweight='bold')+text3d("z",(0,0,2.75),fontweight='bold')
+        plot2=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),2*cos(s)+2),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
+        plot2+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),-2*cos(s)),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
+        plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='green',opacity=.5)
+        plot3+=parametric_plot3d((s*cos(t),s*sin(t),2),(s,0,2),(t,0,2*pi),frame=False,color='gray',opacity=.5)
+        plot4=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1-s^2/4)),(t,0,2*pi),(s,0,2),color="blue",opacity=.5)
+        plot4+=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1+s^2/4)+1),(t,0,2*pi),(s,0,2),color="blue",opacity=.5)
+        @interact
+        def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],label="Top and Bottom to Display")):
+            if s =='Top and Bottom 1':
+                show(plot1+plot2,frame=False)
+            elif s =='Top and Bottom 2':
+                show(plot1+plot3,frame=False)
+            elif s =='Top and Bottom 3':
+                show(plot1+plot4,frame=False)
+      </slate>
+    </interactive>
+  </figure>
 </introduction>
 <subsection xml:id="Vector_DivThm_FluxClosedSurface">
   <title>Measuring the Flux through a Closed Surface</title>
-  <exploration xml:id="PA_Vector_Divthm">
-    <title>Locating sources of a poisonous gas</title>
+<exploration xml:id="PA_Vector_Divthm">
+  <title>Locating sources of a poisonous gas</title>
   <introduction>
   <p>
-    We will use three different surfaces to examine the flux through
-    closed surfaces. Let <m>S_{\text{top}}</m> be the top half of the
-    unit sphere centered at the origin (graphed in magenta in the figures below). Let
-    <m>S_{\text{bottom}}</m> be the bottom half of the unit sphere
-    centered at the origin (graphed in yellow). Finally, let
-    <m>S_{\text{mid}}</m> be the unit disk centered at the origin in
-    the <m>xy</m>-plane (graphed in blue). With these definitions, <m>S_{\text{top}}</m> and <m>S_{\text{bottom}}</m> will make a closed surface given by the unit sphere. The surfaces <m>S_{\text{top}}</m> and <m>S_{\text{mid}}</m> will enclose the top half of the unit ball, while <m>S_{\text{bottom}}</m> and <m>S_{\text{mid}}</m> will enclose the bottom half of the unit ball.
+    We will use three different surfaces to examine the flux through closed surfaces. Let <m>S_{\text{top}}</m> be the top half of the unit sphere centered at the origin (graphed in magenta in the figures below). Let <m>S_{\text{bottom}}</m> be the bottom half of the unit sphere centered at the origin (graphed in yellow). Finally, let <m>S_{\text{mid}}</m> be the unit disk centered at the origin in the <m>xy</m>-plane (graphed in blue). With these definitions, <m>S_{\text{top}}</m> and <m>S_{\text{bottom}}</m> will make a closed surface given by the unit sphere. The surfaces <m>S_{\text{top}}</m> and <m>S_{\text{mid}}</m> will enclose the top half of the unit ball, while <m>S_{\text{bottom}}</m> and <m>S_{\text{mid}}</m> will enclose the bottom half of the unit ball.
   </p>
   <p>
-    In this problem we will be using the surfaces defined above and the flux integrals of a poisonous gas through these surfaces to try to whether different regions of space are emitting or absorbing the poisonous gas.
+    In this problem we will be using the surfaces defined above and the flux integrals of a poisonous gas through these surfaces to try to determine whether different regions of space are emitting or absorbing the poisonous gas.
   </p>
   </introduction>
   <task>
@@ -150,7 +118,7 @@ def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],labe
     </p>
     <figure xml:id="fig_Vector_DivThm_Poisongas1">
       <caption>Unit ball with boundary given by the combination of <m>S_{\text{top}}</m> and <m>S_{\text{bottom}}</m></caption>
-      <interactive platform="sage" width="87%" aspect="1:1.05">
+      <interactive platform="sage" width="87%" aspect="1:1.1">
         <slate surface="sage">
           var('t,s,x,y,z')
           plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
@@ -164,12 +132,11 @@ def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],labe
   </task>
   <task>
     <p>
-      In this part, we will consider the top half of the unit ball
-      shown in <xref ref="fig_Vector_DivThm_Poisongas2"/>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <m>S_{\text{top}}</m> is <m>15</m> and the flux integral of the poison gas through <m>S_{\text{mid}}</m> is <m>-20</m>, is the top half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.
+      In this part, we will consider the top half of the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas2"/>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <m>S_{\text{top}}</m> is <m>15</m> and the flux integral of the poison gas through <m>S_{\text{mid}}</m> is <m>-20</m>, is the top half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.
     </p>
     <figure xml:id="fig_Vector_DivThm_Poisongas2">
       <caption>Upper half of the unit ball with boundaries given by <m>S_{\text{top}}</m> and <m>S_{\text{mid}}</m></caption>
-      <interactive platform="sage" width="87%" aspect="1:1.05">
+      <interactive platform="sage" width="87%" aspect="1:1.1">
         <slate surface="sage">
           var('t,s,x,y,z')
           plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
@@ -183,18 +150,11 @@ def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],labe
   </task>
   <task>
     <p>
-      In this part, we will consider the bottom half of the unit ball
-      shown in <xref ref="fig_Vector_DivThm_Poisongas3"/>, with
-      boundary and normal vectors as shown in the plot. Based on the
-      information given in the previous two parts, what will the flux
-      integrals of the poison gas be for <m>S_{\text{bottom}}</m> and
-      <m>S_{\text{mid}}</m> be in this case? Be sure to pay attention
-      to the orientation of what we consider positive flow. Explain
-      your reasoning.
+      In this part, we will consider the bottom half of the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas3"/>, with boundary and normal vectors as shown in the plot. Based on the information given in the previous two parts, what will the flux integrals of the poison gas be for <m>S_{\text{bottom}}</m> and <m>S_{\text{mid}}</m> be in this case? Be sure to pay attention to the orientation of what we consider positive flow. Explain your reasoning.
     </p>
     <figure xml:id="fig_Vector_DivThm_Poisongas3">
       <caption>Lower half of the unit ball with boundaries given by <m>S_{\text{mid}}</m> and <m>S_{\text{bottom}}</m></caption>
-      <interactive platform="sage" width="87%" aspect="1:1.05">
+      <interactive platform="sage" width="87%" aspect="1:1.1">
         <slate surface="sage">
           var('t,s,x,y,z')
           plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
@@ -213,52 +173,108 @@ def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],labe
   </task>
 </exploration>
   <p>
-    The preview activity showed how the flux through a closed surface can be subdivided into the flux through surfaces which combine to be the closed surface (with orientation switches corresponding to additive inverse). The net flux through the closed surface measures the net amount of the vector field that is created or destroyed on the interior of the closed surface.
+    The preview activity (<xref ref="PA_Vector_Divthm" />) showed how the flux through a closed surface can be subdivided into the flux through surfaces which combine to be the closed surface (with orientation switches corresponding to additive inverse). The net flux through the closed surface measures the net amount of the vector field that is created or destroyed on the interior of the closed surface.
   </p>
 </subsection>
 <subsection xml:id="SS_Vector_DivThm_Verify">
   <title>The Divergence Theorem</title>
   <p>
-    The divergence of a vector field was developed as a measurement of
-    the density with which the strength of vector field is
-    changing. In three dimensions, the divergence measures the volume density in which the vector field is being created or destroyed. This means that if we integrate the divergence of a vector field over a volume of space, we will get the net amount of the vector field that is created or destroyed in that particular volume of space. Since the net amount of a vector field that is created or destroyed in a volume of space is the same as the net flux of the vector field through the boundary of that volume (which is a closed surface), we have a correspondence between a triple integral of the divergence of a vector field on the interior of a closed surface and the flux integral of the vector field over the closed surface.
+    The divergence of a vector field was developed as a measurement of the density with which the strength of vector field is changing. In three dimensions, the divergence measures the volume density in which the vector field is being created or destroyed. This means that if we integrate the divergence of a vector field over a volume of space, we will get the net amount of the vector field that is created or destroyed in that particular volume of space. Since the net amount of a vector field that is created or destroyed in a volume of space is the same as the net flux of the vector field through the boundary of that volume (which is a closed surface), we have a correspondence between a triple integral of the divergence of a vector field on the interior of a closed surface and the flux integral of the vector field over the closed surface.
   </p>
 
   <theorem xml:id="thm_Div">
     <title>Divergence Theorem</title>
       <statement>
-        <p>Let <m>S</m> be a closed surface in three dimensional space
-	and let <m>Q</m> be the volume bounded by <m>S</m>. If
-	<m>\vF</m> is a vector field that has continuous first partial
-	derivatives on <m>Q</m> and <m>S</m>, then
-        <me>
-          \iint_{S} \vF \cdot \vN\, dS = \iiint_Q \divg(\vF)\, dV
-        </me>
-        where the integral on the left measures the flux through
-	<m>S</m> in terms of the outward pointing normal vector.
+        <p>
+          Let <m>S</m> be a closed surface in three dimensional space and let <m>Q</m> be the volume bounded by <m>S</m>. If <m>\vF</m> is a vector field that has continuous first partial derivatives on <m>Q</m> and <m>S</m>, then
+          <me>
+            \iint_{S} \vF \cdot \vN\, dS = \iiint_Q \divg(\vF)\, dV
+          </me>
+          where the integral on the left measures the flux through <m>S</m> in terms of the outward pointing normal vector.
         </p>
       </statement>
   </theorem>
 
-  <p>The preview activity and the discussion before the statement of
-  the <xref ref="thm_Div" text="title"/> have hopefully given you
-  some intuition as to why the theorem is true. The ideas should also
-  seem similar to the manner in which we approached <xref ref="thm_Green" text="title"/> and <xref ref="thm_Stokes"/>. The
-  next activity walks you through evaluating both the flux integrals
-  necessary to calculate the flux directly and the triple integral of
-  the divergence theorem for a specific vector field and closed
-  surface. 
+  <p>
+    The preview activity and the discussion before the statement of the <xref ref="thm_Div" text="title"/> have hopefully given you some intuition as to why the theorem is true. The ideas should also seem similar to the manner in which we approached <xref ref="thm_Green" text="title"/> and <xref ref="thm_Stokes"/>. In the next example, we will verify the Divergence Theorem for a particular case.
+  </p>
+  <example>
+    <introduction>
+      <p>
+        In this example we will apply the Divergence Theorem to the vector field <m>\vF=\langle xy-z, yz+e^x,z(x-y) \rangle </m> and the region in the first octant bounded above by <m>z=1-x-y</m>. We will go through the calculations of the flux integral on the right side and the triple integral on the left side. 
+      </p>
+    </introduction>
+    <task>
+      <p>
+        In this task, we will calculate the left side of the Divergence Theorem using four flux integrals (for each of the four boundary surfaces) as drawn in <xref ref="verifyDiv_part1" />. We will need to parametrize each of the four faces which we will call <m>S_1</m> (in red), <m>S_2</m> (in yellow), <m>S_3</m> (in blue), and <m>S_4</m> (in green). 
+        <ul>
+          <li> <m>\vr_1(s,t)= \langle 0,s,t \rangle</m> </li>
+          <li> <m>\vr_2(s,t)= \langle s,0,t \rangle</m> </li>
+          <li> <m>\vr_3(s,t)= \langle s,t,0 \rangle</m> </li>
+          <li> <m>\vr_4(s,t)= \langle s,t,1-s-t \rangle</m> </li>
+        </ul>
+        where all of these parameterization use <m>0\leq s \leq 1</m> and <m>0 \leq t \leq 1-s</m>. Each of these parameterizations gives the following normal vectors:
+        <ul>
+          <li> <m>\vn_1 = \langle 1,0,0 \rangle</m> </li>
+          <li> <m>\vn_2 = \langle 0,-1,0 \rangle</m> </li>
+          <li> <m>\vn_3 = \langle 0,0,1 \rangle</m> </li>
+          <li> <m>\vn_4 = \langle 1,1,1 \rangle</m> </li>
+        </ul>
+        Notice that <m>\vn_1</m> and <m>\vn_3</m> point into <m>Q</m> while <m>\vn_2</m> and <m>\vn_4</m> points out of <m>Q</m>. We will take into account the idea that we will need to calculate the flow out of <m>Q</m> when we sum our flux integrals later.
+      </p>
+      <figure xml:id="verifyDiv_part1">
+        <caption>The region of integration <m>Q</m> with each of the four faces in a different color.</caption>
+        <interactive platform="sage" width="100%" aspect="1:1.05">
+          <slate surface="sage">
+            var('s,t,x,y,z')
+            plot6=parametric_plot3d((s,t*(1-s),0),(t,0,1),(s,0,1),color='blue',opacity=0.8)
+            plot6+=parametric_plot3d((0,s,t*(1-s)),(t,0,1),(s,0,1),color='red',opacity=0.8)
+            plot6+=parametric_plot3d((s,0,t*(1-s)),(t,0,1),(s,0,1),color='yellow',opacity=0.8)
+            plot6+=parametric_plot3d((s,t*(1-s),1-t*(1-s)-s),(t,0,1),(s,0,1),color='green',opacity=0.8)
+            show(plot6,aspect_ratio=1)
+          </slate>
+        </interactive>
+        <p>
+          We set up and evaluate each of these flux integrals using <xref ref="thm_flux_int_calc" />:
+          <md>
+            <mrow>S_1: \quad \int_0^{1} \int_0^{1-s} \langle (0)s-t,st-e^1,t(0-s) \rangle \cdot \langle 1,0,0 \rangle \enspace dt ds</mrow>
+            <mrow>S_2: \quad \int_0^{1} \int_0^{1-s} \langle s(0)-t,0(t)-e^s,t(s-0) \rangle \cdot \langle 0,-1,0 \rangle \enspace dt ds</mrow>
+            <mrow>S_3: \quad \int_0^{1} \int_0^{1-s} \langle st-0,t(0)-e^s, 0(s-t) \rangle \cdot \langle 0,0,1 \rangle \enspace dt ds</mrow>
+            <mrow>S_4: \quad \int_0^{1} \int_0^{1-s} \langle st-(1-s-t),t(1-s-t)+e^s,(1-s-t)(s-t) \rangle </mrow>
+            <mrow> \quad \quad \quad  \cdot \langle 1,1,1 \rangle \enspace dt ds</mrow>
+          </md>
+          A neat calculation trick we can use is that we can subtract the first and third from the second and fourth (remember the direction of flux) and do one integral. We can do this because the bounds on <alert>all</alert> of our parameterizations is the same. If we were to write out everything, we would get the following integals:
+          <md>
+            <mrow>S_1: \quad \int_0^{1} \int_0^{1-s} -t \enspace dt ds</mrow>
+            <mrow>S_2: \quad \int_0^{1} \int_0^{1-s} -e^s \enspace dt ds</mrow>
+            <mrow>S_3: \quad \int_0^{1} \int_0^{1-s} 0 \enspace dt ds</mrow>
+            <mrow>S_4: \quad \int_0^{1} \int_0^{1-s} -1+2s+t+e^s-s^2 \enspace dt ds</mrow>
+          </md>
+          Combining these we get:
+            <me> S_4-S_1+S_2-S_3: \quad \int_0^{1} \int_0^{1-s} -1+2s+2t-s^2 \enspace dt ds</me>
+          Which will evaluate to <m>-\frac{1}{12}</m>.
+        </p>
+      </figure>
+    </task>
+    <task>
+      <p>
+        In this task, we will calculate the triple integral on the right side of the Divergence Theorem for our example. Since <m>\vF=\langle xy-z, yz+e^x,z(x-y) \rangle </m>, we can calculate <m>\divg(\vF)= \dfrac{\partial}{\partial x}(xy-z)+\dfrac{\partial}{\partial y}(yz-e^x)+\dfrac{\partial}{\partial z}(z(x-y)) = y+z+(x-y)</m>. The region <m>Q</m> can be described by the bounds <m>0\leq x\leq 1</m>, <m>0\leq y\leq 1-x</m>, and <m>0\leq z\leq 1-x-y</m>. Thus, our triple integral will be setup and evaluated by
+        <md>
+          <mrow> \int_0^1 \int_0^{1-x} \int_0^{1-x-y} y+z+x \enspace dz \enspace dy \enspace dx </mrow>
+          <mrow> \int_0^1 \int_0^{1-x} y(1-x-y)+1/2(1-x-y)+x(1-x-y)  \enspace dy \enspace dx </mrow>
+          <mrow> \int_0^1 \frac{1}{12} (4x^3-3x^2-6x+5) \enspace dx </mrow>
+        </md>
+        which will evaluate to <m>\frac{1}{12}</m>. This matches with the flux calculations we did in the previous task to verify the Divergence Theorem for our example. 
+      </p>
+    </task>
+  </example>
+  <p>
+    The next activity walks you through evaluating both the flux integrals necessary to calculate the flux directly and the triple integral of the divergence theorem for a specific vector field and closed surface. 
   </p>
   <activity xml:id="act_Vector_DivThm_Verify">
     <introduction>
       <p>
-        In this activity, we will look at calculating both sides of a
-        non-trivial example of the <xref ref="thm_Div" text="title"/>. We will look at the region inside the right circular
-        cylinder shown in <xref ref="fig_Vector_DivThm_Cylinder"/>. Let <m>S</m> be the closed surface formed by combining
-        <m>S_{\text{top}}</m> (in yellow), <m>S_{\text{sides}}</m> (in
-        blue), and <m>S_{\text{bottom}}</m> (in magenta). The solid
-        volume <m>Q</m> is the volume bounded by <m>S</m>. The region
-        shown has radius <m>2</m>, and its height is <m>1</m>.
+        In this activity, we will look at calculating both sides of a non-trivial example of the <xref ref="thm_Div" text="title"/>. We will look at the region inside the right circular cylinder shown in <xref ref="fig_Vector_DivThm_Cylinder"/>. Let <m>S</m> be the closed surface formed by combining <m>S_{\text{top}}</m> (in yellow), <m>S_{\text{sides}}</m> (in blue), and <m>S_{\text{bottom}}</m> (in magenta). The solid volume <m>Q</m> is the volume bounded by <m>S</m>. The region shown has radius <m>2</m>, and its height is <m>1</m>.
       </p>
       <figure xml:id="fig_Vector_DivThm_Cylinder">
       <caption>A closed cylindrical surface</caption>
@@ -284,9 +300,7 @@ def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],labe
     <task xml:id="task_act_Vector_DivThm_Verify_Sign">
       <statement>
         <p>
-          <xref ref="fig_act_Vector_DivThm_Verify_Field"/> shows the
-	  vector field <m>\vF</m> on a region around <m>S</m>. Do you
-	  think the flux of <m>\vF</m> through <m>S</m> will be positive, negative, or zero?
+          <xref ref="fig_act_Vector_DivThm_Verify_Field"/> shows the vector field <m>\vF</m> on a region around <m>S</m>. Do you think the flux of <m>\vF</m> through <m>S</m> will be positive, negative, or zero?
         </p>
         <figure xml:id="fig_act_Vector_DivThm_Verify_Field">
           <caption>The vector field <m>\vF=\langle xy-2z,y^2-yz,3x+z^2\rangle</m> in the region near <m>Q</m></caption>
@@ -334,8 +348,7 @@ def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],labe
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_TripleInt">
       <statement>
-        <p> Set up and compute the triple integral for <m>\iiint_Q
-	\divg(\vF)\, dV</m>.</p>
+        <p> Set up and compute the triple integral for <m>\iiint_Q \divg(\vF)\, dV</m>.</p>
       </statement>
       <hint><p>Use cylindrical coordinates.</p></hint>
     </task>
@@ -346,61 +359,32 @@ def _(s=selector(['Top and Bottom 1','Top and Bottom 2','Top and Bottom 3'],labe
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_Easier">
       <statement>
-        <p>Was the left-hand side or right-hand side of the equation
-	in the Divergence Theorem more tedious to calculate in this example? Do you think this will be true for most other cases where the Divergence Theorem applies?</p>
+        <p>Was the left-hand side or right-hand side of the equation in the Divergence Theorem more tedious to calculate in this example? Do you think this will be true for most other cases where the Divergence Theorem applies?</p>
       </statement>
     </task>
   </activity>
 
-  <p>We finish this section with an activity that asks you to
-  calculate the flux of a vector field through some closed
-  surfaces without guiding you step-by-step.</p>
-
-  <activity xml:id="task_Vector_DivThm_Calculate">
-    <introduction>
-      <p>Calculate the flux of the given vector field <m>\vF</m>
-      through the surface <m>S</m> for each situation
-      below.</p>
-    </introduction>
-    <task>
-      <statement>
-	<p>The vector field <m>\vF = \langle 2x+3\sin(yz),-4y+e^{x^2}
-	, 7z+\arctan(y^5)</m> through the tetrahedron <m>S</m> with
-	vertices <m>(0,0,0)</m>, <m>(1,0,0)</m>, <m>(0,2,0)</m>, and
-	<m>(0,0,2)</m>.
-	</p>
-      </statement>
-    </task>
-    <task>
-      <statement>
-	<p>The vector field <m>\vF=\langle xy^2,yz^2,zx^2\rangle</m>
-	through the closed portion <m>S</m> of the sphere of radius <m>3</m>
-	centered at the origin having <m>x\geq 0</m>.</p>
-      </statement>
-      <hint>
-	<p>By itself, <m>S</m> is not a closed surface. However, think
-	about what additional surface <m>S'</m> you need to add to
-	make a closed surface.</p>
-      </hint>
-    </task>
-  </activity>
 </subsection>
 <subsection>
   <title>Summary</title>
   <p>
     <ul>
       <li>
-	<p>A closed surface is one that has no boundary.</p>
+	      <p>A closed surface is one that has no boundary.</p>
       </li>
     <li>
       <p>
-        The flux of a smooth vector field through a closed surface can
-	be computed by integrating the divergence of the vector field
-	over the volume bounded by the closed surface.
+        The flux of a smooth vector field through a closed surface can be computed by integrating the divergence of the vector field over the volume bounded by the closed surface.
       </p>
     </li>
   </ul>
   </p>
 </subsection>
 <xi:include  href="exercises/ez-S_Vector_DivTheorem.ptx" />
+<subsection>
+  <title>Notes to Instructors and Dependencies</title>
+  <p>
+    This section relies heavily on understanding flux integrals <xref ref="S_Vector_FluxInt" /> as well as the meaning of the divergence of a vector field from <xref ref="S_Vector_Div" /> and triple integrals from <xref ref="S-11-7-Triple-Integrals" />. 
+  </p>
+</subsection>
 </section>
