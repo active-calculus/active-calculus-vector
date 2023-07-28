@@ -184,7 +184,7 @@
   </p>
   <example xml:id="equal_space_param">
   	<p>
-  		In this example, we will look at the particulars of applying a parameterization of <m>C</m> (given by <m>\vr(t) =\langle f(t),g(t),h(t)\rangle</m> with <m>t \in [a,b]</m>) to <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" />. In particular, we will use this parameterization and a set of points along <m>C</m> that are equally spaced in terms of parameter values.
+  		In this example, we will look at the particulars of applying a parameterization of <m>C</m> (given by <m>\vr(t) =\langle f(t),g(t)\rangle</m> with <m>t \in [a,b]</m>) to <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" />. In particular, we will use this parameterization and a set of points along <m>C</m> that are equally spaced in terms of parameter values. To make this discussion a bit easier to read, we will work with a curve in two dimensions. However, all the ideas here generalize directly to curves in <m>\R^3</m>.
   	</p>
   	<p>
     	Suppose that <m>C</m> is an oriented curve traced out by the vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq b</m>, and let <m>\vF</m> be a continuous vector field defined on a region containing <m>C</m>. We can divide the interval <m>[a,b]</m> into <m>n</m> sub-intervals, each of length <m>\Delta t = (b-a)/n</m>, by letting <m>t_i = a + i\Delta t</m> for <m>i = 0,1,\dots,n</m>. Dividing the interval <m>[a,b]</m> into <m>n</m> pieces using <m>t_i</m> then can be used to break <m>C</m> up into <m>n</m> pieces by letting <m>C_i</m> be the part of the curve from <m>\vr(t_{i})</m> to <m>\vr(t_{i-1})</m> for <m>i=1,\dots,n</m>.
@@ -240,38 +240,41 @@
 	      </image>
 	    </figure>
 	  <p>
-	    Our vector field for <m>\int_C \vF \cdot d\vr</m> can also be transformed into a function of <m>t</m> by substituting the <m>x</m>, <m>y</m>, and <m>z</m> inputs with the corresponding components of the parameterization. If <m>\vF= \langle F_1(x,y,z),F_2(x,y,z),F_3(x,y,z)\rangle</m>, then the parameterization given by <m>\vr(t) =\langle f(t),g(t),h(t)\rangle</m> means we can rewrite <m>\vF</m> as a function of <m>t</m>.
+	    Our vector field for <m>\int_C \vF \cdot d\vr</m> can also be transformed into a function of <m>t</m> by substituting the <m>x</m> and <m>y</m> inputs with the corresponding components of the parameterization. If <m>\vF= \langle F_1(x,y),F_2(x,y)\rangle</m>, then the parameterization given by <m>\vr(t) =\langle f(t),g(t)\rangle</m> means we can rewrite <m>\vF</m> as a function of <m>t</m>:
 	    <me>
-	    	\vF(t)=\langle F_1(f(t),g(t),h(t)),F_2(f(t),g(t),h(t)),F_3(f(t),g(t),h(t))\rangle
+	    	\vF(t)=\langle F_1(f(t),g(t)),F_2(f(t),g(t))\rangle
 	    </me>
 	  </p>
 	  <p>
-	  	We can now substitute these pieces into <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> to get the following
+	  	We can now substitute these pieces into <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> to obtain the following
       <md>
       	<mrow>
-      		\int_C \vF\cdot d\vr = \lim_{|\Delta \vr_i \to 0} \sum_{i=1}^{n}\vF(\vr_i)\cdot\Delta\vr_i
+      		\int_C \vF\cdot d\vr \amp = \lim_{|\Delta \vr_i| \to 0} \sum_{i=1}^{n}\vF(\vr_i)\cdot\Delta\vr_i
       	</mrow>
       	<mrow>
-      		\lim_{|\Delta t \to 0} \sum_{i=1}^{n} \vF(t_i) \cdot	\left(\frac{\vr(t_{i}) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t 
+      		\amp = \lim_{\Delta t \to 0} \sum_{i=1}^{n} \vF(\vr(t_i)) \cdot	\left(\frac{\vr(t_{i}) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t 
       	</mrow>
     	</md>
-    When evaluating the limit as <m>\Delta t\to 0</m>, the expression in the parentheses will be <m>\frac{d\vr}{dt}(t_i)</m>. We then have a Riemann sum that changes the evaluation of a line integral of a vector field along an oriented curve to a definite integral of a function of one variable. In particular,
+    When evaluating the limit as <m>\Delta t\to 0</m>, the expression in the parentheses will be <m>\vr'(t_i)</m>. We then have a Riemann sum that changes the evaluation of a line integral of a vector field along an oriented curve to a definite integral of a function of one variable. In particular,
     <me>
-    	\int_C \vF \cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\, dt
+    	\int_C \vF \cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \vr'(t)\, dt
   	</me>
-    Note that after evaluating the dot product, <m>\vF(\vr(t))\cdot \frac{d\vr}{dt}(t)</m> is (scalar) function of <m>t</m>. This process will work with other ways of spliting the curve <m>C</m> into different parts, but the algebra is more complex and not any more illuminating for understanding underlying ideas.
+    Note that after evaluating the dot product, <m>\vF(\vr(t))\cdot \vr'(t)</m> is (scalar) function of <m>t</m>. 
   </p>
 </example>
-  <theorem xml:id="thm_LineIntParam">
-    <statement>
-			<p>
-	  		Let <m>C</m> be a smooth, oriented curve traced out by the vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq b</m>. If <m>\vF</m> is a continuous vector field defined near <m>C</m>, then
-	  			<me>
-            \int\limits_C \vF\cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\, dt
-	  			</me>
-			</p>
-    </statement>
-  </theorem>
+<p>
+	We now state the general form of the preceding example as a theorem that will allow us to evaluate line integrals of vector-valued functions in many contexts.
+</p>
+<theorem xml:id="thm_LineIntParam">
+	<statement>
+		<p>
+			Let <m>C</m> be a smooth, oriented curve traced out by the vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq b</m>. If <m>\vF</m> is a continuous vector field defined near <m>C</m>, then
+				<me>
+					\int\limits_C \vF\cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \vr'(t)\, dt
+				</me>.
+		</p>
+	</statement>
+</theorem>
 <example xml:id="ex_Vector_ParamLineIntegrals_QuarterCircle">
   <statement>
 		<p>
