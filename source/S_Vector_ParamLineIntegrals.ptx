@@ -263,7 +263,7 @@
   </p>
 </example>
 <p>
-	We now state the general form of the preceding example as a theorem that will allow us to evaluate line integrals of vector-valued functions in many contexts.
+	We now state the general form of the preceding example as a theorem that will allow us to evaluate line integrals of vector fields in many contexts.
 </p>
 <theorem xml:id="thm_LineIntParam">
 	<statement>
@@ -275,6 +275,9 @@
 		</p>
 	</statement>
 </theorem>
+<p>
+	To illustrate how useful <xref ref="thm_LineIntParam" /> is for evaluating line integrals, consider the following example.
+</p>
 <example xml:id="ex_Vector_ParamLineIntegrals_QuarterCircle">
   <statement>
 		<p>
@@ -303,16 +306,19 @@
 		<p>
 		  To evaluate <m>\int_{-C}\vF\cdot d\vr</m> using this parametrization, we need to note that
 		  <me>
-	      \vF(\vr(t)) = \langle 3\cos(t) , 9\sin^2(t)\rangle\qquad\text{ and } \qquad \frac{d\vr}{dt}(t) = \langle -3\sin(t),3\cos(t)\rangle
+	      \vF(\vr(t)) = \langle 3\cos(t) , 9\sin^2(t)\rangle\qquad\text{ and } \qquad \vr'(t) = \langle -3\sin(t),3\cos(t)\rangle
 		  </me>
 		</p>
 		<p>
 		  Thus, we have
 		  <md>
-	      <mrow>\int_C\vF\cdot d\vr \amp = -\int_{-C}\vF\cdot d\vr = -\int_0^{\pi/2} \langle 3\cos(t),9\sin^2(t)\rangle\cdot\langle-3\sin(t),3\cos(t)\rangle\, dt</mrow>
-	      <mrow>\amp = -\int_0^{\pi/2} \left(-9\sin(t)\cos(t) + 27\sin^2(t)\cos(t)\right)\, dt \quad \text{where } u =\sin(t) </mrow>
-	      <mrow>\amp  = -\int_0^1 (-9 u + 27u^2)\, du = -\left[ -\frac{9}{2}u^2 + 9u^3\right]_0^1 = -\left(-\frac{9}{2} + 9\right) = -\frac{9}{2}</mrow>
-		  </md>
+	      <mrow>\int_C\vF\cdot d\vr \amp = -\int_{-C}\vF\cdot d\vr </mrow>
+				<mrow>\amp = -\int_0^{\pi/2} \langle 3\cos(t),9\sin^2(t)\rangle\cdot\langle-3\sin(t),3\cos(t)\rangle\, dt</mrow>
+	      <mrow>\amp = -\int_0^{\pi/2} \left(-9\sin(t)\cos(t) + 27\sin^2(t)\cos(t)\right)\, dt </mrow>
+	      <mrow>\amp = -\int_0^1 (-9 u + 27u^2)\, du = -\left[ -\frac{9}{2}u^2 + 9u^3\right]_0^1</mrow>
+				<mrow>\amp = -\left(-\frac{9}{2} + 9\right) = -\frac{9}{2}</mrow>
+		  </md>.
+			Note that we have used the substitution <m>u =\sin(t)</m> in evaluating the definite integral here.
 		</p>
   </statement>
 </example>
@@ -431,15 +437,13 @@
 			\int_C\vF\cdot d\vr = \int_C \langle F_1, F_2, F_3 \rangle \cdot \langle dx, dy, dz \rangle= \int_C F_1\, dx + F_2\, dy + F_3\, dz
 		</me>.
 		A line integral in the form of <m>\int_C F_1\, dx + F_2\, dy + F_3\, dz</m> is called the <term>differential form of a line integral</term><idx><h>line integral</h><h>differential form of</h></idx>.
-  </p>
-  <p>
     (If <m>\vF</m> is a vector field in <m>\R^2</m>, the <m>F_3\, dz</m> term is omitted.) For example, if <m>\vF(x,y,z) = \langle x^2y,z^3,x\cos(z)\rangle</m> and <m>C</m> is some oriented curve in <m>\R^3</m>, then
     <me>
 			\int_C\vF\cdot d\vr = \int_C x^2y\, dx + z^3\, dy + x\cos(z)\,dz 
 		</me>
   </p>
   <p>
-    It is important to recognize that the integral on the right-hand side is <em>still a line integral</em> and must be evaluated using techniques for evaluating line integrals. We cannot simply try to treat the line integral (of the form <m>\int_C F_1\, dx + F_2\, dy + F_3\, dz</m>) as if it were a definite integral of a function of one variable. Because the notation <m>\int_C\vF\cdot d\vr</m> provides a reminder that this is a line integral and <em>not</em> a definite integral of the types calculated earlier in your study of calculus, we will only use the vector notation for line integrals in the body of the text. However, some exercises may require the use of the differential form.
+    It is important to recognize that the integral on the right-hand side is <em>still a line integral</em> and must be evaluated using techniques for evaluating line integrals. We cannot simply try to treat the line integral of the form <m>\int_C F_1\, dx + F_2\, dy + F_3\, dz</m> as if it were a definite integral of a function of one variable. Because the notation <m>\int_C\vF\cdot d\vr</m> provides a reminder that this is a line integral and <em>not</em> a definite integral of the types calculated earlier in your study of calculus, we will only use the vector notation for line integrals in the body of the text. However, some exercises may require the use of the differential form, and you may see the differential form used frequently in fields such as physics and engineering.
   </p>
 </subsection>
 <subsection>
@@ -449,7 +453,7 @@
   </p>
   <example xml:id="ex_Vector_ParamLineIntegrals_ParamIndep">
     <p>
-			Let <m>\vF = x\vi</m>. We consider two different oriented curves from <m>(0,1)</m> to <m>(3,3)</m>. The first oriented curve <m>C</m> travels horiznotally to <m>(3,1)</m> and then proceeds vertically to <m>(3,3)</m>. The second oriented curve <m>C_3</m> is the line segment from <m>(0,1)</m> to <m>(3,3)</m>. Notice that, as depicted in <xref ref="fig_Vector_ParamLineIntegrals_xFieldTriangle"/>, we can break <m>C</m> up into two oriented curves <m>C_1</m> (the horiznotal portion) and <m>C_2</m> (the vertical portion) so that <m>C = C_1 + C_2</m>.
+			Let <m>\vF = x\vi</m>. We consider two different oriented curves from <m>(0,1)</m> to <m>(3,3)</m>. The first oriented curve <m>C</m> travels horizontally to <m>(3,1)</m> and then proceeds vertically to <m>(3,3)</m>. The second oriented curve <m>C_3</m> is the line segment from <m>(0,1)</m> to <m>(3,3)</m>. Notice that, as depicted in <xref ref="fig_Vector_ParamLineIntegrals_xFieldTriangle"/>, we can break <m>C</m> up into two oriented curves <m>C_1</m> (the horizontal portion) and <m>C_2</m> (the vertical portion) so that <m>C = C_1 + C_2</m>.
     </p>
     <figure xml:id="fig_Vector_ParamLineIntegrals_xFieldTriangle">
 			<caption>The vector field <m>\vF = x\vi</m> and some oriented curves.</caption>
@@ -482,13 +486,14 @@
 			Thus, <m>\int_C\vF\cdot d\vr = 9/2</m>.
     </p>
     <p>
-			Now we look at <m>\int_{C_3}\vF\cdot d\vr</m>, but we parametrize <m>C_3</m> in a nonstandard way by letting <m>\vr(t) = \langle 3\sin(t),1+2\sin(t)\rangle</m> for <m>0\leq t\leq \frac{\pi}{2}</m>. (You should use a graphing utility to plot this parametrization to help convince yourself that it really does give <m>C_3</m>.) This gives <m>\frac{d\vr}{dt}(t) =	\langle 3\cos(t),2\cos(t)\rangle</m>, and
-			<me>
-    		\int_{C_3}\vF\cdot d\vr = \int_0^{\pi/2}\langle 3\sin(t),0\rangle\cdot\langle 3\cos(t),2\cos(t)\rangle\, dt = \int_0^{\pi/2} 9\sin(t)\cos(t)\, dt = \frac{9}{2}
-			</me>
+			Now we look at <m>\int_{C_3}\vF\cdot d\vr</m>, but we parametrize <m>C_3</m> in a nonstandard way by letting <m>\vr(t) = \langle 3\sin(t),1+2\sin(t)\rangle</m> for <m>0\leq t\leq \frac{\pi}{2}</m>. (You should use a graphing utility to plot this parametrization to help convince yourself that it really does give <m>C_3</m>.) This gives <m>\vr'(t) =	\langle 3\cos(t),2\cos(t)\rangle</m>, and
+			<md>
+    		<mrow> \int_{C_3}\vF\cdot d\vr \amp = \int_0^{\pi/2}\langle 3\sin(t),0\rangle\cdot\langle 3\cos(t),2\cos(t)\rangle\, dt </mrow>
+				<mrow> \amp = \int_0^{\pi/2} 9\sin(t)\cos(t)\, dt = \frac{9}{2}</mrow>
+			</md>.
     </p>
     <p>
-    	I the next activity, you are asked to consider the more typical parametrization of <m>C_3</m> and verify that using it gives the same value for the line integral.
+    	In the next activity, you are asked to consider the more typical parametrization of <m>C_3</m> and verify that using it gives the same value for the line integral.
     </p>
     <p>
     	It's also worth observing here that <m>\int_C\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr</m>, so at least two (very different) paths from <m>(0,1)</m> to <m>(3,3)</m> give the same value of the line integral here. The next section will further investigate when line integrals over different paths (with the same initial point and final point) will evaluate to the same value.
@@ -573,11 +578,11 @@
     <ul>
 			<li>
 	  		<p>
-          Line integrals of vector fields along oriented curves can be evaluated by parametrizing the curve in terms of <m>t</m> and then calculating the integral of <m>\vF(\vr(t))\cdot \frac{d\vr}{dt}(t)</m> on the interval <m>[a,b]</m>.
+          Line integrals of vector fields along oriented curves can be evaluated by parametrizing the curve in terms of <m>t</m> and then calculating the integral of <m>\vF(\vr(t))\cdot \vr'(t)</m> on the interval <m>[a,b]</m>.
 	  		</p>
 			</li>
 			<li>
-			  <p>The parametrization chosen for an oriented curve <m>C</m> when calculating the line integral <m>\int_C\vF\cdot d\vr</m> using the formula <m>\int_a^b \vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\, dt</m> does not impact the value
+			  <p>The parametrization chosen for an oriented curve <m>C</m> when calculating the line integral <m>\int_C\vF\cdot d\vr</m> using the formula <m>\int_a^b \vF(\vr(t))\cdot \vr'(t)\, dt</m> does not impact the value
 			  of the line integral.</p>
 			</li>
 			<li>
@@ -595,7 +600,7 @@
   </p>
 </subsection>
 <xi:include href="exercises/ez-S_Vector_ParamLineIntegrals.ptx"/>
-<subsection>
+<subsection component="instructor">
  <title>Notes to Instructors and Dependencies</title>
   <p>
     This section relies heavily on the idea of line integrals developed in <xref ref="S_Vector_IdeaLineIntegral" />, understanding curves in space (from <xref ref="S-9-6-Vector-Valued-Functions" />), and the work interpretation of the dot product from <xref ref="S-9-3-Dot-Product" />.
