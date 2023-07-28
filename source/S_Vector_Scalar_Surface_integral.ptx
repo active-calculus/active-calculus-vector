@@ -19,6 +19,82 @@
       </ul>
     </objectives>
   <introduction>
+    <exploration>
+      <introduction>
+        <p>
+          In <xref ref="PA_ScalarLI" /> we looked at how to understand line integrals of scalar functions through the analogy of running a mining machine along a given path. In short, the amount of Copium mined depended on the density of Copium at points on the path and the length of the path driven by the mining rig. 
+        </p>
+        <figure xml:id="CopiumPlot2">
+          <caption>A plot of land with density of Copium deposits and the edges of the plot drawn in yellow </caption>
+          <image source="/images/CopiumMinePlot.svg"/>
+	</figure>
+        <p>
+          The opening tasks of <xref ref="PA_ScalarLI" /> had you estimating the amount of Copium mined by driving along the edge of a plot of land (drawn in yellow on <xref ref="CopiumPlot2" />). This iterpretation meant that the scalar function we are using was measuring the linear density of Copium to have our Riemann sum of Linear Density of Copium times the distance traveled make sense. 
+        </p>
+      </introduction>
+      <task>
+        <p>
+          In this task, we will interpret <xref ref="CopiumPlot2" /> as a contour graph of the density of Copium per unit area. This will allow us to compute the total amount of Copium in our mining area by setting up a double integral. To approximate the total amount of Copium available in our mine, do the following:
+        </p>
+        <task>
+          <statement>
+            <p>
+              Break the mining plot (the area inside the yellow segments of <xref ref="CopiumPlot2" />) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              For each of the three pieces you used in part (a), estimate the average density of Copium on each of your three pieces. Write a few sentences explaining your methods of estimating the average density on each piece.
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Give an estimate for the total amount of Copium on your mining plot and explain your computation.
+            </p>
+          </statement>
+        </task>
+      </task>
+      <task>
+        <p>
+          What if instead of your mining plot being on a flat piece of land as represented in <xref ref="CopiumPlot2" />, your mining plot was on a hill as represented in <xref ref="fig_3D_CopiumMining" />. If we had the same copium density plot as a function of the <m>(x,y)</m> coordinates, would you expect:
+          <ul>
+            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be greater than on <xref ref="CopiumPlot2" /> </li>
+            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be lesser than on <xref ref="CopiumPlot2" /> </li>
+            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be the same as on <xref ref="CopiumPlot2" /> </li>
+          </ul>
+          Explain your reasoning for your choice of options above. 
+        </p>
+        <figure xml:id="fig_3D_CopiumMining">
+          <caption>A 3D plot of the region including our mining area (shown with boundary in red) </caption>
+          <interactive platform="sage" width="100%" aspect="1:1.12">
+            <slate surface="sage">
+              @interact
+              def abcd():
+                a=100000
+                b=75000
+                var('s,t,x,y,z')
+                g(x,y)=200*exp(-1/a*(x-250)^2-1/b*(y-300)^2)
+                plot10=parametric_plot3d((s,t,g(s,t)),(s,0,550),(t,0,550),color='blue',opacity=.5)
+                xylist=[[0,0],[212.5,425],[512.5,525],[300,100],[0,0]]
+                xstart=0
+                ystart=0
+                for c in xylist:
+                  m=c[0]-xstart
+                  n=c[1]-ystart
+                  plot10+=parametric_plot3d([xstart+t*m,ystart+t*n,g(xstart+t*m,ystart+t*n)],(t,0,1),color='red',thickness=5)
+                  xstart=c[0]
+                  ystart=c[1]
+                show(plot10,aspect_ratio=1)
+                
+            </slate>
+          </interactive>
+        </figure>
+      </task>
+    </exploration>
   <p>
     In <xref ref="S_Vector_FluxInt"/>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface (which changes at different points on the surface.) <xref ref="thm_flux_int_calc"/> shows the best way to calculate the flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>.
   </p>
@@ -98,7 +174,7 @@
     <task>
       <statement>
         <p>
-          For our first part of our example, we will calculuate the scalar integral of <m>f(x,y,z)=x</m> on the surface <m>S_1</m> given by <m>x^2+y^2=z^2</m> such that <m>1\leq z \leq 3</m>. This is the same part of the cone used in <xref ref="flux_int_example1" />. Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <xref ref="fig_Scalar_Surface_Int_Example1" />, you can see that we can symmetrically break our surface <m>S_1</m> into two regions that have exactly the same surface area properties <alert>and</alert> symmetric output values for our scalar function, <m>f</m>. The only difference between the red (<m>S_2</m>) and green (<m>S_3</m>) of <xref ref="fig_Scalar_Surface_Int_Example1" /> is that the output of <m>f</m> will be negative on the red surface <m>S_3</m> and positive on the green surface <m>S_2</m>. No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the red side will give the same result but with an opposite sign. In other words,
+          For our first part of our example, we will calculuate the scalar integral of <m>f(x,y,z)=x</m> on the surface <m>S_1</m> given by <m>x^2+y^2=z^2</m> such that <m>1\leq z \leq 3</m>. This is the same part of the cone used in <xref ref="flux_int_example1" />. Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <xref ref="fig_Scalar_Surface_Int_Example1" />, you can see that we can symmetrically break our surface <m>S_1</m> into two regions that have exactly the same surface area properties <alert>and</alert> symmetric output values for our scalar function, <m>f</m>. The only difference between the red (<m>S_3</m>) and green (<m>S_2</m>) of <xref ref="fig_Scalar_Surface_Int_Example1" /> is that the output of <m>f</m> will be negative on the red surface <m>S_3</m> and positive on the green surface <m>S_2</m>. No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the red side will give the same result but with an opposite sign. In other words,
           <me>\int_{S_3} f \enspace dS = - \int_{S_2} f \enspace dS</me>.
         </p>
         <figure xml:id="fig_Scalar_Surface_Int_Example1">
@@ -313,10 +389,14 @@
           Explain in your own words what <m>\iint_{S_1} f \enspace dS</m> means in the above analogy and what exactly would be measured by this scalar line integral.
         </p>
         <answer>
-          The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
+          <p>
+            The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
+          </p>
         </answer>
         <solution>
-          The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
+          <p>
+            The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
+          </p>
         </solution>
       </task>
       <task>
@@ -422,4 +502,10 @@
     </example>
   </subsection>
   <xi:include href="exercises/ez-S_Vector_Scalar_Surface_integral.ptx" />
+  <subsection>
+    <title>Notes to Instructors and Dependencies</title>
+    <p>
+      This section relies parameterized surfaces, which was first introduced in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area" />. While some of the motivation for this section came from our treatment of flux integrals, it is not necessary to cover flux integrals first.
+    </p>
+  </subsection>
 </section>
