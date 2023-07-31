@@ -363,7 +363,7 @@
 	  	Suppose that <m>\vF</m> is a continuous path-independent vector field (in <m>\R^2</m> or <m>\R^3</m>) on some region <m>D</m>.
 		</p>
   </introduction>
-  <task xml:i="task_Vector_FTCLI_PathIndep_equal">
+  <task xml:id="task_Vector_FTCLI_PathIndep_equal">
 		<statement>
 	  	<p>
         Let <m>P</m> and <m>Q</m> be points in <m>D</m> and let <m>C_1</m> and <m>C_2</m> be oriented curves from <m>P</m> to <m>Q</m>. What can you say about <m>\int_{C_1}\vF\cdot d\vr</m> and <m>\int_{C_2}\vF\cdot d\vr</m>?
@@ -458,15 +458,25 @@
 	  <sidebyside widths="45% 45%">
 	  	<figure>
 		  	<caption><m>\vF</m></caption>
-	      <image source="/fig_Vector_FTCLI_field1">
+	      <image xml:id="img_Vector_FTCLI_field1">
 				<description>A vector field in which all vectors are horizontal. The vectors are <m>0</m> along the <m>x</m>-axis, point to the right for <m>y&gt;0</m> and point to the left for <m>y\lt 0</m>. Vectors get longer as distance from the <m>x</m>-axis increases. </description>
+				<sageplot>
+					var('x,y,t')
+					final_plot=plot_vector_field((y,0),(x,-3.1,3.1),(y,-3.1,3.1),headwidth=5,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],xmin=-3.65,xmax=3.65,ymin=-3.5,ymax=3.5,frame=False,aspect_ratio=1)
+					final_plot					
+				</sageplot>
 		    </image>
 	    </figure>
 	    <figure>
 	      <caption><m>\vG</m></caption>
-        <image source="/fig_Vector_FTCLI_field2">
+        <image xml:id="img_Vector_FTCLI_field2">
 				<description> A vector field in which vectors appear to circulate in a clockwise manner around the point <m>(3,0)</m>. The magnitude of vectors increases with the distance from <m>(3,0)</m>. The plot shows the portion of the vector field with <m>0\leq x\leq 6</m> and <m>-3\leq y\leq 3</m>.
 				</description>
+				<sageplot>
+					var('x,y,t')
+					final_plot2=plot_vector_field((y,sin(x)),(x,0,6.28),(y,-3.1,3.1),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],xmin=-0.5,xmax=6.8,ymin=-3.5,ymax=3.5,frame=False,aspect_ratio=1)
+					final_plot2					
+				</sageplot>
 	      </image>
 	    </figure>
 	  </sidebyside>
@@ -483,30 +493,36 @@
 <subsection xml:id="SS_Vector_FTCLI_Other">
 <title>What other vector fields are path-independent?</title>
 <p>
-  Recall that in single variable calculus, the Second Fundamental Theorem of Calculus tells us that given a constant <m>c</m> and a continuous function <m>f</m>, there is a unique function <m>A(x)</m> for which <m>A(c) = 0</m> and <m>\frac{dA}{dx} (x) = f(x)</m>. In particular, <m>A(x) = \int_c^x f(t)\, dt</m> is this function. We are about to investigate an analog of this result for path-independent vector fields, but first we require two additional definitions.
+  Recall that in single variable calculus, <url href="https://activecalculus.org/single/sec-5-2-FTC2.html#qxB" visual="activecalculus.org/single/sec-5-2-FTC2.html#qxB">The Second Fundamental Theorem of Calculus </url>
+	 tells us that given a constant <m>c</m> and a continuous function <m>f</m>, there is a unique function <m>A(x)</m> for which <m>A(c) = 0</m> and <m>\frac{dA}{dx} (x) = f(x)</m>. In particular, <m>A(x) = \int_c^x f(t)\, dt</m> is this function. We are about to investigate an analog of this result for path-independent vector fields, but first we require two additional definitions.
 </p>
 <p>
   If <m>D</m> is a subset of <m>\R^2</m> or <m>\R^3</m>, we say that <m>D</m> is <term>open</term> <idx><h>open</h><h>definition</h></idx> provided that for every point in <m>D</m>, there is a disc (in <m>\R^2</m>) or ball (in <m>\R^3</m>) centered at that point such that every point of the disc/ball is contained in <m>D</m>. For example, the set of points <m>(x,y)</m> in <m>\R^2</m> for which <m>x^2+y^2 \lt 1</m> is open, since we can always surround any point in this set by a tiny disc contained in the set (as illustrated by point <m>P</m> in <xref ref="open_closed" />). However, if we change the inequality to <m>x^2+y^2\leq 1</m>, then the set is not open, as any point on the circle <m>x^2+y^2=1</m> cannot be surrounded by a disc contained in the set; any disc surrounding a point on that circle will contain points outside the set, that is with <m>x^2+y^2&gt;1</m> (as illustrated by the point <m>Q</m> in <xref ref="open_closed" />). We will also say that a region <m>D</m> is <term>path-connected</term><idx><h>path-connected</h><h>definition</h></idx> provided that for every pair of points in <m>D</m>, there is a path from one to the other contained in <m>D</m>.
 </p>
 <figure xml:id="open_closed">
   <caption>The open set <m>\{(x,y)| x^2+y^2 \lt 1\}</m> is plotted in yellow with a point <m>Q</m> on the boundary that shows why <m>\{(x,y)| x^2+y^2 \leq 1\}</m> is not open</caption>
-  <image width="90%" source="/open_closed">
+  <image width="65%" xml:id="image_open_closed">
   	<description>The open set <m>\{(x,y)| x^2+y^2 \lt 1\}</m> is plotted in yellow with a point <m>Q</m></description>
+		<sageplot>
+			var('t')
+			plot8=parametric_plot((cos(t),sin(t)),(t,0,2*pi),linestyle="--")
+			plot8+=disk((0,0),1,(0,2*pi),color="yellow")
+			plot8+=disk((-1/2,1/3),0.075,(0,2*pi),color='orange')+point((-1/2,1/3),size=20)+text("$P$",(-0.4,1/3),color='black',fontsize=15)
+			plot8+=disk((sqrt(2)/2,sqrt(2)/2),0.075,(0,2*pi),color='orange')+point((sqrt(2)/2,sqrt(2)/2),size=20)+text("$Q$",(.8,.8),color='black',fontsize=15)
+			plot8.axes_labels(["$x$","$y$"])
+			plot8			
+		</sageplot>
   </image>
 </figure>
 
-   <!--
-        I am unsure of the exact process described in the following activity. I would ask that you fill in the answer/solutions or we can try to rewrite this activity
-        NL
-    -->
 <activity xml:id="act_Vector_FTCLI_PathIndepGrad">
   <introduction>
 		<p>
-      Let <m>\vF=\langle F_1,F_2\rangle</m> be a continuous, path-independent vector field on an open, connected region <m>D</m>. We will assume that <m>D</m> is in <m>\R^2</m> and <m>\vF</m> is a two-dimensional vector field, but the ideas below generalize completely to <m>\R^3</m>. We want to define a function <m>f</m> on <m>D</m> by using the vector field <m>\vF</m> and line integrals, much like the Second Fundamental Theorem of Calculus allows us to define an antiderivative of a continuous function using a definite integral. To that end, we assign <m>f(x_0,y_0)</m> an arbitrary value. (Setting <m>f(x_0,y_0)=0</m> is probably convenient, but we won't explicitly tie our hands. Just assume that <m>f(x_0,y_0)</m> is defined to be some number.) Now for any other point <m>(x,y)</m> in <m>D</m>, define
+      Let <m>\vF=\langle F_1,F_2\rangle</m> be a continuous, path-independent vector field on an open, path-connected region <m>D</m>. We will assume that <m>D</m> is in <m>\R^2</m> and <m>\vF</m> is a two-dimensional vector field, but the ideas below generalize completely to <m>\R^3</m>. We want to define a function <m>f</m> on <m>D</m> by using the vector field <m>\vF</m> and line integrals, much like the Second Fundamental Theorem of Calculus allows us to define an antiderivative of a continuous function using a definite integral. To that end, we assign <m>f(x_0,y_0)</m> an arbitrary value. (Setting <m>f(x_0,y_0)=0</m> is probably convenient, but we won't explicitly tie our hands. Just assume that <m>f(x_0,y_0)</m> is defined to be some number.) Now for any other point <m>(x,y)</m> in <m>D</m>, define
       <me>
         f(x,y) = f(x_0,y_0) + \int_C\vF\cdot d\vr
       </me>,
-      where <m>C</m> is any oriented path from <m>(x_0,y_0)</m> to <m>(x,y)</m>. Since <m>D</m> is connected, such an oriented path must exist. Since <m>\vF</m> is path-independent, <m>f</m> is well-defined. If different paths from <m>(x_0,y_0)</m> to <m>(x,y)</m> gave different values for the line integral, then we'd not be sure what <m>f(x,y)</m> really is.
+      where <m>C</m> is any oriented path from <m>(x_0,y_0)</m> to <m>(x,y)</m>. Since <m>D</m> is path-connected, such an oriented path must exist. Since <m>\vF</m> is path-independent, <m>f</m> is well-defined. If different paths from <m>(x_0,y_0)</m> to <m>(x,y)</m> gave different values for the line integral, then we would not be sure what <m>f(x,y)</m> really is.
 		</p>
 		<p>
       To better understand this mysterious function <m>f</m> we've now defined, let's start looking at its partial derivatives.
@@ -515,17 +531,33 @@
   <task>
 		<statement>
 	  	<p>
-        Since <m>D</m> is open, there is a disc (perhaps very small) surrounding <m>(x,y)</m> that is contained in <m>D</m>, so fix a point <m>(a,b)</m>in that disc. Since <m>D</m> is path-connected, there is a path <m>C_1</m> from <m>(x_0,y_0)</m> to <m>(a,b)</m>. Let <m>C_y</m> be the line segment from <m>(a,b)</m> to <m>(a,y)</m> and let <m>C_x</m> be the line segment from <m>(a,y)</m> to <m>(x,y)</m>. (See <xref ref="fig_Vector_FTCLI_PathsPotential">Figure</xref>.) Rewrite <m>f(x,y)</m> as a sum of <m>f(x_0,y_0)</m> and line integrals along <m>C_1</m>, <m>C_y</m>, and <m>C_x</m>.
+        Since <m>D</m> is open, there is a disc (perhaps very small) surrounding <m>(x,y)</m> that is contained in <m>D</m>, so fix a point <m>(a,b)</m> in that disc. Since <m>D</m> is path-connected, there is a path <m>C_1</m> from <m>(x_0,y_0)</m> to <m>(a,b)</m>. Let <m>C_y</m> be the line segment from <m>(a,b)</m> to <m>(a,y)</m> and let <m>C_x</m> be the line segment from <m>(a,y)</m> to <m>(x,y)</m>. (See <xref ref="fig_Vector_FTCLI_PathsPotential">Figure</xref>.) Rewrite <m>f(x,y)</m> as a sum of <m>f(x_0,y_0)</m> and line integrals along <m>C_1</m>, <m>C_y</m>, and <m>C_x</m>.
 	  	</p>
       <figure xml:id="fig_Vector_FTCLI_PathsPotential">
-        <caption>Two piecewise smooth oriented curves from <m>(x_0,y_0)</m> to <m>(x,y)</m>.</caption>
-        <image source="/fig_12_4_paths_potential_rev">
-	      	<description> Two oriented curves from <m>(x_0,y_0)</m> to <m>(x,y)</m>. Both begin with a curved arc from <m>(x_0,y_0)</m> to <m>(a,b)</m>. The curve on the left proceeds vertically from <m>(a,b)</m> to <m>(a,y)</m> and then horizontally to <m>(x,y)</m>. The curve on the right proceeds horizontally from <m>(a,b)</m> to <m>(x,b)</m> and then vertically to <m>(x,y)</m>. </description>
+        <caption>A piecewise smooth oriented curve from <m>(x_0,y_0)</m> to <m>(x,y)</m>.</caption>
+        <image width="40%" xml:id="img_12_4_paths_potential_rev">
+	      	<description>An oriented curve from <m>(x_0,y_0)</m> to <m>(x,y)</m>. It begins with a curved arc from <m>(x_0,y_0)</m> to <m>(a,b)</m> and then proceeds vertically from <m>(a,b)</m> to <m>(a,y)</m> and then horizontally to <m>(x,y)</m>. </description>
+					<sageplot>
+						var('x,y,t');
+						plot1=parametric_plot((t+2,-t^2+4),(t,-2,0),color='black',axes=False,frame=False,xmin=-0.25,xmax=4,ymin=-0.25,ymax=5.5) +arrow((.75,-(1.25^2)+4),(.8,-(1.2^2)+4),color='black') +point((0,0),size=20,color='black') +text(r"$(x_0,y_0)$",(0.65,0.0),color="black",fontsize='x-large')
+						plot2=parametric_plot((2,t+4),(t,0,1),color='black',axes=False,frame=False) +arrow((2,4.25),(2,4.5),color='black')+point((2,4),size=20,color='black') +text("$(a,b)$",(2.15,3.75),color='black',fontsize='x-large')
+						plot3=parametric_plot((2+t,5),(t,0,1.5),color='black',axes=False,frame=False)+arrow((2.5,5),(2.75,5),color='black')+point((2,5),size=20,color='black')
+						plot4=point((3.5,5),size=20,color='black')+text(r"$(x,y)$",(3.15,5.25),color="black",fontsize='x-large')+text(r"$C_y$",(1.6,4.4),color='black',fontsize='x-large')+text(r"$C_x$",(2.75,4.75),color='black',fontsize='x-large')
+						final_plot1=plot1+plot2+plot3+plot4
+						final_plot1			
+					</sageplot>
 	    	</image>
       </figure>
 		</statement>
-		<answer><p><m>f(x,y)= f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </m></p></answer>
-		<solution><p>Because <m>C = C_1 + C_y+C_x</m>, we have that <me>f(x,y)= f(x_0,y_0) + \int_C\vF\cdot d\vr = f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </me>.</p></solution>
+		<answer><p>			<md>
+			<mrow>f(x,y)\amp= f(x_0,y_0) + \int_C\vF\cdot d\vr </mrow>
+			<mrow> \amp = f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </mrow>
+		</md></p></answer>
+		<solution><p>Because <m>C = C_1 + C_y+C_x</m>, we have that 
+			<md>
+				<mrow>f(x,y)\amp= f(x_0,y_0) + \int_C\vF\cdot d\vr </mrow>
+				<mrow> \amp = f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </mrow>
+			</md>.</p></solution>
   </task>
   <task>
 		<statement>
@@ -548,7 +580,7 @@
   <task>
 		<statement>
 		  <p>
-	      Rewrite your expression for <m>f(x,y)</m> using the single variable integrals above (and a line integral along <m>C_1</m>).
+	      Rewrite your expression for <m>f(x,y)</m> using a line integral along <m>C_1</m> and the single variable integrals above.
 		  </p>
 		</statement>
 		<answer><p> <me> f(x,y)=f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_b^y F_2(a,t)\, dt+ \int_a^x F_1(t,y)\, dt </me> </p>
@@ -589,7 +621,19 @@
 		</statement>
 		<answer><p><m>f_y(x,y) = F_2(x,y)</m></p></answer>
 		<solution>
-		  <p>Proceeding as above, we find that
+		  <image width="40%" xml:id="img_12_4_paths_potential_rev2">
+				<description>An oriented curve from <m>(x_0,y_0)</m> to <m>(x,y)</m>. It begins with a curved arc from <m>(x_0,y_0)</m> to <m>(a,b)</m>. It then proceeds horizontally from <m>(a,b)</m> to <m>(x,b)</m> and then vertically to <m>(x,y)</m>.</description>
+				<sageplot>
+					var('x,y,t');
+					plot5=parametric_plot((t+2+6,-t^2+4),(t,-2,0),color='black',axes=False,frame=False) +arrow((.75+6,-(1.25^2)+4),(.8+6,-(1.2^2)+4),color='black') +point((6,0),size=20,color='black') +text(r"$(x_0,y_0)$",(6.65,0.0),color="black",fontsize='x-large')
+					plot6=parametric_plot((8+t,4),(t,0,1.5),color='black',axes=False,frame=False) +arrow((8.75,4),(9,4),color='black')+point((8,4),size=20,color='black')+text("$(a,b)$",(8.15,3.75),color='black',fontsize='x-large')
+					plot7=parametric_plot((9.5,t),(t,4,5),color='black',axes=False,frame=False)+arrow((9.5,4.3),(9.5,4.6),color='black')+point((9.5,4),size=20,color='black')
+					plot8=point((9.5,5),size=20,color='black')+text(r"$(x,y)$",(9.15,5.25),color="black",fontsize='x-large')
+					final_plot2=plot5+plot6+plot7+plot8
+					final_plot2		
+				</sageplot>
+			</image>
+			<p>Proceeding as above, we find that
 		  <md>
 		    <mrow>f(x,y) \amp= f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr +
 		    \int_{L_x} \vF\cdot d\vr + \int_{L_y}\vF\cdot d\vr</mrow>
@@ -617,7 +661,7 @@
   </task>
 </activity>
 <p>
-  We summarize the result of <xref ref="act_Vector_FTCLI_PathIndepGrad"/> below.
+  We summarize the result of <xref ref="act_Vector_FTCLI_PathIndepGrad"/> below. Much like the Second Fundamental Theorem of Calculus, which tells us that a function is an antiderivative for another function, but leaves the antiderivative in terms of a definite integral, this theorem tells us that a function is a potential function for a vector field, but the definnition of the potential function is in terms of a line integral.
 </p>
 <theorem xml:id="thm_PathIndepGrad">
   <title>Path-Independent Vector Fields</title>
