@@ -27,7 +27,7 @@
   <exploration xml:id="PA_Vector_FTCLI">
     <introduction>
 			<p>
-        In <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>, we considered the vector field <m>\vF(x,y) = \langle y^2,2xy+3\rangle</m> and two different oriented curves from <m>(1,0)</m> to <m>(-1,0)</m>. We found that the value of the line integral of <m>\vF</m> was the same along those two oriented curves.
+        In <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>, we considered the vector field <m>\vF(x,y) = \langle y^2,2xy+3\rangle</m> and two different oriented curves from <m>(-2,5)</m> to <m>(3,30)</m>. We found that the value of the line integral of <m>\vF</m> was the same along those two oriented curves.
 			</p>
     </introduction>
     <task xml:id="PA_12_4_part1">
@@ -46,7 +46,7 @@
   			</p>
 			</statement>
 			<answer><p><m>0</m></p></answer>
-			<solution> <p> Algebraically, <m>f(-1,0)-f(1,0)=0-0=0</m>. There is no net change in the output of <m>f</m>. The line integral is also <m>0</m>. </p> </solution>
+			<solution> <p> Algebraically, <m>f(3,30)-f(-2,5)=3\cdot 30^2+3\cdot 30-(-2\cdot 5^2+3\cdot 5) = 2825</m>. The line integral is also <m>2825</m>. </p> </solution>
     </task>
     <task xml:id="PA_12_4_part3">
 			<statement>
@@ -66,12 +66,140 @@
 			</solution>
 	  </task>
 	</exploration>
+</introduction>
+<subsection>
+  <title>Path-Independent Vector Fields</title>
+	<p>
+		Hopefully <xref ref="PA_Vector_FTCLI" /> has prompted you to wonder about if the phenomenon of the value of a line integral depending only on the initial and terminal points of the oriented path, rather than the oriented path itself, and how a potential function comes into play.
+  	We say that a vector field <m>\vF</m> defined on a region <m>D</m> is <term>path-independent</term><idx><h>path-independent</h><h>definition</h></idx> if <m>\int_{C_1}\vF\cdot d\vr = \int_{C_2}\vF\cdot d\vr</m> whenever <m>C_1</m> and <m>C_2</m> are oriented paths in <m>D</m> such that both curves start at point <m>P</m> and end at point <m>Q</m>.
+	</p>
+<p>
+  In <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/> and <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>, we encountered situations where we had evidence that a vector field was path-independent. However, since the definition of path-independence requires that the value of the line integral be the same for <em>every</em> possible path from one point to the other (regardless of choice for the initial and final points), it doesn't appear that verifying a vector field is path-independent is an easy task.
+</p>
+<p>
+  Fortunately, one familiar class of vector fields can be shown to be path-independent. Let <m>f\colon \R^3\to \R</m> be a function for which <m>\nabla f</m> is continuous on a region <m>D</m>. Suppose that <m>P</m> and <m>Q</m> are points in <m>D</m> and let <m>C</m> be a smooth oriented path from <m>P</m> to <m>Q</m>. We consider <m>\int_C\nabla f \cdot d\vr</m> by fixing an arbitrary parametrization <m>\vr(t)</m> of <m>C</m>, <m>a\leq t \leq b</m>. Since we can write <m>x</m>, <m>y</m>, and <m>z</m> in terms of <m>t</m>, along <m>C</m>, the gradient of <m>f</m> is given by
+  <me> \nabla f(\vr(t)) = \langle f_x(\vr(t)),f_y(\vr(t)),f_z(\vr(t))\rangle</me>.
+  Hence, we can write the line integral of the vector field <m>\vF = \nabla f</m> over <m>C</m> in the following way:
+  <md>
+		<mrow>\int_C\nabla f\cdot d\vr  \amp = \int_a^b \nabla f(\vr(t))\cdot \vr'(t)\, dt</mrow>
+		<mrow> \amp = \int_a^b \langle f_x(\vr(t)), f_y(\vr(t)), f_z(\vr(t))\rangle \cdot \vr'(t)\, dt</mrow>
+  </md>
+</p>
+<p>
+  If <m>\vr(t) = \langle x(t), y(t), z(t)\rangle</m>, then the integrand above is
+  <md>
+  	<mrow>
+			\amp \phantom{=} \langle f_x(\vr(t)), f_y(\vr(t)), f_z(\vr(t))\rangle\cdot \langle x'(t),y'(t),z'(t)\rangle 
+		</mrow>
+		<mrow>
+			\amp= f_x\left( x(t),y(t),z(t) \right) \, x'(t) + f_y \left( x(t),y(t),z(t) \right) \, y'(t) 
+		</mrow>
+		<mrow>
+			\amp\phantom{=} + f_z \left( x(t),y(t),z(t) \right) \, z'(t)
+		</mrow>
+  </md>.
+  Or more simply,
+  <me>
+  	\nabla f \cdot \frac{d \vr}{dt}= \frac{\partial f}{\partial x} \frac{dx}{dt}+\frac{\partial f}{\partial y} \frac{dy}{dt}+\frac{\partial f}{\partial z} \frac{dz}{dt} = \frac{d}{dt}\left(f(\vr(t))\right)
+  </me>.
+</p>
+<p>
+  Notice that this is exactly what the <xref ref="S-10-5-Chain-Rule" text="custom">chain rule</xref> tells us <m>\frac{d}{dt} f(\vr(t))</m> is equal to. Therefore, we may apply the <url href="https://activecalculus.org/single/sec-4-4-FTC.html#QmI" visual="activecalculus.org/single/sec-4-4-FTC.html#QmI">Fundamental Theorem of Calculus</url> to obtain
+	
+  <me>
+		\int_C\nabla f\cdot d\vr = \int_a^b \frac{d}{dt} f(\vr(t))\, dt = f(\vr(b)) - f(\vr(a)) = f(Q) - f(P)
+	</me>.
+</p>
+<p>
+  In other words, gradient vector fields are path-independent vector fields, and we can evaluate line integrals of gradient vector fields by using a potential function.
+</p>
+<aside>
+	<p>
+		Technically the argument above assumed that <m>C</m> was smooth, but we can replace <m>C</m> by a piecewise smooth curve by splitting the line integral up into the sum of finitely many line integrals along smooth curves.
+	</p>
+</aside>
+<p>
+  This result is so important that it is frequently called the Fundamental Theorem of Calculus for Line Integrals, because of its similarity to the Fundamental Theorem of Calculus, which can be written as
+  <me>
+		\int_a^b \frac{df}{dx} (x)\, dx = f(b) - f(a)
+	</me>.
+</p>
+<theorem xml:id="thm_FTCLI">
+  <title>Fundamental Theorem of Calculus for Line Integrals</title>
+  <statement>
+		<p>
+  		Let <m>f</m> be a function for which <m>\nabla f</m> is continuous on a region <m>D</m>. If <m>P</m> and <m>Q</m> are points in <m>D</m> and <m>C</m> is a piecewise smooth oriented path from <m>P</m> to <m>Q</m> in <m>D</m>, then
+  		<me>
+        \int_C \nabla f\cdot d\vr = f(Q) - f(P)
+    	</me>.
+		</p>
+  </statement>
+</theorem>
+
+<example>
+	<p>
+		Suppose we need to calculate the line integral of <m>\vF= \langle 2xy-2, x^2+3e^y \rangle</m> over the path from <m>(2,0)</m> to <m>(4,-2)</m> along the curve given by <m> (x-2)^2=-y/2</m>. If we use <xref ref="thm_LineIntParam" /> to solve this, we would need to parameterize the curve, take a derivative of the parameterization, substitute into the line integral formula, and finally integrate the result. Fortunately, <xref ref="thm_FTCLI" /> allows us to be more efficient in how we approach this.
+	</p>
+	<p>
+		In order to use <xref ref="thm_FTCLI" />, we first need to verify that there exists a potential function <m>f(x,y)</m> such that <m>\nabla f = \langle 2xy-2, x^2+3e^y \rangle</m>. We will soon learn techniques in <xref ref="find_potential" /> for finding a protential function, but for now, you should be able to verify for yourself that <m>f</m> will be of the form <m>f(x,y) = x^2y-2x-3e^y+k</m>, where <m>k</m> is a constant. Note that <m>f(4,-2)- f(2,0)= (-32-8+3e^{-2}+k)-(0-4-3+k)= 3e^{-2}-41</m>, regardless of what value we choose for <m>k</m>. By <xref ref="thm_FTCLI" />,
+		<me>
+			\int_C \vF \cdot d\vr = f(4,-2)- f(2,0)= 3e^{-2}-41
+		</me>
+	</p>
+	<p>
+		If we changed the path in our line integral to be any other path between <m>(2,0)</m> and <m>(4,-2)</m>, then the result would still be <m>3e^{-2}-41</m>. If we changed the path in our line integral to be some path <m>C_1</m> from <m>(1,-1)</m> to <m>(-1,4)</m>, then we would only need to evaluate <m>f(-1,4)- f(1,-1)</m>. So for our new path <m>C_1</m>,
+		<md>
+			<mrow>\int_{C_1} \vF \cdot d\vr \amp = f(-1,4)- f(1,-1)</mrow>
+			<mrow>\amp = (4-(-2)+3e^4)-(-1-2+3e^{-1})</mrow>
+			<mrow>\amp =9+3(e^4+e^{-1})</mrow>
+		</md>.
+	</p>
+</example>
+
+<p>
+	Sometimes, we know that the vector field we need to compute a line integral in is the gradient vector field of a given function, in which case evaluation of the line integral is very efficient. Before investigating how to find a potential function, we have an activity to practice applying <xref ref="thm_FTCLI" /> when we are given the potential function.
+</p>
+<activity xml:id="A_12_4_1">
+  <introduction>
+		<p>
+		  Calculate each of the following line integrals.
+		</p>
+  </introduction>
+  <task>
+		<statement>
+	  	<p>
+        <m>\int_C \nabla f\cdot d\vr</m> if <m>f(x,y) = 3xy^2 - \sin(x) + e^y</m> and <m>C</m> is the top half of the unit circle oriented from <m>(-1,0)</m> to <m>(1,0)</m>.
+	  	</p>
+		</statement>
+		<answer><p><m>0</m></p></answer>
+		<solution><p>Because <m>f(-1,0)=-\sin(-1)+1</m> and <m>f(1,0)=sin(1)+1</m>, then <m>\int_C \nabla f\cdot d\vr=(\sin(1)+1)-(-\sin(-1)+1)=0</m>.</p></solution>
+  </task>
+  <task>
+		<statement>
+			<p>
+				<m>\int_C \nabla g\cdot d\vr</m> if <m>g(x,y,z) = xz^2 - 5y^3\cos(z) + 6</m> and <m>C</m> is the portion of the helix <m>\vr(t) = \langle 5\cos(t),5\sin(t),3t\rangle</m> from <m>(5,0,0)</m> to <m>(0,5,9\pi/2)</m>.
+			</p>
+		</statement>
+		<answer><p><m>0</m></p></answer>
+		<solution><p>Because <m>g(5,0,0)=0-0+6</m> and <m>g(0,5,\frac{9\pi}{2})=0-0+6</m>, then <m>\int_C \nabla g\cdot d\vr=(6)-(6)=0</m>.</p> </solution>
+  </task>
+  <task>
+		<statement>
+	  	<p>
+        <m>\int_C \nabla h\cdot d\vr</m> if <m>h(x,y,z) = 3y^2e^{y^3} - 5x\sin(x^3z) + z^2</m> and <m>C</m> is the curve consisting of the line segment from <m>(0,0,0)</m> to <m>(1,1,1)</m>, followed by the line segment from <m>(1,1,1)</m> to <m>(-1,3,-2)</m>, followed by the line segment from <m>(-1,3,-2)</m> to <m>(0,0,10)</m>.
+	  	</p>
+		</statement>
+		<answer><p><m>100</m></p></answer>
+		<solution><p>Because <m>h(0,0,0)=0</m> and <m>h(0,0,10)=0-0+100</m>, then <m>\int_C \nabla h\cdot d\vr=(100)-(0)=100</m>.</p></solution>
+  </task>
+</activity>
+
+<p>
+	In <xref ref="act_Vector_ParamLineIntegrals_Gradient" />, we've used <xref ref="Clairaut" text="title"/> to argue that a vector field in <m>\R^2</m> is not a gradient vector field when <m>\partial F_1/\partial y\neq \partial F_2/\partial x</m>. In <xref ref="PA_Vector_FTCLI" />, you verified that a given vector field was the gradient of a particular function of two variables. Clairaut's Theorem holds for functions of three variables. However, in that case there are six mixed partials to calculate, and thus it can be rather tedious. <xref ref="find_potential" /> suggest a process for determining if a vector field in <m>\R^3</m> is a gradient vector field as well as finding a potential function for the vector field.
+</p>
 
 <activity xml:id="find_potential">
 	<introduction>
-		<p>
-			In <xref ref="PA_Vector_ParamLineIntegrals_Gradient" />, we've used <xref ref="Clairaut" text="title"/> to argue that a vector field in <m>\R^2</m> is not a gradient vector field when <m>\partial F_1/\partial y\neq \partial F_2/\partial x</m>. In <xref ref="PA_Vector_FTCLI" />, you verified that a given vector field was the gradient of a particular function of two variables. Clairaut's Theorem holds for functions of three variables. However, in that case there are six mixed partials to calculate, and thus it can be rather tedious. This preview activity suggest a process for determining if a vector field in <m>\R^3</m> is a gradient vector field as well as finding a potential function for the vector field.
-		</p>
 		<p>
 			Let <m>\vG(x,y,z) = \langle 3e^{y^2}+z\sin(x),6xy e^{y^2} - z,3z^2-y-\cos(x)\rangle</m> and <m>\vH(x,y,z) = \langle 3x^2 y,x^3+2yz^3,xz+3y^2z^2\rangle</m>.
 		</p>
@@ -79,16 +207,16 @@
   <task xml:id="PA_12_4_part5">
   	<statement>
   		<p>
-      	If <m>\vG</m> and <m>\vH</m> are to be gradient vector fields, then there are functions <m>g</m> and <m>h</m> for which <m>\vG = \nabla g</m> and <m>\vH=\nabla h</m>. If such functions <m>g</m> and <m>h</m> existed, what would <m>g_y</m>, <m>g_z</m>, <m>h_x</m>, <m>h_y</m>, and <m>h_z</m> be?
+      	If <m>\vG</m> and <m>\vH</m> are to be gradient vector fields, then there are functions <m>g</m> and <m>h</m> for which <m>\vG = \nabla g</m> and <m>\vH=\nabla h</m>. If such functions <m>g</m> and <m>h</m> exist, what would <m>g_y</m>, <m>g_z</m>, <m>h_x</m>, <m>h_y</m>, and <m>h_z</m> be?
   		</p>
 		</statement>
-		<answer><p>Each of the partial derivatives of <m>g</m> and <m>h</m> would have to be as follows: <m>g_x=3e^{y^2}+z\sin(x)</m>, <m>g_y=,6xy e^{y^2} - z</m>, <m>g_z=3z^2-y-\cos(x)</m>, <m>h_x=x^2 y</m>, <m>h_y=x^3+2yz^3</m>, and <m>h_z=xz+3y^2z^2</m>.</p></answer>
+		<answer><p><m>g_x=3e^{y^2}+z\sin(x)</m>, <m>g_y=6xy e^{y^2} - z</m>, <m>g_z=3z^2-y-\cos(x)</m>, <m>h_x=x^2 y</m>, <m>h_y=x^3+2yz^3</m>, and <m>h_z=xz+3y^2z^2</m>.</p></answer>
 		<solution> <p>Each of the partial derivatives of <m>g</m> and <m>h</m> would have to be as follows: <m>g_x=3e^{y^2}+z\sin(x)</m>, <m>g_y=,6xy e^{y^2} - z</m>, <m>g_z=3z^2-y-\cos(x)</m>, <m>h_x=x^2 y</m>, <m>h_y=x^3+2yz^3</m>, and <m>h_z=xz+3y^2z^2</m>.</p> </solution>
   </task>
   <task xml:id="PA_12_4_part4">
 		<statement>
   		<p>
-  			Let <m>g_1(x,y,z)=3e^{y^2}+xyz-z\sin(x)</m>. Calculate <m>\partial g_1/\partial x</m>. Could <m>g_1</m> be a potential function for the vector field <m>\vG</m>?
+  			Let <m>g_1(x,y,z)=3xe^{y^2}+xyz-z\sin(x)</m>. Calculate <m>\partial g_1/\partial x</m>. Could <m>g_1</m> be a potential function for the vector field <m>\vG</m>?
 			</p>
 		</statement>
 		<answer><p><m>\frac{\partial g_1}{\partial x}=3e^{y^2}+yz-z\cos(x)</m>. No.</p></answer>
@@ -173,122 +301,6 @@
 		<solution><p> If <m>g(x,y,z)=3xe^{y^2}-z\cos(x)-yz+z^3</m>, then <m> \nabla g = \vG</m>. There is no <m>m_2(z)</m> that will have a partial with respect to <m>z</m> of <m>xz</m> since <m>m_2(z)</m> cannot have a dependence on <m>x</m>.</p></solution>
   </task>
 </activity>
-</introduction>
-<subsection>
-  <title>Path-Independent Vector Fields</title>
-<p>
-  We say that a vector field <m>\vF</m> defined on a domain <m>D</m> is <term><em>path-independent</em></term><idx><h>pathindependent</h><h>definition</h></idx> if <m>\int_{C_1}\vF\cdot d\vr = \int_{C_2}\vF\cdot d\vr</m> whenever <m>C_1</m> and <m>C_2</m> are oriented paths in <m>D</m> such that both curves start at the same point <m>P</m> and end at point <m>Q</m>.
-</p>
-<p>
-  In <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/> and <xref ref="ex_Vector_ParamLineIntegrals_ParamIndep"/>, we encountered situations where we had evidence that a vector field was path-independent. However, since the definition of path-independence requires that the value of the line integral be the same for <em>every</em> possible path from one point to the other (regardless of choice for the initial and final points), it doesn't appear that verifying a vector field is path-independent is an easy task.
-</p>
-<p>
-  Fortunately, one familiar class of vector fields can be shown to be path-independent. Let <m>f\colon \R^3\to \R</m> be a function for which <m>\nabla f</m> is continuous on a domain <m>D</m>. Suppose that <m>P</m> and <m>Q</m> are points in <m>D</m> and let <m>C</m> be a smooth oriented path from <m>P</m> to <m>Q</m>. Let's take a look at <m>\int_C\nabla f \cdot d\vr</m> by fixing an arbitrary parametrization <m>\vr(t)</m> of <m>C</m>, <m>a\leq t \leq b</m>. Since we can write the <m>x</m>, <m>y</m>, and <m>z</m> in terms of <m>t</m>, the gradient of <m>f</m> is given by:
-  <me> \nabla f(\vr(t)) = \langle f_x(\vr(t)),f_y(\vr(t)),f_z(\vr(t))\rangle</me>
-  So we can write the line integral of the vector field <m>\vF = \nabla f</m> over <m>C</m> in the following way:
-  <me>
-		\int_C\nabla f\cdot d\vr  = \int_a^b \nabla f(\vr(t))\cdot \vr'(t)\, dt = \int_a^b \langle f_x(\vr(t)), f_y(\vr(t)), f_z(\vr(t))\rangle \cdot \vr'(t)\, dt
-  </me>
-</p>
-<p>
-  If <m>\vr(t) = \langle x(t), y(t), z(t)\rangle</m>, then the integrand above is
-  <md>
-  	<mrow>
-			\langle f_x(\vr(t)), f_y(\vr(t)), f_z(\vr(t))\rangle\cdot \langle x'(t),y'(t),z'(t)\rangle 
-		</mrow>
-		<mrow>
-			= f_x\left( x(t),y(t),z(t) \right) \enspace x'(t) + f_y \left( x(t),y(t),z(t) \right) \enspace y'(t) + f_z \left( x(t),y(t),z(t) \right) \enspace z'(t)
-		</mrow>
-  </md>
-  Or more simply,
-  <me>
-  	\nabla f \cdot \frac{d \vr}{dt}= \frac{\partial f}{\partial x} \frac{dx}{dt}+\frac{\partial f}{\partial y} \frac{dy}{dt}+\frac{\partial f}{\partial z} \frac{dz}{dt} = \frac{d}{dt}\left(f(\vr(t))\right)
-  </me>
-</p>
-<p>
-  Notice that this is exactly what the <xref ref="S-10-5-Chain-Rule" text="custom">chain rule</xref> tells us <m>\frac{d}{dt} f(\vr(t))</m> is equal to. Therefore,
-  <me>
-		\int_C\nabla f\cdot d\vr = \int_a^b \frac{d}{dt} f(\vr(t))\, dt = f(\vr(b)) - f(\vr(a)) = f(Q) - f(P)
-	</me>.
-</p>
-<p>
-  In other words, gradient vector fields are path-independent vector fields, and we can evaluate line integrals of gradient vector fields by using a potential function.
-</p>
-<aside>
-	<p>
-		Technically the argument above assumed that <m>C</m> was smooth, but we can replace <m>C</m> by a piecewise smooth curve by splitting the line integral up into the sum of finitely many line integrals along smooth curves.
-	</p>
-</aside>
-<p>
-  This result is so important that it is frequently called the Fundamental Theorem of Calculus for Line Integrals, because of its similarity to the Fundamental Theorem of Calculus, which can be written as
-  <me>
-		\int_a^b \frac{df}{dx} (x)\, dx = f(b) - f(a)
-	</me>.
-</p>
-<theorem xml:id="thm_FTCLI">
-  <title>Fundamental Theorem of Calculus for Line Integrals</title>
-  <statement>
-		<p>
-  		Let <m>f</m> be a function for which <m>\nabla f</m> is continuous on a domain <m>D</m>. If <m>P</m> and <m>Q</m> are points in <m>D</m> and <m>C</m> is a piece-wise smooth oriented path from <m>P</m> to <m>Q</m> in <m>D</m>, then
-  		<me>
-        \int_C \nabla f\cdot d\vr = f(Q) - f(P)
-    	</me>.
-		</p>
-  </statement>
-</theorem>
-
-<example>
-	<p>
-		Suppose we need to calculate the line integral of <m>\vF= \langle 2xy-2, x^2+3e^y \rangle</m> over the path from <m>(2,0)</m> to <m>(4,-2)</m> along the curve given by <m> (x-2)^2=-y/2</m>. If we use <xref ref="thm_LineIntParam" /> to solve this, we would need to parameterize our curve, then take a derivative of the parameterization, then substitue into the line integral formula, then integrate the result.
-	</p>
-	<p>
-		In order to use <xref ref="thm_FTCLI" />, we first need to verify that there exists a potential function <m>f(x,y)</m> such that <m>\nabla f = \langle 2xy-2, x^2+3e^y \rangle</m>. You can use the techniques of <xref ref="find_potential" /> to find that <m>f</m> will be of the form <m>x^2y-2x-3e^y+k</m>. Note that <m>f(4,-2)- f(2,0)= (-32-8+3e^{-2}+k)-(0-4-3+k)= 3e^{-2}-41</m>, regardless of what value you choose for <m>k</m>. By <xref ref="thm_FTCLI" />,
-		<me>
-			\int_C \vF \cdot d\vr = f(4,-2)- f(2,0)= 3e^{-2}-41
-		</me>
-	</p>
-	<p>
-		If you changed the path in your line integral to be any other path between <m>(2,0)</m> and <m>(4,-2)</m>, then the result would still be <m>3e^{-2}-41</m>. If you changed the path in your line integral to be some path from <m>(1,-1)</m> to <m>(-1,4)</m>, then you would only need to evaluate <m>f(-1,4)- f(1,-1)</m>. So for our new path <m>C_1</m>,
-		<me>
-			\int_{C_1} \vF \cdot d\vr = f(-1,4)- f(1,-1) = (4-(-2)+3e^4)-(-1-2+3e^{-1})=9+3(e^4+e^{-1})
-		</me>
-	</p>
-</example>
-
-<activity xml:id="A_12_4_1">
-  <introduction>
-		<p>
-		  Calculate each of the following line integrals.
-		</p>
-  </introduction>
-  <task>
-		<statement>
-	  	<p>
-        <m>\int_C \nabla f\cdot d\vr</m> if <m>f(x,y) = 3xy^2 - \sin(x) + e^y</m> and <m>C</m> is the top half of the unit circle oriented from <m>(-1,0)</m> to <m>(1,0)</m>.
-	  	</p>
-		</statement>
-		<answer><p><m>0</m></p></answer>
-		<solution><p>Because <m>f(-1,0)=-\sin(-1)+1</m> and <m>f(1,0)=sin(1)+1</m>, then <m>\int_C \nabla f\cdot d\vr=(\sin(1)+1)-(-\sin(-1)+1)=0</m>.</p></solution>
-  </task>
-  <task>
-		<statement>
-			<p>
-				<m>\int_C \nabla g\cdot d\vr</m> if <m>g(x,y,z) = xz^2 - 5y^3\cos(z) + 6</m> and <m>C</m> is the portion of the helix <m>\vr(t) = \langle 5\cos(t),5\sin(t),3t\rangle</m> from <m>(5,0,0)</m> to <m>(0,5,9\pi/2)</m>.
-			</p>
-		</statement>
-		<answer><p><m>0</m></p></answer>
-		<solution><p>Because <m>g(5,0,0)=0-0+6</m> and <m>g(0,5,\frac{9\pi}{2})=0-0+6</m>, then <m>\int_C \nabla g\cdot d\vr=(6)-(6)=0</m>.</p> </solution>
-  </task>
-  <task>
-		<statement>
-	  	<p>
-        <m>\int_C \nabla h\cdot d\vr</m> if <m>h(x,y,z) = 3y^2e^{y^3} - 5x\sin(x^3z) + z^2</m> and <m>C</m> is the curve consisting of the line segment from <m>(0,0,0)</m> to <m>(1,1,1)</m>, followed by the line segment from <m>(1,1,1)</m> to <m>(-1,3,-2)</m>, followed by the line segment from <m>(-1,3,-2)</m> to <m>(0,0,10)</m>.
-	  	</p>
-		</statement>
-		<answer><p><m>100</m></p></answer>
-		<solution><p>Because <m>h(0,0,0)=0</m> and <m>h(0,0,10)=0-0+100</m>, then <m>\int_C \nabla h\cdot d\vr=(100)-(0)=100</m>.</p></solution>
-  </task>
-</activity>
 
 <p>
   By following the methodology laid out in <xref ref="find_potential"/> to show that a given vector field is a gradient vector field, the <xref ref="thm_FTCLI" text="title"/> makes evaluating some line integrals much simpler now.
@@ -307,7 +319,7 @@
 		</statement>
 		<hint><p>Find <m>f(x,y)</m> such that <m>\nabla f = \vF</m>.</p></hint>
 		<answer><p><m>4</m></p></answer>
-		<solution><p>We can choose <m>f(x,y)=x^2+y^2+C</m> and note that <m>\nabla f = \vF</m>. so by the Fundamental Theorem of Calculus for Line Integrals, <m>\int_C \vF\cdot d\vr = f(1,2)-f(-1,0)=5-1=4</m>.</p></solution>
+		<solution><p>We can choose <m>f(x,y)=x^2+y^2</m> and note that <m>\nabla f = \vF</m>. so by the Fundamental Theorem of Calculus for Line Integrals, <m>\int_C \vF\cdot d\vr = f(1,2)-f(-1,0)=5-1=4</m>.</p></solution>
   </task>
   <task>
 		<statement>
@@ -316,7 +328,7 @@
 	  	</p>
 		</statement>
 		<answer><p><m>6</m></p></answer>
-		<solution><p>We can choose <m>g(x,y)=x^4-12\sin(xy)+3y^3+C</m> and note that <m>\nabla g = \vG</m>. so by the Fundamental Theorem of Calculus for Line Integrals, <m>\int_C \vG\cdot d\vr = g(0,1)-g(0,-1)=3-(-3)=6</m>.</p></solution>
+		<solution><p>We can choose <m>g(x,y)=x^4-12\sin(xy)+3y^3</m> and note that <m>\nabla g = \vG</m>. so by the Fundamental Theorem of Calculus for Line Integrals, <m>\int_C \vG\cdot d\vr = g(0,1)-g(0,-1)=3-(-3)=6</m>.</p></solution>
   </task>
   <task>
 		<statement>
@@ -331,22 +343,27 @@
 	  	</p>
 		</statement>
 		<answer><p><m>1-(2e+\sin(1)+\cos(1))</m></p></answer>
-		<solution><p>We can choose <m>h(x,y,z)=xe^{z^2}+x^2y^3z+\sin(x)+y^3\cos(x)+e^{y^2}-z^4</m> and note that <m>\nabla h = \vH</m>. so by the Fundamental Theorem of Calculus for Line Integrals, <m>\int_C \vH\cdot d\vr = h(0,0,0)-h(1,1,1)=1-(e+1+\sin(1)+\cos(1)+e-1)=1-(2e+\sin(1)+\cos(1))</m>.</p></solution>
+		<solution><p>We can choose <m>h(x,y,z)=xe^{z^2}+x^2y^3z+\sin(x)+y^3\cos(x)+y^3z^2+e^{y^2}-z^4</m> and note that <m>\nabla h = \vH</m>. By the Fundamental Theorem of Calculus for Line Integrals, 
+			<md>
+				<mrow>\int_C \vH\cdot d\vr \amp = h(0,0,0)-h(1,1,1)</mrow> 
+				<mrow>	\amp =1-(e+1+\sin(1)+\cos(1)+1+e-1)</mrow>
+				<mrow>\amp =1-(2e+1+\sin(1)+\cos(1))</mrow>
+			</md>.</p></solution>
   </task>
 </activity>
 </subsection>
 <subsection>
 	<title>Line Integrals Along Closed Curves</title>
 <p>
-  Recall that an oriented curve <m>C</m> is <em>closed</em> if the curve has the same initial and terminal point. A typical example of a closed curve would be a circle (with an orientation of which way to go around), but we could also consider something like the square with vertices <m>(1,1)</m>, <m>(-1,1)</m>, <m>(-1,-1)</m>, and <m>(1,-1)</m>, oriented clockwise (or counterclockwise). Recall that we sometimes use the symbol <m>\oint</m> for a line integral when the curve is closed and that if <m>C=C_1+C_2</m>, then <m>\int_C\vF\cdot d\vr=\int_{C_1}\vF\cdot d\vr+ \int_{C_2}\vF\cdot d\vr</m>.
+  Recall that an oriented curve <m>C</m> is <term>closed</term> if the curve has the same initial and terminal point. A typical example of a closed curve would be a circle (with an orientation of which way to go around), but we could also consider something like the square with vertices <m>(1,1)</m>, <m>(-1,1)</m>, <m>(-1,-1)</m>, and <m>(1,-1)</m>, oriented clockwise (or counterclockwise). Recall that we sometimes use the symbol <m>\oint</m> for a line integral when the curve is closed and that if <m>C=C_1+C_2</m>, then <m>\int_C\vF\cdot d\vr=\int_{C_1}\vF\cdot d\vr+ \int_{C_2}\vF\cdot d\vr</m>.
   </p>
 <activity xml:id="act_Vector_FTCLI_PathIndep">
   <introduction>
 		<p>
-	  	Suppose that <m>\vF</m> is a continuous path-independent vector field (in <m>\R^2</m> or <m>\R^3</m>) on some domain <m>D</m>.
+	  	Suppose that <m>\vF</m> is a continuous path-independent vector field (in <m>\R^2</m> or <m>\R^3</m>) on some region <m>D</m>.
 		</p>
   </introduction>
-  <task>
+  <task xml:id="task_Vector_FTCLI_PathIndep_equal">
 		<statement>
 	  	<p>
         Let <m>P</m> and <m>Q</m> be points in <m>D</m> and let <m>C_1</m> and <m>C_2</m> be oriented curves from <m>P</m> to <m>Q</m>. What can you say about <m>\int_{C_1}\vF\cdot d\vr</m> and <m>\int_{C_2}\vF\cdot d\vr</m>?
@@ -371,7 +388,7 @@
 	  	</p>
 		</statement>
 		<answer><p><m>0</m></p></answer>
-		<solution><p><m>\oint_C\vF\cdot d\vr=\int_{C_1}\vF\cdot d\vr+ \int_{-C_2}\vF\cdot d\vr=\int_{C_1}\vF\cdot d\vr- \int_{-C_2}\vF\cdot d\vr</m> and by part 1, this difference is zero.</p></solution>
+		<solution><p><m>\oint_C\vF\cdot d\vr=\int_{C_1}\vF\cdot d\vr+ \int_{-C_2}\vF\cdot d\vr=\int_{C_1}\vF\cdot d\vr- \int_{C_2}\vF\cdot d\vr</m> and by <xref ref="task_Vector_FTCLI_PathIndep_equal" />, this difference is zero.</p></solution>
   </task>
   <task>
 		<statement>
@@ -384,7 +401,7 @@
   <task>
 		<statement>
 	  	<p>
-        Now let us suppose that <m>\vG</m> is a continuous vector field on a domain <m>D</m> for which <m>\oint_C\vG\cdot d\vr = 0</m> for all closed curves <m>C</m>. Pick two points <m>P</m> and <m>Q</m> in <m>D</m>. Let <m>C_1</m> and <m>C_2</m> be oriented curves from <m>P</m> to <m>Q</m>. What type of curve is <m>C = C_1 - C_2</m>?
+        Now let us suppose that <m>\vG</m> is a continuous vector field on a region <m>D</m> for which <m>\oint_C\vG\cdot d\vr = 0</m> for all closed curves <m>C</m>. Pick two points <m>P</m> and <m>Q</m> in <m>D</m>. Let <m>C_1</m> and <m>C_2</m> be oriented curves from <m>P</m> to <m>Q</m>. What type of curve is <m>C = C_1 - C_2</m>?
 	  	</p>
 		</statement>
 		<answer><p>Closed</p></answer>
@@ -397,7 +414,7 @@
 		  </p>
 		</statement>
 		<answer><p><m>0</m></p></answer>
-		<solution><p>We see that <m>\oint_C\vG\cdot d\vr=0</m> because (as stated above) <m>\vG</m> is a continuous vector field on a domain <m>D</m> for which <m>\oint_C\vG\cdot d\vr = 0</m> for all closed curves <m>C</m>.</p></solution>
+		<solution><p>We see that <m>\oint_C\vG\cdot d\vr=0</m> because (as stated above) <m>\vG</m> is a continuous vector field on a region <m>D</m> for which <m>\oint_C\vG\cdot d\vr = 0</m> for all closed curves <m>C</m>.</p></solution>
   </task>
   <task>
 		<statement>
@@ -424,7 +441,7 @@
 <theorem xml:id="thm_PathIndepZero">
   <statement>
   	<p>
-  		Let <m>\vF</m> be a continuous vector field on a domain <m>D</m>. Suppose that <m>C</m> is a closed curve in <m>D</m>. The circulation of <m>\vF</m> along <m>C</m>, given by <m>\oint_C\vF\cdot d\vr</m>, is zero if and only if <m>\vF</m> is path-independent.
+  		Let <m>\vF</m> be a continuous vector field on a region <m>D</m>. Suppose that <m>C</m> is a closed curve in <m>D</m>. The circulation of <m>\vF</m> along <m>C</m>, given by <m>\oint_C\vF\cdot d\vr</m>, is zero if and only if <m>\vF</m> is path-independent.
   	</p>
   </statement>
 </theorem>
@@ -441,15 +458,25 @@
 	  <sidebyside widths="45% 45%">
 	  	<figure>
 		  	<caption><m>\vF</m></caption>
-	      <image source="/fig_Vector_FTCLI_field1">
+	      <image xml:id="img_Vector_FTCLI_field1">
 				<description>A vector field in which all vectors are horizontal. The vectors are <m>0</m> along the <m>x</m>-axis, point to the right for <m>y&gt;0</m> and point to the left for <m>y\lt 0</m>. Vectors get longer as distance from the <m>x</m>-axis increases. </description>
+				<sageplot>
+					var('x,y,t')
+					final_plot=plot_vector_field((y,0),(x,-3.1,3.1),(y,-3.1,3.1),headwidth=5,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],xmin=-3.65,xmax=3.65,ymin=-3.5,ymax=3.5,frame=False,aspect_ratio=1)
+					final_plot					
+				</sageplot>
 		    </image>
 	    </figure>
 	    <figure>
 	      <caption><m>\vG</m></caption>
-        <image source="/fig_Vector_FTCLI_field2">
+        <image xml:id="img_Vector_FTCLI_field2">
 				<description> A vector field in which vectors appear to circulate in a clockwise manner around the point <m>(3,0)</m>. The magnitude of vectors increases with the distance from <m>(3,0)</m>. The plot shows the portion of the vector field with <m>0\leq x\leq 6</m> and <m>-3\leq y\leq 3</m>.
 				</description>
+				<sageplot>
+					var('x,y,t')
+					final_plot2=plot_vector_field((y,sin(x)),(x,0,6.28),(y,-3.1,3.1),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],xmin=-0.5,xmax=6.8,ymin=-3.5,ymax=3.5,frame=False,aspect_ratio=1)
+					final_plot2					
+				</sageplot>
 	      </image>
 	    </figure>
 	  </sidebyside>
@@ -466,30 +493,36 @@
 <subsection xml:id="SS_Vector_FTCLI_Other">
 <title>What other vector fields are path-independent?</title>
 <p>
-  Recall that in single variable calculus, the Second Fundamental Theorem of Calculus tells us that given a constant <m>c</m> and a continuous function <m>f</m>, there is a unique function <m>A(x)</m> for which <m>A(c) = 0</m> and <m>\frac{dA}{dx} (x) = f(x)</m>. In particular, <m>A(x) = \int_c^x f(t)\, dt</m> is this function. We are about to investigate an analog of this result for path-independent vector fields, but first we require two additional definitions.
+  Recall that in single variable calculus, <url href="https://activecalculus.org/single/sec-5-2-FTC2.html#qxB" visual="activecalculus.org/single/sec-5-2-FTC2.html#qxB">The Second Fundamental Theorem of Calculus </url>
+	 tells us that given a constant <m>c</m> and a continuous function <m>f</m>, there is a unique function <m>A(x)</m> for which <m>A(c) = 0</m> and <m>\frac{dA}{dx} (x) = f(x)</m>. In particular, <m>A(x) = \int_c^x f(t)\, dt</m> is this function. We are about to investigate an analog of this result for path-independent vector fields, but first we require two additional definitions.
 </p>
 <p>
   If <m>D</m> is a subset of <m>\R^2</m> or <m>\R^3</m>, we say that <m>D</m> is <term>open</term> <idx><h>open</h><h>definition</h></idx> provided that for every point in <m>D</m>, there is a disc (in <m>\R^2</m>) or ball (in <m>\R^3</m>) centered at that point such that every point of the disc/ball is contained in <m>D</m>. For example, the set of points <m>(x,y)</m> in <m>\R^2</m> for which <m>x^2+y^2 \lt 1</m> is open, since we can always surround any point in this set by a tiny disc contained in the set (as illustrated by point <m>P</m> in <xref ref="open_closed" />). However, if we change the inequality to <m>x^2+y^2\leq 1</m>, then the set is not open, as any point on the circle <m>x^2+y^2=1</m> cannot be surrounded by a disc contained in the set; any disc surrounding a point on that circle will contain points outside the set, that is with <m>x^2+y^2&gt;1</m> (as illustrated by the point <m>Q</m> in <xref ref="open_closed" />). We will also say that a region <m>D</m> is <term>path-connected</term><idx><h>path-connected</h><h>definition</h></idx> provided that for every pair of points in <m>D</m>, there is a path from one to the other contained in <m>D</m>.
 </p>
 <figure xml:id="open_closed">
   <caption>The open set <m>\{(x,y)| x^2+y^2 \lt 1\}</m> is plotted in yellow with a point <m>Q</m> on the boundary that shows why <m>\{(x,y)| x^2+y^2 \leq 1\}</m> is not open</caption>
-  <image width="90%" source="/open_closed">
+  <image width="65%" xml:id="image_open_closed">
   	<description>The open set <m>\{(x,y)| x^2+y^2 \lt 1\}</m> is plotted in yellow with a point <m>Q</m></description>
+		<sageplot>
+			var('t')
+			plot8=parametric_plot((cos(t),sin(t)),(t,0,2*pi),linestyle="--")
+			plot8+=disk((0,0),1,(0,2*pi),color="yellow")
+			plot8+=disk((-1/2,1/3),0.075,(0,2*pi),color='orange')+point((-1/2,1/3),size=20)+text("$P$",(-0.4,1/3),color='black',fontsize=15)
+			plot8+=disk((sqrt(2)/2,sqrt(2)/2),0.075,(0,2*pi),color='orange')+point((sqrt(2)/2,sqrt(2)/2),size=20)+text("$Q$",(.8,.8),color='black',fontsize=15)
+			plot8.axes_labels(["$x$","$y$"])
+			plot8			
+		</sageplot>
   </image>
 </figure>
 
-   <!--
-        I am unsure of the exact process described in the following activity. I would ask that you fill in the answer/solutions or we can try to rewrite this activity
-        NL
-    -->
 <activity xml:id="act_Vector_FTCLI_PathIndepGrad">
   <introduction>
 		<p>
-      Let <m>\vF=\langle F_1,F_2\rangle</m> be a continuous, path-independent vector field on an open, connected region <m>D</m>. We will assume that <m>D</m> is in <m>\R^2</m> and <m>\vF</m> is a two-dimensional vector field, but the ideas below generalize completely to <m>\R^3</m>. We want to define a function <m>f</m> on <m>D</m> by using the vector field <m>\vF</m> and line integrals, much like the Second Fundamental Theorem of Calculus allows us to define an antiderivative of a continuous function using a definite integral. To that end, we assign <m>f(x_0,y_0)</m> an arbitrary value. (Setting <m>f(x_0,y_0)=0</m> is probably convenient, but we won't explicitly tie our hands. Just assume that <m>f(x_0,y_0)</m> is defined to be some number.) Now for any other point <m>(x,y)</m> in <m>D</m>, define
+      Let <m>\vF=\langle F_1,F_2\rangle</m> be a continuous, path-independent vector field on an open, path-connected region <m>D</m>. We will assume that <m>D</m> is in <m>\R^2</m> and <m>\vF</m> is a two-dimensional vector field, but the ideas below generalize completely to <m>\R^3</m>. We want to define a function <m>f</m> on <m>D</m> by using the vector field <m>\vF</m> and line integrals, much like the Second Fundamental Theorem of Calculus allows us to define an antiderivative of a continuous function using a definite integral. To that end, we assign <m>f(x_0,y_0)</m> an arbitrary value. (Setting <m>f(x_0,y_0)=0</m> is probably convenient, but we won't explicitly tie our hands. Just assume that <m>f(x_0,y_0)</m> is defined to be some number.) Now for any other point <m>(x,y)</m> in <m>D</m>, define
       <me>
         f(x,y) = f(x_0,y_0) + \int_C\vF\cdot d\vr
       </me>,
-      where <m>C</m> is any oriented path from <m>(x_0,y_0)</m> to <m>(x,y)</m>. Since <m>D</m> is connected, such an oriented path must exist. Since <m>\vF</m> is path-independent, <m>f</m> is well-defined. If different paths from <m>(x_0,y_0)</m> to <m>(x,y)</m> gave different values for the line integral, then we'd not be sure what <m>f(x,y)</m> really is.
+      where <m>C</m> is any oriented path from <m>(x_0,y_0)</m> to <m>(x,y)</m>. Since <m>D</m> is path-connected, such an oriented path must exist. Since <m>\vF</m> is path-independent, <m>f</m> is well-defined. If different paths from <m>(x_0,y_0)</m> to <m>(x,y)</m> gave different values for the line integral, then we would not be sure what <m>f(x,y)</m> really is.
 		</p>
 		<p>
       To better understand this mysterious function <m>f</m> we've now defined, let's start looking at its partial derivatives.
@@ -498,17 +531,33 @@
   <task>
 		<statement>
 	  	<p>
-        Since <m>D</m> is open, there is a disc (perhaps very small) surrounding <m>(x,y)</m> that is contained in <m>D</m>, so fix a point <m>(a,b)</m>in that disc. Since <m>D</m> is path-connected, there is a path <m>C_1</m> from <m>(x_0,y_0)</m> to <m>(a,b)</m>. Let <m>C_y</m> be the line segment from <m>(a,b)</m> to <m>(a,y)</m> and let <m>C_x</m> be the line segment from <m>(a,y)</m> to <m>(x,y)</m>. (See <xref ref="fig_Vector_FTCLI_PathsPotential">Figure</xref>.) Rewrite <m>f(x,y)</m> as a sum of <m>f(x_0,y_0)</m> and line integrals along <m>C_1</m>, <m>C_y</m>, and <m>C_x</m>.
+        Since <m>D</m> is open, there is a disc (perhaps very small) surrounding <m>(x,y)</m> that is contained in <m>D</m>, so fix a point <m>(a,b)</m> in that disc. Since <m>D</m> is path-connected, there is a path <m>C_1</m> from <m>(x_0,y_0)</m> to <m>(a,b)</m>. Let <m>C_y</m> be the line segment from <m>(a,b)</m> to <m>(a,y)</m> and let <m>C_x</m> be the line segment from <m>(a,y)</m> to <m>(x,y)</m>. (See <xref ref="fig_Vector_FTCLI_PathsPotential">Figure</xref>.) Rewrite <m>f(x,y)</m> as a sum of <m>f(x_0,y_0)</m> and line integrals along <m>C_1</m>, <m>C_y</m>, and <m>C_x</m>.
 	  	</p>
       <figure xml:id="fig_Vector_FTCLI_PathsPotential">
-        <caption>Two piecewise smooth oriented curves from <m>(x_0,y_0)</m> to <m>(x,y)</m>.</caption>
-        <image source="/fig_12_4_paths_potential_rev">
-	      	<description> Two oriented curves from <m>(x_0,y_0)</m> to <m>(x,y)</m>. Both begin with a curved arc from <m>(x_0,y_0)</m> to <m>(a,b)</m>. The curve on the left proceeds vertically from <m>(a,b)</m> to <m>(a,y)</m> and then horizontally to <m>(x,y)</m>. The curve on the right proceeds horizontally from <m>(a,b)</m> to <m>(x,b)</m> and then vertically to <m>(x,y)</m>. </description>
+        <caption>A piecewise smooth oriented curve from <m>(x_0,y_0)</m> to <m>(x,y)</m>.</caption>
+        <image width="40%" xml:id="img_12_4_paths_potential_rev">
+	      	<description>An oriented curve from <m>(x_0,y_0)</m> to <m>(x,y)</m>. It begins with a curved arc from <m>(x_0,y_0)</m> to <m>(a,b)</m> and then proceeds vertically from <m>(a,b)</m> to <m>(a,y)</m> and then horizontally to <m>(x,y)</m>. </description>
+					<sageplot>
+						var('x,y,t');
+						plot1=parametric_plot((t+2,-t^2+4),(t,-2,0),color='black',axes=False,frame=False,xmin=-0.25,xmax=4,ymin=-0.25,ymax=5.5) +arrow((.75,-(1.25^2)+4),(.8,-(1.2^2)+4),color='black') +point((0,0),size=20,color='black') +text(r"$(x_0,y_0)$",(0.65,0.0),color="black",fontsize='x-large')
+						plot2=parametric_plot((2,t+4),(t,0,1),color='black',axes=False,frame=False) +arrow((2,4.25),(2,4.5),color='black')+point((2,4),size=20,color='black') +text("$(a,b)$",(2.15,3.75),color='black',fontsize='x-large')
+						plot3=parametric_plot((2+t,5),(t,0,1.5),color='black',axes=False,frame=False)+arrow((2.5,5),(2.75,5),color='black')+point((2,5),size=20,color='black')
+						plot4=point((3.5,5),size=20,color='black')+text(r"$(x,y)$",(3.15,5.25),color="black",fontsize='x-large')+text(r"$C_y$",(1.6,4.4),color='black',fontsize='x-large')+text(r"$C_x$",(2.75,4.75),color='black',fontsize='x-large')
+						final_plot1=plot1+plot2+plot3+plot4
+						final_plot1			
+					</sageplot>
 	    	</image>
       </figure>
 		</statement>
-		<answer><p><m>f(x,y)= f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </m></p></answer>
-		<solution><p>Because <m>C = C_1 + C_y+C_x</m>, we have that <me>f(x,y)= f(x_0,y_0) + \int_C\vF\cdot d\vr = f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </me>.</p></solution>
+		<answer><p>			<md>
+			<mrow>f(x,y)\amp= f(x_0,y_0) + \int_C\vF\cdot d\vr </mrow>
+			<mrow> \amp = f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </mrow>
+		</md></p></answer>
+		<solution><p>Because <m>C = C_1 + C_y+C_x</m>, we have that 
+			<md>
+				<mrow>f(x,y)\amp= f(x_0,y_0) + \int_C\vF\cdot d\vr </mrow>
+				<mrow> \amp = f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr </mrow>
+			</md>.</p></solution>
   </task>
   <task>
 		<statement>
@@ -531,7 +580,7 @@
   <task>
 		<statement>
 		  <p>
-	      Rewrite your expression for <m>f(x,y)</m> using the single variable integrals above (and a line integral along <m>C_1</m>).
+	      Rewrite your expression for <m>f(x,y)</m> using a line integral along <m>C_1</m> and the single variable integrals above.
 		  </p>
 		</statement>
 		<answer><p> <me> f(x,y)=f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_b^y F_2(a,t)\, dt+ \int_a^x F_1(t,y)\, dt </me> </p>
@@ -572,7 +621,19 @@
 		</statement>
 		<answer><p><m>f_y(x,y) = F_2(x,y)</m></p></answer>
 		<solution>
-		  <p>Proceeding as above, we find that
+		  <image width="40%" xml:id="img_12_4_paths_potential_rev2">
+				<description>An oriented curve from <m>(x_0,y_0)</m> to <m>(x,y)</m>. It begins with a curved arc from <m>(x_0,y_0)</m> to <m>(a,b)</m>. It then proceeds horizontally from <m>(a,b)</m> to <m>(x,b)</m> and then vertically to <m>(x,y)</m>.</description>
+				<sageplot>
+					var('x,y,t');
+					plot5=parametric_plot((t+2+6,-t^2+4),(t,-2,0),color='black',axes=False,frame=False) +arrow((.75+6,-(1.25^2)+4),(.8+6,-(1.2^2)+4),color='black') +point((6,0),size=20,color='black') +text(r"$(x_0,y_0)$",(6.65,0.0),color="black",fontsize='x-large')
+					plot6=parametric_plot((8+t,4),(t,0,1.5),color='black',axes=False,frame=False) +arrow((8.75,4),(9,4),color='black')+point((8,4),size=20,color='black')+text("$(a,b)$",(8.15,3.75),color='black',fontsize='x-large')
+					plot7=parametric_plot((9.5,t),(t,4,5),color='black',axes=False,frame=False)+arrow((9.5,4.3),(9.5,4.6),color='black')+point((9.5,4),size=20,color='black')
+					plot8=point((9.5,5),size=20,color='black')+text(r"$(x,y)$",(9.15,5.25),color="black",fontsize='x-large')
+					final_plot2=plot5+plot6+plot7+plot8
+					final_plot2		
+				</sageplot>
+			</image>
+			<p>Proceeding as above, we find that
 		  <md>
 		    <mrow>f(x,y) \amp= f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr +
 		    \int_{L_x} \vF\cdot d\vr + \int_{L_y}\vF\cdot d\vr</mrow>
@@ -600,13 +661,13 @@
   </task>
 </activity>
 <p>
-  We summarize the result of <xref ref="act_Vector_FTCLI_PathIndepGrad"/> below.
+  We summarize the result of <xref ref="act_Vector_FTCLI_PathIndepGrad"/> below. Much like the Second Fundamental Theorem of Calculus, which tells us that a function is an antiderivative for another function, but leaves the antiderivative in terms of a definite integral, this theorem tells us that a function is a potential function for a vector field, but the definnition of the potential function is in terms of a line integral.
 </p>
 <theorem xml:id="thm_PathIndepGrad">
   <title>Path-Independent Vector Fields</title>
   <statement>
   	<p>
-  		If <m>\vF</m> is a path-independent vector field on an open, path-connected domain <m>D</m>, then <m>\vF</m> is a gradient vector field on <m>D</m>. Furthermore, if <m>P</m> is a point in <m>D</m> and <m>f(P)</m> is fixed, then for a point <m>Q</m> in <m>D</m> and an oriented curve <m>C</m> from <m>P</m> to <m>Q</m> in <m>D</m>, the function
+  		If <m>\vF</m> is a path-independent vector field on an open, path-connected region <m>D</m>, then <m>\vF</m> is a gradient vector field on <m>D</m>. Furthermore, if <m>P</m> is a point in <m>D</m> and <m>f(P)</m> is fixed, then for a point <m>Q</m> in <m>D</m> and an oriented curve <m>C</m> from <m>P</m> to <m>Q</m> in <m>D</m>, the function
   		<me>
       	f(Q) = f(P) + \int_C\vF\cdot d\vr
     	</me>
@@ -642,4 +703,13 @@
   </p>
 </subsection>
 <xi:include href="exercises/ez-S_Vector_FTCLI.ptx"/>
+<subsection component="instructor">
+	<title>Notes to Instructors and Dependencies</title>
+	 <p>
+		This section is long, but important. To do all the activities, you will need multpile 50-minute class periods. One way to facilitate this would be to treat <xref ref="act_Vector_FTCLI_CalcLineInt" /> as if it were a preview activity and have students work on it before the second class meeting. You could also opt to de-emphasize finding potential functions and omit that activity.
+	</p>
+	<p>
+		<xref ref="act_Vector_FTCLI_PathIndepGrad" /> is also rather long. We have arranged the subsection by placing <xref ref="thm_PathIndepGrad" /> after the activity so as to not spoil the discovery to which the activity builds. This activity can be skipped without adversely impacting the remainder of the chapter. However, if choosing to omit <xref ref="act_Vector_FTCLI_PathIndepGrad" />, you may wish to specifically point out the culminating theorem to students.
+	</p>
+ </subsection>
 </section>
