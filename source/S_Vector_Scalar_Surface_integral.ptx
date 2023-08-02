@@ -3,74 +3,80 @@
   <title>Surface Integrals of Scalar Valued Functions</title>
     <objectives>
       <ul>
-	<li>
-	  <p>What does a scalar surface integral measure?</p>
-	</li>
-  <li>
-    <p>
-      How can you efficently calculate scalar surface integrals?
-    </p>
-  </li>
-  <li>
-    <p>
-      How do scalar surface integrals relate to flux integrals?
-    </p>
-  </li>
+        <li>
+          <p>How can we measure the accumulation of a scalar-valued function along a surface in space?</p>
+        </li>
+        <li>
+          <p>
+            What would that accmulation measure?
+          </p>
+        </li>
+        <li>
+          <p>
+            How can you efficently calculate scalar surface integrals?
+          </p>
+        </li>
       </ul>
     </objectives>
   <introduction>
     <exploration>
       <introduction>
         <p>
-          In <xref ref="PA_ScalarLI" /> we looked at how to understand line integrals of scalar functions through the analogy of running a mining machine along a given path. In short, the amount of Copium mined depended on the density of Copium at points on the path and the length of the path driven by the mining rig. 
+          In <xref ref="PA_ScalarLI" /> we looked at how to understand line integrals of scalar functions through the analogy of running a mining machine along a given path. In short, the amount of copium mined depended on the density of copium at points on the path and the length of the path driven by the mining rig. 
         </p>
-        <figure xml:id="CopiumPlot2">
-          <caption>A plot of land with density of Copium deposits and the edges of the plot drawn in yellow </caption>
-          <image source="/images/CopiumMinePlot.svg"/>
+        <figure xml:id="CopiumPlot3">
+          <caption>A plot of land with density of copium deposits and the edges of the plot drawn in yellow </caption>
+          <image xml:id="CopiumMinePlot3">
+            <sageplot>
+<xi:include href="CopiumMinePlot.sage" parse="text" />
+            </sageplot>
+          </image>
 	</figure>
         <p>
-          The opening tasks of <xref ref="PA_ScalarLI" /> had you estimating the amount of Copium mined by driving along the edge of a plot of land (drawn in yellow on <xref ref="CopiumPlot2" />). This iterpretation meant that the scalar function we are using was measuring the linear density of Copium to have our Riemann sum of Linear Density of Copium times the distance traveled make sense. 
+          The opening tasks of <xref ref="PA_ScalarLI" /> had you estimating the amount of copium mined by driving along the edge of a plot of land (drawn in yellow on <xref ref="CopiumPlot3" />). This iterpretation meant that the scalar function we were using measured the linear density of copium. Thus, the Riemann sum we computed was the product of linear density of copium with the distance traveled. 
         </p>
       </introduction>
       <task>
+        <introduction>
         <p>
-          In this task, we will interpret <xref ref="CopiumPlot2" /> as a contour graph of the density of Copium per unit area. This will allow us to compute the total amount of Copium in our mining area by setting up a double integral. To approximate the total amount of Copium available in our mine, do the following:
+          In this task, we will interpret <xref ref="CopiumPlot3" /> as a contour graph of the density of copium per unit area. This will allow us to compute the total amount of copium in our mining area by setting up a double integral. To approximate the total amount of copium available in our mine, do the following:
         </p>
-        <task>
+        </introduction>
+        <task xml:id="PA_Vector_ScalarSurfaceIntegrals_task2">
           <statement>
             <p>
-              Break the mining plot (the area inside the yellow segments of <xref ref="CopiumPlot2" />) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.
+              Break the mining plot (the area inside the yellow segments of <xref ref="CopiumPlot3" />) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.
             </p>
           </statement>
         </task>
         <task>
           <statement>
             <p>
-              For each of the three pieces you used in part (a), estimate the average density of Copium on each of your three pieces. Write a few sentences explaining your methods of estimating the average density on each piece.
+              For each of the three pieces you used in <xref ref="PA_Vector_ScalarSurfaceIntegrals_task2" text="local">part</xref>, estimate the average density of copium on the piece. Write a few sentences explaining your methods of estimating the average density on each piece.
             </p>
           </statement>
         </task>
         <task>
           <statement>
             <p>
-              Give an estimate for the total amount of Copium on your mining plot and explain your computation.
+              Give an estimate for the total amount of copium on the mining plot and explain your computation.
             </p>
           </statement>
         </task>
       </task>
       <task>
         <p>
-          What if instead of your mining plot being on a flat piece of land as represented in <xref ref="CopiumPlot2" />, your mining plot was on a hill as represented in <xref ref="fig_3D_CopiumMining" />. If we had the same copium density plot as a function of the <m>(x,y)</m> coordinates, would you expect:
+          What if instead of your mining plot being on a flat piece of land as represented in <xref ref="CopiumPlot3" />, your mining plot was on a hill as represented in <xref ref="fig_3D_CopiumMining" />. If we had the same copium density plot as a function of the <m>(x,y)</m> coordinates, which of the following would you expect to be true?
           <ul>
-            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be greater than on <xref ref="CopiumPlot2" /> </li>
-            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be lesser than on <xref ref="CopiumPlot2" /> </li>
-            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be the same as on <xref ref="CopiumPlot2" /> </li>
+            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is greater than on <xref ref="CopiumPlot3" /> </li>
+            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is lesser than on <xref ref="CopiumPlot3" /> </li>
+            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is the same as on <xref ref="CopiumPlot3" /> </li>
           </ul>
-          Explain your reasoning for your choice of options above. 
+          Explain your reasoning for your choice. 
         </p>
         <figure xml:id="fig_3D_CopiumMining">
           <caption>A 3D plot of the region including our mining area (shown with boundary in red) </caption>
-          <interactive platform="sage" width="100%" aspect="1:1.12">
+          <interactive platform="sage" width="100%" aspect="1:0.98">
             <slate surface="sage">
               @interact
               def abcd():
@@ -96,31 +102,20 @@
       </task>
     </exploration>
   <p>
-    In <xref ref="S_Vector_FluxInt"/>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface (which changes at different points on the surface.) <xref ref="thm_flux_int_calc"/> shows the best way to calculate the flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>.
+    In <xref ref="S_Vector_FluxInt"/>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface, which changes at different points on the surface. <xref ref="thm_flux_int_calc"/> gives an efficient way to calculate a flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>.
   </p>
   <p>
-    Just as we generalized line integrals of vector fields into scalar line integrals in <xref ref="S_Vector_ScalarLineIntegral"/>, we will spend this section looking at the following questions:
-    <ul>
-      <li>
-        How could we measure the accumulation of a scalar valued function along a surface in space?
-      </li>
-      <li>
-        What would that accmulation measure?
-      </li>
-      <li>
-        What is the most efficient way to calculate this?
-      </li>
-    </ul>
+    Just as we generalized line integrals of vector fields into scalar line integrals in <xref ref="S_Vector_ScalarLineIntegral"/>, we will spend this section examining questions related to the accumulation of scalar-valued functions along surfaces in space as a means of generalizing flux integrals.
   </p>
   </introduction>
   <subsection>
   <title>Defining surface integrals of scalar functions</title>  
   <p>
-    In order to create a Riemann sum that will measure the acculumation of <m>f(x,y,z)</m>, a scalar valued function, over <m>S_1</m>, a smooth, bounded surface in space, we will break our surface into smaller piecese where we can approximate the output of <m>f</m> and the surface area of each piece. In <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> and <xref ref="S_Vector_FluxInt"/>, we developed the way to measure surface area given a parameterization for the surface.
+    In order to create a Riemann sum that will measure the acculumation of <m>f(x,y,z)</m>, a scalar valued function, over <m>S_1</m>, a smooth, bounded surface in space, we will break our surface into smaller pieces where we can approximate the value of <m>f</m> and the surface area of each piece. Recall that in <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> and <xref ref="S_Vector_FluxInt"/>, we developed a way to measure surface area given a parameterization for the surface.
   </p>
   <p>
-    Suppose that <m>S_1</m> is parametrized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_1,\ldots,t_m</m>. This divides <m>D</m> into <m>nm</m>
-    rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>Q</m> into <m>nm</m> corresponding pieces which we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
+    Suppose that <m>S_1</m> is parameterized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_0,s_1,\ldots,s_n</m> and we slice <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_0,t_1,\ldots,t_m</m>. This divides <m>D</m> into <m>nm</m>
+    rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>S_1</m> into <m>nm</m> corresponding pieces which we call <m>S_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> (specifically equation <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
   </p>
   <figure xml:id="fig_SurfaceAreaPieces">
     <caption>Pieces of the tangent planes used to approximate surface area</caption>
@@ -155,16 +150,16 @@
     <md>
       <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}= </mrow>
       <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}= </mrow>
-      <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(s_{i}^*,t_{j}^*)) \Vert{(\vr_s \times \vr_t)(s_i,t_j)}\Vert \Delta{s}\Delta{t}</mrow>
+      <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(s_{i}^*,t_{j}^*)) |{(\vr_s \times \vr_t)(s_i,t_j)}| \Delta{s}\Delta{t}</mrow>
     </md>
-    This Riemann sum ends up being the double integral (over the variables <m>s</m> and <m>t</m>) of the function <m>f(x(t,s),y(s,t),z(s,t)) \Vert{(\vr_s \times \vr_t)(s,t)}\Vert</m>, which leads to the following theorem.
+    This Riemann sum ends up being the double integral (over the variables <m>s</m> and <m>t</m>) of the function <m>f(x(t,s),y(s,t),z(s,t)) |{(\vr_s \times \vr_t)(s,t)}|</m>, which leads to the following theorem.
   </p>
   <theorem xml:id="ScalarSurfaceIntDef">
     <statement>
     <p>
       Let a smooth surface <m>S_1</m> be parametrized by <m>\vr(s,t)</m> over a domain <m>D</m> and let <m>f</m> be a continuous function on a neighborhood around <m>S_1</m>. The acculumation of <m>f(x,y,z)</m> over <m>S_1</m> is deonted by <m>\iint_{S_1} f \enspace dS</m> and is called the scalar surface integral of <m>f</m> over <m>S_1</m>. The scalar surface integral of <m>f</m> over <m>S_1</m> is computed as
         <me>
-          \iint_{S_1} f \enspace dS = \iint_D f(s,t) \Vert{(\vr_s \times \vr_t)(s,t)}\Vert \enspace dA
+          \iint_{S_1} f \enspace dS = \iint_D f(s,t) |{(\vr_s \times \vr_t)(s,t)}| \enspace dA
         </me>.
     </p>
     </statement>
@@ -449,7 +444,7 @@
     </p>
     <example xml:id="ScalarSurfaceInt_Example1">
       <p>
-        Let us return to some of the problems from <xref ref="ScalarSurfaceInt_Sensemaking"/>. Specifically, we will compute the answer to <xref ref="task_SSIS_2"/>. We will compute <m>\iint_{S_1} x \enspace dS</m> where <m>S_1</m> is the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin in 3-space. Our surface can be parameterized by <m>\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle</m> where <m>s \in [0,2\pi]</m> and <m>t \in [0,\pi]</m>. Using <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>\Vert{\vr_s \times \vr_t}\Vert </m>. For our parameterization, we get
+        Let us return to some of the problems from <xref ref="ScalarSurfaceInt_Sensemaking"/>. Specifically, we will compute the answer to <xref ref="task_SSIS_2"/>. We will compute <m>\iint_{S_1} x \enspace dS</m> where <m>S_1</m> is the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin in 3-space. Our surface can be parameterized by <m>\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle</m> where <m>s \in [0,2\pi]</m> and <m>t \in [0,\pi]</m>. Using <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>|{\vr_s \times \vr_t}| </m>. For our parameterization, we get
         <md>
           <mrow>\vr_s \amp = \langle -\sin(s)\sin(t),\cos(s)\sin(t),0\rangle </mrow>
           <mrow>\vr_t \amp = \langle \cos(s)\cos(t),\sin(s)\cos(t),-\sin(t)\rangle </mrow>
@@ -458,7 +453,7 @@
         </md>
         Simplifying <m>\vr_s \times \vr_t</m> we get
         <me> \vr_s \times \vr_t =\sin(t) \langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t) \rangle </me>
-        Note that <m> \vr_s \times \vr_t = \sin(t) \vr(s,t)</m>. This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <m>\Vert{\vr_s \times \vr_t}\Vert = \sin(t)</m> because <m>\Vert{\vr(s,t)}\Vert = 1</m> for any <m>s</m> or <m>t</m>.
+        Note that <m> \vr_s \times \vr_t = \sin(t) \vr(s,t)</m>. This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <m>|{\vr_s \times \vr_t}| = \sin(t)</m> because <m>|{\vr(s,t)}| = 1</m> for any <m>s</m> or <m>t</m>.
       </p>
       <p>
         We can now use <xref ref="ScalarSurfaceIntDef"/> to compute the scalar surface integral as 
@@ -477,7 +472,7 @@
     </example>
     <example xml:id="ScalarSurfaceInt_Example2">
     <p>
-        For this example, we will compute the answer to <xref ref="task_SSIS_4"/>. We will compute <m>\iint_{S_3} x+z \enspace dS</m> where <m>S_3</m> is the disc of radius one centered at <m>(1,0,0)</m> on the <m>x=1</m> fundamental plane. Our surface can be parameterized by <m>\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle</m> where <m>s \in [0,1]</m> and <m>t \in [0,2\pi]</m>. Using  <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>\Vert{\vr_s \times \vr_t}\Vert </m>. For our parameterization, we get
+        For this example, we will compute the answer to <xref ref="task_SSIS_4"/>. We will compute <m>\iint_{S_3} x+z \enspace dS</m> where <m>S_3</m> is the disc of radius one centered at <m>(1,0,0)</m> on the <m>x=1</m> fundamental plane. Our surface can be parameterized by <m>\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle</m> where <m>s \in [0,1]</m> and <m>t \in [0,2\pi]</m>. Using  <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>|{\vr_s \times \vr_t}| </m>. For our parameterization, we get
         <md>
           <mrow> \vr_s = \langle 0, \cos(t), \sin(t) \rangle </mrow>
           <mrow> \vr_t = \langle 0, -s\sin(t), s\cos(t) \rangle </mrow>
@@ -485,7 +480,7 @@
         </md>
         Simplifying <m>\vr_s \times \vr_t</m> we get
         <me> \vr_s \times \vr_t =s \langle 0, 0, 1 \rangle </me>
-        and thus <m>\Vert{\vr_s \times \vr_t}\Vert = s</m>. This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates, <m>dA = dx dy = r dr d\theta</m>.
+        and thus <m>|{\vr_s \times \vr_t}| = s</m>. This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates, <m>dA = dx dy = r dr d\theta</m>.
       </p>
       <p>
         We can now use  <xref ref="ScalarSurfaceIntDef"/> to compute the scalar surface integral as
