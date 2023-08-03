@@ -165,8 +165,8 @@
 </figure>
 <p>
   We can approximate the accumulation of <m>f</m> over <m>C</m> with the following sum
-  <me> \sum_{i=1}^{n} f(\vr_i^*) \Vert{\vr_{i}-\vr_{i-1}}\Vert</me>,
-  where <m>f(r_i^{*})</m> is the output of <m>f</m> for some <m>\vr_i^{*} \in C_i</m>. As this sum uses more pieces and all of the lengths of the pieces goes to zero (i.e. <m>\Vert{\Delta \vr_i}\Vert \rightarrow 0</m>), we would expect that the sum will approach the actual acculumation of <m>f</m> over <m>C</m>. Notice that it won't matter how we select the point <m>\vr_i^*</m> that is used in each piece to evaluate the output of <m>f</m> since evaluating the limit as the length of <m>C_i</m> gets smaller will ensure that the output value choosen will be within a shrinking error from the average value on each piece. Evaluating the limit of the sum above as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <m>f</m> over <m>C</m>.
+  <me> \sum_{i=1}^{n} f(\vr_i^*) |{\vr_{i}-\vr_{i-1}}|</me>,
+  where <m>f(r_i^{*})</m> is the output of <m>f</m> for some <m>\vr_i^{*} \in C_i</m>. As this sum uses more pieces and all of the lengths of the pieces goes to zero (i.e. <m>|{\Delta \vr_i}| \rightarrow 0</m>), we would expect that the sum will approach the actual acculumation of <m>f</m> over <m>C</m>. Notice that it won't matter how we select the point <m>\vr_i^*</m> that is used in each piece to evaluate the output of <m>f</m> since evaluating the limit as the length of <m>C_i</m> gets smaller will ensure that the output value choosen will be within a shrinking error from the average value on each piece. Evaluating the limit of the sum above as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <m>f</m> over <m>C</m>.
 </p>
 <definition xml:id="ScalarLineIntegral_def">
 
@@ -174,7 +174,7 @@
   <statement>
   <p>
     Let <m>C</m> be a curve from a point <m>P</m> to a point <m>Q</m> in space. Let <m>f</m> be a contiunuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>.  The <term>line integral of <m>f</m> over <m>C</m></term> is defined as
-    <me>\int_C f ds =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(\vr_i^{*}) \Vert{\vr_{i}-\vr_{i-1}}\Vert</me>
+    <me>\int_C f ds =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(\vr_i^{*}) |{\vr_{i}-\vr_{i-1}}|</me>
     where <m>\vr_i</m> are points such that <m>P=\vr_0, \vr_1, \dots, \vr_n-1, \vr_n=Q</m> and as <m>n\rightarrow \infty</m> the distance between <m>\vr_{i-1}</m> and <m>\vr_i</m> goes to zero.
   </p>
   <p>The integral
@@ -184,7 +184,7 @@
   </statement>
 </definition>
 <p>
-  The notation for a scalar line integral (<m>\int_C f \, ds </m>) may not immediately make sense. As with the other types of integration we have done (single variable integration, double integrals, line integrals of vector fields, etc.), the subscript of the integral symbol denotes the region of integration. In the case of a scalar line integral, the region of integration is a collection of points given by a curve in space. The function we are integrating is <m>f</m>, a scalar-valued functiton of multiple variables. The differential <m>ds</m> may seem unusual to you. If you remember from <xref ref="S-9-8-Arc-Length-Curvature" />, <m>s</m> is the arc length of a curve in space. So the differential <m>ds</m> in the scalar line integral notation means that we are adding up the output of <m>f</m> over steps in arc length. This should make sense in terms of how we set up our Riemann sums. We did not set up the pieces of our curve as steps in <m>x</m>, <m>y</m>, or <m>z</m>, but rather as steps in arc length (estimated by <m>\Vert{\vr_{i+1}-\vr_{i}}\Vert</m>). This may feel similar to situations such as double integrals, where we generically used <m>dA</m> for the differential, but the different contexts called for different values of <m>dA</m>. For instance, in polar coordinates, we use <m>dA = r\, dr\, d\theta</m>
+  The notation for a scalar line integral (<m>\int_C f \, ds </m>) may not immediately make sense. As with the other types of integration we have done (single variable integration, double integrals, line integrals of vector fields, etc.), the subscript of the integral symbol denotes the region of integration. In the case of a scalar line integral, the region of integration is a collection of points given by a curve in space. The function we are integrating is <m>f</m>, a scalar-valued functiton of multiple variables. The differential <m>ds</m> may seem unusual to you. If you remember from <xref ref="S-9-8-Arc-Length-Curvature" />, <m>s</m> is the arc length of a curve in space. So the differential <m>ds</m> in the scalar line integral notation means that we are adding up the output of <m>f</m> over steps in arc length. This should make sense in terms of how we set up our Riemann sums. We did not set up the pieces of our curve as steps in <m>x</m>, <m>y</m>, or <m>z</m>, but rather as steps in arc length (estimated by <m>|{\vr_{i+1}-\vr_{i}}|</m>). This may feel similar to situations such as double integrals, where we generically used <m>dA</m> for the differential, but the different contexts called for different values of <m>dA</m>. For instance, in polar coordinates, we use <m>dA = r\, dr\, d\theta</m>
 </p>
 <example xml:id="sli_pm" >
   <introduction>
@@ -259,7 +259,7 @@
   </task>
   <task>
     <p>
-      We now want to consider whether <m>\int_C g \, ds </m> will be positive, negative, or zero. This is a simpler argument than in the previous case because the output of <m>g</m> will be negative for all points in <m>C</m> (execept for the origin). Each term in the Riemann sum used to define the scalar line integral will be the product of a negative value (<m>g(\vr_i^{*})</m>) and a positive value (<m> \Vert{\vr_{i}-\vr_{i-1}}\Vert</m>). Therefore the Riemann sums will be negative and the limit as you take more terms in this sum will also be negative. Thus, <m>\int_C g \, ds \lt 0</m>.
+      We now want to consider whether <m>\int_C g \, ds </m> will be positive, negative, or zero. This is a simpler argument than in the previous case because the output of <m>g</m> will be negative for all points in <m>C</m> (execept for the origin). Each term in the Riemann sum used to define the scalar line integral will be the product of a negative value (<m>g(\vr_i^{*})</m>) and a positive value (<m> |{\vr_{i}-\vr_{i-1}}|</m>). Therefore the Riemann sums will be negative and the limit as you take more terms in this sum will also be negative. Thus, <m>\int_C g \, ds \lt 0</m>.
     </p>
   </task>
   <task>
@@ -429,27 +429,27 @@
   <p>
     To simplify the notation of our function evaluation, we will use the following:
       <me>f(\vr_i^{*})=f(\vr(t_i^{*}))=f(t_i^{*})</me>
-    where <m>t_{i-1}\leq t_i^{*}\leq t_i </m>. Remember that the parameterization will allow us to write all parts of the scalar line integral as a function of <m>t</m>, so we will simplify <m>\Vert\Delta \vr_i\Vert</m> as
-      <me>\Vert{\vr_{i}-\vr_{i-1}}\Vert =\Vert{\vr(t_{i})-\vr(t_{i-1})}\Vert= \frac{\Vert{\vr(t_{i})-\vr(t_{i-1})}\Vert}{\Delta{t}}\Delta{t}</me>
+    where <m>t_{i-1}\leq t_i^{*}\leq t_i </m>. Remember that the parameterization will allow us to write all parts of the scalar line integral as a function of <m>t</m>, so we will simplify <m>|\Delta \vr_i|</m> as
+      <me>|{\vr_{i}-\vr_{i-1}}| =|{\vr(t_{i})-\vr(t_{i-1})}|= \frac{|{\vr(t_{i})-\vr(t_{i-1})}|}{\Delta{t}}\Delta{t}</me>
     Applying our parameterization and corresponding points to <xref ref="ScalarLineIntegral_def" /> gives 
       <md>
-        <mrow>\int_C f \, ds \amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(\vr_i^{*}) \Vert{\vr_{i}-\vr_{i-1}}\Vert</mrow>
-        <mrow>\amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(t_i^{*}) \frac{\Vert{r(t_{i-1}+\Delta t)-r(t_{i-1})}\Vert}{\Delta{t}}\Delta{t} </mrow>
+        <mrow>\int_C f \, ds \amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(\vr_i^{*}) |{\vr_{i}-\vr_{i-1}}|</mrow>
+        <mrow>\amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(t_i^{*}) \frac{|{r(t_{i-1}+\Delta t)-r(t_{i-1})}|}{\Delta{t}}\Delta{t} </mrow>
       </md>.
-    This Riemann sum correponds to the definite integral of a scalar function of <m>t</m>, specifically <m>f(t) v(t)</m> where <m>v(t)=\Vert\vr'(t)\Vert</m>. We may think of <m>v(t)</m> is the speed of the parameterization <m>\vr</m>.
+    This Riemann sum correponds to the definite integral of a scalar function of <m>t</m>, specifically <m>f(t) v(t)</m> where <m>v(t)=|\vr'(t)|</m>. We may think of <m>v(t)</m> is the speed of the parameterization <m>\vr</m>.
   </p>
   <theorem xml:id="scalarlineint_param_thm">
     <title>Calculating Scalar Line Integrals with Parameterizations</title>
     <p>
       Let <m>C</m> be a curve in space parameterized by <m>r(t)</m> for <m>a\leq t\leq b</m>. If <m>f(x,y,z)</m> is a multivariable function that is continuous for a region around <m>C</m>, then
-      <me> \int_C f \, ds =\int_a^b f\left(\vr\left(t\right)\right) \Vert{\vr'(t)}\Vert \, dt</me>.
+      <me> \int_C f \, ds =\int_a^b f\left(\vr\left(t\right)\right) |{\vr'(t)}| \, dt</me>.
     </p>
   </theorem>
   <p>
     With <xref ref="scalarlineint_param_thm"/> established, we now consider a couple of examples that allow us to find the exact value of line integrals of scalar functions considered in <xref ref="Act_ScalarLI1" />.
   </p>
   <example xml:id="ScalarLineInt_Example1">
-    <p> Let us return to some of the problems from <xref ref="Act_ScalarLI1" />. Specifically, let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_1(x,y,z)=y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4} \leq t\leq \frac{3\pi}{4}</m>. Note here that <m>\Vert{\vr'(t)}\Vert =\Vert{\langle -\sin(t),\cos(t),0\rangle}\Vert=1</m>. We can rewrite the value of <m>f_1</m> along <m>C_1</m> using the parameterization as <m>f_1(x(t),y(t),z(t))=f_1(\cos(t),\sin(t),0)=\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm" />, we have
+    <p> Let us return to some of the problems from <xref ref="Act_ScalarLI1" />. Specifically, let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_1(x,y,z)=y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4} \leq t\leq \frac{3\pi}{4}</m>. Note here that <m>|{\vr'(t)}| =|{\langle -\sin(t),\cos(t),0\rangle}|=1</m>. We can rewrite the value of <m>f_1</m> along <m>C_1</m> using the parameterization as <m>f_1(x(t),y(t),z(t))=f_1(\cos(t),\sin(t),0)=\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm" />, we have
       <me> \int_{C_1} f_1 \, ds = \int_{-\frac{\pi}{4}}^{\frac{3\pi}{4}} \sin(t) (1) \, dt = -\cos\left(\frac{3\pi}{4}\right) - \left(-\cos\left(-\frac{\pi}{4}\right))\right)=\sqrt{2}</me>.
     </p>
     <p>
@@ -481,7 +481,7 @@
     When working through <xref ref="Act_ScalarLI1" />, you may have found the line integrals involving <m>f_3(x,y,z)=x-y</m> to be more challenging to reason through without computational tools. We next work through the details of evaluating the line integral of this function along the same curve as in the previous example.
   </p>
   <example xml:id="ScalarLineInt_Example2">
-    <p> Let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_3(x,y,z)=x-y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4}\leq t\leq \frac{3\pi}{4}]</m>. Note here that <m>\Vert{\vr'(t)}\Vert =\Vert{\langle -\sin(t),\cos(t),0\rangle}\Vert=1</m>. We can write the value of <m>f_3</m> along <m>C_1</m> using the parameterization as <m>f_3(x(t),y(t),z(t)) = f_3(\cos(t),\sin(t),0) = \cos(t)-\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm" />, we have
+    <p> Let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_3(x,y,z)=x-y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4}\leq t\leq \frac{3\pi}{4}]</m>. Note here that <m>|{\vr'(t)}| =|{\langle -\sin(t),\cos(t),0\rangle}|=1</m>. We can write the value of <m>f_3</m> along <m>C_1</m> using the parameterization as <m>f_3(x(t),y(t),z(t)) = f_3(\cos(t),\sin(t),0) = \cos(t)-\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm" />, we have
       <md>
         <mrow>\int_{C_1} f_3 \, ds \amp = \int_{-\frac{\pi}{4}}^{\frac{3\pi}{4}}\left(\cos(t)-\sin(t)\right) (1) dt</mrow>
         <mrow>\amp = \sin(\frac{3\pi}{4})-\cos(\frac{3\pi}{4}) - \left(\sin(-\frac{\pi}{4})-\cos(-\frac{\pi}{4})\right)=0</mrow>
@@ -552,7 +552,7 @@
       <solution>
         <p>
             We will use <xref ref="scalarlineint_param_thm" /> to evaluate our line integral. We parameterize <m>C_1</m> with
-            <m>\vr_1(t)= \langle -1=t,2-2t\rangle</m> and parameterize <m>C_2</m> with <m> \vr_2(t) =\langle t,t\rangle </m>. Both parameterizations use parameter values in the interval <m>[0,1]</m>. We can calculate <m>\Vert{\vr_1}\Vert = \sqrt{5}</m> and <m>\Vert{\vr_2}\Vert = \sqrt{2}</m>. Thus we can evaluate our scalar line integral as
+            <m>\vr_1(t)= \langle -1=t,2-2t\rangle</m> and parameterize <m>C_2</m> with <m> \vr_2(t) =\langle t,t\rangle </m>. Both parameterizations use parameter values in the interval <m>[0,1]</m>. We can calculate <m>|{\vr_1}| = \sqrt{5}</m> and <m>|{\vr_2}| = \sqrt{2}</m>. Thus we can evaluate our scalar line integral as
             <md>
               <mrow>\int_{C_1+C_2} x \, ds \amp = \int_{C_1} x \, ds +\int_{C_2} x \, ds</mrow>
               <mrow>\amp = \int_0^1 (-1+t) \sqrt{5} \, dt + \int_0^1 (t) \sqrt{2} \, dt</mrow>

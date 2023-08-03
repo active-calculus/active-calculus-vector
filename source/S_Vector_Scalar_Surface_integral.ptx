@@ -3,74 +3,80 @@
   <title>Surface Integrals of Scalar Valued Functions</title>
     <objectives>
       <ul>
-	<li>
-	  <p>What does a scalar surface integral measure?</p>
-	</li>
-  <li>
-    <p>
-      How can you efficently calculate scalar surface integrals?
-    </p>
-  </li>
-  <li>
-    <p>
-      How do scalar surface integrals relate to flux integrals?
-    </p>
-  </li>
+        <li>
+          <p>How can we measure the accumulation of a scalar-valued function along a surface in space?</p>
+        </li>
+        <li>
+          <p>
+            What does that accumulation measure?
+          </p>
+        </li>
+        <li>
+          <p>
+            How can we efficiently calculate scalar surface integrals?
+          </p>
+        </li>
       </ul>
     </objectives>
   <introduction>
     <exploration>
       <introduction>
         <p>
-          In <xref ref="PA_ScalarLI" /> we looked at how to understand line integrals of scalar functions through the analogy of running a mining machine along a given path. In short, the amount of Copium mined depended on the density of Copium at points on the path and the length of the path driven by the mining rig. 
+          In <xref ref="PA_ScalarLI" /> we looked at how to understand line integrals of scalar functions through the analogy of running a mining machine along a given path. In short, the amount of copium mined depended on the density of copium at points on the path and the length of the path driven by the mining rig. 
         </p>
-        <figure xml:id="CopiumPlot2">
-          <caption>A plot of land with density of Copium deposits and the edges of the plot drawn in yellow </caption>
-          <image source="/images/CopiumMinePlot.svg"/>
+        <figure xml:id="CopiumPlot3">
+          <caption>A plot of land with density of copium deposits and the edges of the plot drawn in yellow </caption>
+          <image xml:id="CopiumMinePlot3">
+            <sageplot>
+<xi:include href="CopiumMinePlot.sage" parse="text" />
+            </sageplot>
+          </image>
 	</figure>
         <p>
-          The opening tasks of <xref ref="PA_ScalarLI" /> had you estimating the amount of Copium mined by driving along the edge of a plot of land (drawn in yellow on <xref ref="CopiumPlot2" />). This iterpretation meant that the scalar function we are using was measuring the linear density of Copium to have our Riemann sum of Linear Density of Copium times the distance traveled make sense. 
+          The opening tasks of <xref ref="PA_ScalarLI" /> had you estimating the amount of copium mined by driving along the edge of a plot of land (drawn in yellow on <xref ref="CopiumPlot3" />). This iterpretation meant that the scalar function we were using measured the linear density of copium. Thus, the Riemann sum we computed was the product of linear density of copium with the distance traveled. 
         </p>
       </introduction>
       <task>
+        <introduction>
         <p>
-          In this task, we will interpret <xref ref="CopiumPlot2" /> as a contour graph of the density of Copium per unit area. This will allow us to compute the total amount of Copium in our mining area by setting up a double integral. To approximate the total amount of Copium available in our mine, do the following:
+          In this task, we will interpret <xref ref="CopiumPlot3" /> as a contour graph of the density of copium per unit area. This will allow us to compute the total amount of copium in our mining area by setting up a double integral. To approximate the total amount of copium available in our mine, do the following:
         </p>
-        <task>
+        </introduction>
+        <task xml:id="PA_Vector_ScalarSurfaceIntegrals_task2">
           <statement>
             <p>
-              Break the mining plot (the area inside the yellow segments of <xref ref="CopiumPlot2" />) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.
+              Break the mining plot (the area inside the yellow segments of <xref ref="CopiumPlot3" />) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.
             </p>
           </statement>
         </task>
         <task>
           <statement>
             <p>
-              For each of the three pieces you used in part (a), estimate the average density of Copium on each of your three pieces. Write a few sentences explaining your methods of estimating the average density on each piece.
+              For each of the three pieces you used in <xref ref="PA_Vector_ScalarSurfaceIntegrals_task2" text="local">part</xref>, estimate the average density of copium on the piece. Write a few sentences explaining your methods of estimating the average density on each piece.
             </p>
           </statement>
         </task>
         <task>
           <statement>
             <p>
-              Give an estimate for the total amount of Copium on your mining plot and explain your computation.
+              Give an estimate for the total amount of copium on the mining plot and explain your computation.
             </p>
           </statement>
         </task>
       </task>
       <task>
         <p>
-          What if instead of your mining plot being on a flat piece of land as represented in <xref ref="CopiumPlot2" />, your mining plot was on a hill as represented in <xref ref="fig_3D_CopiumMining" />. If we had the same copium density plot as a function of the <m>(x,y)</m> coordinates, would you expect:
+          What if instead of your mining plot being on a flat piece of land as represented in <xref ref="CopiumPlot3" />, your mining plot was on a hill as represented in <xref ref="fig_3D_CopiumMining" />. If we had the same copium density plot as a function of the <m>(x,y)</m> coordinates, which of the following would you expect to be true?
           <ul>
-            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be greater than on <xref ref="CopiumPlot2" /> </li>
-            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be lesser than on <xref ref="CopiumPlot2" /> </li>
-            <li>the total amount of Copium available on <xref ref="fig_3D_CopiumMining" /> to be the same as on <xref ref="CopiumPlot2" /> </li>
+            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is greater than on <xref ref="CopiumPlot3" /> </li>
+            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is lesser than on <xref ref="CopiumPlot3" /> </li>
+            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is the same as on <xref ref="CopiumPlot3" /> </li>
           </ul>
-          Explain your reasoning for your choice of options above. 
+          Explain your reasoning for your choice. 
         </p>
         <figure xml:id="fig_3D_CopiumMining">
           <caption>A 3D plot of the region including our mining area (shown with boundary in red) </caption>
-          <interactive platform="sage" width="100%" aspect="1:1.12">
+          <interactive platform="sage" width="100%" aspect="1:1">
             <slate surface="sage">
               @interact
               def abcd():
@@ -96,35 +102,27 @@
       </task>
     </exploration>
   <p>
-    In <xref ref="S_Vector_FluxInt"/>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface (which changes at different points on the surface.) <xref ref="thm_flux_int_calc"/> shows the best way to calculate the flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>.
+    In <xref ref="S_Vector_FluxInt"/>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface, which changes at different points on the surface. <xref ref="thm_flux_int_calc"/> gives an efficient way to calculate a flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>.
   </p>
   <p>
-    Just as we generalized line integrals of vector fields into scalar line integrals in <xref ref="S_Vector_ScalarLineIntegral"/>, we will spend this section looking at the following questions:
-    <ul>
-      <li>
-        How could we measure the accumulation of a scalar valued function along a surface in space?
-      </li>
-      <li>
-        What would that accmulation measure?
-      </li>
-      <li>
-        What is the most efficient way to calculate this?
-      </li>
-    </ul>
+    Just as we generalized line integrals of vector fields into scalar line integrals in <xref ref="S_Vector_ScalarLineIntegral"/>, we will spend this section examining questions related to the accumulation of scalar-valued functions along surfaces in space as a means of generalizing flux integrals.
   </p>
   </introduction>
   <subsection>
   <title>Defining surface integrals of scalar functions</title>  
   <p>
-    In order to create a Riemann sum that will measure the acculumation of <m>f(x,y,z)</m>, a scalar valued function, over <m>S_1</m>, a smooth, bounded surface in space, we will break our surface into smaller piecese where we can approximate the output of <m>f</m> and the surface area of each piece. In <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> and <xref ref="S_Vector_FluxInt"/>, we developed the way to measure surface area given a parameterization for the surface.
+    In order to create a Riemann sum that will measure the acculumation of <m>f(x,y,z)</m>, a scalar valued function, over <m>S_1</m>, a smooth, bounded surface in space, we will break our surface into smaller pieces where we can approximate the value of <m>f</m> and the surface area of each piece. Recall that in <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> and <xref ref="S_Vector_FluxInt"/>, we developed a way to measure surface area given a parameterization for the surface.
   </p>
   <p>
-    Suppose that <m>S_1</m> is parametrized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_1,\ldots,t_m</m>. This divides <m>D</m> into <m>nm</m>
-    rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>Q</m> into <m>nm</m> corresponding pieces which we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
+    Suppose that <m>S_1</m> is parameterized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_0,s_1,\ldots,s_n</m> and we slice <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_0,t_1,\ldots,t_m</m>. This divides <m>D</m> into <m>nm</m>
+    rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>S_1</m> into <m>nm</m> corresponding pieces which we call <m>S_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> (specifically equation <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>S_{i,j}</m> is approximated by <m>SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
+  </p>
+  <p>
+    We illustrate this approximation of <m>S_1</m> by rectangular patches of tangent planes, each with area <m>SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m> in <xref ref="fig_SurfaceAreaPieces"/>, where you can adjust the slider to control the number of rectangles. (For simplicity, the figure takes <m>m=n</m>.)
   </p>
   <figure xml:id="fig_SurfaceAreaPieces">
     <caption>Pieces of the tangent planes used to approximate surface area</caption>
-    <interactive platform="sage" width="100%" aspect="1:1.12">
+    <interactive platform="sage" width="100%" aspect="1:1.10">
       <slate surface="sage">
         var('t,s,u,v,z,y,z')
         f=-x^2/2-3*y^3/3
@@ -151,148 +149,135 @@
     </interactive>
   </figure>
   <p>
-    So to measure the accumulation of the output of <m>f(x,y,z)</m> over <m>S_1</m>, we use the following Riemann sum:
+    To measure the accumulation <m>A</m> of the output of <m>f(x,y,z)</m> over <m>S_1</m>, we use the following Riemann sum:
     <md>
-      <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}= </mrow>
-      <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}= </mrow>
-      <mrow>\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(s_{i}^*,t_{j}^*)) \Vert{(\vr_s \times \vr_t)(s_i,t_j)}\Vert \Delta{s}\Delta{t}</mrow>
-    </md>
-    This Riemann sum ends up being the double integral (over the variables <m>s</m> and <m>t</m>) of the function <m>f(x(t,s),y(s,t),z(s,t)) \Vert{(\vr_s \times \vr_t)(s,t)}\Vert</m>, which leads to the following theorem.
+      <mrow>A\amp = \sum_{i=1}^{n} \sum_{i=1}^{m} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}</mrow>
+      <mrow>\amp =\sum_{i=1}^{n} \sum_{i=1}^{m} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}</mrow>
+      <mrow>\amp= \sum_{i=1}^{n} \sum_{i=1}^{m} f(s_{i}^*,t_{j}^*)) \vecmag{(\vr_s \times \vr_t)(s_i,t_j)} \Delta{s}\Delta{t}</mrow>
+    </md>.
+    as <m>\Delta s\to 0</m> and <m>\Delta t\to 0</m>, a double Riemann sum of this form represents the double integral (over the variables <m>s</m> and <m>t</m>) of the function <m>f(x(s,t),y(s,t),z(s,t)) \vecmag{(\vr_s \times \vr_t)(s,t)}</m>. This leads to the following theorem.
   </p>
   <theorem xml:id="ScalarSurfaceIntDef">
     <statement>
     <p>
-      Let a smooth surface <m>S_1</m> be parametrized by <m>\vr(s,t)</m> over a domain <m>D</m> and let <m>f</m> be a continuous function on a neighborhood around <m>S_1</m>. The acculumation of <m>f(x,y,z)</m> over <m>S_1</m> is deonted by <m>\iint_{S_1} f \enspace dS</m> and is called the scalar surface integral of <m>f</m> over <m>S_1</m>. The scalar surface integral of <m>f</m> over <m>S_1</m> is computed as
+      Let a smooth surface <m>S_1</m> be parametrized by <m>\vr(s,t)</m> over a region <m>D</m>, and let <m>f</m> be a continuous function on a neighborhood around <m>S_1</m>. The accumulation of <m>f(x,y,z)</m> over <m>S_1</m> is denoted by <m>\iint_{S_1} f \, dS</m> and is called the <term>scalar surface integral of <m>f</m> over <m>S_1</m></term>. The scalar surface integral of <m>f</m> over <m>S_1</m> is computed as
         <me>
-          \iint_{S_1} f \enspace dS = \iint_D f(s,t) \Vert{(\vr_s \times \vr_t)(s,t)}\Vert \enspace dA
+          \iint_{S_1} f \, dS = \iint_D f(s,t) \vecmag{(\vr_s \times \vr_t)(s,t)} \, dA
         </me>.
     </p>
     </statement>
   </theorem>
-
-  <example>
+  <p>
+    In the following example, we both reason about the value of a scalar surface integral without working through computations and apply <xref ref="ScalarSurfaceIntDef" /> to compute values of scalar surface integrals.
+  </p>
+  <example xml:id="ex_Vector_ScalarSurfaceIntegral_cone_part">
+    <introduction>
+      <p>
+        For this example, we will consider the surface <m>S_1</m> given by <m>x^2+y^2=z^2</m> such that <m>1\leq z \leq 3</m>. This is the same part of the cone used in <xref ref="flux_int_example1" />. We also let <m>f(x,y,z)=x</m>.
+      </p>
+    </introduction>
     <task>
       <statement>
         <p>
-          For our first part of our example, we will calculuate the scalar integral of <m>f(x,y,z)=x</m> on the surface <m>S_1</m> given by <m>x^2+y^2=z^2</m> such that <m>1\leq z \leq 3</m>. This is the same part of the cone used in <xref ref="flux_int_example1" />. Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <xref ref="fig_Scalar_Surface_Int_Example1" />, you can see that we can symmetrically break our surface <m>S_1</m> into two regions that have exactly the same surface area properties <alert>and</alert> symmetric output values for our scalar function, <m>f</m>. The only difference between the red (<m>S_3</m>) and green (<m>S_2</m>) of <xref ref="fig_Scalar_Surface_Int_Example1" /> is that the output of <m>f</m> will be negative on the red surface <m>S_3</m> and positive on the green surface <m>S_2</m>. No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the red side will give the same result but with an opposite sign. In other words,
-          <me>\int_{S_3} f \enspace dS = - \int_{S_2} f \enspace dS</me>.
+          For our first part of our example, we use symmetry to reason about <m>\iint_{S_1} f\, dS</m>. Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <xref ref="fig_Scalar_Surface_Int_Example1" />, you can see that we can symmetrically break our surface <m>S_1</m> into two regions that have exactly the same surface area properties <alert>and</alert> symmetric output values for our scalar function, <m>f</m>. Here we denote by <m>S_2</m> the portion of <m>S_1</m> with <m>x\geq 0</m> (colored green), while <m>S_3</m> is the magenta portion of the surface, which has <m>x \lt 0</m>. The only difference between the green and magenta portions  of <xref ref="fig_Scalar_Surface_Int_Example1" /> that is relevant to our surface integral is that the values of <m>f</m> will be positive on the green surface <m>S_2</m> and negative on the magenta surface <m>S_3</m> No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the magenta side will give the same result but with an opposite sign. In other words,
+          <me>\int_{S_2} f \, dS = - \int_{S_3} f \, dS</me>.
         </p>
         <figure xml:id="fig_Scalar_Surface_Int_Example1">
-          <caption>The surface <m>S_1</m> divided into regions <m>S_2</m> with positive x-coordinate in green and <m>S_3</m> with negative x-coordinate in red</caption>
-          <interactive platform="sage" width="100%" aspect="1:1.12">
+          <caption>The surface <m>S_1</m> divided into regions <m>S_2</m> with positive <m>x</m>-coordinate in green and <m>S_3</m> with negative <m>x</m>-coordinate in red</caption>
+          <interactive platform="sage" width="100%" aspect="1:1">
             <slate surface="sage">
               @interact
               def asdf():
                 var('s,t')
-                plot1=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,-pi/2,pi/2),color='green', opacity=.50)
-                plot1+=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,pi/2,3*pi/2),color='red', opacity=.50)
+                plot1=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,-pi/2,pi/2),color='#004D40', opacity=.50)
+                plot1+=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,pi/2,3*pi/2),color='#D81B60', opacity=.50)
                 show(plot1,aspect_ratio=1)
             </slate>
           </interactive>
         </figure>
         <p>
           Therefore, 
-          <me>\int_{S_1} f \enspace dS = \int_{S_2} f \enspace dS + \int_{S_3} f \enspace dS = \int_{S_2} f \enspace dS - \int_{S_2} f \enspace dS =0</me>
+          <me>\int_{S_1} f \, dS = \int_{S_2} f \, dS + \int_{S_3} f \, dS = \int_{S_2} f \, dS - \int_{S_2} f \, dS =0</me>.
         </p>
       </statement>
     </task>
     <task>
       <statement>
         <p>
-          From a calculation standpoint, we can still verify this result using our parameterization from <xref ref="flux_int_example1" /> and <xref ref="ScalarSurfaceIntDef" />. Specifically, we will use the parameterization of <m>S_1</m> given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with bounds <m>1\leq s \leq 3</m> and <m>0 \leq t \lt 2 \pi</m>. We also know from <xref ref="flux_int_example1" /> that 
-          <me>\vw= \vr_s \times \vr_t = \langle-s \cos(t), -s \sin(t), s \rangle </me>
-          The length of <m>\vw</m> will be <m>\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
-          <me> \int_{S_1} f \enspace dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \enspace 2s dt ds =0</me>
-          because the inside integral is <m>\int_0^{2\pi} \cos(t) dt = 0</m>.
+          From a calculation standpoint, we can  verify this result using our parameterization from <xref ref="flux_int_example1" /> in <xref ref="ScalarSurfaceIntDef" />. Specifically, we will use the parameterization of <m>S_1</m> given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with bounds <m>1\leq s \leq 3</m> and <m>0 \leq t \lt 2 \pi</m>. We also know from <xref ref="flux_int_example1" /> that 
+          <me>\vw= \vr_s \times \vr_t = \langle-s \cos(t), -s \sin(t), s \rangle </me>.
+          Hence, we have <m>\vecmag{\vw}=\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
+          <me> \int_{S_1} f \, dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \, 2s\, dt\, ds =0</me>.
+          Notice that we can evaluate this integral quickly because the inside integral is <m>\int_0^{2\pi} \cos(t)\, dt = 0</m>.
         </p>
       </statement>
     </task>
     <task>
       <statement>
         <p>
-          If we want to calculate the integral of <m>f(x,y,z) = x</m> over <m>S_2</m> given by <m>x^2+y^2=z^2</m> such that <m>1\leq z \leq 3</m> and <m>0\leq x </m>, then we have very little extra work to do. Only the bounds on the integral will change since we are using the same parameterization and function from the first example. We can use the parameterization given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with <m>1\leq s \leq 3</m> and <m>-\frac{\pi}{2} \leq t \lt \frac{\pi}{2} </m>. The length of <m>\vw</m> will be <m>\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
+          If we want to calculate the integral of <m>f(x,y,z) = x</m> over <m>S_2</m>, then we have very little extra work to do. Only the bounds on the integral will change since we are using the same parameterization and function from the previous part. We can use the parameterization given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with <m>1\leq s \leq 3</m> and <m>-\frac{\pi}{2} \leq t \lt \frac{\pi}{2} </m>. As before, <m>\vecmag{\vw} =\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
           <md>
-            <mrow>\int_{S_2} f \enspace dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \enspace 2s dt ds</mrow>
-            <mrow> \amp = \int_1^3 2s^2 [\sin(t)]_{|_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \enspace  ds</mrow>
-            <mrow> \amp = \int_1^3 4s^2   \enspace  ds</mrow>
-            <mrow> \amp = \int_1^3 4s^2  = 104/3 \enspace  ds</mrow>
-          </md>
+            <mrow>\int_{S_2} f \, dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \, 2s\, dt\, ds</mrow>
+            <mrow> \amp = \int_1^3 2s^2 [\sin(t)]_{|_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \,  ds</mrow>
+            <mrow> \amp = \int_1^3 4s^2   \,  ds</mrow>
+            <mrow> \amp = \int_1^3 4s^2  \,  ds = 104/3</mrow>
+          </md>.
         </p>
         <p>
-          It should make sense to you why the result of <m>\int_{S_2} f \enspace dS</m> is positive because the output of our function is non-negative for all points on <m>S_2</m>. Remember that the Riemann sum used in calculating surface integrals of scalar functions is the product of the function's output on each piece times the estimate of the surface area. Thus, if the function's output is positive for all points on the surface, then the scalar surface integral will also be positive.
+          It makes sense that the result of <m>\int_{S_2} f \, dS</m> is positive because the output of our function is non-negative for all points on <m>S_2</m>. Remember that the Riemann sum used in calculating surface integrals of scalar functions is the product of the function's value on each piece times the estimate of the surface area. Thus, if the function's value is positive for all points on the surface, then the scalar surface integral will also be positive.
         </p>
       </statement>
-    </task>     
-    <task>
-      <statement>
+    </task>    
+  </example>
+  <p>
+    Before moving on to an activity that gives you a chance to practice reasoning about scalar surface integrals, we consider an additional example. We 
+  </p>
+  <example>
         <p>
-          For our last example, we will calculate
+          For this example, we will consider the same surface <m>S_1</m> as in <xref ref="ex_Vector_ScalarSurfaceIntegral_cone_part" />, but we will change the scalar function we are integrating to something more complicated. Our goal is to calculate
           <me>
-            \int_{S_1} z-x^2 \enspace dS 
-          </me>
-          We can reuse the parameterization and calculations above for <m>S_1</m> here and skip right to setting up the iterated integral. We will take a moment here to note that converting our scalar function <m>g(x,y,z)= z-x^2</m> to a function of <m>s</m> and <m>t</m> will give <m>g(s,t)=s-s^2 \cos(t)^2</m>. Therefore, we get the following iterated integral
+            \int_{S_1} z-x^2 \, dS 
+          </me>.
+          We can reuse the parameterization and calculations from above for <m>S_1</m> here and move directly to setting up the iterated integral. We will take a moment here to note that converting our scalar function <m>g(x,y,z)= z-x^2</m> to a function of <m>s</m> and <m>t</m> will give <m>g(s,t)=s-s^2 \cos(t)^2</m>. Therefore, we have the following iterated integral, which we evaluate:
           <md>
-            <mrow>\int_{S_1} z-x^2 \enspace dS \amp =  \int_1^3 \int_{0}^{2 \pi} (s-s^2 \cos(t)^2) \enspace 2s dt ds</mrow>
-            <mrow> \amp = \int_1^3 2s^2 [t-s(\frac{2t+\sin(2t)}{4})]_{|_{t=0}^{2 \pi}} \enspace  ds</mrow>
-            <mrow> \amp = \int_1^3 2s^2 (-\pi (s-2)) \enspace  ds = -\frac{16\pi}{3}</mrow>
+            <mrow>\int_{S_1} z-x^2 \, dS \amp =  \int_1^3 \int_{0}^{2 \pi} (s-s^2 \cos(t)^2) \cdot 2s\, dt\, ds</mrow>
+            <mrow> \amp = \int_1^3 2s^2 \left[t-s\left(\frac{2t+\sin(2t)}{4}\right)\right]_{t=0}^{2 \pi} \,  ds</mrow>
+            <mrow> \amp = \int_1^3 2s^2 (-\pi (s-2)) \,  ds = -\frac{16\pi}{3}</mrow>
           </md>
         </p>
         <p>
-          This result is a bit more difficult to to make sense of as being negative. In <xref ref="fig_Scalar_Surface_Int_Example2" /> we have a plot of the surface <m>S_1</m> in blue and the parabolic cylinder surface given by <m>z-x^2=0</m> is plotted in yellow. The points on the yellow surface correspond to where our scalar function (<m>g(x,y,z)= z-x^2</m>) gives an output of zero. The points inside the parabolic cylinder have a <m>z</m>-coordinate greater than <m>x^2</m> (which means that <m>g</m> will have a positive output for these points.) The points outside of the parabolic cylinder have a <m>z</m>-coordinate less than <m>x^2</m> (which means that <m>g</m> will have a negative output for these points.) In order to make an argument about whether <m>\int_{S_1} z-x^2 \enspace dS</m> is positive/negative/zero, we will need to assess whether there is more surface area with a positive output of <m>g</m>, more with a negative output, or an equal amount of positive-negative outputs. Actually, our problem is even harder than this. Beacuse the Riemann sum is the product of the output for each piece of our surface times the surface area estimate, we will need to think about which points/pieces have larger or smaller outputs for <m>g</m>. This is <alert>VERY</alert> difficult in general because you will need to a systematic way of estimating both the output of <m>g</m> and the surface area of different pieces of your surface. 
+          This result is a bit more difficult to to make sense of as being negative. In <xref ref="fig_Scalar_Surface_Int_Example2" />, we have a plot of the surface <m>S_1</m> in blue and the parabolic cylinder surface given by <m>z-x^2=0</m> is plotted in yellow. The points on the yellow surface correspond to where our scalar function (<m>g(x,y,z)= z-x^2</m>) gives an output of zero. The points inside the parabolic cylinder have a <m>z</m>-coordinate greater than <m>x^2</m>, which means that <m>g</m> will have a positive output for these points. The points outside of the parabolic cylinder have a <m>z</m>-coordinate less than <m>x^2</m>, which means that <m>g</m> will have a negative output for these points. In order to make an argument about whether <m>\int_{S_1} z-x^2 \, dS</m> is positive, negative, or zero, we will need to assess whether there is more surface area where <m>g</m> takes on positive values, more with negative values, or an equal amount of positive-negative values. Actually, our problem is even harder than this! Beacuse the Riemann sum is the product of the output for each piece of our surface times the surface area estimate, we will need to think about which points/pieces have larger or smaller outputs for <m>g</m>. This is <em>very</em> difficult in general, because we need a systematic way of estimating both the output of <m>g</m> and the surface area of different pieces of the surface. 
         </p>
         <figure xml:id="fig_Scalar_Surface_Int_Example2">
           <caption>The surface <m>S_1</m> is plotted with the surface given by <m>z-x^2=0</m></caption>
-          <interactive platform="sage" width="100%" aspect="1:1.12">
+          <interactive platform="sage" width="100%" aspect="1:1">
             <slate surface="sage">
               @interact
               def asdf():
                 var('s,t')
-                plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0,2*pi),color='blue', opacity=.75)
-                plot2+=parametric_plot3d((s,t,s^2),(s,-3,3),(t,-3,3),color='yellow', opacity=.50)
+                plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0,2*pi),color='#1E88E5', opacity=.75)
+                plot2+=parametric_plot3d((s,t,s^2),(s,-3,3),(t,-3,3),color='#FFC107', opacity=.50)
                 show(plot2,aspect_ratio=1) 
             </slate>
           </interactive>
         </figure>
         <p>
-          In our case, there is more surface area of <m>S_1</m> inside the parabolic cylinder than outside. For <m>(x,y,z)</m> points that are far away from the yellow surface, the magnitude of the output of <m>g</m> for that point will be large. For <m>(x,y,z)</m> points that are close to the yellow surface, thier <m>z</m>-coordinates will be close to <m>x^2</m> and thus the output of <m>g</m> will be close to zero. This means that in order to properly estimate the scalar surface integral, we will need to assess whether there is a greater weighted surface area inside the parabolic cylinder than outside, where the weight of each surface area piece is given by how far the piece is from the yellow surface (the parabolic cylinder surface). This is not an easy argument to make and is not easy to verify visually for this example. For some examples you may be able to make a nice geometric arguement about the size of scalar surface integrals, but the algebraic calculation given by <xref ref="ScalarSurfaceIntDef" /> gives an exact value. 
+          In our case, there is more surface area of <m>S_1</m> inside the parabolic cylinder than outside. For points that are far away from the yellow surface, the magnitude of the value of <m>g</m> for that point will be large. For points that are close to the yellow surface, the <m>z</m>-coordinates are close to <m>x^2</m>, and thus values of <m>g</m> are close to zero. This means that in order to properly estimate the scalar surface integral, we must assess whether there is a greater weighted surface area inside the parabolic cylinder than outside, where the weight of each surface area piece is given by how far the piece is from the yellow parabolic cylinder. This is not an easy argument to make, and is not easy to verify visually for this example. For some examples, you may be able to make a nice geometric arguement about the size of scalar surface integrals, but the algebraic calculation given by <xref ref="ScalarSurfaceIntDef" /> gives an exact value. 
         </p>
-      </statement>
-    </task>
   </example>
+  <p>
+    In the next activity, we consider some situations where we can reason about the sign of a surface integral of a scalar function.
+  </p>
   <activity xml:id="ScalarSurfaceInt_Sensemaking">
     <introduction>
       <p>
-        In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over a common surfaces.
+        In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over a common surfaces. In each part below, you are given a function and a surface. For each surface, first draw a plot of the surface and make sure you have labeled a proper scale for each coordinate direction. Then reason if the given surface integral is positive, negative, or zero. Be sure to justify your answers in terms of the function being integrated <em>and</em> the particulars of the surface of integration.
       </p>
     </introduction>
-    <task xml:id="task_SSIS_1">
-      <statement>
-        <p>
-          Throughout this activity we will use one of three surfaces. For each of the three surfaces given, you need to draw a plot of the surface and make sure you have labeled a proper scale for each coordinate direction.
-          <ol>
-            <li>
-              <m>S_1</m> is the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin in 3-space
-            </li>
-            <li>
-              <m>S_2</m> is the bottom half (<m>z \leq 0</m>) of the sphere of radius one centered at the origin in 3-space
-            </li>
-            <li>
-              <m>S_3</m> is the disc of radius one centered at <m>(1,0,0)</m> on the <m>x=1</m> fundamental plane
-            </li>
-          </ol>
-        </p>
-        </statement>
-        <answer>
-            <p>pictures go here</p>
-        </answer>
-        <solution>
-            <p>Write out a longer description?</p>
-        </solution>
-    </task>
     <task xml:id="task_SSIS_2">
       <statement>
         <p>
-          State whether <m>\iint_{S_1} x \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
+          For <m>S_1</m> defined as the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin, consider the surface integral <m>\iint_{S_1} x \, dS</m>.
         </p>
         </statement>
         <answer>
@@ -305,7 +290,7 @@
     <task xml:id="task_SSIS_3">
       <statement>
         <p>
-          State whether <m>\iint_{S_2} z \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
+          For <m>S_2</m> defined as the bottom half (<m>z \leq 0</m>) of the sphere of radius one centered at the origin, consider the surface integral <m>\iint_{S_2} z \, dS</m>.
         </p>
         </statement>
         <answer>
@@ -318,7 +303,7 @@
     <task xml:id="task_SSIS_4">
       <statement>
         <p>
-          State whether <m>\iint_{S_3} x+z \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
+          For <m>S_3</m> defined as the disc of radius one centered at <m>(1,0,0)</m> on the plane <m>x=1</m>, consider the surface integral <m>\iint_{S_3} x+z \, dS</m>.
         </p>
       </statement>
       <answer>
@@ -331,7 +316,7 @@
     <task xml:id="task_SSIS_5">
       <statement>
         <p>
-          State whether <m>\iint_{S_1} x+z \enspace dS</m> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em>and</em> the particulars of the region of integration.
+          For <m>S_1</m> as defined above, consider the surface integral <m>\iint_{S_1} x+z \, dS</m>.
         </p>
       </statement>
       <answer>
@@ -346,7 +331,7 @@
 <subsection>
   <title>Properties of Scalar Surface Integrals</title>
   <p>
-    Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m> from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented curve, <m>-C</m> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar analogue amongst the properties of definite integrals. 
+    Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <m>S_1</m> and <m>S_2</m> are disjoint surfaces<fn>Technically, the surfaces may intersect, but there are restrictions on the manner in which they can intersect, and we will not go into the details here.</fn>, we denote by <m>S_1+S_2</m> the surface containing every point that is <m>S_1</m> or <m>S_2</m>.  Also, if <m>S_1</m> is a surface, then <m>-S_1</m> denotes the same surface but parameterized in such a way that the normal vector points in the opposite direction. The list below summarizes some other properties of scalar surface integrals, each of which has a familiar analogue amongst the properties of other integrals we have studied. 
   </p>
   <assemblage xml:id="asm_ScalarSurfaceInt_Properties">
       <title>Properties of Scalar Line Integrals</title>
@@ -355,22 +340,22 @@
           <ol marker="a.">
             <li>
               <p>
-                <m>\displaystyle \iint_{S_1} (k f) \enspace dS = k \iint_{S_1} f \enspace dS</m>
+                <m>\displaystyle \iint_{S_1} (k f) \, dS = k \iint_{S_1} f \, dS</m>
               </p>
             </li>
             <li>
               <p>
-                <m>\displaystyle\iint_{S_1} (f+g) \enspace dS = \iint_{S_1} f dS + \iint_{S_1} g \enspace dS </m>
+                <m>\displaystyle\iint_{S_1} (f+g) \, dS = \iint_{S_1} f dS + \iint_{S_1} g \, dS </m>
               </p>
             </li>
             <li>
               <p>
-                <m>\displaystyle\iint_{-S_1} f \enspace dS = \iint_{S_1} f \enspace dS</m>
+                <m>\displaystyle\iint_{-S_1} f \, dS = \iint_{S_1} f \, dS</m>
               </p>
             </li>
             <li>
               <p>
-                <m>\displaystyle\iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS</m>
+                <m>\displaystyle\iint_{S_1+S_2} f \, dS = \iint_{S_1} f \, dS + \iint_{S_2} f \, dS</m>
               </p>
             </li>
           </ol>
@@ -380,129 +365,172 @@
       <title>Explaining Properties of Scalar Surface Integrals</title>
       <introduction>
         <p>
-          In this activity, we will be explaining each of the
-	  Properties from <xref ref="asm_ScalarLineInt_Properties" text="title"/> in the context of a new analogy. We have just purchased a plot of land that spans two mountains, Sugar Mountain and Spice Mountain. We will label the plot of land on Sugar Mountain <m>S_1</m> and the plot of land on Spice Mountain <m>S_2</m>. Unfortunately there are two types of toxic organisms on the surface of your new land (which may be why you got the land so cheap). Let <m>f</m> be the density of the toxic fungus on your new plot of land and let <m>g</m> be the density of toxic bacteria on the new plot.
+          In this activity, we will be explaining each of the properties from <xref ref="asm_ScalarLineInt_Properties" text="title"/> in the context of a new analogy. We have just purchased a plot of land that spans two mountains, Sugar Mountain and Spice Mountain. We will label the plot of land on Sugar Mountain <m>S_1</m> and the plot of land on Spice Mountain <m>S_2</m>. Unfortunately there are two types of toxic organisms on the surface of your new land, which may explain why you paid so little for the land. Let <m>f</m> be the density of the toxic fungus on your new plot of land and let <m>g</m> be the density of toxic bacteria on the new plot.
         </p>
       </introduction>
       <task>
+        <statement>
         <p>
-          Explain in your own words what <m>\iint_{S_1} f \enspace dS</m> means in the above analogy and what exactly would be measured by this scalar line integral.
+          Explain in your own words what <m>\iint_{S_1} f \, dS</m> means in the above analogy and what exactly would be measured by this scalar line integral.
         </p>
+        </statement>
         <answer>
           <p>
-            The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
+            Total amount of toxic fungus on Sugar Mountain.
           </p>
         </answer>
         <solution>
           <p>
-            The scalar surface integral <m>\iint_{S_1} f \enspace dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \enspace dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
+            The scalar surface integral <m>\iint_{S_1} f \, dS</m> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <m>\iint_{S_1} f \, dS</m> measures the total amount of toxic fungus on your Sugar Mountain land.
           </p>
         </solution>
       </task>
       <task>
+        <statement>
         <p>
-          Explain in your own words what <m>\displaystyle \iint_{S_1} (2 f) \enspace dS = 2 \iint_{S_1} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{S_1} (2 f) \, dS = 2 \iint_{S_1} f \, dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
+        </statement>
         <answer>
-          asdf
+          <p>asdf</p>
         </answer>
         <solution>
-          asdf
+          <p>asdf</p>
         </solution>
       </task>
       <task>
+        <statement>
         <p>
-          Explain in your own words what <m>\displaystyle \iint_{S_2} (f+g) \enspace dS = \iint_{S_2} f \enspace dS + \iint_{S_2} g \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{S_2} (f+g) \, dS = \iint_{S_2} f \, dS + \iint_{S_2} g \, dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
+        </statement>
         <answer>
-          asdf
+          <p>asdf</p>
         </answer>
         <solution>
-          asdf
+          <p>asdf</p>
         </solution>
       </task>
       <task>
+        <statement>
         <p>
-          Explain in your own words what <m>\displaystyle \iint_{-S_2} f \enspace dS = \iint_{S_2} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{-S_2} f \, dS = \iint_{S_2} f \, dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
+        </statement>
         <answer>
-          asdf
+          <p>asdf</p>
         </answer>
         <solution>
-          asdf
+          <p>asdf</p>
         </solution>
       </task>
       <task>
+        <statement>
         <p>
-          Explain in your own words what <m>\displaystyle \iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+          Explain in your own words what <m>\displaystyle \iint_{S_1+S_2} f \, dS = \iint_{S_1} f \, dS + \iint_{S_2} f \, dS</m> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
         </p>
+        </statement>
         <answer>
-          asdf
+          <p>asdf</p>
         </answer>
         <solution>
-          asdf
+          <p>asdf</p>
         </solution>
       </task>
     </activity>
     <p>
-      We will spend the last part of this section looking at a couple of examples of how to compute scalar surface integrals using parameterizations of surfaces.
+      We will conclude this section with one more example of computing a scalar surface integral and then an activity that asks you to compute one for yourself using a parameterization of a surface.
     </p>
     <example xml:id="ScalarSurfaceInt_Example1">
       <p>
-        Let us return to some of the problems from <xref ref="ScalarSurfaceInt_Sensemaking"/>. Specifically, we will compute the answer to <xref ref="task_SSIS_2"/>. We will compute <m>\iint_{S_1} x \enspace dS</m> where <m>S_1</m> is the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin in 3-space. Our surface can be parameterized by <m>\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle</m> where <m>s \in [0,2\pi]</m> and <m>t \in [0,\pi]</m>. Using <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>\Vert{\vr_s \times \vr_t}\Vert </m>. For our parameterization, we get
+        Let us return to one of the problems from <xref ref="ScalarSurfaceInt_Sensemaking"/>. Specifically, we will compute the answer to <xref ref="task_SSIS_2" text="local">part</xref> of that activity. We will compute <m>\iint_{S_1} x \, dS</m> where <m>S_1</m> is the top half (<m>z \geq 0</m>) of the sphere of radius one centered at the origin. Thinking in terms of spherical coordinates is helpul for determining a parameterization of <m>S_1</m>. Here we can use <m>\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle</m> where <m>0 \leq s\leq 2\pi</m> and <m>0\leq t\leq \pi/2</m>, which comes from thinking of <m>s=\theta</m> and <m>t=\phi</m> in spherical coordinates (and <m>\rho=1</m>). Using <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>|{\vr_s \times \vr_t}| </m>. For our parameterization, we get
         <md>
           <mrow>\vr_s \amp = \langle -\sin(s)\sin(t),\cos(s)\sin(t),0\rangle </mrow>
           <mrow>\vr_t \amp = \langle \cos(s)\cos(t),\sin(s)\cos(t),-\sin(t)\rangle </mrow>
-          <mrow>\vr_s \times \vr_t \amp = \langle -(\sin(t))^2 \cos(s), </mrow>
-          <mrow> \amp \quad \quad - (\sin(t))^2 \sin(s), -(\cos(s))^2 \cos(t) \sin(t) -(\sin(s))^2 \cos(t) \sin(t) \rangle </mrow>
+          <mrow>\vr_s \times \vr_t \amp = -\sin(t) \langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t) \rangle</mrow>
         </md>
-        Simplifying <m>\vr_s \times \vr_t</m> we get
-        <me> \vr_s \times \vr_t =\sin(t) \langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t) \rangle </me>
-        Note that <m> \vr_s \times \vr_t = \sin(t) \vr(s,t)</m>. This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <m>\Vert{\vr_s \times \vr_t}\Vert = \sin(t)</m> because <m>\Vert{\vr(s,t)}\Vert = 1</m> for any <m>s</m> or <m>t</m>.
+        The form given for <m>\vr_s \times \vr_t</m> is simplified. Before simplifying, we have
+        <md>
+          <mrow>\langle \amp -(\sin(t))^2 \cos(s), -(\sin(t))^2 \sin(s),</mrow>
+          <mrow> \amp -(\cos(s))^2 \cos(t) \sin(t) -(\sin(s))^2 \cos(t) \sin(t) \rangle</mrow>
+        </md>.
+        Note that <m> \vr_s \times \vr_t = -\sin(t) \vr(s,t)</m>, which means that <m>\vecmag{\vr_s \times \vr_t} = \sin(t)</m> because <m>\vecmag{\vr(s,t)} = 1</m> for any <m>s</m> or <m>t</m> and <m>\sin(t)\geq 0</m> for <m>0\leq t\leq \pi/2</m>.
       </p>
       <p>
         We can now use <xref ref="ScalarSurfaceIntDef"/> to compute the scalar surface integral as 
         <md>
           <mrow>
-            \iint_{S_1} x \enspace dS = \int_0^{\pi}\int_0^{2\pi} \cos(s)\sin(t) (\sin(t)) \enspace ds dt
+            \iint_{S_1} x \, dS \amp = \int_0^{\pi/2}\int_0^{2\pi} \left[\cos(s)\sin(t)\right] (\sin(t)) \, ds\, dt
           </mrow>
           <mrow>
-            = \int_0^{\pi}(\sin(t))^2 dt [\sin(s)]|_{0}^{2\pi} = \int_0^{\pi}(\sin(t))^2 dt [0] =0
+            \amp = \left[\sin(s)\right]_{0}^{2\pi}\int_0^{\pi}(\sin(t))^2\, dt  = 0\cdot \int_0^{\pi}(\sin(t))^2\, dt =0
           </mrow>
-        </md>
-      </p>
-      <p>
-        This result should match your answer for <xref ref="task_SSIS_2"/> since the output of the function <m>f(x,y,z)=x</m> would be symmetric but opposite in sign for the parts of the surface in octants 1 and 4 as compared to octants 2 and 3.
+        </md>.
+        This result should match your answer for <xref ref="task_SSIS_2" text="phrase-global" /> since the values of the function <m>f(x,y,z)=x</m> are symmetric but opposite in sign for the parts of the surface in the octants with <m>x\gt 0</m> as compared to the octants with <m>x\lt 0</m>.
       </p>
     </example>
-    <example xml:id="ScalarSurfaceInt_Example2">
-    <p>
-        For this example, we will compute the answer to <xref ref="task_SSIS_4"/>. We will compute <m>\iint_{S_3} x+z \enspace dS</m> where <m>S_3</m> is the disc of radius one centered at <m>(1,0,0)</m> on the <m>x=1</m> fundamental plane. Our surface can be parameterized by <m>\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle</m> where <m>s \in [0,1]</m> and <m>t \in [0,2\pi]</m>. Using  <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>\Vert{\vr_s \times \vr_t}\Vert </m>. For our parameterization, we get
+    <activity xml:id="act_Vector_ScalarSurfaceInt_UseParam">
+      <statement>
+        <p>
+          Compute the value of the scalar surface integral in <xref ref="task_SSIS_4" text="phrase-global" />. That is, compute <m>\iint_{S_3} x+z \, dS</m> where <m>S_3</m> is the disc of radius one centered at <m>(1,0,0)</m> on the plane <m>x=1</m>. Explain why your answer makes sense geometrically.
+        </p>
+      </statement>
+      <answer>
+        <p>
+          <m>\pi</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The surface <m>S_3</m> can be parameterized by <m>\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle</m> where <m>s \in [0,1]</m> and <m>t \in [0,2\pi]</m>. Using  <xref ref="ScalarSurfaceIntDef"/>, we need to compute the partial derivatives of <m>\vr</m> with respect to <m>s</m> and <m>t</m>, then compute <m>\vecmag{\vr_s \times \vr_t}</m>. For this parameterization, we have
         <md>
-          <mrow> \vr_s = \langle 0, \cos(t), \sin(t) \rangle </mrow>
-          <mrow> \vr_t = \langle 0, -s\sin(t), s\cos(t) \rangle </mrow>
-          <mrow> \vr_s \times \vr_t = \langle 0, 0, s (\cos(t))^2+s (\sin(t))^2 \rangle </mrow>
-        </md>
-        Simplifying <m>\vr_s \times \vr_t</m> we get
-        <me> \vr_s \times \vr_t =s \langle 0, 0, 1 \rangle </me>
-        and thus <m>\Vert{\vr_s \times \vr_t}\Vert = s</m>. This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates, <m>dA = dx dy = r dr d\theta</m>.
+          <mrow> \vr_s \amp = \langle 0, \cos(t), \sin(t) \rangle </mrow>
+          <mrow> \vr_t \amp = \langle 0, -s\sin(t), s\cos(t) \rangle </mrow>
+          <mrow> \vr_s \times \vr_t \amp = \langle s (\cos(t))^2+s (\sin(t))^2, 0, 0 \rangle </mrow>
+        </md>.
+        Simplifying <m>\vr_s \times \vr_t</m> we have
+        <me> \vr_s \times \vr_t =s \langle 1, 0, 0 \rangle </me>
+        and thus <m>\vecmag{\vr_s \times \vr_t} = s</m>, with no absolute values required here <m>0\leq s\leq 1</m>. This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates, <m>dA = dx\, dy = r\, dr\, d\theta</m>.
       </p>
       <p>
         We can now use  <xref ref="ScalarSurfaceIntDef"/> to compute the scalar surface integral as
         <md>
-        <mrow> \iint_{S_3} x+z \enspace dS = \int_0^{2\pi}\int_0^{1} (1+s\sin(t)) (s) ds dt </mrow>
-        <mrow> = \int_0^{2\pi} \int_0^{1} s+s^2\sin(t) ds dt </mrow>
-        <mrow>  = \int_0^{2\pi} \frac{1}{2}+\frac{1}{3}\sin(t) dt </mrow>
-        <mrow>  = \frac{1}{2} (2\pi) + 0 = \pi </mrow>
-        </md>
+        <mrow> \iint_{S_3} x+z \, dS \amp = \int_0^{2\pi}\int_0^{1} (1+s\sin(t)) (s) ds dt </mrow>
+        <mrow> \amp = \int_0^{2\pi} \int_0^{1} s+s^2\sin(t) ds dt </mrow>
+        <mrow>  \amp = \int_0^{2\pi} \frac{1}{2}+\frac{1}{3}\sin(t) dt </mrow>
+        <mrow>  \amp = \frac{1}{2} (2\pi) + 0 = \pi </mrow>
+        </md>.
       </p>
       <p>
-        This result should match your answer for <xref ref="task_SSIS_4"/> since the output of the function <m>f(x,y,z) = x+z</m> equals <m> 1+z</m>. The values of <m>z</m> will be symmetric but opposite in sign for the parts of the surface above and below the <m>xy</m>-plane. Thus the scalar surface integral will be one times the area of <m>S_3</m> which gives the value <m>\pi</m>.
+        This result should match your answer for <xref ref="task_SSIS_4" text="local">part</xref> of <xref ref="ScalarSurfaceInt_Sensemaking" /> since the output of the function <m>f(x,y,z) = x+z</m> equals <m> 1+z</m>. The values of <m>z</m> will be symmetric but opposite in sign for the parts of the surface above and below the <m>xy</m>-plane. Thus the scalar surface integral will be one times the area of <m>S_3</m> which gives the value <m>\pi</m>.
       </p>
-    </example>
+      </solution>
+    </activity>
+  </subsection>
+  <subsection>
+    <title>Summary</title>
+    <p>
+      <ul>
+        <li>
+          <p>
+            Scalar surface integrals are defined in terms of double Riemann sums of the product of the value of a scalar-valued function at a point on the surface and the area patch of the tangent plane to the surface at that point.
+          </p>
+        </li>
+        <li>
+          <p>
+            A scalar surface integral measures the total accumulation of a scalar-valued function on the surface.
+          </p>
+        </li>
+        <li>
+          <p>
+            Scalar surface integrals can be efficiently computed by parameterizing the surface of integration as <m>\vr(s,t)</m> and then integrating <m>\iint_D f\vecmag{\vr_s\times \vr_t}(s,t)\, dA</m>, where <m>D</m> is the domain of the parameterization.
+          </p>
+        </li>
+      </ul>
+    </p>
   </subsection>
   <xi:include href="exercises/ez-S_Vector_Scalar_Surface_integral.ptx" />
-  <subsection component="instructor" >
+  <subsection component="instructor">
     <title>Notes to Instructors and Dependencies</title>
     <p>
       This section relies parameterized surfaces, which was first introduced in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area" />. While some of the motivation for this section came from our treatment of flux integrals, it is not necessary to cover flux integrals first.
