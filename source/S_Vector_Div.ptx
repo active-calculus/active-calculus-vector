@@ -19,10 +19,15 @@
   </p>
   <figure xml:id="fig_Vector_Div_vf1">
     <caption>A vector field with changing strength</caption>
-    <image width="55%" source="/fig_Vector_Div_vf1">
+    <image width="55%" xml:id="img_Vector_Div_vf1">
       <description>
         A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation.
       </description>
+      <sageplot>
+        var('x,y,t')
+        final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,-3.1,3.1),(y,-3.1,3.1),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+        final_plot2        
+      </sageplot>
     </image>
   </figure>
   <exploration xml:id="PA_Vector_Div">
@@ -32,20 +37,42 @@
       </p>
       <figure xml:id="fig_Vector_Div_PA_vf1">
         <caption>Vector Field <m>\vF</m></caption>
-        <image width="55%" source="/PA_div_xy_field">
+        <image width="55%" xml:id="img_PA_div_xy_field">
           <description>A vector field with vectors radiating from the origin. The length of vectors increases as distance from the origin increases. There is a square in the first  quadrant with sides parallel to the coordinate axes. Centered in the square is a point labeled <m>P_1</m>, which appears to lie on the line <m>y=x</m>.</description>
+          <sageplot>
+            var('t,x,y')
+            plot1=plot_vector_field((x,y),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1)
+            plot1            
+          </sageplot>
         </image>
       </figure>
       <figure xml:id="fig_Vector_Div_PA_vf2">
         <caption>Vector Field <m>\vG</m></caption>
-        <image width="55%" source="/PA_div_xy_field2">
+        <image width="55%" xml:id="img_PA_div_xy_field2">
           <description>A vector field with vectors below the <m>x</m>-axis pointing primarily up near the axis and primarily to the right farther away from the axis. Above the <m>x</m>-axis, vectors point primarily to the right. Vector magnitudes are shortest near the positive <m>y</m>-axis. There is a square in the second quadrant with sides parallel to the coordinate axes. Centered in the square is a point labeled <m>P_2</m>, which appears to lie on the line <m>y=-x</m>.</description>
+          <sageplot>
+            var('t,x,y')
+            plot1=plot_vector_field((x^2,1-y),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+            plot1+=point((-1,1),size=30,color='black')+text("$P_2$",(-0.75,0.75),color='black',fontsize=12,clip=True,background_color='white')
+            plot1+=line([(-.5,1.5),(-1.5,1.5),(-1.5,.5),(-.5,.5),(-.5,1.5)],color='black',thickness=2)
+            plot1            
+          </sageplot>
         </image>
       </figure>
       <figure xml:id="fig_Vector_Div_PA_vf3">
         <caption>Vector Field <m>\vH</m></caption>
-        <image width="55%" source="/PA_div_-yx_field">
+        <image width="55%" xml:id="img_PA_div_-yx_field">
           <description> A vector field in which vectors circulate around the origin as if tangent vectors to concentric circles centered at the origin. Vector magnitude increases as distance from the origin increases. There is a square in the first quadrant with sides parallel to the coordinate axes. Centered in the square is a point labeled <m>P_3</m>. There is a point labeled <m>P_4</m> in the second quadrant that is the reflection of <m>P_3</m> across the <m>y</m>-axis. In the third quadrant, there is a point <m>P_5</m> that is closer to the <m>y</m>-axis than to the <m>x</m>-axis. In the fourth quadrant, there is a point labeled <m>P_6</m> that appears to be on the line <m>y=-x</m> but is farther from the origin than <m>P_3</m> or <m>P_4</m>.</description>
+          <sageplot>
+            var('t,x,y')
+            plot2=plot_vector_field((-y,x),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+            plot2+=point((1,1),size=20,color='black')+text("$P_3$",(1.25,1.25), color='black',fontsize=12,clip=True,background_color='white')
+            plot2+=point((-1,1),size=20,color='black')+text("$P_4$",(-0.75,0.75), color='black',fontsize=12,clip=True,background_color='white')
+            plot2+=point((-.5,-1),size=20,color='black')+text("$P_5$",(-.4,-.75), color='black',fontsize=12,clip=True,background_color='white')
+            plot2+=point((1.5,-1.5),size=20,color='black')+text("$P_6$",(1.75,-1.75), color='black',fontsize=12,clip=True,background_color='white')
+            plot2+=line([(.5,1.5),(1.5,1.5),(1.5,.5),(.5,.5),(.5,1.5)],color='black',thickness=2)
+            plot2            
+          </sageplot>
         </image>
       </figure>
     </introduction>
@@ -208,8 +235,13 @@
         </p>
         <figure xml:id="fig_Vector_Div_GraphicalAct_vf1">
           <caption>Vector field <m>\vF</m></caption>
-          <image width="55%" source="/Div_activity_-x-y">
+          <image width="55%" xml:id="img_Div_activity_-x-y">
             <description>A vector field with vectors pointing toward the origin. Vectors get longer as distance from the origin increases. </description>
+            <sageplot>
+              var('t,x,y')
+              plot3=plot_vector_field((-x,-y),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+              plot3              
+            </sageplot>
           </image>
         </figure>
       </introduction>
@@ -257,8 +289,13 @@
         </p>
         <figure xml:id="fig_Vector_Div_GraphicalAct_vf2">
           <caption>Vector field <m>\vG</m></caption>
-          <image width="55%" source="/Div_activity_yx">
+          <image width="55%" xml:id="img_Div_activity_yx">
             <description>A vector field in which vector magnitudes increase as distance from the origin increases. Vectors are oriented as if they follow hyperbolas with asymptotes <m>y=x</m> and <m>y=-x</m>. Vectors above both asymptotes or below both asymptotes result in counterclockwise rotation. The other vectors result in clockwise rotation.</description>
+            <sageplot>
+              var('t,x,y')
+              plot3=plot_vector_field((y,x),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+              plot3              
+            </sageplot>
           </image>
         </figure>
       </statement>
@@ -270,8 +307,13 @@
         </p>
         <figure xml:id="fig_Vector_Div_GraphicalAct_vf3">
           <caption>Vector field <m>\vH</m> </caption>
-          <image width="55%" source="/Div_activity_xy1x">
+          <image width="55%" xml:id="img_Div_activity_xy1x">
             <description>A vector field having longer vectors where <m>x \lt 0</m>. For <m>x&gt;0</m>, vectors appear to get longer as distance from the <m>x</m>-axis increases. </description>
+            <sageplot>
+              var('t,x,y')
+              plot3=plot_vector_field((x*y,1-x),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+              plot3              
+            </sageplot>
           </image>
         </figure>
       </statement>
@@ -312,8 +354,19 @@
   </p>
   <figure xml:id="fig_S_Vector_Div_box">
     <caption>A square around the point <m>(a,b)</m></caption>
-    <image width="55%" source="/fig_12_5_box">
+    <image width="55%" xml:id="img_Div_box">
       <description>A square with sides parallel to the coordinate axes and centered at the point <m>(a,b)</m>. The upper-right corner of the square is labeled <m>(a+h,b+h)</m>.</description>
+      <sageplot>
+        var('x','t');
+        d=1
+        plot1= point([(2,3)],color='black',size=15)+point([(3,4)],color='purple',size=15)
+        plot1+= parametric_plot((2+d*d,3+d*t),(t,-d,d),color='red',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+        plot1+= parametric_plot((2-d*d,3+d*t),(t,-d,d),color='green',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+        plot1+= parametric_plot((2+d*t,3+d*d),(t,-d,d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+        plot1+= parametric_plot((2+d*t,3-d*d),(t,-d,d),color='orange',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+        plot1+= text("$(a,b)$",(2,3.25),color='black',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)+text("$(a+h,b+h)$",(3,4.25),color='purple',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)
+        plot1        
+      </sageplot>      
     </image>
   </figure>
   <p>
