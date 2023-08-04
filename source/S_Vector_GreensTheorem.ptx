@@ -159,8 +159,17 @@
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_circ_cartoon">
       <caption>A region bounded by a curve</caption>
-      <image source="/fig_Vector_GreensTheorem_circ_cartoon" width="80%">
-		<description>A bean-shaped region in the plane that is bounded by a closed curve. The curve is oriented so that when walking along the curve, the region is always on the left. There is a square grid dividing the up the interior of the region.</description>
+      <image xml:id="img_Vector_GreensTheorem_circ_cartoon" width="80%">
+				<description>A bean-shaped region in the plane that is bounded by a closed curve. The curve is oriented so that when walking along the curve, the region is always on the left. There is a square grid dividing the up the interior of the region.</description>
+				<latex-image>
+					\begin{tikzpicture}[grid/.style={pattern=MyGrid}]
+					\path[draw,use Hobby shortcut,closed=true,GridSize=9pt,pattern=MyGrid,fill opacity=0.5, orientation arrows]
+					(0,0) .. (1,1) .. (2.3,0.5) .. (3.6,4) .. (0.5,3) .. (-0.7,2.1);
+					
+					\node at (2.25,1.99) {$R$};
+					\node at (5,2.3) {$C$};
+					\end{tikzpicture}
+				</latex-image>
       </image>
     </figure>
     <p>
@@ -169,8 +178,27 @@
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_circ_squares2">
       <caption>A square region divided into two smaller squares</caption>
-      <image source="/fig_Vector_GreensTheorem_circ_squares2.pdf" width="40%">
-		<description>A rectangular region in the plane that is bounded by a closed curve oriented counterclockwise. The square is divided into two squares of equal size, which are labeled as <m>R_1</m> and <m>R_2</m>. There are circular arrows inside each of the smaller regions indicating counterclockwise orientations.</description>
+      <image xml:id="img_Vector_GreensTheorem_circ_squares2.pdf" width="40%">
+				<description>A rectangular region in the plane that is bounded by a closed curve oriented counterclockwise. The square is divided into two squares of equal size, which are labeled as <m>R_1</m> and <m>R_2</m>. There are circular arrows inside each of the smaller regions indicating counterclockwise orientations.</description>
+				<latex-image>
+					\begin{tikzpicture}
+					\draw [thick,orientation arrows] (0,0) -- (4,0) -- (4,2) -- (0,2) -- (0,0);
+					\draw [thick] (2,0) -- (2,2);
+					\draw [thick] (0,2) -- (2,2);
+					\draw (0.1,0.85) arc (-170:170:0.9cm);
+					\draw (2.1,0.85) arc (-170:170:0.9cm);
+					%\draw (0.1,2.85) arc (-170:170:0.9cm);
+					%\draw (2.1,2.85) arc (-170:170:0.9cm);
+					\draw[arrow at end=>] (0.1,0.85) arc (-170:170:0.9cm);
+					\draw[arrow at end=>] (2.1,0.85) arc (-170:170:0.9cm);
+					%\draw[arrow at end=>] (0.1,2.85) arc (-170:170:0.9cm);
+					%\draw[arrow at end=>] (2.1,2.85) arc (-170:170:0.9cm);
+					\node at (1,1) {$R_1$};
+					\node at (3,1) {$R_2$};
+					%\node at (1,1) {$R_3$};
+					%\node at (3,1) {$R_4$};											
+					\end{tikzpicture}
+				</latex-image>
       </image>
     </figure>
     <p>
@@ -419,8 +447,15 @@
       	<p>
 			The restriction that the curve in <xref ref="thm_Green" text="title"/> prohibits curves such as the one below, which crosses itself.
 		</p>
-		<image source="/image_Vector_GreensTheorem_FigureEight">
+		<image xml:id="image_Vector_GreensTheorem_FigureEight">
 			<description>A curve in the shape of a figure eight</description>
+			<sageplot>
+				var('x,y,t')
+				a=pi/6
+				plot1=parametric_plot((sin(2*t),cos(t)),(t,0,2*pi),color="blue",thickness=1.5,axes_labels=["$x$","$y$"])+arrow((sin(2*a),cos(a)),(sin(2*(a-0.05)),cos(a-0.05)),color="blue")
+				final_plot1=plot1
+				final_plot1				
+			</sageplot>
 		</image>
     </aside>
     <theorem xml:id="thm_Green">
@@ -455,11 +490,25 @@
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_Rectangle">
       <caption>A rectangular curve</caption>
-      <image width="55%" source="/image_Vector_GreensTheorem_rectangle">
-	<description>
-	  A rectangular curve in the <m>xy</m>-plane. The lower-left corner is labeled <m>(1,2)</m>. The upper-right corner is labeled <m>(4,4)</m>. The curve is oriented
-	  counterclockwise.
-	</description>
+      <image width="55%" xml:id="image_Vector_GreensTheorem_rectangle">
+				<description>
+					A rectangular curve in the <m>xy</m>-plane. The lower-left corner is labeled <m>(1,2)</m>. The upper-right corner is labeled <m>(4,4)</m>. The curve is oriented
+					counterclockwise.
+				</description>
+				<sageplot>
+					var('x','t');
+					d=1
+					plot1= parametric_plot((2+2*d*d,3+d*t),(t,-d,d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3,xmin=-.5,xmax=5,ymin=-.5,ymax=5)
+					plot1+= parametric_plot((2-d*d,3+d*t),(t,-d,d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+					plot1+= parametric_plot((2+d*t,3+d*d),(t,-d,2*d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+					plot1+= parametric_plot((2+d*t,3-d*d),(t,-d,2*d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+					plot1+= text("$(1,2)$",(1,1.75),color='black',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)+text("$(4,4)$",(4,4.25),color='black',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)
+					plot1+=arrow((2+2*d^2,3+d*(-0.5)),(2+2*d^2,3+d*(+0.5)),color='blue')
+					plot1+=arrow((2-d^2,3-d*(-0.5)),(2-d^2,3-d*(+0.5)),color='blue')
+					plot1+=arrow((2-d*(-1/2),3+d*d),(2-d*1/2,3+d*(d)),color='blue')
+					plot1+=arrow((2+d*(-1/2),3-d*d),(2+d*1/2,3-d*(d)),color='blue')
+					plot1					
+				</sageplot>
       </image>
     </figure>
 	<example>
@@ -565,13 +614,20 @@
 	    containing <m>(0,0)</m>. </p>
 	<figure xml:id="fig_Vector_GreensTheorem_ccw_field">
 	  <caption>The vector field <m>\vF</m></caption>
-	  <image source="/fig_Vector_GreensTheorem_ccw_field" width="65%">
-	    <description>A vector field with vectors tangent to
-	    circles oriented counterclockwise and centered at the
-	    origin as well as the unit circle centered at the origin
-	    and oriented counterclockwise. The vectors are longer
-	    close to the origin and shorter farther from the
-	    origin.</description>
+	  <image xml:id="img_Vector_GreensTheorem_ccw_field" width="65%">
+	    <description>
+				A vector field with vectors tangent to circles oriented counterclockwise and centered at the origin as well as the unit circle centered at the origin and oriented counterclockwise. The vectors are longer close to the origin and shorter farther from the origin.
+			</description>
+			<sageplot>
+				var('x,y,t')
+				F = (-y/((x^2+y^2)),x/((x^2+y^2)))
+				F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None,
+									 lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None]
+				plot1=plot_vector_field(F_control,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
+				plot2=parametric_plot((cos(t),sin(t)),(t,0,2*pi),color="red",thickness=1.5,axes_labels=["$x$","$y$"])+arrow((1/sqrt(2),1/sqrt(2)),(1/sqrt(2)-0.05,1/sqrt(2)+0.05),color="red")+text("$C$",(1.05,0.6),color='red',background_color='white',fontsize='x-large',clip=True)
+				final_plot1=plot1+plot2
+				final_plot1				
+			</sageplot>
 	  </image>
 	</figure>
       </introduction>
@@ -601,8 +657,7 @@
 	    \frac{2y^{2}}{{\left(x^{2} + y^{2}\right)}^{2}} -
 	    \frac{1}{{x^{2} + y^{2}}} = \frac{y^2-x^2}{{\left(x^{2} + y^{2}\right)}^{2}}</mrow>
 	    </md>. Thus,
-	  <me>\frac{\partial F_2}{\partial x} - \frac{\partial
-	  F_1}{\partial y} = 0</me>.</p>
+	  <me>\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} = 0</me>.</p>
 	</solution>
       </task>
       <task>
@@ -666,13 +721,19 @@
 	    <caption>
 	      The vector field <m>\vG</m>
 	    </caption>
-	    <image source="/fig_Vector_GreensTheorem_outward_field" width="65%">
+	    <image xml:id="img_Vector_GreensTheorem_outward_field" width="65%">
 	      <description>
-		A vector field with vectors radiating from the origin
-		and orthogonal to circles centered at the
-		origin. Vectors are longest near the origin and get
-		shorter farther from the origin.
+					A vector field with vectors radiating from the origin and orthogonal to circles centered at the origin. Vectors are longest near the origin and get shorter farther from the origin.
 	      </description>
+				<sageplot>
+					var('x,y,t')
+					F = (x/((x^2+y^2)),y/((x^2+y^2)))
+					F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None,
+										 lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None]
+					plot3=plot_vector_field(F,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
+					final_plot2=plot3
+					final_plot2					
+				</sageplot>
 	    </image>
 	  </figure>
 	</statement>
