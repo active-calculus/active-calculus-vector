@@ -17,15 +17,15 @@
 </objectives>
 <introduction>
   <p>
-    <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> showed how we can use vector valued functions of two variables to give a parametrization of a surface in space. For instance, the function <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> with domain <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parametrizes a sphere of radius <m>2</m> centered at the origin. <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> also gives examples of how to write parametrizations based on other geometric relationships like when one coordinate can be written as a function of the other two. In <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/>, we set up a Riemann sum based on a parametrization that would measure the surface area of our curved surfaces in space.
+    <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> showed how we can use vector valued functions of two variables to give a parameterization of a surface in space. For instance, the function <m>\vr(s,t)=\langle 2\cos(t)\sin(s), 2\sin(t)\sin(s),2\cos(s)\rangle</m> with domain <m>0\leq t\leq 2 \pi</m> and <m>0\leq s\leq \pi</m> parameterizes a sphere of radius <m>2</m> centered at the origin. <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> also gives examples of how to write parameterizations based on other geometric relationships like when one coordinate can be written as a function of the other two. In <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/>, we set up a Riemann sum based on a parameterization that would measure the surface area of our curved surfaces in space.
   </p>
   <p>
-    In <xref ref="fig_Vector_FluxInt_ParaPic"/>, you can see a surface plotted using a parametrization <m>\vr(s,t)=\langle{f(s,t),g(s,t),h(s,t)}\rangle</m>. The red lines represent curves where <m>s</m> varies and <m>t</m> is held constant, while the yellow lines represent curves where <m>t</m> varies and <m>s</m> is held constant. The vector in red is
-    <m>\vr_s=\frac{\partial \vr}{\partial s}=\langle{f_s,g_s,h_s}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when only <m>s</m> is varied. Similarly, the vector in yellow is <m>\vr_t=\frac{\partial \vr}{\partial t}=\langle{f_t,g_t,h_t}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when only <m>t</m> is varied. You can see that the parallelogram that is formed by <m>\vr_s</m> and <m>\vr_t</m> is tangent to the surface. The area of this parallelogram offers an approximation for the surface area of a patch of the surface.
+    In <xref ref="fig_Vector_FluxInt_ParaPic"/>, we plot a surface using a parametrization <m>\vr(s,t)=\langle{f(s,t),g(s,t),h(s,t)}\rangle</m>. The magenta curves represent curves where <m>s</m> varies and <m>t</m> is held constant, while the yellow curves represent curves where <m>t</m> varies and <m>s</m> is held constant. The vector in magenta is
+    <m>\vr_s=\frac{\partial \vr}{\partial s}=\langle{f_s,g_s,h_s}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when only <m>s</m> is varied. Similarly, the vector in yellow is <m>\vr_t=\frac{\partial \vr}{\partial t}=\langle{f_t,g_t,h_t}\rangle</m> which measures the direction and magnitude of change in the coordinates of the surface when only <m>t</m> is varied. We also plot the parallelogram that is formed by <m>\vr_s</m> and <m>\vr_t</m>, which is tangent to the surface. The area of this parallelogram offers an approximation for the surface area of a patch of the surface.
   </p>
   <figure xml:id="fig_Vector_FluxInt_ParaPic">
     <caption>A three-dimensional plot of <xref ref="F_11_6_approx"/></caption>
-    <interactive xml:id="sage_para_pic" platform="sage" width="100%" aspect="1:1.1">
+    <interactive xml:id="sage_para_pic" platform="sage" width="100%" aspect="1:1.10">
       <slate surface="sage">
         var('t,s,u,v,z,y,z')
         f=-x^2/2-3*y^3/3
@@ -33,8 +33,8 @@
         def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
           plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)+sphere((a,b,f(x=a,y=b)),size=.05,color="black")
           for i in range(0,5):
-            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="red")
-            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="yellow")
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="#D81B60")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="#FFC107")
           f_val=f(x=a,y=b)
           pos=(a,b,f_val)
           fx=diff(f,x)(x=a,y=b)
@@ -42,11 +42,11 @@
           vt=(1/2+a,b,1/2*fx+f_val)
           vs=(a,b+1/2,1/2*fy+f_val)
           cr=(a-fx/2,b-fy/2,1/2+f_val)
-          vectt=arrow3d(pos,vt,color="red")
-          vects=arrow3d(pos,vs,color="yellow")
+          vectt=arrow3d(pos,vt,color="#D81B60")
+          vects=arrow3d(pos,vs,color="#FFC107")
           plot1+=vectt+vects
           plot1+=parametric_plot3d((a+t/2,b+s/2,f_val+t/2*fx+s/2*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-          plot1+=arrow3d(pos,cr,color="green")
+          plot1+=arrow3d(pos,cr,color="#004D40")
           show(plot1)
       </slate>
     </interactive>
@@ -59,13 +59,13 @@
   <exploration xml:id="PA_Vector_FluxInt">
     <introduction>
       <p>
-        In this activity we will explore the parametrizations of a few familiar surfaces and confirm some of the geometric properties described in the introduction above.
+        In this preview activity, we will explore the parameterizations of a few familiar surfaces and confirm some of the geometric properties described in the introduction above.
       </p>
     </introduction>
     <task xml:id="task_PA_Vector_FluxInt_Param">
       <introduction>
         <p>
-          Use the ideas from <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> to give a parametrization <m>\vr(s,t)</m> of each of the following surfaces. Be sure to specify the bounds on each of your parameters.
+          Use the ideas from <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> to give a parameterization <m>\vr(s,t)</m> of each of the following surfaces. Be sure to specify the bounds on each of your parameters.
 	</p>
       </introduction>
       <task>
@@ -96,14 +96,14 @@
     <task xml:id="task_PA_Vector_FluxInt_Tangents">
       <statement>
         <p>
-          For each parametrization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, calculate <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>.
+          For each parameterization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, calculate <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>.
         </p>
       </statement>
     </task>
     <task xml:id="task_PA_Vector_FluxInt_partd">
       <statement>
         <p>
-          For each parametrization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, find the value for <m>\vr_s</m>,<m>\vr_t</m>, and <m>\vr_s \times \vr_t</m> at the <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
+          For each parameterization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, find the value for <m>\vr_s</m>,<m>\vr_t</m>, and <m>\vr_s \times \vr_t</m> at the <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
         </p>
       </statement>
     </task>
@@ -116,7 +116,7 @@
     </task>
   </exploration>
   <p>
-    As we saw in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>, we can set up a Riemann sum of the areas for the parallelograms in <xref ref="fig_Vector_FluxInt_ParaPic"/> to approximate the surface area of the region plotted by our parametrization. <xref ref="E_surface_area" text="global">Equation</xref> shows that we can compute the exact surface by taking a limit of a Riemann sum which will correspond to integrating the magnitude of <m>\vr_s \times \vr_t</m> over the appropriate parameter bounds. What if we wanted to measure a quantity other than the surface area? In the next section, we will explore a specific case of this question: How can we measure the amount of a three dimensional vector field that flows through a particular section of a surface? The geometric tools we have reviewed in this section will be very valuable, especially the vector <m>\vr_s \times \vr_t</m>.
+    As we saw in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>, we can set up a Riemann sum of the areas for the parallelograms in <xref ref="fig_Vector_FluxInt_ParaPic"/> to approximate the surface area of the region plotted by our parametrization. <xref ref="E_surface_area" text="global">Equation</xref> shows that we can compute the exact surface by taking a limit of a Riemann sum which will correspond to integrating the magnitude of <m>\vr_s \times \vr_t</m> over the appropriate parameter bounds. What if we wanted to measure a quantity other than the surface area? Our focus in this section we will be the exploration of a specific case of this question: How can we measure the amount of a three dimensional vector field that flows through a particular section of a surface? The geometric tools we have reviewed in this section, especially the vector <m>\vr_s \times \vr_t</m>, will be valuable.
   </p>
 </introduction>
 <subsection xml:id="SS_Vector_FluxInt_Idea">
@@ -143,7 +143,7 @@
     </interactive>
   </figure>
   <p>
-    We don't care about the output of the vector field at points away from the surface. We would really would like to  examine what the output vectors for the <m>(x,y,z)</m> points on our surface. So instead, we will look at <xref ref="fig_Vector_FluxInt_FieldSurface2"/> which plots the output of our vector field at an array of points on our surface.
+    As with understanding line integrals of vector-valued functions in <xref ref="S_Vector_IdeaLineIntegral" />, we don't care about the output of the vector field at points away from the surface. We would really would like to  examine the output vectors for the points on our surface. To do this, we will look at <xref ref="fig_Vector_FluxInt_FieldSurface2"/>, which plots the output of our vector field at an array of points on our surface.
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface2">
     <caption>A three-dimensional vector field evaluated along a surface</caption>
@@ -175,7 +175,7 @@
     </interactive>
   </figure>
   <p>
-    The central question we would like to consider is <q>How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface?</q>, so we only need to consider the amount of the vector field that flows <alert>through</alert> the surface. Any portion of our vector field that flows along (or tangent) to the surface will not contribute to the amount that goes through the surface. In <xref ref="fig_Vector_FluxInt_FieldSurface3" />, we have split the vector field for points on our surface into two components. One component, plotted in green, is orthogonal to the surface. The component that is tangent to the surface is plotted in purple.
+    The central question we would like to consider is <q>How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface?</q>, so we only need to consider the amount of the vector field that flows <em>through</em> the surface. Any portion of our vector field that flows along (or tangent) to the surface will not contribute to the amount that goes through the surface. In <xref ref="fig_Vector_FluxInt_FieldSurface3" />, we have split the vector field for points on our surface into two components. One component, plotted in green, is orthogonal to the surface. The component that is tangent to the surface is plotted in magenta.
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface3">
     <caption>The decomposition of three-dimensional vector field
@@ -199,15 +199,15 @@
             F1=Fx(x=posx,y=posy)
             F2=Fy(x=posx,y=posy)
             F3=Fz(x=posx,y=posy,z=posz)
-            plot1+=arrow3d((posx,posy,posz),(posx+Fx(x=posx,y=posy),posy+Fy(x=posx,y=posy), posz+Fz(x=posx,y=posy,z=posz)),color="blue")
+            plot1+=arrow3d((posx,posy,posz),(posx+Fx(x=posx,y=posy),posy+Fy(x=posx,y=posy), posz+Fz(x=posx,y=posy,z=posz)),color="#1E88E5")
             N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
             Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
             FNx=Nfrac*N[0]
             FNy=Nfrac*N[1]
             FNz=Nfrac*N[2]
-            plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
-            plot1+=arrow3d((posx,posy,posz),(posx+F1-FNx,posy+F2-FNy,posz+F3-FNz),color="purple")
-            plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="yellow")
+            plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
+            plot1+=arrow3d((posx,posy,posz),(posx+F1-FNx,posy+F2-FNy,posz+F3-FNz),color="#D81B60")
+            plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="#FFC107")
         show(plot1)
       </slate>
     </interactive>
@@ -216,16 +216,16 @@
     In order to measure the amount of the vector field that moves through the plotted section of the surface, we must find the accumulation of the lengths of the green vectors in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors.
   </p>
   <p>
-    If we have a parametrization of the surface, then the vector <m>\vr_s \times \vr_t</m> varies smoothly across our surface and gives a consistent way to describe which direction we choose as <q>through</q> the surface. If we define a positive flow through our surface as being consistent with the yellow vector in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>, then there is more positive flow (in terms of both magnitude and area) than negative flow through the surface. Thus, the <em>net</em> flow of the vector field through this surface is positive.
+    If we have a parameterization of the surface, then the vector <m>\vr_s \times \vr_t</m> varies smoothly across our surface and gives a consistent way to describe which direction we choose as <q>through</q> the surface. If we define a positive flow through our surface as being consistent with the yellow vector in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>, then there is more positive flow (in terms of both magnitude and area) than negative flow through the surface. Thus, the <em>net</em> flow of the vector field through this surface is positive.
   </p>
   <activity>
     <title>Visualizing flux through a surface</title>
     <statement>
       <p>
-        In this activity, you will compare the net flow of different vector fields through our sample surface. In <xref ref="fig_Vector_FluxInt_FieldPicker"/> you can select between five different vector fields. Once you select a vector field, the vector field for a set of points on the surface will be plotted in blue. Each blue vector will also be split into its normal component (in green) and its tangential component (in purple). The yellow vector defines the direction for positive flow through the surface.
+        In this activity, you will compare the net flow of different vector fields through our sample surface. In <xref ref="fig_Vector_FluxInt_FieldPicker"/> you can select between five different vector fields. Once you select a vector field, the vector field for a set of points on the surface will be plotted in blue. Each blue vector will also be split into its normal component (in green) and its tangential component (in magenta). The yellow vector defines the direction for positive flow through the surface.
       </p>
       <p>
-        Look at each vector field and order the vector fields from greatest flow through the surface to least flow through the surface. Remember that a negative net flow through the surface should be lower in your rankings than any positive net flow.
+        Look at each vector field and order the vector fields from greatest net flow through the surface to least net flow through the surface. Remember that a negative net flow through the surface should be lower in your rankings than any positive net flow.
       </p>
       <figure xml:id="fig_Vector_FluxInt_FieldPicker">
         <caption>Five vector fields flowing through a surface, with decomposition into normal and tangential components</caption>
@@ -267,15 +267,15 @@
                   F1=Fx(x=posx,y=posy,z=posz)
                   F2=Fy(x=posx,y=posy,z=posz)
                   F3=Fz(x=posx,y=posy,z=posz)
-                  plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="blue")
+                  plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="#1E88E5")
                   N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
                   Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
                   FNx=Nfrac*N[0]
                   FNy=Nfrac*N[1]
                   FNz=Nfrac*N[2]
-                  plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
-                  plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
-                  plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="yellow")
+                  plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
+                  plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="#D81B60")
+                  plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="#FFC107")
               show(plot1)
           </slate>
         </interactive>
@@ -286,12 +286,12 @@
 <subsection>
   <title>The Details of Measuring the Flux of a Vector Field through a Surface</title>
   <p>
-    Now that we have a better conceptual understanding of what we are measuring, we can set up the corresponding Riemann sum to measure the flux of a vector field through a section of a surface. Let <m>Q</m> be the section of our surface and suppose that <m>Q</m> is parametrized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. The domain of <m>\vr</m> is a region of the <m>st</m>-plane, which we call <m>D</m>, and the range of <m>\vr</m> is <m>Q</m>.
+    Now that we have developed a conceptual understanding of what we are trying to measure, we can set up the corresponding Riemann sum to measure the flux of a vector field through a section of a surface. Let <m>Q</m> be the section of our surface and suppose that <m>Q</m> is parameterized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. The domain of <m>\vr</m> is a region of the <m>st</m>-plane, which we call <m>D</m>, and the range of <m>\vr</m> is <m>Q</m>.
   </p>
   <p>
-    In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_1,\ldots,t_n</m>. This divides <m>D</m> into <m>nm</m>
+    As with most problems in integral calculus, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_0,s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_0,t_1,\ldots,t_n</m>. This divides <m>D</m> into <m>nm</m>
     rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as
-    <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) of <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>Q</m> into <m>nm</m> corresponding pieces which we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>S_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
+    <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>Q</m> into <m>nm</m> corresponding pieces which we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>S_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}</m>.
   </p>
   <figure xml:id="fig_Vector_FluxInt_SurfaceSections">
     <caption>Pieces of the tangent planes that approximate a surface</caption>
@@ -317,16 +317,15 @@
               vs=(a,b+stepsize,stepsize*fy+f_val)
               cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
               plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-              plot1+=arrow3d(pos,cr,color="green")
+              plot1+=arrow3d(pos,cr,color="#004D40")
           show(plot1)
       </slate>
     </interactive>
   </figure>
   <p>
-    We want to measure the total flow of the vector field, <m>\vF</m>, through <m>Q</m>, which we approximate on each <m>Q_{i,j}</m> and then sum to get the total flow. In other words, the flux of <m>\vF</m> through <m>Q</m> is
+    We want to measure the total flow of the vector field <m>\vF</m> through <m>Q</m>, which we will approximate on each <m>Q_{i,j}</m> and then sum to obtain the total flow. In other words, the flux of <m>\vF</m> through <m>Q</m> is
     <me>
-      \text{Flux}=\sum_{i=1}^n\sum_{j=1}^m\vecmag{\vF_{\perp
-      Q_{i,j}}}\cdot S_{i,j}
+      \text{Flux}=\sum_{i=1}^n\sum_{j=1}^m\vecmag{\vF_{\perp Q_{i,j}}}\cdot S_{i,j}
     </me>,
     where <m>\vecmag{\vF_{\perp Q_{i,j}}}</m> is the length of the component of <m>\vF</m> orthogonal to <m>Q_{i,j}</m>.
   </p>
@@ -357,7 +356,7 @@
     Taking the limit as <m>n,m\rightarrow\infty</m> gives the following result.
   </p>
   <p>
-    Conceptually, the above limit shows how the argument in <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" /> generalizes when measuring the flux of a vector field through a surface rather than just the surface area. The key difference between the Riemann sum above and Riemann sum used to set up <xref ref="Surface-area" text="title" /> is that we are using the dot product of the vector field with the normal vector to the surface (given by <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m>) as the scalar value in our sum. This realization give the following theorem which states that the flux through a curved surface in space can be computed using a parameterization of the surface and a double integral over a flat region in the plane of parameter values. 
+    Conceptually, the above limit shows how the argument in <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" /> generalizes when measuring the flux of a vector field through a surface rather than just the surface area. The key difference between the Riemann sum above and Riemann sum used to set up <xref ref="Surface-area" text="title" /> is that we are using the dot product of the vector field with the normal vector to the surface (given by <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m>) as the scalar value in our sum. This realization gives the following theorem, which states that the flux through a curved surface in space can be computed using a parameterization of the surface and a double integral over a flat region in the plane of parameter values. 
   </p>
   <theorem xml:id="thm_flux_int_calc">
     <statement>
@@ -370,63 +369,64 @@
     </statement>
   </theorem>
   <p>
-    In <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, you can change the number of sections in your partition and see the geometric result of refining the partition. In the next example, we will look at how <xref ref="thm_flux_int_calc" /> is used on a part of a cone and make sense of the vector <m>\vw(t,s)=\vr_s \times \vr_t</m> and the scalar <m>\vF \cdot (\vr_s \times \vr_t)</m>.
+    In <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, you can change the number of sections in the partition and see the geometric result of refining the partition. In the next example, we will look at how <xref ref="thm_flux_int_calc" /> is used on a part of a cone and make sense of the vector <m>\vw(t,s)=\vr_s \times \vr_t</m> and the scalar <m>\vF \cdot (\vr_s \times \vr_t)</m>.
   </p>
   <example xml:id="flux_int_example1">
     <p>
-      In this example we will compute the flux of the vector field <m>\vF= \langle xz-2, y+x, 1 \rangle </m> over the surface of the cone given by <m>x^2+y^2=z^2</m> with <m>1\leq z \leq 3</m>. The first thing to do to use <xref ref="thm_flux_int_calc" /> is to parameterize our surface and calculate <m>\vw(t,s)=\vr_s \times \vr_t</m> based on that parameterization. 
+      In this example we will compute the flux of the vector field <m>\vF= \langle xz-2, y+x, 1 \rangle </m> through the surface of the cone given by <m>x^2+y^2=z^2</m> with <m>1\leq z \leq 3</m>. So that we can use <xref ref="thm_flux_int_calc" />, we first parameterize our surface and calculate <m>\vw(t,s)=\vr_s \times \vr_t</m> based on that parameterization. 
     </p>
     <p>
       In cylindrical coordinates, our cone is described by <m>r=z</m> which suggests that we can use <m>r</m> and <m>\theta</m> as <m>s</m> and <m>t</m>. Consider the parameterization <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with bounds <m>1\leq s \leq 3</m> and <m>0 \leq t \lt 2 \pi</m>. Notice that <m>s</m> is acting as both <m>r</m> and <m>z</m>. Calculating the partial derivatives of <m>\vr</m> gives the following:
-      <me>\vr_s = \langle \cos(t), \sin(t), 1 \rangle </me>
-      <me>\vr_t = \langle -s \sin(t), s \cos(t), 0 \rangle </me>
-      Taking the cross product of <m>\vr_s</m> and <m>\vr_t</m> will give the following vector valued function for <m>\vw</m>:
-      <me>\vw= \vr_s \times \vr_t = \langle -s \cos(t), -s \sin(t), s (\cos(t)^2 +\sin(t)^2) \rangle </me>
-      which will simplify to 
-      <me>\vw=\langle-s \cos(t), -s \sin(t), s \rangle </me>
-      This should look familiar-ish because <m>\vw</m> is very close to <m>\vr</m>. If we think of <m>\vr</m> as giving <m>\langle x,y,z\rangle </m>, then <m>\vw = \langle -x, -y, z \rangle </m>. The interact below shows the vectors <m>\vr</m> and <m>\vw</m> for a point on the surface we are examining.
+      <md>
+        <mrow>\vr_s \amp = \langle \cos(t), \sin(t), 1 \rangle </mrow>
+        <mrow>\vr_t \amp = \langle -s \sin(t), s \cos(t), 0 \rangle </mrow>
+      </md>
+      Taking the cross product of <m>\vr_s</m> and <m>\vr_t</m>, we obtain the vector-valued function <m>\vw</m>:
+      <me>\vw= \vr_s \times \vr_t = \langle -s \cos(t), -s \sin(t), s (\cos(t)^2 +\sin(t)^2) \rangle </me>.
+      We may simplify this to 
+      <me>\vw=\langle-s \cos(t), -s \sin(t), s \rangle </me>.
+      Notice that <m>\vw</m> is very close to <m>\vr</m>. If we think of <m>\vr</m> as giving <m>\langle x,y,z\rangle </m>, then <m>\vw = \langle -x, -y, z \rangle </m>. The figure below shows the relationship between vectors <m>\vr</m> and <m>\vw</m> for a point on the surface.
     </p>
     <figure xml:id="fig_Vector_FluxInt_Cone1">
-      <caption>A plot of our surface with the parameterization vector in green and the normal vector <m>\vw</m> in red</caption>
-      <interactive platform="sage" width="100%" aspect="1:1.12">
+      <caption>A plot of our surface with the parameterization vector in green and the normal vector <m>\vw</m> in magenta</caption>
+      <interactive platform="sage" width="100%" aspect="1:1.10">
         <slate surface="sage">
           var('x,y,z,s,t')
           @interact
           def conepiece(a=slider(1,3,1/2,2,label="s value"),b=slider(0,2*pi,pi/6,pi/2,label="t value")):
-            plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0, 2*pi),color='blue', opacity=.50)
-            plot2+=arrow3d((a*cos(b),a*sin(b),a),(0,0,2*a),color='red',thickness=3)
-            plot2+=arrow3d((0,0,0),(a*cos(b),a*sin(b),a),color='green')
+            plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0, 2*pi),color='gray', opacity=.50)
+            plot2+=arrow3d((a*cos(b),a*sin(b),a),(0,0,2*a),color='#D81B60',thickness=3)
+            plot2+=arrow3d((0,0,0),(a*cos(b),a*sin(b),a),color='#004D40')
             show(plot2,aspect_ratio=1)
         </slate>
       </interactive>
     </figure>
     <p>
-      In <xref ref="fig_Vector_FluxInt_Cone1" /> you can see that that the normal vector (as calculated from the parameterization) points inside of the cone and this will be the direction of positive flow when measuring the flux of the vector field. Our parameterization will also transform our vector field into a function of <m>s</m> and <m>t</m>; specifcally 
+      In <xref ref="fig_Vector_FluxInt_Cone1" />, the normal vector (as calculated from the parameterization) points inside the cone. This is the direction of positive flow when measuring the flux of the vector field. Our parameterization will also transform our vector field into a function of <m>s</m> and <m>t</m>. Specifcally,
       <me>\vF(s,t)= \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle</me>
-      Applying <xref ref="thm_flux_int_calc" /> to our parameterization and vector field gives the following iterated integral:
+      Applying <xref ref="thm_flux_int_calc" /> to our parameterization and vector field allows us to compute <m>I = \iint_D \vF \cdot (\vr_s \times \vr_t)\, dA</m> as an interated integral
       <md>
-        <mrow> \iint_D \vF \cdot (\vr_s \times \vr_t)\, dA </mrow>
-        <mrow> \int_0^{2\pi}\int_1^3 \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle \cdot \langle -s \cos(t), -s \sin(t), s \rangle \enspace ds \enspace dt </mrow>
-        <mrow> \int_0^{2\pi}\int_1^3 ((s \cos(t))(s) -2)  (-s \cos(t)) +(-s \sin(t)) (s \sin(t) + s \cos(t)) +s </mrow>
-        <mrow> -\frac{62}{3}\pi </mrow>
-      </md>
-      Note that the result of this flux integral is negative, which means more of the vector field is going out of the cone than is going into the cone. 
+        <mrow> I \amp = \int_0^{2\pi}\int_1^3 \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle \cdot \langle -s \cos(t), -s \sin(t), s \rangle \, ds \, dt </mrow>
+        <mrow> \amp =\int_0^{2\pi}\int_1^3 ((s \cos(t))(s) -2)  (-s \cos(t)) +(-s \sin(t)) (s \sin(t) + s \cos(t)) +s </mrow>
+        <mrow> \amp = -\frac{62}{3}\pi </mrow>
+      </md>.
+      Note that the result of this flux integral is negative, which means more of the vector field is going out of the cone than is coming into the cone. 
     </p>
     <figure xml:id="fig_Vector_FluxInt_Cone2">
-      <caption>A plot of our surface with the vector field <m>\vF</m> for an array of points on the surface. The vector field has been scaled down by a factor of 5 in this plot.</caption>
-      <interactive platform="sage" width="100%" aspect="1:1.12">
+      <caption>A plot of the surface with the vector field <m>\vF</m> for an array of points on the surface. The vector field has been scaled down by a factor of 5 in this plot.</caption>
+      <interactive platform="sage" width="87%" aspect="1:1.05">
         <slate surface="sage">
           var('x,y,z,s,t')
           N=10
           M=5
           k=5
-          plot3=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0, 2*pi),color='blue', opacity=.50)
+          plot3=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0, 2*pi),color='gray', opacity=.50)
           for i in range(0,N):
             for j in range(0,M):
               a=1+j/M*2
               b=0+i/N*2*pi 
               #(a,b)
-              plot3+=arrow3d((a*cos(b),a*sin(b),a),(a*cos(b)+1/k*((a*cos(b))*(a)-2), a*sin(b)+1/k*(a*sin(b) + a*cos(b)), 1/k+a),color='orange')
+              plot3+=arrow3d((a*cos(b),a*sin(b),a),(a*cos(b)+1/k*((a*cos(b))*(a)-2), a*sin(b)+1/k*(a*sin(b) + a*cos(b)), 1/k+a),color='#1E88E5')
           show(plot3,aspect_ratio=1)
         </slate>
       </interactive>
@@ -443,7 +443,7 @@
     <task>
       <introduction>
       <p>
-        <xref ref="fig_Vector_FluxInt_yzsine"/> shows a plot of the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a	right circular cylinder of radius <m>2</m> and height <m>3</m> (with open top and bottom). Consider the vector field going into the cylinder (toward the <m>z</m>-axis) as corresponding to a positive flux.
+        <xref ref="fig_Vector_FluxInt_yzsine"/> shows a plot of the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a	right circular cylinder of radius <m>2</m> and height <m>3</m> (with open top and bottom). Consider the vector field going into the cylinder (toward the <m>z</m>-axis) as corresponding to positive flux.
       </p>
       <figure xml:id="fig_Vector_FluxInt_yzsine">
         <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a right circular cylinder</caption>
@@ -459,20 +459,20 @@
       </introduction>
       <task>
 	<statement>
-	  <p>Reasoning graphically, do you think the flux of <m>\vF</m> throught the cylinder will be positive, negative, or zero? Be sure to write a few sentences jutifying your answer.</p>
+	  <p>Reasoning graphically, do you think the flux of <m>\vF</m> throught the cylinder will be positive, negative, or zero? Write a few sentences jutifying your answer.</p>
 	</statement>
       </task>
     <task>
       <statement>
       <p>
-        Parametrize the right circular cylinder of radius <m>2</m>, centered on the <m>z</m>-axis for <m>0\leq z \leq 3</m>. Be sure to give bounds on your parameters.
+        Parameterize the right circular cylinder of radius <m>2</m>, centered on the <m>z</m>-axis, for <m>0\leq z \leq 3</m>. Be sure to give bounds on your parameters.
       </p>
       </statement>
     </task>
     <task>
       <statement>
       <p>
-        Based on your parametrization, compute <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>. Confirm that these vectors are either orthogonal or tangent to the right circular cylinder. Is your orthogonal vector pointing in the direction of positive flux or negative flux?
+        Based on your parameterization, compute <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>. Confirm that these vectors are either orthogonal or tangent to the right circular cylinder. Is your orthogonal vector pointing in the direction of positive flux or negative flux?
       </p>
       </statement>
     </task>
@@ -483,13 +483,13 @@
       </p>
       </statement>
       <hint>
-	      <p>The <m>x</m> coordinate is given by the first component of <m>\vr</m>.</p>
+	      <p>The <m>x</m>-coordinate is given by the first component of <m>\vr</m>.</p>
       </hint>
     </task>
     <task>
       <statement>
       <p>
-        Compute the flux of <m>\vF</m> through the parametrized portion of the right circular cylinder. 
+        Compute the flux of <m>\vF</m> through the parameterized portion of the right circular cylinder. 
       </p>
       </statement>
     </task>
@@ -528,14 +528,14 @@
                         F1=Fx(x=posx,y=posy,z=posz)
                         F2=Fy(x=posx,y=posy,z=posz)
                         F3=Fz(x=posx,y=posy,z=posz)
-                        plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="blue")
+                        plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="#1E88E5")
                         N=(-posx,-posy,0)
                         Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
                         FNx=Nfrac*N[0]
                         FNy=Nfrac*N[1]
                         FNz=Nfrac*N[2]
-                        plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
-                        plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
+                        plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
+                        plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="#D81B60")
                 show(plot1)
           </slate>
         </interactive>
@@ -546,14 +546,14 @@
     <task>
       <statement>
       <p>
-        How would the results of the flux calculations be different if we used the vector field <m>\vF=\left\langle{y,z,\cos(xy)+\frac{9}{z^2+6.2}}\right\rangle</m> and the same right circular cylinder? Explain your reasoning.
+        Write a couple of sentences to explalin how the results of the flux calculations would be different if we used the vector field <m>\vF=\left\langle{y,z,\cos(xy)+\frac{9}{z^2+6.2}}\right\rangle</m> and the same right circular cylinder.
       </p>
       </statement>
     </task>
     <task>
       <statement>
       <p>
-        How would the results of the flux calculations be different if we used the vector field <m>\vF=\langle{y,-x,3}\rangle</m> and the same right circular cylinder? Explain your reasoning.
+        write a couple of sentences to explain how the results of the flux calculations would be different if we used the vector field <m>\vF=\langle{y,-x,3}\rangle</m> and the same right circular cylinder.
       </p>
       </statement>
     </task>
@@ -608,7 +608,7 @@
 <subsection component="instructor" >
   <title>Notes to Instructors and Dependencies</title>
   <p>
-    This section relies on parameterized surfaces, which was first introduced in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area" />. While some of the activities in this section may be two much for a single student to do in a class setting, we suggest that different cases of the vector fields and surfaces can be split for small group work. Students can then present answers to the larger group. 
+    This section relies on parameterized surfaces, which was first introduced in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area" />. While some of the activities in this section may be too much for a single student to do in a class setting, we suggest that different cases of the vector fields and surfaces can be split for small group work. Students can then present answers to the larger group. 
   </p>
 </subsection>
 </section>
