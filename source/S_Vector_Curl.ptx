@@ -38,15 +38,23 @@
   <figure xml:id="fig_Vector_Curl_intro_vfs">
     <caption>Examples of vector fields with global rotation properties (left) and without rotation in either the global or local sense (right)</caption>
     <sidebyside widths="45% 45%">
-      <image source="/curl_vf1">
+      <image xml:id="img_curl_vf1">
         <description>
           A vector field exhibiting counterclockwise rotation around the origin. Vectors appear to be tangent to concentric circles centered at the origin. Vector magnitude increases as distance from the origin increases.
         </description>
+        <sageplot>
+          var('t,x,y')
+          plot11=plot_vector_field((-y,x),(x,-2,2),(y,-2,2),color='blue',frame=False,aspect_ratio=1,ticks=[[],[]],axes_labels=["$x$","$y$"])
+          plot11          
+        </sageplot>
       </image>
-      <image source="/Div_activity_-x-y">
-        <description>
-          A vector field with all vectors pointing toward the origin. Vector magnitude increases as distance from the origin increases.
-        </description>
+      <image xml:id="img_Div_activity_-x-y2">
+        <description>A vector field with vectors pointing toward the origin. Vectors get longer as distance from the origin increases. </description>
+        <sageplot>
+          var('t,x,y')
+          plot3=plot_vector_field((-x,-y),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+          plot3              
+        </sageplot>
       </image>
     </sidebyside>
   </figure>
@@ -56,11 +64,21 @@
   <figure xml:id="fig_Vector_Curl_intro_vfs2">
     <caption>Examples of vector fields with varying rotation properties</caption>
     <sidebyside widths="45% 45%">
-      <image source="/Div_activity_xy1x">
+      <image xml:id="img_Curl_activity_xy1x">
         <description> A vector field having longer vectors where <m>x \lt 0</m>. For <m>x&gt;0</m>, vectors appear to get longer as distance from the <m>x</m>-axis increases. </description>
+        <sageplot>
+          var('t,x,y')
+          plot3=plot_vector_field((x*y,1-x),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+          plot3              
+        </sageplot>
       </image>
-      <image source="/fig_Vector_Div_vf1">
+      <image xml:id="fig_Vector_Curl_vf1">
         <description> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation.</description>
+        <sageplot>
+          var('x,y,t')
+          final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,-3.1,3.1),(y,-3.1,3.1),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+          final_plot2        
+        </sageplot>
       </image>
     </sidebyside>
   </figure>
@@ -93,8 +111,13 @@
       </p>
       <figure xml:id="fig_Vector_Curl_PA_0x">
         <caption>The vector field <m>\vF</m></caption>
-        <image width="75%" source="/Curl_0x_field">
+        <image width="75%" xml:id="img_Curl_0x_field">
         <description> A vector field that has only nonzero vertical component that is upward and increasing as you move horizontally to the right and downward as you move to the left. </description>
+        <sageplot>
+          var('t,x,y')
+          plot1=plot_vector_field((0,x),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1)
+          plot1          
+        </sageplot>
         </image>
       </figure>
     </introduction>
@@ -156,9 +179,24 @@
   </p>
   <figure xml:id="fig_Vector_Curl_DevSquare">
     <caption>A square centered at the point <m>(a,b)</m> with side lengths <m>2h</m> traveled counterclockwise</caption>
-    <image width="55%" source="/Square_with_arrows">
+    <image width="55%" xml:id="Square_with_arrows">
       <description>A square with sides parallel to the coordinate axes. The center of the square is at the point <m>(a,b)</m>. The upper right corner of the square is labeled <m>(a+h,b+h)</m>. Each edge of the square is oriented so that the overall orientation around the square is counterclockwise.
       </description>
+      <sageplot>
+        var('x','t');
+        d=1
+        plot1= point([(2,3)],color='black',size=15)+point([(3,4)],color='purple',size=50)
+        plot1+= parametric_plot((2+d*d,3+d*t),(t,-d,d),color='red',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+        plot1+= parametric_plot((2-d*d,3+d*t),(t,-d,d),color='green',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+        plot1+= parametric_plot((2+d*t,3+d*d),(t,-d,d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+        plot1+= parametric_plot((2+d*t,3-d*d),(t,-d,d),color='orange',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+        plot1+= text("$(a,b)$",(2,3.25),color='black',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)+text("$(a+h,b+h)$",(3,4.25),color='purple',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)
+        plot1+=arrow((2+d^2,3+d*(-0.5)),(2+d^2,3+d*(+0.5)),color='red')
+        plot1+=arrow((2-d^2,3-d*(-0.5)),(2-d^2,3-d*(+0.5)),color='green')
+        plot1+=arrow((2-d*(-1/2),3+d*d),(2-d*1/2,3+d*(d)),color='blue')
+        plot1+=arrow((2+d*(-1/2),3-d*d),(2+d*1/2,3-d*(d)),color='orange')
+        plot1        
+      </sageplot>
     </image>
   </figure>
   <p>
@@ -491,10 +529,15 @@
       </p>
       <figure xml:id="fig_Vector_Curl_3Dxy">
         <caption>The trace of <m>\vF</m> in the plane <m>z=-2</m></caption>
-        <image width="65%" source="/curl_3d_xy">
+        <image width="65%" xml:id="curl_3d_xy">
           <description>
             A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis has the same range and is labeled <m>y</m>. There is a point marked at <m>(1,1)</m>. Vectors point primarily down and are longer when closer to the horizontal axis. In the upper-left of the plot, the vectors point more down and left. In the lower-right of the plot, vectors point more down and right.
           </description>
+          <sageplot>
+            var('x,y')
+            plot11=plot_vector_field((x-y,y+2*(-2)),(x,0,2),(y,0,2),color="blue",aspect_ratio=1,axes_labels=["$x$","$y$"])+point((1,1),size=40,color="red")
+            plot11        
+          </sageplot>
         </image>
       </figure>
       </statement>
@@ -506,10 +549,15 @@
       </p>
       <figure xml:id="fig_Vector_Curl_3Dxz">
         <caption>The trace of <m>\vF</m> in the plane <m>y=1</m></caption>
-        <image width="65%" source="/curl_3d_xz">
+        <image width="65%" xml:id="curl_3d_xz">
           <description>
             A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis ranges from <m>-3</m> to <m>-1</m> and is labeled <m>z</m>. There is a point marked at <m>(1,-2)</m>. Vectors in the right half of the figure are longer and point primarily up, although slightly to the left. Vectors in the left half of the figure are very short and point primarily right until around <m>x=0.75</m>, where they start to point up but are very short.
           </description>
+          <sageplot>
+            var('x z')
+            plot12=plot_vector_field((-(x-1),x^2),(x,0,2),(z,-3,-1),aspect_ratio=1,color="blue",axes_labels=["$x$","$z$"])+point((1,-2),size=40,color="red")
+            plot12            
+          </sageplot>
         </image>
       </figure>
       </statement>
@@ -521,10 +569,16 @@
         </p>
         <figure xml:id="fig_Vector_Curl_3Dyz">
           <caption>The trace of <m>\vF</m> in the plane <m>x=1</m></caption>
-          <image width="65%" source="/curl_3d_yz">
+          <image width="65%" xml:id="curl_3d_yz">
             <description>
               A vector field in two dimensions. The horizontal axis is labeled <m>y</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis ranges from <m>-3</m> to <m>-1</m> and is labeled <m>z</m>. There is a point marked at <m>(1,-2)</m>. Vectors on the left and bottom sides of the figure are slightly longer than vectors in the top and right portions of the figure. Vectors point predominantly up, although those in the lower-corner point up and left, with vectors becoming closer to upright as one moves to the upper-right corner.
             </description>
+            <sageplot>
+              var('y,z')
+              a=1
+              plot13=plot_vector_field((y+2*z,a^2),(y,0,2),(z,-3,-1),aspect_ratio=1,color="blue",axes_labels=["$y$","$z$"])+point((1,-2),size=40,color="red")
+              plot13              
+            </sageplot>
           </image>
         </figure>
       </statement>
@@ -633,6 +687,12 @@
             A vector field with all vectors radiating from the origin. Vector magnitudes increase as distance from the
             origin increases.
           </description>
+          <sageplot>
+            var('x,y')
+            d=3
+            plot2=plot_vector_field((x,y),(x,-d,d),(y,-d,d),frame=False,aspect_ratio=1,ticks=[[],[]])
+            plot2            
+          </sageplot>
           </image>
       </figure>
       </statement>
@@ -774,7 +834,7 @@
   </p>
 </subsection>
 <xi:include href="exercises/ez-S_Vector_Curl.ptx" />
-<activity>
+<!--<activity>
   <introduction>
     <p>This exercise will usethe idea of a spinner from <xref ref="PA_Vector_Curl" /></p>
   </introduction>
@@ -903,13 +963,8 @@
     <introduction>
       <p> For this part, look at the vector field in <xref ref="fig_Vector_Curl_PA_Explorer"/>. You may find it useful
       to recenter the plot on your point by changing <m>x_0</m> and <m>y_0</m>. You may also zoom in on your point by using the slider labeled <q>zoom</q>.</p>
-        <!-- <figure xml:id="Curl_PA_task4_vf">
-          <image source="/Curl_1xxy_field"/>
-        </figure> -->
       <figure xml:id="fig_Vector_Curl_PA_Explorer">
         <caption>A SageMath Interact to examine vector fields</caption>
-  <!--TODO: Revisit this interactive if SageMath ever supports
-      putting LaTeX in input labels -->
         <interactive xml:id="sage_curl_interact" platform="sage" width="100%" aspect="1:1.45">
           <slate surface="sage">
             var('x,y,t')
@@ -951,7 +1006,7 @@
       </statement>
     </task>
   </task>
-  </activity>
+  </activity>-->
 <subsection component="instructor" >
   <title>Notes to Instructors and Dependencies</title>
 <p>
