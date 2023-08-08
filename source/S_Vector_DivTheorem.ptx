@@ -86,8 +86,8 @@
         plot2+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),-2*cos(s)),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
         plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='#004D40',opacity=.5)
         plot3+=parametric_plot3d((s*cos(t),s*sin(t),2),(s,0,2),(t,0,2*pi),frame=False,color='gray',opacity=.5)
-        plot4=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1-s^2/4)),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
-        plot4+=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1+s^2/4)+1),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
+        plot4=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1-s^2/3)),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
+        plot4+=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1+s^2/3)+1),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
         @interact
         def _(s=selector(['Version 1','Version 2','Version 3'],label="Top and Bottom to Display")):
             if s =='Version 1':
@@ -176,7 +176,7 @@
 <subsection xml:id="SS_Vector_DivThm_Verify">
   <title>The Divergence Theorem</title>
   <p>
-    The divergence of a vector field was developed as a measurement of the density with which the strength of vector field is changing. In three dimensions, the divergence measures the volume density in which the vector field is being created or destroyed. This means that if we integrate the divergence of a vector field over a volume of space, we will get the net amount of the vector field that is created or destroyed in that particular volume of space. Since the net amount of a vector field that is created or destroyed in a volume of space is the same as the net flux of the vector field through the closed surface that is the boundary of that volume, we have a correspondence between a triple integral of the divergence of a vector field on the interior of a closed surface and the flux integral of the vector field over the closed surface.
+    The divergence of a vector field was developed as a measurement of the density with which the strength of vector field is changing. In three dimensions, the divergence measures the density per unit volume in which the vector field is being created or destroyed. This means that if we integrate the divergence of a vector field over a volume of space, we will get the net amount of the vector field that is created or destroyed in that particular volume of space. Since the net amount of a vector field that is created or destroyed in a volume of space is the same as the net flux of the vector field through the closed surface that is the boundary of that volume, we have a correspondence between a triple integral of the divergence of a vector field on the interior of a closed surface and the flux integral of the vector field over the closed surface.
   </p>
 
   <theorem xml:id="thm_Div">
@@ -193,7 +193,7 @@
   </theorem>
 
   <p>
-    The preview activity and the discussion before the statement of the <xref ref="thm_Div" text="title"/> have hopefully given you some intuition as to why the theorem is true. The ideas should also seem similar to the manner in which we approached <xref ref="thm_Green" text="title"/> and <xref ref="thm_Stokes"/>. In the next example, we will verify the Divergence Theorem for a particular case.
+    The preview activity and the discussion before the statement of the <xref ref="thm_Div" text="title"/> have hopefully given you some intuition as to why the theorem is true. The ideas should also seem similar to the manner in which we approached <xref ref="thm_Green" text="title"/> and <xref ref="thm_Stokes" text="title" />. In the next example, we will verify the Divergence Theorem for a particular case.
   </p>
   <example>
     <introduction>
@@ -249,17 +249,25 @@
             <mrow>S_4\amp : \int_0^{1} \int_0^{1-s} -1+2s+t+e^s-s^2 \, dt\, ds</mrow>
           </md>
           Combining these we have:
-            <me> S_4-S_1+S_2-S_3: \quad \int_0^{1} \int_0^{1-s} -1+2s+2t-s^2 \, dt\, ds</me>
-          This evaluates to <m>-\frac{1}{12}</m>.
+            <md>
+              <mrow> S_4-S_1+S_2-S_3: \amp \quad \int_0^{1} \int_0^{1-s} -1+2s+2t-s^2 \, dt\, ds</mrow>
+              <mrow>  \amp \int_0^1 (s-1)^2 s \, ds</mrow>
+            </md>  
+          which evaluates to <m>\frac{1}{12}</m>.
         </p>
     </task>
     <task>
       <p>
-        Next, we calculate the triple integral on the right side of the Divergence Theorem for our example. Since <m>\vF=\langle xy-z, yz+e^x,z(x-y) \rangle </m>, we can calculate <me>\divg(\vF)= \dfrac{\partial}{\partial x}(xy-z)+\dfrac{\partial}{\partial y}(yz-e^x)+\dfrac{\partial}{\partial z}(z(x-y)) = y+z+(x-y)</me>. The region <m>Q</m> can be described by the bounds <m>0\leq x\leq 1</m>, <m>0\leq y\leq 1-x</m>, and <m>0\leq z\leq 1-x-y</m>. Thus, our triple integral <m>I</m> will be set up and evaluated as
+        Next, we calculate the triple integral on the right side of the Divergence Theorem for our example. Since <m>\vF=\langle xy-z, yz+e^x,z(x-y) \rangle </m>, we can calculate
         <md>
-          <mrow> I\amp \int_0^1 \int_0^{1-x} \int_0^{1-x-y} y+z+x \, dz \, dy \, dx </mrow>
-          <mrow> \amp = \int_0^1 \int_0^{1-x} y(1-x-y)+1/2(1-x-y)+x(1-x-y)  \, dy \, dx </mrow>
-          <mrow> \amp =\int_0^1 \frac{1}{12} (4x^3-3x^2-6x+5) \, dx </mrow>
+          <mrow>\divg(\vF) \amp = \dfrac{\partial}{\partial x}(xy-z)+\dfrac{\partial}{\partial y}(yz-e^x)+\dfrac{\partial}{\partial z}(z(x-y)) </mrow>
+          <mrow> \amp = y+z+(x-y) =z+x </mrow>
+        </md>
+        The region <m>Q</m> can be described by the bounds <m>0\leq x\leq 1</m>, <m>0\leq y\leq 1-x</m>, and <m>0\leq z\leq 1-x-y</m>. Thus, our triple integral <m>I</m> will be set up and evaluated as
+        <md>
+          <mrow> I \amp = \int_0^1 \int_0^{1-x} \int_0^{1-x-y} z+x \, dz \, dy \, dx </mrow>
+          <mrow> \amp = \int_0^1 \int_0^{1-x} 1/2(1-x-y)+x(1-x-y)  \, dy \, dx </mrow>
+          <mrow> \amp =\int_0^1 \frac{1}{12} (\frac{x^3}{3}) \, dx </mrow>
         </md>
         This evaluates to <m>\frac{1}{12}</m>, which matches with the flux calculations we did in the previous step to verify the Divergence Theorem for our example. 
       </p>
