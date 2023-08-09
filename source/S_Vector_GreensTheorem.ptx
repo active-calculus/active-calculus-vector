@@ -19,7 +19,7 @@
   </objectives>
   <introduction>
     <p>
-      We know from <xref ref="S_Vector_FTCLI"/> that a vector field is path-independent if and only if the circulation around every closed curve in its domain is <m>0</m>. It is probably not surprising that, given the multitude of names we have for path-independent vector fields, they are important vector fields that arise frequently. However, not every vector field is path-independent, and many times we will want to calculate the circulation around a closed curve in a vector field that is not path-independent. This section explores a connection between line integrals and double integrals that you may find surprising.
+      We know from <xref ref="S_Vector_FTCLI"/> that a vector field is path-independent if and only if the circulation around every closed curve in its domain is <m>0</m>. It is probably not surprising that, given the multitude of names we have for path-independent vector fields, they are important vector fields that arise frequently. However, not every vector field is path-independent, and many times we will want to calculate the circulation around a closed curve in a vector field that is not path-independent. This section explores a connection between line integrals and double integrals that you may find surprising. It will be the first of three major theorems that connect types of integrals that seem very different on the surface.
     </p>
     <exploration xml:id="PA_Vector_GreensTheorem">
       <introduction>
@@ -144,12 +144,10 @@
 			</p>
 		</statement>
 	</task>
-    <conclusion>
-		<p>
-			A natural question after completing this Preview Activity is if there is something special about the vector field <m>\vF</m> or the curve <m>C</m> that led to the results you obtained, and investigating this will be our principal task in this section.
-		</p>
-    </conclusion>
 </exploration>
+<p>
+	A natural question after completing the Preview Activity is if there is something special about the vector field <m>\vF</m> or the curve <m>C</m> that led to the results you obtained, and investigating this will be our principal task in this section.
+</p>
 </introduction>
 
 <subsection xml:id="SS_Vector_GreensTheorem_Circulation">
@@ -159,8 +157,17 @@
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_circ_cartoon">
       <caption>A region bounded by a curve</caption>
-      <image source="/fig_Vector_GreensTheorem_circ_cartoon" width="80%">
-		<description>A bean-shaped region in the plane that is bounded by a closed curve. The curve is oriented so that when walking along the curve, the region is always on the left. There is a square grid dividing the up the interior of the region.</description>
+      <image xml:id="img_Vector_GreensTheorem_circ_cartoon" width="80%">
+				<description>A bean-shaped region in the plane that is bounded by a closed curve. The curve is oriented so that when walking along the curve, the region is always on the left. There is a square grid dividing the up the interior of the region.</description>
+				<latex-image>
+					\begin{tikzpicture}[grid/.style={pattern=MyGrid}]
+					\path[draw,use Hobby shortcut,closed=true,GridSize=9pt,pattern=MyGrid,fill opacity=0.5, orientation arrows]
+					(0,0) .. (1,1) .. (2.3,0.5) .. (3.6,4) .. (0.5,3) .. (-0.7,2.1);
+					
+					\node at (2.25,1.99) {$R$};
+					\node at (5,2.3) {$C$};
+					\end{tikzpicture}
+				</latex-image>
       </image>
     </figure>
     <p>
@@ -169,20 +176,38 @@
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_circ_squares2">
       <caption>A square region divided into two smaller squares</caption>
-      <image source="/fig_Vector_GreensTheorem_circ_squares2.pdf" width="40%">
-		<description>A rectangular region in the plane that is bounded by a closed curve oriented counterclockwise. The square is divided into two squares of equal size, which are labeled as <m>R_1</m> and <m>R_2</m>. There are circular arrows inside each of the smaller regions indicating counterclockwise orientations.</description>
+      <image xml:id="img_Vector_GreensTheorem_circ_squares2" width="40%">
+				<description>A rectangular region in the plane that is bounded by a closed curve oriented counterclockwise. The square is divided into two squares of equal size, which are labeled as <m>R_1</m> and <m>R_2</m>. There are circular arrows inside each of the smaller regions indicating counterclockwise orientations.</description>
+				<latex-image>
+					\begin{tikzpicture}
+					\draw [thick,orientation arrows] (0,0) -- (4,0) -- (4,2) -- (0,2) -- (0,0);
+					\draw [thick] (2,0) -- (2,2);
+					\draw [thick] (0,2) -- (2,2);
+					\draw (0.1,0.85) arc (-170:170:0.9cm);
+					\draw (2.1,0.85) arc (-170:170:0.9cm);
+					%\draw (0.1,2.85) arc (-170:170:0.9cm);
+					%\draw (2.1,2.85) arc (-170:170:0.9cm);
+					\draw[arrow at end=>] (0.1,0.85) arc (-170:170:0.9cm);
+					\draw[arrow at end=>] (2.1,0.85) arc (-170:170:0.9cm);
+					%\draw[arrow at end=>] (0.1,2.85) arc (-170:170:0.9cm);
+					%\draw[arrow at end=>] (2.1,2.85) arc (-170:170:0.9cm);
+					\node at (1,1) {$R_1$};
+					\node at (3,1) {$R_2$};
+					%\node at (1,1) {$R_3$};
+					%\node at (3,1) {$R_4$};											
+					\end{tikzpicture}
+				</latex-image>
       </image>
     </figure>
     <p>
       We orient the boundary <m>C_i</m> of square region <m>R_i</m> in the manner suggested by the circular arrows. This means that the vertical boundary in common between <m>R_1</m> and <m>R_2</m> is oriented <em>up</em> when we calculate the line integral <m>\oint_{C_1}\vF\cdot d\vr</m> and oriented <em>down</em> when
       we evaluate <m>\oint_{C_2}\vF\cdot d\vr</m>. Thus, this line  segment does not contribute to the sum
       <m>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr</m>. Therefore, <me>\oint_{C_1}\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr </me>
-      is equal to the line integral of <m>\vF</m> along the boundary of the large square.
+      is equal to the line integral of <m>\vF</m> along the boundary of the large rectangle.
     </p>
     <p>
       Returning to <xref ref="fig_Vector_GreensTheorem_circ_cartoon"/>, if we find the circulation along the boundary of each of the smaller regions, the line integrals
-      along the boundaries that lie inside the region <m>R</m> will all offset. Thus the value should equal <m>\oint_C\vF\cdot d\vr</m>. If we make our grid fine enough, all of the smaller regions into which <m>R</m> is divided will be very close to rectangular. Our next activity looks at the relationship between
-      the circulation along a rectangular curve with sides parallel to the coordinate axes and the double integral of the circulation density over the rectangular region inside the curve.
+      along the boundaries that lie inside the region <m>R</m> will all offset. Thus the value should equal <m>\oint_C\vF\cdot d\vr</m>. If we make our grid fine enough, all of the smaller regions into which <m>R</m> is divided will be very close to rectangular. 
     </p>
     <!-- <activity xml:id="act_Vector_GreensTheorem_rectangle">
       <introduction>
@@ -398,14 +423,14 @@
       section. 
     </p> -->
 	<p>
-		In our earlier explanation, we saw how the calculation of circulation around a nice closed curve will be the sum of the circulation over pieces that enclose the same area, regardless of the size or number of the pieces used. In other words, 
+		The calculation of circulation around a nice closed curve will be the sum of the circulation over pieces that enclose the same area, regardless of the size or number of the pieces used. In other words, 
 		<me>\oint_C \vF \cdot d\vr = \sum_{R_i} \oint_{C_i} \vF\cdot d\vr</me>
-		where <m>C_i</m> is a bounding curve for one of the subregions <m>R_i</m>. We defined our circulation density as the ratio of circulation to area, so we can also subsititute the circulation around a region for the circulation density times the area of that region. Additionally, we can take the limit as our regions get smaller (because size and the number of regions does not affect the sum!) to get the following 
+		where <m>C_i</m> is a bounding curve for subregion <m>R_i</m>. We defined our circulation density as the ratio of circulation to area, so we can also subsititute the circulation around a region for the circulation density times the area of that region. Additionally, we can take the limit as our regions get smaller, since size and the number of regions does not affect the sum. Letting <m>\Delta R_i</m> represent the area of region <m>R_i</m> with boundary curve <m>C_i</m>, we have
 		<md>
 			<mrow>\oint_C \vF \cdot d\vr \amp = \lim_{\Delta R_i \rightarrow 0} \sum_{R_i} \oint_{C_i} \vF\cdot d\vr </mrow>
-			<mrow> \amp = \lim_{\Delta R_i \rightarrow 0} \sum_{R_i} \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y} \Delta R_i</mrow>
-		</md>
-		where <m>\Delta R_i</m> is the area of the region <m>R_i</m> with boundary curve <m>C_i</m>. Hopefully the above expression looks familiar to you as the Reimann sum definition for the double integral of <m>\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}</m> over the region <m>R</m>. For <q>nice</q> closed curves we can equate the circulation around the boundary (computed as a line integral) with a double integral of the circulation density over the region enclosed (computed with a double integral). 
+			<mrow> \amp = \lim_{\Delta R_i \rightarrow 0} \sum_{R_i} \left(\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right) \Delta R_i</mrow>
+		</md>.
+		This expression should look familiar as the Reimann sum definition for the double integral of <m>\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}</m> over the region <m>R</m>. For <q>nice</q> closed curves we can equate the circulation around the boundary (computed as a line integral) with a double integral of the circulation density over the region enclosed (computed with a double integral). 
 	</p>
   </subsection>
 
@@ -419,8 +444,15 @@
       	<p>
 			The restriction that the curve in <xref ref="thm_Green" text="title"/> prohibits curves such as the one below, which crosses itself.
 		</p>
-		<image source="/image_Vector_GreensTheorem_FigureEight">
+		<image xml:id="image_Vector_GreensTheorem_FigureEight">
 			<description>A curve in the shape of a figure eight</description>
+			<sageplot>
+				var('x,y,t')
+				a=pi/6
+				plot1=parametric_plot((sin(2*t),cos(t)),(t,0,2*pi),color="blue",thickness=1.5,axes_labels=["$x$","$y$"])+arrow((sin(2*a),cos(a)),(sin(2*(a-0.05)),cos(a-0.05)),color="blue")
+				final_plot1=plot1
+				final_plot1				
+			</sageplot>
 		</image>
     </aside>
     <theorem xml:id="thm_Green">
@@ -449,17 +481,30 @@
     </p> -->
     
     <p>
-      At first glance, it may seem that <xref ref="thm_Green" text="title"/> is of purely intellectual interest. However, we have already encountered situations where parametrization a curve can be complicated. This is particularly true when the curve has <q>corners</q> that require us to give separate parametrizations for several pieces of the curve, such as with the rectangular curve pictured in <xref ref="fig_Vector_GreensTheorem_Rectangle"/>. However, as with this rectangle, is often the case that a curve that is difficult to parametrize bounds a region that is not too complex to describe using rectangular or polar coordinates. For instance, the rectangular region in <xref ref="fig_Vector_GreensTheorem_Rectangle"/> can be described as <m>1\leq x\leq 4</m> and <m>2\leq y\leq 4</m>, rather than
-      parametrization each of the four sides of the rectangle separately. Additionally, the integrand of the double integral in <xref ref="thm_Green" text="title"/> involves partial derivatives that can sometimes result in an integrand that is very easy to work with. The purpose of <xref ref="thm_Green" text="title"/> is, at its core, to allow you to exchange one type of integration problem (a line integral) for another type of integration problem (a double integral). This will be a
+      At first glance, it may seem that <xref ref="thm_Green" text="title"/> is of purely intellectual interest. However, we have already encountered situations where parameterizing a curve can be complicated. This is particularly true when the curve has <q>corners</q> that require us to give separate parametrizations for several pieces of the curve, such as with the rectangular curve pictured in <xref ref="fig_Vector_GreensTheorem_Rectangle"/>. However, as with this rectangle, is often the case that a curve that is difficult to parametrize bounds a region that is not too complex to describe using rectangular or polar coordinates. For instance, the rectangular region in <xref ref="fig_Vector_GreensTheorem_Rectangle"/> can be described as <m>1\leq x\leq 4</m> and <m>2\leq y\leq 4</m>, which is a simpler description than needing to parameterize each of the four sides of the rectangle separately. Additionally, the integrand of the double integral in <xref ref="thm_Green" text="title"/> involves partial derivatives that can sometimes result in an integrand that is easy to work with. The purpose of <xref ref="thm_Green" text="title"/> is, at its core, to allow you to exchange one type of integration problem (a line integral) for another type of integration problem (a double integral). This will be a
       recurring theme as this chapter continues.
     </p>
     <figure xml:id="fig_Vector_GreensTheorem_Rectangle">
       <caption>A rectangular curve</caption>
-      <image width="55%" source="/image_Vector_GreensTheorem_rectangle">
-	<description>
-	  A rectangular curve in the <m>xy</m>-plane. The lower-left corner is labeled <m>(1,2)</m>. The upper-right corner is labeled <m>(4,4)</m>. The curve is oriented
-	  counterclockwise.
-	</description>
+      <image width="55%" xml:id="image_Vector_GreensTheorem_rectangle">
+				<description>
+					A rectangular curve in the <m>xy</m>-plane. The lower-left corner is labeled <m>(1,2)</m>. The upper-right corner is labeled <m>(4,4)</m>. The curve is oriented
+					counterclockwise.
+				</description>
+				<sageplot>
+					var('x','t');
+					d=1
+					plot1= parametric_plot((2+2*d*d,3+d*t),(t,-d,d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3,xmin=-.5,xmax=5,ymin=-.5,ymax=5)
+					plot1+= parametric_plot((2-d*d,3+d*t),(t,-d,d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+					plot1+= parametric_plot((2+d*t,3+d*d),(t,-d,2*d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+					plot1+= parametric_plot((2+d*t,3-d*d),(t,-d,2*d),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]],thickness=3)
+					plot1+= text("$(1,2)$",(1,1.75),color='black',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)+text("$(4,4)$",(4,4.25),color='black',fontsize='x-large',clip=True,xmin=-.5,xmax=5,ymin=-.5,ymax=5)
+					plot1+=arrow((2+2*d^2,3+d*(-0.5)),(2+2*d^2,3+d*(+0.5)),color='blue')
+					plot1+=arrow((2-d^2,3-d*(-0.5)),(2-d^2,3-d*(+0.5)),color='blue')
+					plot1+=arrow((2-d*(-1/2),3+d*d),(2-d*1/2,3+d*(d)),color='blue')
+					plot1+=arrow((2+d*(-1/2),3-d*d),(2+d*1/2,3-d*(d)),color='blue')
+					plot1					
+				</sageplot>
       </image>
     </figure>
 	<example>
@@ -467,31 +512,30 @@
 			We will verify Green's Theorem by computing both sides of the equation separately when <m>\vF =\langle x^2-xy,y^2-2x \rangle </m> and <m>C</m> is the bounding curve given in <xref ref="fig_Vector_GreensTheorem_Rectangle" />.
 		</p>
 		<p>
-			First we will calculate the double integral (the right hand side of the equation in Green's Theorem). The circulation density of <m>\vF = \langle x^2-xy,y^2-2x \rangle </m> will be <m>-2-x</m>, which is continuous everywhere in the region <m>R</m>. Our iterated itegral becomes
+			First, we calculate the double integral (the right hand side of the equation in Green's Theorem). The circulation density of <m>\vF = \langle x^2-xy,y^2-2x \rangle </m> will be <m>-2+x</m>, which is continuous everywhere in the region <m>R</m>. Our iterated itegral becomes
 			<md>
-				<mrow>\iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA \amp = </mrow>
-				<mrow> \amp = \int_2^4 \int_1^4 (-2+x) \enspace dx \enspace dy </mrow>
-				<mrow> \amp = \int_2^4    (-2x+x^2/2)_{|_{x=1}^{x=4}} \enspace dy </mrow>
-				<mrow> \amp = \int_2^4 \frac{3}{2} \enspace dy </mrow>
+				<mrow>\iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA \amp = \int_2^4 \int_1^4 (-2+x) \, dx \, dy </mrow>
+				<mrow> \amp = \int_2^4    \left[-2x+x^2/2\right]_{x=1}^{x=4} \, dy </mrow>
+				<mrow> \amp = \int_2^4 \frac{3}{2} \, dy </mrow>
 				<mrow> \amp = 3 </mrow>
 			</md>
 			Note how easy it is to set up and evaluate this double integral.
 		</p>
 		<p>
 			We will need to compute the line integral of <m>\vF</m> over the four segements of the bounding rectangle. We will use the following parameterizations:
-			<ul>
-				<li><m>\vr_{bottom}(t) = \langle 1+3t,2 \rangle </m></li>
-				<li><m>\vr_{right}(t) = \langle 4,2+2t \rangle </m></li>
-				<li><m>\vr_{top}(t) = \langle 4-3t,4 \rangle </m></li>
-				<li><m>\vr_{left}(t) = \langle 1,4-2t \rangle </m></li>
-			</ul>
+			<md>
+				<mrow>\vr_{\text{bottom}}(t) \amp = \langle 1+3t,2 \rangle </mrow>
+				<mrow>\vr_{\text{right}}(t) \amp = \langle 4,2+2t \rangle </mrow>
+				<mrow>\vr_{\text{top}}(t) \amp = \langle 4-3t,4 \rangle </mrow>
+				<mrow>\vr_{\text{left}}(t) \amp = \langle 1,4-2t \rangle </mrow>
+			</md>
 			where each paramterization uses <m>0\leq t\leq 1</m>. These parameterizations will yeild the following line integrals:
-			<ul>
-				<li><m>\int_{bottom} \vF \cdot d\vr = \int_0^1 ( (1+3t)^2 -(1+3t)(2) ) 3 \enspace dt = 6 </m></li>
-				<li><m>\int_{right} \vF \cdot d\vr = \int_0^1 ( (2+2t)^2 -(2)(4) ) 2 \enspace dt = 8/3  </m></li>
-				<li><m>\int_{top} \vF \cdot d\vr = \int_0^1 ( (4-3t)^2 -(4-3t)(4) ) (-3) \enspace dt = 9 </m></li>
-				<li><m>\int_{left} \vF \cdot d\vr = \int_0^1 ( (4-2t)^2 -(2)(1) ) (-2) \enspace dt = -44/3  </m></li>
-			</ul>
+			<md>
+				<mrow>\int_{\text{bottom}} \vF \cdot d\vr \amp = \int_0^1 ( (1+3t)^2 -(1+3t)(2) ) 3 \, dt = 6 </mrow>
+				<mrow>\int_{\text{right}} \vF \cdot d\vr \amp = \int_0^1 ( (2+2t)^2 -(2)(4) ) 2 \, dt = 8/3  </mrow>
+				<mrow>\int_{\text{top}} \vF \cdot d\vr \amp = \int_0^1 ( (4-3t)^2 -(4-3t)(4) ) (-3) \, dt = 9 </mrow>
+				<mrow>\int_{\text{left}} \vF \cdot d\vr \amp = \int_0^1 ( (4-2t)^2 -(2)(1) ) (-2) \, dt = -44/3  </mrow>
+			</md>
 			Note that the sum of these line integrals is 3, and thus Green's Theorem is verified for our case since 
 			<me>\oint_C \vF\cdot d\vr = 3 = \iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA</me>
 		</p>
@@ -565,13 +609,20 @@
 	    containing <m>(0,0)</m>. </p>
 	<figure xml:id="fig_Vector_GreensTheorem_ccw_field">
 	  <caption>The vector field <m>\vF</m></caption>
-	  <image source="/fig_Vector_GreensTheorem_ccw_field" width="65%">
-	    <description>A vector field with vectors tangent to
-	    circles oriented counterclockwise and centered at the
-	    origin as well as the unit circle centered at the origin
-	    and oriented counterclockwise. The vectors are longer
-	    close to the origin and shorter farther from the
-	    origin.</description>
+	  <image xml:id="img_Vector_GreensTheorem_ccw_field" width="65%">
+	    <description>
+				A vector field with vectors tangent to circles oriented counterclockwise and centered at the origin as well as the unit circle centered at the origin and oriented counterclockwise. The vectors are longer close to the origin and shorter farther from the origin.
+			</description>
+			<sageplot>
+				var('x,y,t')
+				F = (-y/((x^2+y^2)),x/((x^2+y^2)))
+				F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None,
+									 lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None]
+				plot1=plot_vector_field(F_control,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
+				plot2=parametric_plot((cos(t),sin(t)),(t,0,2*pi),color="red",thickness=1.5,axes_labels=["$x$","$y$"])+arrow((1/sqrt(2),1/sqrt(2)),(1/sqrt(2)-0.05,1/sqrt(2)+0.05),color="red")+text("$C$",(1.05,0.6),color='red',background_color='white',fontsize='x-large',clip=True)
+				final_plot1=plot1+plot2
+				final_plot1				
+			</sageplot>
 	  </image>
 	</figure>
       </introduction>
@@ -601,8 +652,7 @@
 	    \frac{2y^{2}}{{\left(x^{2} + y^{2}\right)}^{2}} -
 	    \frac{1}{{x^{2} + y^{2}}} = \frac{y^2-x^2}{{\left(x^{2} + y^{2}\right)}^{2}}</mrow>
 	    </md>. Thus,
-	  <me>\frac{\partial F_2}{\partial x} - \frac{\partial
-	  F_1}{\partial y} = 0</me>.</p>
+	  <me>\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} = 0</me>.</p>
 	</solution>
       </task>
       <task>
@@ -666,13 +716,19 @@
 	    <caption>
 	      The vector field <m>\vG</m>
 	    </caption>
-	    <image source="/fig_Vector_GreensTheorem_outward_field" width="65%">
+	    <image xml:id="img_Vector_GreensTheorem_outward_field" width="65%">
 	      <description>
-		A vector field with vectors radiating from the origin
-		and orthogonal to circles centered at the
-		origin. Vectors are longest near the origin and get
-		shorter farther from the origin.
+					A vector field with vectors radiating from the origin and orthogonal to circles centered at the origin. Vectors are longest near the origin and get shorter farther from the origin.
 	      </description>
+				<sageplot>
+					var('x,y,t')
+					F = (x/((x^2+y^2)),y/((x^2+y^2)))
+					F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None,
+										 lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 > 0.1 else None]
+					plot3=plot_vector_field(F,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
+					final_plot2=plot3
+					final_plot2					
+				</sageplot>
 	    </image>
 	  </figure>
 	</statement>
