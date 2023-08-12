@@ -1,4 +1,4 @@
-<section xml:id="S_Vector_VectorFields">
+<section xml:id="S_Vector_VectorFields" xmlns:xi="http://www.w3.org/2001/XInclude" >
     <title>Vector Fields</title>
     <objectives>
       <ul>
@@ -7,8 +7,7 @@
             What is a vector field?
           </p>
         </li>
-
-	<li>
+        <li>
           <p>
             What are some familiar contexts in which vector fields arise?
           </p>
@@ -21,206 +20,157 @@
         </li>
         <li>
           <p>
-            How do gradients of functions with partial derivatives
-	    connect to vector fields?
+            How do gradients of functions with partial derivatives connect to vector fields?
           </p>
         </li>
       </ul>
     </objectives>
   <introduction>
     <p>
-      Thus far vectors have played a central role in our study of
-      multivariable calculus.  We know how to do operations on vectors
-      (addition, scalar multiplication, dot product, etc.), and we
-      have seen how vectors can be used to describe curves in
-      <m>\R^2</m> and <m>\R^3</m>.  The examples of using vectors to
-      describe curves was our first example of a vector-valued
-      function.  That is, a curve <m>\vr(t)</m> is a function
-      that takes as input a real number and produces a vector in
-      <m>\R^2</m> or <m>\R^3</m>.  In this section, we will expand our
-      understanding of vector-valued functions to take as input a
-      point <m>(x,y)</m> in <m>\R^2</m> or a point <m>(x,y,z)</m> in
-      <m>\R^3</m> and produce a vector (typically in <m>\R^2</m> or
-      <m>\R^3</m>, respectively).
+      Vectors have played a central role in our study of multivariable calculus. We know how to do operations on vectors
+      (addition, scalar multiplication, dot product, etc.), and we have seen how vectors can be used to describe curves in <m>\R^2</m> and <m>\R^3</m>. The examples of using vectors to describe curves was our first example of a vector-valued function. In <xref ref="vvf1_def" /> a curve is traced by the terminal point of <m>\vr(t)</m>, a function that has a real number as an input and produces a vector in <m>\R^2</m> or <m>\R^3</m>. In this section, we will expand our understanding of vector-valued functions to take a point <m>(x,y)</m> in <m>\R^2</m> (or a point <m>(x,y,z)</m> in <m>\R^3</m>) as an input and produce a vector (typically in <m>\R^2</m> or <m>\R^3</m>, respectively) as output.
     </p>
 
     <exploration xml:id="PA_Vector_VectorFields">
-        <introduction>
+      <introduction>
         <p>
-        It's common for weather forecasters to discuss the wind <term>speed</term>,
-        but as any student who has gotten this far in the text will know,
-        this nomenclature is imprecise.
-        It's not terribly helpful to tell someone the wind is blowing
-	at <quantity><mag>10</mag><unit base="meter" prefix="kilo"/><per
-	base="hour" /></quantity> without telling them the direction in which the wind is blowing.
-        If you're trying to make a decision based on what the wind is doing,
-        you need to know about the direction as well.
-        (Perhaps you are taking off in a hot air balloon and need to know which direction the chase team should head to keep track of you.)
-        Because of the swirling nature of wind,
-        it makes sense to give the wind <term>velocity</term>
-        at every point in a region
-        (two-dimensional or three-dimensional).
+        It's common when discussing weather to talk about the wind <term>speed</term>, but as any student who has gotten this far in the text will know, this nomenclature is imprecise. It's not terribly helpful to tell someone the wind is blowing at <quantity><mag>10</mag><unit base="meter" prefix="kilo"/><per base="hour" /></quantity> without telling them the direction in which the wind is blowing.
+        If you're trying to make a decision based on what the wind is doing, you need to know about the direction as well. For instance, if you are taking off in a hot air balloon, the wind direction will determine which direction the chase team should start going to keep track of you.
+        Because of the swirling nature of wind, it makes sense to give the wind <term>velocity</term> at each point in a region (two-dimensional or three-dimensional).
         </p>
-        </introduction>
-        <task xml:id="task_PA_Vector_VectorFields_F">
-            <!-- If you use none of hint, answer, or solution, you don't need the -->
-            <!-- statement tag -->
-            <statement>
-            <p>
-              Suppose that given a point <m>(x,y)</m> in the plane,
-              you know that the wind velocity at that point is given by the vector <m>\vF(x,y) = \langle y,x\rangle</m>.
-              For example, we'd then know that at the point <m>(1,-1)</m>,
-              the wind velocity is <m>\vF(1,-1) = \langle -1,1\rangle</m>.
-              In the table below,
-              fill in the wind velocity vectors for the given points.
-            </p>
-            <sidebyside>
-                <!--sidebyside is the way to center things that would be LaTeX -->
-                <!--floats when you don't want a caption on them -->
-                <tabular>
-                    <col halign="center" right="minor" /><col /><col /><col /><col /><col />
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(2,1)</m></cell>
-                  <cell><m>(0,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(3,-1)</m></cell>
-                  <cell><m>(-2,-1)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vF(x,y)</m></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                </row>
-              </tabular>
-            </sidebyside>
-            </statement>
-            <answer>
-            <sidebyside>
-                <!--sidebyside is the way to center things that would be LaTeX -->
-                <!--floats when you don't want a caption on them -->
-                <tabular>
-                    <col halign="center" right="minor" /><col /><col /><col /><col /><col />
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(2,1)</m></cell>
-                  <cell><m>(0,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(3,-1)</m></cell>
-                  <cell><m>(-2,-1)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vF(x,y)</m></cell>
-                  <cell><m>\langle 1,2\rangle</m></cell>
-                  <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 2,-1\rangle</m></cell>
-                  <cell><m>\langle -1,3\rangle</m></cell>
-                  <cell><m>\langle -1,-2\rangle</m></cell>
-                </row>
-              </tabular>
-            </sidebyside>
-            </answer>
-            <solution>
-                <p>The vector field <m>\vF(x,y)</m> takes the coordinates of the point <m>(x,y)</m> and reverses them to make the components of the vector. Thus, <m>\vF(2,1) = \langle 1,2\rangle</m>. The remaining vectors are shown in the table below.</p>
-                <sidebyside>
-                <!--sidebyside is the way to center things that would be LaTeX -->
-                <!--floats when you don't want a caption on them -->
-                <tabular>
-                    <col halign="center" right="minor" /><col /><col /><col /><col /><col />
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(2,1)</m></cell>
-                  <cell><m>(0,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(3,-1)</m></cell>
-                  <cell><m>(-2,-1)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vF(x,y)</m></cell>
-                  <cell><m>\langle 1,2\rangle</m></cell>
-                  <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 2,-1\rangle</m></cell>
-                  <cell><m>\langle -1,3\rangle</m></cell>
-                  <cell><m>\langle -1,-2\rangle</m></cell>
-                </row>
-              </tabular>
-            </sidebyside>
-            </solution>
-        </task>
-        <task xml:id="task_PA_Vector_VectorFields_G">
-            <statement>
-                <p>
-              Suppose that we associate the vector
-              <m>\vG(x,y) = -x\vj</m> to a point <m>(x,y)</m> in the plane.
-              Complete the table below by giving the vector associated to each of the given points.
-            </p>
-            <sidebyside>
-                <tabular>
-                    <col halign="center" right="minor" /><col /><col /><col /><col /><col /><col /><col /><col />
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(-2,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(0,-2)</m></cell>
-                  <cell><m>(1,1)</m></cell>
-                  <cell><m>(2,3)</m></cell>
-                  <cell><m>(3,2)</m></cell>
-                  <cell><m>(-1,0)</m></cell>
-                  <cell><m>(1,3)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vG(x,y)</m></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                  <cell></cell>
-                </row>
-              </tabular>
-            </sidebyside>
-            </statement>
-            <answer>
-            <sidebyside>
-                <tabular>
-                    <col halign="center" right="minor" />
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                    <col halign="center"/>
-                <row bottom="minor">
-                  <cell><m>(x,y)</m></cell>
-                  <cell><m>(-2,0)</m></cell>
-                  <cell><m>(-1,2)</m></cell>
-                  <cell><m>(0,-2)</m></cell>
-                  <cell><m>(1,1)</m></cell>
-                  <cell><m>(2,3)</m></cell>
-                  <cell><m>(3,2)</m></cell>
-                  <cell><m>(-1,0)</m></cell>
-                  <cell><m>(1,3)</m></cell>
-                </row>
-                <row>
-                  <cell><m>\vG(x,y)</m></cell>
-                  <cell><m>\langle 0,2\rangle</m></cell>
-                  <cell><m>\langle 0,1\rangle</m></cell>
-                  <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 0,-1\rangle</m></cell>
-                  <cell><m>\langle 0,-2\rangle</m></cell>
-                  <cell><m>\langle 0,-3\rangle</m></cell>
-                  <cell><m>\langle 0,1\rangle</m></cell>
-                  <cell><m>\langle 0,-1\rangle</m></cell>
-                </row>
-              </tabular>
-            </sidebyside>
-            </answer>
+      </introduction>
+      <task xml:id="task_PA_Vector_VectorFields_F">
+        <statement>
+          <p>
+            Suppose that given a point <m>(x,y)</m> in the plane, you know that the wind velocity at that point is given by the vector <m>\langle y,x\rangle</m>. For example, we'd then know that at the point <m>(1,-1)</m>, the wind velocity is <m>\langle -1,1\rangle</m>. We will give the wind velocity as a function <m>\vF</m>, where <m>\vF(x,y) = \langle y,x\rangle</m>. In the table below, fill in the wind velocity vectors for the given points.
+          </p>
+          <tabular>
+            <col halign="center" right="minor" /><col /><col /><col /><col /><col />
+            <row bottom="minor">
+              <cell><m>(x,y)</m></cell>
+              <cell><m>(2,1)</m></cell>
+              <cell><m>(0,0)</m></cell>
+              <cell><m>(-1,2)</m></cell>
+              <cell><m>(3,-1)</m></cell>
+              <cell><m>(-2,-1)</m></cell>
+            </row>
+            <row>
+              <cell><m>\vF(x,y)</m></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+            </row>
+          </tabular>
+        </statement>
+        <answer>
+          <tabular>
+            <col halign="center" right="minor" /><col /><col /><col /><col /><col />
+            <row bottom="minor">
+              <cell><m>(x,y)</m></cell>
+              <cell><m>(2,1)</m></cell>
+              <cell><m>(0,0)</m></cell>
+              <cell><m>(-1,2)</m></cell>
+              <cell><m>(3,-1)</m></cell>
+              <cell><m>(-2,-1)</m></cell>
+            </row>
+            <row>
+              <cell><m>\vF(x,y)</m></cell>
+              <cell><m>\langle 1,2\rangle</m></cell>
+              <cell><m>\langle 0,0\rangle</m></cell>
+              <cell><m>\langle 2,-1\rangle</m></cell>
+              <cell><m>\langle -1,3\rangle</m></cell>
+              <cell><m>\langle -1,-2\rangle</m></cell>
+            </row>
+          </tabular>
+        </answer>
+        <solution>
+          <p>The vector field <m>\vF(x,y)</m> takes the coordinates of the point <m>(x,y)</m> and reverses them to make the components of the vector. Thus, <m>\vF(2,1) = \langle 1,2\rangle</m>. The remaining vectors are shown in the table below.
+          </p>
+          <tabular>
+            <col halign="center" right="minor" /><col /><col /><col /><col /><col />
+            <row bottom="minor">
+              <cell><m>(x,y)</m></cell>
+              <cell><m>(2,1)</m></cell>
+              <cell><m>(0,0)</m></cell>
+              <cell><m>(-1,2)</m></cell>
+              <cell><m>(3,-1)</m></cell>
+              <cell><m>(-2,-1)</m></cell>
+            </row>
+            <row>
+              <cell><m>\vF(x,y)</m></cell>
+              <cell><m>\langle 1,2\rangle</m></cell>
+              <cell><m>\langle 0,0\rangle</m></cell>
+              <cell><m>\langle 2,-1\rangle</m></cell>
+              <cell><m>\langle -1,3\rangle</m></cell>
+              <cell><m>\langle -1,-2\rangle</m></cell>
+            </row>
+          </tabular>
+        </solution>
+      </task>
+      <task xml:id="task_PA_Vector_VectorFields_G">
+        <statement>
+          <p>
+            Suppose that we associate the vector <m>\vG(x,y) = -x\vj</m> to a point <m>(x,y)</m> in the plane. Complete the table below by giving the vector associated to each of the given points.
+          </p>
+          <tabular>
+            <col halign="center" right="minor" /><col /><col /><col /><col /><col /><col /><col /><col />
+            <row bottom="minor">
+              <cell><m>(x,y)</m></cell>
+              <cell><m>(-2,0)</m></cell>
+              <cell><m>(-1,2)</m></cell>
+              <cell><m>(0,-2)</m></cell>
+              <cell><m>(2,3)</m></cell>
+              <cell><m>(3,2)</m></cell>
+              <cell><m>(-1,0)</m></cell>
+              <cell><m>(1,3)</m></cell>
+            </row>
+            <row>
+              <cell><m>\vG(x,y)</m></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+              <cell></cell>
+            </row>
+          </tabular>
+        </statement>
+        <answer>
+          <tabular>
+            <col halign="center" right="minor" />
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <row bottom="minor">
+              <cell><m>(x,y)</m></cell>
+              <cell><m>(-2,0)</m></cell>
+              <cell><m>(-1,2)</m></cell>
+              <cell><m>(0,-2)</m></cell>
+              <cell><m>(2,3)</m></cell>
+              <cell><m>(3,2)</m></cell>
+              <cell><m>(-1,0)</m></cell>
+              <cell><m>(1,3)</m></cell>
+            </row>
+            <row>
+              <cell><m>\vG(x,y)</m></cell>
+              <cell><m>\langle 0,2\rangle</m></cell>
+              <cell><m>\langle 0,1\rangle</m></cell>
+              <cell><m>\langle 0,0\rangle</m></cell>
+              <cell><m>\langle 0,-2\rangle</m></cell>
+              <cell><m>\langle 0,-3\rangle</m></cell>
+              <cell><m>\langle 0,1\rangle</m></cell>
+              <cell><m>\langle 0,-1\rangle</m></cell>
+            </row>
+          </tabular>
+        </answer>
             <solution>
                 <p>
                     Note that another way of writing <m>\vG(x,y)</m> is <m>\langle 0 -x\rangle</m>. Thus, <m>\vG(2,3) = \langle 0,-2\rangle</m>, for example. The remaining answers are found in the table below.
@@ -241,7 +191,6 @@
                   <cell><m>(-2,0)</m></cell>
                   <cell><m>(-1,2)</m></cell>
                   <cell><m>(0,-2)</m></cell>
-                  <cell><m>(1,1)</m></cell>
                   <cell><m>(2,3)</m></cell>
                   <cell><m>(3,2)</m></cell>
                   <cell><m>(-1,0)</m></cell>
@@ -252,7 +201,6 @@
                   <cell><m>\langle 0,2\rangle</m></cell>
                   <cell><m>\langle 0,1\rangle</m></cell>
                   <cell><m>\langle 0,0\rangle</m></cell>
-                  <cell><m>\langle 0,-1\rangle</m></cell>
                   <cell><m>\langle 0,-2\rangle</m></cell>
                   <cell><m>\langle 0,-3\rangle</m></cell>
                   <cell><m>\langle 0,1\rangle</m></cell>
@@ -263,48 +211,89 @@
             </solution>
         </task>
         <task xml:id="task_PA_Vector_VectorFields_F_draw">
+          <statement>
             <p>
-                A table of values of these vector-valued functions is useful,
-                but perhaps even better is a method of visualizing the vectors.
-                In keeping with our wind velocity analogy,
-                if <m>\vF(2,1) = \langle 1,2\rangle</m>,
-                we draw the vector <m>\langle 1,2\rangle</m> with its tail at the point <m>(2,1)</m>.
+              A table of values of these vector-valued functions is useful to understand the input vs. output nature of a vector field as a function, but perhaps even better is a method of visualizing the vector outputs. A good picture is worth a thousand words (or numbers). Returning to our analogy of the output vector for our vector field being wind velocity, if <m>\vF(2,1) = \langle 1,2\rangle</m>, this means that at the location <m>(2,1)</m> the wind is moving in the direction given by <m>\langle 1,2\rangle</m>. Thus, we draw the output vector <m>\langle 1,2\rangle</m> with its initial point at <m>(2,1)</m>.
             </p>
             <p>
-              Using the first set of axes in <xref
-	      ref="fig_PA_Vector_VectorFields_axes" />,
-              plot the vectors <m>\vF(x,y)</m> for the five points in the table in <xref ref="task_PA_Vector_VectorFields_F" text="local">part</xref>.
-              The example <m>\vF(1,-1) = \langle -1,1\rangle</m> is drawn for you.
+              Using the first set of axes in <xref ref="fig_PA_Vector_VectorFields_axes" />, plot the vectors <m>\vF(x,y)</m> for the five points in the table in <xref ref="task_PA_Vector_VectorFields_F" text="local">part</xref>. The example <m>\vF(1,-1) = \langle -1,1\rangle</m> is drawn for you.
             </p>
+          </statement>
+          <solution>
+            <image width="60%" xml:id="fig_PA_Vector_VectorFields_axes_F_solution">
+              <sageplot>
+                var('t')
+                grid = Graphics()
+                grid.set_aspect_ratio(1)
+                for i in range(-4,5,1):
+                  grid += line([(i,-4),(i,4)],color="lightgray",axes_labels=["$x$","$y$"])
+                  grid += line([(-4,i),(4,i)],color="lightgray")
+                vFlist=[(2,1),(0,0),(-1,2),(3,-1),(-2,-1)]
+                grid1=grid
+                for v in vFlist:
+                  grid1+=arrow(v,(v[1]+v[0],v[0]+v[1]),color="blue")
+                grid1
+              </sageplot>
+            </image>
+          </solution>          
         </task>
-
         <task xml:id="task_PA_Vector_VectorFields_G_draw">
+          <statement>
             <p>
-              Using the second set of axes in <xref
-	      ref="fig_PA_Vector_VectorFields_axes" />,
-              plot the vectors <m>\vG(x,y)</m> for the eight points in the table in <xref ref="task_PA_Vector_VectorFields_G" text="local">part</xref>.
+              Using the second set of axes in <xref ref="fig_PA_Vector_VectorFields_axes" />, plot the vectors <m>\vG(x,y)</m> for the eight points in the table in <xref ref="task_PA_Vector_VectorFields_G" text="local">part</xref>.
             </p>
-              <figure xml:id="fig_PA_Vector_VectorFields_axes">
-                <caption>Axes for plotting some vectors from <m>\vF(x,y)</m> and <m>\vG(x,y)</m>.</caption>
-                <sidebyside widths = "47% 47%" margins ="0% 6% 0%">
-                    <image
-			source="/fig_PA_Vector_VectorFields_axes_F">
-		      <description>Axes for a rectangular coordinate
-		      system. The horizontal axis is labeled <m>x</m>
-		      and the vertical axis is labeled <m>y</m>. Both
-		      axes range from <m>-4</m> to <m>4</m>. There is
-		      a blue vector pointing from the point
-		      <m>(1,-1)</m> to the point <m>(0,0)</m>.</description>
-		    </image>
-                    <image
-			source="/fig_PA_Vector_VectorFields_axes_G">
-		      <description>Axes for a rectangular coordinate
-		      system. The horizontal axis is labeled <m>x</m>
-		      and the vertical axis is labeled <m>y</m>. Both
-		      axes range from <m>-4</m> to <m>4</m>.</description>
-		    </image>
-                </sidebyside>
-              </figure>
+            <figure xml:id="fig_PA_Vector_VectorFields_axes">
+              <caption>Axes for plotting some vectors from <m>\vF(x,y)</m> and <m>\vG(x,y)</m>.</caption>
+              <sidebyside widths = "47% 47%" margins ="0% 6% 0%">
+                <image xml:id="fig_PA_Vector_VectorFields_axes_F">
+                  <description>
+                    Axes for a rectangular coordinate system. The horizontal axis is labeled <m>x</m> and the vertical axis is labeled <m>y</m>. Both axes range from <m>-4</m> to <m>4</m>. There is a blue vector pointing from the point <m>(1,-1)</m> to the point <m>(0,0)</m>.
+                  </description>
+                  <sageplot>
+                    var('t')
+                    grid = Graphics()
+                    grid.set_aspect_ratio(1)
+                    for i in range(-4,5,1):
+                      grid += line([(i,-4),(i,4)],color="lightgray",axes_labels=["$x$","$y$"])
+                      grid += line([(-4,i),(4,i)],color="lightgray")
+                    grid += arrow((1,-1),(0,0),color="blue")
+                    grid                    
+                  </sageplot>
+                </image>
+                <image width="60%" xml:id="fig_PA_Vector_VectorFields_axes_G">
+                  <description>
+                    Axes for a rectangular coordinate system. The horizontal axis is labeled <m>x</m> and the vertical axis is labeled <m>y</m>. Both axes range from <m>-4</m> to <m>4</m>.
+                  </description>
+                  <sageplot>
+                    var('t')
+                    grid = Graphics()
+                    grid.set_aspect_ratio(1)
+                    for i in range(-4,5,1):
+                      grid += line([(i,-4),(i,4)],color="lightgray",axes_labels=["$x$","$y$"])
+                      grid += line([(-4,i),(4,i)],color="lightgray")
+                    grid
+                  </sageplot>
+                </image>
+              </sidebyside>
+            </figure>
+          </statement>
+          <solution>
+            <image width="60%" xml:id="fig_PA_Vector_VectorFields_axes_G_solution">
+              <sageplot>
+                var('t')
+                grid = Graphics()
+                grid.set_aspect_ratio(1)
+                for i in range(-4,5,1):
+                  grid += line([(i,-4),(i,4)],color="lightgray",axes_labels=["$x$","$y$"])
+                  grid += line([(-4,i),(4,i)],color="lightgray")
+                vGlist=[(-2,0),(-1,2),(0,-2),(2,3),(3,2),(-1,0),(1,3)]
+                grid2=grid
+                for v in vGlist:
+                  grid2+=arrow(v,(v[0],v[1]-v[0]),color="blue")
+                grid2
+              </sageplot>
+            </image>
+          </solution>
         </task>
     </exploration>
   </introduction>
@@ -312,59 +301,24 @@
   <subsection xml:id="SS_Vector_VectorFields_Examples">
     <title>Examples of Vector Fields</title>
     <p>
-      As <xref ref="PA_Vector_VectorFields" />
-      showed you, a <term>velocity vector field</term> is an example of a scenario
-      where associating a vector to each point in a region
-      is useful. We denote such a vector field by
-      <m>\vF(x,y)</m> or <m>\vF(x,y,z)</m>, where
-      the vector associated to the point <m>(x,y)</m> or <m>(x,y,z)</m> is the
-      velocity of something at that point.
-      Wind velocity is one example, but
-      another example would be the velocity of a flowing fluid.
-      <xref ref="fig_Vector_VectorFields_FluidVelocity" /> shows such a velocity vector
-      field.
-      Technically, it only shows some of the vectors in the vector
-      field, since the figure would be unintelligible if all of the vectors
-      were shown.
-      This is illustrated by the inset in the upper left corner,
-      which gives a better picture of what we would see if we zoomed in on
-      the red square of the main figure.
+      As <xref ref="PA_Vector_VectorFields" /> showed, a <term>velocity vector field</term> is an example of a scenario
+      where associating a vector to each point in a region is useful. We denote such a vector field by <m>\vF(x,y)</m> or <m>\vF(x,y,z)</m>, where the vector associated to the point <m>(x,y)</m> or <m>(x,y,z)</m> is the velocity of something at that point. Wind velocity is one example, but another example would be the velocity of a flowing fluid. <xref ref="fig_Vector_VectorFields_FluidVelocity" /> shows such a velocity vector field. Technically, it only shows some of the vectors in the vector field, since the figure would be unintelligible if all of the vectors were shown. This is illustrated by the inset in the upper left corner, which gives a better picture of what we would see if we zoomed in on the red square of the main figure.
     </p>
 
     <figure xml:id="fig_Vector_VectorFields_FluidVelocity">
-      <caption>An illustration of some of the vectors in a fluid velocity
-      vector field.
-      <url
-	  href="https://commons.wikimedia.org/wiki/File:PIVlab_multipass.jpg#/media/File:PIVlab_multipass.jpg"
-	  visual="commons.wikimedia.org/wiki/File:PIVlab_multipass.jpg#/media/File:PIVlab_multipass.jpg">"PIVlab multipass" by Willa</url> Licensed under CC-BY-SA 3.0 via Wikimedia Commons.</caption>
+      <caption>
+        An illustration of some of the vectors in a fluid velocity vector field.
+        <url href="https://commons.wikimedia.org/wiki/File:PIVlab_multipass.jpg#/media/File:PIVlab_multipass.jpg" visual="commons.wikimedia.org/wiki/File:PIVlab_multipass.jpg#/media/File:PIVlab_multipass.jpg">"PIVlab multipass" by Willa</url> Licensed under CC-BY-SA 3.0 via Wikimedia Commons.
+      </caption>
       <image width="90%" source="/12_1_PIVlab_multipass.jpg">
-	<description>Green vectors representing the velocity vectors
-	of a flowing fluid. The vectors along the vertical axis of
-	symmetry are directed from bottom to top and are longest in
-	the middle. Vectors on either side of the vertical axis of
-	symmetry form circular rotation patterns, clockwise on the
-	right and counterclockwise on the left. In the upper left
-	corner, there is an inset figure that enlarges the center of
-	rotation on the left side of the image.</description>
+        <description>
+          Green vectors representing the velocity vectors of a flowing fluid. The vectors along the vertical axis of syymmetry are directed from bottom to top and are longest in the middle. Vectors on either side of the vertical axis of symmetry form circular rotation patterns, clockwise on the right and counterclockwise on the left. In the upper left corner, there is an inset figure that enlarges the center of rotation on the left side of the image.
+        </description>
       </image>
     </figure>
 
     <p>
-      Force fields,
-      such as those created by gravity, are also examples of
-      vector fields.
-      For example, the earth exerts a gravitational force on
-      objects.
-      The force is directed from the center of the object to the
-      center of the earth, and its magnitude is determined by the distance
-      between the object and the earth.
-      An illustration of this vector field
-      can be seen in <xref ref="fig_Vector_VectorFields_gravity" />,
-      where the earth is
-      positioned at the origin, but not shown.
-      Notice that the vectors get
-      shorter as the distance from the origin increases, reflecting the fact
-      that the gravitational force is weaker at that distance.
+      Force fields, such as those created by gravity, are also examples of vector fields. For example, the earth exerts a gravitational force on objects which is directed from the center of the object to the center of the earth. The magnitude of the force vector is determined by the distance between the object and the earth (by an reciprocal squared relationship.) An illustration of this vector field can be seen in <xref ref="fig_Vector_VectorFields_gravity" />, where the earth is positioned at the origin, but not shown. Notice that the vectors get shorter as the distance from the origin increases, reflecting the fact that the gravitational force is weaker at larger distances from the origin (Earth).
     </p>
 
     <figure xml:id="fig_Vector_VectorFields_gravity">
@@ -385,328 +339,318 @@
   <subsection xml:id="SS_Vector_VectorFields_Mathematical">
     <title>Mathematical Vector Fields</title>
     <p>
-      As suggested in the introduction and <xref
-      ref="PA_Vector_VectorFields" />,
-      vector fields can be given by formulas.
+      As suggested in the introduction and <xref ref="PA_Vector_VectorFields" />, vector fields can be specified using the notation of functions and vectors.
     </p>
 
-    <definition>
+    <definition xml:id="vf_def">
       <statement>
         <p>
-          A <term>vector
-          field</term><idx><h>vectorfield</h><h>definition</h></idx>
-          in <m>2</m>-space is function whose value at a point
-          <m>(x,y)</m> is a <m>2</m>-dimensional vector
-          <m>\vF(x,y)</m>.  Similarly, in <m>3</m>-space, a vector
-          field is a function <m>\vF(x,y,z)</m> whose value at the
-          point <m>(x,y,z)</m> is a <m>3</m>-dimensional vector.
+          A <term>vector field</term><idx><h>vectorfield</h><h>definition</h></idx> in <m>2</m>-space is function whose value at a point <m>(x,y)</m> is a <m>2</m>-dimensional vector <m>\vF(x,y)</m>.  Similarly, in <m>3</m>-space, a vector field is a function <m>\vF(x,y,z)</m> whose value at the point <m>(x,y,z)</m> is a <m>3</m>-dimensional vector.
         </p>
       </statement>
     </definition>
 
     <p>
-      Since <m>\vF(x,y,z)</m> is a vector,
-      it has <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>
-      components.
-      Each of these components is a scalar function of the point
-      <m>(x,y,z)</m>, and so we will often write
+      Since <m>\vF(x,y,z)</m> is a vector, it has <m>\vi</m>, <m>\vj</m>, and <m>\vk</m> components. Each of these components is a scalar function of the point <m>(x,y,z)</m>, and so we will often write
       <me>
         \vF(x,y,z) = F_1(x,y,z)\vi + F_2(x,y,z)\vj + F_3(x,y,z)\vk
-      </me>.
+      </me>
     </p>
-
     <p>
-      For example,
-      if <m>\vF(x,y,z) = \langle x^2,xy\sin(z),y^3\rangle</m>, then
-      <m>F_1(x,y,z) = x^2</m>, <m>F_2(x,y,z) = xy\sin(z)</m>,
-      and <m>F_3(x,y,z) =
-      y^3</m>.
-      Any time we are considering a vector field <m>\vF(x,y,z)</m>, the
-      definitions of functions <m>F_1</m>, <m>F_2</m>,
-      and <m>F_3</m> should be assumed in
-      this manner. (For a vector field
-      <m>\vF(x,y)</m> in <m>2</m>-space, we only have
-      the functions <m>F_1</m> and <m>F_2</m>, defined analogously.)
+      For example, if <m>\vF(x,y,z) = \langle x^2,xy\sin(z),y^3\rangle</m>, then the component functions of <m>\vF</m> would be <m>F_1(x,y,z) = x^2</m>, <m>F_2(x,y,z) = xy\sin(z)</m>, and <m>F_3(x,y,z) = y^3</m>. Any time we are considering a vector field <m>\vF(x,y,z)</m>, the definitions of functions <m>F_1</m>, <m>F_2</m>, and <m>F_3</m> should be inferred in this manner. (For a vector field <m>\vF(x,y)</m> in <m>2</m>-space, we only have the functions <m>F_1</m> and <m>F_2</m>, which are defined analogously.)
     </p>
   </subsection>
 
   <subsection xml:id="SS_Vector_VectorFields_Plotting">
     <title>Plotting Vector Fields</title>
     <p>
-      <xref ref="PA_Vector_VectorFields" />
-      gave you a chance to plot some vectors
-      in the vector fields <m>\vF(x,y) = \langle y,x\rangle</m> and <m>\vG(x,y) =
-      \langle 0,-x\rangle</m>.
-      It would be impossible to sketch <em>all</em> of
-      the vectors in these vector fields,
-      since there is one for every point
-      in the plane.
-      In fact, even sketching by hand many more of the vectors
-      than you were asked to in the preview activity rapidly becomes
-      tedious.
-      Fortunately, computer algebra systems can do a great job of
-      making such sketches.
-      One thing to keep in mind, however, is that the
-      magnitudes of the vectors are typically scaled in these plots,
-      including plots of vector fields we will encounter later in the
-      text.
-      To illustrate this, consider the two plots of the vector field
-      <m>\vF(x,y) = y\vi + x\vj</m> in <xref
-      ref="fig_Vector_VectorFields_scalefield" />.
+      <xref ref="PA_Vector_VectorFields" /> gave you a chance to plot some vectors in the vector fields <m>\vF(x,y) = \langle y,x\rangle</m> and <m>\vG(x,y) = \langle 0,-x\rangle</m>. It would be impossible to sketch <em>all</em> of
+      the vectors in these vector fields, since there is one for every point in the plane. In fact, even sketching many more of the vectors than you were asked to in the preview activity rapidly becomes tedious. Fortunately, computers can do a great job of making such sketches.  One thing to keep in mind, however, is that the magnitudes of the vectors in computer plots are typically scaled, including plots of vector fields we will encounter later in this text. To illustrate this, consider the two plots of the vector field <m>\vF(x,y) = y\vi + x\vj</m> in <xref ref="fig_Vector_VectorFields_scalefield" />.
     </p>
 
     <figure xml:id="fig_Vector_VectorFields_scalefield">
-      <caption>Two plots of <m>\vF(x,y) = y\vi + x\vj</m> from a computer
-      algebra system</caption>
+      <caption>Two plots of <m>\vF(x,y) = y\vi + x\vj</m> from Sage</caption>
       <sidebyside widths="47% 47%" margins="0% 6% 0%">
-          <image
-	      source="/fig_Vector_VectorFields_vecfield_unscaled">
-	    <description>A vector field in the plane with both axes
-	    ranging from <m>-2</m> to <m>2</m>. Vectors point from the
-	    point <m>(x,y)</m> to the point <m>(x+y,x+y)</m>.</description>
-	  </image>
-          <image
-	      source="/fig_Vector_VectorFields_vecfield_scaled">
-	    <description>A vector field in the plane with both axes
-	    ranging from <m>-2</m> to <m>2</m>. Vectors are shorter
-	    closer to the origin and longer farther away. At the left
-	    and right sides, the vectors follow arcs oriented
-	    clockwise. At the top and right sides, the vectors follow
-	    arcs oriented counterclockwise.</description>
-	  </image>
+        <image xml:id="fig_Vector_VectorFields_vecfield_unscaled">
+          <description>
+            A vector field in the plane with both axes ranging from <m>-2</m> to <m>2</m>. Vectors point from the point <m>(x,y)</m> to the point <m>(x+y,x+y)</m>.
+          </description>
+          <sageplot>
+            var('x,y')
+            F=vector([y,x])
+            basepoints = []
+            for i in range(-2,3,1):
+                for j in range(-2,3,1):
+                    basepoints.append((i,j))
+                    basepoints.append((i+0.5,j+0.5))
+            plot1 = Graphics()
+            plot1.set_aspect_ratio(1)
+            for pt in basepoints:
+                tip = vector(pt)+F(x=pt[0],y=pt[1])
+                plot1 += arrow(pt,tip,color="blue",arrowsize=2,width=1)
+            plot1.axes_range(xmin=-2.25,xmax=2.25,ymin=-2.25,ymax=2.25)
+            plot1.axes_labels(["$x$","$y$"])
+            plot1            
+          </sageplot>
+        </image>
+        <image xml:id="fig_Vector_VectorFields_vecfield_scaled">
+          <description>
+            A vector field in the plane with both axes ranging from <m>-2</m> to <m>2</m>. Vectors are shorter closer to the origin and longer farther away. At the left and right sides, the vectors follow arcs oriented clockwise. At the top and right sides, the vectors follow arcs oriented counterclockwise.
+          </description>
+          <sageplot>
+            var('x,y')
+            plot_vector_field((y,x),(x,-2,2),(y,-2,2),color="blue",frame=False,plot_points=15,xmin=-2.25,xmax=2.25,ymin=-2.25,ymax=2.25,aspect_ratio=1,axes_labels=["$x$","$y$"])            
+          </sageplot>
+        </image>
       </sidebyside>
     </figure>
 
     <p>
-      The left plot shows some of the vectors but accurately depicts all of
-      their magnitudes, making the figure very hard to understand,
-      especially along the lines <m>y=x</m> and <m>y=-x</m>.
-      The plot on the right,
-      however, uses a uniform scaling to make the figure easier to read.
-      As
-      before, each vector's direction is completely accurate,
-      but now the
-      magnitudes are much smaller.
-      However, the <em>relative</em> magnitudes
-      are preserved,
-      helping us to see that vectors farther from the origin
-      have larger magnitude than those closer to the origin.
+      The left plot shows some of the vectors and accurately depicts all of their magnitudes, making the figure very hard to understand, especially along the lines <m>y=x</m> and <m>y=-x</m>. The plot on the right, however, uses a uniform rescaling to make the figure easier to read. As before, each vector's direction is completely accurate,
+      but now the magnitudes are much smaller. However, the <em>relative</em> magnitudes are preserved, helping us to see that vectors farther from the origin have larger magnitude than those closer to the origin.
     </p>
 
     <activity xml:id="act_Vector_VectorFields_curves">
       <introduction>
         <p>
-        The plot in <xref ref="fig_Vector_VectorFields_circle" />
-        illustrates the vector field <m>\vF(x,y) = y\vi -x\vj</m>.
-	</p>
-
-      <figure xml:id="fig_Vector_VectorFields_circle">
-        <caption>The vector field <m>y\vi-x\vj</m></caption>
-        <image width="50%" source="/fig_12_1_circle">
-	  <description>A vector field plotted in the plane with
-	  <m>x</m> and <m>y</m> both ranging from <m>-5</m> to
-	  <m>5</m>. The vectors have a counterclockwise rotation about
-	  the origin, with vectors getting progressively longer as
-	  they get farther from the origin.</description>
-	</image>
-      </figure>
-        </introduction>
-        <task>
+          The plot in <xref ref="fig_Vector_VectorFields_circle" /> illustrates the vector field <m>\vF(x,y) = y\vi -x\vj</m>.
+        </p>
+        <figure xml:id="fig_Vector_VectorFields_circle">
+          <caption>The vector field <m>y\vi-x\vj</m></caption>
+          <image width="50%" xml:id="fig_12_1_circle">
+            <description>
+              A vector field plotted in the plane with <m>x</m> and <m>y</m> both ranging from <m>-5</m> to <m>5</m>. The vectors have a counterclockwise rotation about the origin, with vectors getting progressively longer as they get farther from the origin.
+            </description>
+            <sageplot>
+              var('x,y')
+              plot_vector_field((y,-x),(x,-5,5),(y,-5,5),color="blue",frame=False,plot_points=15,xmin=-5.5,xmax=5.5,ymin=-5.5,ymax=5.5,aspect_ratio=1,axes_labels=["$x$","$y$"])              
+            </sageplot>
+          </image>
+        </figure>
+      </introduction>
+      <task>
+	      <statement>
           <p>
-            Starting with one of the vectors near the point
-            <m>(2,0)</m>, sketch a curve that follows the direction of
-            the vector field <m>\vF</m>.  To help visualize what you
-            are doing, it may be useful to think of the vector field
-            as the velocity vector field for some flowing water and
-            that you are imagining tracing the path that a tiny
-            particle inserted into the water would follow as the water
-            moved it around.
+            Starting with one of the vectors near the point <m>(2,0)</m>, sketch a curve that follows the direction of the vector field <m>\vF</m>. To help visualize what you are doing, it may be useful to think of the vector field as the velocity vector field for some flowing water and that you are imagining tracing the path that a tiny particle inserted into the water would follow as the water moves it around.
           </p>
+	      </statement>
+        <solution>
+          <image xml:id="fig_Act1_Vector_VectorFields_parta_solution">
+            <sageplot>
+              var('x,y,t')
+              plot1=plot_vector_field((y,-x),(x,-5,5),(y,-5,5),frame=False,color='blue')
+              plot1+=parametric_plot((2*cos(t),2*sin(t)), (t,0,2*pi),color='red',axes_labels=["$x$","$y$"])
+              plot1              
+            </sageplot>
+          </image>
+        </solution>
         </task>
         <task>
+	  <statement>
           <p>
-            Repeat the previous step for at least two other starting
-            points not on the curve you previously sketched.
+            Repeat the previous step for at least two other starting points not on the curve you previously sketched.
           </p>
+	  </statement>
+          <solution>
+            <p>
+              Plots will be circles centered at the origin with radius given by the distance from the origin to the initial point.
+            </p>
+          </solution>
         </task>
         <task>
+	  <statement>
           <p>
-            What shape do the curves you sketched in the previous two steps
-            form?
+            What shape do the curves you sketched in the previous two steps form?
           </p>
+	  </statement>
+          <solution>
+            <p>
+              Plots will be circles centered at the origin with radius given by the distance from the origin to the initial point.
+            </p>
+          </solution>
         </task>
         <task>
+	  <statement>
           <p>
             Verify that <m>\vF(x,y)</m> is orthogonal to <m>\langle x,y\rangle</m>.
           </p>
+	  </statement>
+          <solution>
+            <p>
+              Since <m> \langle x,y \rangle \cdot \langle y, - x \rangle \  = xy + - xy = 0</m>, we see that the vectors are orthogonal.
+            </p>
+          </solution>
         </task>
         <task>
-          <p>
-            What is the relationship between the function
-            <m>f(x,y) = x^2 +
-            y^2</m> and the vector <m>x\vi + y\vj</m>?
-          </p>
+	        <statement>
+            <p>
+              Calculate the gradient of the function <m>f(x,y) = x^2 + y^2</m> and and write a sentence comparing your result to the vector <m>x\vi + y\vj</m>.
+            </p>
+	        </statement>
+          <solution>
+            <p>
+              We find that <m>\nabla f(x,y) = \langle 2x,2y \rangle</m>. Thus, <m>xi + yj = \frac{1}{2}\nabla f(x,y)</m> meaning the vector field is multiple of the gradient of the function <m>f</m>.
+            </p>
+          </solution>
         </task>
         <task>
-          <p>
-            What does this tell you about the relationship between
-            <m>\vF(x,y)</m> and circles centered at the origin?
-            What is the
-            relationship between <m>\vecmag{\vF(x,y)}</m> and the radius of the appropriate circle?
-          </p>
+	        <statement>
+            <p>
+              Write a sentence describing the geometric relationship between <m>\vF(x,y)</m> and a circle centered at the origin. What is the relationship between <m>\vecmag{\vF(x,y)}</m> and the radius of that circle?
+            </p>
+	        </statement>
+          <solution>
+            <p>
+	            We know that the circle <m>x^2+y^2 = r^2</m> is a level curve of the function <m>f(x,y)=x^2+y^2</m>, and hence <m>\nabla f</m> is orthogonal to that circle.  Since <m>\vF(x,y)</m> is orthogonal to (a multiple of) the gradient of <m>f</m>, we know that <m>\vF(x,y)</m> is tangent to the circle. Noticing that <m>\vecmag{\vF(x,y)} = \sqrt{x^2+y^2}</m>, we see that the magnitude of <m>\vF(x,y)</m> is equal to the radius of the circle to which it is tangent.
+            </p>
+          </solution>
         </task>
     </activity>
+    <p>
+      In the previous activity, we looked a special type of curve in a vector field, namely the curve that flows with the output of the vector field. Geometrically, the output vectors of the vector field will be tangent to the flow curves. These flow curves come up in several physical situations, including as solution curves to a system of differential equations. We will not discuss these applications here but you should should look out for uses of vector fields in the next few math courses.
+    </p>
   </subsection>
 
   <subsection xml:id="SS_Vector_VectorFields_Gradient">
     <title>Gradient Vector Fields</title>
     <p>
-      Without using the terminology, we've actually already
-      encountered one very important family of vector fields a number
-      of times.  Given a function <m>f</m> of two or three variables,
-      the gradient of <m>f</m> is a vector field, since for any point
-      where <m>f</m> has first-order partial derivatives,
-      <m>\grad{f}</m> assigns a vector to that point.
+      Without using the terminology, we've actually already encountered one very important family of vector fields a number of times. Given a function <m>f</m> of two or three (or more!) variables, the gradient of <m>f</m> is a vector field, since for any point where <m>f</m> has first-order partial derivatives, <m>\grad{f}</m> assigns a vector to that point (look at <xref ref="gradient_ss" /> for a review).
     </p>
 
     <activity xml:id="act_Vector_VectorFields_Gradient">
-        <task xml:id="part_act_Vector_VectorFields_Gradient_LevelCurves">
-            <p>
-            In <xref ref="fig_Vector_VectorFields_LevelCurves" />
-            there are three sets of axes showing level curves for
-            functions <m>f</m>, <m>g</m>, and <m>h</m>, respectively.
-            Sketch at least six vectors in the gradient vector field
-            for each function. In making your sketches, you don't
-            have to worry about getting vector magnitudes precise, but
-            you should ensure that the relative magnitudes (and
-            directions) are correct for each function independently.
-            </p>
-            <figure xml:id="fig_Vector_VectorFields_LevelCurves">
-                <caption>Three sets of level curves</caption>
-                <sidebyside widths="30% 30% 30%" margins="0% 5% 5% 0%">
-                    <figure>
-                        <caption><m>f</m></caption>
-                        <image source="/12_1_ellipses">
-			  <description>Eight skew ellipses centered at
-			  the origin. The major axis of the ellipses
-			  is the line <m>y=-x</m>. Labels on the
-			  ellipses range from <m>25</m> to <m>200</m>
-			  in increments of <m>25</m>. The axes range
-			  approximately from <m>-8</m> to
-			  <m>8</m>.</description>
-			</image>
-                    </figure>
-                    <figure>
-                        <caption><m>g</m></caption>
-                        <image source="/12_1_linear">
-			  <description>Seven equally-spaced lines with
-			  slope <m>1/2</m> plotted on axes that range
-			  approximately from <m>-8</m> to
-			  <m>8</m>. The lines are labeled from
-			  <m>-60</m> to <m>60</m> increments of
-			  <m>20</m>.</description>
-			</image>
-                    </figure>
-                    <figure>
-                        <caption><m>h</m></caption>
-                        <image source="/12_1_sine">
-			  <description>Axes ranging from <m>-3</m> to
-			  <m>3</m>. In each quadrant, there are nested
-			  curves that appear like rounded squares far
-			  out and proceed toward circles in the
-			  middle. The curves are all labeled with
-			  either <m>0</m> or <m>1</m>.
-			  </description>
-			</image>
-                    </figure>
-                </sidebyside>
-            </figure>
-        </task>
-        <task xml:id="part_act_Vector_VectorFields_Gradient_Potential">
+      <task xml:id="part_act_Vector_VectorFields_Gradient_LevelCurves">
+	      <statement>
           <p>
-            Verify that <m>\vF(x,y) = \langle
-            6xy,3x^2+9\sqrt{y}\rangle</m> is a gradient vector field
-            by finding a function <m>f</m> such that <m>\nabla f(x,y)
-            = \vF(x,y)</m>.  For reasons originating in physics, such
-            a function <m>f</m> is called a <term>potential
-            function</term> for the vector field <m>\vF</m>.
+            In <xref ref="fig_Vector_VectorFields_LevelCurves" /> there are three sets of axes showing level curves for functions <m>f</m>, <m>g</m>, and <m>h</m>, respectively. Sketch at least six vectors in the gradient vector field for each function. In making your sketches, you don't have to worry about getting vector magnitudes precise, but you should ensure that the relative magnitudes (and directions) are correct for each function independently.
           </p>
-        </task>
-        <task xml:id="part_act_Vector_VectorFields_Gradient_Unique">
+          <figure xml:id="fig_Vector_VectorFields_LevelCurves">
+            <caption>Three sets of level curves</caption>
+            <sidebyside widths="30% 30% 27%" margins="0% 5% 5% 3%">
+              <figure>
+                <caption><m>f</m></caption>
+                <image xml:id="fig_12_1_ellipses">
+                  <description>
+                    Eight skew ellipses centered at the origin. The major axis of the ellipses is the line <m>y=-x</m>. Labels on the ellipses range from <m>25</m> to <m>200</m> in increments of <m>25</m>. The axes range approximately from <m>-8</m> to <m>8</m>.
+                  </description>
+                  <sageplot>
+                    var('x,y')
+                    contour_plot(4*x^2 + 4*x*y + 7*y^2, (x,-8,8), (y,-7,7), contours=[25, 50, 75, 100, 125, 150, 175, 200],fill=False,labels=True,frame=False,aspect_ratio=1,axes=True,cmap=['blue'],label_fmt="%1.0f",label_colors='black',fig_tight=True,axes_labels=["$x$","$y$"])                    
+                  </sageplot>
+                </image>
+              </figure>
+              <figure>
+                <caption><m>g</m></caption>
+                <image xml:id="fig_12_1_linear">
+                  <description>
+                    Seven equally-spaced lines with slope <m>1/2</m> plotted on axes that range approximately from <m>-8</m> to <m>8</m>. The lines are labeled from <m>-60</m> to <m>60</m> increments of <m>20</m>.
+                  </description>
+                  <sageplot>
+                    var('x,y')
+                    contour_plot(3*x - 7*y + 1, (x,-8,8), (y,-7,7), contours=[-60,-40,-20,0,20,40,60],fill=False,labels=True,frame=False,aspect_ratio=1,axes=True,cmap=['blue'],label_fmt="%1.0f",label_colors='black',fig_tight=True,axes_labels=["$x$","$y$"])                    
+                  </sageplot>
+                </image>
+              </figure>
+              <figure>
+                <caption><m>h</m></caption>
+                <image xml:id="fig_12_1_sine">
+                  <description>
+                    Axes ranging from <m>-3</m> to <m>3</m>. In each quadrant, there are nested curves that appear like rounded squares far out and proceed toward circles in the middle. The curves are all labeled with either <m>0</m> or <m>1</m>.
+                  </description>
+                  <sageplot>
+                    var('x,y')
+                    contour_plot(sin(x)*sin(y), (x,-3,3), (y,-3,3),fill=False,labels=True,frame=False,aspect_ratio=1,axes=True,cmap=['blue'],label_fmt="%1.0f",label_colors='black',fig_tight=True,axes_labels=["$x$","$y$"])                    
+                  </sageplot>
+                </image>
+              </figure>
+            </sidebyside>
+          </figure>
+	      </statement>
+        <solution>
           <p>
-            Is the function <m>f</m> found in <xref
-	    ref="part_act_Vector_VectorFields_Gradient_Potential" text="local">part</xref> unique?
-            That is, can you find another function <m>g</m> such that <m>\nabla g(x,y)
-            = \vF(x,y)</m> but <m>f\neq g</m>?
+            The gradients need to be perpendicular to the curve at the points you choose.
           </p>
-        </task>
-        <task xml:id="part_act_Vector_VectorFields_Gradient_IsGradient">
+        </solution>
+      </task>
+      <task xml:id="part_act_Vector_VectorFields_Gradient_Potential">
+	      <statement>
           <p>
-            Is the vector field <m>\vF(x,y) = 6xy\vi
-            +(2x+9\sqrt{y})\vj</m> a gradient vector field?  Why or
-            why not?
+            Verify that <m>\vF(x,y) = \langle 6xy,3x^2+9\sqrt{y}\rangle</m> is a gradient vector field by finding a function <m>f</m> such that <m>\nabla f(x,y) = \vF(x,y)</m>. For reasons originating in physics, such a function <m>f</m> is called a <term>potential function</term> for the vector field <m>\vF</m>.
           </p>
-        </task>
+	      </statement>
+        <solution>
+          <p>
+            We need to find antiderivatives of the appropriate components with respect to <m>x</m> and <m>y</m>. For the first component with respect to <m>x</m>, we find <m>3x^{2}y + g(y)</m>. For the second component with respect to <m>y</m>, we have <m>3x^{2}y + 6{y}^{3/2} + h(x)</m>. Notice here that we may take <m>g(y) = 6y^{3/2}</m> and <m>h(x)=0</m> (or any constant). Thus, we have <m>f(x,y) = 3x^{2}y + 6y^{3/2}</m>.
+          </p>
+        </solution>
+      </task>
+      <task xml:id="part_act_Vector_VectorFields_Gradient_Unique">
+	      <statement>
+          <p>
+            Is the function <m>f</m> found in <xref ref="part_act_Vector_VectorFields_Gradient_Potential" text="local">part</xref> unique? That is, can you find another function <m>g</m> such that <m>\nabla g(x,y)= \vF(x,y)</m> but <m>f\neq g</m>?
+          </p>
+	      </statement>
+        <solution>
+          <p>
+            The function found in <xref ref="part_act_Vector_VectorFields_Gradient_Potential" text="local">part</xref> is not unique because we could add any constant and still obtain the same gradient.
+          </p>
+        </solution>
+      </task>
+      <task xml:id="part_act_Vector_VectorFields_Gradient_IsGradient">
+	      <statement>
+          <p>
+            Is the vector field <m>\vF(x,y) = 6xy\vi +(2x+9\sqrt{y})\vj</m> a gradient vector field?  Why or why not?
+          </p>
+	      </statement>
+        <solution>
+          <p>
+            We will consider that <m>\vF(x,y) = \langle f_{x},\ f_{y} \rangle</m>. So <m>f_{x} = 6xy</m>, then <m>f_{xy} = 6x</m>. And if <m>f_{y} = 2x + 9y^{1/2}</m> then <m>f_{yx} = 2</m>. Therefore, this is not a gradient vector field, which would require that <m>f_{xy} = f_{yx}</m>.
+          </p>
+        </solution>
+      </task>
     </activity>
   </subsection>
 
   <subsection>
-      <title>Summary</title>
-      <p>
-    <ul>
-      <li>
-        <p>
-          A <m>2</m>-dimensional vector field is a function defined on part of
-          <m>\R^2</m> whose value is a <m>2</m>-dimensional vector.
-          A <m>3</m>-dimensional
-          vector field is a function defined on part of <m>\R^3</m> whose value is
-          a <m>3</m>-dimensional vector.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          Vector fields arise in familiar contexts such as wind velocity,
-          fluid velocity, and gravitational force.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          Vector fields are generally plotted in ways that ensure the
-          direction and relative magnitudes of the vectors sketched are
-          correct instead of ensuring that each vector's magnitude is
-          depicted correctly.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          The gradient of a function <m>f</m> of two or three variables is a vector
-          field defined wherever <m>f</m> has partial derivatives.
-        </p>
-      </li>
-    </ul>
-  </p>
+    <title>Summary</title>
+    <p>
+      <ul>
+        <li>
+          <p>
+            A <m>2</m>-dimensional vector field is a function defined on part of <m>\R^2</m> whose value is a <m>2</m>-dimensional vector. A <m>3</m>-dimensional vector field is a function defined on part of <m>\R^3</m> whose value is a <m>3</m>-dimensional vector.
+          </p>
+        </li>
+        <li>
+          <p>
+            A vector field is typically described in terms of its multivariable component functions, <m>\vF(x,y)=\langle f(x,y),g(x,y)\rangle= f(x,y) \vi +g(x,y)\vj</m> or in 3D 
+            <md>
+              <mrow>\vF(x,y,z)\amp=\langle f(x,y,z),g(x,y,z),h(x,y,z)\rangle</mrow>
+              <mrow> \amp = f(x,y,z) \vi +g(x,y,z)\vj + h(x,y,z) \vk</mrow>
+            </md>.
+          </p>
+        </li>
+        <li>
+          <p>
+            Vector fields arise in familiar contexts such as wind velocity, fluid velocity, and gravitational force.
+          </p>
+        </li>
+        <li>
+          <p>
+            Vector fields are generally plotted in ways that ensure the direction and relative magnitudes of the vectors sketched are correct instead of ensuring that each vector's magnitude is depicted correctly.
+          </p>
+        </li>
+        <li>
+          <p>
+            The gradient of a function <m>f</m> of two or three variables is a vector field defined wherever <m>f</m> has partial derivatives.
+          </p>
+        </li>
+      </ul>
+    </p>
   </subsection>
-  <exercises>
-    <!--TODO: This section needs exercises.-->
-    <!--<exercise>
-        <statement>
-            <p>Here is the statement.</p>
-        </statement>
-        <hint><p>A hint! Don't feel obligated to use hints, but they are an option.</p></hint>
-        <answer>
-            <p>
-                The answer. Keep this simple as will be made public <q>back of the book</q>-style. <alert>Do not put anything with a number/or <attr>xml:id</attr> on it in an <tag>answer</tag> or <tag>solution</tag>, because this will mess up the numbering of subsequent things in the book. Technically <attr>xml:id</attr> is fine, but note that the reference might not be useful in the end. Definitely don't use <tag>figure</tag> or <tag>table</tag> in one of these things; wrap <tag>tabular</tag> and <tag>image</tag> in <tag>sidebyside</tag>.</alert>
-            </p>
-        </answer>
-        <solution>
-            <p>
-                The full solution. Full details go here.
-            </p>
-        </solution>
-    </exercise>-->
-</exercises>
+  <xi:include href="exercises/ez-S_Vector_VectorFields.ptx" />
+<subsection component="instructor">
+  <title>Notes to the Instructor</title>
+  <p>
+    This section uses tools from the chapter on multivariable functions and thier derivatives, with specific references to gradients. Additionally, vector calculations and geometry are used throughout to understand the output of the vector field.
+  </p>
+</subsection>
 </section>
-

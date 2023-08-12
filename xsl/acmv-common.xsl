@@ -11,8 +11,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <!-- Set font size and two-sided mode -->
-<xsl:param name="latex.font.size" select="'10pt'" />
-<xsl:param name="latex.pageref" select="'no'" />
 
 <!-- Font configuration should be consistent -->
 <xsl:param name="latex.preamble.early">

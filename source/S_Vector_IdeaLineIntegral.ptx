@@ -2,126 +2,100 @@
 
 <section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S_Vector_IdeaLineIntegral">
   <title>The Idea of a Line Integral</title>
-    <objectives>
-      <ul>
-	<li>
-	  <p>What is an oriented curve and how can we represent one
-	  algebraically?</p>
-	</li>
-        <li>
-          <p>
-            What is the meaning of the line integral of a
-            vector-valued function along a curve and how can we
-            estimate if its value is positive, negative, or zero?
-          </p>
-        </li>
-        <li>
-          <p>
-	    What are important properties of the line integral of a
-	    vector-valued functions along a curve?
-          </p>
-        </li>
-      </ul>
-    </objectives>
+  <objectives>
+    <ul>
+      <li>
+        <p>
+          What is an oriented curve and how can we represent one algebraically?
+        </p>
+      </li>
+      <li>
+        <p>
+          What is the meaning of the line integral of a vector-valued function along a curve and how can we estimate if its value is positive, negative, or zero?
+        </p>
+      </li>
+      <li>
+        <p>
+          What are important properties of the line integral of a vector-valued functions along a curve?
+        </p>
+      </li>
+    </ul>
+  </objectives>
   <introduction>
+      <aside>
+        <title>Velocity versus Force</title>
+        <p>
+          Movement by things like air or water will exert a force on objects, so wind velocity vector fields are related to a force field but the relationship between a moving fluid and the force a fluid exerts on an object in the fuild can be complicated. Specifically, issues like drag/friction and cross sectional area are a critical part of this relationship but are not something that we will focus on in our discussion. In the exploration below, we will look at a simplified version of this situation.
+        </p>
+      </aside>
     <p>
-      As we discussed in <xref ref="S_Vector_VectorFields" />, vector
-      fields are often useful as representations of forces such as
-      gravity, wind, and flowing water.  We learned in <xref
-      ref="S-9-3-Dot-Product" /> that the dot
-      product of a force vector and a displacement vector tells us how
-      much work the force did on the object as it moved from the tail
-      of its displacement vector to the tip.  However, things get more
-      complicated when an object's movement is not in a straight line
-      and when the force is not uniform throughout the area in which
-      the object moves.  For example, how much work is done by a wind
-      of <quantity><mag>30</mag><unit base="mile" /><per base="hour"
-      /></quantity> toward the northwest on an airplane that's flying
-      <quantity><mag>500</mag><unit base="mile" /></quantity> due
-      north?  What if the wind gets weaker the farther north the plane
-      gets?  In this section, we begin investigating how integration
-      can be used to calculate the work a force field does in such
-      circumstances.
+      As we discussed in <xref ref="S_Vector_VectorFields" />, vector fields are often used to represent forces such as gravity or electromagnetism, as well as the velocity of movement for things like wind or flowing water.
+      We learned in <xref ref="S-9-3-Dot-Product" /> that the dot product of a force vector and a displacement vector tells us how much work the force did on the object as it moved from the start of its displacement vector to the end. However, this calculation assumes that the force is constant in the region of movement and that the object moves in a straight line along the displacement vector. The situation is more complicated than a dot product calculation when an object's movement is not in a straight line and when the force is not uniform throughout the area in which the object moves.
     </p>
-
+    
+    <p>
+      The preview activity uses cardinal directions to specify the direction of displacement vectors. These directions can be described by a compass rose. The compass rose given in <xref ref="comp_rose" /> is an example of a sixteen point rose. Note that directions like ESE are read as <q>east-southeast</q> half way between east and southeast.
+    </p>
+    <figure xml:id="comp_rose">
+      <caption>An example of a sixteen point compass rose (from <url
+      href="https://commons.wikimedia.org/w/index.php?curid=667281" visual="commons.wikimedia.org/w/index.php?curid=667281">By Brosen~commonswiki - Own work, CC BY 2.5</url>)</caption>
+      <image width="60%" source="/Brosen_windrose.png">
+        <description>A sixteen point compass rose</description>
+      </image>
+    </figure>
     <exploration xml:id="PA_Vector_IdeaLineIntegral">
         <introduction>
             <p>
-              Recall from <xref ref="S-9-3-Dot-Product" />
-              that the work done by a force <m>\vF</m> on an object
-              that moves with displacement vector <m>\vv</m> is
-              <m>\vF\cdot \vv</m>.  In this Preview Activity, we
-              consider the work done by a wind blowing due east at
-              <quantity><mag>45</mag><unit base="mile" /><per
-              base="hour" /></quantity> on an airplane at various
-              stages of its journey.
+              Recall from <xref ref="S-9-3-Dot-Product" /> that the work done by a force <m>\vF</m> on an object that moves with displacement vector <m>\vv</m> is <m>\vF\cdot \vv</m>. In this Preview Activity, we consider the work done by wind on a helicopter at various stages of its journey.
             </p>
         </introduction>
-        <task xml:id="task_PA_Vector_IdeaLine_integral_300mph">
+        <task xml:id="task_PA_Vector_IdeaLine_integral_first_hour">
           <statement>
             <p>
-              A pilot flies for an hour and finds that he is
-              <quantity><mag>300</mag><unit base="mile" /></quantity>
-              from where he started at a heading of
-              <quantity><mag>20</mag><unit base="degree" /></quantity>
-              degrees east of due north.  Find the work the wind has
-              done on the airplane during the flight.
-                </p>
-            </statement>
-            <answer>
-                <p><m>3078.18</m></p>
-            </answer>
-            <solution>
-                <p>Here <m>\vF = 45\vi</m>. The displacement vector of
-                the airplane is <m>\vv_1 = \langle
-                200\cos(70^\circ),200\sin(70^\circ)\rangle \approx
-                \langle 68.404,187.94\rangle</m>. Thus, the work done
-                by the wind is <m>\vF\cdot \vv_1 = 45\cdot 68.404 =
-                3078.18</m>.</p>
-            </solution>
+              Our intrepid pilot flies for some time and finds that they are <quantity><mag>30</mag><unit base="meter" prefix="kilo" /></quantity> from where they started at a heading of <quantity><mag>20</mag><unit base="degree" /></quantity>
+              degrees east of due north. During this portion of the trip, the wind is exerting a force of <quantity><mag>100</mag><unit base="newton" /></quantity> on the helicopter in the due east direction. Find the work the wind has done on the helicopter during the flight.
+            </p>
+          </statement>
+          <answer>
+            <p><m>1026.1</m></p>
+          </answer>
+          <solution>
+            <p>
+              Here <m>\vF = 100\vi</m>. The displacement vector of the helicopter is <m>\vv_1 = \langle 30\cos(70^\circ),30\sin(70^\circ)\rangle \approx \langle 10.261,28.191\rangle</m>. Thus, the work done by the wind is <m>\vF\cdot \vv_1 = 100\cdot 10.261 = 1026.1</m>.
+            </p>
+          </solution>
         </task>
-        <task xml:id="task_PA_Vector_IdeaLine_integral_275mph">
+        <task xml:id="task_PA_Vector_IdeaLine_integral_second_hour">
           <statement>
             <p>
-              An hour later, the pilot determines that he is
-              <quantity><mag>275</mag><unit base="mile" /></quantity>
-              due north of where he previously checked his position.
-              Find the work done by the wind on the airplane during
-              the second hour of the flight.
+              Our pilot sees a storm ahead and changes their direction. Some time later, the pilot determines that they are <quantity><mag>25</mag><unit base="meter" prefix="kilo" /></quantity> due north of where they previously checked thier position. The wind is still exerting a force on the helicopter of <quantity><mag>100</mag> <unit base="newton" /></quantity> in the due east direction. Find the work done by the wind on the helicopter during the second part of the flight.
             </p>
           </statement>
           <answer>
             <p><m>0</m></p>
           </answer>
           <solution>
-            <p>The displacement vector is <m>\vv_2 = 275\vj</m>. Thus,
-            the work done by the wind is <m>\vv_2 \cdot \vF =
+            <p>The displacement vector is <m>\vv_2 = 25\vj</m>. Thus, the work done by the wind is <m>\vv_2 \cdot \vF =
             0</m>.</p>
           </solution>
         </task>
         <task xml:id="task_PA_Vector_IdeaLine_integral_2hours">
           <statement>
             <p>
-              Find the pilot's displacement from his original position
-              after two hours of flying and use that to find the work
-              done by the wind on the airplane during the first two
-              hours of flight.
+              Find the helicopters's displacement from its original position after the first two parts of its flight and use that to find the work done by the wind on the helicopter during the first two parts of flight.
             </p>
             </statement>
             <answer>
-                <p><m>\langle 68.40, 462.94\rangle</m>; <m>3078.18</m></p>
+                <p><m>\langle 10.261, 53.191\rangle</m>; <m>1026.1</m></p>
             </answer>
             <solution>
-              <p>The displacement is <m>\vv = \vv_1 + \vv_2 = \langle
-              68.40, 462.94\rangle</m>. The work done by the wind is
-              thus <m>\vv\cdot \vF = 3078.18</m>.</p>
+              <p>The displacement is <m>\vv = \vv_1 + \vv_2 = \langle 10.261, 53.191\rangle</m>. The work done by the wind is thus <m>\vv\cdot \vF = 1026.1</m>.</p>
             </solution>
         </task>
         <task xml:id="task_PA_Vector_IdeaLine_integral_compare">
           <statement>
             <p>
-              How does your answer to the previous part connect to the
-              answers to the first two parts?
+              How does your answer to <xref ref="task_PA_Vector_IdeaLine_integral_2hours" /> connect to the answers to <xref ref="task_PA_Vector_IdeaLine_integral_first_hour" /> and <xref ref="task_PA_Vector_IdeaLine_integral_second_hour" />?
             </p>
           </statement>
           <answer>
@@ -134,21 +108,28 @@
         <task xml:id="task_PA_Vector_IdeaLine_integral_45deg">
           <statement>
             <p>
-              Suppose that the pilot then flies
-              <quantity><mag>45</mag><unit base="degree" /></quantity>
-              west of due north for <quantity><mag>200</mag><unit
-              base="mile" /></quantity>.  Find the work done by the
-              wind on the airplane during this part of the journey.
+              In order to get further away from the storm, the pilot turns and flies <quantity><mag>45</mag><unit base="degree" /></quantity> west of due north for <quantity><mag>50</mag><unit base="meter" prefix="kilo" /></quantity>. The storm the pilot was avoiding has caused the wind to change as well. For this portion of the flight, the wind is exerting a force on the helicopter of <quantity><mag>125</mag> <unit base="newton" /></quantity> in the south direction. Find the work done by the wind on the helicopter during this part of the flight.
             </p>
           </statement>
           <answer>
-            <p><m>-6363.96</m></p>
+            <p><m>-4419.42</m></p>
           </answer>
           <solution>
-            <p>The displacement vector is <m>\vv_3 = \langle
-            200\cos(135^\circ),200\sin(135^\circ)\rangle = \langle
-            -141.42, 141.42\rangle</m>. The work is therefore <m>\vv_3
-            \cdot \vF = -6363.96</m>.</p>
+            <p>The displacement vector is <m>\vv_3 = \langle 50\cos(135^\circ),50\sin(135^\circ)\rangle = \langle
+            -35.36, 35.36\rangle</m>. The work is therefore <m>\vv_3 \cdot \vF = -4419.42</m>.</p>
+          </solution>
+        </task>
+        <task xml:id="task_PA_Vector_IdeaLine_integral_conceptual">
+          <statement>
+            <p>
+              Explain why you cannot take the total displacement of the three parts of the helicopter flight and calculate the total work done by the wind on the helicopter.
+            </p>
+          </statement>
+          <answer>
+            <p><m>Wind field changes.</m></p>
+          </answer>
+          <solution>
+            <p>The vector field for the wind changes over time.</p>
           </solution>
         </task>
     </exploration>
@@ -157,185 +138,275 @@
   <subsection xml:id="SS_Vector_IdeaLineIntegral_OrientCurve">
     <title>Orientations of Curves</title>
     <p>
-      Given our motivation for calculating the work that a force field
-      does on an object as it moves through the field, it is natural
-      to concern ourselves with <em>how</em> the object moves.  In
-      particular, in many circumstances it will be different if an
-      object moves from the point <m>(0,1)</m> to the point
-      <m>(4,3)</m> by first going up the <m>y</m>-axis to <m>(0,3)</m>
-      and then moving horizontally to <m>(4,3)</m> than if the object
-      moves along the line segment from <m>(0,1)</m> directly to
-      <m>(4,3)</m>.  Similarly, given a fixed force field, we would
-      expect the work done to be different (in fact, opposite) if the
-      object moves from <m>(4,3)</m> to <m>(0,1)</m> directly along a
-      line segment.  We say that a curve in <m>\R^2</m> or <m>\R^3</m>
-      is <term>oriented</term> if we have specified the direction of
-      travel along the curve.  When a curve is given parametrically
-      (including as a vector-valued function), our convention will be
-      that the orientation follows from the smallest allowable value
-      of the parameter to the largest.
+      Given our motivation for calculating the work that a force field does on an object as it moves through the field, it is natural to concern ourselves with <em>how</em> the object moves. In particular, in many circumstances it will be different if an object moves from the point <m>(0,1)</m> to the point <m>(4,3)</m> by first going up the <m>y</m>-axis to <m>(0,3)</m> and then moving horizontally to <m>(4,3)</m> (illustrated by <m>C_1</m> in <xref ref="oriented_curves" />) than if the object moves along the line segment from <m>(0,1)</m> directly to <m>(4,3)</m>(illustrated by <m>C_2</m> in <xref ref="oriented_curves" />). Similarly, given a fixed force field, we would expect the work done to be different (in fact, opposite) if the object moves from <m>(4,3)</m> to <m>(0,1)</m> directly along a line segment (<m>C_3</m> in <xref ref="oriented_curves" />). We say that a curve in <m>\R^2</m> or <m>\R^3</m> is <term>oriented</term> if we have specified the direction of travel along the curve. When a curve is given parametrically (including as a vector-valued function), our convention will be that the orientation follows from the smallest allowable value of the parameter to the largest.
     </p>
-
+    <figure xml:id="oriented_curves">
+      <caption>Curves <m>C_1</m>, <m>C_2</m>, and <m>C_3</m> demonstrating different paths and orientations between <m>P</m> and <m>Q</m></caption>
+      <image width="70%" xml:id="img_Vector_IdeaLineIntegral_oriented_curves">
+        <description>Three curves between (0,1) and (4,3)</description>
+        <sageplot>
+          var('t')
+          plot2=point((0,1),color='black',size=40)+point((4,3),color='black',size=40)
+          plot2+=text("$P$",(0.15,.85),color='black',fontsize=15)+text("$Q$",(4.25,3),color='black',fontsize=15)
+          plot2+=parametric_plot((0,t),(t,1,3),color='green',thickness=3)
+          plot2+=parametric_plot((t,3),(t,0,4),color='green',thickness=3)
+          plot2+=text('$C_1$',(-0.25,3.25),color='green',fontsize='x-large')
+          plot2+=parametric_plot((4*t,1+2*t+.04),(t,0,1),color='blue',thickness=3)
+          plot2+=parametric_plot((4*t,1+2*t-.04),(t,0,1),color='red',thickness=3)
+          plot2+=arrow((3,2.52),(3.2,2.62),color='blue')
+          plot2+=arrow((1,1.48),(0.8,1.38),color='red')
+          plot2+=text("$C_2$",(1.75,2.25),color='blue',fontsize='x-large')
+          plot2+=text("$C_3$",(2.25,1.75),color='red',fontsize='x-large')
+          plot2          
+        </sageplot>
+      </image>
+    </figure>
     <activity xml:id="act_Vector_IdeaLineIntegral_OrientCurve">
       <introduction>
         <p>
-        For each curve below, find a parametrization of the curve.
-        Ensure that each curve's orientation matches the one
-        specified. 
+        For each curve below, find a parametrization of the curve. Ensure that each curve's orientation matches the one
+        specified.
         </p>
         </introduction>
         <task>
           <statement>
             <p>
-              The line segment in <m>\R^3</m> from <m>(0,1,-2)</m> to
-              <m>(3,-1,2)</m>.
+              The line segment in <m>\R^3</m> from <m>(0,1,-2)</m> to <m>(3,-1,2)</m>.
             </p>
           </statement>
           <answer>
-            <p><m>\vr(t) = 3t\vi + (1-2t)\vj + (-2+4t)\vk</m> for
-            <m>0\leq t\leq 1</m></p>
+            <p><m>\vr(t) = 3t\vi + (1-2t)\vj + (-2+4t)\vk</m> for <m>0\leq t\leq 1</m></p>
           </answer>
           <solution>
-            <p>The direction vector for the line segment is <m>\vv =
-            \langle 3-0, -1-1, 2-(-2)\rangle = \langle
-            3,-2,4\rangle</m>. The line segment starts at <m>\vr_0 =
-            \langle 0,1,-2\rangle</m>. Thus, the line segment given as
-            the vector-valued function <me>\vr(t) = 3t\vi + (1-2t)\vj
-            + (-2+4t)\vk\qquad\text{for }0\leq t\leq 1</me>.</p>
+            <p>The direction vector for the line segment is <m>\vv = \langle 3-0, -1-1, 2-(-2)\rangle = \langle 3,-2,4\rangle</m>. The line segment starts at <m>\vr_0 = \langle 0,1,-2\rangle</m>. Thus, the line segment given as
+            the vector-valued function <me>\vr(t) = 3t\vi + (1-2t)\vj + (-2+4t)\vk\qquad\text{for }0\leq t\leq 1</me>.</p>
           </solution>
         </task>
         <task>
           <statement>
             <p>
-              The line segment in <m>\R^3</m> from <m>(3,-1,2)</m> to
-              <m>(0,1,-2)</m>.
+              The line segment in <m>\R^3</m> from <m>(3,-1,2)</m> to <m>(0,1,-2)</m>.
             </p>
           </statement>
           <answer>
-            <p><m>\vr(t) = (3-3t)\vi + (-1+2t)\vj + (2-4t)\vk</m> for
-            <m>0\leq t\leq 1</m></p>
+            <p><m>\vr(t) = (3-3t)\vi + (-1+2t)\vj + (2-4t)\vk</m> for <m>0\leq t\leq 1</m></p>
           </answer>
           <solution>
-            <p>The direction vector for the line segment is <m>\vv =
-            \langle 0-3, 1-(-1), -2-2\rangle = \langle
-            -3,2,-4\rangle</m>. The line segment starts at <m>\vr_0 =
-            \langle 3,-1,2\rangle</m>. Thus, the line segment given as
-            the vector-valued function <me>\vr(t) = (3-3t)\vi +
-            (-1+2t)\vj + (2-4t)\vk\qquad\text{for }0\leq t\leq
+            <p>The direction vector for the line segment is <m>\vv =\langle 0-3, 1-(-1), -2-2\rangle = \langle -3,2,-4\rangle</m>. The line segment starts at <m>\vr_0 = \langle 3,-1,2\rangle</m>. Thus, the line segment given as
+            the vector-valued function <me>\vr(t) = (3-3t)\vi + (-1+2t)\vj + (2-4t)\vk\qquad\text{for }0\leq t\leq
             1</me>.</p>
           </solution>
         </task>
         <task>
           <statement>
             <p>
-              The circle of radius <m>3</m> (in <m>\R^2</m>) centered
-              at the origin, beginning at the point <m>(0,-3)</m> and
-              proceeding clockwise around the circle.
+              The circle of radius <m>3</m> (in <m>\R^2</m>) centered at the origin, beginning at the point <m>(0,-3)</m> and proceeding clockwise around the circle.
             </p>
           </statement>
           <answer>
-            <p><m>\vr(t) = \langle 3\cos(t),-3\sin(t)\rangle</m> for
-            <m>\pi/2\leq t \leq 5\pi/2</m></p>
+            <p><m>\vr(t) = \langle 3\cos(t),-3\sin(t)\rangle</m> for <m>\pi/2\leq t \leq 5\pi/2</m></p>
           </answer>
           <solution>
-            <p>We can parametrize the circle in question in a
-            clockwise direction as <m>\vr(t) = \langle
-            3\cos(t),-3\sin(t)\rangle</m>. To get the correct starting
-            point, we require <m>\pi/2\leq t \leq 5\pi/2</m>.</p>
+            <p>We can parametrize the circle in question in a clockwise direction as <m>\vr(t) = \langle 3\cos(t),-3\sin(t)\rangle</m>. To get the correct starting point, we require <m>\pi/2\leq t \leq 5\pi/2</m>.</p>
           </solution>
         </task>
         <task>
           <statement>
             <p>
-              In <m>\R^2</m>, the portion of the parabola <m>y^2 =
-              x</m> from the point <m>(4,2)</m> to the point
+              In <m>\R^2</m>, the portion of the parabola <m>y^2 = x</m> from the point <m>(4,2)</m> to the point
               <m>(1,-1)</m>.
             </p>
           </statement>
           <answer>
-            <p><m>\langle t^2,-t\rangle</m> for <m>-2\leq t\leq
-            1</m></p>
+            <p><m>\langle t^2,-t\rangle</m> for <m>-2\leq t\leq 1</m></p>
           </answer>
           <solution>
-            <p>Here we can let <m>y(t) = -t</m> and <m>x(t) = t^2</m>
-            for <m>-2\leq t\leq 1</m>.</p>
+            <p>Here we can let <m>y(t) = -t</m> and <m>x(t) = t^2</m> for <m>-2\leq t\leq 1</m>.</p>
           </solution>
         </task>
-    </activity>
-    <p>Notice that there are, in general, many ways to parametrize an
-    oriented curve. With line segments, it is common to have the
-    parameter range from <m>0</m> to <m>1</m>, although there are
-    sometimes good reasons to choose another method. For circles and
-    ellipses, you may find it useful to interchange the placement of
-    <m>\cos(t)</m> and <m>\sin(t)</m> to change the orientation, but
-    then careful attention may need to be paid to the start and end
-    points. The interactive graphing applet below allows you to plot
-    parametric curves. Click the <q>Animate</q> button to trace out
-    the curve from your lower value of <m>t</m> to your upper value of
-    <m>t</m>. (Type enter/return on your keyboard to update the graph
-    after editing a text box.) For curves in <m>\R^2</m>, check the
-    <q>Restrict view to 2D</q> for ease of viewing.</p>
+      </activity>
+    <p>
+      In general, there are many ways to parametrize an oriented curve. With line segments, it is common to have the parameter range from <m>0</m> to <m>1</m>, although there are sometimes good reasons to choose another method. For circles and ellipses, you may find it useful to interchange the placement of <m>\cos(t)</m> and <m>\sin(t)</m> to change the orientation, but then careful attention will need to be paid to the start and end points. The interactive graph below allows you to plot parametric curves. You should experiment with the graph below and try to make sense of how changing different elements affects the graph shown below. Remember that you can change the highlighted point using the slider. You should take time now to at least try the following:
+      <ol>
+        <li>Change the upper bound of the plot to <m> 2 \pi</m></li>
+        <li>Exchange the sine and cosine functions in <m>r_1</m> and <m>r_2</m> (but do not change the coefficents)</li>
+        <li>Change the <m>t</m> in each of the component functions to <m>-t</m></li>
+        <li>Change the <m>-t</m> to <m>e^t</m> (you will need to use the exp(t) function in Sage)</li>
+        <li>Change the upper and lower bounds to get the same curve plotted as in the earlier parts</li>
+      </ol>
+    </p>
     <figure>
-      <caption>A CalcPlot3D applet to explore oriented curves</caption>
+      <caption>This is a plot of a parametric curve of the form <m>\mathbf{r}(t)=\langle r_1(t),r_2(t),r_3(t)\rangle</m>. For two-dimensional curves, put 0 for <m>r_3(t)</m>.</caption>
+      <interactive xml:id="para_curve_example" platform="sage" width="100%" aspect="1:1.4">
+        <slate surface="sage">
+var('x,y,t')
+@interact
+def curve_explorer(r1=input_box(default=cos(t),label='r1(t)=',width=30), 
+                   r2=input_box(default=2*sin(t),label="r2(t)=",width=30), 
+                   r3=input_box(default=3-t,label="r3(t)=",width=30), 
+                   a=input_box(default=0,label="Lower Bound on t",width=6), 
+                   b=input_box(default=1,label="Upper Bound on t",width=6), 
+                   pval=slider(0,1,default=0.5,label="Parameter Value",display_value=False)):
+	tval=a+pval*(b-a)
+	plot1=parametric_plot3d((r1,r2,r3),(t,a,b),color="blue")
+	plot1+=point3d((r1(t=tval),r2(t=tval),r3(t=tval)),color='red')
+	valstring='('+str(N(r1(t=tval),digits=2))+','+str(N(r2(t=tval),digits=2))+','+str(N(r3(t=tval),digits=2))+')'
+	plot1+=text3d(valstring,(r1(t=tval),r2(t=tval),r3(t=tval)+0.1),color='red')
+	plot1+=text3d("t="+str(N(tval,digits=2)),(r1(t=tval),r2(t=tval),r3(t=tval)-0.1),color='purple')
+	show(plot1,aspect_ratio=1)        </slate>
+      </interactive>
+      <!-- <caption>A CalcPlot3D applet to explore oriented curves</caption>
       <interactive calcplot3d="type=spacecurve;spacecurve=curve;x=cos(5t);y=2sin(3t);z=3-0.5t;visible=true;tmin=0;tmax=10;tsteps=200;color=rgb(255,0,0);showtrace=true;tval=5;constcol=true;twod=false;arrows=5;showpt=true;trace=false;vel=false;acc=false;osc=false;k=false;repeat=false;bounce=false;dashed=false;tanline=false;showtvector=false;shownvector=false;showbvector=false;showtnbeqs=false;showtnblabels=false;showoscplane=false;showrectplane=false;shownormplane=false&amp;type=window;hsrmode=3;nomidpts=true;anaglyph=-1;center=8.236391035463319,4.755282581475766,3.0901699437494745,1;focus=0,0,0,1;up=0,0,2,1;transparent=false;alpha=140;twoviews=false;unlinkviews=false;axisextension=0.7;xaxislabel=x;yaxislabel=y;zaxislabel=z;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.5;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);xmin=-4;xmax=4;ymin=-4;ymax=4;zmin=-4;zmax=4;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;zoom=0.542667;xscalefactor=1;yscalefactor=1;zscalefactor=1" variant="application" width="95%"
-		   aspect="10:16.32" />
+		   aspect="10:16.32" />-->
     </figure>
   </subsection>
 
   <subsection xml:id="SS_Vector_IdeaLineIntegral_LineIntegrals">
     <title>Line Integrals</title>
+
     <p>
-      Just as when we differentiated a vector-valued function
-      <m>\vr(t)</m> to find a tangent vector, we begin by dividing a
-      curve <m>C</m> oriented from a point <m>P</m> to a point
-      <m>Q</m> into <m>n</m> small, straight pieces.  Each of these
-      pieces is in an area where the vector field <m>\vF</m> is nearly
-      constant, provided we use enough pieces.  In <xref
-      ref="fig_Vector_IdeaLineIntegral_CurveVectors" />, we show this
-      situation.  Each <m>\vr_i</m> is the tip of a vector that traces
-      out the curve, which makes the vectors <m>\Delta\vr_i =
-      \vr_{i+1}-\vr_i</m> (shown in blue) approximate the curve
-      <m>C</m>.  The green vectors are the vectors in the vector field
-      <m>\vF</m> at each of the designated points along the curve.
+      <xref ref="PA_Vector_IdeaLineIntegral" /> showed how we can break up the work done along a path into a sum of work done on each piece. This will be a very helpful idea, especially if we consider the work done by a vector field that is not constant.
+    </p>
+    <p>
+      For example, let's consider how to measure the work done by <m>\vF</m>, a vector field, along <m>C</m>, the curve shown below that goes from <m>P</m> to <m>Q</m>.
+    </p>
+    <figure xml:id="fig_line_int_defn1">
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> with the plot of a vector field <m>\vF</m></caption>
+      <image width="80%" xml:id="line_int_defn1">
+        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m> in a vector field <m>\vF</m></description>
+        <sageplot>
+          var('x,y,t');
+          r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+          plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+          plot99+=plot_vector_field((x,-y),(x,-3,2),(y,-1,1.5),color='blue',frame=False)
+          plot99+=point(r1(t=0.5),size=50,color='black')+point(r1(4),size=50,color='black')
+          plot99+=text("$Q$",(r1(0.5)[0]+0.20,r1(0.5)[1]),color='black',fontsize=20,clip=True,background_color='white')
+          plot99+=text("$P$",(r1(4)[0]+0.2,r1(4)[1]),color='black',fontsize=20,clip=True,background_color='white')
+          plot99          
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      You can see that there will be parts of <m>C</m> such that the dot product of the direction of travel and the vector field will be positive and some parts where the dot product is negative. We don't need to consider the output of the vector field except at the points on the curve. Thus, we will look at the following plot of the output of <m>\vF</m> at a collection of points on the curve <m>C</m>. Remember that when the vector field is plotted on the whole space, the lengths are rescaled to not be visually cluttered. In <xref ref="fig_line_int_defn2" /> the actual output vectors are plotted for some points on <m>C</m>.
+    </p>
+    <figure xml:id="fig_line_int_defn2">
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> with the vector field, <m>\vF</m>, plotted at points along the curve</caption>
+      <image width="80%" xml:id="line_int_defn2">
+        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m>. At points along the curve, there are vectors from the vector field depicted with their tails on the curve.</description>
+        <sageplot>
+          var('x,y,t');
+          N=20
+          tpoints=[4-i*(3.5/N) for i in range(N)]
+          r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+          plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+          plot99+=point(r1(t=0.5),size=50,color='black')+point(r1(4),size=50,color='black')
+          plot99+=text("$Q$",(r1(0.5)[0],r1(0.5)[1]-0.2),color='black',fontsize='xx-large')
+          plot99+=text("$P$",(r1(4)[0],r1(4)[1]-0.2),color='black',fontsize='xx-large')
+          for tv in tpoints:
+            rx,ry=r1(tv)
+            plot99+=arrow((rx,ry),(rx+rx/3,ry-ry/3),color='blue')
+          plot99
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      Since the output of <m>\vF</m> is changing as you move along the path, we will use a type of argument that has come up repeatedly throughout our study of integral calculus. Here we will break our region up into smaller pieces to approximate the work done on each piece. <xref ref="fig_line_int_defn3" /> shows how we can break <m>C</m> into <m>n</m> pieces, which we will call <m>C_i</m>. Note that <m>C_i</m> goes from the point <m>\mathbf{r}_{i-1}</m> to <m>\mathbf{r}_{i}</m>.
+    </p>
+    <figure xml:id="fig_line_int_defn3">
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces</caption>
+      <image width="80%" xml:id="line-int-defn3"> <!--source="/line_int_defn3"-->
+        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
+        <sageplot >
+          tpoints=[4,3.5,3,2.5,1.5,1,0.5]
+          offsetx=[0.1,-0.2,0.2,0.2,0,0,0.2]
+          offsety=[-0.2,-0.1,0,0.2,-0.2,-0.2,-0.2]
+          labels=['$P=\\mathbf{r}_0$','$\\mathbf{r}_1$','$\\mathbf{r}_2$','','$\\mathbf{r}_{n-2}$','$\\mathbf{r}_{n-1}$','$Q=\\mathbf{r}_{n}$']
+          
+          var('t');
+          r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+          plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+          for i in range(len(tpoints)):
+            position=r1(tpoints[i])
+            withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+            plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=25,color='black')
+          plot99+=arrow(r1(t=2),r1(t=1.99),color='black',axes=False)
+          plot99
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      If we look at one of these smaller pieces (as show in <xref ref="fig_line_int_defn4" />), we can see that vector field still changes at these points, but the output vectors are very similar. We can also see that the vector <m>\Delta \mathbf{r}_i= \mathbf{r}_i-\mathbf{r}_{i-1}</m> is a good approximation of the curve piece <m>C_i</m>. Therefore we can approximate the work done by the vector field <m>\vF</m> on the piece <m>C_i</m> by <m> \vF(\mathbf{r}_i)\cdot \Delta \mathbf{r}_i </m>. Remember that this is the same idea as in <xref ref="S-9-3-Dot-Product" />; Namely, the work done is the dot product of the force and the displacement, but this is done on many small pieces instead of the whole path.
+    </p>
+    <figure xml:id="fig_line_int_defn4">
+      <caption>A plot of the piece <m>C_i</m> with the output of our vector field plotted at six poins on <m>C_i</m></caption>
+      <image width="80%" xml:id="line_int_defn4">
+        <description>The portion <m>C_i</m> of an oriented curve from <m>\vr_{i-1}</m> to <m>\vr_{i}</m>. Several vectors from a vector field are shown with their tails on the curve. The vector <m>\Delta\vr_i = \vr_i-\vr_{i-1}</m> is also shown in red; it lies very close to the curve portion <m>C_i</m>.</description>
+        <sageplot>
+          var('x,y,t');
+          tpoints=[3,2.9,2.8,2.7,2.6,2.5]
+          r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+          plot99=parametric_plot(r1(t),(t,2.5,3),aspect_ratio=1,color='black',thickness=2,axes=False)
+          plot99+=point(r1(t=3),size=50,color='black')+point(r1(2.5),size=50,color='black')
+          plot99+=text("$\\mathbf{r}_{i-1}$",(r1(3)[0]+0.17,r1(3)[1]),color='black',fontsize=25)
+          plot99+=text("$\\mathbf{r}_i$",(r1(2.5)[0]+0.1,r1(2.5)[1]),color='black',fontsize=25)
+          for tv in tpoints:
+              rx,ry=r1(tv)
+              plot99+=arrow((rx,ry),(rx+rx/3,ry-ry/3),color='blue')
+          plot99+=arrow(r1(3),r1(2.5),color='red')+text('$\\Delta \\mathbf{r}_i=\\mathbf{r}_{i}-\\mathbf{r}_{i-1}$',(-2,0.35),color='red',fontsize=25)
+          plot99
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      As we increase <m>n</m>, the number of pieces of <m>C</m> in our approximation, and make sure the length of each piece, <m>C_i</m>, goes to zero, the vector field <m>\vF</m> will be nearly constant on each piece. Additionally, the displacement vector, <m>\Delta \mathbf{r}_i </m>, will be a better approximation of <m>C_i</m> as <m>n</m> increases. This means that our approximation with <m>n</m> pieces of <m>C</m> would be
+      <me> \sum_{i=1}^{n} \vF(\mathbf{r}_i)\cdot \Delta \mathbf{r}_i </me>.
+      We can calculate the exact amount of work done by <m>\vF</m> over <m>C</m>  by taking the limit of this approximation as the number of pieces increases, while ensuring the size of each piece goes to zero. This should be a familiar Riemann sum argument from earlier definitions involving integration.
+    </p>
+    <figure xml:id="fig_line_int_defn5">
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces with the output of <m>\vF</m> plotted at each intermediate point</caption>
+      <image width="80%" xml:id="line_int_defn5">
+        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m> broken into a sequence of vectors <m>\Delta\vr_i</m> between points <m>\vr_0,\dots,\vr_{n}</m> along the curve. The vector of a vector field <m>\vF</m> is also shown associated to each of these points.</description>
+        <sageplot>
+          tpoints=[4,3.5,3,2.5,1.5,1,0.5]
+          offsetx=[0.1,-0.2,0.2,0.2,0,0.2,0.42]
+          offsety=[-0.2,-0.1,0,0.2,0.2,0.2,0.22]
+          labels=['$P=\\mathbf{r}_0$','$\\mathbf{r}_1$','$\\mathbf{r}_2$','','$\\mathbf{r}_{n-2}$','$\\mathbf{r}_{n-1}$','$Q=\\mathbf{r}_{n}$']
+
+          var('t');
+          r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+          plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+          for i in range(len(tpoints)):
+              position=r1(tpoints[i])
+              rx,ry=position
+              plot99+=arrow((rx,ry),(rx+rx/3,ry-ry/3),color='blue')
+              withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+              if(i!=len(tpoints)-1 and i!=3):
+                  plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+              if(i==3):
+                  plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+              plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=25,color='black',axes=False)
+          plot99+=text('$\\Delta \\mathbf{r}_i=\\mathbf{r}_{i}-\\mathbf{r}_{i-1}$',(-0.9,0.6),color='red',fontsize=25)
+          plot99
+        </sageplot>
+      </image>
+    </figure>
+    <!-- <p>
+      Just as when we differentiated a vector-valued function <m>\vr(t)</m> to find a tangent vector, we begin by dividing a curve <m>C</m> oriented from a point <m>P</m> to a point <m>Q</m> into <m>n</m> small, straight pieces. Each of these pieces is in an area where the vector field <m>\vF</m> is nearly constant, provided we use enough pieces. In <xref ref="fig_Vector_IdeaLineIntegral_CurveVectors" />, we show this situation. Each <m>\vr_i</m> is the tip of a vector that traces out the curve, which makes the vectors <m>\Delta\vr_i = \vr_{i+1}-\vr_i</m> (shown in blue) approximate the curve <m>C</m>. The green vectors are the vectors in the vector field <m>\vF</m> at each of the designated points along the curve.
     </p>
 
     <figure xml:id="fig_Vector_IdeaLineIntegral_CurveVectors">
-      <caption>A curve <m>C</m> oriented from the point <m>P</m> to
-      the point <m>Q</m>. The tips of the vectors <m>\vr_i</m> that
-      trace out the curve are shown as points. The blue vectors are
-      the <m>\Delta\vr_i</m>, while the green vectors are the vectors
-      associated to each of the points by a vector field
-      <m>\vF</m>.</caption>
+      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m>. The tips of the vectors <m>\vr_i</m> that trace out the curve are shown as points. The blue vectors are the <m>\Delta\vr_i</m>, while the green vectors are the vectors associated to each of the points by a vector field <m>\vF</m>.</caption>
       <image width="50%" source="/fig_12_2_curve_vec_field">
-	<description>An oriented curve from a point <m>P</m> to a
-	point <m>Q</m>. The curve is broken up by points
-	<m>\vr_0,\dots,\vr_n</m> that are the tips of position vectors
-	as points along the curve. Blue vectors from <m>\vr_i</m> to
-	<m>\vr_{i+1}</m> are drawn to approximate the curve. At each
-	<m>\vr_i</m>, there is also a green vector depicting the
-	element of the vector field <m>\vF</m> with tail at that
-	point.</description>
+        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m>. The curve is broken up by points <m>\vr_0,\dots,\vr_n</m> that are the tips of position vectors as points along the curve. Blue vectors from <m>\vr_i</m> to <m>\vr_{i+1}</m> are drawn to approximate the curve. At each <m>\vr_i</m>, there is also a green vector depicting the element of the vector field <m>\vF</m> with tail at that point.</description>
       </image>
     </figure>
 
     <p>
-      If we are trying to determine how much a wind current helps or
-      hinders an aircraft flying along a path determined by the curve,
-      then calculating the dot product <m>\vF(\vr_i)\cdot
-      \Delta\vr_i</m> makes sense for the local amount of help or
-      hindrance. This is because if the vector <m>\vr_i</m> along the
-      curve and the force field vector <m>\vF(\vr_i)</m> point in
-      similar directions, the dot product will be positive.<fn> We are
-      abusing notation here a tiny bit, since technically the domain
-      of <m>\vF</m> is points in <m>\R^2</m> or <m>\R^3</m>, and
-      <m>\vr_i</m> is a vector.  By <m>\vF(\vr)</m>, we mean
-      <m>\vF(r_1,r_2)</m>, where <m>\vr= \langle r_1,r_2\rangle</m>.
-      </fn> On the other hand, if the angle between them is obtuse,
-      the dot product will be negative and we also would note that the
-      force field is hindering the aircraft's progress.  Taking the
-      sum over <m>i=0,\dots,n-1</m>, we have a Riemann sum that
-      approximates the work done by the vector field on the aircraft
-      as it flies along <m>C</m>:
+      If we are trying to determine how much a wind current helps or hinders an aircraft flying along a path determined by the curve, then calculating the dot product <m>\vF(\vr_i)\cdot \Delta\vr_i</m> makes sense for the local amount of help or hindrance. This is because if the vector <m>\vr_i</m> along the curve and the force field vector <m>\vF(\vr_i)</m> point in similar directions, the dot product will be positive.
+        <fn>
+          We are abusing notation here a tiny bit, since technically the domain of <m>\vF</m> is points in <m>\R^2</m> or <m>\R^3</m>, and <m>\vr_i</m> is a vector.  By <m>\vF(\vr)</m>, we mean <m>\vF(r_1,r_2)</m>, where <m>\vr= \langle r_1,r_2\rangle</m>.
+        </fn>
+      On the other hand, if the angle between them is obtuse, the dot product will be negative and we also would note that the force field is hindering the aircraft's progress. Taking the sum over <m>i=0,\dots,n-1</m>, we have a Riemann sum that approximates the work done by the vector field on the aircraft as it flies along <m>C</m>:
       <me>
         \sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta \vr_i
       </me>.
@@ -343,96 +414,81 @@
 
     <p>
       This suggests the following definition.
-    </p>
+    </p> -->
 
     <definition xml:id="def_Vector_IdeaLineIntegral_LineIntegral">
       <statement>
         <p>
-          Let <m>C</m> be an oriented curve and <m>\vF</m> a vector
-          field defined in a region containing <m>C</m>.  The
-          <term>line integral</term><idx><h>line
-          integral</h><h>definition</h></idx> of <m>\vF</m> along
-          <m>C</m> is
+          Let <m>C</m> be an oriented curve and <m>\vF</m> a vector field defined in a region containing <m>C</m>. The
+          <term>line integral</term><idx><h>line integral</h><h>definition</h></idx> of <m>\vF</m> along <m>C</m> is
           <me>
-            \int_C \vF\cdot d\vr = \lim_{|\Delta\vr_i|\to 0}
-            \sum_{i=0}^{n-1}\vF(\vr_i)\cdot\Delta\vr_i
+            \int_C \vF\cdot d\vr = \lim_{|\Delta\vr_i|\to 0} \sum_{i=1}^{n}\vF(\vr_i)\cdot\Delta\vr_i
           </me>,
           provided the limit exists.
         </p>
       </statement>
     </definition>
+    <p>
+      We are able to say a bit here about conditions that guarantee the limit in <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> exists. First, we require that <m>C</m> is a relatively <q>nice</q> curve. We say that a curve is <term>smooth</term> provided that it can be parameterized with functions that are infinitely differentiable. We do not require that <m>C</m> be smooth, but only that it be <term>piecewise smooth</term>, which means that <m>C</m> can be separated into parts which are individually smooth. The other requirement is that <m>\vF</m> is a continuous vector field, by which we mean that each component function of <m>\vF</m> is continuous as a function of <m>2</m> or <m>3</m> variables (for a large enough region around our curve <m>C</m>).
+    </p>
+    <p>
+      Because the dot products in the definition of the line integral <m>\int_C\vF\cdot d\vr</m> can each be viewed as the work done by <m>\vF</m> as an object moves along the (very small) vector <m>\Delta\vr_i</m>, the line integral gives the total work done by the vector field on an object that moves along <m>C</m> (in the direction of its orientation).
+    </p>
     <aside>
       <title>Alternative notation for line integrals</title>
-      <p>Our notation for line integrals is one of several common
-      notations. This notation's strength is that it emphasizes the
-      role of a vector field and dot product. Another common notation
-      for the line integral of a vector field <m>\langle P, Q,
-      R\rangle</m> along a curve <m>C</m> is <m>\int_C P\, dx + Q\, dy
-    + R\, dz</m>. This notation is common in physics and
-      engineering. We will limit ourselves to the <m>\int_C\vF\cdot
-      d\vr</m> notation in the body of the text, but some exercises
-      may use alternative notation.</p>
+      <p>
+        Our notation for line integrals is one of several common notations. This notation's strength is that it emphasizes the role of a vector field and dot product. Another common notation for the line integral of a vector field <m>\langle P, Q, R\rangle</m> along a curve <m>C</m> is <m>\int_C P\, dx + Q\, dy + R\, dz</m>. This notation is called the differential form of line integrals and is commonly used in physics and engineering. We will limit ourselves to the <m>\int_C\vF\cdot d\vr</m> notation in the body of the text, but some exercises may use alternative notation. You can find more info at <xref ref="alt_li_notation" />.
+      </p>
     </aside>
     <p>
-      The limit in <xref
-      ref="def_Vector_IdeaLineIntegral_LineIntegral" /> exists
-      provided that <m>\vF</m> is a continuous vector field, by which
-      we mean that each component function of <m>\vF</m> is continuous
-      as a function of <m>2</m> or <m>3</m> variables, and that
-      <m>C</m> is a piecewise smooth curved traced out from its
-      initial point to its terminal point without retracing any
-      portion of the curve.
+      If we are trying to determine how much a wind current helps or hinders an aircraft flying along a path determined by the curve, then calculating the dot product <m>\vF(\vr_i)\cdot \Delta\vr_i</m> makes sense for the local amount of help or hindrance. Note here that our vector <m>\Delta\vr_i</m> is the displacement from <m>\vr_{i-1}</m> to <m>\vr_i</m>. If the displacement vector, <m>\Delta\vr_i</m>, and the force field vector, <m>\vF(\vr_i)</m>, point in directions with an acute angle between them, the dot product will be positive.
+        <fn>
+          We are abusing notation here a tiny bit, since technically the domain of <m>\vF</m> is points in <m>\R^2</m> or <m>\R^3</m>, and <m>\vr_i</m> is a vector.  By <m>\vF(\vr)</m>, we mean <m>\vF(r_1,r_2)</m>, where <m>\vr= \langle r_1,r_2\rangle</m>.
+        </fn>
+      On the other hand, if the angle between them is obtuse, the dot product will be negative. In this case, we also note that the force field is hindering the aircraft's progress. This interpretation carries through with our limit argument above. Specifically, the line integral over a curve will be positive if more of the vector field is in the direction of travel than against the direction of travel. You will need to consider the value of the dot product and not just the sign when assessing whether a line integral will be positive/neagtive/zero.
     </p>
 
-    <p>
-      Because the dot products in the definition of the line integral
-      <m>\int_C\vF\cdot d\vr</m> can each be viewed as the work done
-      by <m>\vF</m> as an object moves along the (very small) vector
-      <m>\Delta\vr_i</m>, the line integral gives the total work done
-      by the vector field on an object that moves along <m>C</m> (in
-      the direction of its orientation).
-    </p>
 
     <activity xml:id="act_Vector_IdeaLineIntegral_Sign">
       <introduction>
         <p>
-          Shown in
-          <xref ref="fig_Vector_IdeaLineIntegral_Sign" />
-          are two vector fields, <m>\vF</m> and <m>\vG</m> and four
-          oriented curves, as labeled in the plots.  For each of the
-          line integrals below, determine if its value should be
-          positive, negative, or zero. Do this by thinking about if
-	  the vector field is helping or hindering a particle moving
-	  along the oriented curve, rather than by doing calculations.
+          Shown in <xref ref="fig_Vector_IdeaLineIntegral_Sign" /> are two vector fields, <m>\vF</m> and <m>\vG</m> and four oriented curves, as labeled in the plots.  For each of the line integrals below, determine if its value should be positive, negative, or zero. Do this by thinking about if the vector field is helping or hindering a particle moving along the oriented curve, rather than by doing calculations.
         </p>
         <figure xml:id="fig_Vector_IdeaLineIntegral_Sign">
           <caption>Vector fields and oriented curves</caption>
           <sidebyside widths="47% 47%" margins="0% 6% 0%">
             <figure>
-              <caption><m>\vF</m></caption>
-              <image source="/fig_12_2_idea_field_1">
-		<description>A vector field radiating from the origin
-		with vectors getting longer as distance from the
-		origin increases. There is an oriented line segment
-		labeled <m>C_1</m> from <m>(-2,-2)</m> to <m>(2,2)</m>
-		and an oriented line segment labeled <m>C_2</m> from
-		<m>(2,-2)</m> to <m>(0,-2)</m>.</description>
-	      </image>
+              <caption>A plot of <m>\vF</m> with paths <m>C_1</m> and <m>C_2</m></caption>
+              <image xml:id="fig_12_2_idea_field_1">
+                <description>A vector field radiating from the origin with vectors getting longer as distance from the
+                origin increases. There is an oriented line segment labeled <m>C_1</m> from <m>(-2,-2)</m> to <m>(2,2)</m> and an oriented line segment labeled <m>C_2</m> from <m>(2,-2)</m> to <m>(0,-2)</m>.</description>
+                <sageplot>
+                  var('x,y,t')
+                  plot2=parametric_plot((t,t),(t,-2,2),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((1.85,1.85),(2,2),color="red")
+                  plot2=plot2+parametric_plot((t,-2),(t,0,2),color="purple",thickness=2,axes_labels=["$x$","$y$"])+arrow((.15,-2),(0,-2),color="purple")
+                  plot1=plot_vector_field((x,y),(x,-3,3),(y,-3,3),color="blue",frame=False,plot_points=15,xmin=-3.25,xmax=3.25,ymin=-3.25,ymax=3.25)
+                  text1=text(r"$C_1$",(0.35,1.2),color='red',fontsize=20,clip=True,background_color='white')
+                  text2=text(r"$C_2$",(1.1,-1.2),color='purple',fontsize=20,clip=True,background_color='white')
+                  final_plot1=plot2+plot1+text1+text2
+                  final_plot1
+                </sageplot>
+              </image>
             </figure>
             <figure>
-              <caption><m>\vG</m></caption>
-              <image source="/fig_12_2_idea_field_2">
-		<description>A vector field with all vectors parallel
-		to the <m>y</m>-axis. Vectors get longer as distance
-		from the <m>y</m>-axis increases. Vectors with
-		<m>x>0</m> point in the positive <m>y</m>-direction,
-		while vectors with <m>x\lt 0</m> point in the negative
-		<m>y</m>-direction. The top half of the circle of
-		radius <m>2.5</m> centered at the origin and oriented
-		clockwise is labeled <m>C_3</m>. There is an oriented
-		line segment labeled <m>C_4</m> from <m>(2,-2)</m> to
-		<m>(0,-2)</m>.</description>
-	      </image>
+              <caption>A plot of <m>\vG</m> with paths <m>C_3</m> and <m>C_4</m></caption>
+              <image xml:id="fig_12_2_idea_field_2">
+                <description>A vector field with all vectors parallel to the <m>y</m>-axis. Vectors get longer as distance from the <m>y</m>-axis increases. Vectors with <m>x>0</m> point in the positive <m>y</m>-direction, while vectors with <m>x\lt 0</m> point in the negative <m>y</m>-direction. The top half of the circle of radius <m>2.5</m> centered at the origin and oriented clockwise is labeled <m>C_3</m>. There is an oriented line segment labeled <m>C_4</m> from <m>(2,-2)</m> to <m>(0,-2)</m>.</description>
+                <sageplot>
+                  var('x,y,t')
+                  plot2=parametric_plot((2.5*cos(t),2.5*sin(t)),(t,0,pi),color="green",thickness=2,axes_labels=["$x$","$y$"])+arrow((2.48,0.15),(2.5,0),color="green")
+                  plot2=plot2+parametric_plot((t,-2),(t,0,2),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((.15,-2),(0,-2),color="red")
+                  plot1=plot_vector_field((0,x),(x,-3,3),(y,-3,3),color="blue",frame=False,plot_points=15,xmin=-3.25,xmax=3.25,ymin=-3.25,ymax=3.25)
+                  text1=text(r"$C_3$",(0.4,1.9),color='green',fontsize=20,clip=True,background_color='white')
+                  text2=text(r"$C_4$",(1.1,-1.4),color='red',fontsize=20,clip=True,background_color='white')
+                  final_plot2=plot2+plot1+text1+text2
+                  final_plot2
+                </sageplot>
+              </image>
             </figure>
           </sidebyside>
         </figure>
@@ -447,12 +503,7 @@
           <p><m>0</m></p>
         </answer>
         <solution>
-          <p>The portion of <m>C_1</m> that lies in the third quadrant
-          is oriented in the opposite direction of the vector
-          field. On the other hand, the portion of <m>C_1</m> in the
-          first quadrant is oriented in the same direction as
-          <m>\vF</m>. By symmetry, this forces
-          <m>\displaystyle\int_{C_1}\vF\cdot d\vr=0</m>.</p>
+          <p>The portion of <m>C_1</m> that lies in the third quadrant is oriented in the opposite direction of the vector field. On the other hand, the portion of <m>C_1</m> in the first quadrant is oriented in the same direction as <m>\vF</m>. By symmetry, this forces <m>\displaystyle\int_{C_1}\vF\cdot d\vr=0</m>.</p>
         </solution>
       </task>
       <task>
@@ -465,9 +516,7 @@
           <p>Negative</p>
         </answer>
         <solution>
-          <p>The angle between the vectors of <m>\vF</m> and
-          <m>C_2</m> are all obtuse. Thus, the line integral is
-          negative.</p>
+          <p>The angle between the vectors of <m>\vF</m> and <m>C_2</m> are all obtuse. Thus, the line integral is negative.</p>
         </solution>
       </task>
       <task>
@@ -480,10 +529,8 @@
           <p>Negative</p>
         </answer>
         <solution>
-          <p>The angle between the vectors of <m>\vG</m> and
-          <m>C_3</m> are all obtuse (except for <m>x=0</m>, where
-          there is no angle), and thus the line integral is
-          negative.</p>
+          <p>The angle between the vectors of <m>\vG</m> and <m>C_3</m> are all obtuse (except for <m>x=0</m>, where
+          there is no angle), and thus the line integral is negative.</p>
         </solution>
       </task>
       <task>
@@ -496,50 +543,36 @@
           <p>0</p>
         </answer>
         <solution>
-          <p>The vector field <m>\vG</m> is always orthogonal to
-          <m>C_4</m>. Thus, the line integral is <m>0</m>.</p>
+          <p>The vector field <m>\vG</m> is always orthogonal to <m>C_4</m>. Thus, the line integral is <m>0</m>.</p>
         </solution>
       </task>
     </activity>
 
     <p>
-      The next several sections will be devoted to determining ways to
-      calculate line integrals. As with the limits in the definition
-      of every other type of integral we've studied so far, the limit
-      in the definition of the line integral is is cumbersome to work
-      with in most cases.  However, in the case where the oriented
-      curve <m>C</m> is composed of horizontal and vertical line
-      segments, we can make a rather quick reduction to a
-      single-variable integral, as the following example shows.
+      The next several sections will be devoted to determining ways to efficiently calculate line integrals. As with the limits in the definition of every other type of integral we've studied so far, the limit in the definition of the line integral is is cumbersome to work with in most cases. However, in the case where the oriented curve <m>C</m> is composed of horizontal and vertical line segments, we can make a rather quick reduction to a single-variable integral, as the following example shows.
     </p>
 
     <example xml:id="ex_Vector_IdeaLineIntegral_HorizVert">
-      <statement>
         <p>
-          Consider the constant vector field <m>\vF(x,y) = \langle
-          2,1\rangle</m>.  Let <m>C</m> be the curve that follows the
-          horizontal line segment from <m>(1,1)</m> to <m>(4,1)</m>
-          and then continues down the vertical line segment to
-          <m>(4,-2)</m>.  <xref
-          ref="fig_Vector_IdeaLineIntegral_ConstantField" /> shows
-          <m>\vF</m> and <m>C</m>, including the
-          orientation. Calculate <m>\displaystyle\int_C\vF\cdot
-          d\vr</m>
+          Consider the constant vector field <m>\vF(x,y) = \langle 2,1\rangle</m>. Let <m>C</m> be the curve that follows the horizontal line segment from <m>(1,1)</m> to <m>(4,1)</m> and then continues down the vertical line segment to <m>(4,-2)</m>.  <xref ref="fig_Vector_IdeaLineIntegral_ConstantField" /> shows <m>\vF</m> and <m>C</m>, including the orientation. We will calculate <m>\displaystyle\int_C\vF\cdot d\vr</m>.
         </p>
 
         <figure xml:id="fig_Vector_IdeaLineIntegral_ConstantField">
           <caption>An oriented curve from <m>(1,1)</m> to <m>(4,-2)</m> in a vector
           field <m>\vF</m>.</caption>
-          <image width="45%" source="/fig_12_2_field_line_segs">
-	    <description>The constant vector field <m>\langle
-	    2,1\rangle</m> as well as an oriented curve consisting of
-	    the line segment from <m>(1,1)</m> to <m>(4,1)</m>
-	    followed by the line segment from <m>(4,1)</m> to
-	    <m>(4,-2)</m>.</description>
-	  </image>
+          <image width="45%" xml:id="fig_12_2_field_line_segs">
+	          <description>The constant vector field <m>\langle 2,1\rangle</m> as well as an oriented curve consisting of the line segment from <m>(1,1)</m> to <m>(4,1)</m> followed by the line segment from <m>(4,1)</m> to <m>(4,-2)</m>.
+            </description>
+            <sageplot>
+              var('x,y,t')
+              plot2=parametric_plot((t,1),(t,1,4),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((3.85,1),(4,1),color="red")
+              plot2=plot2+parametric_plot((4,-t),(t,-1,2),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((4,-1.85),(4,-2),color="red")
+              plot1=plot_vector_field((2,1),(x,0,5),(y,-3,2),color="blue",frame=False,plot_points=15,xmin=-0.25,xmax=5.25,ymin=-3.25,ymax=2.25)
+              final_plot3=plot2+plot1
+              final_plot3
+            </sageplot>
+	        </image>
         </figure>
-      </statement>
-      <solution>
         <p>
           To calculate <m>\int_C\vF\cdot d\vr</m>, we start by working
           with the horizontal line segment.  Along that part of
@@ -572,7 +605,6 @@
           Combining these two calculations, we find that <m>\int_C
           \vF\cdot d\vr = 6 - 3 = 3</m>.
         </p>
-      </solution>
     </example>
   </subsection>
 
@@ -585,117 +617,208 @@
       terminal point of <m>C_1</m> is the initial point of <m>C_2</m>,
       then the line integral of <m>\vF</m> along <m>C</m> is the sum
       of the line integrals of <m>\vF</m> along <m>C_1</m> and along
-      <m>C_2</m>.  Recalling the property for definite integrals that
-      tells us
+      <m>C_2</m>. This is a generalization of the <url
+      href="https://activecalculus.org/single/sec-4-3-definite-integral.html#zac"
+      visual="activecalculus.org/single/sec-4-3-definite-integral.html#zac">property for definite integrals</url> that tells us if <m>c\in [a,b]</m>, then 
       <me>
         \int_a^b f(x)\, dx = \int_a^c f(x)\, dx + \int_c^b f(x)\, dx
-      </me>, the ability to work with line integrals in this way is
-      probably not surprising.
+      </me>.
+      We next describe some common ways of breaking line integrals into pieces.
     </p>
+    <convention xml:id="path_convention">
+      <title>Describing Paths in Line Integrals</title>
+      <p>
+        Before stating some useful properties of line integrals, we will establish some convenient notation. If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m> from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.  Also, if <m>C_1</m> is an oriented curve, <m>-C_1</m> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar analog amongst the properties of definite integrals.
+      </p>
+      <figure xml:id="Convention_paths">
+        <caption>Plots of two oriented curves as well has the
+	      combination of them and one with the opposite orientation</caption>
+	      <sbsgroup widths = "43% 43%" margins ="2% 10% 2%" valign="top">
+          <sidebyside>
+            <figure>
+              <caption><m>C_1</m></caption>
+              <image xml:id="PoLI_plot_C1">
+                <description>An oriented curve from point <m>P</m> to point <m>Q</m></description>
+                <sageplot>
+                  var('t,x,y')
+                  a=1.5
+                  b=4
+                  r1(t)=(3*cos(t)-t/2,-2*sin(2*t)+t/3)
+                  plot2=parametric_plot(r1,(t,a,b),axes=False,color='black')
+                  plot2+=point(r1(a),size=50,color='black')+point(r1(b),size=50,color='black')
+                  plot2+=text("$P$",(r1(a)[0]-0.1,r1(a)[1]-0.25),color='black',fontsize=25,clip=True)
+                  plot2+=text("$Q$",(r1(b)[0]+0.25,r1(b)[1]+0.05),color='black',fontsize=25,clip=True)
+                  plot2+=arrow(r1(2.5),r1(2.501),color='black')
+                  plot2
+                </sageplot>
+              </image>
+            </figure>
+            <figure>
+              <caption><m>C_2</m></caption>
+              <image xml:id="PoLI_plot_C2">
+                <description>An oriented curve from <m>Q</m> to <m>R</m></description>
+                <sageplot>
+                  var('t,x,y')
+                  a=1.5
+                  b=4
+                  r1(t)=(3*cos(t)-t/2,-2*sin(2*t)+t/3)
+                  c=-1.5
+                  d=1
+                  r2(t)=(t^3/6+r1(b)[0]-(-1.5)^3/6,t+r1(b)[1]+1.5)
+                  plot2=point(r1(b),size=50,color='black',zorder=10)#+point(r1(a),size=50,color='black')
+                  plot2+=parametric_plot(r1,(t,a,b),axes=False,color='white')
+                  plot2+=parametric_plot(r2,(t,c,d),axes=False,color='black')
 
-    <p>
-      Before stating some useful properties of line integrals, we will
-      establish some convenient notation. If <m>C_1</m> and <m>C_2</m>
-      are oriented curves, with <m>C_1</m> from a point <m>P</m> to a
-      point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>,
-      we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to
-      <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues
-      along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented
-      curve, <m>-C</m> denotes the same curve but with the opposite
-      orientation. The list below summarizes some other properties of
-      line integrals, each of which has a familiar analogue amongst
-      the properties of definite integrals.
-    </p>
+                  #plot2+=text("$P$",(r1(a)[0]+0.25,r1(a)[1]+0.25),color='black',fontsize=25)
+                  plot2+=text("$Q$",(r1(b)[0]+0.3,r1(b)[1]+0.1),color='black',fontsize=25,clip=True)
+                  #plot2+=arrow(r1(2.5),r1(2.501),color='black')
+
+                  plot2+=point(r2(d),size=50,color='black')
+                  plot2+=text("$R$",(r2(d)[0]-0.25,r2(d)[1]-0.15),color='black',fontsize=25,clip=True)
+
+                  plot2+=arrow(r2(0),r2(0.01),color='black')
+                  plot2
+                </sageplot>
+              </image>
+            </figure>
+          </sidebyside>
+          <sidebyside>
+            <figure>
+              <caption><m>C_1+C_2</m></caption>
+              <image xml:id="PoLI_plot_C1C2">
+                <description>An oriented path from point <m>P</m> to <m>R</m>.</description>
+                <sageplot>
+                  var('t,x,y')
+                  a=1.5
+                  b=4
+                  r1(t)=(3*cos(t)-t/2,-2*sin(2*t)+t/3)
+                  c=-1.5
+                  d=1
+                  r2(t)=(t^3/6+r1(b)[0]-(-1.5)^3/6,t+r1(b)[1]+1.5)
+                  plot2=parametric_plot(r1,(t,a,b),axes=False,color='black')
+                  plot2+=parametric_plot(r2,(t,c,d),axes=False,color='black')
+                  plot2+=point(r1(a),size=50,color='black')#+point(r1(b),size=50,color='black')
+                  plot2+=text("$P$",(r1(a)[0]-0.1,r1(a)[1]-0.25),color='black',fontsize=25,clip=True)
+                  #plot2+=text("$Q$",(r1(b)[0]+0.25,r1(b)[1]),color='black',fontsize=25)
+                  plot2+=arrow(r1(2.5),r1(2.501),color='black')
+                  c=-1.5
+                  d=1
+                  r2(t)=(t^3/6+r1(b)[0]-(-1.5)^3/6,t+r1(b)[1]+1.5)
+                  plot2+=point(r2(d),size=50,color='black')
+                  plot2+=text("$R$",(r2(d)[0]+0.25,r2(d)[1]+0.25),color='black',fontsize=25,clip=True)
+
+                  plot2+=arrow(r2(0),r2(0.01),color='black')
+                  plot2
+                </sageplot>
+              </image>
+            </figure>
+            <figure>
+              <caption><m>-C_1</m></caption>		
+              <image xml:id="PoLI_plot_negC1">
+                <description>An oriented curve from point <m>Q</m> to point <m>P</m></description>
+                <sageplot>
+                  var('t,x,y')
+                  a=1.5
+                  b=4
+                  r1(t)=(3*cos(t)-t/2,-2*sin(2*t)+t/3)
+                  c=-1.5
+                  d=1
+                  r2(t)=(t^3/6+r1(b)[0]-(-1.5)^3/6,t+r1(b)[1]+1.5)
+                  plot2=parametric_plot(r1,(t,a,b),axes=False,color='black')
+                  plot2+=point(r1(a),size=50,color='black')+point(r1(b),size=50,color='black')
+                  plot2+=text("$P$",(r1(a)[0]-0.1,r1(a)[1]-0.25),color='black',fontsize=25,clip=True)
+                  plot2+=text("$Q$",(r1(b)[0]+0.25,r1(b)[1]+0.05),color='black',fontsize=25,clip=True)
+                  plot2+=arrow(r1(2.501),r1(2.5),color='black')
+                  plot2
+                </sageplot>
+              </image>
+            </figure>
+          </sidebyside>
+        </sbsgroup>
+      </figure>
+    </convention>
     <assemblage xml:id="asm_Vector_IdeaLineIntegral_Properties">
       <title>Properties of Line Integrals</title>
       <p>
-	For a constant scalar <m>k</m>, vector fields <m>\vF</m> and
-	<m>\vG</m>, and oriented curves <m>C</m>, <m>C_1</m>, and
-	<m>C_2</m>, the following properties hold:
-
-	<ol marker="a.">
+       For a constant scalar <m>k</m>, vector fields <m>\vF</m> and <m>\vG</m>, and oriented curves <m>C</m>, <m>C_1</m>, and <m>C_2</m>, the following properties hold:
+        <ol marker="a.">
           <li>
             <p>
               <m>\displaystyle\int_C (k\vF)\cdot d\vr = k\int_C\vF\cdot
               d\vr</m>
             </p>
           </li>
-	  
           <li>
             <p>
               <m>\displaystyle\int_C(\vF+\vG)\cdot d\vr = \int_C \vF\cdot d\vr +
               \int_C\vG\cdot d\vr</m>
             </p>
           </li>
-	  
           <li>
             <p>
               <m>\displaystyle\int_{-C}\vF\cdot d\vr = -\int_C \vF\cdot d\vr</m>
             </p>
           </li>
-	  
           <li>
             <p>
               <m>\displaystyle\int_{C_1+C_2} \vF\cdot d\vr = \int_{C_1}\vF\cdot d\vr +
               \int_{C_2}\vF\cdot d\vr</m>.
             </p>
           </li>
-	</ol>
+        </ol>
       </p>
     </assemblage>
-    
+
     <activity xml:id="act_Vector_IdeaLineIntegral_Order">
       <introduction>
         <p>
-          <xref ref="fig_Vector_IdeaLineIntegral_Order" />
-          shows a vector field <m>\vF</m> as well as six oriented
+          <xref ref="fig_Vector_IdeaLineIntegral_Order" /> shows a vector field <m>\vF</m> as well as six oriented
           curves, as labeled in the plot.
-	</p>
-
-	<figure xml:id="fig_Vector_IdeaLineIntegral_Order">
+        </p>
+        <figure xml:id="fig_Vector_IdeaLineIntegral_Order">
           <caption>A vector field <m>\vF</m> and six oriented curves.</caption>
-          <image width="65%" source="/fig_12_2_field_practice">
-	    <description>A vector field in the first quadrant with
-	    <m>x,y\leq 5</m>. Vectors are parallel to the
-	    <m>y</m>-axis and point in the negative
-	    <m>y</m>-direction. Vectors get longer as distance from
-	    the <m>y</m>-axis increases. There are six labeled
-	    oriented curves. The curve <m>C_1</m> is the line segment
-	    from <m>(3,3)</m> to <m>(4,3)</m>. The curve <m>C_2</m> is
-	    the line segment from <m>(4,3)</m> to <m>(4,5)</m>. The
-	    curve <m>C_3</m> is the line segment from <m>(4,5)</m> to
-	    <m>(3,5)</m>. The curve <m>C_4</m> is the line segment
-	    from <m>(3,5)</m> to <m>(3,3)</m>. The curve <m>C_5</m> is
-	    the lower half of the circle of radius <m>1</m> centered
-	    at <m>(3,2)</m> oriented counterclockwise. The curve
-	    <m>C_6</m> is the line segment from <m>(1,1)</m> to
-	    <m>(1,5)</m>. 
-	    </description>
-	  </image>
-	</figure>
+          <image width="65%" xml:id="fig_12_2_field_practice">
+            <description>
+              A vector field in the first quadrant with <m>x,y\leq 5</m>. Vectors are parallel to the <m>y</m>-axis and point in the negative <m>y</m>-direction. Vectors get longer as distance from the <m>y</m>-axis increases. There are six labeled oriented curves. The curve <m>C_1</m> is the line segment from <m>(3,3)</m> to <m>(4,3)</m>. The curve <m>C_2</m> is the line segment from <m>(4,3)</m> to <m>(4,5)</m>. The curve <m>C_3</m> is the line segment from <m>(4,5)</m> to <m>(3,5)</m>. The curve <m>C_4</m> is the line segment from <m>(3,5)</m> to <m>(3,3)</m>. The curve <m>C_5</m> is the lower half of the circle of radius <m>1</m> centered at <m>(3,2)</m> oriented counterclockwise. The curve <m>C_6</m> is the line segment from <m>(1,1)</m> to <m>(1,5)</m>.
+            </description>
+            <sageplot>
+              var('t,x,y')
+              plot2=parametric_plot((cos(t)+3,sin(t)+2),(t,pi,2*pi),color="green",thickness=2,axes_labels=["$x$","$y$"])+arrow((3.97,1.85),(4,2),color="green")
+              plot2=plot2+parametric_plot((1,t),(t,1,5),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((1,4.85),(1,5),color="red")
+              plot2=plot2+parametric_plot((t,3),(t,3,4.1),color="purple",thickness=2,axes_labels=["$x$","$y$"])+arrow((3.77,3),(3.92,3),color="purple")
+              plot2=plot2+parametric_plot((t,5),(t,3,4.1),color="purple",thickness=2,axes_labels=["$x$","$y$"])+arrow((3.72,5),(3.57,5),color="purple")
+              plot2=plot2+parametric_plot((3,t),(t,3,5),color="purple",thickness=2,axes_labels=["$x$","$y$"])+arrow((3,4.15),(3,4),color="purple")
+              plot2=plot2+parametric_plot((4.1,t),(t,3,5),color="purple",thickness=2,axes_labels=["$x$","$y$"])+arrow((4.1,4),(4.1,4.15),color="purple")
+              plot1=plot_vector_field((0,-2*x),(x,0,5),(y,0,5),color="blue",frame=False,plot_points=10,xmin=-0.25,xmax=5.25,ymin=-0.25,ymax=5.25)
+              text1=text(r"$C_1$",(3.6,2.7),color='purple',fontsize='x-large',clip=True)
+              text2=text(r"$C_2$",(4.75,3.55),color='purple',fontsize='x-large',clip=True)
+              text3=text(r"$C_3$",(3.4,5.19),color='purple',fontsize='x-large',clip=True)
+              text4=text(r"$C_4$",(2.6,3.55),color='purple',fontsize='x-large',clip=True)
+              text5=text(r"$C_6$",(3.05,0.75),color='green',fontsize='x-large',clip=True)
+              text6=text(r"$C_5$",(0.75,3),color='red',fontsize='x-large',clip=True)
+              final_plot4=plot2+plot1+text1+text2+text3+text4+text5+text6
+              final_plot4
+            </sageplot>
+          </image>
+        </figure>
       </introduction>
       <task>
         <statement>
           <p>
-            Is <m>\int_{C_5}\vF\cdot d\vr</m> positive, negative, or
-            zero?  Explain.
+            Is <m>\int_{C_6}\vF\cdot d\vr</m> positive, negative, or zero?  Explain.
           </p>
         </statement>
         <answer>
           <p>Negative</p>
         </answer>
         <solution>
-          <p>The portion of the vector field that produces acute
-          angles with <m>C_5</m> has small magnitude than the portion
-          that produces obtuse angles. Thus, the line integral must be
-          negative.</p>
+          <p>The portion of the vector field that produces acute angles with <m>C_6</m> has smaller magnitude and smaller length than the portion that produces obtuse angles. Thus, the line integral must be negative.</p>
         </solution>
       </task>
       <task>
         <statement>
           <p>
-            Let <m>C = C_1+C_2+C_3+C_4</m>.  Determine if
-            <m>\displaystyle\int_C\vF\cdot d\vr</m> is positive,
+            Let <m>C = C_1+C_2+C_3+C_4</m>.  Determine if <m>\displaystyle\int_C\vF\cdot d\vr</m> is positive,
             negative, or zero.
           </p>
         </statement>
@@ -703,12 +826,9 @@
           <p>Negative</p>
         </answer>
         <solution>
-          <p>Notice that <m>\vF</m> is orthogonal to <m>C_1</m> and
-          <m>C_3</m>. Thus, <m>\displaystyle\int_{C_1}\vF\cdot d\vr =
-          \int_{C_3}\vF\cdot d\vr = 0</m>. Where the magnitude of the
-          vectors in <m>\vF</m> is larger, <m>\vF</m> points in the
-          opposite direction as the orientation of <m>C</m>. Thus,
-          <m>\int_C\vF\cdot d\vr</m> is negative.</p>
+          <p>
+            Notice that <m>\vF</m> is orthogonal to <m>C_1</m> and <m>C_3</m>. Thus, <m>\displaystyle\int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr = 0</m>. Where the magnitude of the vectors in <m>\vF</m> is larger, <m>\vF</m> points in the opposite direction as the orientation of <m>C</m>. Thus, <m>\int_C\vF\cdot d\vr</m> is negative.
+          </p>
         </solution>
       </task>
       <task>
@@ -716,32 +836,16 @@
           <p>
             Order the line integrals below from smallest to largest.
             <me>
-              \int_{C_1}\vF\cdot d\vr\quad \int_{C_2}\vF\cdot d\vr\quad \int_{C_3}\vF\cdot d\vr\quad \int_{C_4}\vF\cdot d\vr\quad \int_{C_5}\vF\cdot d\vr\quad \int_{C_6}\vF\cdot d\vr
+              \int_{C_1}\vF\cdot d\vr\quad \int_{C_2}\vF\cdot d\vr\quad \int_{C_3}\vF\cdot d\vr\quad \int_{C_4}\vF\cdot d\vr\quad \int_{C_5}\vF\cdot d\vr
             </me>
           </p>
         </statement>
         <answer>
-          <p><m></m></p>
+          <p><m>\int_{C_4}\vF\cdot d\vr > \int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr > \int_{C_5}\vF\cdot d\vr > \int_{C_2}\vF\cdot d\vr</m></p>
         </answer>
         <solution>
-          <p>Notice that <m>\displaystyle\int_{C_4}\vF\cdot d\vr</m>
-          is the only one of the six line integrals that is positive,
-          so it is the largest. Since <m>\vF</m> is orthogonal to
-          <m>C_1</m> and <m>C_3</m>,
-          <m>\displaystyle\int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot
-          d\vr = 0</m>. Note that while <m>C_6</m> is twice as long as
-          <m>C_2</m>, the vectors in the vector field that are
-          hindering <m>C_2</m> are more than twice as long as those
-          hindering <m>C_6</m> Thus,
-          <m>\displaystyle\int_{C_2}\vF\cdot d\vr \lt
-          \displaystyle\int_{C_6}\vF\cdot d\vr</m>. We do not yet have
-          all the tools necessary to calculate the exact value of
-          <m>\displaystyle\int_{C_5}\vF\cdot d\vr</m>. However, it is
-          greater than <m>\displaystyle\int_{C_6}\vF\cdot
-          d\vr</m>. Thus, the ordering is <me>\int_{C_4}\vF\cdot d\vr
-          > \int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr >
-          \int_{C_5}\vF\cdot d\vr > \int_{C_6}\vF\cdot d\vr >
-          \int_{C_2}\vF\cdot d\vr</me>.
+          <p>
+            Notice that <m>\displaystyle\int_{C_4}\vF\cdot d\vr</m> is the only one of the six line integrals that is positive, so it is the largest. Since <m>\vF</m> is orthogonal to <m>C_1</m> and <m>C_3</m>, <m>\displaystyle\int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr = 0</m>. Note that while <m>C_5</m> is twice as long as <m>C_2</m>, the vectors in the vector field that are hindering <m>C_2</m> are more than twice as long as those hindering <m>C_5</m> Thus, <m>\displaystyle\int_{C_2}\vF\cdot d\vr \lt \displaystyle\int_{C_5}\vF\cdot d\vr</m>. Thus, the ordering is <me>\int_{C_4}\vF\cdot d\vr > \int_{C_1}\vF\cdot d\vr = \int_{C_3}\vF\cdot d\vr > \int_{C_5}\vF\cdot d\vr >  \int_{C_2}\vF\cdot d\vr</me>.
           </p>
         </solution>
       </task>
@@ -751,53 +855,52 @@
   <subsection xml:id="SS_Vector_IdeaLineIntegral_Circulation">
     <title>The Circulation of a Vector Field</title>
     <p>
-      If an oriented curve <m>C</m> ends at the same point where it
-      started, we say that <m>C</m> is
-      <term>closed</term>.<idx><h>oriented
-      curve</h><h>closed</h></idx> The line integral of a vector field
-      <m>\vF</m> along a closed curve <m>C</m> is called the
-      <term>circulation</term><idx><h>circulation</h></idx> of
-      <m>\vF</m> around <m>C</m>.  To emphasize the fact that <m>C</m>
-      is closed, we sometimes write <m>\oint_C \vF\cdot d\vr</m> for
-      <m>\int_C \vF\cdot d\vr</m>.  Circulation serves as a measure of
-      a vector field's tendency to rotate in a manner consistent with
-      the orientation of the curve.
+      If an oriented curve <m>C</m> ends at the same point where it started, we say that <m>C</m> is <term>closed</term>.<idx><h>oriented curve</h><h>closed</h></idx> The line integral of a vector field <m>\vF</m> along a closed curve <m>C</m> is called the <term>circulation</term><idx><h>circulation</h></idx> of <m>\vF</m> around <m>C</m>. To emphasize the fact that <m>C</m> is closed, we sometimes write <m>\oint_C \vF\cdot d\vr</m> for <m>\int_C \vF\cdot d\vr</m>.  Circulation serves as a measure of a vector field's tendency to rotate in a manner consistent with the orientation of the (closed) curve and is measured by looking at whether the vector field is working with or against the motion along the path.
     </p>
 
     <activity xml:id="act_Vector_IdeaLineIntegral_Circulation">
       <statement>
         <p>
-          Determine if the circulation of the vector field around each
-          of the closed curves shown in <xref
-          ref="fig_Vector_IdeaLineIntegral_Circulation" /> is
-          positive, negative, or zero.
-      </p>
+          Determine if the circulation of the vector field around each of the closed curves shown in <xref
+          ref="fig_Vector_IdeaLineIntegral_Circulation" /> is positive, negative, or zero.
+        </p>
 
       <figure xml:id="fig_Vector_IdeaLineIntegral_Circulation">
         <caption>Vector fields and closed curves</caption>
         <sidebyside widths="45% 45%" margins="2% 6% 2%">
-          <image width="45%" source="/fig_12_2_circ_circle">
-	    <description>A vector field with vectors pointing along
-	    circles centered at the origin and in a clockwise
-	    direction. Vectors get longer as distance from the origin
-	    increases. Also shown is the circle of radius <m>1.5</m>
-	    centered at the origin. The circle is oriented
-	    clockwise.</description>
-	  </image>
-          <image width="45%" source="/fig_12_2_circ_box">
-	    <description>A vector field with all vectors parallel to
-	    the <m>y</m>-axis. Vectors get longer as distance from the
-	    <m>y</m>-axis increases. Vectors with <m>x>0</m> point in
-	    the positive <m>y</m>-direction, while vectors with
-	    <m>x\lt 0</m> point in the negative
-	    <m>y</m>-direction. Also shown are two rectangles with
-	    sides parallel to the axes. One rectangle is oriented
-	    counterclockwise; its lower-left corner is at
-	    <m>(-2.25,-1.5)</m> and its upper-right corner is at
-	    <m>(1,2.5)</m>. The other rectangle is oriented clockwise;
-	    its lower-left corner is at <m>(-1.75,-3.2)</m> and its
-	    upper-right corner is at <m>(1.5,-2.1)</m>.</description>
-	  </image>
+          <image width="45%" xml:id="fig_12_2_circ_circle">
+            <description>A vector field with vectors pointing along circles centered at the origin and in a clockwise direction. Vectors get longer as distance from the origin increases. Also shown is the circle of radius <m>1.5</m> centered at the origin. The circle is oriented clockwise.
+            </description>
+            <sageplot>
+              var('x,y,t')
+              plot2=parametric_plot((1.5*cos(t),1.5*sin(t)),(t,0,2*pi),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((1.48,0.15),(1.5,0),color="red")
+              #plot2=plot2+parametric_plot((t,-2),(t,0,2),color="blue",thickness=2,axes_labels=["$x$","$y$"])+arrow((.15,-2),(0,-2),color="blue")
+              plot1=plot_vector_field((y,-x),(x,-3,3),(y,-3,3),color="blue",frame=False,plot_points=15,xmin=-3.25,xmax=3.25,ymin=-3.25,ymax=3.25)
+              #text1=text(r"$C_3$",(0.25,2.2),color='green',fontsize='x-large')
+              #text2=text(r"$C_4$",(1.1,-1.75),color='blue',fontsize='x-large')
+              final_plot5=plot2+plot1
+              final_plot5            
+            </sageplot>
+          </image>
+          <image width="45%" xml:id="fig_12_2_circ_box">
+            <description>
+              A vector field with all vectors parallel to the <m>y</m>-axis. Vectors get longer as distance from the <m>y</m>-axis increases. Vectors with <m>x>0</m> point in the positive <m>y</m>-direction, while vectors with <m>x\lt 0</m> point in the negative <m>y</m>-direction. Also shown are two rectangles with sides parallel to the axes. One rectangle is oriented counterclockwise; its lower-left corner is at <m>(-2.25,-1.5)</m> and its upper-right corner is at <m>(1,2.5)</m>. The other rectangle is oriented clockwise; its lower-left corner is at <m>(-1.75,-3.2)</m> and its upper-right corner is at <m>(1.5,-2.1)</m>.
+            </description>
+            <sageplot>
+              var('x,y,t')
+              plot2=parametric_plot((1,t),(t,-1.5,2.5),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((-0.55,-1.5),(-0.4,-1.5),color="red")
+              plot2=plot2+parametric_plot((t,2.5),(t,-2.25,1),color="red",thickness=2,axes_labels=["$x$","$y$"])
+              plot2=plot2+parametric_plot((t,-1.5),(t,-2.25,1),color="red",thickness=2,axes_labels=["$x$","$y$"])
+              plot2=plot2+parametric_plot((-2.25,t),(t,-1.5,2.5),color="red",thickness=2,axes_labels=["$x$","$y$"])
+              plot2=plot2+parametric_plot((1.5,t),(t,-3.2,-2.1),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((0.3,-3.2),(0.15,-3.2),color="red")
+              plot2=plot2+parametric_plot((t,-3.2),(t,-1.75,1.5),color="red",thickness=2,axes_labels=["$x$","$y$"])
+              plot2=plot2+parametric_plot((t,-2.1),(t,-1.75,1.5),color="red",thickness=2,axes_labels=["$x$","$y$"])
+              plot2=plot2+parametric_plot((-1.75,t),(t,-3.2,-2.1),color="red",thickness=2,axes_labels=["$x$","$y$"])
+              plot1=plot_vector_field((0,x),(x,-3,3),(y,-3,3),color="blue",frame=False,plot_points=15,xmin=-3.25,xmax=3.25,ymin=-3.25,ymax=3.25)
+              final_plot6=plot2+plot1
+              final_plot6              
+            </sageplot>
+          </image>
         </sidebyside>
       </figure>
       </statement>
@@ -820,38 +923,40 @@
       </solution>
     </activity>
   </subsection>
-  
+
   <subsection>
     <title>Summary</title>
     <p>
     <ul>
       <li>
-	<p>An oriented curve is a vector-valued function of one
-	variable <m>\vr(t)</m> where we interpret the initial and
-	terminal values of the domain of <m>\vr</m> as giving an
-	orientation to the curve. A curve that ends at the same point
-	where it started is said to be closed.
-	</p>
-      </li>
-      <li>
-        <p>
-          A line integral measures of a vector field along an oriented
-          curve measures the extent to which the vector field points
-          in a direction consistent with the orientation of the curve.
+         <p>
+          An oriented curve can be represented by a vector-valued function of one variable <m>\vr(t)</m> where we interpret the initial and terminal values of the domain of <m>\vr</m> as giving an orientation to the curve. A curve that ends at the same point where it started is said to be closed.
         </p>
       </li>
-
-
       <li>
         <p>
-          Line integrals have many properties that are analogous to
-          those of definite integrals of functions of a single
-          variable. The line integral of a vector field along a closed
-	  curve is called the circulation of the vector field along
-	  the curve.
+          A line integral (of a vector field) measures the extent to which the vector field points in a direction consistent with the orientation of the curve.
+        </p>
+      </li>
+      <li>
+        <p>
+          Line integrals have many properties that are analogous to those of definite integrals of functions of a single
+          variable.
+        </p>
+      </li>
+      <li>
+        <p>
+          The line integral of a vector field along a closed curve is called the circulation of the vector field along the curve.
         </p>
       </li>
     </ul>
+    </p>
+  </subsection>
+  <xi:include href="exercises/ez-S_Vector_IdeaLineIntegral.ptx" />
+  <subsection component="instructor">
+    <title>Notes to Instructors and Dependencies</title>
+    <p>
+      This section relies heavily on understanding vector fields from <xref ref="S_Vector_VectorFields" />, understanding curves in space (from <xref ref="S-9-6-Vector-Valued-Functions" />), and the work interpretation of the dot product from <xref ref="S-9-3-Dot-Product" />.
     </p>
   </subsection>
 </section>
