@@ -40,47 +40,126 @@
     </p>
 
     <exploration xml:id="PA_10_6">
-      <p>
-        Let's consider the function <m>f</m> defined by
-        <me>
-          f(x,y) = 30 - x^2 - \frac 12 y^2,
-        </me>
-        and suppose that <m>f</m> measures the temperature, in degrees Celsius, at a given point in the plane, where <m>x</m> and <m>y</m> are measured in feet. Assume that the positive <m>x</m>-axis points due east, while the positive <m>y</m>-axis points due north. A contour plot of <m>f</m> is shown in <xref ref="F_10_6_preview_1">Figure</xref>
-      </p>
+      <statement>
+        <p>
+          Let's consider the function <m>f</m> defined by
+          <me>
+            f(x,y) = 30 - x^2 - \frac 12 y^2,
+          </me>
+          and suppose that <m>f</m> measures the temperature, in degrees Celsius, at a given point in the plane, where <m>x</m> and <m>y</m> are measured in feet. Assume that the positive <m>x</m>-axis points due east, while the positive <m>y</m>-axis points due north. A contour plot of <m>f</m> is shown in <xref ref="F_10_6_preview_1">Figure</xref>
+        </p>
 
-      <figure xml:id="F_10_6_preview_1">
-        <caption>A contour plot of <m>f(x,y) = 30-x^2-\frac12 y^2</m>.</caption>
-        <image width="50%" source="images/fig_10_6_preview_1"/>
-      </figure>
+        <figure xml:id="F_10_6_preview_1">
+          <caption>A contour plot of <m>f(x,y) = 30-x^2-\frac12 y^2</m>.</caption>
+          <image width="50%" source="images/fig_10_6_preview_1"/>
+        </figure>
 
-      <ol marker="a.">
-        <li>
-          <p>
-            Suppose that a person is walking due east, and thus parallel to the <m>x</m>-axis.  At what instantaneous rate is the temperature changing with respect to <m>x</m> at the moment the walker passes the point <m>(2,1)</m>?  What are the units on this rate of change?
-          </p>
-        </li>
+        <ol marker="a.">
+          <li>
+            <p>
+              Suppose that a person is walking due east, and thus parallel to the <m>x</m>-axis.  At what instantaneous rate is the temperature changing with respect to <m>x</m> at the moment the walker passes the point <m>(2,1)</m>?  What are the units on this rate of change?
+            </p>
+          </li>
 
-        <li>
-          <p>
-            Next, determine the instantaneous rate of change of temperature with respect to distance at the point <m>(2,1)</m> if the person is instead walking due north.  Again, include units on your result.
-          </p>
-        </li>
+          <li>
+            <p>
+              Next, determine the instantaneous rate of change of temperature with respect to distance at the point <m>(2,1)</m> if the person is instead walking due north.  Again, include units on your result.
+            </p>
+          </li>
 
-        <li>
-          <p>
-            Now, rather than walking due east or due north, let's suppose that the person is walking with velocity given by the vector <m>\vv = \langle 3, 4 \rangle</m>, where time is measured in seconds.  Note that the person's speed is thus <m>| \vv | = 5</m> feet per second.
+          <li>
+            <p>
+              Now, rather than walking due east or due north, let's suppose that the person is walking with velocity given by the vector <m>\vv = \langle 3, 4 \rangle</m>, where time is measured in seconds.  Note that the person's speed is thus <m>| \vv | = 5</m> feet per second.
+    
+                Find parametric equations for the person's path; that is, parameterize the line through <m>(2,1)</m> using the direction vector <m>\vv = \langle 3, 4 \rangle</m>.  Let <m>x(t)</m> denote the <m>x</m>-coordinate of the line, and <m>y(t)</m> its <m>y</m>-coordinate. Make sure your parameterization places the walker at the point <m>(2,1)</m> when <m>t=0</m>. 
+            </p>
+          </li>
+
+          <li>
+            <p>
+              With the parameterization in (c), we can now view the temperature <m>f</m> as not only a function of <m>x</m> and <m>y</m>, but also of time, <m>t</m>.  Hence, use the chain rule to determine the value of <m>\frac{df}{dt}\bigm|_{t=0}</m>.  What are the units on your answer?  What is the practical meaning of this result?
+            </p>
+          </li>
+        </ol>
+      </statement>
+
+      <answer>
+        <ol marker="a.">
+          <li>
+            <p>
+             <m>f_x(2,1) = -4 \ \frac{^{\circ}C}{\text{ foot } }</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>f_y(2,1) = -24 \ \frac{^{\circ}C}{\text{ foot } }</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              <me>
+                x(t) = 2 + 3t \ \text{ and }  \ y(t)=1+4t
+              </me>
+            </p>
+          </li>
+          <li>
+            <p>
+              With the parameterization in (c), we have
+              <me>
+                \frac{df}{dt} = \frac{\partial f}{\partial x} \frac{dx}{dt} + \frac{\partial f}{\partial y} \frac{dy}{dt} = (-2x)(3) - (24y)(4)
+              </me>.
+              So
+              <me>
+                \frac{df}{dt}\mid_{t=0} = (-2)(2)(3) - (24)(1)(4) = -108 \ \frac{^{\circ}C}{\text{ second } }
+              </me>.
+              So the temperature is decreasing by 108 degrees Celsius for every second she moves in the direction of <m>\vv</m> from the point <m>(2,1)</m>.
+            </p>
+          </li>
+        </ol>
+      </answer>  
+
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              The instantaneous rate of change in the temperature when a person is walking due east at the moment she passes the point <m>(2,1)</m> is given by <m>f_x(2,1)</m>.
+              Since <m>f_x(x,y) = -2x</m>,
+              we have <m>f_x(2,1) = -4 \ \frac{^{\circ}C}{\text{ foot } }</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The instantaneous rate of change in the temperature when a person is walking due north at the moment she passes the point <m>(2,1)</m> is given by <m>f_y(2,1)</m>.
+              Since <m>f_y(x,y) = -24 y</m>,
+              we have <m>f_y(2,1) = -24 \ \frac{^{\circ}C}{\text{ foot } }</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Parametric equations for the line through <m>(2,1)</m> in the direction of <m>\vv = \langle 3, 4 \rangle</m> are
+              <me>
+                x(t) = 2 + 3t \ \text{ and }  \ y(t)=1+4t
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              With the parameterization in (c), we have
+              <me>
+                \frac{df}{dt} = \frac{\partial f}{\partial x} \frac{dx}{dt} + \frac{\partial f}{\partial y} \frac{dy}{dt} = (-2x)(3) - (24y)(4)
+              </me>.
+              So
+              <me>
+                \frac{df}{dt}\mid_{t=0} = (-2)(2)(3) - (24)(1)(4) = -108 \ \frac{^{\circ}C}{\text{ second } }
+              </me>.
+              So the temperature is decreasing by 108 degrees Celsius for every second she moves in the direction of <m>\vv</m> from the point <m>(2,1)</m>.
+            </p>
+          </li>
+        </ol>
+      </solution>
   
-              Find parametric equations for the person's path; that is, parameterize the line through <m>(2,1)</m> using the direction vector <m>\vv = \langle 3, 4 \rangle</m>.  Let <m>x(t)</m> denote the <m>x</m>-coordinate of the line, and <m>y(t)</m> its <m>y</m>-coordinate. Make sure your parameterization places the walker at the point <m>(2,1)</m> when <m>t=0</m>. 
-          </p>
-        </li>
-
-        <li>
-          <p>
-            With the parameterization in (c), we can now view the temperature <m>f</m> as not only a function of <m>x</m> and <m>y</m>, but also of time, <m>t</m>.  Hence, use the chain rule to determine the value of <m>\frac{df}{dt}\bigm|_{t=0}</m>.  What are the units on your answer?  What is the practical meaning of this result?
-          </p>
-        </li>
-      </ol>
     </exploration>
+    
   </introduction>
 
   <subsection>
@@ -167,28 +246,104 @@
     </p>
 
     <activity xml:id="A_10_6_2">
-      <p>
-        Let <m>f(x,y) = 3xy-x^2y^3</m>.
+      <statement>
+        <p>
+          Let <m>f(x,y) = 3xy-x^2y^3</m>.
+          <ol marker="a.">
+            <li>
+              <p>
+                Determine <m>f_x(x,y)</m> and <m>f_y(x,y)</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Use Equation<nbsp/><xref ref="eq_10_6_DD"/> to determine <m>D_{\vi} f(x,y)</m> and <m>D_{\vj} f(x,y)</m>. What familiar function is <m>D_{\vi} f</m>? What familiar function is <m>D_{\vj} f</m>? (Recall that <m>\vi</m> is the unit vector in the positive <m>x</m>-direction and <m>\vj</m> is the unit vector in the positive <m>y</m>-direction.)
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Use Equation<nbsp/><xref ref="eq_10_6_DD"/> to find the derivative of <m>f</m> in the direction of the vector <m>\vv = \langle 2, 3 \rangle</m> at the point <m>(1,-1)</m>.  Remember that a unit direction vector is needed.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+
+      <answer>
         <ol marker="a.">
           <li>
             <p>
-              Determine <m>f_x(x,y)</m> and <m>f_y(x,y)</m>.
+              <me>
+                \frac{\partial f}{\partial x} = 3y-2xy^3 \ \ \text{ and }  \ \ \frac{\partial f}{\partial y} = 3x - 3x^2y^2
+              </me>
             </p>
           </li>
-
           <li>
             <p>
-              Use Equation<nbsp/><xref ref="eq_10_6_DD"/> to determine <m>D_{\vi} f(x,y)</m> and <m>D_{\vj} f(x,y)</m>. What familiar function is <m>D_{\vi} f</m>? What familiar function is <m>D_{\vj} f</m>? (Recall that <m>\vi</m> is the unit vector in the positive <m>x</m>-direction and <m>\vj</m> is the unit vector in the positive <m>y</m>-direction.)
+              <me>
+                D_{\vi}f(x,y) = f_x(x,y)
+              </me>,
+
+              <me>
+                D_{\vj}f(x,y) = f_y(x,y)
+              </me>
+
             </p>
           </li>
-
           <li>
             <p>
-              Use Equation<nbsp/><xref ref="eq_10_6_DD"/> to find the derivative of <m>f</m> in the direction of the vector <m>\vv = \langle 2, 3 \rangle</m> at the point <m>(1,-1)</m>.  Remember that a unit direction vector is needed.
+              <me>
+                D_{\vv}f(1,-1) = -\frac{2}{\sqrt{13}}
+              </me>
             </p>
           </li>
         </ol>
-      </p>
+      </answer>
+
+      
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              We have
+              <me>
+                \frac{\partial f}{\partial x} = 3y-2xy^3 \ \ \text{ and }  \ \ \frac{\partial f}{\partial y} = 3x - 3x^2y^2
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Since <m>\vi = \langle 1, 0 \rangle</m>, we have
+              <me>
+                D_{\vi}f(x,y) = f_x(x,y)(1) + f_y(x,y)(0) = f_x(x,y)
+              </me>.
+              So the derivative of <m>f</m> in the direction of the vector <m>\vi</m> is just the partial derivative of <m>f</m> with respect to <m>x</m>.
+              Similarly,
+              <me>
+                D_{\vj}f(x,y) = f_x(x,y)(0) + f_y(x,y)(1) = f_y(x,y)
+              </me>.
+              So the derivative of <m>f</m> in the direction of the vector <m>\vj</m> is just the partial derivative of <m>f</m> with respect to <m>y</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              At the point <m>(1,-1)</m> we have
+              <me>
+                f_x(1,-1) = -1 \ \ \text{ and }  \ \ f_y(1,-1) = 0
+              </me>.
+              So the derivative of <m>f</m> in the direction of the unit vector
+              <m>\frac{1}{|\vv|} \vv = \frac{1}{\sqrt{13}}\langle 2, 3 \rangle</m> at the point <m>(1,-1)</m> is
+              <me>
+                D_{\vv}f(1,-1) = f_x(1,-1) \left(\frac{2}{\sqrt{13}}\right) + f_y(1,-1) \left(\frac{3}{\sqrt{13}}\right) = -\frac{2}{\sqrt{13}}
+              </me>.
+            </p>
+          </li>
+        </ol>
+      </solution>
+
+
 
     </activity>
   </subsection>
@@ -241,87 +396,184 @@
     </p>
 
     <activity xml:id="A_10_6_10">
-      <p>
-        Let's consider the function <m>f</m> defined by <m>f(x,y) = x^2 - y^2</m>. Some contours for this function are shown in <xref ref="F_10_6_activity_1">Figure</xref>.
-      </p>
+      <statement>
+        <p>
+          Let's consider the function <m>f</m> defined by <m>f(x,y) = x^2 - y^2</m>. Some contours for this function are shown in <xref ref="F_10_6_activity_1">Figure</xref>.
+        </p>
 
-      <figure xml:id="F_10_6_activity_1">
-        <caption>Contours of <m>f(x,y) = x^2 - y^2</m>.</caption>
-        <image width="50%" source="images/fig_10_6_contours_1"/>
-      </figure>
+        <figure xml:id="F_10_6_activity_1">
+          <caption>Contours of <m>f(x,y) = x^2 - y^2</m>.</caption>
+          <image width="50%" source="images/fig_10_6_contours_1"/>
+        </figure>
 
-      <ol marker="a.">
-        <li>
-          <p>
-            Find the gradient <m>\nabla f (x,y)</m>.
-          </p>
-        </li>
+        <ol marker="a.">
+          <li>
+            <p>
+              Find the gradient <m>\nabla f (x,y)</m>.
+            </p>
+          </li>
 
-        <li>
-          <p>
-            For each of the following points <m>(x_0,y_0)</m>, evaluate the gradient <m>\nabla f(x_0,y_0)</m> and sketch the gradient vector with its tail at
-                <m>(x_0,y_0)</m>.  Some of the vectors are too long
-                to fit onto the plot, but we'd like to draw them to scale;  to do so, scale each vector by a factor of 1/4.
-            <ul>
-              <li>
-                <p>
-                  <m>(x_0,y_0) = (2,0)</m>
-                </p>
-              </li>
+          <li>
+            <p>
+              For each of the following points <m>(x_0,y_0)</m>, evaluate the gradient <m>\nabla f(x_0,y_0)</m> and sketch the gradient vector with its tail at
+                  <m>(x_0,y_0)</m>.  Some of the vectors are too long
+                  to fit onto the plot, but we'd like to draw them to scale;  to do so, scale each vector by a factor of 1/4.
+              <ul>
+                <li>
+                  <p>
+                    <m>(x_0,y_0) = (2,0)</m>
+                  </p>
+                </li>
 
-              <li>
-                <p>
-                  <m>(x_0,y_0) = (0,2)</m>
-                </p>
-              </li>
+                <li>
+                  <p>
+                    <m>(x_0,y_0) = (0,2)</m>
+                  </p>
+                </li>
 
-              <li>
-                <p>
-                  <m>(x_0,y_0) = (2,2)</m>
-                </p>
-              </li>
+                <li>
+                  <p>
+                    <m>(x_0,y_0) = (2,2)</m>
+                  </p>
+                </li>
 
-              <li>
-                <p>
-                  <m>(x_0,y_0) = (2,1)</m>
-                </p>
-              </li>
+                <li>
+                  <p>
+                    <m>(x_0,y_0) = (2,1)</m>
+                  </p>
+                </li>
 
-              <li>
-                <p>
-                  <m>(x_0,y_0) = (-3,2)</m>
-                </p>
-              </li>
+                <li>
+                  <p>
+                    <m>(x_0,y_0) = (-3,2)</m>
+                  </p>
+                </li>
 
-              <li>
-                <p>
-                  <m>(x_0,y_0) = (-2,-4)</m>
-                </p>
-              </li>
+                <li>
+                  <p>
+                    <m>(x_0,y_0) = (-2,-4)</m>
+                  </p>
+                </li>
 
-              <li>
-                <p>
-                  <m>(x_0,y_0) = (0,0)</m>
-                </p>
-              </li>
-            </ul>
-          </p>
-        </li>
+                <li>
+                  <p>
+                    <m>(x_0,y_0) = (0,0)</m>
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </li>
 
-        <li>
-          <p>
-            What do you notice about the relationship between the gradient at
-                <m>(x_0,y_0)</m> and the contour passing through that point?
-          </p>
-        </li>
+          <li>
+            <p>
+              What do you notice about the relationship between the gradient at
+                  <m>(x_0,y_0)</m> and the contour passing through that point?
+            </p>
+          </li>
 
-        <li>
-          <p>
-            Does <m>f</m> increase or decrease in the direction of <m>\nabla
-                f(x_0,y_0)</m>?  Provide a justification for your response.
-          </p>
-        </li>
-      </ol>
+          <li>
+            <p>
+              Does <m>f</m> increase or decrease in the direction of <m>\nabla
+                  f(x_0,y_0)</m>?  Provide a justification for your response.
+            </p>
+          </li>
+        </ol>
+      </statement>
+
+      <answer>
+        <ol marker="a.">
+          <li>
+            <p>
+              <me>
+                \nabla f (x,y) = \langle 2x, -2y \rangle
+              </me>
+            </p>
+          </li>
+          <li>
+            <p>
+              We apply the formula for the gradient to see that
+              <md>
+                <mrow>\nabla f(2,0) \amp = \langle 4,0 \rangle</mrow>
+                <mrow>\nabla f(0,2) \amp = \langle 0,-4 \rangle</mrow>
+                <mrow>\nabla f(2,2) \amp = \langle 4,-4 \rangle</mrow>
+                <mrow>\nabla f(2,1) \amp = \langle 4,-2 \rangle</mrow>
+                <mrow>\nabla f(-3,2) \amp = \langle -3,-4 \rangle</mrow>
+                <mrow>\nabla f(-2,-4) \amp = \langle -4,8 \rangle</mrow>
+                <mrow>\nabla f (0,0) \amp = \langle 0,0 \rangle</mrow>
+              </md>.
+              A picture of the scaled gradients are shown here.
+              <image width="73%" source="images/fig_10_6_Act_10_contours.png"/>
+            </p>
+          </li>
+          <li>
+            <p>
+              It appears that each gradient is orthogonal to the contour containing its tail.
+            </p>
+          </li>
+          <li>
+            <p>
+              In the first quadrant, as <m>x</m> increases so does <m>f(x,y)</m>.
+              So these gradients all point in a direction of increase of <m>f</m>.
+              In the second quadrant, as <m>x</m> decreases <m>f(x,y)</m> increases.
+              So these gradients all point in a direction of increase of <m>f</m>.
+              In the third quadrant, as <m>y</m> increases so does <m>f(x,y)</m>.
+              So these gradients all point in a direction of increase of <m>f</m>.
+              Finally, at the point <m>(0,2)</m>,
+              <m>f</m> increases as <m>y</m> decreases.
+              So every gradient points in a direction of increase of <m>f</m>.
+            </p>
+          </li>
+        </ol>
+      </answer>
+
+      
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              By definition,
+              <me>
+                \nabla f (x,y) = \langle f_x(x,y), f_y(x,y) \rangle = \langle 2x, -2y \rangle
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              We apply the formula for the gradient to see that
+              <md>
+                <mrow>\nabla f(2,0) \amp = \langle 4,0 \rangle</mrow>
+                <mrow>\nabla f(0,2) \amp = \langle 0,-4 \rangle</mrow>
+                <mrow>\nabla f(2,2) \amp = \langle 4,-4 \rangle</mrow>
+                <mrow>\nabla f(2,1) \amp = \langle 4,-2 \rangle</mrow>
+                <mrow>\nabla f(-3,2) \amp = \langle -3,-4 \rangle</mrow>
+                <mrow>\nabla f(-2,-4) \amp = \langle -4,8 \rangle</mrow>
+                <mrow>\nabla f (0,0) \amp = \langle 0,0 \rangle</mrow>
+              </md>.
+              A picture of the scaled gradients are shown here.
+              <image width="73%" source="images/fig_10_6_Act_10_contours.png"/>
+            </p>
+          </li>
+          <li>
+            <p>
+              It appears that each gradient is orthogonal to the contour containing its tail.
+            </p>
+          </li>
+          <li>
+            <p>
+              In the first quadrant, as <m>x</m> increases so does <m>f(x,y)</m>.
+              So these gradients all point in a direction of increase of <m>f</m>.
+              In the second quadrant, as <m>x</m> decreases <m>f(x,y)</m> increases.
+              So these gradients all point in a direction of increase of <m>f</m>.
+              In the third quadrant, as <m>y</m> increases so does <m>f(x,y)</m>.
+              So these gradients all point in a direction of increase of <m>f</m>.
+              Finally, at the point <m>(0,2)</m>,
+              <m>f</m> increases as <m>y</m> decreases.
+              So every gradient points in a direction of increase of <m>f</m>.
+            </p>
+          </li>
+        </ol>
+      </solution>  
+
     </activity>
 
     <p>
@@ -376,47 +628,150 @@
     </p>
 
     <activity xml:id="A_10_6_3">
-      <p>
-        In this activity we investigate how the gradient is related to the directions of greatest increase and decrease of a function. Let <m>f</m> be a differentiable function and <m>\vu</m> a unit vector.
+      <statement>
+        <p>
+          In this activity we investigate how the gradient is related to the directions of greatest increase and decrease of a function. Let <m>f</m> be a differentiable function and <m>\vu</m> a unit vector.
+          <ol marker="a.">
+            <li>
+              <p>
+                Let <m>\theta</m> be the angle between <m>\nabla f(x_0,y_0)</m> and <m>\vu</m>.  Use the relationship between the dot product and the angle between two vectors to explain why
+                <men xml:id="eq_10_6_DD_grad2">
+                  D_{\vu} f(x_0,y_0) = |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle | \cos(\theta).
+                </men>
+              </p>
+            </li>
+
+            <li>
+              <p>
+                At the point <m>(x_0,y_0)</m>, the only quantity in Equation<nbsp/><xref ref="eq_10_6_DD_grad2"/> that can change is <m>\theta</m> (which determines the direction <m>\vu</m> of travel). Explain why <m>\theta = 0</m> makes the quantity
+                <me>
+                  |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle| \cos(\theta)
+                </me>
+                as large as possible.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                When <m>\theta = 0</m>, in what direction does the unit vector <m>\vu</m> point relative to <m>\nabla f(x_0,y_0)</m>? Why? What does this tell us about the direction of greatest increase of <m>f</m> at the point <m>(x_0,y_0)</m>?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                In what direction, relative to <m>\nabla f(x_0,y_0)</m>, does <m>f</m> decrease most rapidly at the point <m>(x_0,y_0)</m>?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                State the unit vectors <m>\vu</m> and <m>\vv</m> (in terms of <m>\nabla f(x_0,y_0)</m>) that provide the directions of greatest increase and decrease for the function <m>f</m> at the point <m>(x_0,y_0)</m>.  What important assumption must we make regarding <m>\nabla f(x_0,y_0)</m> in order for these vectors to exist?
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      
+      <answer>
         <ol marker="a.">
           <li>
             <p>
-              Let <m>\theta</m> be the angle between <m>\nabla f(x_0,y_0)</m> and <m>\vu</m>.  Use the relationship between the dot product and the angle between two vectors to explain why
-              <men xml:id="eq_10_6_DD_grad2">
-                D_{\vu} f(x_0,y_0) = |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle | \cos(\theta).
-              </men>
-            </p>
-          </li>
-
-          <li>
-            <p>
-              At the point <m>(x_0,y_0)</m>, the only quantity in Equation<nbsp/><xref ref="eq_10_6_DD_grad2"/> that can change is <m>\theta</m> (which determines the direction <m>\vu</m> of travel). Explain why <m>\theta = 0</m> makes the quantity
+              Using the dot product we can see that
               <me>
-                |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle| \cos(\theta)
-              </me>
-              as large as possible.
+                D_{\vu} f(x_0,y_0) = \langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle \cdot \vu = |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle| \cos(\theta)
+              </me>,
+              where <m>\theta</m> is the angle between <m>\langle f_x(x_0,y_0),
+              f_y(x_0,y_0) \rangle</m> and <m>\vu</m>.
             </p>
           </li>
-
           <li>
             <p>
-              When <m>\theta = 0</m>, in what direction does the unit vector <m>\vu</m> point relative to <m>\nabla f(x_0,y_0)</m>? Why? What does this tell us about the direction of greatest increase of <m>f</m> at the point <m>(x_0,y_0)</m>?
+              The maximum value of <m>D_{\vu} f(x_0,y_0)</m> will occur when
+              <m>\cos(\theta)</m> is as large as possible.
+              This happens when <m>\cos(\theta) = 1</m> or <m>\theta = 0</m>.
             </p>
           </li>
-
           <li>
             <p>
-              In what direction, relative to <m>\nabla f(x_0,y_0)</m>, does <m>f</m> decrease most rapidly at the point <m>(x_0,y_0)</m>?
+              When <m>\theta = 0</m>,
+              the angle between the vector <m>\vu</m> and the vector
+              <m>\langle f_x(x_0,y_0),
+              f_y(x_0,y_0) \rangle</m> is 0, so the vector <m>\vu</m> must have the same direction as <m>\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle</m>.
+              In other words,
+              the direction of greatest increase of <m>f</m> at the point
+              <m>(x_0,y_0)</m> is the direction of the vector <m>\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle</m>.
             </p>
           </li>
-
           <li>
             <p>
-              State the unit vectors <m>\vu</m> and <m>\vv</m> (in terms of <m>\nabla f(x_0,y_0)</m>) that provide the directions of greatest increase and decrease for the function <m>f</m> at the point <m>(x_0,y_0)</m>.  What important assumption must we make regarding <m>\nabla f(x_0,y_0)</m> in order for these vectors to exist?
+              <m>-\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle</m>
+            </p>
+          </li>
+          <li>
+            <p>
+              The unit vector that provides the direction of greatest increase in <m>f</m> at the point <m>(x_0,y_0)</m> is
+              <m>\vu=\frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)</m> and the unit vector that provides the direction of greatest decrease in <m>f</m> at the point
+              <m>(x_0,y_0)</m> is <m>\vv = -\vu</m>.
+              For either vector to exist,
+              it must be the case that <m>\nabla f(x_0,y_0) \neq \langle 0,0 \rangle</m>.
             </p>
           </li>
         </ol>
-      </p>
+      </answer>
+
+
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              Using the dot product we can see that
+              <me>
+                D_{\vu} f(x_0,y_0) = \langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle \cdot \vu = |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle| \cos(\theta)
+              </me>,
+              where <m>\theta</m> is the angle between <m>\langle f_x(x_0,y_0),
+              f_y(x_0,y_0) \rangle</m> and <m>\vu</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The maximum value of <m>D_{\vu} f(x_0,y_0)</m> will occur when
+              <m>\cos(\theta)</m> is as large as possible.
+              This happens when <m>\cos(\theta) = 1</m> or <m>\theta = 0</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              When <m>\theta = 0</m>,
+              the angle between the vector <m>\vu</m> and the vector
+              <m>\langle f_x(x_0,y_0),
+              f_y(x_0,y_0) \rangle</m> is 0, so the vector <m>\vu</m> must have the same direction as <m>\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle</m>.
+              In other words,
+              the direction of greatest increase of <m>f</m> at the point
+              <m>(x_0,y_0)</m> is the direction of the vector <m>\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>f</m> increases most rapidly in the direction of
+              <m>\langle f_x(x_0,y_0),
+              f_y(x_0,y_0) \rangle</m> at the point <m>(x_0,y_0)</m>,
+              then <m>f</m> must decrease most rapidly in the opposite direction,
+              or in the direction of <m>-\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The unit vector that provides the direction of greatest increase in <m>f</m> at the point <m>(x_0,y_0)</m> is
+              <m>\vu=\frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)</m> and the unit vector that provides the direction of greatest decrease in <m>f</m> at the point
+              <m>(x_0,y_0)</m> is <m>\vv = -\vu</m>.
+              For either vector to exist,
+              it must be the case that <m>\nabla f(x_0,y_0) \neq \langle 0,0 \rangle</m>.
+            </p>
+          </li>
+        </ol>
+      </solution>
+
+      
     </activity>
   </subsection>
 
@@ -462,76 +817,269 @@
    
 
     <activity xml:id="A_10_6_11">
-      <p>
-        Consider the function <m>f</m> defined by <m>f(x,y) = -x + 2xy - y</m>.
+      <statement>
+        <p>
+          Consider the function <m>f</m> defined by <m>f(x,y) = -x + 2xy - y</m>.
+          <ol marker="a.">
+            <li>
+              <p>
+                Find the gradient <m>\nabla f(1,2)</m> and sketch it on <xref ref="F_10_6_activity_empty">Figure</xref>.
+
+                <figure xml:id="F_10_6_activity_empty">
+                  <caption>A plot for the gradient <m>\nabla f(1,2)</m>.</caption>
+                  <image width="50%" source="images/fig_10_6_activity_empty"/>
+                </figure>
+
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Sketch the unit vector <m>\vz = \left\langle-\frac1{\sqrt{2}},
+                    -\frac1{\sqrt{2}}\right\rangle</m> on <xref ref="F_10_6_activity_empty">Figure</xref> with its tail at <m>(1,2)</m>.
+                  Now find the directional derivative <m>D_{\vz}f(1,2)</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                What is the slope of the graph of <m>f</m> in the direction <m>\vz</m>?  
+                  What does the sign of the directional derivative tell you?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Consider the vector <m>\vv = \langle 2,-1\rangle</m> and sketch <m>\vv</m>
+                  on <xref ref="F_10_6_activity_empty">Figure</xref> with its tail at <m>(1,2)</m>.
+                  Find a unit vector <m>\vw</m> pointing in the same direction of <m>\vv</m>.
+                  Without computing <m>D_{\vw}f(1,2)</m>, what do you know about the sign
+                  of this directional derivative?  Now verify your observation by
+                  computing <m>D_{\vw}f(1,2)</m>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                In which direction (that is, for what unit vector <m>\vu</m>) is <m>D_{\vu}f(1,2)</m>
+                  the greatest?  What is the slope of the graph in this direction?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Corresponding, in which direction is <m>D_{\vu}f(1,2)</m> least?  What is the slope of the graph in this direction?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Sketch two unit vectors <m>\vu</m> for which <m>D_{\vu}f(1,2) = 0</m> and
+                  then find component representations of these vectors.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Suppose you are standing at the point <m>(3,3)</m>.  In which
+                  direction should you move to cause <m>f</m> to increase as rapidly as
+                  possible?  At what rate does <m>f</m> increase in this direction?
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+
+      <answer>
         <ol marker="a.">
           <li>
             <p>
-              Find the gradient <m>\nabla f(1,2)</m> and sketch it on <xref ref="F_10_6_activity_empty">Figure</xref>.
-
-              <figure xml:id="F_10_6_activity_empty">
-                <caption>A plot for the gradient <m>\nabla f(1,2)</m>.</caption>
-                <image width="50%" source="images/fig_10_6_activity_empty"/>
-              </figure>
-
+              <me>
+                \nabla f(1,2) = \langle f_x(1,2), f_y(1,2) \rangle = \langle 2,1\rangle
+              </me>
+              A plot of  <m>\nabla f(1,2)</m> is shown below.
             </p>
           </li>
-
           <li>
             <p>
-              Sketch the unit vector <m>\vz = \left\langle-\frac1{\sqrt{2}},
-                  -\frac1{\sqrt{2}}\right\rangle</m> on <xref ref="F_10_6_activity_empty">Figure</xref> with its tail at <m>(1,2)</m>.
-                Now find the directional derivative <m>D_{\vz}f(1,2)</m>.
+              A plot of <m>\vz</m> is shown below.
+              <m>D_{\vz}f(1,2) = -\frac{4}{\sqrt{2}} </m>
             </p>
           </li>
-
           <li>
             <p>
-              What is the slope of the graph of <m>f</m> in the direction <m>\vz</m>?  
-                What does the sign of the directional derivative tell you?
+              The directional derivative
+              <m>D_{\vz}f(1,2)</m> tells us the slope of <m>f</m> in the direction of <m>\vz</m> at the point <m>(1,2)</m>,
+              so this slope is <m>-\frac{4}{\sqrt{2}}</m>.
+              The fact that <m>D_{\vz}f(1,2)</m> is negative tells us that the graph of <m>f</m> is decreasing in the direction of <m>\vz</m> from the point <m>(1,2)</m>.
             </p>
           </li>
-
           <li>
             <p>
-              Consider the vector <m>\vv = \langle 2,-1\rangle</m> and sketch <m>\vv</m>
-                on <xref ref="F_10_6_activity_empty">Figure</xref> with its tail at <m>(1,2)</m>.
-                Find a unit vector <m>\vw</m> pointing in the same direction of <m>\vv</m>.
-                Without computing <m>D_{\vw}f(1,2)</m>, what do you know about the sign
-                of this directional derivative?  Now verify your observation by
-                computing <m>D_{\vw}f(1,2)</m>.
+              The angle between the vector <m>\vv</m> or the vector <m>\vw = \frac{1}{|\vv|} \vv = \frac{1}{\sqrt{5}}\langle 2, -1 \rangle</m>
+              (shown below)
+              and <m>\nabla f(1,2)</m> is acute,
+              so we expect <m>f</m> to be increasing in this direction.
+              <m> D_{\vw}f(1,2) = \frac{5}{\sqrt{5}} </m>
+              <image width="73%" source="images/fig_10_6_Act_11_gradient.png"/>
             </p>
           </li>
-
           <li>
             <p>
-              In which direction (that is, for what unit vector <m>\vu</m>) is <m>D_{\vu}f(1,2)</m>
-                the greatest?  What is the slope of the graph in this direction?
+              We know that <m>f</m> increases most rapidly in the direction of the gradient.
+              So <m>D_{\vu}f(1,2)</m> is greatest when
+              <me>
+                \vu = \frac{1}{|\nabla f(1,2)|} \nabla f(1,2) =  \frac{1}{\sqrt{10}}\langle 3,1 \rangle
+              </me>.
+              The slope of the graph of <m>f</m> in the direction of
+              <m>\nabla f(1,2)</m> at the point <m>(1,2)</m> is
+              <me>
+                D_{\vu}f(1,2) = \sqrt{10}
+              </me>.
             </p>
           </li>
-
           <li>
             <p>
-              Corresponding, in which direction is <m>D_{\vu}f(1,2)</m> least?  What is the slope of the graph in this direction?
+              The function <m>f</m> decreases most rapidly in the direction opposite of the gradient.
+              So <m>D_{\vu}f(1,2)</m> is least when
+              <me>
+                \vu = -\frac{1}{|\nabla f(1,2)|} \nabla f(1,2) =  -\frac{1}{\sqrt{10}}\langle 3,1 \rangle
+              </me>.
+              The slope of the graph of <m>f</m> in the direction of
+              <m>-\nabla f(1,2)</m> at the point <m>(1,2)</m> is
+              <me>
+                D_{\vu}f(1,2) =  -\sqrt{10}
+              </me>.
             </p>
           </li>
-
           <li>
             <p>
-              Sketch two unit vectors <m>\vu</m> for which <m>D_{\vu}f(1,2) = 0</m> and
-                then find component representations of these vectors.
+              Recall that <m>D_{\vu}f(1,2) = \nabla f(1,2) \cdot \vu</m>,
+              so <m>D_{\vu}f(1,2) = 0</m> when <m>\vu</m> is perpendicular to <m>\nabla f(1,2)</m>.
+              By inspection, two such vectors are
+              <m>\frac{1}{\sqrt{10}}\langle 1, -3 \rangle</m> and <m>\frac{1}{\sqrt{10}}\langle -1,3 \rangle</m>.
             </p>
           </li>
-
           <li>
             <p>
-              Suppose you are standing at the point <m>(3,3)</m>.  In which
-                direction should you move to cause <m>f</m> to increase as rapidly as
-                possible?  At what rate does <m>f</m> increase in this direction?
+              The direction in which <m>f</m> increases most rapidly at the point <m>(3,3)</m> is in the direction of the gradient vector at <m>(3,3)</m>, so in the direction of 
+              <me>
+                \nabla f(3,3) = \langle 5, 5 \rangle
+              </me>
+              or the unit vector
+              <me>
+                \vu=\frac{1}{|\nabla f(3,3)|}\nabla f(3,3) = \frac{1}{\sqrt{50}}\langle 5, 5 \rangle
+              </me>.
+              The rate of increase of <m>f</m> in this direction is
+              <me>
+                D_{\vu} f (3,3) =\sqrt{50}
+              </me>.
             </p>
           </li>
         </ol>
-      </p>
+      </answer>
+      
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              The gradient of <m>f</m> at <m>(x,y)</m> is
+              <me>
+                \nabla f(x,y) = \langle f_x(x,y), f_y(x,y) \rangle = \langle -1 + 2y, 2x - 1\rangle
+              </me>,
+            so the gradient of <m>f</m> at <m>(1,2)</m> is
+              <me>
+                \nabla f(1,2) = \langle f_x(1,2), f_y(1,2) \rangle = \langle 2,1\rangle
+              </me>.
+              A plot of  <m>\nabla f(1,2)</m> is shown below.
+            </p>
+          </li>
+          <li>
+            <p>
+              A plot of <m>\vz</m> is shown below.
+              The directional derivative <m>D_{\vz}f(1,2)</m> is
+              <md>
+                <mrow> D_{\vz}f(1,2) \amp = \nabla f(1, 2) \cdot {\vz}  = \langle 2, 1 \rangle \dot \langle -\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}\rangle </mrow>
+                <mrow> \amp = -\frac{3}{\sqrt{2}} + -\frac{3}{\sqrt{2}} = -\frac{4}{\sqrt{2}} </mrow>
+              </md>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The directional derivative
+              <m>D_{\vz}f(1,2)</m> tells us the slope of <m>f</m> in the direction of <m>\vz</m> at the point <m>(1,2)</m>,
+              so this slope is <m>-\frac{4}{\sqrt{2}}</m>.
+              The fact that <m>D_{\vz}f(1,2)</m> is negative tells us that the graph of <m>f</m> is decreasing in the direction of <m>\vz</m> from the point <m>(1,2)</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The angle between the vector <m>\vv</m> or the vector <m>\vw = \frac{1}{|\vv|} \vv = \frac{1}{\sqrt{5}}\langle 2, -1 \rangle</m>
+              (shown below)
+              and <m>\nabla f(1,2)</m> is acute,
+              so we expect <m>f</m> to be increasing in this direction.
+              Note that
+              <me>
+                D_{\vw}f(1,2) = \nabla f(1, 2) \dot {\vw} = \langle 3, 1 \rangle \cdot \langle \frac{2}{\sqrt{5}},\frac{-1}{\sqrt{5}} \rangle = \frac{5}{\sqrt{5}}
+              </me>.
+              <image width="73%" source="images/fig_10_6_Act_11_gradient.png"/>
+            </p>
+          </li>
+          <li>
+            <p>
+              We know that <m>f</m> increases most rapidly in the direction of the gradient.
+              So <m>D_{\vu}f(1,2)</m> is greatest when
+              <me>
+                \vu = \frac{1}{|\nabla f(1,2)|} \nabla f(1,2) =  \frac{1}{\sqrt{10}}\langle 3,1 \rangle
+              </me>.
+              The slope of the graph of <m>f</m> in the direction of
+              <m>\nabla f(1,2)</m> at the point <m>(1,2)</m> is
+              <me>
+                D_{\vu}f(1,2) = \nabla f (1, 2) \cdot {\vu} = |\nabla f(1,2)| = \sqrt{10}
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The function <m>f</m> decreases most rapidly in the direction opposite of the gradient.
+              So <m>D_{\vu}f(1,2)</m> is least when
+              <me>
+                \vu = -\frac{1}{|\nabla f(1,2)|} \nabla f(1,2) =  -\frac{1}{\sqrt{10}}\langle 3,1 \rangle
+              </me>.
+              The slope of the graph of <m>f</m> in the direction of
+              <m>-\nabla f(1,2)</m> at the point <m>(1,2)</m> is
+              <me>
+                D_{\vu}f(1,2) = - |\nabla f(1,2)| = -\sqrt{10}
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Recall that <m>D_{\vu}f(1,2) = \nabla f(1,2) \cdot \vu</m>,
+              so <m>D_{\vu}f(1,2) = 0</m> when <m>\vu</m> is perpendicular to <m>\nabla f(1,2)</m>.
+              By inspection, two such vectors are
+              <m>\frac{1}{\sqrt{10}}\langle 1, -3 \rangle</m> and <m>\frac{1}{\sqrt{10}}\langle -1,3 \rangle</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The direction in which <m>f</m> increases most rapidly at the point <m>(3,3)</m> is in the direction of the gradient vector at <m>(3,3)</m>, so in the direction of 
+              <me>
+                \nabla f(3,3) = \langle 5, 5 \rangle
+              </me>
+              or the unit vector
+              <me>
+                \vu=\frac{1}{|\nabla f(3,3)|}\nabla f(3,3) = \frac{1}{\sqrt{50}}\langle 5, 5 \rangle
+              </me>.
+              The rate of increase of <m>f</m> in this direction is
+              <me>
+                D_{\vu} f (3,3) = |\nabla f(3,3)| = \sqrt{50} = 5 \sqrt{2}
+              </me>.
+            </p>
+          </li>
+        </ol>
+      </solution>
+
 
     </activity>
   </subsection>
@@ -584,45 +1132,134 @@
     </p>
 
     <activity xml:id="A_10_6_13">
-      <ol marker="a.">
-        <li>
-          <p>
-            The temperature <m>T(x,y)</m> has its maximum value at the fighter
-              jet's location.  State the fighter jet's location and explain
-              how <xref ref="F_10_6_missile">Figure</xref> tells you this.
-          </p>
-        </li>
+      <statement>
+        <ol marker="a.">
+          <li>
+            <p>
+              The temperature <m>T(x,y)</m> has its maximum value at the fighter
+                jet's location.  State the fighter jet's location and explain
+                how <xref ref="F_10_6_missile">Figure</xref> tells you this.
+            </p>
+          </li>
 
-        <li>
-          <p>
-            Determine <m>\nabla T</m> at the fighter jet's location and give a
-              justification for your response.
-          </p>
-        </li>
+          <li>
+            <p>
+              Determine <m>\nabla T</m> at the fighter jet's location and give a
+                justification for your response.
+            </p>
+          </li>
 
-        <li>
-          <p>
-            Suppose that a different function <m>f</m> has a local maximum value at
-              <m>(x_0,y_0)</m>.  Sketch the behavior of some possible contours near this point. 
-              What is <m>\nabla f(x_0,y_0)</m>? (Hint: What is the direction of greatest increase in <m>f</m> at the local maximum?)
-          </p>
-        </li>
+          <li>
+            <p>
+              Suppose that a different function <m>f</m> has a local maximum value at
+                <m>(x_0,y_0)</m>.  Sketch the behavior of some possible contours near this point. 
+                What is <m>\nabla f(x_0,y_0)</m>? (Hint: What is the direction of greatest increase in <m>f</m> at the local maximum?)
+            </p>
+          </li>
 
-        <li>
-          <p>
-            Suppose that a function <m>g</m> has a local minimum value at
-              <m>(x_0,y_0)</m>.  Sketch the behavior of some possible contours near this point.
-              What is <m>\nabla g(x_0,y_0)</m>?
-          </p>
-        </li>
+          <li>
+            <p>
+              Suppose that a function <m>g</m> has a local minimum value at
+                <m>(x_0,y_0)</m>.  Sketch the behavior of some possible contours near this point.
+                What is <m>\nabla g(x_0,y_0)</m>?
+            </p>
+          </li>
 
-        <li>
-          <p>
-            If a function <m>g</m> has a local minimum at  <m>(x_0,y_0)</m>, what is the direction of greatest increase of <m>g</m> at <m>(x_0,y_0)</m>?
-          </p>
-        </li>
-      </ol>
- 
+          <li>
+            <p>
+              If a function <m>g</m> has a local minimum at  <m>(x_0,y_0)</m>, what is the direction of greatest increase of <m>g</m> at <m>(x_0,y_0)</m>?
+            </p>
+          </li>
+        </ol>
+      </statement>
+      
+      <answer>
+        <ol marker="a.">
+          <li>
+            <p>
+              The gradient points toward the direction of greatest in <m>T</m>,
+              and the gradient vectors are all directed toward the point <m>(5,2.5)</m>.
+              So the fighter jet's location is <m>(5,2.5)</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              At the fighter jet's location,
+              the temperature doesn't increase,
+              so we should expect <m>\nabla T</m> to be the zero vector there.
+              Note that <m>T_x(x,y) = -\frac{200(x-5)}{[1+(x-5)^2+4(y-2.5)^2]^2}</m> and <m>T_y(x,y) = -\frac{800(y-2.5)}{[1+(x-5)^2+4(y-2.5)^2]^2}</m>,
+              and so <m>\nabla T(5,2.5) = \langle 0, 0 \rangle</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Contours of <m>f</m> might look like the contours of <m>T</m> near the point <m>(x_0,y_0)</m>.
+              At the relative maximum point we would have <m>\nabla f(x_0,y_0) = \langle 0,0\rangle</m>,
+              provided <m>\nabla f(x_0,y_0)</m> exists.
+            </p>
+          </li>
+          <li>
+            <p>
+              Contours of <m>g</m> might look like the contours of <m>T</m> near the point
+              <m>(x_0,y_0)</m> only with the gradients pointing outward instead of inward.
+              At the relative maximum point we would have <m>\nabla g(x_0,y_0) = \langle 0,0\rangle</m>,
+              provided <m>\nabla g(x_0,y_0)</m> exists.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>g</m> has a local minimum at
+              <m>(x_0,y_0)</m> and <m>\nabla g(x_0,y_0) = \langle 0,0 \rangle</m>,
+              then any direction will provide the greatest increase in <m>g</m> at the point <m>(x_0,y_0)</m>.
+            </p>
+          </li>
+        </ol>
+      </answer>
+
+
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              The gradient points toward the direction of greatest in <m>T</m>,
+              and the gradient vectors are all directed toward the point <m>(5,2.5)</m>.
+              So the fighter jet's location is <m>(5,2.5)</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              At the fighter jet's location,
+              the temperature doesn't increase,
+              so we should expect <m>\nabla T</m> to be the zero vector there.
+              Note that <m>T_x(x,y) = -\frac{200(x-5)}{[1+(x-5)^2+4(y-2.5)^2]^2}</m> and <m>T_y(x,y) = -\frac{800(y-2.5)}{[1+(x-5)^2+4(y-2.5)^2]^2}</m>,
+              and so <m>\nabla T(5,2.5) = \langle 0, 0 \rangle</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Contours of <m>f</m> might look like the contours of <m>T</m> near the point <m>(x_0,y_0)</m>.
+              At the relative maximum point we would have <m>\nabla f(x_0,y_0) = \langle 0,0\rangle</m>,
+              provided <m>\nabla f(x_0,y_0)</m> exists.
+            </p>
+          </li>
+          <li>
+            <p>
+              Contours of <m>g</m> might look like the contours of <m>T</m> near the point
+              <m>(x_0,y_0)</m> only with the gradients pointing outward instead of inward.
+              At the relative maximum point we would have <m>\nabla g(x_0,y_0) = \langle 0,0\rangle</m>,
+              provided <m>\nabla g(x_0,y_0)</m> exists.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <m>g</m> has a local minimum at
+              <m>(x_0,y_0)</m> and <m>\nabla g(x_0,y_0) = \langle 0,0 \rangle</m>,
+              then any direction will provide the greatest increase in <m>g</m> at the point <m>(x_0,y_0)</m>.
+            </p>
+          </li>
+        </ol>
+      </solution>
+
     </activity>
   </subsection>
 
@@ -787,6 +1424,102 @@
           </p>
         </statement>
 
+        <answer>
+          <ol marker="a.">
+            <li>
+              <p>
+                <me>
+                  E_x(x,y) = -\frac{200(x-5)}{(1+(x-5)^2 + 4(y-2.5)^2)^2} \ \ \text{ and }  \ \ E_y(x,y) = -\frac{800(y-2.5)}{(1+(x-5)^2 + 4(y-2.5)^2)^2}
+                </me>
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                  D_{\vu} E(3,4) = -\frac{260}{49} \approx -5.306 \ \frac{\text{ meters } }{\text{ meter } }
+                </me>
+                For every one meter change in the direction of <m>\vu</m> from the point <m>(3,4)</m>,
+                the elevation decreases by <m>\frac{260}{49}</m> meters.
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                  \nabla E (3,4) = \frac{100}{49} \langle 1, -3 \rangle \approx \langle 2.04, -6.12 \rangle
+                </me>
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                  -|\nabla E(3,4)| = -\frac{100}{49}\sqrt{10} \approx -6.454 \ \frac{\text{ meters } }{\text{ meter } }
+                </me>
+              </p>
+            </li>
+            <li>
+              <p>
+                one possible answer: <m>\langle 3, 1 \rangle</m> 
+              </p>
+            </li>
+          </ol>
+        </answer>
+
+        <solution>
+          <ol marker="a.">
+            <li>
+              <p>
+                For this function <m>E</m> we have
+                <me>
+                  E_x(x,y) = -\frac{200(x-5)}{(1+(x-5)^2 + 4(y-2.5)^2)^2} \ \ \text{ and }  \ \ E_y(x,y) = -\frac{800(y-2.5)}{(1+(x-5)^2 + 4(y-2.5)^2)^2}
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                A unit vector in the direction of
+                <m>\langle -4,3 \rangle</m> is <m>\vu = \frac{1}{5} \langle -4, 3 \rangle</m>.
+                Since
+                <me>
+                  E_x(3,4) = \frac{100}{49} \ \ \text{ and }  \ \ E_y(3,4) = -\frac{300}{49}
+                </me>,
+                we have
+                <me>
+                  D_{\vu} E(3,4) = \nabla E(3,4) \cdot \vu = \left\langle \frac{100}{49}, -\frac{300}{49} \right\rangle \cdot \frac{1}{5} \langle -4,3 \rangle = \frac{20}{49} (-4 - 9) = -\frac{260}{49} \approx -5.306 \ \frac{\text{ meters } }{\text{ meter } }
+                </me>.
+                For every one meter change in the direction of <m>\vu</m> from the point <m>(3,4)</m>,
+                the elevation decreases by <m>\frac{260}{49}</m> meters.
+              </p>
+            </li>
+            <li>
+              <p>
+                The direction of greatest increase of <m>E</m> at the point <m>(3,4)</m> is
+                <me>
+                  \nabla E (3,4) = \langle E_x(3,4), E_y(3,4) \rangle = \frac{100}{49} \langle 1, -3 \rangle \approx \langle 2.04, -6.12 \rangle
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The direction of greatest decrease of <m>E</m> at <m>(3,4)</m> is <m>-\nabla E(3,4)</m>.
+                The instantaneous rate of change of <m>E</m> in the direction of greatest decrease at the point <m>(3,4)</m> is
+                <me>
+                  -|\nabla E(3,4)| = -\frac{100}{49}\sqrt{1+9} = -\frac{100}{49}\sqrt{10} \approx -6.454 \ \frac{\text{ meters } }{\text{ meter } }
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                We want a direction vector <m>\vw = \langle w_1, w_2 \rangle</m> so that
+                <me>
+                  0 = D_{\vw} E(3,4) = \nabla E(3,4) \cdot \vw = \left\langle \frac{100}{49}, -\frac{300}{49} \right\rangle \cdot \langle w_1, w_2 \rangle = \frac{100}{49}(w_1-3w_2)
+                </me>.
+                So the vector <m>\langle 3, 1 \rangle</m> is a direction in which <m>E</m> does not change at the point <m>(3,4)</m>.
+              </p>
+            </li>
+          </ol>
+        </solution>
+
+
       </exercise>
 
       <exercise>
@@ -795,6 +1528,38 @@
             Find all directions in which the directional derivative of <m>f(x,y) = ye^{-xy}</m> is 1 at the point <m>(0,2)</m>. 
           </p>
         </statement>
+
+        <answer>
+          <p>
+           Any positive scalar multiple of <m>\langle 0, 1 \rangle</m> or <m>\langle  -\frac{8}{17},  -\frac{15}{17}\rangle </m> will give a direction in which the directional derivative is 1.
+          </p>
+        </answer>
+
+        <solution>
+          <p>
+            We have  
+            <me>
+              f_x(x, y) = -y^2 e^{-xy}
+            </me>
+            and 
+            <me>
+              f_y(x, y) = y(-x e^{-xy}) + e^{-xy}
+            </me>,
+            so  
+            <me>
+              f_x(0, 2) = -(2)^2 e^{-(0)(2)} = -4e^0 = -4
+            </me>
+            and 
+            <me>
+              f_y(0, 2) = 2(-0 \cdot e^{-(0)(2)}) + e^{-(0)(2)} = 0 + e^0 = 1
+            </me>.
+            For a unit vector <m>\vu = \langle a, b \rangle</m>, 
+              <me>
+                D_{\vu} f(0, 2) = \nabla f(0,2) \cdot \vu = \left\langle f_x(0, 2), f_y(0, 2)\right\rangle \cdot \langle a, b \rangle = -4a + (1) b
+              </me>.
+            We want <m>D_{\vu} f(0, 2) = 1</m>, so we want a unit direction vector <m>\langle a, b \rangle</m> with <m>-4a + b = 1</m>. Note that since <m>\langle a, b \rangle</m> is a unit vector we have <m>1 = \sqrt{a^2 + b^2}</m>. Solving these equations simultaneously yields <m>a=0, b = 1</m> or <m>a = -\frac{8}{17}, b = -\frac{15}{17}</m>. Thus any positive scalar multiple of <m>\langle 0, 1 \rangle</m> or <m>\langle  -\frac{8}{17},  -\frac{15}{17} \rangle</m> will give a direction in which the directional derivative is 1.
+          </p>
+        </solution>
 
       </exercise>
 
@@ -808,6 +1573,44 @@
             If not possible, explain why. 
           </p>
         </statement>
+
+        <answer>
+          <p>
+            <me>
+              f(x, y, z) = x \sin(yz) + y^2 + 5 \ln |z| + c
+            </me>,
+            where <m>c</m> is a constant (and <m>x \neq 0</m>)
+          </p>
+        </answer>
+
+
+        <solution>
+          <p>
+            Recall 
+            <me>
+              \nabla f(x, y, z) = \langle f_x(x, y, z), f_y(x, y, z), f_z(x, y, z) \rangle
+            </me>.
+            If <m>f_x (x, y, z) = \sin(yz)</m>, we must have
+             <me>
+              f(x, y, z) = x \sin(yz) + k_1(y, z)
+             </me>,
+            where <m>k_1(y, z)</m> is a function of <m>y</m> and <m>z</m> only. If <m>f_y(x, y, z) = \sin(yz) + 2y</m>, we must have
+             <me>
+              f(x, y, z) = x \sin(yz) + y^2 + k_2(x, z)
+             </me>,
+              where <m>k_2(x, z)</m> is a function of <m>x</m> and <m>z</m> only. Finally, if <m>f_z (x, y, z) = xy \cos(yz) + \frac{5}{z}</m>, we must have
+               <me>
+                f(x, y, z) = x \sin(yz) + 5 \ln |z| + k_3(x, y)
+               </me>,
+               where <m>k_3(x, y)</m> is a function of <m>x</m> and <m>y</m> only. A function that satisfies all three of these possibilities is  
+            <me>
+              f(x, y, z) = x \sin(yz) + y^2 + 5 \ln |z| + c
+            </me>,
+            where <m>c</m> is a constant (and <m>x \neq 0</m>).
+          </p>
+        </solution>
+
+
 
       </exercise>
 
@@ -853,7 +1656,93 @@
           </p>
         </statement>
 
+        <answer>
+          <ol marker="a.">
+            <li>
+              <p>
+                <me>
+                  \nabla f (x, y) = \langle 2x, 6y \rangle
+                </me>,
+                <me>
+                  \nabla f(1,2) = \langle 2, 12 \rangle
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The gradient shows the direction of greatest increase of <m>f</m> at a point.
+                An illustration of this direction at the point
+                <m>(1,2,f(1,2))</m> is shown in the figure below,
+                with the gradient vector scaled appropriately to make it easier to plot.
+                <image width="73%" source="images/fig_10_6_Ex_surface_gradient.png"/>
+              </p>
+            </li>
+            <li>
+              <p>
+                The gradient shows the direction of greatest increase of <m>f</m> at a point.
+                The gradient is perpendicular to the level curves,
+                and a picture of the unit vector in the direction of the gradient at <m>(1,2)</m> is shown in the figure below,
+                with the gradient vector scaled appropriately to make it easier to plot.
+                <image width="73%" source="images/fig_10_6_Ex_contour_gradient.png"/>
+              </p>
+            </li>
+            <li>
+              <p> 
+                one possible answer: <m>\langle -3,1 \rangle</m>
+              </p>
+            </li>
+          </ol>
+        </answer>
+
+
+        <solution>
+          <ol marker="a.">
+            <li>
+              <p>
+                In this case we have
+                <me>
+                  \nabla f = \langle f_x, f_y \rangle = \langle 2x, 6y \rangle
+                </me>.
+                Evaluating <m>\nabla f</m> at <m>(1,2)</m> gives us
+                <me>
+                  \nabla f(1,2) = \langle 2, 12 \rangle
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The gradient shows the direction of greatest increase of <m>f</m> at a point.
+                An illustration of this direction at the point
+                <m>(1,2,f(1,2))</m> is shown in the figure below,
+                with the gradient vector scaled appropriately to make it easier to plot.
+                <image width="73%" source="images/fig_10_6_Ex_surface_gradient.png"/>
+              </p>
+            </li>
+            <li>
+              <p>
+                The gradient shows the direction of greatest increase of <m>f</m> at a point.
+                The gradient is perpendicular to the level curves,
+                and a picture of the unit vector in the direction of the gradient at <m>(1,2)</m> is shown in the figure below,
+                with the gradient vector scaled appropriately to make it easier to plot.
+                <image width="73%" source="images/fig_10_6_Ex_contour_gradient.png"/>
+              </p>
+            </li>
+            <li>
+              <p>
+                We need to find a direction
+                <m>\vw = \langle w_1, w_2 \rangle</m> so that <m>D_{\vw} f(1,2) = \nabla f(1,2) \cdot \vw = 0</m>.
+                Since <m>\nabla f (1,2)= \langle 2, 6 \rangle</m>,
+                we need <m>w_1</m> and <m>w_2</m> to satisfy <m>2w_1+6w_2=0</m>.
+                So <m>w_1=-3w_2</m> and a direction for which the slope of the tangent line to the surface generated by <m>f</m> at the point <m>(1,2)</m> is zero in the direction <m>\vw</m> is <m>\langle -3,1 \rangle</m>.
+              </p>
+            </li>
+          </ol>
+        </solution>
+
+
       </exercise>
+
+
       <exercise>
         <statement>
           <p>
@@ -893,6 +1782,94 @@
             </ol>
           </p>
         </statement>
+
+        <answer>
+          <ol marker="a.">
+            <nbsp/>
+            <li>
+              <p>
+                <m>0</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                  -\nabla T(1,2,-1) = \left\langle 200e^{-6}, 400e^{-6}, -200e^{-6} \right\rangle \approx \langle 0.5, 1, -0.5 \rangle
+                </me>
+              </p>
+            </li>
+            <li>
+              <p>
+                The rate of change of the temperature in this direction is
+                <me>
+                  -\left|\nabla T(1,2,-1) \right| = -200 \sqrt{6}e^{-6} \approx -1.21
+                </me>
+                So the temperature decreases at approximately 1.21 units of temperature per one unit of distance in this direction.
+              </p>
+            </li>
+            <li>
+              <p>
+               possible answers: <m>\langle -1,1,1 \rangle</m> or in the direction of
+                <m>\langle 0,1,2\rangle</m> as shown in part (a)
+              </p>
+            </li>
+          </ol>
+        </answer>
+
+        <solution>
+          <ol marker="a.">
+            <nbsp/>
+            <li>
+              <p>
+                A unit vector in the direction of <m>\vv</m> is <m>\vu = \frac{1}{\sqrt{5}} \vv</m>.
+                Since
+                <me>
+                  T_x(x,y,z) = -200xe^{-x^2-y^2-z^2} \ , T_y(x,y,z) = -200ye^{-x^2-y^2-z^2},  \ \text{ and }  \ T_z(x,y,z) = -200ze^{-x^2-y^2-z^2}
+                </me>,
+                the instantaneous rate of change of the temperature in the direction of <m>\vv=\langle 0, 1, 2\rangle</m> is then
+                <md>
+                  <mrow>D_{\vu}T(1,2,1) \amp = \nabla T(1,2,-1) \cdot \vu</mrow>
+                  <mrow>\amp =  \langle T_x(1,2,-1), T_y(1,2,-1), T_z(1,2,-1) \rangle \cdot \vu</mrow>
+                  <mrow>\amp =\left\langle -200e^{-6}, -400e^{-6}, 200e^{-6} \right\rangle \cdot \frac{1}{\sqrt{5}} \langle 0,1,2\rangle</mrow>
+                  <mrow>\amp =-\frac{200}{\sqrt{5}}e^{-6}(0+4-4)</mrow>
+                  <mrow>\amp = 0</mrow>
+                </md>.
+              </p>
+            </li>
+            <li>
+              <p>
+                To cause the temperature to decrease as quickly as possible we move in the direction of
+                <me>
+                  -\nabla T(1,2,-1) = \left\langle 200e^{-6}, 400e^{-6}, -200e^{-6} \right\rangle \approx \langle 0.5, 1, -0.5 \rangle
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The rate of change of the temperature in this direction is
+                <me>
+                  -\left|\nabla T(1,2,-1) \right| =  -\sqrt{\left(200e^{-6}\right)^2 + \left(400e^{-6}\right)^2 + \left(-200e^{-6}\right)^2} = -200 \sqrt{6}e^{-6} \approx -1.21
+                </me>.
+                So the temperature decreases at approximately 1.21 in this direction.
+              </p>
+            </li>
+            <li>
+              <p>
+                Let <m>\vu = \langle u_1, u_2, u_3 \rangle</m> be a vector in a direction in which the temperature does not change.
+                Then
+                <md>
+                  <mrow>0 \amp = \nabla T(1,2,-1) \cdot \vu</mrow>
+                  <mrow>\amp = \left\langle -200e^{-6}, -400e^{-6}, 200e^{-6} \right\rangle \cdot \langle u_1, u_2, u_3 \rangle</mrow>
+                  <mrow>\amp = -200e^{-6}(u_1+2u_2-u_3)</mrow>
+                </md>.
+                So a direction in which the temperature does not change is the direction of the vector
+                <m>\langle -1,1,1 \rangle</m> (or in the direction of
+                <m>\langle 0,1,2\rangle</m> as shown in part (a)).
+              </p>
+            </li>
+          </ol>
+        </solution>
+
  
       </exercise>
       <exercise>
@@ -923,6 +1900,49 @@
             </li>
           </ol>
         </statement>
+
+        <answer>
+          <ol marker="a.">
+            <li>
+              <p>
+                Since the gradient at a point is orthogonal to the contour at that point,
+                the contours through the indicated points are drawn orthogonal to the gradients.
+                This is illustrated in the figures below.
+                <image width="73%" source="images/fig_10_6_Ex_4_a_1.png"/> <image width="73%" source="images/fig_10_6_Ex_4_b_1.png"/> <image width="73%" source="images/fig_10_6_Ex_4_c_1.png"/>
+              </p>
+            </li>
+            <li>
+              <p>
+                The gradient points in the direction of the greatest increase of the function,
+                so a curve that moves in the direction opposite the gradient is a curve on which <m>f</m> is decreasing.
+                This is illustrated in the figures below.
+                <image width="73%" source="images/fig_10_6_Ex_4_a_2.png"/> <image width="73%" source="images/fig_10_6_Ex_4_b_2.png"/> <image width="73%" source="images/fig_10_6_Ex_4_c_2.png"/>
+              </p>
+            </li>
+          </ol>
+        </answer>
+
+        <solution>
+          <ol marker="a.">
+            <li>
+              <p>
+                Since the gradient at a point is orthogonal to the contour at that point,
+                the contours through the indicated points are drawn orthogonal to the gradients.
+                This is illustrated in the figures below.
+                <image width="73%" source="images/fig_10_6_Ex_4_a_1.png"/> <image width="73%" source="images/fig_10_6_Ex_4_b_1.png"/> <image width="73%" source="images/fig_10_6_Ex_4_c_1.png"/>
+              </p>
+            </li>
+            <li>
+              <p>
+                The gradient points in the direction of the greatest increase of the function,
+                so a curve that moves in the direction opposite the gradient is a curve on which <m>f</m> is decreasing.
+                This is illustrated in the figures below.
+                <image width="73%" source="images/fig_10_6_Ex_4_a_2.png"/> <image width="73%" source="images/fig_10_6_Ex_4_b_2.png"/> <image width="73%" source="images/fig_10_6_Ex_4_c_2.png"/>
+              </p>
+            </li>
+          </ol>
+        </solution>
+
  
       </exercise>
     </exercises>
