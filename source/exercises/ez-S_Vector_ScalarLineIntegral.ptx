@@ -13,38 +13,75 @@
     </p>
   </exercise>
   <exercise>
-    <p>
-    Let <m>C</m> be the path given below from <m>P</m> to <m>Q</m> with pieces <m>C_1</m>, <m>C_2</m>, and <m>C_3</m> as labeled. Let <m>f</m> be a scalar-valued function such that <m>\int_C f \, ds = 13</m>, <m>\int_{C_1} f \, ds = 5</m>,and <m>\int_{C_3} f \, ds = 9</m>.
-    </p>
-    <figure>
-      <caption>An oriented path broken into three parts</caption>
-      <image width="60%" xml:id="scalarlineint_exercise2">
-        <sageplot>
-          var('t')
-          r(t)=(t^2/4-t,t^3/15-t^2/3-1)
-          plot6=parametric_plot(r(t),(t,-3,6),aspect_ratio=0.5,axes=False,thickness=2,color='#1E88E5')
-          plot6+=point(r(-.82),size=40,color='black')+point(r(-3),size=40,color='black')+point(r(6),size=40,color='black')
-          plot6+=arrow(r(-1.5),r(-1.49),color='#1E88E5')+arrow(r(0.5),r(0.51),color='#1E88E5')+arrow(r(5.4),r(5.41),color='#1E88E5')
-          plot6+=text("$C_1$",(2.2,-3),color='#1E88E5',fontsize=20,clip=True)
-          plot6+=text("$C_2$",(0,-1.5),color='#1E88E5',fontsize=20,clip=True)
-          plot6+=text("$C_3$",(1.8,0.5),color='#1E88E5',fontsize=20,clip=True)
-          plot6          
-        </sageplot>
-      </image>
-    </figure>
-    <p>
-      Find the following:
-      <ol>
-        <li> <m>\int_{-C_3} f \, ds </m></li>
-        <li> <m>\int_{C_2} f \, ds </m></li>
-        <li> <m>\int_{-C_1-C_3} f \, ds </m></li>
-      </ol>
-    </p>
+    <statement>
+      <p>
+        Let <m>C</m> be the path given below from <m>P</m> to <m>Q</m> with pieces <m>C_1</m>, <m>C_2</m>, and <m>C_3</m> as labeled. Let <m>f</m> be a scalar-valued function such that <m>\int_C f \, ds = 13</m>, <m>\int_{C_1} f \, ds = 5</m>,and <m>\int_{C_3} f \, ds = 9</m>.
+        </p>
+        <figure>
+          <caption>An oriented path broken into three parts</caption>
+          <image width="60%" xml:id="scalarlineint_exercise2">
+            <sageplot>
+              var('t')
+              r(t)=(t^2/4-t,t^3/15-t^2/3-1)
+              plot6=parametric_plot(r(t),(t,-3,6),aspect_ratio=0.5,axes=False,thickness=2,color='#1E88E5')
+              plot6+=point(r(-.82),size=40,color='black')+point(r(-3),size=40,color='black')+point(r(6),size=40,color='black')
+              plot6+=arrow(r(-1.5),r(-1.49),color='#1E88E5')+arrow(r(0.5),r(0.51),color='#1E88E5')+arrow(r(5.4),r(5.41),color='#1E88E5')
+              plot6+=text("$C_1$",(2.2,-3),color='#1E88E5',fontsize=20,clip=True)
+              plot6+=text("$C_2$",(0,-1.5),color='#1E88E5',fontsize=20,clip=True)
+              plot6+=text("$C_3$",(1.8,0.5),color='#1E88E5',fontsize=20,clip=True)
+              plot6          
+            </sageplot>
+          </image>
+        </figure>
+        <p>
+          Find the following:
+          <ol>
+            <li> <m>\int_{-C_3} f \, ds </m></li>
+            <li> <m>\int_{C_2} f \, ds </m></li>
+            <li> <m>\int_{-C_1-C_3} f \, ds </m></li>
+          </ol>
+        </p>
+    </statement>
+    <answer>
+      <p>
+        <ol>
+          <li> <m>\int_{-C_3} f \, ds =9</m></li>
+          <li> <m>\int_{C_2} f \, ds =-1</m></li>
+          <li> <m>\int_{-C_1-C_3} f \, ds =14</m></li>
+        </ol>
+      </p>
+    </answer>
+    <solution>
+      <p>
+        <ol>
+          <li> <m>\int_{-C_3} f \, ds =9</m> because the direction that a path is traveled does not change the value of a scalar line integral.</li>
+          <li> <m>\int_{C_2} f \, ds =-1</m> because the line integral over <m>C_1</m> and <m>C_3</m> is 14 and the line integral over <m>C</m> is 13. Since <m>C_2</m> is the difference between the two paths, <m>\int_{C_2} f \, ds =-1</m> </li>
+          <li> <m>\int_{-C_1-C_3} f \, ds =14</m> because the direction that a path is traveled does not change the value of a scalar line integral. </li>
+        </ol>
+      </p>
+    </solution>
   </exercise>
   <exercise>
-    <p>
-      Calculate the following line integral where <m>C</m> is the path on <m>x=y</m> with <m> -1 \geq y \geq 2 </m>:
-      <me> \int_C (y^2-2x) \, ds </me>
-    </p>
+    <statement> 
+      <p>
+        Calculate the following line integral where <m>C</m> is the path on <m>x=y</m> with <m> -1 \geq y \geq 2 </m>:
+        <me> \int_C (y^2-2x) \, ds </me>
+      </p>
+    </statement>
+    <answer>
+      <p>
+        <m>\int_C (y^2-2x) \, ds = 0</m>
+      </p>
+    </answer>
+    <solution>
+      <p>
+        We parameterize <m>C</m> with <m>\vr(t)=\langle t,t \rangle </m> with <m>t \in[-1,2]</m>. Thus 
+        <md>
+          <mrow> \int_C (y^2-2x) \, ds \amp = \int_{-1}^2 (t^2-2t) \sqrt{2} \, dt</mrow>
+          <mrow> \amp = \sqrt{2}(t^3/3-t^2) |_{-1}^2 </mrow>
+          <mrow> \amp =8/3-4-(-1/3 -1) = 0</mrow>
+        </md>
+      </p>
+    </solution>
   </exercise>  
 </exercises>
