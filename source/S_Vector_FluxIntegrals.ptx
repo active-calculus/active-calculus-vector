@@ -63,60 +63,235 @@
       </p>
     </introduction>
     <task xml:id="task_PA_Vector_FluxInt_Param">
-      <introduction>
+      <statement>
         <p>
-          Use the ideas from <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> to give a parameterization <m>\vr(s,t)</m> of each of the following surfaces. Be sure to specify the bounds on each of your parameters.
-	</p>
-      </introduction>
-      <task>
-        <statement>
-	  <p>A sphere centered at the origin of radius 3.</p>
-	</statement>
-      </task>
-      <task>
-        <statement>
-	  <p>A right circular cylinder centered on the <m>x</m>-axis
-	  of radius 2 when <m>0\leq x\leq 3</m>.</p>
-	</statement>
-      </task>
-      <task>
-        <statement>
-	  <p>The first octant portion of the plane <m>x+2y+3z=6</m>.
-	  </p>
-	</statement>
-      </task>
+          Use the ideas from <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/> to give a parameterization <m>\vr(s,t)</m> of the following surface. Be sure to specify the bounds on each of your parameters.
+	      </p>
+	      <p>
+          <m>S_1</m>: the right circular cylinder centered on the <m>x</m>-axis of radius 2 when <m>0\leq x\leq 5</m>
+        </p>
+	    </statement>
+      <answer>
+        <p>
+          <m>\vr(s,t)=\langle s, 2\cos(t),2\sin(t) \rangle</m> for <m> t \in [0,2\pi], s \in [0,5]</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <m>\vr(s,t)=\langle s, 2\cos(t),2\sin(t) \rangle</m> for <m> t \in [0,2\pi], s \in [0,5]</m>
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
         <p>
-          Draw a graph of each of the three surfaces from the previous part. Label the points that correspond to <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
+          Draw a graph of <m>S_1</m> from the previous part. Label the points that correspond to <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
         </p>
       </statement>
+      <answer>
+        <image>
+          <interactive platform="sage" width="100%" aspect="1:1.10">
+            <slate surface="sage">
+              var('s,t')
+              param(s,t)=(s,2*cos(t),2*sin(t))
+              b=[0,5,0,2*pi]
+              plot22=parametric_plot3d(param,(s,b[0],b[1]),(t,b[2],b[3]),color='blue',opacity=.85)
+              plot22+=point3d(param(s=0,t=0),color='black',size=10)
+              plot22+=point3d(param(s=1,t=0),color='black',size=10)
+              plot22+=point3d(param(s=0,t=1),color='black',size=10)
+              plot22+=point3d(param(s=2,t=3),color='black',size=10)
+              show(plot22)
+            </slate>
+          </interactive>
+        </image>
+      </answer>
+      <solution>
+        <p>
+          The four points correspond to <m>(0,2,0)</m>, <m>(1,2,0)</m>, <m>(0,2\cos(1),0)</m>, and <m>(2,2\cos(3),2\sin(3))</m>. 
+        </p>
+        <image>
+          <interactive platform="sage" width="100%" aspect="1:1.10">
+            <slate surface="sage">
+              var('s,t')
+              param(s,t)=(s,2*cos(t),2*sin(t))
+              b=[0,5,0,2*pi]
+              plot22=parametric_plot3d(param,(s,b[0],b[1]),(t,b[2],b[3]),color='blue',opacity=.85)
+              plot22+=point3d(param(s=0,t=0),color='black',size=10)
+              plot22+=point3d(param(s=1,t=0),color='black',size=10)
+              plot22+=point3d(param(s=0,t=1),color='black',size=10)
+              plot22+=point3d(param(s=2,t=3),color='black',size=10)
+              show(plot22)
+            </slate>
+          </interactive>
+        </image>
+        
+      </solution>
     </task>
     <task xml:id="task_PA_Vector_FluxInt_Tangents">
       <statement>
         <p>
-          For each parameterization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, calculate <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>.
+          For the parameterization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, calculate <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>.
         </p>
       </statement>
+      <answer>
+        <p>
+          <md>
+            <mrow>\vr_s \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t \amp = \langle 0,-2 \sin(t) , 2 \cos(t) \rangle </mrow>
+            <mrow>\vr_s \times \vr_t \amp = \langle 0,-2 \cos(t) , -2 \sin(t) \rangle </mrow>
+          </md> 
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <md>
+            <mrow>\vr_s \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t \amp = \langle 0,-2 \sin(t) , 2 \cos(t) \rangle </mrow>
+            <mrow>\vr_s \times \vr_t \amp = \langle 0,-2 \cos(t) , -2 \sin(t) \rangle </mrow>
+          </md> 
+        </p>
+      </solution>
     </task>
     <task xml:id="task_PA_Vector_FluxInt_partd">
       <statement>
         <p>
-          For each parameterization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, find the value for <m>\vr_s</m>,<m>\vr_t</m>, and <m>\vr_s \times \vr_t</m> at the <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
+          For the parameterization from <xref ref="task_PA_Vector_FluxInt_Param" text="local">part</xref>, find the value for <m>\vr_s</m>,<m>\vr_t</m>, and <m>\vr_s \times \vr_t</m> at the <m>(s,t)</m> points of <m>(0,0)</m>, <m>(0,1)</m>, <m>(1,0)</m>, and <m>(2,3)</m>.
         </p>
       </statement>
+      <answer>
+        <p>
+          <md>
+            <mrow>\vr_s (0,0) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (0,0) \amp = \langle 0,0 ,2 \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (0,0) \amp = \langle 0,-2 , 0 \rangle </mrow>
+            <mrow>\vr_s (1,0) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (1,0) \amp = \langle 0,0,2 \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (1,0) \amp = \langle 0,-2  , 0 \rangle </mrow>
+            <mrow>\vr_s (0,1) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (0,1) \amp = \langle 0,-2\sin(1) ,2\cos(1) \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (0,1) \amp = \langle 0,-2\cos(1),-2\sin(1) \rangle </mrow>
+            <mrow>\vr_s (2,3) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (2,3) \amp = \langle 0,-2\sin(3),2\cos(3) \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (2,3) \amp = \langle 0,-2 \cos(3), -2\sin(3) \rangle </mrow>
+          </md> 
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <md>
+            <mrow>\vr_s (0,0) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (0,0) \amp = \langle 0,0 ,2 \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (0,0) \amp = \langle 0,-2 , 0 \rangle </mrow>
+            <mrow>\vr_s (1,0) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (1,0) \amp = \langle 0,0,2 \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (1,0) \amp = \langle 0,-2  , 0 \rangle </mrow>
+            <mrow>\vr_s (0,1) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (0,1) \amp = \langle 0,-2\sin(1) ,2\cos(1) \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (0,1) \amp = \langle 0,-2\cos(1),-2\sin(1) \rangle </mrow>
+            <mrow>\vr_s (2,3) \amp = \langle 1,0,0 \rangle </mrow>
+            <mrow>\vr_t (2,3) \amp = \langle 0,-2\sin(3),2\cos(3) \rangle </mrow>
+            <mrow>\vr_s \times \vr_t (2,3) \amp = \langle 0,-2 \cos(3), -2\sin(3) \rangle </mrow>
+          </md> 
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
         <p>
-          Draw your vector results from <xref ref="task_PA_Vector_FluxInt_partd" text="local"/> on your graphs and confirm the geometric properties described in the introduction to this section. Namely, <m>\vr_s</m> and <m>\vr_t</m> should be tangent to the surface, while <m>\vr_s \times \vr_t</m> should be orthogonal to the surface (in addition to <m>\vr_s</m> and <m>\vr_t</m>).
+          Draw your vector results from <xref ref="task_PA_Vector_FluxInt_partd" text="local"/> on your graph and confirm the geometric properties described in the introduction to this section. Namely, <m>\vr_s</m> and <m>\vr_t</m> should be tangent to the surface, while <m>\vr_s \times \vr_t</m> should be orthogonal to the surface (in addition to <m>\vr_s</m> and <m>\vr_t</m>).
         </p>
       </statement>
+      <answer>
+        <p>
+          <image>
+            <interactive platform="sage" width="100%" aspect="1:1.10">
+              <slate surface="sage">
+                var('s,t')
+                param(s,t)=(s,2*cos(t),2*sin(t))
+                b=[0,5,0,2*pi]
+                rt(s,t)=(0,-2*sin(t),2*cos(t))
+                rs(s,t)=(1,0,0)
+                rst(s,t)=(0,-2*cos(t),-2*sin(t))
+                plot22=parametric_plot3d(param,(s,b[0],b[1]),(t,b[2],b[3]),color='blue',opacity=.55)
+                points=[(0,0),(1,0),(0,1),(2,3)]
+                for (a,b) in points:
+                  p=param(s=a,t=b)
+                  plot22+=point3d(p,color='black',size=10)
+                  plot22+=arrow3d(p,p+rs(s=a,t=b),color="red")
+                  plot22+=arrow3d(p,p+rt(s=a,t=b),color="green")
+                  plot22+=arrow3d(p,p+rst(s=a,t=b),color="orange")
+                show(plot22)
+              </slate>
+            </interactive>
+          </image>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <image>
+            <interactive platform="sage" width="100%" aspect="1:1.10">
+              <slate surface="sage">
+                var('s,t')
+                param(s,t)=(s,2*cos(t),2*sin(t))
+                b=[0,5,0,2*pi]
+                rt(s,t)=(0,-2*sin(t),2*cos(t))
+                rs(s,t)=(1,0,0)
+                rst(s,t)=(0,-2*cos(t),-2*sin(t))
+                plot22=parametric_plot3d(param,(s,b[0],b[1]),(t,b[2],b[3]),color='blue',opacity=.55)
+                points=[(0,0),(1,0),(0,1),(2,3)]
+                for (a,b) in points:
+                  p=param(s=a,t=b)
+                  plot22+=point3d(p,color='black',size=10)
+                  plot22+=arrow3d(p,p+rs(s=a,t=b),color="red")
+                  plot22+=arrow3d(p,p+rt(s=a,t=b),color="green")
+                  plot22+=arrow3d(p,p+rst(s=a,t=b),color="orange")
+                show(plot22)
+              </slate>
+            </interactive>
+          </image>
+        </p>
+      </solution>
+    </task>
+    <task>
+      <introduction>
+        <p>
+          Repeat steps (a) through (e) for the following two surfaces:
+        </p>
+      </introduction>
+      <task>
+        <statement>
+	        <p><m>S_2</m>: the sphere centered at the origin of radius 3</p>
+	      </statement>
+        <answer>
+          <p>
+            <m>\vr(s,t)=\langle 3 \cos(t) \sin(s), 3 \sin(t) \sin(s), 3 \cos(s) \rangle</m> for <m> t \in [0,2\pi], s \in [0,\pi]</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            <m>\vr(s,t)=\langle 3 \cos(t) \sin(s), 3 \sin(t) \sin(s), 3 \cos(s) \rangle</m> for <m> t \in [0,2\pi], s \in [0,\pi]</m>
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+	        <p><m>S_3</m>: the first octant portion of the plane <m>x+2y+3z=6</m></p>
+	      </statement>
+        <answer>
+          <p>
+            <m>\vr(s,t)=\langle s, t, (6-s-2t)/3 \rangle</m> for <m> s \in [0,6], t \in [0,-1/2s+3]</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            <m>\vr(s,t)=\langle s, t, (6-s-2t)/3 \rangle</m> for <m> s \in [0,6], t \in [0,-1/2s+3]</m>
+          </p>
+        </solution>
+      </task>
     </task>
   </exploration>
   <p>
-    As we saw in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>, we can set up a Riemann sum of the areas for the parallelograms in <xref ref="fig_Vector_FluxInt_ParaPic"/> to approximate the surface area of the region plotted by our parametrization. <xref ref="E_surface_area" text="global">Equation</xref> shows that we can compute the exact surface by taking a limit of a Riemann sum which will correspond to integrating the magnitude of <m>\vr_s \times \vr_t</m> over the appropriate parameter bounds. What if we wanted to measure a quantity other than the surface area? Our focus in this section we will be the exploration of a specific case of this question: How can we measure the amount of a three dimensional vector field that flows through a particular section of a surface? The geometric tools we have reviewed in this section, especially the vector <m>\vr_s \times \vr_t</m>, will be valuable.
+    As we saw in <xref ref="S-11-6-Parametric-Surfaces-Surface-Area"/>, we can set up a Riemann sum of the areas for the parallelograms in <xref ref="fig_Vector_FluxInt_ParaPic"/> to approximate the surface area of the region plotted by our parametrization. <xref ref="E_surface_area" text="global">Equation</xref> shows that we can compute the exact surface area by taking a limit of a Riemann sum which will correspond to integrating the magnitude of <m>\vr_s \times \vr_t</m> over the appropriate parameter bounds. What if we wanted to measure a quantity other than the surface area? Our focus in this section we will be the exploration of a specific case of this question: How can we measure the amount of a three dimensional vector field that flows through a particular section of a surface? The geometric tools we have reviewed in this section, especially the vector <m>\vr_s \times \vr_t</m>, will be valuable.
   </p>
 </introduction>
 <subsection xml:id="SS_Vector_FluxInt_Idea">
@@ -281,6 +456,16 @@
         </interactive>
       </figure>
     </statement>
+    <answer>
+      <p>
+        <m>VF4 \lt VF2 \lt VF1 \lt VF3 \lt VF5 </m>
+      </p>
+    </answer>
+    <solution>
+      <p>
+        You should look at the combined lengths of the green vectors. Remember to pay attention to the direction of the yellow vector which shows which direction is positive flow through the surface. So, <m>VF4 \lt VF2 \lt VF1 \lt VF3 \lt VF5 </m>. 
+      </p>
+    </solution>
   </activity>
 </subsection>
 <subsection>
@@ -411,7 +596,7 @@
       </interactive>
     </figure>
     <p>
-      In <xref ref="fig_Vector_FluxInt_Cone1" />, the normal vector (as calculated from the parameterization) points inside the cone. This is the direction of positive flow when measuring the flux of the vector field. Our parameterization will also transform our vector field into a function of <m>s</m> and <m>t</m>. Specifcally,
+      In <xref ref="fig_Vector_FluxInt_Cone1" />, the normal vector (as calculated from the parameterization) points inside the cone. This is the direction of positive flow when measuring the flux of the vector field. Our parameterization will also transform our vector field into a function of <m>s</m> and <m>t</m>. Specifically,
       <me>\vF(s,t)= \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle</me>
       Applying <xref ref="thm_flux_int_calc" /> to our parameterization and vector field allows us to compute <m>I = \iint_D \vF \cdot (\vr_s \times \vr_t)\, dA</m> as an interated integral
       <md>
@@ -441,7 +626,7 @@
       </interactive>
     </figure>
     <p>
-      In <xref ref="fig_Vector_FluxInt_Cone2" /> you can see much more of the vector field is going through to the outside of the cone than inside, which matches with our result of calculating the flux as negative. 
+      In <xref ref="fig_Vector_FluxInt_Cone2" /> you can see much more of the vector field is flowing outside of the cone than inside, which matches with our result of calculating the flux as negative. 
     </p>
   </example>
   <p>
@@ -467,9 +652,19 @@
       </figure>
       </introduction>
       <task>
-	<statement>
-	  <p>Reasoning graphically, do you think the flux of <m>\vF</m> throught the cylinder will be positive, negative, or zero? Write a few sentences jutifying your answer.</p>
-	</statement>
+        <statement>
+          <p>Reasoning graphically, do you think the flux of <m>\vF</m> throught the cylinder will be positive, negative, or zero? Write a few sentences jutifying your answer.</p>
+        </statement>
+        <answer>
+          <p>
+            Zero
+          </p>
+        </answer>
+        <solution>
+          <p>
+            This is difficult to visualize when the whole vector field is present. There is a lot of visual clutter. The flux should be near zero because on each horizontal slice, you can see about as much of the vector field flowing into the circular slice as is is flowing out of it on another side. 
+          </p>
+        </solution>
       </task>
     <task>
       <statement>
@@ -477,6 +672,16 @@
         Parameterize the right circular cylinder of radius <m>2</m>, centered on the <m>z</m>-axis, for <m>0\leq z \leq 3</m>. Be sure to give bounds on your parameters.
       </p>
       </statement>
+      <answer>
+        <p>
+          <m>\vr(t) = \langle 2 \cos(t),2\sin(t), s \rangle </m> with <m>t \in [0,2\pi)</m> and <m>s \in [0,3]</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <m>\vr(t) = \langle 2 \cos(t),2\sin(t), s \rangle </m> with <m>t \in [0,2\pi)</m> and <m>s \in [0,3]</m>
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -484,6 +689,24 @@
         Based on your parameterization, compute <m>\vr_s</m>, <m>\vr_t</m>, and <m>\vr_s \times \vr_t</m>. Confirm that these vectors are either orthogonal or tangent to the right circular cylinder. Is your orthogonal vector pointing in the direction of positive flux or negative flux?
       </p>
       </statement>
+      <answer>
+        <p>
+          <md>
+            <mrow>\vr_s \amp = \langle 0,0,1 \rangle </mrow>
+            <mrow>\vr_t \amp = \langle -2 \sin(t) , 2 \cos(t),0 \rangle </mrow>
+            <mrow>\vr_s \times \vr_t \amp = \langle -2 \cos(t) , -2 \sin(t),0 \rangle </mrow>
+          </md> 
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <md>
+            <mrow>\vr_s \amp = \langle 0,0,1 \rangle </mrow>
+            <mrow>\vr_t \amp = \langle -2 \sin(t) , 2 \cos(t),0 \rangle </mrow>
+            <mrow>\vr_s \times \vr_t \amp = \langle -2 \cos(t) , -2 \sin(t),0 \rangle </mrow>
+          </md> 
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -494,6 +717,16 @@
       <hint>
 	      <p>The <m>x</m>-coordinate is given by the first component of <m>\vr</m>.</p>
       </hint>
+      <answer>
+        <p>
+          <m>\vF(s,t)=\langle 2 \sin(t), s, 2 + \sin(2 \cos(t)) \rangle </m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          Since <m>\vF=\langle y,z, 2+\sin(x)\rangle </m> and <m>\vr = \langle x(s,t),y(s,t),z(s,t) \rangle = \langle 2 \cos(t),2\sin(t), s \rangle </m>, <m>\vF(s,t)=\langle 2 \sin(t), s, 2 + \sin(2 \cos(t)) \rangle </m>.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -501,6 +734,19 @@
         Compute the flux of <m>\vF</m> through the parameterized portion of the right circular cylinder. 
       </p>
       </statement>
+      <answer>
+        <p>
+          <m>0</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <md> 
+            <mrow>\iint_S \vF \cdot (\vr_s \times \vr_t) dA  \amp = \int_0^3 \int_0^{2\pi} \langle 2 \sin(t), s, 2 + \sin(2 \cos(t)) \rangle \cdot \langle -2 \cos(t) , -2 \sin(t),0 \rangle \, dt \, ds </mrow>
+            <mrow> \amp = \int_0^3 \int_0^{2\pi} 2\sin(t)\cos(t)+2s\sin(t) \, dt \, ds  =0 </mrow>
+          </md>
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -508,6 +754,16 @@
         Does your computed value for the flux match your prediction	from earlier?
       </p>
       </statement>
+      <answer>
+        <p>
+          Yes, it does
+        </p>
+      </answer>
+      <solution>
+        <p>
+          Yes, this calculation matches the estimate from the first part. 
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -550,6 +806,16 @@
         </interactive>
       </figure>
       </statement>
+      <answer>
+        <p>
+          The flux should be zero because on each horizontal slice, you can see as much of the vector field flowing into the circular slice as is is flowing out of it on another side.
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The flux should be zero because on each horizontal slice, you can see as much of the vector field flowing into the circular slice as is is flowing out of it on another side. 
+        </p>
+      </solution>
     </task>
     </task>
     <task>
@@ -558,6 +824,16 @@
         Write a couple of sentences to explalin how the results of the flux calculations would be different if we used the vector field <m>\vF=\left\langle{y,z,\cos(xy)+\frac{9}{z^2+6.2}}\right\rangle</m> and the same right circular cylinder.
       </p>
       </statement>
+      <answer>
+        <p>
+          The flux of this new vector field will still be zero because the only change to the components of the vector field are in the last component.
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The flux of this new vector field will still be zero because the only change to the components of the vector field are in the last component. With the right circular cylinder surface, the last component of the vector field will NOT contribute anything to the flux. In other words, changing the z-component of the vector field does not change the flux because the z-component will correspond to flow along this surface (and not through this surface).
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -565,6 +841,16 @@
         write a couple of sentences to explain how the results of the flux calculations would be different if we used the vector field <m>\vF=\langle{y,-x,3}\rangle</m> and the same right circular cylinder.
       </p>
       </statement>
+      <answer>
+        <p>
+          The result would still be zero.
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The result of the flux integral would be zero, but this is because the flow of the vector field would only be along the surface. The vector field <m>\vF=\langle{y,-x,3}\rangle</m> would not change with respect to height (z-coordinate) and would correspond to only rotation around the z-axis, which would be tangent to the surface. When setting up the flux integral, the dot product of <m>\vF</m> and <m>\vr_s \times \vr_t</m> would be zero. 
+        </p>
+      </solution>
     </task>
   </activity>
 <!-- <subsection xml:id="SS_Vector_FluxInt_Calculate">

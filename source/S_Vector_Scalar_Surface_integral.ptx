@@ -28,10 +28,10 @@
           <caption>A plot of land with density of copium deposits and the edges of the plot drawn in yellow </caption>
           <image xml:id="CopiumMinePlot3">
             <sageplot>
-<xi:include href="CopiumMinePlot.sage" parse="text" />
+              <xi:include href="CopiumMinePlot.sage" parse="text" />
             </sageplot>
           </image>
-	</figure>
+	      </figure>
         <p>
           The opening tasks of <xref ref="PA_ScalarLI" /> had you estimating the amount of copium mined by driving along the edge of a plot of land (drawn in yellow on <xref ref="CopiumPlot3" />). This iterpretation meant that the scalar function we were using measured the linear density of copium. Thus, the Riemann sum we computed was the product of linear density of copium with the distance traveled. 
         </p>
@@ -48,6 +48,7 @@
               Break the mining plot (the area inside the yellow segments of <xref ref="CopiumPlot3" />) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.
             </p>
           </statement>
+          
         </task>
         <task>
           <statement>
@@ -62,43 +63,87 @@
               Give an estimate for the total amount of copium on the mining plot and explain your computation.
             </p>
           </statement>
+          <answer>
+            <p>
+              <m>285,000</m>
+            </p>
+          </answer>
+          <solution>
+            <image>
+              <sageplot>
+                f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
+                cp=contour_plot(f,(x,0,550),(y,0,550),colorbar=True)
+                plot9=line([[0,0],[212.5,425],[512.5,525],[300,100],[0,0]],color='yellow')
+                plot9+=line([[230,75],[163,325]],color='red')
+                plot9+=line([[355,215],[385,480]],color='red')
+                show(cp+plot9)
+              </sageplot>
+            </image>
+            <p>
+              Cutting the region up into three pieces as shown with the plot above, we can estimate the areas and copium densities for each piece as follows:
+                <ul>
+                  <li>
+                    The lower left triangle will have area of around 30,000 square meters and have a density of around 3.
+                  </li>
+                  <li>
+                    The middle figure will have area of around 30,000 square meters and have a density of around 1.5.
+                  </li>
+                  <li>
+                    The upper right triangle will have area of around 60,000 square meters and have a density of around 2.5.
+                  </li>
+                </ul>
+                Summing these area estimates times the densities will give a total estimate of 285,000. Your estimates will vary.
+            </p>
+          </solution>
         </task>
       </task>
       <task>
-        <p>
-          What if instead of your mining plot being on a flat piece of land as represented in <xref ref="CopiumPlot3" />, your mining plot was on a hill as represented in <xref ref="fig_3D_CopiumMining" />. If we had the same copium density plot as a function of the <m>(x,y)</m> coordinates, which of the following would you expect to be true?
-          <ul>
-            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is greater than on <xref ref="CopiumPlot3" /> </li>
-            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is lesser than on <xref ref="CopiumPlot3" /> </li>
-            <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is the same as on <xref ref="CopiumPlot3" /> </li>
-          </ul>
-          Explain your reasoning for your choice. 
-        </p>
-        <figure xml:id="fig_3D_CopiumMining">
-          <caption>A 3D plot of the region including our mining area (shown with boundary in red) </caption>
-          <interactive platform="sage" width="100%" aspect="1:1">
-            <slate surface="sage">
-              @interact
-              def abcd():
-                a=100000
-                b=75000
-                var('s,t,x,y,z')
-                g(x,y)=200*exp(-1/a*(x-250)^2-1/b*(y-300)^2)
-                plot10=parametric_plot3d((s,t,g(s,t)),(s,0,550),(t,0,550),color='blue',opacity=.5)
-                xylist=[[0,0],[212.5,425],[512.5,525],[300,100],[0,0]]
-                xstart=0
-                ystart=0
-                for c in xylist:
-                  m=c[0]-xstart
-                  n=c[1]-ystart
-                  plot10+=parametric_plot3d([xstart+t*m,ystart+t*n,g(xstart+t*m,ystart+t*n)],(t,0,1),color='red',thickness=5)
-                  xstart=c[0]
-                  ystart=c[1]
-                show(plot10,aspect_ratio=1)
-                
-            </slate>
-          </interactive>
-        </figure>
+        <statement> 
+          <p>
+            What if instead of your mining plot being on a flat piece of land as represented in <xref ref="CopiumPlot3" />, your mining plot was on a hill as represented in <xref ref="fig_3D_CopiumMining" />. If we had the same copium density plot as a function of the <m>(x,y)</m> coordinates, which of the following would you expect to be true?
+            <ul>
+              <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is greater than on <xref ref="CopiumPlot3" /> </li>
+              <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is lesser than on <xref ref="CopiumPlot3" /> </li>
+              <li>the total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is the same as on <xref ref="CopiumPlot3" /> </li>
+            </ul>
+            Explain your reasoning for your choice. 
+          </p>
+          <figure xml:id="fig_3D_CopiumMining">
+            <caption>A 3D plot of the region including our mining area (shown with boundary in red) </caption>
+            <interactive platform="sage" width="100%" aspect="1:1">
+              <slate surface="sage">
+                @interact
+                def abcd():
+                  a=100000
+                  b=75000
+                  var('s,t,x,y,z')
+                  g(x,y)=200*exp(-1/a*(x-250)^2-1/b*(y-300)^2)
+                  plot10=parametric_plot3d((s,t,g(s,t)),(s,0,550),(t,0,550),color='blue',opacity=.5)
+                  xylist=[[0,0],[212.5,425],[512.5,525],[300,100],[0,0]]
+                  xstart=0
+                  ystart=0
+                  for c in xylist:
+                    m=c[0]-xstart
+                    n=c[1]-ystart
+                    plot10+=parametric_plot3d([xstart+t*m,ystart+t*n,g(xstart+t*m,ystart+t*n)],(t,0,1),color='red',thickness=5)
+                    xstart=c[0]
+                    ystart=c[1]
+                  show(plot10,aspect_ratio=1)
+                  
+              </slate>
+            </interactive>
+          </figure>
+        </statement>
+        <answer>
+          <p>
+            The total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is greater than on <xref ref="CopiumPlot3" /> 
+          </p>
+        </answer>
+        <solution>
+          <p>
+            The total amount of copium available on <xref ref="fig_3D_CopiumMining" /> is greater than on <xref ref="CopiumPlot3" /> because the surface area of the region on the hill (<xref ref="fig_3D_CopiumMining" />) will be greater than the area of the corresponding flat parts of <xref ref="CopiumPlot3" />.
+          </p>
+        </solution>
       </task>
     </exploration>
   <p>
@@ -206,8 +251,8 @@
         <p>
           From a calculation standpoint, we can  verify this result using our parameterization from <xref ref="flux_int_example1" /> in <xref ref="ScalarSurfaceIntDef" />. Specifically, we will use the parameterization of <m>S_1</m> given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with bounds <m>1\leq s \leq 3</m> and <m>0 \leq t \lt 2 \pi</m>. We also know from <xref ref="flux_int_example1" /> that 
           <me>\vw= \vr_s \times \vr_t = \langle-s \cos(t), -s \sin(t), s \rangle </me>.
-          Hence, we have <m>\vecmag{\vw}=\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
-          <me> \int_{S_1} f \, dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \, 2s\, dt\, ds =0</me>.
+          Hence, we have <m>\vecmag{\vw}=\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=\sqrt{2} s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
+          <me> \int_{S_1} f \, dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \, \sqrt{2} s\, dt\, ds =0</me>.
           Notice that we can evaluate this integral quickly because the inside integral is <m>\int_0^{2\pi} \cos(t)\, dt = 0</m>.
         </p>
       </statement>
@@ -217,10 +262,10 @@
         <p>
           If we want to calculate the integral of <m>f(x,y,z) = x</m> over <m>S_2</m>, then we have very little extra work to do. Only the bounds on the integral will change since we are using the same parameterization and function from the previous part. We can use the parameterization given by <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with <m>1\leq s \leq 3</m> and <m>-\frac{\pi}{2} \leq t \lt \frac{\pi}{2} </m>. As before, <m>\vecmag{\vw} =\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s</m>. Thus, <xref ref="ScalarSurfaceIntDef" /> gives 
           <md>
-            <mrow>\int_{S_2} f \, dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \, 2s\, dt\, ds</mrow>
-            <mrow> \amp = \int_1^3 2s^2 [\sin(t)]_{|_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \,  ds</mrow>
-            <mrow> \amp = \int_1^3 4s^2   \,  ds</mrow>
-            <mrow> \amp = \int_1^3 4s^2  \,  ds = 104/3</mrow>
+            <mrow>\int_{S_2} f \, dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \, \sqrt{2} s \, dt\, ds</mrow>
+            <mrow> \amp = \int_1^3 \sqrt{2} s^2 [\sin(t)]_{\mid_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \,  ds</mrow>
+            <mrow> \amp = \int_1^3 2 \sqrt{2} s^2   \,  ds</mrow>
+            <mrow> \amp = \int_1^3 2 \sqrt{s} s^2  \,  ds = 52\sqrt{2}/3</mrow>
           </md>.
         </p>
         <p>
@@ -271,7 +316,7 @@
   <activity xml:id="ScalarSurfaceInt_Sensemaking">
     <introduction>
       <p>
-        In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over a common surfaces. In each part below, you are given a function and a surface. For each surface, first draw a plot of the surface and make sure you have labeled a proper scale for each coordinate direction. Then reason if the given surface integral is positive, negative, or zero. Be sure to justify your answers in terms of the function being integrated <em>and</em> the particulars of the surface of integration.
+        In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over common surfaces. In each part below, you are given a function and a surface. For each surface, first draw a plot of the surface and make sure you have labeled a proper scale for each coordinate direction. Then reason if the given surface integral is positive, negative, or zero. Be sure to justify your answers in terms of the function being integrated <em>and</em> the particulars of the surface of integration.
       </p>
     </introduction>
     <task xml:id="task_SSIS_2">
@@ -284,7 +329,7 @@
             <p>zero</p>
         </answer>
         <solution>
-            <p>Write out a longer description?</p>
+            <p>The scalar output of our function is given by the x-coordinate of the points on the hemisphere. Since the hemisphere is symmetric across the yz-plane, there will be exactly as much contribution from the side with positive x-coordinates as from the negative x-coordinates.</p>
         </solution>
     </task>
     <task xml:id="task_SSIS_3">
@@ -297,7 +342,7 @@
             <p>negative</p>
         </answer>
         <solution>
-            <p>Write out a longer description?</p>
+            <p>For points on the bottom half of the sphere, the z-coordinate will be non-positive. So we will be accumulating negative (or zero) values over that hemisphere, which will cause our Riemann sum and corresponding scalar surface integral to be negative.</p>
         </solution>
     </task>
     <task xml:id="task_SSIS_4">
@@ -310,7 +355,9 @@
           <p>positive</p>
       </answer>
       <solution>
-          <p>Write out a longer description?</p>
+          <p>
+            We would separate <m>\iint_{S_3} x+z \, dS</m> into <m>\iint_{S_3} x \, dS + iint_{S_3} z \, dS</m>. Because we have x-coordinate of 1 for all points on <m>S_3</m>, <m>\iint_{S_3} x \, dS </m> will be positive. Since the disc in <m>S_3</m> will be symmetric across the xy-plane, <m> iint_{S_3} z \, dS</m> will be zero because the accumluation of the z-coordinates will cancel out exactly in the Riemann sum. Thus the sum <m>\iint_{S_3} x \, dS + iint_{S_3} z \, dS</m> will be positive.
+          </p>
       </solution>
     </task>
     <task xml:id="task_SSIS_5">
@@ -323,7 +370,9 @@
           <p>positive</p>
       </answer>
       <solution>
-          <p>Write out a longer description?</p>
+        <p>
+          We would separate <m>\iint_{S_1} x+z \, dS</m> into <m>\iint_{S_1} x \, dS + iint_{S_1} z \, dS</m>. Because we have z-coordinate non-negative for all points on <m>S_1</m>, <m>\iint_{S_1} z \, dS </m> will be positive. Since <m>S_1</m> will be symmetric across the yz-plane, <m> iint_{S_3} x \, dS</m> will be zero because the accumluation of the x-coordinates will cancel out exactly in the Riemann sum. Thus the sum <m>\iint_{S_1} x \, dS + iint_{S_1} z \, dS</m> will be positive.
+        </p>
       </solution>
     </task>
   </activity>
@@ -331,7 +380,7 @@
 <subsection>
   <title>Properties of Scalar Surface Integrals</title>
   <p>
-    Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <m>S_1</m> and <m>S_2</m> are disjoint surfaces<fn>Technically, the surfaces may intersect, but there are restrictions on the manner in which they can intersect, and we will not go into the details here.</fn>, we denote by <m>S_1+S_2</m> the surface containing every point that is <m>S_1</m> or <m>S_2</m>.  Also, if <m>S_1</m> is a surface, then <m>-S_1</m> denotes the same surface but parameterized in such a way that the normal vector points in the opposite direction. The list below summarizes some other properties of scalar surface integrals, each of which has a familiar analogue amongst the properties of other integrals we have studied. 
+    Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <m>S_1</m> and <m>S_2</m> are disjoint surfaces<fn>Technically, the surfaces may intersect, but there are restrictions on the manner in which they can intersect, and we will not go into the details here.</fn>, we denote by <m>S_1+S_2</m> the surface containing every point that is in <m>S_1</m> or <m>S_2</m>.  Also, if <m>S_1</m> is a surface, then <m>-S_1</m> denotes the same surface but parameterized in such a way that the normal vector points in the opposite direction. The list below summarizes some other properties of scalar surface integrals, each of which has a familiar analogue amongst the properties of other integrals we have studied. 
   </p>
   <assemblage xml:id="asm_ScalarSurfaceInt_Properties">
       <title>Properties of Scalar Line Integrals</title>
@@ -392,10 +441,10 @@
         </p>
         </statement>
         <answer>
-          <p>asdf</p>
+          <p>doubling density will double the total amount</p>
         </answer>
         <solution>
-          <p>asdf</p>
+          <p>If the density of toxic fungus on Sugar Mountain was to double, that would also double the total amount of toxic fungus on Sugar Mountain.</p>
         </solution>
       </task>
       <task>
@@ -405,10 +454,10 @@
         </p>
         </statement>
         <answer>
-          <p>asdf</p>
+          <p>Adding densities will correspond to adding total amounts</p>
         </answer>
         <solution>
-          <p>asdf</p>
+          <p>The total amount of toxic material on Spice Mountain can be calculated as the amount of toxic fungus on Spice Mountain plus the amount of toxic bacteria on Spice Mountain.</p>
         </solution>
       </task>
       <task>
@@ -418,10 +467,10 @@
         </p>
         </statement>
         <answer>
-          <p>asdf</p>
+          <p>Orientation does not change scalar surface integrals</p>
         </answer>
         <solution>
-          <p>asdf</p>
+          <p> The scalar surface integral <m>\displaystyle \iint_{-S_2} f \, dS</m> will measure the amount of toxic fungus on Spice mountain when changing the orientation of the surface <m>S_2</m>. The total amount of toxic fungus on a plot does not change if we change if we change what we define as the in/out direction of the surface.</p>
         </solution>
       </task>
       <task>
@@ -431,10 +480,10 @@
         </p>
         </statement>
         <answer>
-          <p>asdf</p>
+          <p>Total amount of toxic fungus on the mountains is the sum on the individual mountains</p>
         </answer>
         <solution>
-          <p>asdf</p>
+          <p>The total amount of toxic fungus on Sugar Mountain and Spice Mountain is the sum of the amount of toxic fungus on Sugar Mountain plus the amount of toxic fungus on Spice Mountain.</p>
         </solution>
       </task>
     </activity>
