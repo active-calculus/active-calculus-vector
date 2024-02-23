@@ -14,20 +14,7 @@
 
 <!-- Font configuration should be consistent -->
 <xsl:param name="latex.preamble.early">
-       <xsl:text>%% Customized to load Palatino fonts&#xa;</xsl:text>
-   <xsl:text>\usepackage[T1]{fontenc}&#xa;</xsl:text>
-   <xsl:text>\renewcommand{\rmdefault}{zpltlf} %Roman font for use in math mode&#xa;</xsl:text>
-   <xsl:text>\usepackage[scaled=.85]{beramono}% used only by \mathtt&#xa;</xsl:text>
-   <xsl:text>\usepackage[type1]{cabin}%used only by \mathsf&#xa;</xsl:text>
-   <xsl:text>\usepackage{amsmath,amssymb}%load before newpxmath&#xa;</xsl:text>
-   <xsl:text>\usepackage[varg,cmintegrals,bigdelims,varbb]{newpxmath}&#xa;</xsl:text>
-   <xsl:text>\usepackage[scr=rsfso]{mathalfa}&#xa;</xsl:text>
-   <xsl:text>\usepackage{bm} %load after all math to give access to bold math&#xa;</xsl:text>
-   <xsl:text>% Now load the otf text fonts using fontspec--wont affect math&#xa;</xsl:text>
-   <xsl:text>\usepackage[no-math]{fontspec}&#xa;</xsl:text>
-   <xsl:text>\setmainfont{TeXGyrePagellaX}&#xa;</xsl:text>
-   <xsl:text>\defaultfontfeatures{Ligatures=TeX,Scale=1,Mapping=tex-text}&#xa;</xsl:text>
-   <xsl:text>\linespread{1.02}&#xa;</xsl:text>
+
 </xsl:param>
 
 <xsl:param name="latex.preamble.late.common">
@@ -40,8 +27,8 @@
     <xsl:text>\newpagestyle{chapopen}{&#xa;</xsl:text>
     <xsl:text>\sethead[][][] % even&#xa;</xsl:text>
     <xsl:text>{}{}{} % odd&#xa;</xsl:text>
-    <xsl:text>\setfoot[\includegraphics[height=1pc]{images/CC-BY-SA-license.pdf}][][]&#xa;</xsl:text>
-<xsl:text>{}{}{\includegraphics[height=1pc]{images/CC-BY-SA-license.pdf}}}&#xa;</xsl:text>
+    <xsl:text>\setfoot[\includegraphics[height=1pc]{external/images/CC-BY-SA-license.pdf}][][]&#xa;</xsl:text>
+<xsl:text>{}{}{\includegraphics[height=1pc]{external/images/CC-BY-SA-license.pdf}}}&#xa;</xsl:text>
     <xsl:text>\assignpagestyle{\chapter}{chapopen}&#xa;</xsl:text>
 
     <xsl:text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&#xa;</xsl:text>
