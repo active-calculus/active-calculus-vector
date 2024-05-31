@@ -20,20 +20,19 @@
         <ul>
           <li>
             <p>
-              How can a definite integral be used to measure the length of a
-                  curve in 2- or 3-space?
+              How can we measure the direction of travel on a parametrized curve?
             </p>
           </li>
 
           <li>
             <p>
-              Why is arc length useful as a parameter?
+              How can we measure the direction of turning on a parameterized curve?
             </p>
           </li>
 
           <li>
             <p>
-              What is the curvature of a curve?
+              How can we measure the axis of rotation along a parameterized curve?
             </p>
           </li>
         </ul>
@@ -41,131 +40,57 @@
 
     <introduction>
     <p>
-      Given a space curve, there are two natural
-      geometric questions one might ask: how long is the curve and how much
-      does it bend? In this section, we answer both questions by
-      developing techniques for measuring the length of a space
-      curve as well as its curvature.
+      In first section, we saw how vvf of 1 variable graphically cooresponds to a curve in space. While the derivative, integral, and limits apply to these functions componentwise, we will need to apply our calculus and vector tools together to measure some important properties of these curves. Conceptually, you may want to visualize the parameterization of the curve in space as a way to travel along those points in space. Remember that parameterizations are not unique; There is more than one way to walk the same path.
     </p>
-
+    <p>
+      For example, consider the curve in space that we want to study looks like this (show racetrack plot) and is actually a race track. Not every driver will travel along this curve in the same way, but every driver has to go through these same points in space (everyone will stay on the track and not take shortcuts). Some properties you measure will depend on the particular way that a driver goes along the course and some properties will be the same for all drivers (when measured at the same location on the track). 
+    </p>
     <exploration xml:id="PA_9_8">
-      <statement> 
-      <p>
-        In earlier investigations, we have used
-        integration to calculate quantities such as area, volume, mass, and
-        work. We are now interested in determining the
-        length of a space curve.
-      </p>
+      <introduction>
+        <p>
+          Suppose that you are riding a bicycle along the path given below (with the direction given by the arrows). Notice that at points B and E the bike path crosses itself to go in a different direction. 
+        </p>
+        <figure xml:id="bikepath1">
+          <caption>The path taken on a bike trip </caption>
+          <image source=""/>
+        </figure>
+      </introduction>
 
-      <p>
-        Consider the smooth curve in 3-space defined by the vector-valued
-        function <m>\vr</m>, where
-        <me>
-          \vr(t) = \langle x(t), y(t), z(t) \rangle = \langle \cos(t), \sin(t), t \rangle
-        </me>
-        for <m>t</m> in the interval <m>[0,2\pi]</m>. Pictures of the graph of <m>\vr</m> are shown in <xref ref="F-9-8-Arclength">Figure</xref>.
-        We will use the integration process to calculate the length of this curve. In this situation we partition the interval <m>[0,2\pi]</m> into <m>n</m> subintervals of equal length and let <m>0 = t_0 \lt  t_1 \lt  t_2 \lt  \cdots \lt  t_n = b</m> be the endpoints of the subintervals. We then approximate the length of the curve on each subinterval with some related quantity that we can compute. In this case, we approximate the length of the curve on each subinterval with the length of the segment connecting the endpoints. <xref ref="F-9-8-Arclength">Figure</xref> illustrates the process in three different instances using increasing values of <m>n</m>.
-      </p>
-
-      <figure xml:id="F-9-8-Arclength">
-        <caption>Approximating the length of the curve with <m>n=3</m>, <m>n=6</m>, and <m>n=9</m>.</caption>
-        <sidebyside widths="33% 33% 33%" margins="0%">
-        <image source="images/fig_9_8_length_animate_02"/>
-        <image source="images/fig_9_8_length_animate_05"/>
-        <image source="images/fig_9_8_length_animate_08"/>
-        </sidebyside>
-      </figure>
-
-      <ol marker="a.">
-        <li>
+      <task>
+        <statement>
           <p>
-            Write a formula for the length of the line segment that connects the endpoints of the curve on the <m>i</m>th subinterval <m>[t_{i-1},t_i]</m>. (This length is our approximation of the length of the curve on this interval.)
+            At each of the points on the curve, draw a vector in the direction of travel. 
           </p>
-        </li>
-
-        <li>
+        </statement>
+      </task>
+      <task>
+        <statement>
           <p>
-            Use your formula in part (a) to write a sum that adds all of the approximations to the lengths on each subinterval.
+            At each point, decide whether the bike is turning left or right
           </p>
-        </li>
+        </statement>
+      </task>
 
-        <li>
-          <p>
-            What do we need to do with the sum in part (b) in order to obtain the exact value of the length of the graph of <m>\vr(t)</m> on the interval <m>[0,2\pi]</m>?
-          </p>
-        </li>
-      </ol>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              The length of the line segment connecting the points <m>\vr(t_{i-1})</m> and
-              <m>\vr(t_i)</m> is given by the distance formula
-              <me>
-                \sqrt{(x_i-x_{i-1})^2+(y_{i}-y_{i-1})^2 + (z_{i}-z_{i-1})^2}
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We add the lengths given in part (b) to obtain the sum
-              <me>
-                \sum_{i=1}^n \sqrt{(x_i-x_{i-1})^2+(y_{i}-y_{i-1})^2 + (z_{i}-z_{i-1})^2}
-              </me>
-              that approximates the total length of the graph of <m>\vr(t)</m> on the interval <m>[0,2 \pi]</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We must take the limit of the sum as <m>n</m> goes to infinity.
-            </p>
-          </li>
-        </ol>
-      </solution>
     </exploration>
+
   </introduction>
 
 
   <subsection>
-    <title>Arc Length</title>
+    <title>Direction of travel</title>
     <p>
-      Consider a smooth curve in 3-space that is parametrically described by
-      the vector-valued function <m>\vr</m> defined by <m>\vr(t) = \langle x(t), y(t), z(t)
-      \rangle.</m>
-      <xref ref="PA_9_8">Preview Activity</xref> shows that to approximate the
-      length of the curve defined by <m>\vr(t)</m> as the values of <m>t</m> run over
-      an interval <m>[a,b]</m>, we partition the interval <m>[a,b]</m> into <m>n</m>
-      subintervals of equal length <m>\Delta t</m>, with <m>a = t_0 \lt  t_1 \lt  \cdots
-      \lt  t_n = b</m> as the endpoints of the subintervals. On each subinterval,
-      we approximate the length of the curve by the length of the line
-      segment connecting the endpoints. The points on the curve
-      corresponding to <m>t = t_{i-1}</m> and <m>t = t_i</m> are <m>(x(t_{i-1}),
-      y(t_{i-1}), z(t_{i-1}))</m> and <m>(x(t_i), y(t_i), z(t_i))</m>, respectively,
-      so the length of the line segment connecting these points is
-      <me>
-        \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) -
-          z(t_{i-1}))^2}.
-      </me>
+      
+      
     </p>
 
     <p>
-      Now we add all of these approximations together to obtain an
-      approximation to the length <m>L</m> of the curve:
-      <me>
-        L \approx \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) -
-          y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2}.
-      </me>
+      
+      
     </p>
 
     <p>
-      We now want to take the limit of this sum as <m>n</m> goes to infinity, but in its present form it
-      might be difficult to see how. We first introduce <m>\Delta t</m> by multiplying by <m>\frac{\Delta t}{\Delta t}</m>, and see that
-      <md>
-        <mrow>L \amp \approx \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2}</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2} \frac{\Delta t}{\Delta t}</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2} \frac{\Delta t}{\sqrt{(\Delta t)^2}}</mrow>
-      </md>
+      
+      
     </p>
 
     <p>
