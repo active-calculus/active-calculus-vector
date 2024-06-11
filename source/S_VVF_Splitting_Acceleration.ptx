@@ -20,809 +20,109 @@
         <ul>
           <li>
             <p>
-              How can a definite integral be used to measure the length of a curve in 2- or 3-space?
+              How can we split acceleration into the direction of travel and the direction of turning. 
             </p>
           </li>
 
-          <li>
-            <p>
-              Why is arc length useful as a parameter?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              What is the curvature of a curve?
-            </p>
-          </li>
         </ul>
     </objectives>
 
     <introduction>
     <p>
-      Given a space curve, there are two natural
-      geometric questions one might ask: how long is the curve and how much
-      does it bend? In this section, we answer both questions by
-      developing techniques for measuring the length of a space
-      curve as well as its curvature.
+      Velocity and acceleration are vital ideas in motion and mechanics. Velocity is the derivative of position/location (the central measurement of in kinematics, the study of motion). To understand velocity as a vector valued function of time, we wanated to understand how the magnitude and direction of position change. We separated velocity into its critical parts, namely speed (magnitude of velocity) and unit tangent vector (direction of travel). Speed measures how fast (as a scalar) position is changing as a function of time and <m>\vT</m> measurese in what direction position is changing (measured with a unit vector).
+    </p>
+    <p>
+      Newton's Second Law of Motion relates the forces acting on an object to its acceleration through the formula <m> \vec{F}_{net}= m \vec{A}</m>, which is summarized as the sum of the forces acting on an object is the same as the mass times the acceleration of the object. We would like to understand acceleration as a change in the magnitude and direction of the velocity vector. In this section we will use our knowledge of calculus and vector measurements to split the acceleration vector up into parts dealing with changes in he magnitude and direction of the velocity vector. Further, we wil make sense of these measurements in terms of thier physical meaning. 
     </p>
 
     <exploration xml:id="PA_9_8">
       <statement> 
       <p>
-        In earlier investigations, we have used
-        integration to calculate quantities such as area, volume, mass, and
-        work. We are now interested in determining the
-        length of a space curve.
+        Preview activity will have drawing/algebraic version of T, N, v, and a. Look at a few points and calculate how much of a is in the direction of T? How much of a is in the direction N? Hint is to use projection or should we just tell them to use the projection. 
+        Might want to use this as the opportunity to reinforce that v and a are the easiest calculations. 
       </p>
-
-      <p>
-        Consider the smooth curve in 3-space defined by the vector-valued
-        function <m>\vr</m>, where
-        <me>
-          \vr(t) = \langle x(t), y(t), z(t) \rangle = \langle \cos(t), \sin(t), t \rangle
-        </me>
-        for <m>t</m> in the interval <m>[0,2\pi]</m>. Pictures of the graph of <m>\vr</m> are shown in <xref ref="F-9-8-Arclength">Figure</xref>.
-        We will use the integration process to calculate the length of this curve. In this situation we partition the interval <m>[0,2\pi]</m> into <m>n</m> subintervals of equal length and let <m>0 = t_0 \lt  t_1 \lt  t_2 \lt  \cdots \lt  t_n = b</m> be the endpoints of the subintervals. We then approximate the length of the curve on each subinterval with some related quantity that we can compute. In this case, we approximate the length of the curve on each subinterval with the length of the segment connecting the endpoints. <xref ref="F-9-8-Arclength">Figure</xref> illustrates the process in three different instances using increasing values of <m>n</m>.
-      </p>
-
-      <figure xml:id="F-9-8-Arclength">
-        <caption>Approximating the length of the curve with <m>n=3</m>, <m>n=6</m>, and <m>n=9</m>.</caption>
-        <sidebyside widths="33% 33% 33%" margins="0%">
-        <image source="images/fig_9_8_length_animate_02"/>
-        <image source="images/fig_9_8_length_animate_05"/>
-        <image source="images/fig_9_8_length_animate_08"/>
-        </sidebyside>
-      </figure>
-
-      <ol marker="a.">
-        <li>
-          <p>
-            Write a formula for the length of the line segment that connects the endpoints of the curve on the <m>i</m>th subinterval <m>[t_{i-1},t_i]</m>. (This length is our approximation of the length of the curve on this interval.)
-          </p>
-        </li>
-
-        <li>
-          <p>
-            Use your formula in part (a) to write a sum that adds all of the approximations to the lengths on each subinterval.
-          </p>
-        </li>
-
-        <li>
-          <p>
-            What do we need to do with the sum in part (b) in order to obtain the exact value of the length of the graph of <m>\vr(t)</m> on the interval <m>[0,2\pi]</m>?
-          </p>
-        </li>
-      </ol>
       </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              The length of the line segment connecting the points <m>\vr(t_{i-1})</m> and
-              <m>\vr(t_i)</m> is given by the distance formula
-              <me>
-                \sqrt{(x_i-x_{i-1})^2+(y_{i}-y_{i-1})^2 + (z_{i}-z_{i-1})^2}
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We add the lengths given in part (b) to obtain the sum
-              <me>
-                \sum_{i=1}^n \sqrt{(x_i-x_{i-1})^2+(y_{i}-y_{i-1})^2 + (z_{i}-z_{i-1})^2}
-              </me>
-              that approximates the total length of the graph of <m>\vr(t)</m> on the interval <m>[0,2 \pi]</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We must take the limit of the sum as <m>n</m> goes to infinity.
-            </p>
-          </li>
-        </ol>
-      </solution>
+      
     </exploration>
   </introduction>
-
-
   <subsection>
-    <title>Arc Length</title>
-    <p>
-      Consider a smooth curve in 3-space that is parametrically described by
-      the vector-valued function <m>\vr</m> defined by <m>\vr(t) = \langle x(t), y(t), z(t)
-      \rangle.</m>
-      <xref ref="PA_9_8">Preview Activity</xref> shows that to approximate the
-      length of the curve defined by <m>\vr(t)</m> as the values of <m>t</m> run over
-      an interval <m>[a,b]</m>, we partition the interval <m>[a,b]</m> into <m>n</m>
-      subintervals of equal length <m>\Delta t</m>, with <m>a = t_0 \lt  t_1 \lt  \cdots
-      \lt  t_n = b</m> as the endpoints of the subintervals. On each subinterval,
-      we approximate the length of the curve by the length of the line
-      segment connecting the endpoints. The points on the curve
-      corresponding to <m>t = t_{i-1}</m> and <m>t = t_i</m> are <m>(x(t_{i-1}),
-      y(t_{i-1}), z(t_{i-1}))</m> and <m>(x(t_i), y(t_i), z(t_i))</m>, respectively,
-      so the length of the line segment connecting these points is
-      <me>
-        \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) -
-          z(t_{i-1}))^2}.
-      </me>
-    </p>
+    <title>Splitting Acceleration</title>
+  <p>
+    Remember that <m>\vv</m> is parallel to <m>\vT</m> (when not the zero vector or DNE) and that <m>\vT \cdot \vN =0 </m>. 
+    Define <m>a_\vT = \va \cdot \vT </m> as the tangential component of acceleration and <m>a_\vN = \va \cdot \vN </m> as the normal component of acceleration. Because <m>\vT</m> and <m>\vN</m> are orthogonal to each other and both unit vectors, <m>a_\vT</m> and  <m>a_\vN</m> will give the amount of acceleration in the direction of travel and the direction of turning, respectively. 
+  </p>
+  <p>
+    Can acceleration have any additional parts? Can a have any component in another direction (like <m>\vB</m>)? 
 
-    <p>
-      Now we add all of these approximations together to obtain an
-      approximation to the length <m>L</m> of the curve:
-      <me>
-        L \approx \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) -
-          y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2}.
-      </me>
-    </p>
-
-    <p>
-      We now want to take the limit of this sum as <m>n</m> goes to infinity, but in its present form it
-      might be difficult to see how. We first introduce <m>\Delta t</m> by multiplying by <m>\frac{\Delta t}{\Delta t}</m>, and see that
-      <md>
-        <mrow>L \amp \approx \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2}</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2} \frac{\Delta t}{\Delta t}</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2} \frac{\Delta t}{\sqrt{(\Delta t)^2}}</mrow>
-      </md>
-    </p>
-
-    <p>
-      To get the difference quotients under the radical, we use properties of the square root function to see further that
-      <md>
-        <mrow>L \amp \approx \sum_{i=1}^n \sqrt{\left[(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1})^2\right] \frac{1}{(\Delta t)^2}} \Delta t</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{\left(\frac{x(t_i) - x(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{y(t_i) - y(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{z(t_i) - z(t_{i-1})}{\Delta t}\right)^2} \Delta t.</mrow>
-      </md>
-    </p>
-
-    <p>
-      Recall that as <m>n \to \infty</m> we also have <m>\Delta t \to 0</m>. Since
-      <md>
-        <mrow> x'(t) \amp = \lim_{\Delta t \to 0} \frac{x(t_i) - x(t_{i-1})}{\Delta t},</mrow> 
-        <mrow> y'(t) \amp = \lim_{\Delta t \to 0} \frac{y(t_i) - y(t_{i-1})}{\Delta t}, \ \text{ and }  </mrow>
-        <mrow> z'(t) \amp \lim_{\Delta t \to 0} \frac{z(t_i) - z(t_{i-1})}{\Delta t}, </mrow> 
-      </md>
-
-      we see that
-          <me>\lim_{n \to \infty} \sum_{i=1}^n \sqrt{\left(\frac{x(t_i) - x(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{y(t_i) - y(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{z(t_i) - z(t_{i-1})}{\Delta t}\right)^2} \Delta t
-          </me>
-          is equal to 
-        <me>
-           \int_a^b \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} \, dt.
-         </me>
-    </p>
-
-    <p>
-      Noting further that
-      <me>
-        |\vr'(t)| = \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2},
-      </me>
-      we can rewrite our arclength formula in a more succinct form as follows.
-    </p>
-
-    <assemblage xml:id="Length-of-a-curve">
-      <title>The length of a curve</title>
-    <p>
-      If <m>\vr(t)</m> defines a smooth curve <m>C</m> on an interval <m>[a,b]</m>, then the <em>length</em><idx><h>arclength</h></idx> <m>L</m> of <m>C</m> is given by
-      <men xml:id="eq_9_8_arclength_2">
-        L = \int_a^b |\vr'(t)| \, dt.
-      </men>
-    </p>
-    </assemblage>
-
-
-    <p>
-      Note that formula <xref ref="eq_9_8_arclength_2"/> applies to curves in any
-      dimensional space. Moreover, this formula has a natural interpretation: if
-      <m>\vr(t)</m> records the position of a moving object, then <m>\vr'(t)</m> is
-      the object's velocity and <m>|\vr'(t)|</m> its speed. Formula
-      <xref ref="eq_9_8_arclength_2"/> says that we simply integrate the speed of
-      an object traveling over the curve to find the distance traveled by
-      the object, which is the same as the length of the curve,
-      just as in one-variable calculus.
-    </p>
-
-    <activity xml:id="A_9_8_1">
-      <statement> 
+    No!
+  </p>
+  <p>
+    The scalar <m>a_\vN</m> measures the acceleration due to change in the direction of <m>\vv</m> and the scalar <m>a_\vT</m> measures the acceleration due to the change in magnitude of <m>\vv</m>. This interpretation follows from a neat product rule argument:
+    <md>
+       <mrow> \vv(t) =\amp speed(t) \vT(t) </mrow>
+       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(speed) \vT + (speed) \frac{d\vT}{dt} </mrow>
+       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(speed) \vT + (speed) \Vert\frac{d\vT}{dt}\Vert \vN </mrow>
+    </md>
+    The last line follows from the definition of the unit normal vector (<m>\vN=\frac{\vT'}{\Vert\vT'\Vert}</m>)
+  </p>
+  <p>
+    This gives a nice way to interpret <m>a_\vT</m>. Specifically, <m>a_\vT</m> is the rate of change of speed!
+  </p>
+  <p>
+    <m>a_\vN</m> is much harder to interpret right now because we have <m>a_\vN = (speed) \Vert\frac{d\vT}{dt}\Vert</m> and <m> frac{d\vT}{dt}</m> (and <m> \Vert\frac{d\vT}{dt}\Vert</m>) are just as hard to calculate as <m>\vN</m> directly. In the next section, we will address the meaning of <m>a_\vN</m> a bit more, but for now you should think of <m>a_\vN</m> as the acceleration due to a change in the direciton. In other words, <m>a_\vN</m> is the amount of acceleration due to turning. 
+  </p>
+  <activity>
+    <statement>
       <p>
-        Here we calculate the arc length of two familiar curves.
-        <ol marker="a.">
-          <li>
-            <p>
-              Use Equation<nbsp/><xref ref="eq_9_8_arclength_2"/> to calculate the circumference of a circle of radius <m>r</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Find the exact length of the spiral defined by <m>\vr(t) = \langle \cos(t), \sin(t), t \rangle</m> on the interval <m>[0,2\pi]</m>.
-            </p>
-          </li>
-        </ol>
+        Activity about how a_T can be positive, negative, zero and thier respective meanings.
+        Activity about how a_N can only be positive or zero. What is the meaning of this?
       </p>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              We can parameterize a circle of radius <m>r</m> centered at the origin by
-              <m>\vr(t) = \langle \cos(t), \sin(t) \rangle</m> for <m>t</m> in the interval <m>[0, 2\pi]</m>.
-              The circumference of this circle is the length of curve defined by <m>r</m>, or
-              <me>
-                \int_0^{2\pi} \lvert \vr'(t) \rvert \, dt = \int_0^{2\pi} \sqrt{(-r\sin(t))^2 + (r\cos(t))^2} \, dt = \int_0^{2\pi} r \, dt = 2 \pi r
-              </me>
-              as expected.
-            </p>
-          </li>
-          <li>
-            <p>
-              The length of curve defined by <m>r</m> on the interval <m>[0,2 \pi]</m> is
-              <me>
-                \int_0^{2\pi} \lvert \vr'(t) \rvert \, dt = \int_0^{2\pi} \sqrt{(-\sin(t))^2 + (\cos(t))^2 + 1^2} \, dt = \int_0^{2\pi} \sqrt{2} \, dt = 2 \pi \sqrt{2}
-              </me>.
-            </p>
-          </li>
-        </ol>
-      </solution>
-    </activity>
-
-    <p>
-      We can adapt the arc length formula to curves in 2-space that define
-      <m>y</m> as a function of <m>x</m> as the following activity shows.
-    </p>
-
-    <activity xml:id="A_9_8_3">
-      <statement> 
+    </statement>
+  </activity>
+  <activity>
+    <statement>
       <p>
-        Let <m>y = f(x)</m> define a smooth curve in 2-space. Parameterize this curve and use Equation<nbsp/><xref ref="eq_9_8_arclength_2"/> to show that the length of the curve defined by <m>f</m> on an interval <m>[a,b]</m> is
-        <me>
-          \int_a^b \sqrt{1+[f'(t)]^2} \, dt.
-        </me>
+        activity about the mechanisms of driving, biking, boating and how these connect ot a_n, a_t, T, and N.
       </p>
-      </statement>
-      <solution>
-        <p>
-          We can parameterize <m>y=f(x)</m> on <m>[a,b]</m> by
-          <m>\vr(t) = \langle t, f(t) \rangle</m> for <m>t</m> in <m>[a,b]</m>.
-          Then the length of the curve defined by <m>y=f(x)</m> on <m>[a,b]</m> is
-          <me>
-            \int_a^b \lvert \vr'(t) \rvert \, dt =  \int_a^b \lvert \langle 1, f'(t) \rvert \, dt = \int_a^b \sqrt{1+[f'(t)]^2} \, dt
-          </me>.
-        </p>
-      </solution>
-    </activity>
-  </subsection>
-
-
-  <subsection>
-    <title>Parameterizing With Respect To Arc Length</title>
-    <p>
-      In addition to helping us to find the length of space curves, the
-      expression for the length of a curve enables us to find a natural
-      parametrization of space curves in terms of arc length, as we now
-      explain.
-    </p>
-
-    <p>
-      Shown below in <xref ref="F_9_8_parametrization">Figure</xref> is a portion of the
-      parabola <m>y = x^2/2</m>. Of course, this space curve may be parametrized by
-      the vector-valued function <m>\vr</m> defined by <m>\vr(t) = \langle t, t^2/2\rangle</m> as shown
-      on the left, where we see the location at a few different times <m>t</m>.
-      Notice that the points are not equally spaced on the curve.
-    </p>
-
-    <p>
-      A more natural parameter describing the points along the space curve
-      is the distance traveled <m>s</m> as we move along the parabola starting at
-      the origin. For instance, the right side of <xref ref="F_9_8_parametrization">Figure</xref> shows the points corresponding to various
-      values of <m>s</m>. We call this an <em>arc length parametrization</em>.
-    </p>
-
-    <figure xml:id="F_9_8_parametrization">
-      <caption>The parametrization <m>\vr(t)</m> (left) and a
-            reparametrization by arc length.</caption>
-      <image width="100%" source="images/fig_9_8_param"/>
-    </figure>
-
-    <p>
-      To see that this is a more natural parametrization, consider an
-      interstate highway cutting across a state. One way
-      to parametrize the curve defined by the highway is to drive along the
-      highway and record our position at every time, thus creating a
-      function <m>\vr</m>. If we encounter an accident or road construction,
-      however,
-      this parametrization might not be at all relevant to another person
-      driving the same highway. An arc length parametrization, however, is
-      like using the mile markers on the side of road to specify our
-      position on the highway. If we know how far we've traveled along the
-      highway, we know exactly where we are.
-    </p>
-
-    <p>
-      If we begin with a parametrization of a space curve, we can
-      modify it to find an arc length parametrization, as we now describe.
-      Suppose that the curve is parametrized by the vector-valued function
-      <m>\vr = \vr(t)</m> where <m>t</m> is in the interval <m>[a,b]</m>. We define the
-      parameter <m>s</m> through the function
-      <me>
-        s=L(t) = \int_a^t \sqrt{(x'(w))^2 + (y'(w))^2 + (z'(w))^2} \,dw,
-      </me>
-      which measures the length along the curve from <m>\vr(a)</m> to
-      <m>\vr(t)</m>.
-    </p>
-
-    <p>
-      The Fundamental Theorem of Calculus shows us that
-      <men xml:id="eq_9_8_arc_length_prime">
-        \frac{ds}{dt} =
-          L'(t)=
-          \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} = \lvert \vr'(t) \rvert
-      </men>
-      and so
-      <me>
-        L(t) = \int_a^t \left| \frac{d}{dw}\vr(w)\right| \,dw.
-      </me>
-    </p>
-
-    <p>
-      If we assume that <m>\vr'(t)</m> is never 0, then <m>L'(t) &gt; 0</m> for all <m>t</m>
-      and <m>s=L(t)</m> is always increasing. This should seem reasonable: unless we
-      stop, the distance traveled along the curve increases as we move along
-      the curve.
-    </p>
-
-    <p>
-      Since <m>s=L(t)</m> is an increasing function, it is invertible, which means
-      we may view the time <m>t</m> as a function of the distance traveled; that
-      is, we have the relationship <m>t=L^{-1}(s)</m>. We then obtain the arc length
-      parametrization by composing <m>\vr(t)</m> with <m>t=L^{-1}(s)</m> to obtain
-      <m>\vr(s)</m>. Let's illustrate this with an example.
-    </p>
-
-    <example xml:id="ex_9_8_circle_arc_length">
-        <p>
-          Consider a circle of
-          radius <m>5</m> in 2-space centered at the origin. We know that we can
-          parameterize this circle as
-          <me>
-            \vr(t) = \langle 5\cos(t), 5\sin(t) \rangle,
-          </me>
-          where <m>t</m> runs from 0 to <m>2\pi</m>.
-          We see that <m>\vr'(t) = \langle -5\sin(t), 5\cos(t) \rangle</m>, and hence
-          <m>|\vr'(t)| = 5</m>. It then follows that
-          <me>
-            s=L(t) = \int_0^t |\vr'(w)|~dw = \int_0^t 5~dw = 5t.
-          </me>
-        </p>
-
-        <p>
-          Since <m>s=L(t) = 5t</m>, we may solve for <m>t</m> in terms of <m>s</m> to obtain
-          <m>t(s)=L^{-1}(s) 
-            = s/5</m>. We then find the arc length parametrization by composing
-          <me>
-            \vr(t(s))=\vr(L^{-1}(s)) = \left\langle 5\cos\left(\frac s5\right),
-              5\sin\left(\frac s5\right)\right\rangle.
-          </me>
-        </p>
-
-        <p>
-          More generally, for a circle of radius <m>a</m> centered at the origin, a
-          similar computation shows that
-          <men xml:id="eq_9_8_circle_arc_length_parameterization">
-            \left\langle a\cos\left(\frac sa\right), a\sin\left(\frac sa\right)\right\rangle
-          </men>
-          is an arc length parametrization.
-        </p>
+    </statement>
+    <example>
+      <p>
+        Calculate trying to find a_N, a_T for t,t^2,t^3 for all t. a_N is most easily calculated by <m>\Vert \va - a_\vT \vT \Vert</m>.
+        Show a plot of the curve and values/vectors at t=2 to emphasize these calculations and hwo they can be one at a single value. 
+      </p>
     </example>
-
     <p>
-      Notice that equation <xref ref="eq_9_8_arc_length_prime"/> shows that
-      <me>
-        \frac{d\vr}{dt} = \frac{d\vr}{ds}\frac{ds}{dt} = \frac{d\vr}{ds}\lvert \vr'(t) \rvert,
-      </me>
-      so
-      <me>
-        \left| \frac{d\vr}{ds} \right| = \left|\frac{1}{\lvert \vr'(t) \rvert}\frac{d\vr}{dt} \right| = 1,
-      </me>
-      which means that we move along the curve with unit speed when we parameterize by arc length. This is clearly seen in <xref ref="ex_9_8_circle_arc_length">Example</xref> where <m>|\vr'(s)| = 1</m>. It follows that the parameter <m>s</m>
-      is the distance traveled along the curve, as shown by:
-      <me>
-        L(s) = \int_0^s\left|\frac{d}{ds}\vr(w)\right|~dw = \int_0^s1~dw = s.
-      </me>
-    </p>
-
-    <activity xml:id="A_9_8_4">
-      <statement> 
-      <p>
-        In this activity we parameterize a
-        line in 2-space in terms of arc length. Consider the line with
-        parametric equations
-        <me>
-          x(t) = x_0+at \ \ \ \ \text{ and }  \ \ \ \ y(t) = y_0+bt.
-        </me>
-        <ol marker="a.">
-          <li>
-            <p>
-              To write <m>t</m> in terms of <m>s</m>, evaluate the integral
-              <me>
-                s=L(t) = \int_{0}^t \sqrt{(x'(w))^2 + (y'(w))^2} \, dw
-              </me>
-              to determine the length of the line from time 0 to time <m>t</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Use the formula from (a) for <m>s</m> in terms of <m>t</m> to write <m>t</m>
-                  in terms of <m>s</m>. Then explain why a parameterization of the line
-                  in terms of arc length is
-              <men xml:id="eq_9_8_line_arc_length_parameterization">
-                x(s) = x_0+\frac{a}{\sqrt{a^2+b^2}}s \ \ \ \ \text{ and }  \ \ \ \ y(s) = y_0+\frac{b}{\sqrt{a^2+b^2}}s.
-              </men>
-            </p>
-          </li>
-        </ol>
-      </p>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              The length of the line from time 0 to time <m>t</m> is
-              <md>
-                <mrow>s(t) \amp = \int_{0}^t \sqrt{(x'(w))^2 + (y'(w))^2} \, dw</mrow>
-                <mrow>\amp = \int_0^t \sqrt{a^2+b^2} \, dw</mrow>
-                <mrow>\amp = \sqrt{a^2+b^2}t</mrow>
-              </md>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We have <m>t = \frac{s}{\sqrt{a^2+b^2}}</m>,
-              and so a parameterization for the line in terms of arc length is
-              <me>
-                x(s) = x_0+\frac{a}{\sqrt{a^2+b^2}}s \ \ \ \ \text{ and }  \ \ \ \ y(s) = y_0+\frac{b}{\sqrt{a^2+b^2}}s
-              </me>.
-            </p>
-          </li>
-        </ol>
-      </solution>
-    </activity>
-
-    <p>
-      A little more complicated example is the following.
-    </p>
-
-    <example xml:id="ex_9_8_AL_curvature_ex_2">
-      <statement>
-        <p>
-          Let us parameterize the curve defined by
-          <me>
-            \vr(t) = \left\langle t^2, \frac{8}{3}t^{3/2}, 4t \right\rangle
-          </me>
-          for <m>t \geq 0</m> in terms of arc length. To write <m>t</m> in terms of <m>s</m> we find <m>s</m> in terms of <m>t</m>:
-          <md>
-            <mrow>s(t) \amp = \int_{0}^t \sqrt{(x'(w))^2 + (y'(w))^2 +(z'(w))^2} \, dw</mrow>
-            <mrow>\amp = \int_0^t \sqrt{(2w)^2 + (4w^{1/2})^2 + (4)^2} \, dw</mrow>
-            <mrow>\amp = \int_0^t \sqrt{4w^2 + 16w + 16} \, dw</mrow>
-            <mrow>\amp = 2\int_0^t \sqrt{(w+2)^2} \, dw</mrow>
-            <mrow>\amp = 2\int_0^t w+2 \, dw</mrow>
-            <mrow>\amp = \left(w^2+4w\right)\biggm|_{0}^{t}</mrow>
-            <mrow>\amp = t^2+4t.</mrow>
-          </md>
-        </p>
-
-        <p>
-          Since <m>t \geq 0</m>, we can solve the equation <m>s = t^2+4t</m> (or <m>t^2+4t-s=0</m>) for <m>t</m> to obtain <m>t = \frac{-4 +\sqrt{16+4s}}{2} = -2 + \sqrt{4+s}</m>. So we can parameterize our curve in terms of arc length by
-          <me>
-            \vr(s) = \left\langle \left(-2 + \sqrt{4+s}\right)^2, \frac{8}{3}\left(-2 + \sqrt{4+s}\right)^{3/2}, 4\left(-2 + \sqrt{4+s}\right) \right\rangle.
-          </me>
-        </p>
-      </statement>
-    </example>
-
-    <p>
-      These examples illustrate a general method. Of course, evaluating an
-      arc length integral and finding a formula for the
-      inverse of a function can be difficult, so while this process is
-      theoretically possible, it is not always practical to parameterize a
-      curve in terms of arc length. However, we can guarantee that such a
-      parameterization exists, and this observation plays an important role
-      in the next section.
-    </p>
-  </subsection>
-
-  <subsection>
-    <title>Curvature</title>
-    <p>
-      For a smooth space curve, the <em>curvature</em> measures how fast the
-      curve is bending or changing direction at a given point. For example,
-      we expect that a line should have zero curvature everywhere, while a
-      circle (which is bending the same at every point) should have constant
-      curvature. Circles with larger radii should have smaller curvatures.
-    </p>
-
-    <p>
-      To measure the curvature, we first need to describe the direction of the curve at a point. We may do this using a continuously varying tangent vector to the curve, as shown at left in <xref ref="F_9_8_Curvature_1_a">Figure</xref>. The direction of the curve is then determined by the angle <m>\phi</m> each tangent vector makes with a horizontal vector, as shown at right in <xref ref="F_9_8_Curvature_1_a">Figure</xref>.
-    </p>
-
-    
-    <figure xml:id="F_9_8_Curvature_1_a">
-      <caption>Left: Tangent vectors to an ellipse. Right: Angles of tangent vectors. </caption>
-      <sidebyside widths="50% 50%">
-        <image source="images/fig_9_8_tangents"/>
-        <image source="images/fig_9_8_tangents_angles"/>
-        </sidebyside>
-    </figure>
-    
-
-    <p>
-      Informally speaking, the curvature will be
-      the rate at which the angle <m>\phi</m> is changing as we move along the
-      curve. Of course, this rate of change will depend on how we move
-      along the curve; if we move with a greater speed along the curve,
-      then <m>\phi</m> will change more rapidly. This is why the speed limit is
-      sometimes lowered when we enter a curve on a highway. In other words,
-      the rate of change of <m>\phi</m> will depend on the parametrization we use
-      to describe the space curve. To eliminate this dependence on the
-      parametrization, we choose to work with an arc
-      length parametrization <m>\vr(s)</m>, which means we move along the curve
-      with unit speed.
-    </p>
-
-    <p>
-      Using an arc length parametrization <m>\vr(s)</m>, we define the tangent vector
-      <m>\vT(s) = \vr'(s)</m>, and note that <m>|\vT(s)| = 1</m>; that is, <m>\vT(s)</m> is
-      a unit tangent vector. We then have <m>\vT(s) = \langle \cos (\phi(s)),
-      \sin(\phi(s)) \rangle</m>,
-      which means that
-      <me>
-        \frac{d\vT}{ds} = \left\langle -\sin(\phi(s)) \frac{d\phi}{ds}, ~
-        \cos(\phi(s)) \frac{d\phi}{ds} \right\rangle = 
-        \langle -\sin(\phi(s)),~
-        \cos(\phi(s)) \rangle \frac{d\phi}{ds}.
-      </me>
-    </p>
-
-    <p>
-      Therefore
-      <me>
-        \left|\frac{d\vT}{ds}\right| =  \left|\langle -\sin(\phi(s)),~
-        \cos(\phi(s)) \rangle\right| ~\left|\frac{d\phi}{ds}\right| = 
-        \left|\frac{d\phi}{ds}\right|
-      </me>
-    </p>
-
-    <p>
-      This observation leads us to adopt the following definition. 
-    </p>
-
-    <definition>
-      <statement>
-        <p>
-          If <m>C</m> is a smooth space curve and
-          <m>s</m> is an arc length parameter for <m>C</m>, then the <term>curvature</term><idx><h>curvature</h></idx>, <m>\kappa</m>, of <m>C</m> is
-          <me>
-            \kappa = \kappa(s) = \left\lvert \frac{d \vT}{ds} \right\rvert.
-          </me>
-        </p>
-      </statement>
-    </definition>
-
-    <p>Note that <m>\kappa</m> is the Greek lowercase letter <q>kappa</q>.
-    </p>
-
-
-    <activity xml:id="A_9_8_5">
-      <statement>
-    <ol marker="a.">
-      <li>
-      <p>
-          We should expect that the curvature of a line is 0
-          everywhere. To show that our definition of curvature measures this
-          correctly in 2-space, recall that
-          <xref ref="eq_9_8_line_arc_length_parameterization"/> gives us the arc
-          length parameterization
-          <me>
-            x(s) = x_0+\frac{a}{\sqrt{a^2+b^2}}s \ \ \ \ \text{ and }  \ \ \ \
-              y(s) = y_0+\frac{b}{\sqrt{a^2+b^2}}s
-          </me>
-          of a line. Use this information to explain why the curvature of a line is 0 everywhere. 
-        </p>
-
-      </li>
-
-      <li>
-      <p>
-        Recall that an arc length
-        parameterization of a circle in 2-space of radius <m>a</m> centered at
-        the origin is, from
-        <xref ref="eq_9_8_circle_arc_length_parameterization"/>,
-        <me>
-          \vr(s) = \left\langle a \cos\left(\frac{s}{a}\right),~
-              a \sin\left(\frac{s}{a}\right)\right\rangle.
-        </me>
-      </p>
-
-      <p>
-        Show that the curvature
-        of this circle is the constant <m>\frac{1}{a}</m>. What can you say about the relationship between the size of the radius of a circle and the value of its curvature? Why does this make sense?
-      </p>
-      </li>
-     </ol> 
-      </statement>
-      <solution>
-        <p>
-          We have
-          <me>
-            \vT(s) = \left\langle -\sin\left(\frac{s}{a}\right), \cos\left(\frac{s}{a}\right) \right\rangle
-          </me>.
-        </p>
-        <p>
-          So the curvature of a circle of radius <m>a</m> is
-          <md>
-            <mrow>\kappa \amp = \left\lvert \frac{d \vT}{ds} \right\rvert</mrow>
-            <mrow>\amp = \left\lvert \left\langle -\frac{1}{a}\cos\left(\frac{s}{a}\right), -\frac{1}{a}\sin\left(\frac{s}{a}\right) \right\rangle \right\rvert</mrow>
-            <mrow>\amp = \frac{1}{a}</mrow>
-          </md>.
-        </p>
-        <p>
-          So, as expected, larger circles have smaller curvature.
-        </p>
-      </solution>
-      
-    </activity>
-
-    <p>
-      The definition of curvature relies on our
-      ability to parameterize curves in terms of arc length. Since we have
-      seen that finding an arc length parametrization can be difficult, we
-      would like to be able to express the curvature in terms of a more
-      general parametrization <m>\vr(t)</m>.
-    </p>
-
-    <p>
-      To begin, we need to describe the vector <m>\vT</m>, which is
-      a vector tangent to the curve having unit length. Of course, the
-      velocity vector <m>\vr'(t)</m> is tangent to the curve; we simply need to
-      normalize its length to be one. This means that we may take
-      <men xml:id="eq_9_8_unit_tangent">
-        \vT(t) = \frac{\vr'(t)}{|\vr'(t)|}.
-      </men>
-    </p>
-
-    <p>
-      Then the curvature of the curve defined by <m>\vr</m> is
+      emphasize the efficient calculation formulas 
       <md>
-        <mrow>\kappa \amp = \left\lvert \frac{d \vT}{ds} \right\rvert</mrow>
-        <mrow>\amp = \left\lvert \frac{d \vT}{dt} \frac{dt}{ds} \right\rvert</mrow>
-        <mrow>\amp = \frac{\left\lvert \frac{d \vT}{dt} \right\rvert}{ \left\lvert \frac{ds}{dt} \right\rvert }</mrow>
-        <mrow>\amp = \frac{\left\lvert \vT'(t) \right\rvert}{ \left\lvert \vr'(t) \right\rvert}.</mrow>
+        <mrow>\vT =\amp \frac{\vv}{\Vert\vv\Vert} </mrow>
+        <mrow> a_\vT =\amp \frac{\va\cdot\vv}{\Vert\vv\Vert} \Rightarrow a_\vT \vT = \frac{\va\cdot \vv}{\vv \cdot \vv} \vv</mrow>
+      </md>
+      That last part emphasizes that <m>a_\vT \vT</m> is the projection of acceleration onto velocity. 
+      <md>
+        <mrow> a_\vN =\amp \Vert \va - a_\vT \vT \Vert = \sqrt{\Vert \va \Vert - (a_\vT)^2}= \sqrt{(\va \cdot \va)- \frac{(\va\cdot\vv)^2}{\Vert\vv\Vert}} </mrow>
+        <mrow> a_\vN =\amp \frac{\va - a_\vT \vT}{a_\vN} </mrow>
       </md>
     </p>
-
+  </activity>
+  <activity>
     <p>
-      This last formula allows us to use any parameterization of a curve to
-      calculate its curvature. There is another useful formula, given
-      below, whose derivation is left for the exercises.
+      activity to use formulas to calculate at t = 0 for ...
+      r, v, a, T, a_T, a_N, N 
+      Use a plotting program to verify tht all fo this makes sense 
     </p>
-
-    <assemblage xml:id="Curvature">
-      <title>Formulas for curvature</title>
+   
+  </activity>
+  <activity>
     <p>
-      If <m>\vr</m> is a vector-valued function defining a
-      smooth space curve <m>C</m>, and if <m>\vr'(t)</m> is not
-      zero and if <m>\vr''(t)</m> exists, then the curvature <m>\kappa</m> of <m>C</m>
-      satisfies
-      <ul>
-        <li>
-          <p>
-            <m>\kappa = \kappa(t) = \frac{\left\lvert \vT'(t) \right\rvert}{ \left\lvert \vr'(t) \right\rvert}</m>
-          </p>
-        </li>
-
-        <li>
-          <p>
-            <m>\kappa = \frac{\lvert \vr'(t) \times \vr''(t) \rvert}{\lvert \vr'(t) \rvert^3}</m>.
-          </p>
-        </li>
-      </ul>
+      match the plots with each of the following quantities/vectors. Show a few different examples
     </p>
-    </assemblage>
-
-    
-
-    <activity xml:id="A_9_8_6">
-      <statement>
-      <p>
-        Use one of the two formulas for <m>\kappa</m> in terms of <m>t</m> to help you answer the following questions.
-        <ol marker="a.">
-          <li>
-            <p>
-              The ellipse <m>\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1</m> has parameterization
-              <me>
-                \vr(t) = \langle a\cos(t), b\sin(t) \rangle.
-              </me>
-              Find the curvature of the ellipse. Assuming <m>0 \lt  b \lt  a</m>, at what points is the curvature the greatest and at what points is the curvature the smallest? Does this agree with your intuition?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              The standard helix has parameterization <m>\vr(t) = \cos(t) \vi + \sin(t) \vj + t \vk</m>.  Find the curvature of the helix.  Does the result agree with your intuition?
-            </p>
-          </li>
-        </ol>
-      </p>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              We have
-              <me>
-                \vT(t) = \left\langle -\frac{a\sin(t)}{\sqrt{a^2\sin^2(t) + b^2\cos^2(t)}}, \frac{b\cos(t)}{\sqrt{a^2\sin^2(t) + b^2\cos^2(t)}} \right\rangle
-              </me>
-              and
-              <me>
-                \vT'(t) = \left\langle -\frac{ab^2\cos(t)}{\left(a^2\sin^2(t) + b^2\cos^2(t)\right)^{3/2}}, -\frac{a^2b\sin(t)}{\left(a^2\sin^2(t) + b^2\cos^2(t)\right)^{3/2}} \right\rangle
-              </me>.
-              So the curvature of the ellipse is given by
-              <md>
-                <mrow>\kappa(t) \amp = \frac{1}{\left(a^2\sin^2(t) + b^2\cos^2(t)\right)^2} \sqrt{(ab^2\cos(t))^2 +(a^2b\sin(t))^2}</mrow>
-                <mrow>\amp = \frac{ab}{\left(a^2\sin^2(t) + b^2\cos^2(t)\right)^2} \sqrt{b^2\cos^(t) + a^2\sin^2(t)}</mrow>
-                <mrow>\amp = \frac{ab}{\left(a^2\sin^2(t) + b^2\cos^2(t)\right)^{3/2}}</mrow>
-              </md>.
-              If we assume that <m>0 \lt  b \lt  a</m>,
-              then we should expect that ellipse to have the largest curvature at the points
-              <m>(\pm a, 0)</m> and the smallest at the points <m>(0, \pm b)</m>
-              (when <m>t = \frac{\pi}{2} + \pi k</m> for some integer <m>k</m>).
-              The denominator of our curvature function can be written as
-              <me>
-                a^2(1-\cos^2(t)) + b^2 \cos^2(t) = a^2 - (a^2-b^2)\cos^2(t)
-              </me>.
-              The curvature of the ellipse is largest when this denominator is smallest,
-              or when <m>t = 0</m> or <m>t=\pi</m>.
-              These <m>t</m> values correspond to the points <m>(\pm a, 0)</m>.
-              Similarly, the curvature of the ellipse is smallest when the denominator is largest,
-              or when <m>t = \frac{\pi}{2}</m> and <m>t = \frac{3\pi}{2}</m>.
-              These <m>t</m> values correspond to the points <m>(0, \pm b)</m> as expected.
-            </p>
-          </li>
-          <li>
-            <p>
-              Here we have
-              <me>
-                \vr'(t) = (-\sin(t)) \vi + \cos(t) \vj + \vk
-              </me>
-              and
-              <me>
-                \vT(t) = \frac{1}{\sqrt{2}}\left( (-\sin(t)) \vi + \cos(t) \vj + \vk \right)
-              </me>.
-              Then
-              <me>
-                \vT'(t) = \frac{1}{\sqrt{2}}\left( (-\cos(t)) \vi - \sin(t) \vj \right)
-              </me>
-              and so
-              <me>
-                \kappa(t) = \frac{1}{2}
-              </me>.
-            </p>
-          </li>
-        </ol>
-      </solution>
-    </activity>
-
+  </activity>
+  <activity>
     <p>
-      The curvature has another interpretation. Recall that the tangent line to a curve at a point is the line that best approximates the curve at that point. The curvature at a point on a curve describes the <em>circle</em> that best approximates the curve at that point. Remembering that a circle of radius <m>a</m> has curvature <m>1/a</m>, then the
-      circle that best approximates the curve near a point on a curve whose curvature is <m>\kappa</m> has radius <m>1/\kappa</m> and will be tangent to the tangent line at that point and has its center on the concave side of the curve. This circle, called the <em>osculating circle</em> of the curve at the point, is shown in <xref ref="F_9_8_osculating">Figure</xref> for a portion of a parabola.
+      Ask about a_T and a_N being poperties of the driver or the road. 
     </p>
-
-    <figure xml:id="F_9_8_osculating">
-      <caption>The osculating circle</caption>
-      <image width="50%" source="images/fig_9_8_curvature"/>
-    </figure>
-  </subsection>
+  </activity>
+    </subsection>
 
   <subsection>
     <title>Summary</title>
