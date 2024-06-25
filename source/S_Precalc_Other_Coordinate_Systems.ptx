@@ -260,10 +260,83 @@
       </figure>
     </sidebyside>
     <p>
-      Geometrically, we can see that this location would have rectangular coordinates of <m>(x,y)=(0,2)</m>.
+      Geometrically, we can see that this location would have rectangular coordinates of <m>(x,y)=(0,2)</m>. While geometry is useful for understanding meaning, it is rarely wise to compute things like coordinates using geometric tools. In the next part, we will talk about algebraic tools that will allow us to convert between rectangular and polar coordinates.
 
     </p>
   </example>
+  <assemblage xml:id="rect-polar">
+    <title>Converting between Recangular and Polar coordinates</title>
+  <p>
+    <ul>
+      <li>
+        <title>Converting from Polar to Rectangular</title>
+        <p>
+          If we are given the Polar coordinates <m>(r,\theta)</m> of a point <m>P</m>, then the rectangular coordinates <m>(x,y)</m> of <m>P</m> satisfy
+          <me>
+          x = r \cos(\theta) \ \ \ \ \ y = r \sin(\theta) 
+          </me>
+        </p>
+      </li>
+
+      <li>
+        <title>Converting from rectangular to polar</title>
+        <p>
+          If we are given the rectangular coordinates <m>(x,y)</m> of a point <m>P</m>, then the polar coordinates <m>(r,\theta)</m> of <m>P</m> satisfy
+          <me>
+          r^2  = x^2  + y^2 \ \ \ \ \ \tan(\theta) = \frac{y}{x} 
+          </me>
+          assuming <m> x \neq 0</m>.
+        </p>
+      </li>
+    </ul>
+  </p>
+  </assemblage>
+  <p>
+    It is important to notice that the equations used in the conversion from polar to rectangular (<m>x=r \cos(\theta)</m> and <m>y=r \sin(\theta)</m>) work to convert coordinates of a point for any values of <m>r</m> and <m>\theta</m>, including negative <m>r</m>-values and values of <m>\theta</m> outside the interval <m>[0,2\pi]</m>. The coversion equations to go from rectangular to polar require you to interpret the results of your calculation because we are not able to solve explicitly for <m>r</m> and <m>\theta</m> in terms of <m>x</m> and <m>y</m>. This is because there is not a unique set of polar coordinates for a location. A point can have many different polar coordinates that refer to the same location. For example, the point with rectangular coordinates <m>(-1,-1)</m> can be given the polar coordintes <m>(r,\theta)=(\sqrt{2},\frac{5\pi}{4})</m> or <m>(r,\theta)=(-\sqrt{2},\frac{-\pi}{4})</m> or <m>(r,\theta)=(\sqrt{2},\frac{13\pi}{4})</m> or <m>(r,\theta)=(\sqrt{2},-\frac{3\pi}{4})</m> or <m>(r,\theta)=(-\sqrt{2},-\frac{7\pi}{4})</m> or ... The good news is that when you need to choose appropriate <m>r</m> and <m>\theta</m> your experience with quadrants and where the point is (in terms of <m>x</m> and <m>y</m>) gives the necessary information to make proper choices. 
+  </p>
+
+<example>
+  <p>
+    In this example, we will look at how to convert the points with rectangular coordinates <m>P=(-2,3)</m> and <m>Q=(-3,-2)</m> into polar coordinates. Note here that <m>P</m> is in the second quadrant and <m>Q</m> is in the third quadrant. Using the conversion equations for <m>P=(-2,3)</m>, we see that
+    <me>
+      r^2  = (-2)^2  + (3)^2 \ \ \ \ \ \tan(\theta) = -\frac{3}{2} 
+      </me>
+    which means we need to pick <m>r</m> to be either <m>\pm \sqrt{13}</m>. We will need to pick an appropriate angle for these possible <m>r</m>-values that satisfy <m>\tan(\theta) = -\frac{3}{2}</m>. There are angles in the fourth and second quadrants that will satisfy <m>\tan(\theta) = -\frac{3}{2}</m>, namely <m>\arctan(-\frac{3}{2})</m> and <m> \pi +\arctan(-\frac{3}{2})</m>. You could also choose any angle coterminal to either of these angles. This is not a situation where any of the choices of <m>r</m> will work with any choice of <m>\theta</m>. We  need to interpret these choices together to get a description for the correct location. If you want to choose <m>r=\sqrt{13}</m> then you will need to select the angle that cooresponds to the second quadrant, <m>\pi = \arctan(-\frac{3}{2})</m>, to get polar coordinates <m>P=(r,\theta)=(\sqrt{13},\pi+\arctan(-\frac{3}{2}))</m>. If you wanted to not have to use the complementary angle to <m>\arctan(-\frac{3}{2})</m>, you will need to use the negative value of <m>r</m> to get <m>P=(r,\theta)=(-\sqrt{13},\arctan(-\frac{3}{2}))</m>.
+  </p>
+  <sidebyside>
+    <figure xml:id="rectpolarex1">
+      <caption>A visualization of <m>P</m> with polar coordinates <m>(\sqrt{13},\arctan(-\frac{3}{2}))</m></caption>
+      <image width="55%" xml:id="img-plarex1">
+        <description>  </description>
+        <sageplot>
+          var('t')
+          plot9=line([(0,0),(-2,3)],color="red",thickness=5,axes=True,axes_labels=["$x$","$y$"])+text("$-\sqrt{13}$",(-2,1),color="red",fontsize=15)
+          plot9+=parametric_plot((1.5*cos(t),1.5*sin(t)),(t,arctan(-1.5),0),color="blue")+arrow((1.5*cos(arctan(-1.5)+.01),1.5*sin(arctan(-1.5)+.01)),(1.5*cos(arctan(-1.5)),1.5*sin(arctan(-1.5))),color="blue")
+          plot9+=point((-2,3),color="black",size=10)+text("$P$",(-1.5,3),color="black")
+          plot9+=line([(0,0),(4,-6)],color="blue",linestyle="--")+text("$\\arctan(-\\frac{3}{2})$",(2.5,-1),color="blue",fontsize=15)
+          show(plot9,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1) 
+        </sageplot>
+      </image>
+    </figure>
+    <figure xml:id="rectpolarex2">
+      <caption>A visualization of <m>P</m> with polar coordinates <m>(-\sqrt{13},\arctan(\pi-\frac{3}{2}))</m></caption>
+      <image width="55%" xml:id="img-polarex2">
+        <description>   </description>
+        <sageplot>
+          var('t')
+          plot8=line([(0,0),(-2,3)],color="red",thickness=5,axes=True,axes_labels=["$x$","$y$"])+text("$\sqrt{13}$",(-2,1),color="red",fontsize=15)
+          plot8+=parametric_plot((cos(t),sin(t)),(t,0,pi+arctan(-1.5)),color="blue")+arrow((cos(pi+arctan(-1.5)-.01),sin(pi+arctan(-1.5)-.01)),(cos(pi+arctan(-1.5)),sin(pi+arctan(-1.5))),color="blue")
+          plot8+=parametric_plot((1.5*cos(t),1.5*sin(t)),(t,arctan(-1.5),0),color="green")+arrow((1.5*cos(arctan(-1.5)+.01),1.5*sin(arctan(-1.5)+.01)),(1.5*cos(arctan(-1.5)),1.5*sin(arctan(-1.5))),color="green")
+          plot8+=point((-2,3),color="black",size=20)+text("$P$",(-1.5,3),color="black")
+          plot8+=line([(0,0),(4,-6)],color="green",linestyle="--")+text("$\\arctan(-\\frac{3}{2})$",(2.5,-1),color="green",fontsize=15)
+          plot8+=text("$\\pi-\\arctan(-\\frac{3}{2})$",(2,1.25),color="blue",fontsize=15)
+          show(plot8,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1)
+        </sageplot>
+      </image>
+    </figure>
+  </sidebyside>
+</example>
+  
     <p>
       We have encountered two different coordinate systems in <m>\R^2</m> <mdash/> the rectangular and polar coordinates systems <mdash/> and seen how in certain situations, polar coordinates form a convenient alternative. In a similar way, there are two additional natural coordinate systems in <m>\R^3</m>. Given that we are already familiar with the Cartesian coordinate system for <m>\R^3</m>, we next investigate the cylindrical and spherical coordinate systems (each of which builds upon polar coordinates in <m>\R^2</m>). In what follows, we will see how to convert among the different coordinate systems, how to evaluate triple integrals using them, and some situations in which these other coordinate systems prove advantageous.
     </p>
