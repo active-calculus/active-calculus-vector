@@ -306,7 +306,7 @@
   <sidebyside>
     <figure xml:id="rectpolarex1">
       <caption>A visualization of <m>P</m> with polar coordinates <m>(\sqrt{13},\arctan(-\frac{3}{2}))</m></caption>
-      <image width="55%" xml:id="img-plarex1">
+      <image width="55%" xml:id="img-rectpolarex1">
         <description>  </description>
         <sageplot>
           var('t')
@@ -320,7 +320,7 @@
     </figure>
     <figure xml:id="rectpolarex2">
       <caption>A visualization of <m>P</m> with polar coordinates <m>(-\sqrt{13},\arctan(\pi-\frac{3}{2}))</m></caption>
-      <image width="55%" xml:id="img-polarex2">
+      <image width="55%" xml:id="img-rectpolarex2">
         <description>   </description>
         <sageplot>
           var('t')
@@ -335,10 +335,433 @@
       </image>
     </figure>
   </sidebyside>
+  <p>
+    Remember that inverse trig functions have limited domains and ranges, the <m>r</m>-coordinate can be positive or negative, and polar coordinates do not have unique values for a given point.
+  </p> 
 </example>
-  
+<activity>
+  <introduction>
     <p>
-      We have encountered two different coordinate systems in <m>\R^2</m> <mdash/> the rectangular and polar coordinates systems <mdash/> and seen how in certain situations, polar coordinates form a convenient alternative. In a similar way, there are two additional natural coordinate systems in <m>\R^3</m>. Given that we are already familiar with the Cartesian coordinate system for <m>\R^3</m>, we next investigate the cylindrical and spherical coordinate systems (each of which builds upon polar coordinates in <m>\R^2</m>). In what follows, we will see how to convert among the different coordinate systems, how to evaluate triple integrals using them, and some situations in which these other coordinate systems prove advantageous.
+      For each of the points listed below, you should:
+      <ul>
+        <li>
+          Graph the point on a set of axes and label how each of the rectangular coordinates is measured.
+        </li>
+        <li>
+          Draw and label how the polar coordinates are measured for each point.
+        </li>
+        <li>
+          Compute the exact value of <m>r</m> and <m>\theta</m> for each point. Exact values include things like <m>\sqrt{3}</m>, <m>\arcsin(3/4)</m>, etc. You should simplify the trig function values of any common angles you encounter, like <m>\sin(\frac{\pi}{3})=\frac{\sqrt{3}}{2}</m>.
+        </li>
+      </ul>
+    </p>
+  </introduction>
+  <task>
+    <statement>
+      <p>
+        <m>(x,y)=(-3,-7)</m>
+      </p>
+    </statement>
+  </task>
+  <task>
+    <statement>
+      <p>
+        <m>(x,y)=(7,-3)</m>
+      </p>
+    </statement>
+  </task>
+  <task>
+    <statement>
+      <p>
+        <m>(x,y)=(\sqrt{5},-2)</m>
+      </p>
+    </statement>
+  </task>
+  <task xml:id="translatedcircpt1">
+    <statement>
+      <p>
+        <m>(x,y)=(\frac{3}{2},-\frac{3}{2})</m>
+      </p>
+    </statement>
+  </task>
+  <task xml:id="translatedcircpt2">
+    <statement>
+      <p>
+        <m>(x,y)=(\frac{3}{2},\frac{3}{2})</m>
+      </p>
+    </statement>
+  </task>
+</activity>
+<activity>
+  <introduction>
+    <p>
+      For each of the points listed below, you should:
+      <ul>
+        <li>
+          Graph the point on a set of axes and label how each of the polar coordinates is measured.
+        </li>
+        <li>
+          Draw and label how the rectangular coordinates are measured for each point.
+        </li>
+        <li>
+          Compute the exact value of <m>x</m> and <m>y</m> for each point. Exact values include things like <m>\sqrt{3}</m>, <m>\arcsin(3/4)</m>, etc. You should simplify the trig function values of any common angles you encounter, like <m>\sin(\frac{\pi}{3})=\frac{\sqrt{3}}{2}</m>.
+        </li>
+      </ul>
+    </p>
+  </introduction>
+  <task>
+    <statement>
+      <p>
+        <m>(r,theta)=(1,-\frac{\pi}{6})</m>
+      </p>
+    </statement>
+  </task>
+  <task xml:id="translatedcircpt3">
+    <statement>
+      <p>
+        <m>(r,theta)=(\sqrt{3},\arctan(\frac{\sqrt{2}{2}}))</m>
+      </p>
+    </statement>
+  </task>
+  <task>
+    <statement>
+      <p>
+        <m>(r,theta)=(-\sqrt{5},0)</m>
+      </p>
+    </statement>
+  </task>
+  <task>
+    <statement>
+      <p>
+        <m>(r,theta)=(7,\frac{3\pi}{4})</m>
+      </p>
+    </statement>
+  </task>
+  <task>
+    <statement>
+      <p>
+        <m>(r,theta)=(3,\pi-\frac{\pi}{6})</m>
+      </p>
+    </statement>
+  </task>
+</activity>
+<p>
+  We now want to look at converting an equation between rectangular and polar coordinates. Remember that the graph of an equation is the set of all points that satisfy the equation, so when we say that we want to convert an equation, like <m>x=y^2</m> to polar coordinates, we meant that we want to find an equation in <m>r</m> and <m>\theta</m> whose graph will be exactly the same set of points as <m>x=y^2</m>. This will be fairly easy because we have conversion equations that are solved explicitly for <m>x</m> and <m>y </m> (<m>x=r\cos(\theta)</m> and <m>y=r\sin(\theta)</m>) and do not require interpretation.
+</p>  
+<example>
+  <p>
+    We can convert the equation <m>x=y^2</m> to polar coordinates by substituting <m>x=r\cos(\theta)</m> and <m>y=r\sin(\theta)</m> to get
+    <md>
+      <mrow>x =\amp y^2 </mrow>
+      <mrow>r \cos(\theta) =\amp (r \sin(\theta)^2) </mrow>
+      <mrow>r \cos(\theta) =\amp r^2 \sin(\theta)^2 </mrow>
+      <mrow> \frac{\cos(\theta)}{\sin(\theta)^2} =\amp r</mrow>
+      <mrow> r =\amp \cot(\theta) \csc(\theta)</mrow>
+    </md>
+    So, the <m>(r,\theta)</m> points that satisfy <m> r = \cot(\theta) \csc(\theta)</m> are the same locations as the <m>(x,y)</m> points that satisfy <m>x=y^2</m>. <alert>Except</alert>, we divided by <m>\sin(\theta)</m>, which will not give an equivalent equation if <m>\sin(\theta)=0</m>.  Notice that if <m>\theta=0</m> (or any integer multiple of <m>\pi</m>), then <m> \cot(0) \csc(0)</m> does not exist. So in a technical sense, we would either need to stop our algebra at <m> cos(\theta)=r \sin(\theta)^2</m> or use a piecewise defined expression like
+    <me>
+      r= \left\{
+        \begin{array}{ll}
+          0 \amp \amp \theta=0 \\
+          \cot(\theta) \csc(\theta) \amp \amp \theta\neq 0   
+        \end{array} 
+        \right.  
+    </me>
+    This examples highlights the tricky part of converting equations; Without careful algebraic steps, you can miss points or get nonsensical statements. Often we will use geometric intuition and information to help convert equations between coordinate systems and make sense of the resulting expressions.
+  </p>
+</example>
+<example xml:id="eqnconversion2">
+  <p>
+    In this example, we will convert the equation <m>r=3\cos(\theta)</m> into rectangular coordinates, identify the shape of its graph, and plot the graph of this equation. Remember that we do not have explicit conversion equations for <m>r</m> and <m>\theta</m>, but we do have some equations, like <m>r^2=x^2+y^2</m> which will allow us to convert to an expression in <m>x</m> and <m>y</m> that does not require intepretation. Let's try to square both sides of our polar equation, since this will give us an expression on the left hand side of the equation that will be easy to conver to rectangular coordinates.
+    <me> r =3\cos(\theta) \Rightarrow r^2=9 (\cos(\theta))^2 \Rightarrow x^2+y^2 = 9  (\cos(\theta))^2 </me>
+    Our last equation is a mix of rectangular and polar coordinates so we are not done with our coversion to rectangular (just <m>x</m> and <m>y</m>) coordinates. Unfortunately the easiest way to convert <m>(\cos(\theta))^2</m> to rectangular is to use 
+    <me> x=r \cos(\theta) \Rightarrow (\cos(\theta))^2=\frac{x^2}{r^2} \Rightarrow (\cos(\theta))^2=\frac{x^2}{x^2+y^2} </me>
+    which will give us a rational expression for our conversion. This wil require some extra algebra and interpretation, so let's try a slightly different approach. Instead of squaring both sides of our polar equation, what if we multiply both sides by <m>r</m>. You may have seen this as a better approach from the start or gained this insight after our work above. Remember, there are multiple paths to insight and being able to incorporate new ideas and information to form new strategies is a vital skill to solving interesting and realistic problems. So, if we multiple both sides of our original equation by <m>r</m>, then we get
+    <me>  r =3\cos(\theta) \Rightarrow r^2=3 r \cos(\theta) </me>
+    This equation is great because both the left and right hand sides have conversions to rectangular coordinates that do NOT require interpretation or cases. So, the <m>(r,\theta)</m> points that satisfy <m> r = 3 cos(\theta)</m> are the same locations as the <m>(x,y)</m> points that satisfy <m>x^2+y^2=3x</m>. 
+  </p>
+  <p>
+    We have now converted our polar equation to a rectangular equation. What shape will the graph of <m>x^2+y^2=3x</m> (or <m> r = 3 cos(\theta)</m>) be? A translated circle that we can do some algebra (complete the square technique) to put into the the standard form of a circle (<m> (x-h)^2+(y-k)^2 = R^2</m>). 
+    <md>
+      <mrow>x+y^2=3x  \amp\Rightarrow \amp x -3x \amp \amp +y^2 \amp=0  </mrow>
+      <mrow>          \amp \amp x -3x \amp+\frac{9}{4} \amp +y^2 \amp=0+\frac{9}{4}</mrow>
+      <mrow>          \amp \amp (x -\frac{3}{2})^2 \amp \amp +(y-0)^2 \amp=\left(\frac{3}{2}\right)^2</mrow>
+    </md>
+    We can see now that this circle will have center <m>(\frac{3}{2},0)</m> and radius <m>\frac{3}{2}</m>. The graph of <m>r =3\cos(\theta)</m> is the same as <m>x+y^2=3x</m> or <m>(x -\frac{3}{2})^2  +(y-0)^2 =\left(\frac{3}{2}\right)^2</m> which has the graph
+  </p>
+  <figure xml:id="converteqnex2">
+    <caption>A plot of <m>r=3\cos(\theta)</m></caption>
+    <image width="75%" xml:id="img-converteqn2">
+      <description>   </description>
+      <sageplot>
+        var('t')
+        plot10=parametric_plot((1.5*cos(t)+1.5,1.5*sin(t)),(t,0,2*pi),thickness=3,color="black",axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+        show(plot10,xmin=-1,xmax=4,ymin=-2,ymax=2,aspect_ratio=1)
+      </sageplot>
+    </image>
+  </figure>
+  <p>
+    While many people will find the rectangular equation more comfortable to graph and explain, this conversion is not always needed. You can find many resources on plotting points of a polar equation without converting to rectangular coordinates, especially when one coordinate (typically <m>r</m>) is solved explicitly in terms of the other coordinate.
+  </p>
+</example>
+
+
+<p>
+  You can see that both of the rectangular and polar coordinates of the points in <xref ref="translatedcircpt1" />, <xref ref="translatedcircpt2" />, and <xref ref="translatedcircpt3" /> will satisfy the equations of <xref ref="eqnconversion2" />. The plot below shows how you can visualize <xref ref="translatedcircpt3" />.
+</p>
+<figure xml:id="converteqnex3">
+  <caption>A plot of <m>r=3\cos(\theta)</m> with the polar coordinate measurements of <xref ref="translatedcircpt3" /></caption>
+  <image width="75%" xml:id="img-converteqn3">
+    <description>   </description>
+    <sageplot>
+      var('t')
+      plot11=parametric_plot((1.5*cos(t)+1.5,1.5*sin(t)),(t,0,2*pi),thickness=2,color="black",axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+      plot11+=line([(0,0),(1.5,-1.5)],color="blue",thickness=2)+text("$P=(r,\\theta) \\ =(\\sqrt{3},-\\arctan(\\frac{\\sqrt{2}}{2}))$",(1.5,-1.75),fontsize=15,color="blue")
+      plot11+=point((1.5,-1.5),size=5,color="blue")+text("$-\\arctan(\\frac{\\sqrt{2}}{2})$",(1.2,-0.3),color="blue")
+      plot11+=parametric_plot((.7*cos(t),.7*sin(t)),(t,-pi/4,0),color="blue")+arrow((.7*cos(0.1-pi/4),.7*sin(0.1-pi/4)),(.7*cos(-pi/4),.7*sin(-pi/4)),color="blue")
+      show(plot11,xmin=-1,xmax=4,ymin=-2,ymax=2,aspect_ratio=1)
+    </sageplot>
+  </image>
+</figure>
+<activity>
+  <introduction>
+    <p>
+      The following activity will take you through how to create a graph of an equation in <m>r</m> and <m>\theta</m>.
+    </p>
+  </introduction>
+  <task>
+    <p>
+      Draw a graph of <m> y=\cos(x)</m> for at least <m> 0 \leq x \leq 2 \pi</m>.
+    </p>
+  </task>
+  <task>
+    <p>
+      For each value of <m>\theta</m> listed below, compute the value of <m>r</m> corresponding to <m> r=\cos(\theta)</m>.
+    <me>
+    \theta = 0, \frac{\pi}{6}, \frac{\pi}{4},\frac{\pi}{3},\frac{\pi}{2},\frac{3\pi}{4},\pi,\frac{5\pi}{4},\frac{3\pi}{2},\frac{7\pi}{4},2\pi
+    </me>
+  </p>
+  </task>
+  <task>
+    <p>Plot each of the eleven points you found in the previous part on the polar plane and connect them to make a plot of the graph of <m>r=\cos(\theta)</m>.</p>
+  </task>
+  <task>
+    <p>Graph the equation <m>r=1+\cos(\theta)</m> in the polar plane.</p>
+    </task>
+    <task>
+      <p>Graph the equation <m>r=1-\cos(\theta)</m> in the polar plane.</p>
+    </task>
+    <task>
+      <p>What are the points of intersections for the graphs of <m>r=1+\cos(\theta)</m> and <m>r=1-\cos(\theta)</m></p>
+    </task>
+  </activity>
+  <activity>
+    <introduction>
+      <p>
+        For each of the equations given below, do each of the following:
+        <ol>
+          <li>
+              Convert the equation to the other coordinate system (either rectangular to polar or polar to rectangular).
+          </li>
+          <li>
+            State the shape of the graph for the equation and any other information needed to graph
+          </li>
+          <li>
+            Graph the given equation and write a description for how the converted equation (from part a) makes sense in terms of your graph.
+          </li>
+        </ol>
+      </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            <m>r=2</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>\theta=\frac{\pi}{3}</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>x=-1</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>y=2</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>y=-x</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>r=\frac{3}{1-2\cos(\theta)}</m>
+          </p>
+        </statement>
+      </task>
+  </activity>
+  <p>
+    In <xref ref="coord2d-PA" />, you saw how easy it was to read rectangular coordinates of a point when you had a rectangular grid. A polar point grid gives the same tools by plotting an array of constant coordinate graphs. An example of a polar grid is given below.
+  </p>
+  <figure xml:id="polargrid">
+    <caption>A polar grid (from https://commons.wikimedia.org/wiki/File:Polar_coordinates_grid.svg)</caption>
+    <image source="./images/Polar_coordinates_grid.png">
+      <shortdescription>(for accessibility)</shortdescription>
+    </image>
+  </figure>
+  <activity>
+    <task>
+      <statement>
+        <p>
+          Write a few sentences to describe what the graph of <m>r=c</m> looks like, where <m>c</m> is a constant. You should consider what values of <m>c</m> will correspond to different shapes.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Write a few sentences to describe what the graph of <m>\theta=d</m> looks like, where <m>d</m> is a constant. You should consider what values of <m>d</m> will correspond to different shapes.
+        </p>
+      </statement>
+    </task>
+  </activity>
+  <p>
+    The last idea of conversion we will look at between rectangular and polar coordinates is how to convert regions or inequalities between coordinate systems. Just as a graph of a an equation is a plot of the set of points that satisfies the equation, the graph of an inequality (or set of inequalities) is the region of points that satisfy the inequality. 
+  </p>
+  <example>
+    <p>
+      The graph of the inequality <m> -1\leq x \leq 1</m> is the vertical strip of points with horizontal coordinate between negative one and one (inclusive) and has graph given by 
+    </p>
+    <figure xml:id="convertreg1">
+      <caption>A plot of <m> -1\leq x \leq 1</m> </caption>
+      <image width="75%" xml:id="img-convertreg1">
+        <description>   </description>
+        <sageplot>
+          plot12=line([(-1,-5),(-1,5)],color="black",thickness=2,axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+          plot12+=line([(1,-5),(1,5)],color="black",thickness=2)+polygon([(-1,-5),(-1,5),(1,5),(1,-5),(-1,-5)],color="green")
+          show(plot12,xmin=-3,xmax=3,ymin=-3,ymax=3,aspect_ratio=1)
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      If we consider the set of inequalities given by <m> -1\leq x \leq 1</m> and <m> 0\leq y \leq 2</m>, then we are looking for the region of points that satisfies both inequalities. The second inequality is shown in red on the left plot and the intersection of the two plots corresponds to the region described by <m> -1\leq x \leq 1</m> and <m> 0\leq y \leq 2</m>, which is plotted in blue on the right below.
+    </p>
+    <sidebyside>
+      <figure xml:id="convertreg2">
+        <caption>A plot of <m> 0\leq y \leq 2</m> </caption>
+        <image width="75%" xml:id="img-convertreg2">
+          <description>   </description>
+          <sageplot>
+            plot13=line([(-5,0),(5,0)],color="black",thickness=2,axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+            plot13+=line([(-5,2),(5,2)],color="black",thickness=2)+polygon([(-5,0),(5,0),(5,2),(-5,2),(-5,0)],color="red")
+            show(plot13,xmin=-3,xmax=3,ymin=-3,ymax=3,aspect_ratio=1)
+          </sageplot>
+        </image>
+      </figure>
+      <figure xml:id="convertreg3">
+        <caption>A plot of <m> -1\leq x \leq 1</m> and <m> 0\leq y \leq 2</m></caption>
+        <image width="75%" xml:id="img-convertreg3">
+          <description>   </description>
+          <sageplot>
+            plot14=line([(-5,0),(5,0)],color="black",thickness=2,axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+            plot14+=line([(-5,2),(5,2)],color="black",thickness=2)+polygon([(-5,0),(5,0),(5,2),(-5,2),(-5,0)],color="red")
+            plot14+=line([(-1,-5),(-1,5)],color="black",thickness=2,axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+            plot14+=line([(1,-5),(1,5)],color="black",thickness=2)+polygon([(-1,-5),(-1,5),(1,5),(1,-5),(-1,-5)],color="green")
+            plot14+=polygon([(-1,0),(1,0),(1,2),(-1,2),(-1,0)],color="blue")
+            show(plot14,xmin=-3,xmax=3,ymin=-3,ymax=3,aspect_ratio=1)
+          </sageplot>
+        </image>
+      </figure>
+    </sidebyside>
+  </example>
+  <activity>
+    <task>
+      <statement>
+        <p>
+          Make a graph of the points that satisfy <m>y=x+1</m>.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Make a graph of the points that satisfy <m>y \geq x+1</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          Will the points above or below the line you drew in the first part of this activity satisfy this inequality. 
+        </p>
+      </hint>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Make a graph of the points that satisfies the inequality <m>x^2+y^2 \leq 4</m>
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Make a graph of the points that satisfies the inequalities <m>x^2+y^2 \leq 4</m> and <m>y \geq x+1</m>.
+        </p>
+      </statement>
+    </task>
+  </activity>
+  <activity>
+    <task>
+      <statement>
+        <p>
+          Draw a plot of the region that cooresponds to the polar inequality <m> 1 \leq r \leq 3</m>. Write a sentence or two to describe this region.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Draw a plot of the region that cooresponds to the polar inequality <m> \frac{\pi}{4} \leq \theta \leq \frac{3\pi}{4}</m>. Write a sentence or two to describe this region.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Draw a plot of the region that cooresponds to the polar inequalities <m> 1 \leq r \leq 3</m>, <m> \frac{\pi}{4} \leq \theta \leq \frac{3\pi}{4}</m>. Write a sentence or two to describe this region.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Draw a plot of the region that cooresponds to the polar inequality <m> 1 \leq r \leq 3 \cos(\theta)</m>. Write a sentence or two to describe this region.
+        </p>
+      </statement>
+    </task>
+  </activity>
+
+  </subsection>
+  <subsection xml:id="subsec-cylindrical">
+    <title>Cylindrical Coordinates</title>
+    
+
+    <p>
+      We have encountered two different coordinate systems in <m>\R^2</m> <mdash/> the rectangular and polar coordinates systems <mdash/> and seen how in certain situations, polar coordinates form a convenient alternative. In a similar way, there are two additional natural coordinate systems in <m>\R^3</m>. Given that we are already familiar with the Cartesian coordinate system for <m>\R^3</m>, we next investigate the cylindrical and spherical coordinate systems (each of which builds upon polar coordinates in <m>\R^2</m>). In what follows, we will see how to convert among the different coordinate systems (for coordinates, equations, and inequalities), and some situations in which these other coordinate systems prove advantageous.
     </p>
 
     <exploration xml:id="PA_11_8">
