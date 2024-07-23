@@ -956,7 +956,7 @@
     <subsection xml:id="subsec-SphCoord">
       <title>Spherical Coordinates</title>
       <p>
-        Cylindrical coordinates used an angular measurement in the <m>xy</m>-plane as part of the description of location. Spherical coordinates uses one linear measurement and two angular measurements to specify the location of a point. The spherical coordinates of a point in <m>\R^3</m> are <m>\rho</m> (rho), <m>\theta</m>, and <m>\phi</m> (phi), where <m>\rho</m> is the distance from the point to the origin, <m>\theta</m> has the same interpretation it does in polar coordinates, and <m>\phi</m> is the angle between the positive <m>z</m>-axis and the vector from the origin to the point, as illustrated in <xref ref="sphdef">Figure</xref>. You should convince yourself that any point in <m>\R^3</m> can be represented in spherical coordinates with <m>\rho \geq 0</m>, <m>0 \leq \theta \lt 2 \pi</m>, and <m>0 \leq \phi \leq \pi</m>. 
+        Cylindrical coordinates used an angular measurement in the <m>xy</m>-plane as part of the description of location. Spherical coordinates uses one linear measurement and two angular measurements to specify the location of a point. The spherical coordinates of a point in <m>\R^3</m> are <m>\rho</m> (rho), <m>\theta</m>, and <m>\phi</m> (phi), where <m>\rho</m> is the distance from the point to the origin, <m>\theta</m> has the same interpretation it does in polar coordinates, and <m>\phi</m> is the (smallest) angle between the positive <m>z</m>-axis and the vector from the origin to the point, as illustrated in <xref ref="sphdef">Figure</xref>. You should convince yourself that any point in <m>\R^3</m> can be represented in spherical coordinates with <m>\rho \geq 0</m>, <m>0 \leq \theta \lt 2 \pi</m>, and <m>0 \leq \phi \leq \pi</m>. 
       </p>
       <figure xml:id="sphdef">
         <caption>A plot of a point <m>P</m> with spherical coordinate measurement</caption>
@@ -1008,138 +1008,78 @@
 
 
 
-    <exploration xml:id="PA_11_8">
-      <statement> 
+    <example xml:id="sph-coord-ex1">
       <p>
-        In the following questions, we investigate the two new coordinate systems that are the subject of this section: cylindrical and spherical coordinates. Our goal is to consider some examples of how to convert from rectangular coordinates to each of these systems, and vice versa. Triangles and trigonometry prove to be particularly important.
+        In the following example, we investigate how to think about the spherical coordinate measurement of a point and how to convert between spherical coordinates and rectangular coordinates.
       </p>
 
-      
-      <figure xml:id="F_11_8_Cylindrical_coords">
-        <caption>The cylindrical (left) and spherical (right) coordinates of a point.</caption>
-        <sidebyside widths="50% 50%">
-          <image source="images/fig_11_8_cylindrical"/>
-          <image source="images/fig_11_8_spherical"/>
-          </sidebyside>
+      <figure xml:id="sphex1">
+        <caption>A plot of a point <m>P</m> with spherical coordinate measurement</caption>
+        <image width="75%" xml:id="img-sphex1">
+          <description>   </description>
+          <interactive xml:id="interactive-sphex1" platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=3
+              tval=3*pi/4
+              xval=-2
+              yval=2
+              zval=sqrt(8)
+              r=sqrt(xval^2+yval^2)
+              rho=sqrt(xval^2+yval^2+zval^2)
+              a=arccos(zval/rho)
+              plot20=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot20+=line([(0,0,0),(xval,yval,zval)],color="blue",thickness=3)+line([(0,0,0),(xval,yval,0)],color="red",thickness=3)+line([(xval,yval,zval),(xval,yval,0)],color="gray",linestyle="--")
+              plot20+=parametric_plot3d((cos(t),sin(t),0),(t,0,tval),color="green")+arrow3d((cos(tval-0.1),sin(tval-0.1),0),(cos(tval),sin(tval),0),color="green")
+              plot20+=parametric_plot3d((xval/rho*sin(t),yval/rho*sin(t),r/rho*cos(t)),(t,0,a),color="orange")+arrow3d((sin(a-.01),2*sin(a-.01),sqrt(5)*cos(a-.01)),(sin(a),2*sin(a),sqrt(5)*cos(a)),color="orange")
+              plot20+=point3d((xval,yval,zval),size=10,color="black")+text3d("P",(xval+.1,yval+.1,zval+.1),fontsize=20,color="black")
+              show(plot20.rotate((0,0,1),1.4),aspect_ratio=1)
+            </slate>
+          </interactive>
+        </image>
+      </figure>
+      <p> 
+        Consider the point <m>P</m> whose rectangular coordinates are <m>(-2,2,\sqrt{8})</m>. What is the distance from <m>P</m> to the origin? The result is the value of <m>\rho</m> in the spherical coordinates of <m>P</m>, so 
+          <me>
+            \rho = \sqrt{2^2+2^2+(\sqrt{8})^2} = 4
+          </me>.
+      </p>
+      <p>        
+        in order to find the <m>\theta</m> coordinate of <m>P</m>, we will need to determine the point that is the projection of <m>P</m> onto the <m>xy</m>-plane.  Then, use this projection to find the value of <m>\theta</m> in the polar coordinates of the projection of <m>P</m> that lies in the plane. The projection of <m>P</m> onto the <m>xy</m>-plane is the point <m>(-2,2,0)</m>. As we saw earlier with polar and cylindrical coordinates, we can use <m>\tan(\theta) = \frac{y}{x}</m> which for the point <m>P</m> means that <m>\tan(\theta) = \frac{-2}{2}=-1</m>. Remember that you will need to interpret the result of inverse trig functions according to the particular geometric situation given in the problem. In particular, <m>\arctan(-1)=-\frac{\pi}{4}</m> but we want will need to interpret <m>\theta</m> as a an angle in the second quadrant, we will use <m>\theta=\frac{3\pi}{4}</m>.
+      </p>
+      <p>
+        Based on the illustration in <xref ref="sphex1">Figure</xref>, we can use the right triangle with sides that correspond to the measurement of <m>z</m>, <m>r</m>, and <m>\rho</m> to find the angle <m>\phi</m>. It may not be immediately clear where the angle <m>\phi</m> is in this triangle, but <xref ref="sphex11" /> shows how the alternate interior angles of the parallel lines (associated with <m>z</m> will be equal. In other words, the upper right angle in our right triangle will be the same size as <m>\phi</m>). 
+       </p>
+       <figure xml:id="sphex11">
+        <caption>A 2D plot of a point <m>P</m> with spherical coordinate measurements in the plane of the measurement of <m>\theta</m></caption>
+        <image width="75%" xml:id="img-sphex11">
+          <description>   </description>
+          <sageplot>
+            rho=sqrt(1.2^2+1)
+            a=arctan(1.2)
+            plot21=line([(0,0),(1.2,0)],color="red",thickness=2,axes=True,axes_labels=["","$z$-axis"],ticks=[[],[]])
+            plot21+=line([(0,0),(1.2,1)],color="blue",thickness=2)+line([(1.2,1),(1.2,0)],color="gray")
+            plot21+=text("$r$",(0.75,.15),color="red",fontsize=15)+text("$\\rho$",(0.5,0.6),color="blue",fontsize=15)
+            plot21+=text("$z$-coordinate",(1.9,0.5),color="gray",fontsize=15)
+            plot21+=parametric_plot((sin(t),cos(t)),(t,0,a),color="orange")+arrow((sin(a-0.1),cos(a-0.1)),(sin(a),cos(a)),color="orange")
+            plot21+=text("$\\phi$",(0.5,1.1),color="orange",fontsize=15)+text("$\\theta$-direction",(1.5,-0.15),color="black",fontsize=15)
+            plot21+=parametric_plot((1.2-0.5*sin(t),1-0.5*cos(t)),(t,0,a),color="orange")#+arrow((1.2-0.5*sin(a-0.1),1-0.5*cos(a-0.1)),(1.2-0.5*sin(a),1-0.5*cos(a)),color="orange")
+            plot21+=text("$\\phi$",(0.95,0.45),color="orange",fontsize=10)+point((1.2,1),size=10,color="black")
+            plot21+=text("$P$",(1.3,1.1),color="black")
+            show(plot21,xmin=-1,xmax=2,ymin=-1,ymax=2,aspect_ratio=1)
+          </sageplot>
+        </image>
       </figure>
       
       <p>
-      <ol marker="a.">
-        <li>
-          <p>
-          The cylindrical coordinates of a point in <m>\R^3</m> are given by <m>(r,\theta,z)</m> where <m>r</m> and <m>\theta</m> are the polar coordinates of the point <m>(x, y)</m> and <m>z</m> is the same <m>z</m> coordinate as in Cartesian coordinates. An illustration is given at left in <xref ref="F_11_8_Cylindrical_coords">Figure</xref>.
-            <ol marker="i.">
-              <li>
-                <p>
-                Find cylindrical coordinates for the point whose Cartesian coordinates are <m>(-1, \sqrt{3}, 3)</m>. Draw a labeled picture illustrating all of the coordinates.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                Find the Cartesian coordinates of the point whose cylindrical coordinates are <m>\left(2, \frac{5\pi}{4}, 1\right)</m>. Draw a labeled picture illustrating all of the coordinates.
-                </p>
-              </li>
-            </ol>
-          </p>
-        </li>
-
-        <li>
-          <p>
-          The spherical coordinates of a point in <m>\R^3</m> are <m>\rho</m> (rho), <m>\theta</m>, and <m>\phi</m> (phi), where <m>\rho</m> is the distance from the point to the origin, <m>\theta</m> has the same interpretation it does in polar coordinates, and <m>\phi</m> is the angle between the positive <m>z</m> axis and the vector from the origin to the point, as illustrated at right in <xref ref="F_11_8_Cylindrical_coords">Figure</xref>. You should convince yourself that any point in <m>\R^3</m> can be represented in spherical coordinates with <m>\rho \geq 0</m>, <m>0 \leq \theta \lt 2 \pi</m>, and <m>0 \leq \phi \leq \pi</m>. 
-          </p>
-
-          <p> 
-          For the following questions, consider the point <m>P</m> whose Cartesian coordinates are <m>(-2,2,\sqrt{8})</m>.
-            <ol marker="i.">
-              <li>
-                <p>
-                What is the distance from <m>P</m> to the origin?  Your result is the value of <m>\rho</m> in the spherical coordinates of <m>P</m>.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                Determine the point that is the projection of <m>P</m> onto the <m>xy</m>-plane.  Then, use this projection to find the value of <m>\theta</m> in the polar coordinates of the projection of <m>P</m> that lies in the plane.  Your result is also the value of <m>\theta</m> for the spherical coordinates of the point.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                Based on the illustration in <xref ref="F_11_8_Cylindrical_coords">Figure</xref>, how is the angle <m>\phi</m> determined by <m>\rho</m> and the <m>z</m> coordinate of <m>P</m>? Use a well-chosen right triangle to find the value of <m>\phi</m>, which is the final component in the spherical coordinates of <m>P</m>. Draw a carefully labeled picture that clearly illustrates the values of <m>\rho</m>, <m>\theta</m>, and <m>\phi</m> in this example, along with the original rectangular coordinates of <m>P</m>.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                Based on your responses to i., ii., and iii., if we are given the Cartesian coordinates <m>(x,y,z)</m> of a point <m>Q</m>, how are the values of <m>\rho</m>, <m>\theta</m>, and <m>\phi</m> in the spherical coordinates of <m>Q</m> determined by <m>x</m>, <m>y</m>, and <m>z</m>?
-                </p>
-              </li>
-            </ol> 
-          </p>
-          </li> 
-        </ol>
+        So we can calculate the <m>\phi</m>-coordinate of <m>P</m> using the property that <m>\cos(\phi) = \frac{z}{\rho}=\frac{\sqrt{8}}{4}=\frac{\sqrt{2}}{2}</m>, which means that <m>\phi=\frac{\pi}{4}</m>.
       </p>
-      </statement>
-      <solution>
-        <p> 
-        <ol marker="a.">
-          <li>
-            <p>
-              We know the <m>z</m> coordinate is <m>3</m>.
-              We also know that
-              <me>
-                r = \sqrt{(-1)^2 + (\sqrt{3})^2} = 2 \ \ \ \text{ and }  \ \ \ \tan(\theta) = -\sqrt{3}
-              </me>.
-              Since the point <m>(-1,\sqrt{3})</m> is in the second quadrant,
-              we have <m>\theta = \frac{2\pi}{3}</m>.
-              So a set of cylindrical coordinates for the point with Cartesian coordinates
-              <m>(-1, \sqrt{3}, 3)</m> is <m>\left(2, \frac{2\pi}{3}, 3\right)</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              In this case we have <m>x = 2\cos\left(\frac{5\pi}{4}\right) = -\sqrt{2}</m>,
-              <m>y =2\sin\left(\frac{5\pi}{4}\right) = -\sqrt{2}</m>,
-              and <m>z=1</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              The distance from <m>P</m> to the origin is
-              <me>
-                \rho = \sqrt{2^2+2^2+(\sqrt{8})^2} = 4
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              The projection of the point onto the <m>xy</m>-plane is the point <m>(-2,2,0)</m>.
-              So <m>\theta</m> satisfies <m>\tan(\theta) = \frac{-2}{2}=-1</m>.
-              Since this point is in the second quadrant we have <m>\theta = \frac{3\pi}{4}</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Here we have <m>\cos(\phi) = \frac{z}{\rho} = \frac{\sqrt{8}}{4} = \sqrt{2}{2}</m>.
-              So <m>\phi = \frac{\pi}{4}</m>.
-              Thus, spherical coordinates of the point <m>P</m> are <m>\left(4, \frac{3\pi}{4}, \frac{\pi}{4}\right)</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              If we know the Cartesian coordinates <m>(x,y,z)</m> of a point,
-              then spherical coordinates
-              <m>(\rho, \theta, \phi)</m> of this point satisfy
-              <me>
-                \rho :=\sqrt{x^2+y^2+z^2}, \ \ \ \tan(\theta) = \frac{y}{x} \text{ provided }  x\neq 0, \ \ \ \text{ and }  \ \ \ \cos(\phi) = \frac{z}{\rho} \text{ provided }  \rho \neq 0
-              </me>.
-            </p>
-          </li>
-        </ol>
-        </p>
-      </solution>
-    </exploration>
+      <p>
+        The point <m>P</m> with rectangular coordinates <m>(-2,2,\sqrt{8})</m> will be given by spherical coordinates of <m>(\rho,\theta,\phi)=(4,\frac{3\pi}{4},\frac{\pi}{4})</m>.
+
+      </p>
+    </example>
     
   </subsection>
 
