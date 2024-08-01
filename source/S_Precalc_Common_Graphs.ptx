@@ -461,48 +461,418 @@
       </statement>
     </task>
    </activity>
-   
-    <p>
-      Go over conic section forms (either put a reference to a full presentation of conics or make an appendix with activities to go through these details)
-
-      Conic sections are graphs of the form <m>Ax^2+Bxy+Cy^2+Dx+Ey+F=0</m> and can also be seen as the intersection of a plane and a cone. Applications and uses in optics, engineering
-
-      We will look at the three basic shapes then see how common transformations work on the graphs and equations for those graphs. 
-    </p>
-    <p>
-      Talk about Ellipse first. Show base equation x^2+y^2=1. Go over how ellipse is transformed version of this? Talk about center, horizontal stretch, vertical stretch. In appendix, talk about sum of distances to foci as being constant. Reflective properties that focus reflect to other focus. 
-    </p>
-    <p>
-      Hyperbola. Start with x^2-y^2=1. Show vertices, center, asymptotes. Talk about switching the roles of x and y. Show horizontal and vertical stretches take care of everything. Talk about shape and how you do not have two parabolas.
-    </p>
-    <p>
-      Parabola. Talk about features of y=x^2. Direction of parabola given by linear term. 
-    </p>
-    <p>
-      translation of coordinates. Activity: What value of x' will compute to x=0? y' to y=0?
-      Rotation in appendix?
-    </p>
+   <definition xml:id="def-parabola">
+    <statement>
+      <p>
+        A <term>parabola</term> is the set of all points that are the same distance from a point (called the focus) and a line (called the directrix).
+      </p>
+      <figure xml:id="base-parabola">
+        <caption>A plot of an parabola with the focus in green and the directrix shown as a dashed line</caption>
+        <interactive xml:id="interactive-base-parabola" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            @interact
+            def parabolabase(tval=slider(-4,4,0.1,default=1.6,display_value=False)):
+                var('t')
+                c=1
+                plot4=point((c,0),color="green",size=20,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
+                plot4+=line([(tval^2/4,tval),(-c,tval)],color="red")
+                plot4+=line([(tval^2/4,tval),(c,0)],color="blue")
+                plot4+=point((tval^2/4,tval),color="purple",size=20)
+                plot4+=parametric_plot((t^2/4,t),(t,-4,4),color="black")
+                plot4+=line([(-1,-8),(-1,8)],color="gray",linestyle="--")
+                show(plot4,aspect_ratio=1,xmin=-4,xmax=4,ymin=-4,ymax=4)
+          </slate>
+        </interactive>
+      </figure>
+      <p>
+        In the interact above, you can see how as you move around the parabola, the lengths of the blue and red segments remains the same as each other. The point that is half way between the focus and the directrix is referred to as the center and the vertex of the parabola.
+      </p>
+    </statement>
+   </definition>
+   <activity>
+    <task>
+      <statement>
+        <p>
+          Make a plot of the hyperbola given by <m>x=y^2</m>. You should draw and label the vertex and four other points on the hyperbola.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Draw a plot of the graph for <m>2x=y^2</m> and label the vertex and four other points on the hyperbola. What transformation is done to convert between the parabola given by <m>x=y^2</m> and the graph of <m>2x=y^2</m>? You should be specific about how the graph of <m>2x=y^2</m> is different than the graph of <m>x=y^2</m>. 
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Draw a plot of the graph for <m>y=x^2</m> and label the vertex and four other points on the hyperbola. What transformation is done to convert between the hyperbolas given by <m>y=x^2</m> and the graph of <m>x=y^2</m>? You should be specific about how the graph of <m>x=y^2</m> is different than the graph of <m>y=x^2</m>.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          What transformations are done to convert between  <m>x=y^2</m> and the graph of <m>\frac{x-1}{2}=\left(\frac{(y+2)}{3}\right)^2</m>? You should be specific about how the graph of <m>\frac{x-1}{2}=\left(\frac{(y+2)}{3}\right)^2</m> is different than the graph of <m>x=y^2</m> and specify if the transformations need to be done in a particular order.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Draw a plot of <m>\frac{x-1}{2}=\left(\frac{(y+2)}{3}\right)^2</m> and label the vertex and four other points on the hyperbola.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          The graph of the equation <m>x^2-8x-8y+8=0</m> is an parabola. Convert this equation to the form <m>\left(\frac{(x-h)}{a}\right)^2=\frac{(y-k)}{b}</m> and use the idea of transformations from above to graph this hyperbola and label the center, the vertices of the hyperbola, and the asymptote lines.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Give the equation of the parabola shown in <xref ref="parabola-ex1" />
+        </p>
+        <figure xml:id="parabola-ex1">
+          <caption>A plot of an parabola</caption>
+          <image width="75%" xml:id="img-parabola-ex1">
+            <description>   </description>
+            <sageplot>
+              var('t')
+              plot5=parametric_plot((2*(t-2),(t^2+1)),(t,-3,3),color="blue",axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+              show(plot5,aspect_ratio=1)
+            </sageplot>
+          </image>
+        </figure>
+      </statement>
+    </task>
+   </activity>
 
     </subsection>
-    <subsection>
+    <subsection xml:id="subsec-cylsurf">
       <title>Cylinder Surfaces</title>
       <p>
-        what does x^2+y^2=1 look like in 2D? 3D? Cylinder surfaces are generated by a curve (called the generating curve) and extend along rulings. x^2+y^2=1 has a circle generating curve in xy-plane and rulings extend in z-direction. Only the xy values make a point satisfy (or not satisfy) the defining equation. No choice of z has an effect.
+        Our previous examples in this section show how to create a variety of interesting curves on the <m>xy</m>-plane. What happens if we consider these same equations in three dimensions? Let's look at an example like <m>(y+2)=\frac{t^2-1}{2}</m>. If we consider the graph of  <m>(y+2)=\frac{t^2-1}{2}</m> in 2D, then we get a parabola centered at <m>(1,-2)</m>. 
       </p>
-
+      <figure xml:id="para-ex2">
+        <caption>A plot of <m>(y+2)=\frac{t^2-1}{2}</m> in the <m>xy</m>-plane with five points highlighted</caption>
+        <image width="75%" xml:id="img-para-ex2">
+          <description>   </description>
+          <sageplot>
+            var('t')
+            tvals=[-2,-1,0,1/2,5/3]
+            plot9=parametric_plot(((t^2+1)/2,t-2),(t,-3,3),color="black",axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+            for s in tvals:
+                plot9+=point(((s^2+1)/2,s-2),color="blue",size=20)
+            show(plot9,aspect_ratio=1,xmin=-2,xmax=4,ymin=-5,ymax=1)
+          </sageplot>
+        </image>
+      </figure>
+      <p>
+        If we want to look at the graph of <m>(y+2)=\frac{t^2-1}{2}</m> in 3D, we are considering all of the <m>(x,y,z)</m> points that will satisfy this equation. So if we pick <m>x</m> and <m>y</m> values that satisfy <m>(y+2)=\frac{t^2-1}{2}</m>, then ANY choice of <m>z</m> will satisfy the given question. So for the each of the highlighted points on <xref ref="para-ex2" />, we can extend the graph of <m>(y+2)=\frac{t^2-1}{2}</m> parallel to the <m>z</m>-axis. <xref ref="cylsurfex1" /> shows how the points on the parabola (in black) can be extended to include any <m>z</m> coordinate.
+      </p>
+      <figure xml:id="cylsurfex1">
+        <caption>A plot of <m>(y+2)=\frac{t^2-1}{2}</m> generating curve and several rulings</caption>
+          <interactive xml:id="interactive-cylsurfex1" platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+              from sage.plot.plot3d.plot3d import axes
+              var('t')
+              scale=6
+              plot10=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              tvals=[-2,-1,0,1/2,5/3]
+              plot10+=parametric_plot3d(((t^2+1)/2,t-2,0),(t,-3,3),color="black",axes=True,axes_labels=["$x$","$y$"],gridlines=True)
+              for s in tvals:
+                  plot10+=point3d(((s^2+1)/2,s-2,0),color="blue",size=20)
+                  plot10+=line([((s^2+1)/2,s-2,scale),((s^2+1)/2,s-2,-scale)],color="green")
+              show(plot10,aspect_ratio=1)
+            </slate>
+          </interactive>
+      </figure>
+      <p>
+        Extending all points from the circle <m>(y+2)=\frac{t^2-1}{2}</m> in the <m>xy</m>-plane parallel to the <m>z</m>-axis will give a surface. This kind of surface is called a <term>cylinder surface</term>, the two dimensional curve you use to make the surface is called the <term>generating curve</term>, and the lines that extend in the direction of the missing variable are called <term>rulings</term>. In <xref ref="cylsurfex2" />, the surface is plotted in blue, the generating curve in black, and the rulings in green. This surface is called a parabolic cylinder surface because the generating curve is a parabola.
+      </p>
+      <figure xml:id="cylsurfex2">
+        <caption>A plot of the cylinder surface <m>(y+2)=\frac{t^2-1}{2}</m> with generating curve and several rulings</caption>
+          <interactive xml:id="interactive-cylsurfex2" platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=6
+              plot11=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              tvals=[-2,-1,0,1/2,5/3]
+              plot11+=parametric_plot3d(((t^2+1)/2,t-2,0),(t,-3,3),color="black")
+              plot11+=parametric_plot3d(((t^2+1)/2,t-2,s),(t,-3,3),(s,-scale,scale),color="blue",opacity=0.5)
+              for s in tvals:
+                  plot11+=point3d(((s^2+1)/2,s-2,0),color="blue",size=20)
+                  plot11+=line([((s^2+1)/2,s-2,scale),((s^2+1)/2,s-2,-scale)],color="green")
+              show(plot11,aspect_ratio=1)
+            </slate>
+          </interactive>
+        </figure>
+      <activity>
+        <task>
+          <statement>
+            <p>
+              Draw the graph of <m>2x-y+1=0</m> on the <m>xy</m>-plane.
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Draw the graph of <m>2x-y+1=0</m> in <m>xyz</m>-space. This is called a linear cylinder surface. 
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Draw the graph of <m>(x-1)^2+(y+2)^2=4</m> in <m>xyz</m>-space. This is called a right-circular cylinder surface.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              
+            </p>
+          </answer>
+          <solution>
+            <p>
+              <figure xml:id="cylsurfex3">
+                <caption>A plot of the cylinder surface <m>(x-1)^2+(y+2)^2=4</m> with generating curve and several rulings</caption>
+                  <interactive xml:id="interactive-cylsurfex3" platform="sage" width="100%" aspect="1:1">
+                    <slate surface="sage">
+                      from sage.plot.plot3d.plot3d import axes
+                      var('t,s')
+                      scale=6
+                      plot8=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                      tvals=[0,1,pi/2,3,5]
+                      plot8+=parametric_plot3d((2*cos(t)+1,2*sin(t)-2,0),(t,0,2*pi),color="black",thickness=3)
+                      plot8+=parametric_plot3d((2*cos(t)+1,2*sin(t)-2,s),(t,0,2*pi),(s,-scale,scale),color="blue",opacity=0.5)
+                      for s in tvals:
+                          plot8+=point3d((2*cos(s)+1,2*sin(s)-2,0),color="blue",size=15)
+                          plot8+=line([(2*cos(s)+1,2*sin(s)-2,scale),(2*cos(s)+1,2*sin(s)-2,-scale)],color="green",thickness=2)
+                      show(plot8,aspect_ratio=1)
+                    </slate>
+                  </interactive>
+                </figure>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Draw the graph of <m>\frac{x^2}{9}+\frac{z^2}{4}=1</m> in <m>xyz</m>-space. This is called an elliptic cylinder surface.
+            </p>
+          </statement>
+        </task>
+      </activity>
     </subsection>
     <subsection xml:id="quadric-surfaces">
       <title>Quadric Surfaces</title>
       <p>
-        activity about understanding the plot of x^2/4+y^2/9-z^2=1. Find intercepts, traces on xy, xz, and yz planes. Intersections with z=1, z=-2, z=sqrt{3}, x=3,x=0. Show several plots. Which one of these plots has the features you state as answers above.
-
-        Do the same with x^2/4-y^2/9-z^2=1
+        In this section, we will look at a set of surfaces with algebraic equations that are quadratic in <m>x</m>, <m>y</m>, and <m>z</m>. This will give us a category of example surfaces that algebraically simple but exhibit a variety of interesting characteristics.
       </p>
+      <activity>
+        <introduction>
+          <p>
+            For this activity, we will be looking at a variety properties that will help us draw a graph of the surface described by <m>\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1</m>.
+          </p>
+        </introduction>
+        <task>
+          <statement>
+            <p>
+              Find all <m>x</m>-, <m>y</m>-, and <m>z</m>-intercepts.
+            </p>
+          </statement>
+          <hint>
+            <p>
+              The <m>x</m>-intercepts are where <m>y=0</m> and <m>z=0</m>.
+            </p>
+          </hint>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Find an equation for the curve given by the intersection of <m>\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1</m> with the <m>xy</m>-plane. Draw a plot of your equation on the <m>xy</m>-plane. 
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Find an equation for the curve given by the intersection of <m>\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1</m> with the <m>yz</m>-plane. Draw a plot of your equation on the <m>yz</m>-plane. 
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Find an equation for the curve given by the intersection of <m>\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1</m> with the <m>xz</m>-plane. Draw a plot of your equation on the <m>xz</m>-plane. 
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Find equations for the curve given by the intersection of <m>\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1</m> with the each of the following fundamental planes. You should state the shape and any other characteristics (like center or direction) for each of these intersections.
+              <ol>
+                <li><m>z=1</m></li>
+                <li><m>z=-2</m></li>
+                <li><m>z=\sqrt{3}</m></li>
+                <li><m>x=3</m></li>
+                <li><m>x=-1</m></li>
+              </ol>
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Draw each of these intersections on the proper fundamental planes in 3D. 
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Which of the following surface plots will correspond to <m>\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1</m>? You can determine this by comparing the features on your previous part to these options.
+            </p>
+            <figure xml:id="quadsurfex2">
+              <caption>A plot surfaces to select from</caption>
+                <interactive xml:id="interactive-quadsurfex2" platform="sage" width="100%" aspect="1:1">
+                  <slate surface="sage">
+                    from sage.plot.plot3d.plot3d import axes
+                    var('x,y,z')
+                    @interact
+                    def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):
+                        scale=4
+                        plot13=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                        if sb=='Surface 1':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 2':
+                            plot13+=implicit_plot3d(-x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 3':
+                            plot13+=implicit_plot3d(x^2/4-y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 4':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 5':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9==z^2,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        show(plot13,aspect_ratio=1)
+                  </slate>
+                </interactive>
+              </figure>
+          </statement>
+        </task>
+      </activity>
+      <activity>
+        <task>
+          <statement>
+            <p>
+              Find equations for the curve given by the intersection of <m>\frac{x^2}{4}-\frac{y^2}{9}-\frac{z^2}{1}=1</m> with the each of the following fundamental planes. You should state the shape and any other characteristics (like center or direction) for each of these intersections.
+              <ol>
+                <li><m>z=0</m></li>
+                <li><m>y=0</m></li>
+                <li><m>x=0</m></li>
+                <li><m>z=1</m></li>
+                <li><m>y=-2</m></li>
+                <li><m>z=\sqrt{3}</m></li>
+                <li><m>x=3</m></li>
+                <li><m>x=-1</m></li>
+              </ol>
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Which of the following surface plots will correspond to <m>\frac{x^2}{4}-\frac{y^2}{9}-\frac{z^2}{1}=1</m>? You can determine this by comparing the features on your previous part to these options.
+            </p>
+            <figure xml:id="quadsurfex3">
+              <caption>A plot surfaces to select from</caption>
+                <interactive xml:id="interactive-quadsurfex3" platform="sage" width="100%" aspect="1:1">
+                  <slate surface="sage">
+                    from sage.plot.plot3d.plot3d import axes
+                    var('x,y,z')
+                    @interact
+                    def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):                     
+                        scale=4
+                        plot13=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                        if sb=='Surface 1':
+                            plot13+=implicit_plot3d(x^2/4-y^2/9-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 2':
+                            plot13+=implicit_plot3d(-x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 3':
+                            plot13+=implicit_plot3d(x^2-y^2-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 4':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 5':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9==z^2,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        show(plot13,aspect_ratio=1)
+                  </slate>
+                </interactive>
+              </figure>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Find equations for the curve given by the intersection of <m>\frac{x^2}{4}+\frac{y^2}{9}+\frac{z^2}{1}=1</m> with the each of the following fundamental planes. You should state the shape and any other characteristics (like center or direction) for each of these intersections.
+              <ol>
+                <li><m>z=0</m></li>
+                <li><m>y=0</m></li>
+                <li><m>x=0</m></li>
+                <li><m>z=1</m></li>
+                <li><m>z=-2</m></li>
+                <li><m>y=\sqrt{3}</m></li>
+                <li><m>x=3</m></li>
+                <li><m>x=-1</m></li>
+              </ol>
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Which of the following surface plots will correspond to <m>\frac{x^2}{4}+\frac{y^2}{9}+\frac{z^2}{1}=1</m>? You can determine this by comparing the features on your previous part to these options.
+            </p>
+            <figure xml:id="quadsurfex4">
+              <caption>A plot surfaces to select from</caption>
+                <interactive xml:id="interactive-quadsurfex4" platform="sage" width="100%" aspect="1:1">
+                  <slate surface="sage">
+                    from sage.plot.plot3d.plot3d import axes
+                    var('x,y,z')
+                    @interact
+                    def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):
+                        scale=4
+                        plot13=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                        if sb=='Surface 1':
+                            plot13+=implicit_plot3d(x^2+y^2/4+z^2/9==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 2':
+                            plot13+=implicit_plot3d(-x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 3':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 4':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        if sb=='Surface 5':
+                            plot13+=implicit_plot3d(x^2/4+y^2/9==z^2,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                        show(plot13,aspect_ratio=1)
+                  </slate>
+                </interactive>
+              </figure>
+          </statement>
+        </task>
+      </activity>
+      
+      
       <p>
         go over the other quadric surfaces. 
       </p>
       <p>
-        will go over this more later but only a few of these grapsh can be expressed with one coordinate a function of the others. Talk about what this means briefly and then reference the later work.
+        will go over this more later but only a few of these graphs can be expressed with one coordinate a function of the others. Talk about what this means briefly and then reference the later work.
       </p>
     </subsection>
   <subsection>
