@@ -189,6 +189,50 @@
   <p>
     The scalar <m>a_\vN</m> is much harder to interpret right now because our algebraic splitting above gives <m>a_\vN = (\text{speed}) \Vert\frac{d\vT}{dt}\Vert</m> and <m> \frac{d\vT}{dt}</m> (and <m> \Vert\frac{d\vT}{dt}\Vert</m>) are just as hard to calculate as <m>\vN</m> directly (which is awful as shown in <xref ref="difficult-calcN" />). In the next section, we will address the meaning of <m>a_\vN</m> a bit more, but for now you should think of <m>a_\vN</m> as the acceleration due to a change in the direction of the velocity vector. In other words, <m>a_\vN</m> is the amount of acceleration due to turning. 
   </p>
+  <definition xml:id="def-splita">
+    <statement>
+      <p>
+        When we refer to the splitting of the acceleration, we mean that we want to explicitly describe how much of the acceleration is in the unit tangent direction and how much is in the unit normal direction (relative to the motion on the curve). In particular, we want to find <m>a_\vT</m> and <m>a_\vN</m> such that <m> \va = a_\vT \vT + a_\vN \vN</m>. Graphically, this will look like 
+      </p>
+      <figure xml:id="splita-graph">
+        <caption> A 2D curve with the splitting of the acceleration vector shown graphically</caption>
+        <interactive xml:id="interactive-splita-graph" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            var('t')
+            r2(t)=(3*cos(t),2*cos(2*t)*sin(t))
+            rescale=1/3
+            offset=0.25
+            @interact
+            def splita(tval=slider(0,1.7,0.1,default=0.7,label="t value")):
+                pos=r2(tval)
+                plot5=parametric_plot(r2(t),(t,0,1.7),aspect_ratio=1,color="black",thickness=2,axes=False)
+                plot5+=point(pos,color="black",size=25)
+                v2(t)=diff(r2,t)
+                a2(t)=diff(v2,t)
+                vt=v2(tval)
+                at=a2(tval)
+                T=vt/norm(vt)
+                aTT=(at*T)*T
+                aN=sqrt(norm(at)^2-(at*T))
+                aNN=at-aTT
+                N=(1/aN)*aNN
+                plot5+=arrow(pos,pos+T,color="orange",thickness=2)
+                plot5+=text("$\\vec{T}$",pos+T-2*offset*N,color="orange",fontsize=20)
+                plot5+=arrow(pos,pos+N,color="green",thickness=2)
+                plot5+=text("$\\vec{N}$",pos+N-offset*T,color="green",fontsize=20)
+                plot5+=arrow(pos,pos+rescale*aTT,color="red")
+                plot5+=text("$a_{\\vec{T}} \\vec{T}$",pos+rescale*aTT-2*offset*N,color="red",fontsize=20)
+                plot5+=arrow(pos,pos+rescale*aNN,color="blue")
+                plot5+=arrow(pos+rescale*aTT,pos+rescale*aTT+rescale*aNN,color="blue")
+                plot5+=text("$a_{\\vec{N}} \\vec{N}$",pos+rescale*aNN-offset*T,color="blue",fontsize=20)
+                plot5+=arrow(pos,pos+rescale*at,color="purple")
+                plot5+=text("$\\vec{a}$",pos+(1+offset/3)*rescale*at,color="purple",fontsize=20)
+                show(plot5)
+          </slate>
+        </interactive>
+      </figure>
+    </statement>
+  </definition>
   <activity>
     <task>
       <statement>
@@ -205,39 +249,268 @@
         </p>
       </statement>
     </task>
+    <task>
+      <statement>
+        <p>
+          The normal part of acceleration is defined as <m>a_\vN = \va \cdot \vN </m> and our algebraic interpretation also gives us that <m>a_\vN = (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vN</m> can be negative or not. Either explain why this is not possible or what it would mean for <m>a_\vN</m> to be negative.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          The normal part of acceleration is defined as <m>a_\vN = \va \cdot \vN </m> and our algebraic interpretation also gives us that <m>a_\vN = (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vN</m> can be zero or not. Either explain why this is not possible or what it would mean for <m>a_\vN</m> to be zero.
+        </p>
+      </statement>
+    </task>
   </activity>
   <activity>
-    <statement>
+    <introduction>
       <p>
-        activity about the mechanisms of driving, biking, boating and how these connect ot a_n, a_t, T, and N.
+        In this activity we want to relate the scalar and vector measurements involved in the splitting of acceleration to different modes of transportation. While everyone has different experiences with piloting different modes of transportation, we will phrase this question in terms of driving a car. Feel free to substitute another mode of transportation like riding a bike, riding a scooter, driving a boat, rowing a boat, flying a plane, or flying a spaceship. 
       </p>
-    </statement>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          In the context of driving a car (or substitute your mode of transportation), write a couple sentences about what vector calculus quantity is controlled by the brake pedal. Be specific which vector calculus quantity is involved and how the brake pedal changes this measurement.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          The vector calculus quantities we have covered are time, position, velocity, acceleration, speed, arc length, unit tangent, unit normal, binormal, tangential acceleration component, and normal acceleration component.
+        </p>
+      </hint>
+    </task>
+    <task>
+      <statement>
+        <p>
+          In the context of driving a car (or substitute your mode of transportation), write a couple sentences about what vector calculus quantity is controlled by the accelerator pedal. Be specific which vector calculus quantity is involved and how the accelerator pedal changes thismeasurement.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          In the context of driving a car (or substitute your mode of transportation), write a couple sentences about what vector calculus quantity is controlled by the direction of the steering wheel (consider this to be either left, right, or straight). Be specific which vector calculus quantity is involved and how the the direction of the steering wheel changes this measurement.
+        </p>
+      </statement>
+    </task>
+  </activity>
+  <activity>
+    <introduction>
+      <p>
+        In this activity we want to relate the scalar and vector measurements involved in the splitting of acceleration to different modes of transportation. While everyone has different experiences with piloting different modes of transportation, we will phrase this question in terms of riding a bike. Feel free to substitute another mode of transportation like driving a car, riding a scooter, driving a boat, rowing a boat, flying a plane, or flying a spaceship. 
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          In the context of riding a bike, what does the unit tangent vector, <m>\vT</m>, measure?
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          In the context of riding a bike, what does the unit normal vector, <m>\vN</m>, measure?
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          In the context of riding a bike, how would you increase <m>a_\vT</m>?
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          In the context of riding a bike, how would you decrease <m>a_\vT</m>?
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          In the context of riding a bike, how would you decrease <m>a_\vN</m>?
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          In the context of riding a bike, how would you increase <m>a_\vN</m>?
+        </p>
+      </statement>
+    </task>
+  </activity>  
     <example>
-      <p>
-        Calculate trying to find a_N, a_T for t,t^2,t^3 for all t. a_N is most easily calculated by <m>\Vert \va - a_\vT \vT \Vert</m>.
-        Show a plot of the curve and values/vectors at t=2 to emphasize these calculations and hwo they can be one at a single value. 
-      </p>
+      <task>
+        <p>
+          In this example we will look at the splitting of acceleration for an algebraically simple curve traced by <m>\vr(t)=\langle t, t^2,t^3\rangle</m> as <m>t</m> goes from 0 to 2. We will first look at calculating the splitting of acceleration for all <m>t</m>-values in our interval. In particular, we will calculate <m>\vv</m>, <m>\va</m>, <m>\vT</m>, <m>a_\vT</m>, <m>a_\vN</m>, and <m>\vN</m> as functions of <m>t</m>.
+          <md>
+            <mrow>\vr(t) \amp=\langle t, t^2,t^3\rangle </mrow>
+            <mrow>\vv(t) \amp=\langle 1, 2t,3t^2\rangle </mrow>
+            <mrow>\va(t) \amp=\langle 0, 2,6t\rangle </mrow>
+          </md>
+          The calculation of the velocity and acceleration are generally speaking the most familiar and as this example will show, it is possible to state each of our other calculations in terms of velocity and acceleration.
+        </p>
+        <p>
+          The next quantity to calculate is <m>\vT</m>. Note that <m>\text{speed}(t)=\Vert\vv(t)\Vert= \sqrt{1+4t^2+9t^4}</m> for our example.
+          <md>
+            <mrow> \vT(t) \amp= \frac{\vv}{\Vert\vv\Vert} </mrow>
+            <mrow>        \amp= \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}</mrow>
+          </md>
+          This will allow us to calculate <m>a_\vT</m> next from the definition <m>a_\vT = \va \cdot \vT</m>
+          <md>
+            <mrow> a_\vT = \va \cdot \vT \amp= \langle 0, 2,6t\rangle \cdot \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}} </mrow>
+            <mrow>                       \amp= \frac{1}{\sqrt{1+4t^2+9t^4}} \left(1(0)+2(2t)+6t(3t^2)\right)</mrow>
+            <mrow>                       \amp= \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}}</mrow>
+          </md> 
+        </p>
+        <p>
+          So far in this example, we have used the definitions to calculate both <m>\vT</m> and <m>a_\vT</m>, but <m>\vN</m> is quite difficult to calculate using the definition. Our next couple of steps will use some vector calculations related to <xref ref="def-splita" />. Because the unit tangent and unit normal vectors are both length one and are orthogonal to each other, then <m> \Vert \va \Vert^2 =(a_\vT)^2+(a_\vN)^2</m>. In particular, we can solve for <m>a_\vN= \sqrt{\Vert \va \Vert^2  -(a_\vT)^2}</m> which will not require an interpretation of positive/negative because <m>a_\vN</m> will always be non-negative. 
+          For our example,
+          <md>
+            <mrow> a_\vN     \amp= \sqrt{\Vert \va \Vert^2  -(a_\vT)^2} </mrow>
+            <mrow>           \amp= \sqrt{(4+36t^2)- \left(\frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}}\right)^2}</mrow>
+            <mrow>           \amp= \sqrt{(4+36t^2)- \frac{(4t+18t^3)^2}{1+4t^2+9t^4}}</mrow>
+            <mrow>           \amp= \sqrt{\frac{(1+4t^2+9t^4)(4+36t^2)-(4t+18t^3)^2}{1+4t^2+9t^4}}</mrow>
+            <mrow>           \amp= \sqrt{\frac{4(9t^4+9t^2+1)}{1+4t^2+9t^4}}</mrow>
+          </md>
+          Note how we were able to find the acceleration in the normal direction (<m>a_\vN \vN</m>) by subtracting out the acceleration in the tangential direction. Our calculation above utilizes that <m>a_\vN</m> is the length of this acceleration in the normal direction. The other side to this is that we can calculate <m>\vN</m> as a function of <m>t</m> without having to go through the difficulties involved in <m>\frac{d\vT}{dt}</m>. Specifically, <m>a_\vN \vN = \va - a_\vT \vT</m> implies that <m> \vN = \frac{\va - a_\vT \vT}{a_\vN}</m>. This is hugely useful because we were able to calculate everything on the right side of this equation in terms of <m>\vv</m> and <m>\va</m>. For our example, 
+          <md>
+            <mrow> a_\vN \vN \amp= \va - a_\vT \vT </mrow>
+            <mrow>           \amp= \langle 0, 2,6t \rangle - \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}} \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}</mrow>
+          </md>
+          Thus we can write <m>\vN</m> as 
+          <md> 
+            <mrow> \vN \amp= \frac{\va - a_\vT \vT}{a_\vN}</mrow>
+            <mrow> \amp= \sqrt{\frac{1+4t^2+9t^4}{4(9t^4+9t^2+1)}}\left(\langle 0, 2,6t \rangle - \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}} \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}\right)</mrow>
+          </md>
+        </p>
+        <p>
+          While this process may seem a bit algebraically tedious, these steps are much less difficult than finding <m>\vN</m> directly (as in <xref ref="difficult-calcN" />) AND we get insight into how the acceleration is split in the direction of travel and direction of turning. Graphically, we can represent this splitting with the following figure.
+        </p>
+        <figure xml:id="splita-ex1">
+          <caption> The curve given by <m>\vr(t) = \langle t, t^2,t^3\rangle </m> with the splitting of acceleration shown graphically</caption>
+          <interactive xml:id="interactive-splita-ex1" platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+              var('t')
+              r2(t)=(t,t^2,t^3)
+              rescale=1/3
+              offset=0.25
+              @interact
+              def splita(tval=slider(0,1.7,0.1,default=1,label="t value")):
+                  pos=r2(tval)
+                  plot7=parametric_plot3d(r2(t),(t,0,1.7),aspect_ratio=1,color="black",thickness=2,axes=False)
+                  plot7+=point(pos,color="black",size=25)
+                  v2(t)=diff(r2,t)
+                  a2(t)=diff(v2,t)
+                  vt=v2(tval)
+                  at=a2(tval)
+                  T=vt/norm(vt)
+                  aTT=(at*T)*T
+                  aN=sqrt(norm(at)^2-(at*T))
+                  aNN=at-aTT
+                  N=(1/aN)*aNN
+                  plot7+=arrow(pos,pos+T,color="orange",thickness=2)
+                  plot7+=text3d("T",pos+T-2*offset*N,color="orange",fontsize=20)
+                  plot7+=arrow(pos,pos+N,color="green",thickness=2)
+                  plot7+=text3d("N",pos+N-offset*T,color="green",fontsize=20)
+                  plot7+=arrow(pos,pos+rescale*aTT,color="red")
+                  #plot7+=text3d("$a_{\\vec{T}} \\vec{T}$",pos+rescale*aTT-2*offset*N,color="red",fontsize=20)
+                  plot7+=arrow(pos,pos+rescale*aNN,color="blue")
+                  plot7+=arrow(pos+rescale*aTT,pos+rescale*aTT+rescale*aNN,color="blue")
+                  #plot7+=text3d("$a_{\\vec{N}} \\vec{N}$",pos+rescale*aNN-offset*T,color="blue",fontsize=20)
+                  plot7+=arrow(pos,pos+rescale*at,color="purple")
+                  plot7+=text3d("a",pos+(1+offset/3)*rescale*at,color="purple",fontsize=20)
+                  show(plot7,viewpoint=[[-0.6897,-0.4378,-0.5767],95.48],camera_position=[7.6231,-1.7416,4.5464],aspect_ratio=1)
+            </slate>
+          </interactive>
+        </figure>
+      </task>
+      <task>
+        <statement>
+          <p>
+            In many circumstances, we need to compute the splitting of acceleration for only one time. For our example, we will look at how much cleaner the computations above will be if we want to look only at <m>t=1</m>. The first steps for calculating <m>\vv</m> and <m>\va</m> will be the same as before.
+            <md>
+              <mrow>\vr(t) \amp=\langle t, t^2,t^3\rangle </mrow>
+              <mrow>\vv(t) \amp=\langle 1, 2t,3t^2\rangle </mrow>
+              <mrow>\va(t) \amp=\langle 0, 2,6t\rangle </mrow>
+            </md>
+            You may want to go back and note that this was the only calculus done in the example above; all of our other steps were vector calculations and properties of orthogonal or unit vectors. We will follow the same method as above, but instead of applying these ideas for all <m>t</m>-values, we will look only at <m>t=1</m>. Remember if the formula we are using works for all <m>t</m>, then the formula will work for a specific <m>t</m>.
+            <md>
+              <mrow>\vr(1) \amp=\langle 1, 1, 1 \rangle </mrow>
+              <mrow>\vv(1) \amp=\langle 1, 2, 4 \rangle </mrow>
+              <mrow>\va(1) \amp=\langle 0, 2, 6 \rangle </mrow>
+            </md>
+          </p>
+          <p>
+            The next quantity to calculate is <m>\vT</m>. Note that <m>\text{speed}(1)=\Vert\vv(1)\Vert= \sqrt{1+4+9}=\sqrt{14}</m> for our example.
+            <md>
+              <mrow> \vT(1) \amp= \frac{\vv}{\Vert\vv\Vert} </mrow>
+              <mrow>        \amp= \frac{\langle 1, 2, 3 \rangle}{\sqrt{14}}</mrow>
+            </md>
+            This will allow us to calculate <m>a_\vT(1)</m> next from the definition <m>a_\vT(1) = \va(1) \cdot \vT(1)</m>
+            <md>
+              <mrow> a_\vT(1) = \va(1) \cdot \vT(1) \amp= \langle 0, 2, 6 \rangle \cdot \frac{\langle 1, 2 , 3 \rangle}{\sqrt{14}} </mrow>
+              <mrow>                       \amp= \frac{1}{\sqrt{14}} \left(1(0)+2(2)+3(6)\right)</mrow>
+              <mrow>                       \amp= \frac{22}{\sqrt{14}}</mrow>
+            </md> 
+          </p>
+          <p>
+            We now use <m>a_\vN(1) = \sqrt{\Vert \va(1) \Vert^2  -(a_\vT(1))^2}</m> to efficiently calculate the normal component of the acceleration.
+            <md>
+              <mrow> a_\vN(1)  \amp= \sqrt{\Vert \va(1) \Vert^2  -(a_\vT(1))^2} </mrow>
+              <mrow>           \amp= \sqrt{(40)- \left(\frac{22}{\sqrt{14}}\right)^2}</mrow>
+              <mrow>           \amp= \sqrt{\frac{560}{14}-\frac{22^2}{14}}</mrow>
+              <mrow>           \amp= \sqrt{\frac{76}{14}}</mrow>
+            </md>
+            We can now compute how much acceleration there is due to turning and use that explicitly compute <m>\vN(1)</m>.
+            <md>
+              <mrow> a_\vN(1) \vN(1) \amp= \va(1) - a_\vT(1) \vT(1) </mrow>
+              <mrow>           \amp= \langle 0, 2,6 \rangle - \frac{22}{\sqrt{14}} \frac{\langle 1, 2, 3\rangle}{\sqrt{14}}</mrow>
+              <mrow>           \amp= \langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7} \rangle </mrow>
+            </md>
+            You can show that the length of <m>\langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7}</m> is the same as our calculation for <m>a_\vN</m>above. In particular, this means that 
+            <me> \vN = \frac{\va - a_\vT \vT}{a_\vN} = \sqrt{\frac{7}{38}}\langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7} \rangle</me>
+            Will some diligent computations, you should be able to verify that this result is the same as applying <m>t=1</m> to our expression for <m>\vN</m> from the first task.
+          </p>
+        </statement>
+      </task>
     </example>
     <p>
-      emphasize the efficient calculation formulas 
-      <md>
-        <mrow>\vT =\amp \frac{\vv}{\Vert\vv\Vert} </mrow>
-        <mrow> a_\vT =\amp \frac{\va\cdot\vv}{\Vert\vv\Vert} \Rightarrow a_\vT \vT = \frac{\va\cdot \vv}{\vv \cdot \vv} \vv</mrow>
-      </md>
-      That last part emphasizes that <m>a_\vT \vT</m> is the projection of acceleration onto velocity. 
-      <md>
-        <mrow> a_\vN =\amp \Vert \va - a_\vT \vT \Vert = \sqrt{\Vert \va \Vert - (a_\vT)^2}= \sqrt{(\va \cdot \va)- \frac{(\va\cdot\vv)^2}{\Vert\vv\Vert}} </mrow>
-        <mrow> a_\vN =\amp \frac{\va - a_\vT \vT}{a_\vN} </mrow>
-      </md>
-    </p>
-  </activity>
+      The method used in the previous example can be applied broadly and shows how to calculate all parts of <xref ref="def-splita" /> in terms of <m>\vv</m> and <m>\va</m> (for both an interval or a single value of <m>t</m>).
+      </p>
+      <assemblage xml:id="assemblage-splita-calc">
+        <title>Efficient Calculation of <m>a_\vT, a_vN, \vT, \vN</m></title>
+        <p>
+          <md>
+            <mrow>\vT =\amp \frac{\vv}{\Vert\vv\Vert} </mrow>
+            <mrow> a_\vT =\amp \frac{\va\cdot\vv}{\Vert\vv\Vert} \Rightarrow a_\vT \vT = \frac{\va\cdot \vv}{\vv \cdot \vv} \vv</mrow>
+            <mrow> a_\vN =\amp \Vert \va - a_\vT \vT \Vert = \sqrt{\Vert \va \Vert - (a_\vT)^2}= \sqrt{(\va \cdot \va)- \frac{(\va\cdot\vv)^2}{\Vert\vv\Vert}} </mrow>
+            <mrow> a_\vN \vN \amp= \va - a_\vT \vT </mrow>
+            <mrow> a_\vN =\amp \frac{\va - a_\vT \vT}{a_\vN} </mrow>
+          </md>
+        </p>
+      </assemblage>
+
   <activity>
-    <p>
-      activity to use formulas to calculate at t = 0 for ...
-      r, v, a, T, a_T, a_N, N 
-      Use a plotting program to verify tht all fo this makes sense 
-    </p>
-   
+    <task>
+      <statement>
+        <p>
+          Compute the splitting of the acceleration for the curve given by <m>\vr(t)= \langle t, \frac{t^2}{2},\frac{t^3}{6} \rangle</m> at <m>t=1</m>. You should calculate <m>a_\vT</m>, <m>a_\vN</m>, <m>\vT</m>, and <m>\vN</m>, then verify <m>\va = a_\vT \vT +a_\vN \vN </m> and that <m>\vT</m> is orthogonal to <m>\vN</m>.
+        </p>
+      </statement>
+      <answer>
+        <p>
+          <m>\va = a_\vT \vT +a_\vN \vN = \langle 0,1,1\rangle = 1 \langle \frac{2}{3}.\frac{2}{3},\frac{1}{3}\rangle + 1 \langle -\frac{2}{3}.\frac{1}{3},\frac{2}{3}\rangle</m>
+        </p>
+      </answer>
+    </task>  
   </activity>
   <activity>
     <p>
@@ -246,7 +519,7 @@
   </activity>
   <activity>
     <p>
-      Ask about a_T and a_N being poperties of the driver or the road. 
+      Ask about a_T and a_N being properties of the driver or the road. 
     </p>
   </activity>
     </subsection>
