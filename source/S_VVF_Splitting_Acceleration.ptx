@@ -29,55 +29,182 @@
 
     <introduction>
     <p>
-      Velocity and acceleration are vital ideas in motion and mechanics. Velocity is the derivative of position/location (the central measurement of in kinematics, the study of motion). To understand velocity as a vector valued function of time, we wanated to understand how the magnitude and direction of position change. We separated velocity into its critical parts, namely speed (magnitude of velocity) and unit tangent vector (direction of travel). Speed measures how fast (as a scalar) position is changing as a function of time and <m>\vT</m> measurese in what direction position is changing (measured with a unit vector).
+      Velocity and acceleration are vital measurements in the study of physics and mechanics. Velocity is the derivative of position/location (the central measurement of in kinematics, the study of motion). To understand velocity as a vector valued function of time, we looked at how the magnitude and direction of position change. In particular, we separated velocity into its critical parts, namely speed (magnitude of velocity) and unit tangent vector (direction of travel). Speed measures how fast the position of an object is changing as a function of time (as a scalar) and <m>\vT</m> measures in what direction position is changing (measured with a unit vector).
     </p>
     <p>
       Newton's Second Law of Motion relates the forces acting on an object to its acceleration through the formula <m> \vec{F}_{net}= m \vec{A}</m>, which is summarized as the sum of the forces acting on an object is the same as the mass times the acceleration of the object. We would like to understand acceleration as a change in the magnitude and direction of the velocity vector. In this section we will use our knowledge of calculus and vector measurements to split the acceleration vector up into parts dealing with changes in he magnitude and direction of the velocity vector. Further, we wil make sense of these measurements in terms of thier physical meaning. 
     </p>
 
     <exploration xml:id="PA_split_a">
-      <statement> 
-      <p>
-        Preview activity will have drawing/algebraic version of T, N, v, and a. Look at a few points and calculate how much of a is in the direction of T? How much of a is in the direction N? Hint is to use projection or should we just tell them to use the projection. 
-        Might want to use this as the opportunity to reinforce that v and a are the easiest calculations. 
-      </p>
-      </statement>
+      <task>
+        <statement>
+          <p>
+            Given the curve in <xref ref="PA-splita-P1" /> with direction of travel labeled and the point <m>P</m> labeled, draw and label vectors in the direction of <m>\vT</m> and <m>\vN</m> at the point <m>P</m>.
+          </p>
+          <figure xml:id="PA-splita-P1">
+            <caption>The curve <m>C</m> with direction of travel and point <m>P</m> labeled</caption>
+            <image width="55%" xml:id="img-splita-PA1">
+              <description> A 2D plot with a point P on a curve with direction traveled labeled</description>
+              <sageplot>
+                var('t')
+                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                tval=0.75
+                plot1=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                plot1+=point(r1(tval),color="black",size=30)+text("$P$",(r1(tval)[0]+0.1,r1(tval)[1]+0.2),color="black",fontsize=20)
+                plot1+=arrow(r1(2),r1(2.01),color="black")
+                plot1            
+              </sageplot>
+            </image>
+          </figure>
+        </statement>
+      </task>
+      <task xml:id="PA-splita-part2">
+        <statement>
+          <p>
+            <xref ref="PA-splita-P2" /> shows <m>\va</m>, the acceleration vector at the point <m>P</m> (drawn in red). Draw the projection of <m>\va</m> on <m>\vT</m> and the projection of <m>\va</m> on <m>\vN</m> at the point <m>P</m>.
+          </p>
+          <figure xml:id="PA-splita-P2">
+            <caption> A 2D curve with acceleration vector shown in red at the point <m>P</m></caption>
+            <image width="55%" xml:id="img-splita-PA2">
+              <description> A 2D curve with acceleration vector shown in red at the point <m>P</m></description>
+              <sageplot>
+                var('t')
+                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                tval=0.75
+                rx,ry =r1(tval)
+                plot2=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                plot2+=point(r1(tval),color="black",size=30)+text("$P$",(rx+0.1,ry+0.2),color="black",fontsize=20)
+                plot2+=arrow(r1(2),r1(2.01),color="black")
+                plot2+=arrow((rx,ry),(rx-3/4,ry+1/5),color="red")
+                plot2           
+              </sageplot>
+            </image>
+          </figure>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Based on your answers to <xref ref="PA-splita-part2" />, Is <m> \va \cdot \vT</m> is positive, negative, or zero at <m>P</m>? Write a sentence or two to justify your answer.
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Based on your answers to <xref ref="PA-splita-part2" />, Is <m> \va \cdot \vN</m> is positive, negative, or zero at <m>P</m>? Write a sentence or two to justify your answer.
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Given the curve in <xref ref="PA-splita-Q1" /> with direction of travel labeled and the point <m>Q</m> labeled, draw and label vectors in the direction of <m>/vT</m> and <m>/vN</m> at the point <m>Q</m>.
+          </p>
+          <figure xml:id="PA-splita-Q1">
+            <caption>The curve <m>C</m> with direction of travel and point <m>Q</m> labeled</caption>
+            <image width="55%" xml:id="img-splita-Q1">
+              <description> A 2D plot with a point P on a curve with direction traveled labeled</description>
+              <sageplot>
+                var('t')
+                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                tval=3.1
+                rx,ry =r1(tval)
+                plot3=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                plot3+=point(r1(tval),color="black",size=30)+text("$Q$",(rx+0.2,ry-0.1),color="black",fontsize=20)
+                plot3+=arrow(r1(2),r1(2.01),color="black")
+                plot3           
+              </sageplot>
+            </image>
+          </figure>
+        </statement>
+      </task>
+      <task xml:id="PA-splita-part6">
+        <statement>
+          <p>
+            <xref ref="PA-splita-Q2" /> shows <m>\va</m>, the acceleration vector at the point <m>Q</m> (drawn in red). Draw the projection of <m>\va</m> on <m>\vT</m> and the projection of <m>\va</m> on <m>\vN</m> at the point <m>Q</m>.
+          </p>
+          <figure xml:id="PA-splita-Q2">
+            <caption> A 2D curve with acceleration vector shown in red at the point <m>Q</m></caption>
+            <image width="55%" xml:id="img-splita-Q2">
+              <description> A 2D curve with acceleration vector shown in red at the point <m>Q</m></description>
+              <sageplot>
+                var('t')
+                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                tval=3.1
+                rx,ry =r1(tval)
+                plot4=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                plot4+=point(r1(tval),color="black",size=30)+text("$Q$",(rx+0.2,ry-0.1),color="black",fontsize=20)
+                plot4+=arrow(r1(2),r1(2.01),color="black")
+                plot4+=arrow((rx,ry),(rx+2/3,ry+2/5),color="red")
+                plot4           
+              </sageplot>
+            </image>
+          </figure>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Based on your answers to <xref ref="PA-splita-part6" />, Is <m> \va \cdot \vT</m> is positive, negative, or zero at <m>Q</m>? Write a sentence or two to justify your answer.
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Based on your answers to <xref ref="PA-splita-part6" />, Is <m> \va \cdot \vN</m> is positive, negative, or zero at <m>Q</m>? Write a sentence or two to justify your answer.
+          </p>
+        </statement>
+      </task>
+      
       
     </exploration>
   </introduction>
   <subsection>
     <title>Splitting Acceleration</title>
   <p>
-    Remember that <m>\vv</m> is parallel to <m>\vT</m> (when not the zero vector or DNE) and that <m>\vT \cdot \vN =0 </m>. 
-    Define <m>a_\vT = \va \cdot \vT </m> as the tangential component of acceleration and <m>a_\vN = \va \cdot \vN </m> as the normal component of acceleration. Because <m>\vT</m> and <m>\vN</m> are orthogonal to each other and both unit vectors, <m>a_\vT</m> and  <m>a_\vN</m> will give the amount of acceleration in the direction of travel and the direction of turning, respectively. 
+    By definition (of <m>vT</m>), recall that <m>\vv</m> is parallel to <m>\vT</m> (when not the zero vector or DNE) and that <m>\vT \cdot \vN =0 </m>. In other words, all of the velocity is in a parallel direction to the unit tangent vector and the unit normal is always orthogonal to the unit tangent to a curve (when they exist). In this subsection, we will look at splitting the acceleration vector up into the direction of travel and the direction of turning.
   </p>
-  <p>
-    Can acceleration have any additional parts? Can a have any component in another direction (like <m>\vB</m>)? 
-
-    No!
-  </p>
-  <p>
-    The scalar <m>a_\vN</m> measures the acceleration due to change in the direction of <m>\vv</m> and the scalar <m>a_\vT</m> measures the acceleration due to the change in magnitude of <m>\vv</m>. This interpretation follows from a neat product rule argument:
-    <md>
-       <mrow> \vv(t) =\amp speed(t) \vT(t) </mrow>
-       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(speed) \vT + (speed) \frac{d\vT}{dt} </mrow>
-       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(speed) \vT + (speed) \Vert\frac{d\vT}{dt}\Vert \vN </mrow>
-    </md>
-    The last line follows from the definition of the unit normal vector (<m>\vN=\frac{\vT'}{\Vert\vT'\Vert}</m>)
-  </p>
-  <p>
-    This gives a nice way to interpret <m>a_\vT</m>. Specifically, <m>a_\vT</m> is the rate of change of speed!
-  </p>
-  <p>
-    <m>a_\vN</m> is much harder to interpret right now because we have <m>a_\vN = (speed) \Vert\frac{d\vT}{dt}\Vert</m> and <m> frac{d\vT}{dt}</m> (and <m> \Vert\frac{d\vT}{dt}\Vert</m>) are just as hard to calculate as <m>\vN</m> directly. In the next section, we will address the meaning of <m>a_\vN</m> a bit more, but for now you should think of <m>a_\vN</m> as the acceleration due to a change in the direciton. In other words, <m>a_\vN</m> is the amount of acceleration due to turning. 
-  </p>
-  <activity>
+  <definition xml:id="def-aTaN">
     <statement>
       <p>
-        Activity about how a_T can be positive, negative, zero and thier respective meanings.
-        Activity about how a_N can only be positive or zero. What is the meaning of this?
+        The <term>tangential component of acceleration</term> is defined as <m>a_\vT = \va \cdot \vT </m> and the <term>normal component of acceleration</term> is defined as <m>a_\vN = \va \cdot \vN </m>. Because <m>\vT</m> and <m>\vN</m> are orthogonal to each other and unit vectors, <m>a_\vT</m> and  <m>a_\vN</m> will give the amount of acceleration in the direction of travel and the direction of turning, respectively. 
       </p>
     </statement>
+  </definition>
+  
+  <p>
+    Given the definitions of <m>a_\vT</m> and <m>a_\vN</m>, can the acceleration vector of parameterized curve have any additional parts? Can <m>\va</m> have any component in another direction (like <m>\vB</m>)? It is not obvious, but the answer is <alert>No!</alert>. The acceleration vector will only have components in the <m>\vT</m> and <m>\vN</m> directions. The scalar <m>a_\vN</m> measures the acceleration due to change in the direction of <m>\vv</m> and the scalar <m>a_\vT</m> measures the acceleration due to the change in magnitude of <m>\vv</m>. This interpretation of <m>a_\vT</m> and <m>a_\vN</m> follows from a neat product rule argument based on how we split the velocity vector into speed (magnitude) and <m>\vT</m> (direction):
+    <md>
+       <mrow> \vv(t) =\amp \text{speed}(t) \vT(t) </mrow>
+       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(\text{speed}) \vT + (\text{speed}) \frac{d\vT}{dt} </mrow>
+       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(\text{speed}) \vT + (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert \vN </mrow>
+    </md>
+    The last line of this algebra follows from the definition of the unit normal vector (<m>\vN=\frac{\vT'}{\Vert\vT'\Vert}</m>).
+  </p>
+  <p>
+    This algebraic splitting of acceleration gives a nice way to interpret <m>a_\vT</m>. Specifically, <m>a_\vT</m> is the rate of change of speed!
+  </p>
+  <p>
+    The scalar <m>a_\vN</m> is much harder to interpret right now because our algebraic splitting above gives <m>a_\vN = (\text{speed}) \Vert\frac{d\vT}{dt}\Vert</m> and <m> \frac{d\vT}{dt}</m> (and <m> \Vert\frac{d\vT}{dt}\Vert</m>) are just as hard to calculate as <m>\vN</m> directly (which is awful as shown in <xref ref="difficult-calcN" />). In the next section, we will address the meaning of <m>a_\vN</m> a bit more, but for now you should think of <m>a_\vN</m> as the acceleration due to a change in the direction of the velocity vector. In other words, <m>a_\vN</m> is the amount of acceleration due to turning. 
+  </p>
+  <activity>
+    <task>
+      <statement>
+        <p>
+          The tangential part of acceleration is defined as <m>a_\vT = \va \cdot \vT </m> and our algebraic interpretation also gives us that <m>a_\vT = \frac{d\text{speed}}{dt}</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vT</m> can be zero or not. Either explain why this is not possible or what it would mean for <m>a_\vT</m> to be zero.
+        </p>
+
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          The tangential part of acceleration is defined as <m>a_\vT = \va \cdot \vT </m> and our algebraic interpretation also gives us that <m>a_\vT = \frac{d\text{speed}}{dt}</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vT</m> can be negative or not. Either explain why this is not possible or what it would mean for <m>a_\vT</m> to be negative.
+        </p>
+      </statement>
+    </task>
   </activity>
   <activity>
     <statement>
