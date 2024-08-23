@@ -40,10 +40,21 @@
 
     <introduction>
     <p>
-      In first section, we saw how vvf of 1 variable graphically cooresponds to a curve in space. While the derivative, integral, and limits apply to these functions componentwise, we will need to apply our calculus and vector tools together to measure some important properties of these curves. Conceptually, you may want to visualize the parameterization of the curve in space as a way to travel along those points in space. Remember that parameterizations are not unique; There is more than one way to walk the same path.
+      In <xref ref="S-VVF-Plotting" />, we saw how a vector-valued function of one variable will graphically correspond to a curve in space. While the application of derivatives, integrals, and limits apply to these functions componentwise, we will need to apply our calculus and vector tools <em>together</em> to measure  important properties of these curves. Conceptually, you should think about the parameterization of the curve in space as a description on how to travel through those points in space. Remember that parameterizations are not unique; There is more than one way to walk the same path.
     </p>
+    <figure xml:id="rc-plot1">
+      <caption> A plot of our racetrack</caption>
+      <interactive xml:id="interactive-rc-plot1" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          var('t')
+          r2(t)=((3 + 2*sin(t))*cos(t), (3 - ((t - 2)*sin(4*t)))*sin(t), 1/40*t^2 *sin(3*t))
+          plot6=parametric_plot(150*r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=2)
+          show(plot6,viewpoint=[[-0.0881,-0.4429,-0.8922],159.87],camera_position=[406.6483,840.0159,786.1739])
+        </slate>
+      </interactive>
+    </figure>
     <p>
-      For example, consider the curve in space that we want to study looks like this (show racetrack plot) and is actually a race track. Not every driver will travel along this curve in the same way, but every driver has to go through these same points in space (everyone will stay on the track and not take shortcuts). Some properties you measure will depend on the particular way that a driver goes along the course and some properties will be the same for all drivers (when measured at the same location on the track). 
+      For example, consider the curve in space that we want a race track as shown in <xref ref="rc-plot1" />. Not every driver will travel along this racetrack in the same way, but every driver has to go through these same points in space (everyone will stay on the track and not take shortcuts). In the vocabulary of this chapter, any parameterization of this curve has to contain the same points, but can possibly go through these <m>x</m>, <m>y</m>, <m>z</m> coordinates at different times. More generally, some properties you measure will depend on the particular way that a driver goes along the course and some properties will be the same for all drivers (when measured at the same location on the track). 
     </p>
     <exploration xml:id="PA-Bike">
       <introduction>
@@ -96,65 +107,137 @@
   <subsection>
     <title>Direction of travel</title>
     <p>
-      T is the direction of travel. Should make sense from our discussion of the velocity vector that <m>\vv(t)=\vr'(t)</m> is in the direction of travel. Since speed is not 1 we define the direction of travel as follows.
-      <definition xml:id="def-">
+      Based on our work in <xref ref="vvf-derivative" />, if <m>\vr(t)</m> is a parameterization of a curve in space, then the velocity vector, <m>\vv(t)=\vr'(t)</m>, is in the direction of travel. Since the speed, <m>\Vert\vv(t)\Vert</m>, is not always 1 (the velocity is not a unit vector), we define the <term>direction of travel</term> as follows.
+    </p>
+      <definition xml:id="def-T">
         <statement>
           <p>
-            The unit tangent vector to a curve is denoted by <m>\vec{T}(t)</m> is computed by 
+            The <term>unit tangent vector</term> to a curve is denoted by <m>\vec{T}(t)</m> is computed by 
             <me> \vec{T}(t)=\frac{\vv(t)}{\Vert{\vv(t)}\Vert}</me>
-            The unit tangent vector measures the direction of travel along a parameterized curve.
+           and measures the direction of travel along a parameterized curve.
           </p>
         </statement>
       </definition>
-      The unit tangent exists as long as the velocity exists and is not the zero vector. This should make sense because if there is not motion or there is jump/discontinuity in the derivative, the direction of travel at that instant does not make sense. 
+    <p>
+      From the definition, the unit tangent exists as long as the velocity exists and is not the zero vector. If the velocity vector is <m>\vec{0}</m>, then the object is not moving, thus the direction of travel would not make sense at that instant. If there is a jump or discontinuity in the derivative (<m>\vv</m> does not exist), the direction of travel at that instant does not make sense because there is not a consistent way to define motion. 
     </p>
 
     <p>
-      The definition of T has allowed us to separate the velocity into its magnitude (speed) and direction (unit tangent). Remember that T changes along the curve and is calculated as a function of the parameter. 
+      The definition of <m>/vT</m> allows us to separate the velocity into its magnitude (speed) and direction (unit tangent). Remember that <m>\vT</m> changes along the curve and is calculated as a function of the parameter.  
       
     </p>
     <example>
       <p>
-        Example that shows how to calculuate T for a helix. Should make sense of all of these calculations along the way including looking at t=pi/2 and t=5pi/4. Show that you can use the velocity and speed at a single value to calculate for just one t value.
+        For our first example, we will look computing the unit tangent vector of a helix. In particular, we will look at the helix traced out by <m>\vr(t)=\langle \cos(t),\sin(t),\frac{t}{\pi}\rangle </m>. 
+      </p>
+      <figure xml:id="helix-plot1">
+        <caption> A plot of our racetrack</caption>
+        <interactive xml:id="interactive-helix-plot1" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            var('t')
+            r2(t)=(sin(t),cos(t),t/pi)
+            plot7=parametric_plot(r2(t),(t,-pi,3*pi),aspect_ratio=1,color="black",thickness=2)
+            show(plot7,viewpoint=[[0.0835,-0.457,-0.8855],198.37],camera_position=[-1.8432,4.8767,4.7062])
+          </slate>
+        </interactive>
+      </figure>
+      <p>
+        Based on our parameterization, we have velocity vector given by <m>\vv(t)=\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </m>, which has speed given by <me>\text{speed}(t) = \Vert\vv(t)\Vert = \sqrt{(-\sin(t))^2+(\cos(t))^2+(\frac{1}{\pi})^2}= \sqrt{1+\frac{1}{\pi^2}}</me>
+        One of the useful and unique ideas for this example is that we have a constant speed. No matter what time look at, the speed is always <m> \sqrt{1+\frac{1}{\pi^2}} </m>. Using <xref ref="def-T" />, we can see that 
+        <me> \vT(t)= \frac{\vv(t)}{\Vert{\vv(t)}\Vert}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </me>
+        If we look at <m>t=\frac{\pi}{2}</m>, then <m>\vT(\frac{\pi}{2})=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -1,0,\frac{1}{\pi} \rangle</m>. If <m>t=\frac{5\pi}{4}</m>, then <m>\vT(\frac{5\pi}{4})=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle \frac{\sqrt{2}}{2},-\frac{\sqrt{2}}{2},\frac{1}{\pi} \rangle</m>. In <xref ref="helix-plot2" />, <m>\vT(\frac{\pi}{2})</m> is plotted in red and <m>\vT(\frac{5\pi}{4})</m> is plotted in blue. Both of these vectors are unit length and tangent to the curve in the direction of travel for that instant. 
+      </p>
+      <figure xml:id="helix-plot2">
+        <caption> A plot of our racetrack</caption>
+        <interactive xml:id="interactive-helix-plot2" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            var('t')
+            r2(t)=(sin(t),cos(t),t/pi)
+            plot8=parametric_plot(r2(t),(t,-pi,3*pi),aspect_ratio=1,color="black",thickness=2)
+            tval=pi/2
+            pos=r2(tval)
+            v2(t)=diff(r2,t)
+            vt=v2(tval)
+            T=vt/norm(vt)
+            plot8+=arrow(pos,pos+T,color="red",thickness=2)
+            plot8+=text3d("T",pos+1.15*T,color="red",fontsize=20)
+            tval=5*pi/4
+            pos=r2(tval)
+            v2(t)=diff(r2,t)
+            vt=v2(tval)
+            T=vt/norm(vt)
+            plot8+=arrow(pos,pos+T,color="blue",thickness=2)
+            plot8+=text3d("T",pos+1.15*T,color="blue",fontsize=20)
+            show(plot8,viewpoint=[[-0.1392,-0.4403,-0.887],148.67],camera_position=[2.8862,4.3607,5.0912])
+          </slate>
+        </interactive>
+      </figure>
+      <p>
+        Note that we can also find <m>\vT(\frac{\pi}{2})</m> by taking <m>\vv(\frac{\pi}{2}) = \langle -1,0,\frac{1}{\pi} \rangle </m> and shrinking <m>\vv</m> to be a unit vector. We will often use this idea that because our definitions and theorems work for all <m>t</m>-values, then we can apply them at a specific <m>t</m>-value. This often has the added advantage that computations tend to be manageable to be done by hand because you are not concerned with how the measurement is done for every time. 
       </p>
     </example>
     <activity>
       <task>
         <statement>
           <p>
-            Find v, speed, and T for a line given by 3t-1,2-2t,5+t
+            Find <m>\vv</m>, speed, and <m>\vT</m> for a line given by the parameterization <m>\vr(t)=\langle 3t-1,2-2t,5+t\rangle</m>. Write a few sentences about why your results make sense and do not vary over time.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Find v, speed, and T for the curve given by t,t^2,t^3
+            Find <m>\vv</m>, speed, and <m>\vT</m> for the curve given by the parameterization <m>\vr(t)=\langle t,t^2,t^3\rangle</m>.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Find T at the point P if the tangent line to the curve through P is given by 2-7t, 3t+1,-4t-1
+            Find <m>\vT</m> at the point <m>P</m> if the tangent line to the curve through <m>P</m> is given by <m>\langle 2-7t, 3t+1,-4t-1\rangle</m>.
           </p>
         </statement>
       </task>
     </activity>
     <p>
-      Recalling our analogy of our parameterization describing how we are driving along a racetrack, T measures the direction that that car is heading in at any given moment. Look at t=2 on ounr track, we see that T(2)=  Show a plot with all of this.
-      What direction is the car turning at t=2? you can see by the plot that the car will be be turning right/left, but that is a relative direction to the car. So how can we measure the direction that the car is turning at this instant, in terms of the larger coordinate system?
-      
+      Recalling our analogy of our parameterization describing how someone drives along a racetrack, <m>\vT</m> measures the direction that that car is heading in at any given instant. If we look at <m>t=2</m> on our track, we see that <m>\vT(2)\approx \langle -0.881293609455976, -0.469142150813613, 0.0568085932059239 \rangle</m>. This is shown in <xref ref="rc-plot2" />. What direction is the car turning at <m>t=2</m>? You can see by the plot that the car will be be turning left, but that is a relative direction to the car. So how can we measure the direction that the car is turning at this instant, in terms of the <m>xyz</m>-coordinate system?
     </p>
+    <figure xml:id="rc-plot2">
+      <caption> A plot of our racetrack with <m>\vT(2)</m> plotted in red</caption>
+      <interactive xml:id="interactive-rc-plot2" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          var('t')
+          r2(t)=((3 + 2*sin(t))*cos(t), (3 - ((t - 2)*sin(4*t)))*sin(t), 1/40*t^2 *sin(3*t))
+          tval=2
+          rescale=1/3
+          pos=r2(tval)
+          plot9=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=1,frame=False,)
+          plot9+=point(pos,color="black",size=30)
+          v2(t)=diff(r2,t)
+          a2(t)=diff(v2,t)
+          vt=v2(tval)
+          at=a2(tval)
+          T=vt/norm(vt)
+          aTT=(at*T)*T
+          aN=sqrt(norm(at)^2-(at*T)^2)
+          aNN=at-aTT
+          N=(1/aN)*aNN
+          offset=0.25
+          plot9+=arrow(pos,pos+T,color="red",thickness=5)
+          plot9+=text3d("T",pos+1.15*T-0.25*N,color="red",fontsize=20)
+          show(plot9,viewpoint=[[-0.0719,-0.5055,-0.8598],166.05],camera_position=[2.2814,6.9111,4.4164])
+        </slate>
+      </interactive>
+    </figure>
 <p>
-  Let's look at <m>\vec{T}'=\frac{d\vec{T}}{dt}</m>, which will measure how quickly <m>\vec{T}</m> is changing in terms of the parameter. Remember that vectors have magnitude and direction, so the derivative of a vector valued function of 1 variable can measure the change in the magnitude and a change in the direction. Since T will always have length 1 (when T exists), all of the change in T will correspond to a change in direction. So the direction of <m>\vec{T}'=\frac{d\vec{T}}{dt}</m> will be exactly what we are looking for; namely, <m>\vec{T}'=\frac{d\vec{T}}{dt}</m> will be in the direction of turning. We don't care (for now) about how fast the car is turning, just what direciton that turning is in. So we define N as the unit vector in the direction of <m>\vec{T}'=\frac{d\vec{T}}{dt}</m>.
+  Let's look at <m>\vec{T}'=\frac{d\vec{T}}{dt}</m>, which will measure how quickly <m>\vec{T}</m> is changing in terms of the parameter. Remember that vectors have magnitude and direction, so the derivative of a vector valued function of 1 variable will measure the change in the magnitude and change in the direction. Since <m>\vT</m> will always have length 1 (when <m>\vT</m> exists), all of the change in \<m>\vT</m> will correspond to a change in direction. So the direction of <m>\vec{T}'=\frac{d\vec{T}}{dt}</m> will be exactly what we are looking for; namely, <m>\vec{T}'=\frac{d\vec{T}}{dt}</m> will be in the direction of turning. We don't care (for now) about how fast the car is turning, just what direction that turning is in. So we define the unit normal vector, denoted <m>\vN</m>, as the unit vector in the direction of <m>\vec{T}'=\frac{d\vec{T}}{dt}</m>.
 </p>
 <definition xml:id="def-N">
   <statement>
     <p>
       The unit normal vector to a curve is denoted by <m>\vec{N}(t)</m> is computed by 
-            <me> \vec{N}(t)=\frac{\vec{T}'(t)}{\Vert{\vec{T}'(t)}}</me>
-            The unit norml vector measures the direction of turning along a parameterized curve.
+        <me> \vec{N}(t)=\frac{\vec{T}'(t)}{\Vert{\vec{T}'(t)}}</me>
+      The unit norml vector measures the direction of turning along a parameterized curve.
     </p>
   </statement>
 </definition>
