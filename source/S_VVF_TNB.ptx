@@ -123,10 +123,10 @@
     </p>
 
     <p>
-      The definition of <m>/vT</m> allows us to separate the velocity into its magnitude (speed) and direction (unit tangent). Remember that <m>\vT</m> changes along the curve and is calculated as a function of the parameter.  
+      The definition of <m>\vT</m> allows us to separate the velocity into its magnitude (speed) and direction (unit tangent). Remember that <m>\vT</m> changes along the curve and is calculated as a function of the parameter.  
       
     </p>
-    <example>
+    <example xml:id="helix-Texample">
       <p>
         For our first example, we will look computing the unit tangent vector of a helix. In particular, we will look at the helix traced out by <m>\vr(t)=\langle \cos(t),\sin(t),\frac{t}{\pi}\rangle </m>. 
       </p>
@@ -236,44 +236,185 @@
   <statement>
     <p>
       The unit normal vector to a curve is denoted by <m>\vec{N}(t)</m> is computed by 
-        <me> \vec{N}(t)=\frac{\vec{T}'(t)}{\Vert{\vec{T}'(t)}}</me>
-      The unit norml vector measures the direction of turning along a parameterized curve.
+        <me> \vec{N}(t)=\frac{\vec{T}'(t)}{\Vert{\vec{T}'(t)}\Vert}</me>
+      The unit normal vector measures the direction of turning along a parameterized curve.
     </p>
   </statement>
 </definition>
-
-<p>
-  When does N exist/not exist?
-</p>
-<example>
-  <p>
-    calculate N for the helix example. Make sense of these results at a few points. Note how clean the calculations come out here.
-  </p>
-</example>
-<activity xml:id="difficult-calcN">
+<activity>
   <introduction>
     <p>
-      In general, calculating N for all times ends up being very difficult because of the nesting of chain rules involved in the definition.
+      Based on the definition of the unit normal, there are a few ways that <m>\vN</m> will not exist. We will look at the meaning three different cases:
+      <ol>
+        <li><m>\vN</m> will not exist if <m>\vT</m> does not exist </li>
+        <li><m>\vN</m> will not exist if <m>\vT'=\frac{d\vec{T}}{dt}</m> does not exist </li>
+        <li><m>\vN</m> will not exist if <m>\vT'=\frac{d\vec{T}}{dt}=\vec{0}</m> </li>
+      </ol>
     </p>
   </introduction>
   <task>
     <statement>
       <p>
-        calculate v, speed, and a for t,t^2,t^3 path
+         Draw an example of a curve such that <m>\vT</m> does not exist at a point on your curve. Explain why <m>\vT</m> does not exist based on your plot and explain why <m>\vN</m> does not exist at the same point.
       </p>
     </statement>
   </task>
   <task>
     <statement>
       <p>
-        Now calculate T(t) for the t,t^2,t^3 path
+         Draw an example of a curve such that <m>\vT'=\frac{d\vec{T}}{dt}</m> does not exist at a point on your curve. Explain why <m>\vT'=\frac{d\vec{T}}{dt}</m> does not exist based on your plot and explain why <m>\vN</m> does not exist at the same point.
       </p>
     </statement>
   </task>
   <task>
     <statement>
       <p>
-        Now calculate the first component of T'. 
+         Draw an example of a curve such that <m>\vT'=\frac{d\vec{T}}{dt}=\vec{0}</m> at a point on your curve. Explain why <m>\vT'=\frac{d\vec{T}}{dt}=\vec{0}</m> based on your plot and explain why <m>\vN</m> does not exist at the same point.
+      </p>
+    </statement>
+  </task>
+</activity>
+
+<example>
+  <p>
+    From our work in <xref ref="helix-Texample" />, we calculated
+    <me> \vT(t)= \frac{\vv(t)}{\Vert{\vv(t)}\Vert}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </me>
+    Using the definition of <m>\vN</m>, we need to compute the derivative of <m>\vT</m> with respect to <m>t</m>. 
+    <me> \vT(t)'=\frac{d\vT}{dt}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\cos(t),-\sin(t),0 \rangle </me>
+    Note that the derivative of <m>\vT</m> is easily calculated for all time and this will rarely be the case. Further, making a unit vector in the direction of <m>\vT(t)'=\frac{d\vT}{dt}</m> will be fairly easy and give us the following calculation:
+    <md>
+      <mrow> \vec{N}(t) \amp= \frac{\vec{T}'(t)}{\Vert{\vec{T}'(t)}\Vert} </mrow>
+      <mrow>            \amp= \frac{ \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\cos(t),-\sin(t),0 \rangle }{\frac{1}{\sqrt{1+\frac{1}{\pi^2}}}} </mrow>
+      <mrow>            \amp=  \langle -\cos(t),-\sin(t),0 \rangle </mrow>
+    </md> 
+    </p>
+    <p>
+      We can calculate <m>\vN(\frac{\pi}{2})=\langle 0,-1,0 \rangle</m> and <m>\vN(\frac{5\pi}{4})=\langle \frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2},0 \rangle</m>. If we add these vectors to the plot of the helix with the Unit Tangent Vectors, as in , we can see that the direction of turning (as measured by <m>\vN</m>) is pointing toward the center of the helix. This should make sense the the direction you are turning is toward the inside of the circular trace. Note that the Unit Tangent vector has a vertical component because which corresponds to going <q>up</q> the helix but there is no vertical component to <m>\vN</m>. This is because there is vertical motion, but there is no turning in the vertical direction. 
+    </p>
+    <figure xml:id="helix-plot3">
+      <caption> A plot of the helix with <m>\vT</m> and <m>\vN</m> plotted for a couple points</caption>
+      <interactive xml:id="interactive-helix-plot3" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          var('t')
+          offset=0.2
+          r2(t)=(sin(t),cos(t),t/pi)
+          plot10=parametric_plot(r2(t),(t,-pi,3*pi),aspect_ratio=1,color="black",thickness=2)
+          tval=pi/2
+          pos=r2(tval)
+          v2(t)=diff(r2,t)
+          a2(t)=diff(v2,t)
+          vt=v2(tval)
+          at=a2(tval)
+          T=vt/norm(vt)
+          aTT=(at*T)*T
+          aN=sqrt(norm(at)^2-(at*T)^2)
+          aNN=at-aTT
+          N=(1/aN)*aNN
+          plot10+=arrow(pos,pos+T,color="red",thickness=2)
+          plot10+=text3d("T",pos+1.15*T,color="red",fontsize=20)
+          plot10+=arrow(pos,pos+N,color="green",thickness=2)
+          plot10+=text3d("N",pos+N-offset*T,color="green",fontsize=20)
+          tval=5*pi/4
+          pos=r2(tval)
+          v2(t)=diff(r2,t)
+          a2(t)=diff(v2,t)
+          vt=v2(tval)
+          at=a2(tval)
+          T=vt/norm(vt)
+          aTT=(at*T)*T
+          aN=sqrt(norm(at)^2-(at*T)^2)
+          aNN=at-aTT
+          N=(1/aN)*aNN
+          plot10+=arrow(pos,pos+T,color="blue",thickness=2)
+          plot10+=text3d("T",pos+1.15*T,color="blue",fontsize=20)
+          plot10+=arrow(pos,pos+N,color="yellow",thickness=2)
+          plot10+=text3d("N",pos+N-offset*T,color="yellow",fontsize=20)
+          show(plot10,viewpoint=[[-0.1392,-0.4403,-0.887],148.67],camera_position=[2.8862,4.3607,5.0912])
+        </slate>
+      </interactive>
+    </figure>
+  <p>
+    This example is the exceptional case where <m>\vN</m> is easily calculated directly from the definition and the calculations are fairly clean. In the next activity, we will look at a curve with a simple polynomial parameterization that will demonstrate how easily the calculation of <m>\vN</m> can go off the rails.
+  </p>
+
+</example>
+<activity xml:id="difficult-calcN">
+  <introduction>
+    <p>
+      In general, calculating <m>/vN</m> for all times ends up being very difficult because there are multiple compositions of functions involved which means there is a nesting of chain rules involved in the definition. In this activity, we will examine how to go through the direct calculation of <m>\vN</m> for a curve parameterized by <m>\vr(t) =\langle t,t^2,t^2\rangle </m>.
+    </p>
+  </introduction>
+  <task>
+    <statement>
+      <p>
+        Given the parameterization, <m>\vr(t) =\langle t,t^2,t^2\rangle </m>, calculate <m>\vv(t)</m> and <m>\text{speed}(t)</m>.
+      </p>
+    </statement>
+    <answer>
+      <p>
+        <m> \vv(t)= \langle 1,2t,3t^2\rangle </m> and <m>\text{speed}(t)=\sqrt{1+4t^2+9t^4}</m>
+      </p>
+    </answer>
+  </task>
+  <task>
+    <statement>
+      <p>
+        Now calculate <m>\vT(t)</m> for the <m>\vr(t) =\langle t,t^2,t^2\rangle </m> path.
+      </p>
+    </statement>
+    <answer>
+      <p>
+        <m>\vT= \frac{1}{\sqrt{1+4t^2+9t^4}} \langle 1,2t,3t^2\rangle </m>
+      </p>
+    </answer>
+  </task>
+  <task>
+    <statement>
+      <p>
+        We are going to take it slow and calculate the first component of <m>\vT'=\frac{d\vT}{dt}</m>. Remember that the derivative with respect to <m>t</m> is computed componentwise.  
+      </p>
+    </statement>
+    <answer>
+      <p>
+        The first component of <m>\vT'=\frac{d\vT}{dt}</m> is <m>-\frac{1}{2}\left(1+4t^2+9t^4\right)^{-3/2} (8t+36t^3)</m>
+      </p>
+    </answer>
+  </task>
+  <task>
+    <statement>
+      <p>
+        Now calculate the second component of <m>\vT'=\frac{d\vT}{dt}</m>. 
+      </p>
+    </statement>
+    <answer>
+      <p>
+        The second component of <m>\vT'=\frac{d\vT}{dt}</m> is <m>(2)(1+4t^2+9t^4)^{-1/2}+(2t)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right)</m>
+      </p>
+    </answer>
+  </task>
+  <task>
+    <statement>
+      <p>
+        Now calculate the third component of <m>\vT'=\frac{d\vT}{dt}</m>. 
+      </p>
+    </statement>
+    <answer>
+      <p>
+        The third component of <m>\vT'=\frac{d\vT}{dt}</m> is <m>(6t)(1+4t^2+9t^4)^{-1/2}+(3t^2)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right)</m>
+      </p>
+    </answer>
+  </task>
+  <task>
+    <statement>
+      <p>
+        Put together your work for the three components of <m>\vT'=\frac{d\vT}{dt}</m> and compute <m>\Vert\frac{d\vT}{dt}\Vert</m>.
+      </p>
+    </statement>
+  </task>
+  <task>
+    <statement>
+      <p>
+        You likely gave up on the previous task or ran out of paper to write out <m>\frac{d\vT}{dt}</m> and <m>\Vert\frac{d\vT}{dt}\Vert</m>. Instead of more punishing algebra, describe how you would calculate <m>\vN</m> if you had <m>\frac{d\vT}{dt}</m> and <m>\Vert\frac{d\vT}{dt}\Vert</m>.
       </p>
     </statement>
   </task>
