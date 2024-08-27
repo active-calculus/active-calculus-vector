@@ -104,7 +104,7 @@
   </introduction>
 
 
-  <subsection>
+  <subsection xml:id="subsec-T">
     <title>Direction of travel</title>
     <p>
       Based on our work in <xref ref="vvf-derivative" />, if <m>\vr(t)</m> is a parameterization of a curve in space, then the velocity vector, <m>\vv(t)=\vr'(t)</m>, is in the direction of travel. Since the speed, <m>\Vert\vv(t)\Vert</m>, is not always 1 (the velocity is not a unit vector), we define the <term>direction of travel</term> as follows.
@@ -126,7 +126,7 @@
       The definition of <m>\vT</m> allows us to separate the velocity into its magnitude (speed) and direction (unit tangent). Remember that <m>\vT</m> changes along the curve and is calculated as a function of the parameter.  
       
     </p>
-    <example xml:id="helix-Texample">
+    <example xml:id="helix-T">
       <p>
         For our first example, we will look computing the unit tangent vector of a helix. In particular, we will look at the helix traced out by <m>\vr(t)=\langle \cos(t),\sin(t),\frac{t}{\pi}\rangle </m>. 
       </p>
@@ -199,7 +199,10 @@
         </statement>
       </task>
     </activity>
-    <p>
+    </subsection>
+    <subsection xml:id="subsec-N">
+      <title>The Direction of Turning</title>
+          <p>
       Recalling our analogy of our parameterization describing how someone drives along a racetrack, <m>\vT</m> measures the direction that that car is heading in at any given instant. If we look at <m>t=2</m> on our track, we see that <m>\vT(2)\approx \langle -0.881293609455976, -0.469142150813613, 0.0568085932059239 \rangle</m>. This is shown in <xref ref="rc-plot2" />. What direction is the car turning at <m>t=2</m>? You can see by the plot that the car will be be turning left, but that is a relative direction to the car. So how can we measure the direction that the car is turning at this instant, in terms of the <m>xyz</m>-coordinate system?
     </p>
     <figure xml:id="rc-plot2">
@@ -275,7 +278,7 @@
   </task>
 </activity>
 
-<example>
+<example xml:id="helix-N">
   <p>
     From our work in <xref ref="helix-Texample" />, we calculated
     <me> \vT(t)= \frac{\vv(t)}{\Vert{\vv(t)}\Vert}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </me>
@@ -341,7 +344,7 @@
 <activity xml:id="difficult-calcN">
   <introduction>
     <p>
-      In general, calculating <m>/vN</m> for all times ends up being very difficult because there are multiple compositions of functions involved which means there is a nesting of chain rules involved in the definition. In this activity, we will examine how to go through the direct calculation of <m>\vN</m> for a curve parameterized by <m>\vr(t) =\langle t,t^2,t^2\rangle </m>.
+      In general, calculating <m>\vN</m> for all times ends up being very difficult because there are multiple compositions of functions involved which means there is a nesting of chain rules involved in the definition. In this activity, we will examine how to go through the direct calculation of <m>\vN</m> for a curve parameterized by <m>\vr(t) =\langle t,t^2,t^2\rangle </m>.
     </p>
   </introduction>
   <task>
@@ -420,37 +423,96 @@
   </task>
 </activity>
 <p>
-  Remember that to find N, we will need to find the second and third components of T', then divide T' by its magnitude (which will be A LOT)
+  As talked about in <xref ref="subsec-T" />, the unit tangent vector, <m>\vT</m>, measures the direction of travel along a parameterized curve. The unit normal vector, <m>\vN</m>, measures the direction that an object is turning (in order to stay on the curve). In <xref ref="helix-plot3" />, we saw that the unit tangent and unit normal vectors were orthogonal to each other (when measured at the same point).
+</p>
+<question>
+  <p>
+    Can <m>\vN</m> have any part parallel to <m>\vT</m> or must <m>\vt</m> and <m>\vN</m> be orthogonal?
+  </p>
+</question>
+<p>
+  By <xref ref="def-N" />, the unit normal vector is parallel to <m>\vT'=\frac{d\vT}{dt}</m>. The derivative of the unit tangent vector will measure the change in <m>\vT</m>, and since <m>\vT</m> is a vector, this will include change in the magnitude and in the direction of <m>\vT</m>. Since the length of <m>\vT</m> does not change, then all of <m>\vT'=\frac{d\vT}{dt}</m> will have to be a change in the direction of <m>\vT</m> and not at all in the direction of <m>\vT</m>. This is an intuitive argument for why <m>\vT</m> and <m>\vN</m> are orthogonal.
 </p>
 <p>
-  We have talked about how T measures the direction of travel along a parameterized curve and N measures the direction of turning. Can N have any part parallel to T? No. N is parallel to T' and since T does not change length, the derivative of T cannot be parallel to T. All of the change of T has to be a change in direction. Thus T is orthogonal to N
+  (Maybe this becomes an exercise the way Steve did that) We can also give a more rigorous algebraic argument, but this argument does not provide insight into the measurements or relationship between <m>\vT</m> and <m>\vN</m>. For this argument, we will look at the derivative of <m>\Vert \vT \Vert^2</m>. Because the length of <m>\vT</m> is constant, then <m> \frac{d}{dt}\left(\Vert \vT \Vert^2 \right)=0</m>. To simplify <m> \frac{d}{dt}\left(\Vert \vT \Vert^2 \right)</m>, we will use properties of the dot product related to the magnitude, the derivative product rule (across the dot product), then the commutative property of the dot product, respectively. .
+  <md>
+    <mrow> \frac{d}{dt}\left(\Vert \vT \Vert^2 \right) \amp=\frac{d}{dt}\left(\vT \cdot \vT \right)  </mrow>
+    <mrow> \amp= \vT' \cdot \vT + \vT \cdot \vT' </mrow>
+    <mrow> \amp= 2 \vT \cdot \vT'</mrow>
+  </md>
+  If <m>2 \vT \cdot \vT' =0</m>, then <m>\vT</m> and <m>\vT'</m> are orthogonal. Since <m>\vN</m> is parallel to <m>\vT'</m>, then <m>\vT</m> and <m>\vN</m> are orthogonal.
 </p>
-  </subsection>
+</subsection>
 <subsection xml:id="subsec-B">
   <title>The Binormal Vector</title>
   <definition xml:id="def-B">
     <statement>
       <p>
-        The Binormal vector, <m>\vec{B}</m>, for a parameterized curve is defined as <me> \vec{B}=\vec{T} \times \vec{N}</me>
+        The <term>Binormal vector</term>, <m>\vec{B}</m>, for a parameterized curve is defined as <me> \vec{B}=\vec{T} \times \vec{N}</me>
       </p>
     </statement>
   </definition>
   <p>
-    This definition of B creates a three dimensional right handed coordinate system that is relative to the motion along the curve. B will be a unit vector because <m>\Vert \vT \times \vN \Vert = \Vert \vT\Vert \Vert \vN \Vert \sin(theta)</m> where theta is the angle between <m>\vT</m> and <m>\vN</m>. Since <m>\vT</m> and <m>vN</m> are normal vectors and orthogonal to each other, then <m>\Vert \vT\Vert \Vert \vN \Vert \sin(theta)= 1</m>. B will give the axis of rotation for the motion along the curve. Note that this measure of rotation follows our right handed measure of rotation. If you put the fingers of your right hand in the direction of travel (<m>\vT</m>) and curl your fingers in the direction of turning (<m>\vN</m>), then your thumb will correspond to the axis of rotation based on how you are moving along the curve.
+    This definition of <m>\vB</m> creates a three dimensional right handed coordinate system that is relative to the motion along the curve. The Binormal vector will be a unit vector because <m>\Vert \vT \times \vN \Vert = \Vert \vT\Vert \Vert \vN \Vert \sin(\theta)</m> where <m>\theta</m> is the angle between <m>\vT</m> and <m>\vN</m>. Since <m>\vT</m> and <m>\vN</m> are unit vectors and orthogonal to each other, then <m>\Vert \vT\Vert \Vert \vN \Vert \sin(\theta)= 1</m>. B will give the axis of rotation for the motion along the curve. Note that this measure of rotation follows our right handed measure of rotation. If you put the fingers of your right hand in the direction of travel (<m>\vT</m>) and curl your fingers in the direction of turning (<m>\vN</m>), then your thumb will correspond to the axis of rotation based on how you are moving along the curve.
   </p>
   <p>
-    This TNB frame is sometimes called the Frenet frame and is very useful in environments like aviation and space travel because so much of the relevent information needs be in terms of relative measurements to the craft and it's motion.
+    This TNB frame is sometimes called the Frenet frame and is very useful in environments like aviation and space travel because so much of the relevant information needs be in terms of relative measurements to the craft and it's motion.
   </p>
   <example>
     <p>
-      Compute B for the helix and make sense of the result.
+      In this example, we will complete our calculation of the TNB frame for the helix given by <m>\vr(t)=\langle \cos(t),\sin(t)\frac{1}{pi}\rangle </m>. From <xref ref="helix-T" /> and <xref ref="helix-N" /> we have the following:
+        <md>
+          <mrow> \vT(t) \amp= \frac{\vv(t)}{\Vert{\vv(t)}\Vert}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </mrow>
+          <mrow> \vN \amp= \langle -\cos(t),-\sin(t),0\rangle </mrow>
+        </md> 
+      Using the definition for <m>\vB</m>, we get 
+      <me> \vB = \vT \times \vN = \frac{1}{\sqrt{1+\frac{1}{\pi^2}}} \langle -\frac{1}{\pi}\sin(t), -\frac{1}{\pi}\cos(t), \sin(t)^2+\cos(t)^2 \rangle </me>
+      Factoring out <m>\frac{1}{\pi}</m> from each component and simplifying the coefficient gives
+      <me> \vB = \frac{1}{\sqrt{\pi^2}+1} \langle -\sin(t), -\cos(t), \pi \rangle  </me>
+    </p>
+    <figure xml:id="helix-plot4">
+      <caption> A plot of the helix with the TNB frame plotted</caption>
+      <interactive xml:id="interactive-helix-plot4" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          var('t')
+          r2(t)=(cos(t),sin(t),t/pi)
+          rescale=1/3
+          offset=0.15
+          @interact
+          def TNBhelix(tval=slider(-3,9,default=1,label="t value")):
+              pos=r2(tval)
+              plot11=parametric_plot(r2(t),(t,-pi,3*pi),aspect_ratio=1,color="black",thickness=2,axes=False)
+              plot11+=point(pos,color="black",size=25)
+              v2(t)=diff(r2,t)
+              a2(t)=diff(v2,t)
+              vt=v2(tval)
+              at=a2(tval)
+              T=vt/norm(vt)
+              aTT=(at*T)*T
+              aN=sqrt(norm(at)^2-(at*T)^2)
+              aNN=at-aTT
+              N=(1/aN)*aNN
+              B(t)=(-1/(sqrt(1+pi^2))*sin(t),-1/(sqrt(1+pi^2))*cos(t),pi/(sqrt(1+pi^2)))
+              Bt=B(tval)
+              plot11+=arrow(pos,pos+T,color="red",thickness=2)
+              plot11+=text3d("T",pos+T-2*offset*N,color="red",fontsize=20)
+              plot11+=arrow(pos,pos+N,color="blue",thickness=2)
+              plot11+=text3d("N",pos+N-offset*T,color="blue",fontsize=20)
+              plot11+=arrow(pos,pos+Bt,color="green")
+              plot11+=text3d("B",pos+1.1*Bt,color="green",fontsize=20)
+              show(plot11,viewpoint=[[-0.3294,-0.5101,-0.7946],125.68],camera_position=[5.6019,2.835,3.815])
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      Note that as you change the <m>t</m>-value and move around the helix, the unit tangent points in the direction of travel, the unit normal points in the direction the object is turning (always to the left while going up the helix), and the Binormal vector is the axis of rotation for the <m>\vT</m> and <m>\vN</m> vectors. If you curl the fingers on your right hand from the direction of <m>\vT</m> toward the direction of <m>\vN</m>, notice that your thumb will point in the direction of <m>\vB</m>. This sets up the TNB frame as a right-handed coordinate system that changes with the relative motion of the object. 
     </p>
   </example>
 </subsection>
 <subsection xml:id="subsec-driverroadTNB">
   <title>The Driver or the Road: TNB Frame</title>
   <p>
-    In this subsection, we will talk about whether the measurements of T, N, and B will be properties of the driver or the road. A parameterized curve also has a stated orientation (direction of travel). Remember that a measurement involving a parameterized curve is a property of the driver if two different parameterizations can have the different measurements at the same location on the curve. Remember that this does not mean that you look at the same parameter value on the curve, but rather the same location on the curve. A measurement on a parametertized curve is a property of the road if every parameterization of this curve must have the same value(s) for a location on the curve. This is the same ideas as was done in <xref ref="driver_road_act" />.
+    In this subsection, we will talk about whether the measurements of <m>\vT</m>, <m>\vN</m>, and <m>\vB</m> will be properties of the driver or the road. A parameterized curve also has a stated orientation (direction of travel). Remember that a measurement involving a parameterized curve is a property of the driver if two different parameterizations can have the different measurements at the same location on the curve. Remember that this does not mean that you look at the same parameter value on the curve, but rather the same <em>location</em> on the curve. A measurement on a parametertized curve is a property of the road if every parameterization of this curve must have the same measurement for a fixed location on the curve. This is the same ideas as was done in <xref ref="driver_road_act" />.
   </p>
   <activity>
     <task>
@@ -470,42 +532,30 @@
     <task>
       <statement>
         <p>
-          Is B a property of the driver or the road? Justify your ideas.
+          Is <m>\vB</m> a property of the driver or the road? Justify your ideas.
         </p>
       </statement>
     </task>
   </activity>
 </subsection>
-<subsection xml:id="subsec-rva">
-  <title>Velocity and Acceleration</title>
-  <p>
-    Define and talk about v and a here so can be used
-  </p>
-</subsection>
-  <subsection>
+<subsection>
     <title>Summary</title>
     <ul>
       <li>
         <p>
-          The integration process shows that the length <m>L</m> of a smooth curve defined by <m>\vr(t)</m> on an interval <m>[a,b]</m> is
-          <me>
-            L = \int_a^b |\vr'(t)| \, dt.
-          </me>
+          The unit tangent vector, <m>\vT(t)=\frac{\vv}{\Vert\vv\Vert}</m>, measures the direction of travel for an object along a parameterized curve
         </p>
       </li>
 
       <li>
         <p>
-          Arc length is useful as a parameter because when we parameterize with respect to arc length, we eliminate the role of speed in our calculation of curvature and the result is a measure that depends only on the geometry of the curve and not on the parameterization of the curve.
+          The unit normal vector, <m>\vN(t)=\frac{\vT'}{\Vert\vT'\Vert}</m>, measures the direction that an object is turning in order to stay on a parameterized curve
         </p>
       </li>
 
       <li>
         <p>
-          We define the curvature <m>\kappa</m> of a curve in 2- or 3-space to be the rate of change of the magnitude of the unit tangent vector with respect to arc length, or
-          <me>
-            \kappa = \left\lvert \frac{d\vT}{ds} \right\rvert.
-          </me>
+          The binormal vector, <m>\vB(t)= \vT \times \vN</m>, is the direction for the axis for which <m>\vT</m> and <m>\vN</m> are rotating around
         </p>
       </li>
     </ul>
