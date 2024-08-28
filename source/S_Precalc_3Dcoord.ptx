@@ -249,38 +249,42 @@
       </interactive>
     </figure>
     <p>
-      The location of a point is measured with three coordinates in a three dimensional space. The three dimensional rectangular coordinates are measured as the signed distances two each of the coordinate planes. The point (1,-2,3) is shown in the following plot.
+      The location of a point is measured with three coordinates in a three dimensional space. The three dimensional rectangular coordinates are measured as the signed distances two each of the coordinate planes. The point <m>(1,-2,3)</m> is shown in the following plot.
     </p>
     <figure xml:id="point-in3d">
       <caption>A plot of the point <m>(1,-2,3)</m></caption>
-      <slate surface="sage">
-        from sage.plot.plot3d.plot3d import axes
-        var('t,s')
-        plot15=axes(3,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-        plot15+=point3d((1,-2,3),size=30,color="black")
-        plot15
-      </slate>
+      <interactive xml:id="interactive-point-in3d" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          from sage.plot.plot3d.plot3d import axes
+          var('t,s')
+          plot15=axes(3,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
+          plot15+=point3d((1,-2,3),size=30,color="black")
+          plot15
+        </slate>
+      </interactive>
     </figure>
     <p>
       Notice how hard it is to see where that point in space is positioned without turning the axes. When drawing points (or other plots) in 3D, it is often useful to draw segments or other features that are parallel to coordinate axes in order to help the viewer see the proper orientation and locations. For instance, see how much easier it is to understand the location of the point <m>(1,-2,3)</m> in the plot below because of the parallel structures that are shown on the plot.
     </p>
     <figure xml:id="point-in3d-reference">
       <caption>A plot of the point <m>(1,-2,3)</m> with line segments parallel to the coordinate axes</caption>
-      <slate surface="sage">
-        from sage.plot.plot3d.plot3d import axes
+      <interactive xml:id="interactive-point-in3d-reference" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          from sage.plot.plot3d.plot3d import axes
         var('t,s')
         plot14=axes(3,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
         plot14+=point3d((1,-2,3),size=30,color="black")+parametric_plot3d((t,-2,0),(t,0,1),thickness=3,color="blue")+parametric_plot3d((1,-t,0),(t,0,2),color="green",thickness=3)
         plot14+=parametric_plot3d((1,-2,t),(t,0,3),color="red",thickness=3)
         plot14+=line([(0,0,0),(0,-3,0)],color="black",style="-")
         plot14
-      </slate>
+        </slate>
+      </interactive>
     </figure>
     <activity xml:id="rect3d_followup">
       <title>Drawing Points in 3D</title>
       <introduction>
         <p>
-          In this problem to move “forward” or “backwards” is to move in the direction of positive  x (the x coordinate increases, the y and z remain the same) or negative x (the x coordinate decreases, the y and z remain the same), respectively; “to the right” or “to the left” is moving in the positive or negative y direction, respectively; “up” or “down” is moving in the positive or negative z direction, respectively:
+          In this problem to move <q>forward</q> or <q>backwards</q> is to move in the direction of positive <m>x</m> (the <m>x</m>-coordinate increases, the <m>y</m> and <m>z</m> remain the same) or negative <m>x</m> (the <m>x</m>-coordinate decreases, the <m>y</m> and <m>z</m> remain the same), respectively; <q>to the right</q> or <q>to the left</q> is moving in the positive or negative <m>y</m> direction, respectively; <q>up</q> or <q>down</q> is moving in the positive or negative <m>z</m> direction, respectively:
         </p>
       </introduction>
       <task xml:id="rect3dpart1" >
@@ -309,7 +313,7 @@
   <subsection>
     <title>Fundamental Planes</title>
     <p>
-      At this point we will want to understand graphs of some simple equations in three dimensions. For example, in <m>\R^2</m>, the graphs of the equations <m>x=a</m> and <m>y=b</m>, where <m>a</m> and <m>b</m> are constants, are lines parallel to the coordinate axes. Remember that a graph of an equation is a plot of all points that satisfy this equation; This means that the graph of an equation is a visual representation of all locations whose coordiantes will make the left side of your equation equal to the right side of the equation. The equation should give you a way to test whether a point is on the graph or not. For instance, the graph of <m>x=2</m> in two dimensions will be a vertical line with <m>x</m> intercept of 2, because the points of the form <m>(2,y)</m> satisfy the equation <m>x=2</m> (for any choice of <m>y \in \mathbb{R}</m>. In the next activity we consider the three-dimensional analogs.
+      At this point we will want to understand graphs of some simple equations in three dimensions. For example, in <m>\R^2</m>, the graphs of the equations <m>x=a</m> and <m>y=b</m>, where <m>a</m> and <m>b</m> are constants, are lines parallel to the coordinate axes. Remember that a graph of an equation is a plot of all points that satisfy this equation; This means that the graph of an equation is a visual representation of all locations whose coordiantes will make the left side of your equation equal to the right side of the equation. The equation should give you a way to test whether a point is on the graph or not. For instance, the graph of <m>x=2</m> in two dimensions will be a vertical line with <m>x</m> intercept of 2, because the points of the form <m>(2,y)</m> satisfy the equation <m>x=2</m> (for any choice of <m>y \in \mathbb{R}</m>.) In the next activity we consider the three-dimensional analogs.
     </p>
 
     <activity xml:id="A-9-1-3">
@@ -382,7 +386,7 @@
           for c in vals:
             plot16+=parametric_plot3d((s,t,c),(s,-3,3),(t,-3,3),color="green",opacity=.25)+parametric_plot3d((c,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25) +parametric_plot3d((s,c,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25)
             plot16+=text3d("z="+str(c),(d,d,c),fontsize=15,color="green")+text3d("y="+str(c),(d,c,d),fontsize=15,color="blue")+text3d("x="+str(c),(c,d,d),fontsize=15,color="red")
-          show(plot16.rotate((-.15,-.15,1),pi/2),aspect_ratio=1)
+          show(plot16,aspect_ratio=1)
         </slate>
       </interactive>
     </figure>
@@ -422,15 +426,15 @@
           var('t,s')
           plot3=axes(3,1,color="black")+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
           plot3+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False)+parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False)+parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False)
-          d=2
+          d=3
           names=["First Octant","Second Octant","Third Octant", "Fourth Octant","Fifth Octant","Sixth Octant","Seventh Octant","Eighth Octant"]
           locations=[(d,d,d),(-d,d,d),(-d,-d,d),(d,-d,d),(d,d,-d),(-d,d,-d),(-d,-d,-d),(d,-d,-d)]
           for i in range(len(names)):
               plot3+=text3d(names[i],locations[i],fontsize=20)
-          show(plot3.rotate((-.25,-1,1.25),1.5))
+          show(plot3,aspect_ratio=1)
         </slate>
       </interactive>
-      <!-- The other view in print should use plot3.rotate((1,-.75,-.75),3)-->
+      
     </figure>
     </subsection>
     <subsection xml:id="subsec-distanceformula">
@@ -449,13 +453,13 @@
           <interactive xml:id="interactive-distance" platform="sage" width="90%" aspect="1:1">
             <slate surface="sage">
               var('t')
-              plot18=point3d((0,0,0),size=10,color="black",frame=False)+point3d((1.5,2,1),size=10,color="black")
-              plot18+=text3d("P=(x0,y0,z0)",(0,0,-0.3),color="black",fontsize=15)+text3d("Q=(x1,y1,z1)",(1.5,2,1.3),color="black",fontsize=15)
-              plot18+=line3d([(0,0,0),(1.5,0,0),(1.5,0,1),(1.5,0,0),(1.5,2,0),(1.5,2,1),(1.5,2,0),(0,2,0),(0,2,1),(0,2,0),(0,0,0),(0,0,1),(1.5,0,1),(1.5,2,1),(0,2,1),(0,0,1)],thickness=5,color="black")
-              plot18+=line3d([(0,0,0),(1.5,2,0)],thickness=10,color="red")+text3d("R",(1.7,2.2,-0.1),color="black")+point3d((1.5,2,0),color="black",size=10)
-              plot18+=point3d((1.5,0,0),size=10,color="black")+text3d("S",(1.7,0,-.1),color="black",fontsize=15)
-              plot18+=line3d([(0,0,0),(1.5,2,1)],thickness=10,color="blue")
-              show(plot18.rotate((0,0,-1),0.5),aspect_ratio=1)
+              plot18=point3d((0,0,0),size=30,color="black",frame=False)+point3d((1.5,2,1),size=30,color="black")
+              plot18+=text3d("P=(x0,y0,z0)",(0,0,-0.3),color="black",fontsize=20)+text3d("Q=(x1,y1,z1)",(1.5,2,1.3),color="black",fontsize=20)
+              plot18+=line3d([(0,0,0),(1.5,0,0),(1.5,0,1),(1.5,0,0),(1.5,2,0),(1.5,2,1),(1.5,2,0),(0,2,0),(0,2,1),(0,2,0),(0,0,0),(0,0,1),(1.5,0,1),(1.5,2,1),(0,2,1),(0,0,1)],thickness=4,color="black")
+              plot18+=line3d([(0,0,0),(1.5,2,0)],thickness=4,color="red")+text3d("R",(1.7,2.2,-0.1),color="black",fontsize=20)+point3d((1.5,2,0),color="black",size=30)
+              plot18+=point3d((1.5,0,0),size=30,color="black")+text3d("S",(1.7,0,-.1),color="black",fontsize=20)
+              plot18+=line3d([(0,0,0),(1.5,2,1)],thickness=4,color="blue")
+              show(plot18,aspect_ratio=1,viewpoint=[[-0.9658,-0.1452,-0.2149],69.96],camera_position=[1.9934,-2.6168,2.0633])
             </slate>
           </interactive>
           
@@ -547,11 +551,11 @@
     </p>
 
     <assemblage xml:id="Distance-formula">
-    <title>The distance between points</title>
+    <title>The distance between points in 3D</title>
       <p>
         The distance between points <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> (denoted as <m>|PQ|</m>) in <m>\R^3</m> is given by the formula
       <men xml:id="eq-9-1-Distance-3D">
-        |PQ| = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}.
+        \vert{PQ}\vert = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}.
       </men>
       </p>
     </assemblage>
@@ -561,7 +565,7 @@
     </p>
 
     <p>
-      Equation <xref ref="eq-9-1-Distance-3D"/> can be used to derive the formula for a <term>sphere</term> centered at a point <m>(x_0,y_0,z_0)</m> with radius <m>R</m>. Since the distance from any point <m>(x,y,z)</m> on such a sphere to the point <m>(x_0,y_0,z_0)</m> is <m>r</m>, the point <m>(x,y,z)</m> will satisfy the equation
+      Equation <xref ref="eq-9-1-Distance-3D"/> can be used to derive the formula for a <term>sphere</term> centered at a point <m>(x_0,y_0,z_0)</m> with radius <m>R</m>. Since the distance from any point <m>(x,y,z)</m> on such a sphere to the point <m>(x_0,y_0,z_0)</m> is <m>R</m>, the point <m>(x,y,z)</m> will satisfy the equation
       <me>
         \sqrt{(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2} = R
       </me>
@@ -594,7 +598,7 @@
     <ul>
       <li>
         <p>
-          Coordinates are measured in terms of discances from a location to the coordinate planes. 
+          Coordinates in three dimensional space are measured in terms of distances from a location to the coordinate planes. 
         </p>
       </li>
       <li>
