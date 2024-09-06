@@ -292,7 +292,7 @@
   </subsection>
 
 
-  <subsection>
+  <subsection xml:id="subsec-vecangle">
     <title>The Angle between Vectors</title>
     <p>
       As you saw in <xref ref="PA-dotproduct" />, the dot product measures how much vectors move together and can help us understand the angle between two vectors. If we are given two vectors <m>\vu</m> and <m>\vv</m>, there are two angles that these vectors create, as depicted at left in <xref ref="F_9_3_Angle_between">Figure</xref>. We will call <m>\theta</m>, the smaller of these angles, the <em>angle between these vectors</em><idx><h>vector</h><h>angle between</h></idx>. Notice that <m>\theta</m> lies between 0 and <m>\pi</m> because we would consider the angle from the other side if an angle was greater than <m>\pi</m>.
@@ -372,26 +372,26 @@
         <mrow>\vu\cdot(\vu-\vv) - \vv\cdot(\vu-\vv)=\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
         <mrow>\vu\cdot\vu - 2\vu\cdot\vv + \vv\cdot\vv =\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
         <mrow>-2\vu\cdot\vv =\mathstrut \amp  -2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
-        <mrow>\vu\cdot\vv =\mathstrut \amp  \Vert\vu\Vert\Vert\vv\Vert\cos(\theta).</mrow>
+        <mrow>\vu\cdot\vv =\mathstrut \amp  \Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
       </md>
     </p>
 
     <p>
       To summarize, we have the important relationship
       <men xml:id="E_9_3_dot_angle">
-        \vu\cdot\vv = u_1v_1+u_2v_2 + \ldots + u_nv_n = \Vert\vu\Vert\Vert\vv\Vert\cos(\theta).
+        \vu\cdot\vv = u_1v_1+u_2v_2 + \ldots + u_nv_n = \Vert\vu\Vert\Vert\vv\Vert\cos(\theta)
       </men>
     </p>
 
     <p>
       It is sometimes useful to think of <xref ref="E_9_3_dot_angle"/> as giving us an expression for the angle between two vectors:
       <me>
-        \theta = \cos^{-1}\left(\frac{\vu\cdot\vv}{\Vert\vu\Vert\Vert\vv\Vert}\right).
+        \theta = \cos^{-1}\left(\frac{\vu\cdot\vv}{\Vert\vu\Vert \Vert\vv\Vert}\right)
       </me>
     </p>
 
     <p>
-      The real beauty of this expression is this: the dot product is a very simple algebraic calculation to perform yet it provides us with important geometric information, namely the angle between the vectors, that would be difficult to determine otherwise.
+      The real beauty of this expression is this: the dot product is a very simple algebraic calculation to perform yet it provides us with important geometric information about the angle between the vectors that would be difficult to determine otherwise.
     </p>
 
     <activity xml:id="A_9_3_2_a">
@@ -706,7 +706,7 @@
         <md>
           <mrow> proj_\vv \vu \amp= \left(\frac{\langle 4,3\rangle \cdot \langle 0,2 \rangle  }{\Vert \langle 0,2 \rangle \Vert} \right) \frac{\langle 0,2 \rangle}{\Vert \langle 0,2 \rangle \Vert} </mrow>
           <mrow> \amp= \left(\frac{6}{2}\right) \frac{\langle 0,2 \rangle}{2} </mrow>
-          <mrow> \amp= \left(3) \langle 0,1 \rangle = \langle 0,3 \rangle </mrow>
+          <mrow> \amp= (3) \langle 0,1 \rangle = \langle 0,3 \rangle </mrow>
         </md>
         Note that the scalar <m>(3)</m> in the last equation is <m>comp_\vv \vu</m> and the vector <m>\langle 0,1\rangle</m> is the unit vector in the direction of <m>\vv</m>. 
       </p>
@@ -772,11 +772,11 @@
         </answer>
         <solution>
           <p>
-            <m>\comp_{\vv} \vu = \frac/{\vu\cdot\vv}{\vv\cdot\vv} = \frac{(2)(4) + (6)(-8)}{\sqrt{(4)^2 + (-8)^2}} = \frac{-40}{\sqrt{80}}</m>.
+            <m>\comp_{\vv} \vu = \frac{\vu\cdot\vv}{\vv\cdot\vv} = \frac{(2)(4) + (6)(-8)}{\sqrt{(4)^2 + (-8)^2}} = \frac{-40}{\sqrt{80}}</m>.
           </p>
 
           <p>
-            <m>\proj_{\vv} \vu = \frac/{\vu\cdot\vv}{\vv\cdot\vv} * \vv = \frac{(2)(4) + (6)(-8)}{(4)(4) + (-8)(-8)} * \rangle 4, -8 \rangle = \frac{-40}{80} * \langle 4, -8 \rangle = \langle -2, 4 \rangle</m>.
+            <m>\proj_{\vv} \vu = \frac{\vu\cdot\vv}{\vv\cdot\vv}  \vv = \frac{(2)(4) + (6)(-8)}{(4)(4) + (-8)(-8)}  \rangle 4, -8 \rangle = \frac{-40}{80}  \langle 4, -8 \rangle = \langle -2, 4 \rangle</m>.
           </p>
 
           <p>
@@ -786,6 +786,23 @@
           <p>
             <m>\langle 2, 6 \rangle = \langle -2, 4 \rangle + \langle a, b \rangle</m>. Solve for <m>\proj_{\perp \vv} \vu</m> to get <m>\langle 4, 2 \rangle</m>.
           </p>
+          <image width="75%" >
+            <sageplot>
+              u=vector([2,6])
+              v=vector([4,-8])
+              putov=(u.dot_product(v)/v.dot_product(v))*v
+              perp=u-putov
+              plot11=arrow((0,0),u,color="black",width=3,aspect_ratio=1)
+              plot11+=arrow((0,0),v,color="black",width=3)
+              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+              plot11+=arrow((0,0),putov,color="red",width=2)
+              plot11+=arrow(putov,u,color="blue",width=2)
+              plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
         </solution>
       </task>
       <task>
@@ -823,7 +840,7 @@
         </answer>
         <solution>
           <p>
-            <m>\proj_{\vz} \vw = \frac/{\vw\cdot\vz}{\vz\cdot\vz} * \vv = \frac{(w_1)(3) + (w_2)(4)}{(3)(3) + (4)(4)} * \langle 3, 4 \rangle = \frac{3*w_1 + 4*w_2}{25} * \langle 3, 4 \rangle</m>. The vector <m>\langle 6, 8 </m> has a magnitude of 10. So when <m>\frac{3*w_1 + 4*w_2}{25} = 2</m>, then <m>\proj_{\vz} \vw = 10</m>. Therefore, <m>3*w_1 + 4*w_2 = 50</m>. One such vector is <m>\vw = \langle 10, 5 \rangle</m>.
+            <m>\proj_{\vz} \vw = \frac{\vw\cdot\vz}{\vz\cdot\vz}  \vv = \frac{(w_1)(3) + (w_2)(4)}{(3)(3) + (4)(4)}  \langle 3, 4 \rangle = \frac{3w_1 + 4w_2}{25}  \langle 3, 4 \rangle</m>. The vector <m>\langle 6, 8 </m> has a magnitude of 10. So when <m>\frac{3w_1 + 4w_2}{25} = 2</m>, then <m>\proj_{\vz} \vw = 10</m>. Therefore, <m>3w_1 + 4w_2 = 50</m>. One such vector is <m>\vw = \langle 10, 5 \rangle</m>.
           </p>
         </solution>
       </task>
