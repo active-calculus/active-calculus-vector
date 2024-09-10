@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- **********************************************************************-->
-<!-- Copyright 2013-2018                                                   -->
-<!-- Steven Schlicker                                                      -->
+<!-- Copyright 2013-2024                                                   -->
+<!-- Nicholas Long, Steven Schlicker                                                      -->
 <!--                                                                       -->
 <!-- This file is part of Active Calculus Multivariable.                   -->
 <!--                                                                       -->
@@ -13,7 +13,7 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-Precalc-LinesPlanes">
+<section xml:id="S-Precalc-LinesPlanes" xmlns:xi="http://www.w3.org/2001/XInclude" > 
   <title>Lines and Planes in Space</title>
 
     <objectives>
@@ -26,19 +26,19 @@
 
           <li>
             <p>
-              What is the role that vectors play in representing equations of lines, particularly in <m>\R^3</m>?
+              How can vectors make describing lines in <m>\R^3</m>
             </p>
           </li>
 
           <li>
             <p>
-              How can we think of a plane as a set of points determined by a point and a vector?
+              How is a plane defined in terms of measurements of points and vectors?
             </p>
           </li>
 
           <li>
             <p>
-              How do we find the equation of a plane through three given non-collinear points?
+              What different ways are there to determine a plane through geometric information?
             </p>
           </li>
         </ul>
@@ -46,184 +46,200 @@
 
   <introduction>
     <p>
-      In single variable calculus, we learn that a differentiable function is <em>locally linear</em>. <idx><h>locally linear</h></idx> In other words, if we zoom in on the graph of a differentiable function at a point, the graph looks like the tangent line to the function at that point. Linear functions played important roles in single variable calculus, useful in approximating differentiable functions, in approximating roots of functions (see Newton's Method), and approximating solutions to first order differential equations (see Euler's Method). In multivariable calculus, we will soon study curves in space; differentiable curves turn out to be locally linear as well. In addition, as we study functions of two variables, we will see that such a function is locally linear at a point if the surface defined by the function looks like a plane (the tangent plane) as we zoom in on the graph.
+      In single variable calculus, we learn that a differentiable function is <em>locally linear</em>. <idx><h>locally linear</h></idx> In other words, if we zoom in on the graph of a differentiable function at a point, the graph looks like the tangent line to the function at that point. 
+      </p>
+      <figure xml:id="LLline">
+        <caption>A plot with the ability to zoom in on a point of <m>y=f(x)</m>, where <m>f</m> is a nonlinear, differentiable function</caption>
+        <interactive xml:id="interactive-LLline" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            @interact
+            def LLline(zoom=slider(0,8,1,default=0,label="Zoom"),val=slider(0,2,0.05,default=0.75,label="Location")):
+                var('x')
+                f(x)=x*cos(pi*x)
+                fv=f(val)
+                plot1=plot(f(x),(x,-4,4),color="black",gridlines=True)
+                plot1+=point((val,fv),color="black",size=25,xmin=val-2^(-zoom+1),xmax=val+2^(-zoom+1),ymin=fv-2^(-zoom+1),ymax=fv+2^(-zoom+1))
+                show(plot1)
+          </slate>
+        </interactive>
+        </figure>
+      <p>
+        
+      Linear functions (of the form <m>f(x)=ax+b</m>) play important roles in single variable calculus and are useful in approximating differentiable functions, in approximating roots of functions (see Newton's Method), and approximating solutions to first order differential equations (see Euler's Method). In multivariable calculus, we will study curves in space and we will see that connection between local linearity and differentiability exists for curves in three (or more!) dimensions. Additionally, as we study functions of two variables, we will see that if a function is locally linear at a point if the surface defined by the function looks like a plane (the tangent plane) as we zoom in on the graph.
     </p>
 
     <p>
-      Consequently, it is important for us to understand both lines and planes in space, as these define the linear functions in <m>\R^2</m> and <m>\R^3</m>. (Recall that a function is linear if it is a polynomial function whose terms all have degree less than or equal to 1. For example, <m>x</m> defines a single variable linear function and <m>x+y</m> a two variable linear function, but <m>xy</m> is not linear since it has degree two, the sum of the degress of its factors.) We begin our work by considering some familiar ideas in <m>\R^2</m> but from a new perspective.
+      Consequently, it is important for us to understand both lines and planes in space, as these correspond to graphs of linear functions in <m>\R^2</m> and <m>\R^3</m>. (Recall that a function is linear if it is a polynomial function whose terms all have degree less than or equal to 1. For example, <m>x</m> defines a single variable linear function and <m>x+y</m> a two variable linear function, but <m>xy</m> is not linear since it has degree two, the sum of the degrees of its factors.) It is important to note that we will study planes and lines in <m>\R^3</m> as the flat graph before we look at curves and surfaces in general. In your study of 1-variable functions, you probably worked with ideas like slope, direction, and measuring change using lines several times before you generalized those ideas for a curve in general. Similarly, we will want to have a good idea about how we talk about direction and measuring change along the flat objects in <m>\R^3</m> (lines and planes) before we start generalizing to curved objects. 
+    </p>
+    <p>
+      We begin our work on lines by considering some familiar ideas in <m>\R^2</m> but from a new perspective.
     </p>
 
     <exploration xml:id="PA_9_5">
-      <statement>
+      <introduction>
        <p>
-          We are familiar with equations of lines in the plane in the form <m>y = mx+b</m>, where <m>m</m> is the slope of the line and <m>(0,b)</m> is the <m>y</m>-intercept. In this activity, we explore a more flexible way of representing lines that we can use not only in the plane, but in higher dimensions as well.
+          We are familiar with equations of lines in the <m>xy</m>-plane in the form <m>y = mx+b</m>, where <m>m</m> is the slope of the line and <m>(0,b)</m> is the <m>y</m>-intercept. In this activity, we explore a more flexible way of representing lines that we can use in the <m>xy</m>-plane and higher dimensions. To begin, consider the line through the point <m>(2,-1)</m> with slope <m>\frac{2}{3}</m> as shown in <xref ref="PA-Lineplot1">Figure</xref>.
         </p>
-
-        <p>
-          To begin, consider the line through the point <m>(2,-1)</m> with slope <m>\frac{2}{3}</m> as shown in <xref ref="F_9_5_PA_1">Figure</xref>.
-        </p>
-
-       <figure xml:id="F_9_5_PA_1">
-        <caption>The line through <m>(2,-1)</m> with slope <m>\frac{2}{3}</m>.</caption>
-        <image width="50%" source="images/fig_9_5_PA1"/>
+        <figure xml:id="PA-Lineplot1">
+          <caption>The line through <m>(2,-1)</m> with slope <m>\frac{2}{3}</m></caption>
+          <image width="75%" xml:id="img-PA-Lineplot1">
+            <description><p> </p></description>
+            <sageplot>
+              plot2=line([(-4,-5),(8,3)],color="black",gridlines=True,aspect_ratio=1,xmin=-3,xmax=5,ymin=-5,ymax=3,axes_labels=["$x$","$y$"])
+              plot2+=circle((2,-1),0.1,edgecolor="black",fill=True,facecolor="gray",thickness=2)
+              plot2
+            </sageplot>
+          </image>
         </figure>
-
-       <ol marker="a.">
-          <li>
-            <p>
-              Suppose we increase <m>x</m> by 1 from the point <m>(2,-1)</m>. How does the <m>y</m>-value change? What is the point on the line with <m>x</m>-coordinate <m>3</m>?
-            </p>
-          </li>
-
-         <li>
-            <p>
-              Suppose we decrease <m>x</m> by 3.25 from the point <m>(2,-1)</m>. How does the <m>y</m>-value change? What is the point on the line with <m>x</m>-coordinate <m>-1.25</m>?
-            </p>
-          </li>
-
-         <li>
-            <p>
-              Now, suppose we increase <m>x</m> by some arbitrary value <m>3t</m> from the point <m>(2,-1)</m>. How does the <m>y</m>-value change? What is the point on the line with <m>x</m>-coordinate <m>2+3t</m>?
-            </p>
-          </li>
-
-         <li>
-            <p>
-              Observe that the slope of the line is related to any vector whose <m>y</m>-component divided by the <m>x</m>-component is the slope of the line. For the line in this exercise, we might use the vector <m>\langle 3,2 \rangle</m>, which describes the direction of the line. Explain why the terminal points of the vectors <m>\vr(t)</m>, where
-              <me>
-                \vr(t) = \langle 2,-1 \rangle + \langle 3,2 \rangle t,
-              </me>
-              trace out the graph of the line through the point <m>(2,-1)</m> with slope <m>\frac{2}{3}</m>.
-           </p>
-          </li>
-
-          <li>
-            <p>
-              Now we extend this vector approach to <m>\R^3</m> and consider a second example. Let <m>\mathcal{L}</m> be the line in <m>\R^3</m> through the point <m>(1,0,2)</m> in the direction of the vector <m>\langle 2, -1, 4 \rangle</m>.
-
-                Find the coordinates of three distinct points on line <m>\mathcal{L}</m>. Explain your thinking.
-           </p>
-         </li>
-
-         <li>
-            <p>
-              Find a vector in the form
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Suppose we increase <m>x</m> by 1 from the point <m>(2,-1)</m>. How does the <m>y</m>-value change? What is the point on the line with <m>x</m>-coordinate <m>3</m>?
+          </p>
+        </statement>
+        <answer>
+          <p>
+            As we increase <m>x</m> by 1, the <m>y</m>-value increases by <m>\frac{2}{3}</m>. The point on the line with the <m>x</m>-coordinate <m>3</m> is <m>(3, -\frac{1}{3})</m>.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            If a line has a slope of <m>\frac{2}{3}</m>, this means that an increase of 3 in the <m>x</m>-direction results in increase of 2 in the <m>y</m>-direction. If we scale this to a one-unit rate of change, an increase of 1 unit in the <m>x</m>-direction results in an increase of <m>\frac{2}{3}</m> in the <m>y</m>-direction. From the point <m>(2, -1)</m> to the point with an <m>x</m>-value of 3, this requires a 1 unit increase in the rate of change in the <m>x</m>-direction, which results in an increase of <m>\frac{2}{3}</m> in the <m>y</m>-direction. Therefore, the point on the line with an <m>x</m>-coordinate of <m>3</m> is <m>(3, -1 + \frac{2}{3}) = (3, -\frac{1}{3})</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Suppose we decrease <m>x</m> by 3.25 from the point <m>(2,-1)</m>. How does the <m>y</m>-value change? What is the point on the line with <m>x</m>-coordinate <m>-1.25</m>?
+          </p>
+        </statement>
+        <answer>
+          <p>
+            As we decrease <m>x</m> by 3.25 from <m>(2, -1)</m>, the <m>y</m>-value decreases by <m>\frac{13}{6}</m>. The point on the line with the <m>x</m>-coordinate <m>-1.25</m> is <m>(-1.25, -\frac{19}{6})</m>.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            If we decrease <m>x</m> by <m>3.25</m> from the point <m>(2, -1)</m> the <m>y</m>-value will change by <m>-3.25 (\frac{2}{3}) = -\frac{13}{6}</m>. Therefore, the point on the line with an <m>x</m>-coordinate of <m>-1.25</m> is <m>(-1.25, -1 + -\frac{13}{6}) = (-1.25, -\frac{19}{6})</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Now, suppose we increase <m>x</m> by some arbitrary value <m>3t</m> from the point <m>(2,-1)</m>. How does the <m>y</m>-value change? What is the point on the line with <m>x</m>-coordinate <m>2+3t</m>?
+          </p>
+        </statement>
+        <answer>
+          <p>
+            If we increase <m>x</m> by an arbitrary value <m>3t</m>, the <m>y</m>-value will change by <m>2t</m>. The point on the line with <m>x</m>-coordinate <m>2 + 3t</m> is <m>(2 + 3t, -1 + 2t)</m>. 
+          </p>
+        </answer>
+        <solution>
+          <p>
+            If we increase <m>x</m> by some arbitrary value <m>3t</m> from the point <m>(2, -1)</m>, the <m>y</m>-value will change by <m>3t * \frac{2}{3} = 2t</m>. The point on the line with <m>x</m>-coordinate <m>2 + 3t</m> is <m>(2 + 3t, -1 +2t)</m>. 
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Remember that the horizontal component of a vector describes the <q>run</q> and the vertical component measures the <q>rise</q> of the vector. So the slope of the line is related to <em>any</em> vector whose <m>y</m>-component divided by the <m>x</m>-component is the slope of the line. For the line in this activity, we might use the vector <m>\langle 3,2 \rangle</m> to describe the direction of the line. Explain why the terminal points of the vectors <m>\vr(t)</m>, where
+            <me>
+              \vr(t) = \langle 2,-1 \rangle + \langle 3,2 \rangle t,
+            </me>
+            trace out the graph of the line through the point <m>(2,-1)</m> with slope <m>\frac{2}{3}</m>.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            The terminal point of the vector <m>\langle 2, -1 \rangle</m> is the point <m>(2, -1)</m>. Any vector that is a scalar multiple of <m>\langle 3, 2 \rangle</m> has a slope of <m>\frac{2}{3}</m>. If we start at the terminal point of <m>\langle 2, -1</m>, which is the point <m>(2, -1)</m>, and add scalar multiples of the vector <m>\langle 3, 2 \rangle</m>, the terminal point of these scalar vectors will trace out the graph of the line through the point <m>(2, -1)</m> with a slope of <m>\frac{2}{3}</m>.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            The terminal point of the vector <m>\langle 2, -1 \rangle</m> is the point <m>(2, -1)</m>. Any vector that is a scalar multiple of <m>\langle 3, 2 \rangle</m> has a slope of <m>\frac{2}{3}</m>. If we start at the terminal point of <m>\langle 2, -1</m>, which is the point <m>(2, -1)</m>, and add scalar multiples of the vector <m>\langle 3, 2 \rangle</m>, the terminal point of these scalar vectors will trace out the graph of the line through the point <m>(2, -1)</m> with a slope of <m>\frac{2}{3}</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Now we extend this vector approach to <m>\R^3</m> and consider a second example. Let <m>\mathcal{L}</m> be the line in <m>\R^3</m> through the point <m>(1,0,2)</m> in the direction of the vector <m>\langle 2, -1, 4 \rangle</m>. Find the coordinates of three distinct points on line <m>\mathcal{L}</m>. Explain your thinking.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            Three such points on the line defined by <m>\vr(t) = \langle 1, 0, 2 \rangle + \langle 2, -1, 4 \rangle t</m> are <m>(1, 1, -3), (3, -1, 6)</m> and <m>(5, -2, 10)</m>.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            To find any point on the line, plug in any <m>t</m>-value. <m>\vr(-1) = \langle 1, 0, 2 \rangle + (-1) \langle 2, -1, 4 \rangle   = (-1, 1, -2)</m>. <m>\vr(1) = \langle 1, 0, 2 \rangle + 1 \langle 2, -1, 4 \rangle  = (3, -1, 6)</m>. <m>\vr(2) = \langle 1, 0, 2 \rangle + 2\langle 2, -1, 4 \rangle  = (5, -2, 10)</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Find a vector in the form
               <me>
                 \vr(t) = \langle x_0, y_0, z_0 \rangle + \langle a,b,c \rangle t
              </me>
              whose terminal points trace out the line <m>\mathcal{L}</m> that is described in (e).  That is, you should be able to locate any point on the line by determining a corresponding value of <m>t</m>.
-           </p>
-          </li>
-        </ol>
-      </statement>
-
-      <answer>
-        <ol marker="a.">
-          <li>
-            <p>
-              As we increase <m>x</m> by 1, the <m>y</m>-value increases by <m>\frac{2}{3}</m>. The point on the line with the <m>x</m>-coordinate <m>3</m> is <m>(3, -\frac{1}{3})</m>.
-            </p>
-          </li>
-  
-          <li>
-            <p>
-              As we decrease <m>x</m> by 3.25 from <m>(2, -1)</m>, the <m>y</m>-value decreases by <m>\frac{13}{6}</m>. The point on the line with the <m>x</m>-coordinate <m>-1.25</m> is <m>(-1.25, -\frac{19}{6})</m>.
-            </p>
-          </li>
-  
-          <li>
-            <p>
-              If we increase <m>x</m> by an arbitrary value <m>3t</m>, the <m>y</m>-value will change by <m>2t</m>. The point on the line with <m>x</m>-coordinate <m>2 + 3t</m> is <m>(2 + 3t, -1 + 2t)</m>. 
-            </p>
-          </li>
-  
-          <li>
-            <p>
-              The terminal point of the vector <m>\langle 2, -1 \rangle</m> is the point <m>(2, -1)</m>. Any vector that is a scalar multiple of <m>\langle 3, 2 \rangle</m> has a slope of <m>\frac{2}{3}</m>. If we start at the terminal point of <m>\langle 2, -1</m>, which is the point <m>(2, -1)</m>, and add scalar multiples of the vector <m>\langle 3, 2 \rangle</m>, the terminal point of these scalar vectors will trace out the graph of the line through the point <m>(2, -1)</m> with a slope of <m>\frac{2}{3}</m>.
-            </p>
-          </li>
-  
-          <li>
-            <p>
-              Three such points on the line defined by <m>\vr(t) = \langle 1, 0, 2 \rangle + \langle 2, -1, 4 \rangle t</m> are <m>(1, 1, -3), (3, -1, 6)</m> and <m>(5, -2, 10)</m>.
-            </p>
-          </li>
-  
-          <li>
-            <p>
-              See part <m>e</m> above.
-            </p>
-          </li>
-        </ol>
-       </answer>
-  
-       <solution>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                If a line has a slope of <m>\frac{2}{3}</m>, this means that an increase of 3 in the <m>x</m>-direction results in increase of 2 in the <m>y</m>-direction. If we scale this to a one-unit rate of change, an increase of 1 unit in the <m>x</m>-direction results in an increase of <m>\frac{2}{3}</m> in the <m>y</m>-direction. From the point <m>(2, -1)</m> to the point with an <m>x</m>-value of 3, this requires a 1 unit increase in the rate of change in the <m>x</m>-direction, which results in an increase of <m>\frac{2}{3}</m> in the <m>y</m>-direction. Therefore, the point on the line with an <m>x</m>-coordinate of <m>3</m> is <m>(3, -1 + \frac{2}{3}) = (3, -\frac{1}{3})</m>.
-              </p>
-            </li>
-  
-            <li>
-              <p>
-                If we decrease <m>x</m> by <m>3.25</m> from the point <m>(2, -1)</m> the <m>y</m>-value will change by <m>-3.25 * (\frac{2}{3}) = -\frac{13}{6}</m>. Therefore, the point on the line with an <m>x</m>-coordinate of <m>-1.25</m> is <m>(-1.25, -1 + -\frac{13}{6}) = (-1.25, -\frac{19}{6})</m>.
-              </p>
-            </li>
-  
-            <li>
-              <p>
-                If we increase <m>x</m> by some arbitrary value <m>3t</m> from the point <m>(2, -1)</m>, the <m>y</m>-value will change by <m>3t * \frac{2}{3} = 2t</m>. The point on the line with <m>x</m>-coordinate <m>2 + 3t</m> is <m>(2 + 3t, -1 +2t)</m>. 
-              </p>
-            </li>
-  
-            <li>
-              <p>
-                The terminal point of the vector <m>\langle 2, -1 \rangle</m> is the point <m>(2, -1)</m>. Any vector that is a scalar multiple of <m>\langle 3, 2 \rangle</m> has a slope of <m>\frac{2}{3}</m>. If we start at the terminal point of <m>\langle 2, -1</m>, which is the point <m>(2, -1)</m>, and add scalar multiples of the vector <m>\langle 3, 2 \rangle</m>, the terminal point of these scalar vectors will trace out the graph of the line through the point <m>(2, -1)</m> with a slope of <m>\frac{2}{3}</m>.
-              </p>
-            </li>
-  
-            <li>
-              <p>
-                To find any point on the line, plug in any <m>t</m>-value. <m>\vr(-1) = \langle 1, 0, 2 \rangle + \langle 2, -1, 4 \rangle * -1 = (-1, 1, -2)</m>. <m>\vr(1) = \langle 1, 0, 2 \rangle + \langle 2, -1, 4 \rangle * 1 = (3, -1, 6)</m>. <m>\vr(2) = \langle 1, 0, 2 \rangle + \langle 2, -1, 4 \rangle * 2 = (5, -2, 10)</m>.
-              </p>
-            </li>
-  
-            <li>
-              <p>
-                See part <m>e</m> above.
-              </p>
-            </li>
-          </ol>
-        </p>
-       </solution>
-
+          </p>
+        </statement>
+        <answer>
+          <p>
+            <m> \vr(t) =\langle 1, 0, 2 \rangle + t \langle 2, -1, 4 \rangle  </m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            <m> \vr(t) =\langle 1, 0, 2 \rangle + t \langle 2, -1, 4 \rangle  </m>
+          </p>
+        </solution>
+      </task>
      </exploration>
-
   </introduction>
 
   <subsection>
     <title>Lines in Space</title>
     <p>
-      In two-dimensional space, a non-vertical line is defined to be the set
-      of points satisfying the equation
+      The way most people draw a line is more connected to the ideas in <xref ref="PA_9_5" /> than slope or algebraic forms. Take a minute and draw a plot of the line described by <m>x+y-1=0</m>. Look at how to hide the next part. You may have done some algebra or other calculation to get to slope intercept form or another familiar algebraic structure, but when you went to draw the line you almost certainly did the following steps 
+      <ol>
+        <li>found a point to start your plot (maybe the y-intercept)</li>
+        <li>found a second point on your plot (perhaps using the slope to find the second point)</li>
+        <li>drew a line segment from the first point to the second, then extended the line past the second point to the end of you plot</li>
+        <li>went back to the first point and extended the line in the direction opposite of the second point</li>
+      </ol>
+      In other words, you made a starting point, extended indefinitely far in a particular direction, then added in the opposite direction. This is the essence of the general description for a line we will give below. 
+    </p>
+    <p>
+      In two-dimensional space, a non-vertical line is defined to be the set of points satisfying the equation
       <me>
         y = mx + b,
       </me>
-      for some constants <m>m</m> and <m>b</m>. The value of <m>m</m> (the slope) tells us how the dependent variable changes for every one unit increase in the independent variable, while the point <m>(0,b)</m> is the <m>y</m>-intercept and anchors the line to a location on the <m>y</m>-axis. Alternatively, we can think of the slope as being related to the vector <m>\langle 1, m \rangle</m>, which tells us the direction of the line, as shown on the left in <xref ref="F_9_5_line">Figure</xref>. Thus, we can identify a line in space by fixing a point <m>P</m> and a direction <m>\vv</m>, as shown on the right. Since we also have vectors in space to provide direction, this same idea of a point and a direction determining a line works in <m>\R^n</m> for any <m>n</m>. 
+      for some constants <m>m</m> and <m>b</m>. The value of <m>m</m> (the slope) tells us how the dependent variable changes for every one unit increase in the independent variable, while the point <m>(0,b)</m> is the <m>y</m>-intercept and anchors the line to a location on the <m>y</m>-axis. Alternatively, we can think of the slope as being related to the vector <m>\langle 1, m \rangle</m>, which tells us the direction of the line, as shown on the left in <xref ref="Lineplot3">Figure</xref>. Thus, we can identify a line in space by fixing a point <m>P</m> and a direction <m>\vv</m>, as shown on the right. Since we also have vectors in space to provide direction, this same idea of a point and a direction determining a line works in <m>\R^n</m> for any <m>n</m>. 
     </p>
-
-    <figure xml:id="F_9_5_line">
-      <caption>A vector description of a line</caption>
-      <image width="100%" source="images/fig_9_5_line_slope"/>
+    <figure xml:id="Lineplot2">
+      <caption>The line through <m>(0,1)</m> with slope <m>m</m></caption>
+      <image width="75%" xml:id="img-Lineplot2">
+        <description><p> </p></description>
+        <sageplot>
+          plot3=line([(-2,-2),(4,7)],color="black",gridlines=True,aspect_ratio=1,xmin=-2,xmax=4,ymin=-1,ymax=5,axes_labels=["$x$","$y$"])
+          plot3+=circle((0,1),0.075,edgecolor="black",fill=True,facecolor="gray",thickness=2)
+          plot3+=arrow((0,1),(1,2.5),color="black",width=3)+text("$\\vec{v}=\\langle 1,m\\rangle$",(1.25,1.5),fontsize=15,color="black")
+          plot3
+        </sageplot>
+      </image>
     </figure>
-
     <definition xml:id="D_LineInSpace">
       <statement>
         <p>
-          A
-          <term>line</term><idx><h>line</h><h>in space</h></idx> in space is the set of
+          A <term>line</term><idx><h>line</h><h>in space</h></idx> in space is the set of
           terminal points of vectors emanating from a given point <m>P</m> that are
           parallel to a fixed vector <m>\vv</m>.
         </p>
@@ -231,52 +247,52 @@
     </definition>
 
     <p>
-      The fixed vector <m>\vv</m> in the definition is called a
-      <em>direction vector</em><idx><h>line</h><h>direction vector</h></idx> for the line. As
-      we saw in <xref ref="PA_9_5">Preview Activity</xref>, to find an equation for a
-      line through point <m>P</m> in the direction of vector <m>\vv</m>, observe that
-      any vector parallel to <m>\vv</m> will have the form <m>t \vv</m> for some
-      scalar <m>t</m>. So, any vector emanating from the point <m>P</m> in a direction
-      parallel to the vector <m>\vv</m> will be of the form
+      The fixed vector <m>\vv</m> in the definition is called a <em>direction vector</em><idx><h>line</h><h>direction vector</h></idx> for the line. As we saw in <xref ref="PA_9_5">Preview Activity</xref>, to find an equation for a line through point <m>P</m> in the direction of vector <m>\vv</m>, observe that any vector parallel to <m>\vv</m> will have the form <m>t \vv</m> for some scalar <m>t</m>. So, any vector emanating from the point <m>P</m> in a direction parallel to the vector <m>\vv</m> will be of the form
       <men xml:id="eq_9_5_lines_1">
         \overrightarrow{OP} + \vv t
       </men>
       for some scalar <m>t</m> (where <m>O</m> is the origin).
     </p>
-
-
-      <figure xml:id="F_9_5_Line_2D">
+    <figure xml:id="Lineplot3">
+      <caption>A line in 2-space with vector definition</caption>
+      <interactive xml:id="interactive-Lineplot3" platform="sage" width="100%" aspect="1:1">
+        <slate surface="sage">
+          @interact
+          def vecline(t=slider(-3,3,0.1,default=1,label="$t=$")):
+              plot4=line([(-3,0),(5,3)],color="black",aspect_ratio=1,xmin=-2,xmax=4,ymin=-1,ymax=4,axes_labels=["$x$","$y$"])
+              plot4+=arrow((0,0),(1,3/2),color="blue")
+              plot4+=text("$\\vec{OP}$",(1/4,3/4),color="blue",fontsize=10)
+              plot4+=arrow((0,0),(1+t,1.5+t*3/8),color="green")
+              plot4+=text("$t\\vec{v}$",(0.5+0.75*t,1.5+0.75*t*3/8),color="red",fontsize=15)
+              plot4+=arrow((1,1.5),(1+t,1.5+t*3/8),color="red")
+              show(plot4)
+        </slate>
+      </interactive>
+      </figure>
+      <!-- <figure xml:id="F_9_5_Line_2D">
       <caption>A line in 2-space.</caption>
       <sidebyside widths="33% 33% 33%" margins="0%">
       <image source="images/fig_9_5_line_2d_01"/>
       <image source="images/fig_9_5_line_2d_10"/>
       <image source="images/fig_9_5_line_2d_20"/>
       </sidebyside>
-      </figure>
-
+      </figure> -->
     <p>
-          <xref ref="F_9_5_Line_2D">Figure</xref> presents three images of a line in two-space in which we can identify the vector <m>\overrightarrow{OP}</m> and the vector <m>t \vv</m> as in Equation <xref ref="eq_9_5_lines_1"/>. Here, <m>\overrightarrow{OP}</m> is the fixed vector shown in blue, while the direction vector <m>\vv</m> is the vector parallel to the vector shown in green (that is, the green vector represents <m>t\vv</m>, and the line is traced out by the terminal points of the magenta vector). In other words, the tips (terminal points) of the magenta vectors (the vectors of the form <m>\overrightarrow{OP} + t\vv</m>) trace out the line as <m>t</m> changes.
+      <xref ref="Lineplot3">Figure</xref> shows the plot of a line in two-space in which we can identify the vector <m>\overrightarrow{OP}</m> and the vector <m>t \vv</m> as in Equation <xref ref="eq_9_5_lines_1"/>. Here, <m>\overrightarrow{OP}</m> is the fixed vector shown in blue, while the direction vector <m>\vv</m> is the vector parallel to the vector shown in green (that is, the green vector represents <m>t\vv</m>, and the line is traced out by the terminal points of the magenta vector). In other words, the tips (terminal points) of the magenta vectors (the vectors of the form <m>\overrightarrow{OP} + t\vv</m>) trace out the line as <m>t</m> changes.
     </p>
-
     <p>
-      In particular, the terminal points of the vectors of the form in
-      <xref ref="eq_9_5_lines_1"/> define a linear function <m>\vr</m> in space of the
-      following form, which is valid in any dimension.
+      In particular, the terminal points of the vectors of the form in <xref ref="eq_9_5_lines_1"/> define a linear function <m>\vr</m> in space of the following form, which is valid in any dimension.
     </p>
-
-    <assemblage xml:id="LInes-vector-form">
+    <assemblage xml:id="Lines-vector-form">
       <title>The vector form of a line</title>
     <p>
       The <em>vector form</em> of a line<idx><h>line</h><h>vector equation</h></idx> through the point <m>P</m> in the direction of the vector <m>\vv</m> is
       <men xml:id="eq_9_5_line_vect">
         \vr(t) = \vr_0 + t\vv,
       </men>
-      where <m>\vr_0</m> is the position vector <m>\overrightarrow{OP}</m> from the origin to
-      the point <m>P</m>.
+      where <m>\vr_0</m> is the position vector <m>\overrightarrow{OP}</m> from the origin to the point <m>P</m>.
     </p>
     </assemblage>
-
-    
 
     <p>
       Of course, it is common to
