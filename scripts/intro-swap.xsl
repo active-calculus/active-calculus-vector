@@ -17,4 +17,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
  </xsl:element>
 </xsl:template>
 
+<!-- Clobber the permids -->
+<xsl:template match="@permid"></xsl:template>
+
 </xsl:stylesheet>
