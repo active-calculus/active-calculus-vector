@@ -54,44 +54,132 @@
     </p>
 
     <exploration xml:id="PA_11_4">
-      <p>
-        Suppose that we have a flat, thin object (called a <term>lamina</term>) whose density varies across the object. We can think of the density on a lamina as a measure of mass per unit area. As an example, consider a circular plate <m>D</m> of radius 1 cm centered at the origin whose density <m>\delta</m> varies depending on the distance from its center so that the density in grams per square centimeter at point <m>(x, y)</m> is
-        <me>
-          \delta(x,y) = 10-2(x^2+y^2).
-        </me>
+      <statement>
+        <p>
+          Suppose that we have a flat, thin object (called a <term>lamina</term>) whose density varies across the object. We can think of the density on a lamina as a measure of mass per unit area. As an example, consider a circular plate <m>D</m> of radius 1 cm centered at the origin whose density <m>\delta</m> varies depending on the distance from its center so that the density in grams per square centimeter at point <m>(x, y)</m> is
+          <me>
+            \delta(x,y) = 10-2(x^2+y^2).
+          </me>
+          <ol marker="a.">
+            <li>
+              <p>
+                Suppose that we partition the plate into subrectangles <m>R_{ij}</m>, where <m>1 \leq i \leq m</m> and <m>1 \leq j \leq n</m>, of equal area <m>\Delta A</m>, and select a point <m>(x_{ij}^*,y_{ij}^*)</m> in <m>R_{ij}</m> for each <m>i</m> and <m>j</m>.
+      
+                    What is the meaning of the quantity <m>\delta(x_{ij}^*,y_{ij}^*) \Delta A</m>?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                State a double Riemann sum that provides an approximation of the mass of the plate.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Explain why the double integral
+                <me>
+                  \iint_D \delta(x,y) \, dA
+                </me>
+                tells us the exact mass of the plate.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Determine an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <xref ref="S-11-5-Double-Integrals-Polar">Section</xref>.)
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+
+      <answer>
         <ol marker="a.">
           <li>
             <p>
-              Suppose that we partition the plate into subrectangles <m>R_{ij}</m>, where <m>1 \leq i \leq m</m> and <m>1 \leq j \leq n</m>, of equal area <m>\Delta A</m>, and select a point <m>(x_{ij}^*,y_{ij}^*)</m> in <m>R_{ij}</m> for each <m>i</m> and <m>j</m>.
-    
-                  What is the meaning of the quantity <m>\delta(x_{ij}^*,y_{ij}^*) \Delta A</m>?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              State a double Riemann sum that provides an approximation of the mass of the plate.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Explain why the double integral
+              If we assume the density is the constant
+              <m>\delta(x_{ij}^*,y_{ij}^*)</m> on <m>R_{ij}</m>, then the quantity
               <me>
-                \iint_D \delta(x,y) \, dA
+                \delta(x_{ij}^*,y_{ij}^*) \Delta A
               </me>
-              tells us the exact mass of the plate.
+              is a density times area and
+              <m>\delta(x_{ij}^*,y_{ij}^*) \Delta A</m> approximates the mass of the chunk of the plate over <m>R_{ij}</m>.
             </p>
           </li>
-
           <li>
             <p>
-              Determine an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <xref ref="S-11-5-Double-Integrals-Polar">Section</xref>.)
+              <me>
+                \sum_{i=1}^m \sum_{j=1}^n \delta(x_{ij}^*,y_{ij}^*) \Delta A
+              </me>
+            </p>
+          </li>
+          <li>
+            <p>
+              If we take the limit of the sum in part (b) as the number of subrectangles goes to infinity,
+              we are adding masses over smaller and smaller subrectangles,
+              so in the limit
+              <me>
+                \lim_{\Delta A \to 0} \sum_{i=1}^m \sum_{j=1}^n \delta(x_{ij}^*,y_{ij}^*) \Delta A = \iint_D \delta(x,y) \, dA
+              </me>,
+              the double integral gives the total mass of the plate.
+            </p>
+          </li>
+          <li>
+            <p>
+              <me>
+                \iint_D \delta(x,y) \, dA = \iint_D 10-2(x^2+y^2) \, dA
+              </me>
             </p>
           </li>
         </ol>
-      </p>
-      
+      </answer>
+
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              If we assume the density is the constant
+              <m>\delta(x_{ij}^*,y_{ij}^*)</m> on <m>R_{ij}</m>, then the quantity
+              <me>
+                \delta(x_{ij}^*,y_{ij}^*) \Delta A
+              </me>
+              is a density times area and
+              <m>\delta(x_{ij}^*,y_{ij}^*) \Delta A</m> approximates the mass of the chunk of the plate over <m>R_{ij}</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              To approximate the mass of the plate,
+              we add the approximations on each subrectangle to obtain
+              <me>
+                \sum_{i=1}^m \sum_{j=1}^n \delta(x_{ij}^*,y_{ij}^*) \Delta A
+              </me>,
+              which approximates the total mass of the plate.
+            </p>
+          </li>
+          <li>
+            <p>
+              If we take the limit of the sum in part (b) as the number of subrectangles goes to infinity,
+              we are adding masses over smaller and smaller subrectangles,
+              so in the limit
+              <me>
+                \lim_{\Delta A \to 0} \sum_{i=1}^m \sum_{j=1}^n \delta(x_{ij}^*,y_{ij}^*) \Delta A = \iint_D \delta(x,y) \, dA
+              </me>,
+              the double integral gives the total mass of the plate.
+            </p>
+          </li>
+          <li>
+            <p>
+              The mass of our plate in this example is
+              <me>
+                \iint_D \delta(x,y) \, dA = \iint_D 10-2(x^2+y^2) \, dA
+              </me>.
+            </p>
+          </li>
+        </ol>
+      </solution>
+  
     </exploration>
   </introduction>
 
@@ -110,15 +198,40 @@
     
 
     <activity xml:id="A_11_4_3">
-      <p>
-        Let <m>D</m> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as shown in <xref ref="F_11_4_Mass_exercise">Figure</xref>. Assume the density at point <m>(x,y)</m> is given by <m>\delta(x,y) = x</m>. Find the exact mass of the lamina.
-      </p>
+      <statement>
+        <p>
+          Let <m>D</m> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as shown in <xref ref="F_11_4_Mass_exercise">Figure</xref>. Assume the density at point <m>(x,y)</m> is given by <m>\delta(x,y) = x</m>. Find the exact mass of the lamina.
+        </p>
 
-      <figure xml:id="F_11_4_Mass_exercise">
-        <caption>A half disk lamina.</caption>
-        <image width="50%" source="images/fig_11_4_half_circle"/>
-      </figure>
+        <figure xml:id="F_11_4_Mass_exercise">
+          <caption>A half disk lamina.</caption>
+          <image width="50%" source="images/fig_11_4_half_circle"/>
+        </figure>
+      </statement> 
       
+      <answer>
+        <p>
+          <m>18</m>
+        </p>
+      </answer>
+
+      <solution>
+        <p>
+          We integrate the density over the region <m>D</m>.
+          We have <m>\delta(x,y) = x</m>,
+          and the region <m>D</m> can be described by
+          <m>0 \leq x \leq \sqrt{9-y^2}</m> for <m>y</m> between <m>-3</m> and <m>3</m>.
+          Thus, the mass of the lamina is
+          <md>
+            <mrow>\int_{-3}^{3} \int_{0}^{\sqrt{9-y^2}} x \, dx \, dy \amp = \int_{-3}^{3} \left. \frac{x^2}{2} \right|_{0}^{\sqrt{9-y^2}} \, dy</mrow>
+            <mrow>\amp = \int_{-3}^{3} \frac{1}{2}(9-y^2) \, dy</mrow>
+            <mrow>\amp = \frac{1}{2} \left. \left[9y - \frac{1}{3}y^3\right]\right|_{-3}^{3}</mrow>
+            <mrow>\amp = 18</mrow>
+          </md>.
+        </p>
+      </solution>
+
+
     </activity>
   </subsection>
 
@@ -135,36 +248,96 @@
     </p>
 
     <activity xml:id="A_11_4_1">
-      <p>
-        Suppose we want to find the area of the bounded region <m>D</m> between the curves
-        <me>
-          y = 1-x^2 \ \ \ \ \ \text{ and }  \ \ \ \ \ y=x-1.
-        </me>
-      </p>
+      <statement>
+        <p>
+          Suppose we want to find the area of the bounded region <m>D</m> between the curves
+          <me>
+            y = 1-x^2 \ \ \ \ \ \text{ and }  \ \ \ \ \ y=x-1.
+          </me>
+        </p>
 
-      <p>
-        A picture of this region is shown in <xref ref="F_11_4_Area_ex_1">Figure</xref>.
+        <p>
+          A picture of this region is shown in <xref ref="F_11_4_Area_ex_1">Figure</xref>.
+          <ol marker="a.">
+            <li>
+              <p>
+                The volume of a solid with constant height is given by the area of the base times the height.  Hence, we may interpret the area of the region <m>D</m> as the volume of a solid with base <m>D</m> and of uniform height 1. That is, the area of <m>D</m> is given by <m>\iint_D 1 \, dA</m>. Write an iterated integral whose value is <m>\iint_D 1 \, dA</m>. (Hint: Which order of integration might be more efficient? Why?)
+
+                <figure xml:id="F_11_4_Area_ex_1">
+                  <caption>The graphs of <m>y = 1-x^2</m> and <m>y=x-1</m>.</caption>
+                  <image width="50%" source="images/fig_11_4_area"/>
+                </figure>
+                
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Evaluate the iterated integral from (a). What does the result tell you? 
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+      
+      <answer>
         <ol marker="a.">
           <li>
             <p>
-              The volume of a solid with constant height is given by the area of the base times the height.  Hence, we may interpret the area of the region <m>D</m> as the volume of a solid with base <m>D</m> and of uniform height 1. That is, the area of <m>D</m> is given by <m>\iint_D 1 \, dA</m>. Write an iterated integral whose value is <m>\iint_D 1 \, dA</m>. (Hint: Which order of integration might be more efficient? Why?)
-
-              <figure xml:id="F_11_4_Area_ex_1">
-                <caption>The graphs of <m>y = 1-x^2</m> and <m>y=x-1</m>.</caption>
-                <image width="50%" source="images/fig_11_4_area"/>
-              </figure>
-              
+              <me>
+               \int_{-2}^1 \int_{x-1}^{1-x^2} 1 \, dy \, dx
+              </me>
             </p>
           </li>
-
           <li>
             <p>
-              Evaluate the iterated integral from (a). What does the result tell you? 
+              The value of the iterated integral is the area of <m>D</m>: <m>\frac{9}{2}</m> square units.
             </p>
           </li>
         </ol>
-      </p>
-      
+      </answer>
+
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              The double integral
+              <me>
+                \int \int_D 1 \, dA
+              </me>
+              gives the volume of the solid of uniform height 1 and base area equal to the area of <m>D</m>,
+              so this integral also gives the area of <m>D</m>.
+              To set up this integral, we need to describe the region <m>D</m>.
+              If we integrate with respect to <m>y</m>,
+              then the graph of <m>y=1-x^2</m> forms the top of <m>D</m> and the graph of <m>y=x-1</m> forms the bottom.
+              To find the limits on <m>x</m>,
+              we need to determine the points of intersections of the two curves.
+              Now <m>y=1-x^2</m> and <m>y=x-1</m> intersect when
+              <m>x^2+x-2 = (x-1)(x+2) = 0</m> or when <m>x=-2</m> and <m>x=1</m>.
+              Therefore, the area of <m>D</m> is given by the iterated integral
+              <me>
+                \int \int_D 1 \, dA = \int_{-2}^1 \int_{x-1}^{1-x^2} 1 \, dy \, dx
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Evaluating the iterated integral gives us
+              <md>
+                <mrow>\int \int_D 1 \, dA \amp = \int_{-2}^1 \int_{x-1}^{1-x^2} 1 \, dy \, dx</mrow>
+                <mrow> \amp =  \int_{-2}^1 \left (y\mid_{x-1}^{1-x^2} \right ) \, dx </mrow>
+                <mrow> \amp = \int_{-2}^1 \left ( (1-x^2) - (x-1)  \right ) \, dx</mrow>
+                <mrow>\amp = \int_{-2}^1 2-x-x^2 \, dx</mrow>
+                <mrow>\amp = \left[2x-\frac{x^2}{2}-\frac{x^3}{3}\right]\mid_{-2}^1</mrow>
+                <mrow>\amp = \frac{7}{6} - \left(-\frac{10}{3}\right)</mrow>
+                <mrow>\amp = \frac{9}{2}</mrow>
+              </md>.
+              Thus the area of <m>D</m> is <m>\frac{9}{2}</m> square units.
+            </p>
+          </li>
+        </ol>
+      </solution>
+
     </activity>
 
     <p>
@@ -308,29 +481,84 @@
     </p>
 
     <activity xml:id="A_11_4_4">
-      <p>
-        In this activity we determine integrals that represent the center of mass of a lamina <m>D</m> described by the triangular region bounded by the <m>x</m>-axis and the lines <m>x = 1</m> and <m>y = 2x</m> in the first quadrant if the density at point <m>(x, y)</m> is <m>\delta(x, y) = 6x + 6y + 6</m>. A picture of the lamina is shown in <xref ref="F_11_4_COM_ex_1">Figure</xref>.
-      </p>
+      <statement>
+        <p>
+          In this activity we determine integrals that represent the center of mass of a lamina <m>D</m> described by the triangular region bounded by the <m>x</m>-axis and the lines <m>x = 1</m> and <m>y = 2x</m> in the first quadrant if the density at point <m>(x, y)</m> is <m>\delta(x, y) = 6x + 6y + 6</m>. A picture of the lamina is shown in <xref ref="F_11_4_COM_ex_1">Figure</xref>.
+        </p>
 
-      <figure xml:id="F_11_4_COM_ex_1">
-        <caption>The lamina bounded by the <m>x</m>-axis and the lines <m>x = 1</m> and <m>y = 2x</m> in the first quadrant.</caption>
-        <image width="50%" source="images/fig_11_4_triangle"/>
-      </figure>
+        <figure xml:id="F_11_4_COM_ex_1">
+          <caption>The lamina bounded by the <m>x</m>-axis and the lines <m>x = 1</m> and <m>y = 2x</m> in the first quadrant.</caption>
+          <image width="50%" source="images/fig_11_4_triangle"/>
+        </figure>
 
-      <ol marker="a.">
-        <li>
-          <p>
-            Set up an iterated integral that represents the mass of the lamina.
-          </p>
-        </li>
+        <ol marker="a.">
+          <li>
+            <p>
+              Set up an iterated integral that represents the mass of the lamina.
+            </p>
+          </li>
 
-        <li>
-          <p>
-            Assume the mass of the lamina is 14. Set up two iterated integrals that represent the coordinates of the center of mass of the lamina.
-          </p>
-        </li>
-      </ol>
-      
+          <li>
+            <p>
+              Assume the mass of the lamina is 14. Set up two iterated integrals that represent the coordinates of the center of mass of the lamina.
+            </p>
+          </li>
+        </ol>
+      </statement>
+
+      <answer>
+        <ol marker="a.">
+          <li>
+            <p>
+              <me>
+                \int_0^1 \int_0^{2x} (6x+6y+6) \, dy \, dx
+              </me>
+            </p>
+          </li>
+          <li>
+            <p>
+              <m>x</m> coordinate:
+              <me>
+                \frac{1}{14}\int \int_D x \delta(x,y) \, dA = \frac{1}{14} \int_0^1 \int_0^{2x} x(6x+6y+6) \, dy \, dx
+              </me>.
+              <m>y</m> coordinate:
+              <me>
+                \frac{1}{14}\int \int_D y \delta(x,y) \, dA = \frac{1}{14} \int_0^1 \int_0^{2x} y(6x+6y+6) \, dy \, dx
+              </me>.
+            </p>
+          </li>
+        </ol>
+      </answer>
+
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              The mass <m>M</m> of the lamina is given by <m> \int \int_D \delta(x,y) \, dA</m>.
+              To calculate this mass, we set up an iterated integral,
+              integrating first with respect to <m>y</m> then <m>x</m>:
+              <me>
+                M = \int \int_D \delta(x,y) \, dA = \int_0^1 \int_0^{2x} (6x+6y+6) \, dy \, dx
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The <m>x</m> coordinate of the center of mass is given by <m> \frac{\int \int_D x \delta(x,y) \, dA}{14}</m>.
+              An iterated integral that gives us this <m>x</m> coordinate is
+              <me>
+                \frac{1}{14}\int \int_D x \delta(x,y) \, dA = \frac{1}{14} \int_0^1 \int_0^{2x} x(6x+6y+6) \, dy \, dx
+              </me>.
+              The <m>y</m> coordinate of the center of mass is given by <m> \frac{\int \int_D y \delta(x,y) \, dA}{14}</m>.
+              An iterated integral that gives us this <m>y</m> coordinate is
+              <me>
+                \frac{1}{14}\int \int_D y \delta(x,y) \, dA = \frac{1}{14} \int_0^1 \int_0^{2x} y(6x+6y+6) \, dy \, dx
+              </me>.
+            </p>
+          </li>
+        </ol>
+      </solution>
+
     </activity>
   </subsection>
 
@@ -407,46 +635,154 @@
     </p>
 
     <activity xml:id="A_11_4_6">
-      <p>
-        A firm manufactures smoke detectors. Two components for the detectors come from different suppliers <mdash/> one in Michigan and one in Ohio. The company studies these components for their reliability and their data suggests that if <m>x</m> is the life span (in years) of a randomly chosen component from the Michigan supplier and <m>y</m> the life span (in years) of a randomly chosen component from the Ohio supplier, then the joint probability density function <m>f</m> might be given by
-        <me>
-          f(x,y) = e^{-x} e^{-y}.
-        </me>
+      <statement>
+        <p>
+          A firm manufactures smoke detectors. Two components for the detectors come from different suppliers <mdash/> one in Michigan and one in Ohio. The company studies these components for their reliability and their data suggests that if <m>x</m> is the life span (in years) of a randomly chosen component from the Michigan supplier and <m>y</m> the life span (in years) of a randomly chosen component from the Ohio supplier, then the joint probability density function <m>f</m> might be given by
+          <me>
+            f(x,y) = e^{-x} e^{-y}.
+          </me>
+          <ol marker="a.">
+            <li>
+              <p>
+                Theoretically, the components might last forever, so the domain <m>D</m> of the function <m>f</m> is the set <m>D</m> of all <m>(x,y)</m> such that <m>x \ge 0</m> and <m>y \ge 0</m>. To show that <m>f</m> is a probability density function on <m>D</m> we need to demonstrate that
+                <me>
+                  \int \int_D f(x,y) \, dA = 1,
+                </me>
+                or that
+                <me>
+                  \int_0^{\infty} \int_0^{\infty} f(x,y) \, dy \, dx = 1.
+                </me>
+                Use your knowledge of improper integrals to verify that <m>f</m> is indeed a probability density function.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Assume that the smoke detector fails only if both of the supplied components fail. To determine the probability that a randomly selected detector will fail within one year, we will need to determine the probability that the life span of each component is between 0 and 1 years. Set up an appropriate iterated integral, and evaluate the integral to determine the probability.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                What is the probability that a randomly chosen smoke detector will fail between years 3 and 7?
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Suppose that the manufacturer determines that one of the components is more likely to fail than the other, and hence conjectures that the probability density function is instead <m>f(x,y) = K e^{-x} e^{-2y}.</m>  What is the value of <m>K</m>?
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+
+      <answer>
         <ol marker="a.">
           <li>
             <p>
-              Theoretically, the components might last forever, so the domain <m>D</m> of the function <m>f</m> is the set <m>D</m> of all <m>(x,y)</m> such that <m>x \ge 0</m> and <m>y \ge 0</m>. To show that <m>f</m> is a probability density function on <m>D</m> we need to demonstrate that
+              We evaluate the double integral to determine if <m>f</m> is a probability density function:
+              <md>
+                <mrow>\int_0^{\infty} \int_0^{\infty} f(x,y) \, dy \, dx \amp = \int_0^{\infty} \int_0^{\infty} e^{-x} e^{-y} \, dy \, dx</mrow>
+                <mrow>\amp = 1</mrow>
+              </md>.
+              So <m>f</m> is a probability density function.
+            </p>
+          </li>
+          <li>
+            <p>
               <me>
-                \int \int_D f(x,y) \, dA = 1,
+                \int_0^1 \int_0^1 e^{-x} e^{-y} \, dy \, dx  = \left(1-\frac{1}{e}\right)^2
               </me>
-              or that
-              <me>
-                \int_0^{\infty} \int_0^{\infty} f(x,y) \, dy \, dx = 1.
-              </me>
-              Use your knowledge of improper integrals to verify that <m>f</m> is indeed a probability density function.
+              So the probability that a randomly selected detector will fail within one year is approximately 40%.
             </p>
           </li>
-
           <li>
             <p>
-              Assume that the smoke detector fails only if both of the supplied components fail. To determine the probability that a randomly selected detector will fail within one year, we will need to determine the probability that the life span of each component is between 0 and 1 years. Set up an appropriate iterated integral, and evaluate the integral to determine the probability.
+             approximately 0.24%
             </p>
           </li>
-
           <li>
             <p>
-              What is the probability that a randomly chosen smoke detector will fail between years 3 and 7?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Suppose that the manufacturer determines that one of the components is more likely to fail than the other, and hence conjectures that the probability density function is instead <m>f(x,y) = K e^{-x} e^{-2y}.</m>  What is the value of <m>K</m>?
+              <m>2</m> 
             </p>
           </li>
         </ol>
-      </p>
-      
+      </answer>
+
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              We evaluate the double integral to determine if <m>f</m> is a probability density function:
+              <md>
+                <mrow>\int_0^{\infty} \int_0^{\infty} f(x,y) \, dy \, dx \amp = \int_0^{\infty} \int_0^{\infty} e^{-x} e^{-y} \, dy \, dx</mrow>
+                <mrow>\amp = \int_0^{\infty} e^{-x} \left( \int_0^{\infty}  e^{-y} \, dy \right) \, dx</mrow>
+                <mrow>\amp = \int_0^{\infty} e^{-x} \left(\lim_{b \to \infty} \int_0^{b}  e^{-y} \, dy \right) \, dx</mrow>
+                <mrow>\amp = \int_0^{\infty} e^{-x} \left(\lim_{b \to \infty}  -e^{-y} \mid_0^{b} \right) \, dx</mrow>
+                <mrow>\amp = \int_0^{\infty} e^{-x} \left(\lim_{b \to \infty} -e^{-b}+1 \right) \, dx</mrow>
+                <mrow>\amp = \int_0^{\infty} e^{-x} (1) \, dx</mrow>
+                <mrow>\amp = \lim_{b \to \infty} \int_0^{b}  e^{-x} \, dx</mrow>
+                <mrow>\amp = \lim_{b \to \infty}  -e^{-x} \mid_0^{b}</mrow>
+                <mrow>\amp = \lim_{b \to \infty} -e^{-b}+1</mrow>
+                <mrow>\amp = 1</mrow>
+              </md>.
+              So <m>f</m> is a probability density function.
+            </p>
+          </li>
+          <li>
+            <p>
+              We need both components to have a life span of 1 year or less,
+              so the probability that a randomly selected detector will fail within one year is
+              <md>
+                <mrow>\int_0^1 \int_0^1 f(x,y) \, dy \, dx \amp = \int_0^1 \int_0^1 e^{-x} e^{-y} \, dy \, dx</mrow>
+                <mrow>\amp = \int_0^1  -e^{-x} e^{-y} \mid_{y=0}^1 \, dx</mrow>
+                <mrow>\amp = \int_0^1  e^{-x} \left(1-\frac{1}{e}\right) \, dx</mrow>
+                <mrow>\amp = \left(1-\frac{1}{e}\right) (-e^{-x})\mid_{x=0}^1</mrow>
+                <mrow>\amp = \left(1-\frac{1}{e}\right)^2</mrow>
+              </md>.
+              So the probability that a randomly selected detector will fail within one year is approximately 40%.
+            </p>
+          </li>
+          <li>
+            <p>
+              We need both components to have a life span of between 3 and 7 years,
+              so the probability that a randomly selected detector will fail within 3 to 7 years is
+              <md>
+                <mrow>\int_3^7 \int_3^7 f(x,y) \, dy \, dx \amp = \int_3^7 \int_3^7 e^{-x} e^{-y} \, dy \, dx</mrow>
+                <mrow>\amp = \int_3^7  -e^{-x} e^{-y} \mid_{y=3}^7 \, dx</mrow>
+                <mrow>\amp = \int_3^7  e^{-x} \left(\frac{1}{e^3}-\frac{1}{e^7}\right) \, dx</mrow>
+                <mrow>\amp = \left(\frac{1}{e^3}-\frac{1}{e^7}\right) (-e^{-x})\mid_{x=3}^7</mrow>
+                <mrow>\amp = \left(\frac{1}{e^3}-\frac{1}{e^7}\right)^2</mrow>
+              </md>.
+              This amounts to approximately 0.24%.
+            </p>
+          </li>
+          <li>
+            <p>
+              To find <m>K</m> we need to determine when
+              <me>
+                \int_0^{\infty} \int_0^{\infty} f(x,y) \, dy \, dx = 1
+              </me>.
+              We evaluate the iterated integral to determine the value of <m>K</m>:
+              <md>
+                <mrow>\int_0^{\infty} \int_0^{\infty} f(x,y) \, dy \, dx \amp = \int_0^{\infty} \int_0^{\infty} Ke^{-x} e^{-2y} \, dy \, dx</mrow>
+                <mrow>\amp = K\int_0^{\infty} e^{-x} \left( \int_0^{\infty}  e^{-2y} \, dy \right) \, dx</mrow>
+                <mrow>\amp = K\int_0^{\infty} e^{-x} \left(\lim_{b \to \infty} \int_0^{b}  e^{-2y} \, dy \right) \, dx</mrow>
+                <mrow>\amp = K\int_0^{\infty} e^{-x} \left(\lim_{b \to \infty} -\frac{1}{2}e^{-2y} \mid_0^{b} \right) \, dx</mrow>
+                <mrow>\amp = K\int_0^{\infty} e^{-x} \left(\lim_{b \to \infty} -\frac{1}{2}(e^{-2b}-1) \right) \, dx</mrow>
+                <mrow>\amp = \frac{K}{2}\int_0^{\infty} e^{-x}  \, dx</mrow>
+                <mrow>\amp = \frac{K}{2}\lim_{b \to \infty} \int_0^{b}  e^{-x} \, dx</mrow>
+                <mrow>\amp = \frac{K}{2}\lim_{b \to \infty} -e^{-x} \mid_0^{b}</mrow>
+                <mrow>\amp = \frac{K}{2}\lim_{b \to \infty} -e^{-b}+1</mrow>
+                <mrow>\amp = \frac{K}{2}</mrow>
+              </md>.
+              So we need to have <m>K = 2</m> for <m>f</m> to be a probability density function.
+            </p>
+          </li>
+        </ol>
+      </solution>
+
     </activity>
   </subsection>
 
@@ -573,6 +909,110 @@
             </ol>
           </p>
         </statement>
+
+        <answer>
+          <ol marker="a.">
+            <li>
+              <p>
+                <me>
+                  \int_{y=0}^{y=4} \int_{x=y/4}^{x=y/2} 4xy^2 + 1 \, dx \, dy
+                </me>.
+                If we instead integrate first with respect to <m>y</m>,
+                the fact that the curve on the bottom will change over the interval means that will would need two iterated integrals instead of just one.
+              </p>
+            </li>
+            <li>
+              <p>
+                <m>\frac{394}{5}</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                 approximately <m>(1.289, 3.316)</m>
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                 \frac{197}{5} \ \frac{\text{g} }{\text{ cm } ^2}
+                </me>
+              </p>
+            </li>
+          </ol>
+        </answer>
+
+        <solution>
+          <ol marker="a.">
+            <li>
+              <p>
+                We obtain mass by integrating density,
+                so the mass of the plate is
+                <me>
+                  \int_{y=0}^{y=4} \int_{x=y/4}^{x=y/2} 4xy^2 + 1 \, dx \, dy
+                </me>.
+                If we instead integrate first with respect to <m>y</m>,
+                the fact that the curve on the bottom will change over the interval means that will would need two iterated integrals instead of just one.
+              </p>
+            </li>
+            <li>
+              <p>
+                To find the mass <m>m</m> we evaluate the iterated integral:
+                <md>
+                  <mrow>m\amp =\int_{y=0}^{y=4} \int_{x=y/4}^{x=y/2} 4xy^2 + 1 \, dx \, dy</mrow>
+                  <mrow>\amp = \int_{y=0}^{y=4} \left(2x^2y^2+x\right)\mid_{x=y/4}^{x=y/2} \, dy</mrow>
+                  <mrow>\amp = \int_{y=0}^{y=4} \left[\left(\frac{y^4}{2} + \frac{y}{2} \right) - \left(\frac{y^4}{8}+\frac{y}{4} \right)  \right] \, dy</mrow>
+                  <mrow>\amp = \int_{y=0}^{y=4} \left[\frac{3y^4}{8}+\frac{y}{4} \right] \, dy</mrow>
+                  <mrow>\amp = \left[\frac{3}{40}y^5 + \frac{y^2}{8} \right]  \mid_{y=0}^{y=4}</mrow>
+                  <mrow>\amp = \frac{3}{40}4^5 + \frac{4^2}{8}</mrow>
+                  <mrow>\amp = \frac{394}{5}</mrow>
+                </md>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The center of mass of the plate is <m>(\overline{x}, \overline{y})</m>, where
+                <md>
+                  <mrow>\overline{x} \amp = \frac{1}{m} \int_{y=0}^{y=4} \int_{x=y/4}^{x=y/2} x(4xy^2 + 1) \, dx \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \int_{y=0}^{y=4} \left(\frac{4}{3}x^3y^2+\frac{1}{2}x^2\right)\mid_{x=y/4}^{x=y/2} \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \int_{y=0}^{y=4} \left[\left(\frac{1}{3}\frac{y^5}{2} + \frac{y^2}{8} \right) - \left(\frac{1}{3}\frac{y^5}{16}+\frac{y^2}{32} \right)  \right] \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \int_{y=0}^{y=4} \left[\frac{7y^5}{48}+\frac{3y^2}{32} \right] \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \left[\frac{7}{288}y^6 + \frac{y^3}{32} \right]  \mid_{y=0}^{y=4}</mrow>
+                  <mrow>\amp = \frac{5}{394} \left[\frac{7}{288}4^6 + \frac{4^3}{32}\right]</mrow>
+                  <mrow>\amp = \frac{2285}{1773}</mrow>
+                  <mrow>\amp \approx 1.289</mrow>
+                </md>.
+                and
+                <md>
+                  <mrow>\overline{y} \amp = \frac{1}{m} \int_{y=0}^{y=4} \int_{x=y/4}^{x=y/2} y(4xy^2 + 1) \, dx \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \int_{y=0}^{y=4} \left(2x^2y^3+xy\right)\mid_{x=y/4}^{x=y/2} \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \int_{y=0}^{y=4} \left[\left(\frac{1}{2}y^5 + \frac{1}{2}y^2\right) - \left(\frac{1}{8}y^5+\frac{1}{4}y^2 \right)  \right] \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \int_{y=0}^{y=4} \left[\frac{3}{8}y^5+\frac{1}{4}y^2 \right] \, dy</mrow>
+                  <mrow>\amp = \frac{5}{394} \left[\frac{1}{16}y^6 + \frac{1}{12}y^3 \right]  \mid_{y=0}^{y=4}</mrow>
+                  <mrow>\amp = \frac{5}{394} \left[\frac{1}{16}4^6 + \frac{1}{12}4^3 \right]</mrow>
+                  <mrow>\amp = \frac{1960}{591}</mrow>
+                  <mrow>\amp \approx 3.316</mrow>
+                </md>.
+              </p>
+            </li>
+            <li>
+              <p>
+                First note that the area <m>A</m> of the plate is
+                <md>
+                  <mrow>A \amp = \int_{y=0}^{y=4} \int_{x=y/4}^{x=y/2} 1 \, dx \, dy</mrow>
+                  <mrow>\amp = \int_{y=0}^{y=4} x\mid_{x=y/4}^{x=y/2}  \, dy</mrow>
+                  <mrow>\amp = \int_{y=0}^{y=4} \frac{y}{4}  \, dy</mrow>
+                  <mrow>\amp = \frac{y^2}{8}\mid_{y=0}^{y=4}</mrow>
+                  <mrow>\amp = 2</mrow>
+                </md>.
+                The average density of the plate is then
+                <me>
+                  \frac{1}{A} \int_{y=0}^{y=4} \int_{x=y/4}^{x=y/2} 4xy^2 + 1 \, dx \, dy = \frac{197}{5} \ \frac{\text{g} }{\text{ cm } ^2}
+                </me>.
+              </p>
+            </li>
+          </ol>
+        </solution>
+
         
       </exercise>
       <exercise>
@@ -600,8 +1040,70 @@
             </ol>
           </p>
         </statement>
+
+        <answer>
+          <ol marker="a.">
+            <li>
+              <p>
+                Due to the symmetry of the lamina around the <m>x</m>-axis we should expect the <m>y</m>-coordinate of the center of mass to be 0.
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                  \overline{x} = \frac{1}{18} \int_{-3}^{3} \int_{0}^{\sqrt{9-y^2}} x^2 \, dx \, dy
+                </me>,
+                <me>
+                  \overline{y} = \frac{1}{18} \int_{-3}^{3} \int_{0}^{\sqrt{9-y^2}} xy \, dx \, dy
+                </me>
+              </p>
+            </li>
+            <li>
+              <p>
+                Wolfram<m>|</m>Alpha gives
+                <m>\overline{x} = \frac{9}{16} \pi</m> and <m>\overline{y} = 0</m>,
+                as expected.
+              </p>
+            </li>
+          </ol>
+        </answer>
+
+        <solution>
+          <ol marker="a.">
+            <li>
+              <p>
+                Due to the symmetry of the lamina around the <m>x</m>-axis we should expect the <m>y</m>-coordinate of the center of mass to be 0.
+              </p>
+            </li>
+            <li>
+              <p>
+                We calculated that mass of the lamina to be 18 in <xref ref="A_11_4_3">Activity</xref>.
+                So the <m>x</m>-coordinate
+                <m>\overline{x}</m> of the center of mass of the lamina is given by
+                <me>
+                  \overline{x} = \frac{1}{18} \int_{-3}^{3} \int_{0}^{\sqrt{9-y^2}} x^2 \, dx \, dy
+                </me>.
+                Similarly, the <m>y</m>-coordinate
+                <m>\overline{y}</m> of the center of mass of the lamina is given by
+                <me>
+                  \overline{y} = \frac{1}{18} \int_{-3}^{3} \int_{0}^{\sqrt{9-y^2}} xy \, dx \, dy
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Wolfram<m>|</m>Alpha gives
+                <m>\overline{x} = \frac{9}{16} \pi</m> and <m>\overline{y} = 0</m>,
+                as expected.
+              </p>
+            </li>
+          </ol>
+        </solution>
+
         
       </exercise>
+
+
       <exercise>
         <statement>
           <p>
@@ -630,6 +1132,71 @@
             </ol>
           </p>
         </statement>
+
+        <answer>
+          <ol marker="a.">
+            <li>
+              <p>
+                approximately 65.5%
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                  \int_0^{10} \int_0^{10-x} f(x,y) \, dy \, dx
+                </me>
+              </p>
+            </li>
+            <li>
+              <p>
+                <me>
+                  \int_{10}^{20} \int_{10-x}^{20-x} f(x,y) \, dy \, dx
+                </me>
+              </p>
+            </li>
+          </ol>
+        </answer>
+
+        <solution>
+          <ol marker="a.">
+            <li>
+              <p>
+                We want to have <m>0 \leq x \leq 5</m> and <m>0 \leq y \leq 5</m>.
+                So the probability that a person spends between 0 to 5 minutes waiting in line,
+                and then 0 to 5 minutes waiting to check out is
+                <md>
+                  <mrow>\int_0^{5} \int_0^{5} f(x,y) \, dy \, dx \amp = \int_0^{5} \int_0^{5} \frac{1}{8} e^{-x/4-y/2} \, dy \, dx</mrow>
+                  <mrow>\amp = \int_0^{5} -\frac{1}{4} e^{-x/4-y/2}\mid_0^{5}  \, dx</mrow>
+                  <mrow>\amp = \int_0^{5} -\frac{1}{4} \left(e^{-x/4-5/2} - e^{-x/4}\right)  \, dx</mrow>
+                  <mrow>\amp = \left(e^{-x/4-5/2} - e^{-x/4}\right)\mid_{0}^{5}</mrow>
+                  <mrow>\amp = \left(e^{-15/4} - e^{-5/4}\right) - \left(e^{-5/2} - 1\right)</mrow>
+                  <mrow>\amp \approx 0.655</mrow>
+                </md>.
+                So the probability is approximately 65.5%.
+              </p>
+            </li>
+            <li>
+              <p>
+                We need to have <m>x+y = 10</m> with <m>x</m> between 0 and <m>10</m>,
+                so an iterated integral that represents the probability that a person spends no more than 10 minutes waiting and then checking out at this grocery store is
+                <me>
+                  \int_0^{10} \int_0^{10-x} f(x,y) \, dy \, dx
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                We need to have <m>10 \leq x+y \leq 20</m> with <m>x</m> between 0 and <m>20</m>,
+                so an iterated integral that represents the probability that a person spends at least 10 minutes total both waiting in line and checking out,
+                but not more than 20 minutes is
+                <me>
+                  \int_{10}^{20} \int_{10-x}^{20-x} f(x,y) \, dy \, dx
+                </me>.
+              </p>
+            </li>
+          </ol>
+        </solution>
+
         
       </exercise>
     </exercises>
