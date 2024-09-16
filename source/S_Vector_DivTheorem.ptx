@@ -32,10 +32,10 @@
   </p>
     <figure xml:id="fig_Vector_DivThm_NotClosedSurfaces">
       <caption>Two surfaces that are <em>not</em> closed</caption>
-      <interactive platform="sage" width="87%" aspect="1:2.02">
+      <interactive label="int_Vector_DivThm_NotClosedSurfaces" platform="sage" width="87%" aspect="1:2.02">
         <slate surface="sage">
           var('t,s')
-          r=2*cos(s^2/2)+s*e^(-(t/2/pi-1/2)^2)
+          r=2*cos(s^2/2)+s*e^(-10*(t/2/pi-1/2)^2)
           plot6=parametric_plot3d((r*sin(s)*cos(t),r*sin(s)*sin(t),r*cos(s)),(s,0,pi/2),(t,0,2*pi),frame=False,color='#1E88E5',opacity=.75)
           plot6+=parametric_plot3d((r(s=pi/2)*sin(pi/2)*cos(t),r(s=pi/2)*sin(pi/2)*sin(t),r(s=pi/2)*cos(pi/2)),(t,0,2*pi),color='#D81B60',thickness=3)
           plot6+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
@@ -55,7 +55,7 @@
     </p>
     <figure xml:id="fig_Vector_DivThm_ClosedSurfaces">
       <caption>Two closed surfaces</caption>
-      <interactive platform="sage" width="87%" aspect="1:2.02">
+      <interactive label="int_Vector_DivThm_ClosedSurfaces" platform="sage" width="87%" aspect="1:2.02">
         <slate surface="sage">
           var('t,s')
           plot6=parametric_plot3d((2*sin(s)*cos(t),2*sin(s)*sin(t),2*cos(s)),(s,0,pi),(t,0,2*pi),frame=False,color='#D81B60',opacity=.5)
@@ -76,7 +76,7 @@
   </p>
   <figure xml:id="fig_Vector_DivThm_TopsAndBottoms">
     <caption>Three ways to close a cylindrical surface by adding a top and bottom</caption>
-    <interactive platform="sage" width="100%" aspect="1:1.07">
+    <interactive label="int_Vector_DivThm_TopsAndBottoms" platform="sage" width="100%" aspect="1:1.07">
       <slate surface="sage">
         var('t,s')
         plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='#FFC107',opacity=.25)
@@ -86,8 +86,8 @@
         plot2+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),-2*cos(s)),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
         plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='#004D40',opacity=.5)
         plot3+=parametric_plot3d((s*cos(t),s*sin(t),2),(s,0,2),(t,0,2*pi),frame=False,color='gray',opacity=.5)
-        plot4=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1-s^2/3)),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
-        plot4+=parametric_plot3d((s*cos(t),s*sin(t),(1/2)*(1+s^2/3)+1),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
+        plot4=parametric_plot3d((s*cos(t),s*sin(t),(1)*(1-s^2/4)),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
+        plot4+=parametric_plot3d((s*cos(t),s*sin(t),(3/4)*(1+s^2/4)+1/2),(t,0,2*pi),(s,0,2),color="blue",opacity=.5)
         @interact
         def _(s=selector(['Version 1','Version 2','Version 3'],label="Top and Bottom to Display")):
             if s =='Version 1':
@@ -110,63 +110,111 @@
   </p>
   </introduction>
   <task>
-    <p>
-      In this part, we will consider the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas1"/>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <m>S_{\text{top}}</m> is <m>15</m> and the flux integral of the poison gas through <m>S_{\text{bottom}}</m> is <m>-3</m>, is the interior of the sphere emitting or absorbing poisonous gas? Explain your reasoning.
-    </p>
-    <figure xml:id="fig_Vector_DivThm_Poisongas1">
-      <caption>Unit ball with boundary given by the combination of <m>S_{\text{top}}</m> and <m>S_{\text{bottom}}</m></caption>
-      <interactive platform="sage" width="87%" aspect="1:1.05">
-        <slate surface="sage">
-          var('t,s,x,y,z')
-          plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
-          plot1+=arrow((0,0,.8),(0,0,1.5),color="#DC267F")
-          plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
-          plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
-          show(plot1+plot2)
-        </slate>
-      </interactive>
-    </figure>
+    <statement>
+      <p>
+        In this part, we will consider the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas1"/>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <m>S_{\text{top}}</m> is <m>15</m> and the flux integral of the poison gas through <m>S_{\text{bottom}}</m> is <m>-3</m>, is the interior of the sphere emitting or absorbing poisonous gas? Explain your reasoning.
+      </p>
+      <figure xml:id="fig_Vector_DivThm_Poisongas1">
+        <caption>Unit ball with boundary given by the combination of <m>S_{\text{top}}</m> and <m>S_{\text{bottom}}</m></caption>
+        <interactive label="int_Vector_DivThm_Poisongas1" platform="sage" width="87%" aspect="1:1.05">
+          <slate surface="sage">
+            var('t,s,x,y,z')
+            plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
+            plot1+=arrow((0,0,.8),(0,0,1.5),color="#DC267F")
+            plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
+            plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
+            show(plot1+plot2)
+          </slate>
+        </interactive>
+      </figure>
+    </statement>
+    <answer>
+      <p>
+        12
+      </p>
+    </answer>
+    <solution>
+      <p>
+        Because the flux through the sphere can be calculuated as the flux through the top plus the flux through the bottom, <m>15+(-3)=12</m>.
+      </p>
+    </solution>
   </task>
   <task>
-    <p>
-      In this part, we will consider the top half of the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas2"/>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <m>S_{\text{top}}</m> is <m>15</m> and the flux integral of the poison gas through <m>S_{\text{mid}}</m> is <m>-20</m>, is the top half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.
-    </p>
-    <figure xml:id="fig_Vector_DivThm_Poisongas2">
-      <caption>Upper half of the unit ball with boundaries given by <m>S_{\text{top}}</m> and <m>S_{\text{mid}}</m></caption>
-      <interactive platform="sage" width="87%" aspect="1:1.05">
-        <slate surface="sage">
-          var('t,s,x,y,z')
-          plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
-          plot1+=arrow((0,0,.8),(0,0,1.5),color="#DC267F")
-          plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(t,0,2*pi),(s,0,1),color="#648FFF",opacity=.6)
-          plot5=plot3+arrow((0,0,.25),(0,0,-.25),color="#648FFF")
-          show(plot1+plot5)
-        </slate>
-      </interactive>
-    </figure>
+    <statement>
+      <p>
+        In this part, we will consider the top half of the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas2"/>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <m>S_{\text{top}}</m> is <m>15</m> and the flux integral of the poison gas through <m>S_{\text{mid}}</m> is <m>-20</m>, is the top half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.
+      </p>
+      <figure xml:id="fig_Vector_DivThm_Poisongas2">
+        <caption>Upper half of the unit ball with boundaries given by <m>S_{\text{top}}</m> and <m>S_{\text{mid}}</m></caption>
+        <interactive label="fig_Vector_DivThm_Poisongas2" platform="sage" width="87%" aspect="1:1.05">
+          <slate surface="sage">
+            var('t,s,x,y,z')
+            plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
+            plot1+=arrow((0,0,.8),(0,0,1.5),color="#DC267F")
+            plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(t,0,2*pi),(s,0,1),color="#648FFF",opacity=.6)
+            plot5=plot3+arrow((0,0,.25),(0,0,-.25),color="#648FFF")
+            show(plot1+plot5)
+          </slate>
+        </interactive>
+      </figure>
+    </statement>
+    <answer>
+      <p>
+        absorbing
+      </p>
+    </answer>
+    <solution>
+      <p>
+        Because the total flux through the top and the middle surfaces is -5, there is more of the gas entering this volume than is leaving the volume. Thus this volume is absorbing poison gas.
+      </p>
+    </solution>
   </task>
   <task>
-    <p>
-      In this part, we will consider the bottom half of the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas3"/>, with boundary and normal vectors as shown in the plot. Based on the information given in the previous two parts, what will the flux integrals of the poison gas be for <m>S_{\text{bottom}}</m> and <m>S_{\text{mid}}</m> be in this case? Be sure to pay attention to the orientation of what we consider positive flow. Explain your reasoning.
-    </p>
-    <figure xml:id="fig_Vector_DivThm_Poisongas3">
-      <caption>Lower half of the unit ball with boundaries given by <m>S_{\text{mid}}</m> and <m>S_{\text{bottom}}</m></caption>
-      <interactive platform="sage" width="87%" aspect="1:1.05">
-        <slate surface="sage">
-          var('t,s,x,y,z')
-          plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
-          plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
-          plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(t,0,2*pi),(s,0,1),color="#648FFF",opacity=.6)
-          plot4=plot3+arrow((0,0,-.25),(0,0,.25),color="#648FFF")
-          show(plot2+plot4)
-        </slate>
-      </interactive>
-    </figure>
+    <statement> 
+      <p>
+        In this part, we will consider the bottom half of the unit ball shown in <xref ref="fig_Vector_DivThm_Poisongas3"/>, with boundary and normal vectors as shown in the plot. Based on the information given in the previous two parts, what will the flux integrals of the poison gas be for <m>S_{\text{bottom}}</m> and <m>S_{\text{mid}}</m> be in this case? Be sure to pay attention to the orientation of what we consider positive flow. Explain your reasoning.
+      </p>
+      <figure xml:id="fig_Vector_DivThm_Poisongas3">
+        <caption>Lower half of the unit ball with boundaries given by <m>S_{\text{mid}}</m> and <m>S_{\text{bottom}}</m></caption>
+        <interactive label="fig_Vector_DivThm_Poisongas3" platform="sage" width="87%" aspect="1:1.05">
+          <slate surface="sage">
+            var('t,s,x,y,z')
+            plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
+            plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
+            plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(t,0,2*pi),(s,0,1),color="#648FFF",opacity=.6)
+            plot4=plot3+arrow((0,0,-.25),(0,0,.25),color="#648FFF")
+            show(plot2+plot4)
+          </slate>
+        </interactive>
+      </figure>
+    </statement>
+    <answer>
+      <p>
+        17
+      </p>
+    </answer>
+    <solution>
+      <p>
+        The flux through the bottom hemisphere and the middle disk will be the sum of the flux through the bottom surface and the flux through the middle disk. We know the flux through the middle disk is -20 when considering the outward pointing normal having a negative z-component, so the outward flux for this part will be (positive) 20. Thus the totaal flux will be <m> -1+20=17</m>.
+      </p>
+    </solution>
   </task>
   <task>
-    <p>
+    <statement> 
+      <p>
       Using your answer from the previous part, is the bottom half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.
     </p>
+    </statement>
+    <answer>
+      <p>
+        emitting
+      </p>
+    </answer>
+    <solution>
+      <p>
+        Because there is a net flux going out of the region, the region is emitting poison gas.
+      </p>
+    </solution>
   </task>
 </exploration>
   <p>
@@ -221,7 +269,7 @@
       </p>
       <figure xml:id="verifyDiv_part1">
         <caption>The region of integration <m>Q</m> with each of the four faces in a different color.</caption>
-        <interactive platform="sage" width="87%" aspect="1:1.05">
+        <interactive label="int_verifyDiv_part1" platform="sage" width="87%" aspect="1:1.05">
           <slate surface="sage">
             var('s,t,x,y,z')
             plot6=parametric_plot3d((s,t*(1-s),0),(t,0,1),(s,0,1),color='#1E88E5',opacity=0.8)
@@ -283,7 +331,7 @@
       </p>
       <figure xml:id="fig_Vector_DivThm_Cylinder">
       <caption>A closed cylindrical surface</caption>
-      <interactive platform="sage" width="87%" aspect="1:1.05">
+      <interactive label="int_Vector_DivThm_Cylinder" platform="sage" width="87%" aspect="1:1.05">
         <slate surface="sage">
           var('t,s')
           plot5=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,1),(t,0,2*pi),frame=False,color='#648FFF',opacity=.5)
@@ -306,7 +354,7 @@
         </p>
         <figure xml:id="fig_act_Vector_DivThm_Verify_Field">
           <caption>The vector field <m>\vF=\langle xy-2z,y^2-yz,3x+z^2\rangle</m> in the region near <m>Q</m></caption>
-          <interactive platform="sage" width="87%" aspect="1:1.05">
+          <interactive label="int_act_Vector_DivThm_Verify_Field" platform="sage" width="87%" aspect="1:1.05">
             <slate surface="sage">
               var('t,s,x,y,z')
               plot5=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,1),(t,0,2*pi),frame=False,color='#648FFF',opacity=.5)
@@ -320,26 +368,108 @@
           </interactive>
         </figure>
       </statement>
+      <answer>
+        <p>
+          positive
+        </p>
+      </answer>
+      <solution>
+        <p>
+          There appears to be more of the vector field going out of the top surface than is going into the bottom. There appears to be the same amount of flow into the side as out of the side surface.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
         <p>Parametrize each of the surfaces <m>S_{\text{top}}</m>, <m>S_{\text{sides}}</m>, and <m>S_{\text{bottom}}</m>. Be sure to give bounds for each of your parametrization.</p>
       </statement>
+      <answer>
+        <p>
+          <ul>
+            <li>
+             <m>\vr_{top} (s,t)=\langle s \cos(t),s \sin(t),1 \rangle </m> for <m> s \in [0,1] </m> and <m>t \in [0,2 pi)</m>
+            </li>
+            <li>
+              <m>\vr_{bottom} (s,t)=\langle s \cos(t),s \sin(t),0 \rangle </m> for <m> s \in [0,1] </m> and <m>t \in [0,2 pi)</m>
+            </li>
+            <li>
+              <m>\vr_{side} (s,t)=\langle  \cos(t), \sin(t),s \rangle </m> for <m> s \in [0,1] </m> and <m>t \in [0,2 pi)</m>
+             </li>
+          </ul>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <ul>
+            <li>
+             <m>\vr_{top} (s,t)=\langle s \cos(t),s \sin(t),1 \rangle </m> for <m> s \in [0,1] </m> and <m>t \in [0,2 pi)</m>
+            </li>
+            <li>
+              <m>\vr_{bottom} (s,t)=\langle s \cos(t),s \sin(t),0 \rangle </m> for <m> s \in [0,1] </m> and <m>t \in [0,2 pi)</m>
+            </li>
+            <li>
+              <m>\vr_{side} (s,t)=\langle  \cos(t), \sin(t),s \rangle </m> for <m> s \in [0,1] </m> and <m>t \in [0,2 pi)</m>
+             </li>
+          </ul>
+        </p>
+      </solution>
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_CylCoord">
       <statement>
         <p>Give inequalities in terms of cylindrical coordinates to describe <m>Q</m>.</p>
       </statement>
+      <answer>
+        <p>
+          <m> 0 \leq r \leq 1, \quad 0 \leq z \leq 1, \quad 0 \leq \theta \leq 2 \pi</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <m> 0 \leq r \leq 1, \quad 0 \leq z \leq 1, \quad 0 \leq \theta \leq 2 \pi</m>
+        </p>
+      </solution>
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_DoubleInt">
       <statement>
         <p>Set up and evaluate double integrals to calculate the flux of <m>\vF</m> through <m>S_{\text{top}}</m>, <m>S_{\text{sides}}</m>, and <m>S_{\text{bottom}}</m>.</p>
       </statement>
+      <answer>
+        <p>
+          <m>\frac{\pi}{2}</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          Setting up flux integrals for each side will give you:
+          <me>
+            \int_0^1 \int_0^{2\pi} \langle s^2\cos(t)\sin(t)-2,s^2\sin(t)^2-2\sin(t),3s\cos(t)+1\rangle \cdot \langle 0,0,s \rangle \, ds \, dt=\pi
+          </me>
+          for the top,
+          <me>
+            \int_0^1 \int_0^{2\pi} \langle s^2\cos(t)\sin(t)-0,s^2\sin(t)^2-0,3s\cos(t)\rangle \cdot \langle 0,0,-s \rangle \, ds \, dt=0
+          </me>
+          for the bottom, and 
+          <me>
+            \int_0^1 \int_0^{2\pi} \langle \cos(t)\sin(t)-2s, \sin(t)^2-s\sin(t),3\cos(t)+s^2\rangle \cdot \langle \cos(t),\sin(t),0 \rangle \, ds \, dt=-\frac{\pi}{2}
+          </me>
+          for the side. 
+        </p>
+      </solution>
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_NetFlux">
       <statement>
         <p>What is the net flux through the closed surface? Be sure to state if the net flux is in or out.</p>
       </statement>
+      <answer>
+        <p>
+          <m>\frac{\pi}{2}</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The total flux is <m>\pi-\frac{\pi}{2}=\frac{\pi}{2}</m>.
+        </p>
+      </solution>
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_Div">
       <statement>
@@ -347,11 +477,34 @@
           Compute the divergence of <m>\vF</m> and use this to explain whether you think <m>\iiint_Q \divg(\vF)\, dV</m> will be positive, negative, or zero.
         </p>
       </statement>
+      <answer>
+        <p>
+          <m>\divg(\vF) = z-y</m>, positive
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <m>\divg(\vF) = z-y</m> The triple integral of <m>\divg(\vF)</m> will be positive because the z values will be positive and the y-values will sum to zero over the region.
+        </p>
+      </solution>
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_TripleInt">
       <statement>
         <p> Set up and compute the triple integral for <m>\iiint_Q \divg(\vF)\, dV</m>.</p>
       </statement>
+      <answer>
+        <p>
+          <m>\frac{\pi}{2}</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          <me>
+            \int_0^{2\pi} \int _0^1 \int_0^1 (z-s \sin(t))(s) \, dz \, ds \, dt = \frac{\pi}{2}
+          </me>
+          
+        </p>
+      </solution>
       <hint><p>Use cylindrical coordinates.</p></hint>
     </task>
     <task xml:id="task_act_Vector_DivThm_Verify_Compare">
@@ -363,6 +516,16 @@
       <statement>
         <p>Was the left-hand side or right-hand side of the equation in the Divergence Theorem more tedious to calculate in this example? Do you think this will be true for most other cases where the Divergence Theorem applies?</p>
       </statement>
+      <answer>
+        <p>
+          The triple integral is much easier to calculate.
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The triple integral is much easier to calculate.
+        </p>
+      </solution>
     </task>
   </activity>
   <p>
@@ -375,6 +538,19 @@
           Find the flux of the vector field <m>\vF = \langle 3x^2+y^5,5+e^{z^3},z\rangle</m> through the surface of the solid cube <m>Q</m> in <m>\R^3</m> with <m>-2\leq x\leq 2</m>, <m>-2\leq y\leq 2</m>, and <m>-2\leq z\leq 2</m>.
         </p>
       </statement>
+      <answer>
+        <p>
+          64
+        </p>
+      </answer>
+      <solution>
+        <p>
+          For <m>\vF = \langle 3x^2+y^5,5+e^{z^3},z\rangle</m>, <m>\divg(\vF)=6x+1</m>. So the divergence theorem gives the following triple integral:
+          <me>
+            \int_{-2}^2 \int_{-2}^2 \int_{-2}^2 6x+1 \, dx \, dy \, dx  = 64
+          </me>
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -387,6 +563,19 @@
           Spherical coordinates 
         </p>
       </hint>
+      <answer>
+        <p>
+          <m>\frac{4374 \pi}{5}</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          For <m>\vG = \langle x^3,y^3,z^3\rangle </m>, <m>\divg(\vG)=3x^2+3y^2+3z^2</m>. So the divergence theorem gives the following triple integral:
+          <me>
+            \int_0^{\frac{\pi}{2}} \int_0^{2\pi} \int_0^3 3\rho^2 (\rho^2 \sin(\phi)) \, d\rho \, d\theta \, d\phi  = \frac{4374 \pi}{5}
+          </me>
+        </p>
+      </solution>
     </task>
   </activity>
 </subsection>

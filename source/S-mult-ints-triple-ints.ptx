@@ -49,6 +49,7 @@
     </p>
 
     <exploration xml:id="PA_11_7">
+      <statement> 
       <p>
         Consider a solid piece of granite in the shape of a box <m>B = \{(x,y,z) : 0 \leq x \leq 4, 0 \leq y \leq 6, 0 \leq z \leq 8\}</m>, whose density varies from point to point. Let <m>\delta(x, y, z)</m> represent the mass density of the piece of granite at point <m>(x,y,z)</m> in kilograms per cubic meter (so we are measuring <m>x</m>, <m>y</m>, and <m>z</m> in meters). Our goal is to find the mass of this solid.
       </p>
@@ -94,7 +95,58 @@
           </p>
         </li>
       </ol>
-      
+      </statement>
+      <solution>
+        <p>
+         
+        <ol marker="a.">
+          <li>
+            <p>
+              We have <m>x_0=0</m>, <m>x_1=2</m>, and <m>x_2=4</m>;
+              <m>y_0=0</m>, <m>y_1=2</m>, <m>y_2=4</m>, and <m>y_3=6</m>;
+              and <m>z_0=0</m>, <m>z_1=4</m>, and <m>z_2=8</m>.
+              This gives us <m>\Delta x = \frac{4-0}{2} = 2</m>,
+              <m>\Delta y = \frac{6-0}{3} = 2</m>,
+              and <m>\Delta z = \frac{8-0}{2} = 4</m>.
+              These points are labeled in figure below.
+              <image width="73%" source="images/fig_11_7_Box_domain_PA_labeled.png"/>
+            </p>
+          </li>
+          <li>
+            <p>
+              Since we partition the interval <m>[0,4]</m> into 2 subintervals,
+              the interval <m>[0,6]</m> into 3 subintervals,
+              and the interval <m>[0,8]</m> into 2 subintervals,
+              there are <m>(2)(3)(2) = 12</m> sub-boxes of <m>B</m>.
+              Each sub-box has volume <m>\Delta x \ \Delta y \ \Delta z = (2)(2)(4) = 16</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The visible sub-boxes are labeled in the figure.
+              Notice that we cannot see boxes
+              <me>
+                B_{111} = [x_0,x_1] \times [y_0, y_1] \times [z_0,z_1] \ \ \text{ and }  \ \ B_{121} = [x_0,x_1] \times [y_1, y_2] \times [z_0,z_1]
+              </me>.
+              If we consider the mass of the solid in sub-box <m>B_{ijk}</m> as a constant
+              <m>\delta(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*)</m> in kilograms per cubic meter,
+              then the product <m>\delta(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \Delta V</m> will approximate the mass of the solid on sub-box <m>B_{ijk}</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              To determine the mass of our solid,
+              we sum the approximations of the masses on each sub-box and the take the limit as <m>\Delta x</m>,
+              <m>\Delta y</m>, and <m>\Delta z</m> go to 0.
+              Thus, the mass of our solid is
+              <me>
+                \lim_{\substack{\Delta x \to 0 \\ \Delta y \to 0 \\ \Delta z \to 0} } \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^l \delta(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \Delta V
+              </me>.
+            </p>
+          </li>
+        </ol>
+        </p>
+      </solution>
     </exploration>
   </introduction>
 
@@ -204,6 +256,9 @@
     </p>
 
     <activity xml:id="A_11_7_3">
+      <statement>
+        <p>
+     
       <ol marker="a.">
       <li>
         <p>
@@ -255,7 +310,62 @@
         </p>
       </li>
       </ol>
-      
+           
+        </p>
+      </statement>
+      <solution>
+        <p>
+        <ol marker="a.">
+          <li>
+            <p>
+              As an iterated integral we have
+              <md>
+                <mrow>\int \int \int_B f(x,y,z) \, dV \amp = \int_{-2}^3 \int_1^4 \int_0^2 x-y+2z \, dz \, dy \, dx</mrow>
+                <mrow>\amp = \int_{-2}^3 \int_1^4 \left. \left[ (x-y)z+z^2\right] \right|_0^2 \, dy \, dx</mrow>
+                <mrow>\amp = \int_{-2}^3 \int_1^4 2(x-y)+4 \, dy \, dx</mrow>
+                <mrow>\amp = \int_{-2}^3 \left. \left[2xy-y^2+4y\right] \right|_1^4 \, dx</mrow>
+                <mrow>\amp = \int_{-2}^3 6x-3 \, dx</mrow>
+                <mrow>\amp = \left. \left[3x^2-3x\right] \right|_{-2}^3</mrow>
+                <mrow>\amp = 0</mrow>
+              </md>.
+            </p>
+          </li>
+          <li>
+            <ol marker="i">
+              <li>
+                <p>
+                  The values of <m>x</m> run from <m>-3</m> to <m>3</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  The projection of the cone <m>S</m> onto the <m>xy</m>-plane is image of the top of the cone,
+                  or the equation <m>\sqrt{x^2+y^2} = 3</m>.
+                  This is the circle <m>x^2+y^2 = 9</m>.
+                  The limits on <m>y</m> are from the bottom of the circle to the top,
+                  or <m>-\sqrt{9-x^2} \leq y \leq \sqrt{9-x^2}</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Notice that the smallest value of <m>z</m> on each slice is on the cone,
+                  and the largest value of <m>z</m> is on the plane <m>z=3</m>.
+                  So the limits on <m>z</m> are <m>\sqrt{x^2+y^2} \leq z \leq 3</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  An iterated integral that represents the mass of the cone <m>S</m> is
+                  <me>
+                    \int_{-3}^3 \int_{-\sqrt{9-x^2}}^{\sqrt{9-x^2}} \int_{\sqrt{x^2+y^2}}^{3} \delta(x,y,z) \, dz \, dy \, dx
+                  </me>.
+                </p>
+              </li>
+            </ol>
+          </li>
+        </ol>
+        </p>
+      </solution>
     </activity>
 
     <p>
@@ -350,6 +460,7 @@
     </p>
 
     <activity xml:id="A_11_7_4">
+      <statement>
       <p>
         There are several other ways we could have set up the integral to give the mass of the tetrahedron in <xref ref="ex_11_7_Tetrahedron_mass">Example</xref>.
         <ol marker="a.">
@@ -378,7 +489,64 @@
           </li>
         </ol>
       </p>
-      
+      </statement>
+      <solution>
+        <p>
+        <ol marker="a.">
+          <li>
+            <p>
+              We can choose any of <m>x</m>, <m>y</m>,
+              or <m>z</m> to be our innermost variable of integration.
+              Once we make that choice,
+              there are two variables left for the middle integral,
+              and then only one for the outermost integral.
+              So we have <m>3 \times 2 \times 1 = 6</m> different iterated integrals that are equal to the integral in <xref ref="eq_11_7_Tetrahedron_mass"/>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If we integrate with respect to <m>z</m> first,
+              the limits on <m>z</m> will remain the same as in <xref ref="eq_11_7_Tetrahedron_mass"/>.
+              The projection of the tetrahedron onto the <m>xy</m>-plane is still bounded by the line <m>x+2y=6</m>,
+              and this region can be described by the inequalities
+              <m>0 \leq x \leq 6-2y</m> and <m>0 \leq y \leq 3</m>.
+              So our iterated integral is
+              <me>
+                \int_{0}^{3} \int_{0}^{6-2y} \int_{0}^{(1/3)(6-x-2y)} x+y+z \, dz \, dx \, dy
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If we integrate with respect to <m>y</m> first,
+              the lower limit on <m>y</m> is 0 and the upper limit is the face of the tetrahedron,
+              <m>y = \frac{1}{2}(6-3z-x)</m>.
+              The projection of the tetrahedron onto the <m>xz</m>-plane is bounded by the coordinate axes and the line <m>x+3z=6</m>.
+              This region can be described by the inequalities
+              <m>0 \leq z \leq \frac{1}{3}(6-x)</m> and <m>0 \leq x \leq 6</m>.
+              So our iterated integral is
+              <me>
+                \int_{0}^{6} \int_{0}^{1/3(6-x)} \int_{0}^{\frac{1}{2}(6-3z-x)} x+y+z \, dy \, dz \, dx
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If we integrate with respect to <m>x</m> first,
+              the lower limit on <m>x</m> is 0 and the upper limit is the face of the tetrahedron,
+              <m>x = 6-3z-2y</m>.
+              The projection of the tetrahedron onto the <m>yz</m>-plane is bounded by the coordinate axes and the line <m>2y+3z=6</m>.
+              This region can be described by the inequalities
+              <m>0 \leq y \leq \frac{1}{2}(6-3z)</m> and <m>0 \leq z \leq 2</m>.
+              So our iterated integral is
+              <me>
+                \int_{0}^{2} \int_{0}^{1/2(6-3z)} \int_{0}^{6-3z-2y} x+y+z \, dx \, dy \, dz
+              </me>.
+            </p>
+          </li>
+        </ol>
+        </p>
+      </solution>
     </activity>
 
     <p>
@@ -386,6 +554,7 @@
     </p>
 
     <activity xml:id="A_11_7_6">
+      <statement> 
       <p>
         A solid <m>S</m> is bounded below by the square <m>z=0</m>, <m>-1 \leq x \leq 1</m>, <m>-1 \leq y \leq 1</m> and above by the surface <m>z = 2-x^2-y^2</m>. A picture of the solid is shown in <xref ref="F_11_7_COM3D">Figure</xref>.
       </p>
@@ -420,7 +589,51 @@
           </p>
         </li>
       </ol>
-      
+      </statement>
+      <solution>
+        <ol marker="a.">
+          <li>
+            <p>
+              We integrate first with respect to <m>z</m>,
+              so that <m>0 \leq z \leq 2-x^2-y^2</m>.
+              The projection of the surface onto the <m>xy</m>-plane is the square,
+              so an iterated integral that gives the volume of <m>S</m> is
+              <me>
+                \int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} dz \, dy \, dx
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The center of mass of <m>S</m> is <m>(\overline{x}, \overline{y}, \overline{z})</m>, where
+              <md>
+                <mrow>\overline{x} \amp = \frac{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} x(x^2+1) \, dz \, dy \, dx}{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} x^2+1 \, dz \, dy \, dx}</mrow>
+                <mrow>\overline{y} \amp = \frac{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} y(x^2+1) \, dz \, dy \, dx}{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} x^2+1 \, dz \, dy \, dx}</mrow>
+                <mrow>\overline{z} \amp = \frac{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} z(x^2+1) \, dz \, dy \, dx}{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} x^2+1 \, dz \, dy \, dx}</mrow>
+              </md>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The average density is given by
+              <me>
+                \frac{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} x^2+1 \, dz \, dy \, dx}{\int_{-1}^1 \int_{-1}^1 \int_0^{2-x^2-y^2} 1 \, dz \, dy \, dx}
+              </me>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The volume of the solid is <m>\frac{16}{3}</m>,
+              the center of mass is <m>\left(0,0,\frac{94}{133}\right)</m>,
+              and the average density is <m>\frac{19}{15}</m>.
+              Given the symmetry, we should expect
+              <m>\overline{x}</m> and <m>\overline{y}</m> to be 0.
+              Since the bulk of the mass is nearer to the <m>xy</m>-plane,
+              it makes sense that <m>\overline{z}</m> is less than 1.
+            </p>
+          </li>
+        </ol>
+      </solution>
     </activity>
   </subsection>
 
@@ -592,7 +805,36 @@
           </figure>
           
         </statement>
-        
+        <solution>
+          <p>
+          <ol marker="a.">
+            <li>
+              <p>
+                The iterated integral is
+                <me>
+                  \int_{-1}^{1} \int_{x^2}^{1} \int_{0}^{1-y} z \, dz \, dy \, dx
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The iterated integral is
+                <me>
+                  \int_{-1}^{1} \int_{0}^{1-x^2} \int_{x^2}^{1-z} z \, dy \, dz \, dx
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The iterated integral is
+                <me>
+                  \int_{0}^{1} \int_{0}^{1-z} \int_{-\sqrt{y}}^{\sqrt{y}} z \, dx \, dy \, dz
+                </me>.
+              </p>
+            </li>
+          </ol>
+          </p>
+        </solution>
       </exercise>
       <exercise>
         <statement>
@@ -619,7 +861,33 @@
             </ol>
           </p>
         </statement>
-        
+        <solution>
+          <p>
+          <ol marker="a.">
+            <li>
+              <p>
+                We want the average value of the sum <m>x+y+z</m> over the region described.
+                This average value is given by
+                <me>
+                  \frac{\int_0^2 \int_0^{2y} \int_0^{x+y} x+y+z \, dz \, dx \, dy}{\int_0^2 \int_0^{2y} \int_0^{x+y} 1 \, dz \, dx \, dy}
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                We will integrate <m>x+y+z</m> for <m>z</m> from <m>0</m> to <m>4-x-y^2</m>.
+                To find the limits on <m>x</m> and <m>y</m>,
+                we project <m>z</m> into the <m>x</m>-<m>y</m> plane to the parabola <m>0 = 4 - x- y^2</m> or <m>x = 4-y^2</m>.
+                Since we are restricted to the first octant,
+                the average value of <m>f(x,y,z)</m> over this region is
+                <me>
+                  \frac{\int_0^2 \int_0^{4-y^2} \int_0^{4-x-y^2} x+y+z \, dz \, dx \, dy}{\int_0^2 \int_0^{4-y^2} \int_0^{4-x-y^2} 1 \, dz \, dx \, dy}
+                </me>.
+              </p>
+            </li>
+          </ol>
+          </p>
+        </solution>
       </exercise>
       <exercise>
         <statement>
@@ -658,7 +926,85 @@
             </ol>
           </p>
         </statement>
-        
+        <solution>
+          <p>
+          <ol marker="a.">
+            <li>
+              <p>
+                Setting <m>g(x,y)</m> equal to <m>f(x,y)</m> we see that the curve of intersection between the two paraboloids is given by <m>x^2+y^2 = 8-3x^2-3y^2</m> or <m>x^2+y^2=2</m>.
+                This is the circle centered at the origin with radius <m>\sqrt{2}</m>.
+              </p>
+            </li>
+            <li>
+              <p>
+                To find mass, we integrate density.
+                An iterated integral whose value represent the mass of the solid is
+                <me>
+                  \int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} \int_{x^2+y^2}^{8-3x^2-3y^2} \frac{1}{x^2 + y^2 + z^2 + 1} \, dz \, dy \, dx
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                If we interchange the orders of <m>y</m> and <m>x</m>,
+                then symmetry shows that the mass of the solid is given by
+                <me>
+                  \int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{2-y^2}}^{\sqrt{2-y^2}} \int_{x^2+y^2}^{8-3x^2-3y^2} \frac{1}{x^2 + y^2 + z^2 + 1} \, dz \, dx \, dy
+                </me>.
+                To integrate with respect to <m>y</m> first,
+                notice that the limits on <m>y</m> will vary depending on the height.
+                If <m>0 \leq z \leq 2</m>,
+                then the limits on <m>y</m> are determined by the paraboloid <m>z = x^2+y^2</m>.
+                In this case we have <m>-\sqrt{z-x^2} \leq y \leq \sqrt{z-x^2}</m>.
+                When we project this part of the surface onto the <m>x</m>-<m>z</m> plane,
+                the result is the parabola <m>z=x^2</m>.
+                We want the region above this parabola and below <m>z=2</m>.
+                If <m>2 \leq z \leq 8</m>,
+                then the limits on <m>y</m> are determined by the paraboloid <m>z = 8-3x^2-3y^2</m>.
+                In this case we have <m>-\sqrt{8-z-3x^2} \leq y \leq \sqrt{8-z-3x^2}</m>.
+                When we project this part of the surface onto the <m>x</m>-<m>z</m> plane,
+                the result is the parabola <m>z=8-3x^2</m>.
+                We want the region below this parabola and above <m>z=2</m>.
+                So the mass of the solid is given by
+                <me>
+                  \int_{-\sqrt{2}}^{\sqrt{2}} \int_{x^2}^{2} \int_{-\sqrt{z-x^2}}^{\sqrt{z-x^2}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dy \, dz \, dx + \int_{-\sqrt{2}}^{\sqrt{2}} \int_{2}^{8-3x^2} \int_{-\sqrt{\frac{1}{3}(8-z-3x^2)}}^{\sqrt{\frac{1}{3}(8-z-3x^2)}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dy \, dz \, dx
+                </me>.
+                Interchanging the orders of <m>x</m> and <m>z</m> shows that the mass of the solid is given by
+                <me>
+                  \int_{0}^{2} \int_{-\sqrt{z}}^{\sqrt{z}} \int_{-\sqrt{z-x^2}}^{\sqrt{z-x^2}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dy \, dx \, dz + \int_{2}^{8} \int_{-\sqrt{\frac{1}{3}(8-z)}}^{\sqrt{\frac{1}{3}(8-z)}} \int_{-\sqrt{\frac{1}{3}(8-z-3x^2)}}^{\sqrt{\frac{1}{3}(8-z-3x^2)}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dy \, dx \, dz
+                </me>.
+                Finally, we integrate with respect to <m>x</m> first.
+                The symmetry in the surface indicates that these integrals will be similar to ones with <m>y</m> first.
+                So the mass of the solid is also given by
+                <me>
+                  \int_{-\sqrt{2}}^{\sqrt{2}} \int_{y^2}^{2} \int_{-\sqrt{z-y^2}}^{\sqrt{z-y^2}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dx \, dz \, dy + \int_{-\sqrt{2}}^{\sqrt{2}} \int_{2}^{8-3y^2} \int_{-\sqrt{\frac{1}{3}(8-z-3y^2)}}^{\sqrt{\frac{1}{3}(8-z-3y^2)}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dx \, dz \, dy
+                </me>
+                and
+                <me>
+                  \int_{0}^{2} \int_{-\sqrt{z}}^{\sqrt{z}} \int_{-\sqrt{z-y^2}}^{\sqrt{z-y^2}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dx \, dy \, dz + \int_{2}^{8} \int_{-\sqrt{\frac{1}{3}(8-z)}}^{\sqrt{\frac{1}{3}(8-z)}} \int_{-\sqrt{\frac{1}{3}(8-z-3y^2)}}^{\sqrt{\frac{1}{3}(8-z-3y^2)}} \frac{1}{x^2 + y^2 + z^2 + 1} \, dx \, dy \, dz
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                If <m>M</m> is the mass of the solid from part (b),
+                then the center of mass <m>(\overline{x}, \overline{y}, \overline{z})</m> is given by
+                <md>
+                  <mrow>\overline{x} \amp = \frac{1}{M} \int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} \int_{x^2+y^2}^{8-3x^2-3y^2} \frac{x}{x^2 + y^2 + z^2 + 1} \, dz \, dy \, dx</mrow>
+                  <mrow>\overline{y} \amp = \frac{1}{M} \int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} \int_{x^2+y^2}^{8-3x^2-3y^2} \frac{y}{x^2 + y^2 + z^2 + 1} \, dz \, dy \, dx</mrow>
+                  <mrow>\overline{z} \amp = \frac{1}{M} \int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} \int_{x^2+y^2}^{8-3x^2-3y^2} \frac{z}{x^2 + y^2 + z^2 + 1} \, dz \, dy \, dx</mrow>
+                </md>.
+              </p>
+            </li>
+            <li>
+              <p>
+                There is symmetry around the <m>z</m>-axis,
+                so we should expect <m>\overline{z} = 0</m>.
+              </p>
+            </li>
+          </ol>
+          </p>
+        </solution>
       </exercise>
       <exercise>
         <statement>
@@ -723,7 +1069,63 @@
             </ol>
           </p>
         </statement>
-        
+        <solution>
+          <p>
+          <ol marker="a.">
+            <li>
+              <p>
+                We use polar coordinates with
+                <m>f(r,\theta) = 4-r^2</m> and evaluate with a computer algebra system to see that the volume of the solid is
+                <me>
+                  \int_{-\pi/4}^{\pi/4} \int_0^2 r(4-r^2) \, dr \, d\theta = 2\pi
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Using a computer algebra system we find that the mass of the solid is
+                <me>
+                  M=\int_0^1 \int_{y/2}^{y} \int_0^{9-x^2-y^2} xyz+1 \, dz \, dx \, dy = \frac{30707}{6144}
+                </me>.
+                The center of mass is then <m>(\overline{x}, \overline{y}, \overline{z})</m> where
+                <md>
+                  <mrow>\overline{x} \amp = \frac{1}{M} \int_0^1 \int_{y/2}^{y} \int_0^{9-x^2-y^2} x(xyz+1) \, dz \, dx \, dy = \frac{785256}{1074745} \approx 0.56</mrow>
+                  <mrow>\overline{y} \amp = \frac{1}{M} \int_0^1 \int_{y/2}^{y} \int_0^{9-x^2-y^2} y(xyz+1) \, dz \, dx \, dy = \frac{770584}{1381815} \approx 0.73</mrow>
+                  <mrow>\overline{z} \amp = \frac{1}{M} \int_0^1 \int_{y/2}^{y} \int_0^{9-x^2-y^2} z(xyz+1) \, dz \, dx \, dy = \frac{4438823}{921210} \approx 4.82</mrow>
+                </md>.
+              </p>
+            </li>
+            <li>
+              <p>
+                The volume of the room is
+                <me>
+                  V=\int_0^{12} \int_0^{12-x/4} 16-x/6-y/3 \, dy  \, dx = 1674
+                </me>,
+                so the average temperature in the room is
+                <me>
+                  \frac{1}{V} \int_0^{12} \int_0^{12-x/4} \int_0^{16-x/6-y/3} \frac{80}{1 + \frac{x^2}{1000} + \frac{y^2}{1000} + \frac{z^2}{1000}} \, dz \, dy \, dx \approx 70.52
+                </me>.
+              </p>
+            </li>
+            <li>
+              <p>
+                Since <m>y</m> lies between <m>-3</m> and <m>3</m> on the cylinder,
+                it follows that the plane <m>z = 5-y</m> lies above the plane <m>z=1</m>.
+                The mass of the solid is found using cylindrical coordinates as
+                <me>
+                  M = \int_0^{2\pi} \int_0^3 \int_1^{5-r\sin(\theta)} r^2 \, dz \, dr \, d\theta = 72 \pi
+                </me>.
+                The center of mass is then <m>(\overline{x}, \overline{y}, \overline{z})</m> where
+                <md>
+                  <mrow>\overline{x} \amp = \frac{1}{M} \int_0^{2\pi} \int_0^3 \int_1^{5-r\sin(\theta)} r^3\cos(\theta) \, dz \, dr \, d\theta = 0</mrow>
+                  <mrow>\overline{y} \amp = \frac{1}{M} \int_0^{2\pi} \int_0^3 \int_1^{5-r\sin(\theta)} r^3\sin(\theta) \, dz \, dr \, d\theta = -\frac{27}{40}</mrow>
+                  <mrow>\overline{z} \amp = \frac{1}{M} \int_0^{2\pi} \int_0^3 \int_1^{5-r\sin(\theta)} r^2z \, dz \, dr \, d\theta = \frac{267}{80}</mrow>
+                </md>.
+              </p>
+            </li>
+          </ol>
+          </p>
+        </solution>
       </exercise>
     </exercises>
 </section>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2023                                                        -->
+<!-- Mitchel T. Keller                                                     -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus - Multivariable.                 -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-SA license.  The work      -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike".  All trademarks are the registered marks of  -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+<pretext xmlns:xi="http://www.w3.org/2001/XInclude">
+<docinfo>
+  <macros>
+    \newcommand{\R}{\mathbb{R}}
+    \newcommand{\va}{\mathbf{a}}
+    \newcommand{\vb}{\mathbf{b}}
+    \newcommand{\vc}{\mathbf{c}}
+    \newcommand{\vC}{\mathbf{C}}
+    \newcommand{\vd}{\mathbf{d}}
+    \newcommand{\ve}{\mathbf{e}}
+    \newcommand{\vi}{\mathbf{i}}
+    \newcommand{\vj}{\mathbf{j}}
+    \newcommand{\vk}{\mathbf{k}}
+    \newcommand{\vn}{\mathbf{n}}
+    \newcommand{\vm}{\mathbf{m}}
+    \newcommand{\vr}{\mathbf{r}}
+    \newcommand{\vs}{\mathbf{s}}
+    \newcommand{\vu}{\mathbf{u}}
+    \newcommand{\vv}{\mathbf{v}}
+    \newcommand{\vw}{\mathbf{w}}
+    \newcommand{\vx}{\mathbf{x}}
+    \newcommand{\vy}{\mathbf{y}}
+    \newcommand{\vz}{\mathbf{z}}
+    \newcommand{\vzero}{\mathbf{0}}
+    \newcommand{\vF}{\mathbf{F}}
+    \newcommand{\vG}{\mathbf{G}}
+    \newcommand{\vH}{\mathbf{H}}
+    \newcommand{\vR}{\mathbf{R}}
+    \newcommand{\vT}{\mathbf{T}}
+    \newcommand{\vN}{\mathbf{N}}
+    \newcommand{\vL}{\mathbf{L}}
+    \newcommand{\vB}{\mathbf{B}}
+    \newcommand{\vS}{\mathbf{S}}
+    \newcommand{\proj}{\text{proj}}
+    \newcommand{\comp}{\text{comp}}
+    \newcommand{\nin}{}
+    \newcommand{\vecmag}[1]{|#1|}
+    \newcommand{\grad}{\nabla}
+    \DeclareMathOperator{\curl}{curl}
+    \DeclareMathOperator{\divg}{div}
+</macros>
+
+  <latex-image-preamble>
+
+    \usepackage{tikz}
+    \usepackage{pgfplots}
+    \usetikzlibrary{positioning,matrix,arrows,hobby,patterns}
+    \usetikzlibrary{shapes,decorations,shadows,fadings,fillbetween}
+    \makeatletter
+    \pgfdeclarepatternformonly[\GridSize]{MyGrid}{\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{10pt}{10pt}}{\pgfqpoint{\GridSize}{\GridSize}}%
+    {
+      \pgfsetcolor{\tikz@pattern@color}
+      \pgfsetlinewidth{0.3pt}
+      \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+      \pgfpathlineto{\pgfqpoint{0pt}{9.1pt}}
+      \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+      \pgfpathlineto{\pgfqpoint{9.1pt}{0pt}}
+      \pgfusepath{stroke}
+    }
+    \makeatother
+    
+    \newdimen\GridSize
+    \tikzset{
+        GridSize/.code={\GridSize=#1},
+        GridSize=3pt
+    }
+    
+    \usetikzlibrary{decorations.markings}
+    \usetikzlibrary{arrows.meta}
+    
+    \tikzset{
+      orientation arrows/.style={
+        postaction={
+          decorate,
+          decoration={
+            markings,
+            mark=between positions 0 and 1 step 45pt with {\arrow{>}},
+       }}}}
+    \tikzset{
+      arrow at end/.style={
+          decorate,decoration={
+              markings,
+              mark=at position .999 with{
+                  \arrow{#1};
+      }}}}      
+  </latex-image-preamble>
+
+  <rename element="exploration" xml:lang="en-US">Preview Activity</rename>
+  <rename element="objectives" xml:lang="en-US">Motivating Questions</rename>
+  <rename element="task" xml:lang="en-US">part</rename>
+  <cross-references text="type-global" />
+</docinfo>
+
+  <book xml:id="acm-solution-manual">
+      <title><line>Solutions Manual</line>
+      <line>for</line>
+      <line>Active Calculus - Multivariable</line>
+      </title>
+    <frontmatter>
+            <!-- Don't xi:include the titlepage, since solution authors differ -->
+      <titlepage >
+
+      <author>
+        <personname>Steve Schlicker</personname>
+        <department>Department of Mathematics</department>
+        <institution>Grand Valley State University</institution>
+        <email>schlicks@gvsu.edu</email>
+      </author>
+
+        <author>
+          <personname>Mitchel T. Keller</personname>
+          <department>Department of Mathematics</department>
+          <institution>University of Wisconsin-Madison</institution>
+          <email>mitch@rellek.net</email>
+        </author>
+        <author>
+          <personname>Nicholas Long</personname>
+          <department>Department of Mathematics and Statistics</department>
+          <institution>Stephen F. Austin State University</institution>
+          <email>longne@sfasu.edu</email>
+        </author>
+
+      <date><today /></date>
+      </titlepage>
+
+      <preface permid="vBG">
+        <p permid="HPY">
+          This Solutions Manual for <pubtitle>Active Calculus - Multivariable</pubtitle> is organized by section.
+          Preview Activity solutions are not provided,
+          but each activity within a section has a solution provided.
+          The solution to each activity starts at the top of a new page,
+          so instructors can easily extract the solution for a single activity if they wish to print it for students or post on their course's learning management system site.
+          After the activity solutions come the exercise solutions.
+          Solutions for
+          <webwork /> exercises are not provided,
+          since those solutions are automatically available in this book's <init>HTML</init> version.
+          Each exercise also starts at the top of its own page to make it easy to extract only the solutions to certain exercises.
+        </p>
+
+        <p permid="nXh">
+          Please do not post this solutions manual publicly on the internet nor in any electronic form where it is available in full to students.
+          As much as possible,
+          we aspire to keep this solutions manual as a resource for instructors only so that students get the full benefit of activities and exercises by having to struggle with them without looking at solutions.
+        </p>
+
+        <p permid="Ueq">
+          By extracting individual pages from the <init>PDF</init>,
+          it is fine to share solutions to individual activities or exercises via course management system software.
+          Please do not post these individual pages publicly on the internet.
+        </p>
+      </preface>
+
+    </frontmatter>
+
+
+    <xi:include href="./C-mv-fns.ptx" />
+    <xi:include href="./C-mv-deriv.ptx" />
+    <xi:include href="./C-mult-ints.ptx" />
+    <xi:include href="./C-vector.ptx" />
+  <backmatter>
+    <colophon>
+      <p>
+        This book was authored in <pretext />.
+      </p>
+    </colophon>
+  </backmatter>
+
+  </book>
+
+</pretext>
+
