@@ -161,7 +161,7 @@
                 <li><m>(x,y)=(0,0)</m></li>
                 <li><m>(x,y)=(3,-2)</m></li>
             </ol>
-            You may find it helpful to draw a set of coordinate axes for both <m>xy</m> and <m>x^* y^*</m>.
+            You may find it helpful to draw a set of coordinate axes for both <m>x,y</m> and <m>x^*,y^*</m>.
           </p>
         </statement>
       </task>
@@ -256,7 +256,7 @@
       </p>
       <figure xml:id="base-ellipse">
         <caption>A plot of an ellipse with foci in green</caption>
-        <interactive title="interactive-base-ellipse" platform="sage" width="85%" aspect="1:1">
+        <interactive title="interactive-base-ellipse" platform="sage" width="110%" aspect="1:1">
           <slate surface="sage">
             var('t')
             @interact
@@ -362,7 +362,7 @@
       </p>
       <figure xml:id="base-hyperbola">
         <caption>A plot of an hyperbola with foci in green</caption>
-        <interactive title="interactive-base-hyperbola" platform="sage" width="100%" aspect="1:1">
+        <interactive title="interactive-base-hyperbola" platform="sage" width="125%" aspect="1:1">
           <slate surface="sage">
             var('t')
             tval=0.5
@@ -467,11 +467,11 @@
             <description>   </description>
             <sageplot>
               var('t')
-              plot3=parametric_plot((2*tan(t)-3,4*sec(t)+1),(t,-1.3,1.3),color="blue",axes=True,axes_labels=["$x$","$y$"],gridlines=True,aspect_ratio=1,xmin=-12,xmax=8,ymin=-8,ymax=12)
+              plot3=parametric_plot((2*tan(t)-3,4*sec(t)+1),(t,-1.3,1.3),color="blue",axes=True,axes_labels=["$x$","$y$"],gridlines=True)
               plot3+=parametric_plot((2*tan(t)-3,-4*sec(t)+1),(t,-1.3,1.3),color="blue")
               plot3+=line([(-3*2-3,-3*4+1),(3*2-3,3*4+1)],color="gray",linestyle="--")
               plot3+=line([(-3*2-3,3*4+1),(3*2-3,-3*4+1)],color="gray",linestyle="--")
-              plot3
+              show(plot3,aspect_ratio=1,xmin=-12,xmax=8,ymin=-8,ymax=12)
             </sageplot>
           </image>
         </figure>
@@ -560,7 +560,7 @@
             <description><p> </p></description>
             <sageplot>
               var('t')
-              plot5=parametric_plot((2*(t-2),(t^2+1)),(t,-3,3),color="blue",axes=True,axes_labels=["$x$","$y$"],gridlines=True,aspect_ratio=1)
+              plot5=parametric_plot((2*(t-2),(t^2+1)),(t,-3,3),color="blue",axes=True,axes_labels=["$x$","$y$"],gridlines=True,xmin=-10,xmax=2,ymin=-1,ymax=11)
               plot5
             </sageplot>
           </image>
@@ -621,12 +621,13 @@
               scale=6
               plot11=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
               tvals=[-2,-1,0,1/2,5/3]
-              plot11+=parametric_plot3d((t^2/2+1,t-2,0),(t,-3,3),color="black",axes=True,axes_labels=["$x$","$y$"],gridlines=True)
-              plot11+=parametric_plot3d((t^2/2+1,t-2,s),(t,-3,3),(s,-scale,scale),color="blue",opacity=0.5)
+              plot11+=parametric_plot3d((t^2/2+1,t-2,0),(t,-3,3),color="black",thickness=1.5)
+              plot11+=parametric_plot3d((t^2/2+1,t-2,s),(t,-3,3),(s,-scale,scale),color="blue",opacity=0.25)
+              #plot11+=parametric_plot3d((t^2/2+1,t-2,s),(t,-3,3),(s,-scale,scale),color="blue",opacity=0.0,mesh=True,plot_points=7)
               for s in tvals:
-                  plot11+=point3d((s^2/2+1,s-2,0),color="blue",size=20)
-                  plot11+=line([(s^2/2+1,s-2,scale),(s^2/2+1,s-2,-scale)],color="green")
-              show(plot11,aspect_ratio=1,viewpoint=[[-0.5886,-0.4206,-0.6904],91.97],camera_position=[23.2203,-6.099,11.1604])
+                  plot11+=point3d((s^2/2+1,s-2,0),color="blue",size=60)
+                  plot11+=line([(s^2/2+1,s-2,scale),(s^2/2+1,s-2,-scale)],color="green",thickness=2)
+              show(plot11,aspect_ratio=1,viewpoint=[[-0.4047,-0.4447,-0.799],107.96],camera_position=[23.3495,2.6514,12.7857])
             </slate>
           </interactive>
         </figure>
@@ -766,18 +767,23 @@
                     var('x,y,z')
                     @interact
                     def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):
-                        scale=4
-                        plot13=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                        var('t,s')
+                        scale=3.5; d=0.03; op=0.3;
+                        plot13=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
                         if sb=='Surface 1':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9+z^2; eql=1;
                         if sb=='Surface 2':
-                            plot13+=implicit_plot3d(-x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=-x^2/4+y^2/9+z^2; eql=1;
                         if sb=='Surface 3':
-                            plot13+=implicit_plot3d(x^2/4-y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4-y^2/9+z^2; eql=1;
                         if sb=='Surface 4':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9-z^2; eql=1;
                         if sb=='Surface 5':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9==z^2,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9; eql=z^2;
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=op)
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-d,d),color="red")
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-d,d),(z,-scale,scale),color="green")
+                        plot13+=implicit_plot3d(eqr==eql,(x,-d,d),(y,-scale,scale),(z,-scale,scale),color="blue")
                         show(plot13,aspect_ratio=1)
                   </slate>
                 </interactive>
@@ -815,19 +821,24 @@
                     from sage.plot.plot3d.plot3d import axes
                     var('x,y,z')
                     @interact
-                    def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):                     
-                        scale=4
-                        plot13=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                    def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):
+                        var('t,s')
+                        scale=3.5; d=0.03; op=0.25;
+                        plot13=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
                         if sb=='Surface 1':
-                            plot13+=implicit_plot3d(x^2/4-y^2/9-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9+z^2; eql=1;
                         if sb=='Surface 2':
-                            plot13+=implicit_plot3d(-x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=-x^2/4+y^2/9+z^2; eql=1;
                         if sb=='Surface 3':
-                            plot13+=implicit_plot3d(x^2-y^2-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4-y^2/9+z^2; eql=1;
                         if sb=='Surface 4':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9-z^2; eql=1;
                         if sb=='Surface 5':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9==z^2,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9; eql=z^2;
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=op)
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-d,d),color="red")
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-d,d),(z,-scale,scale),color="green")
+                        plot13+=implicit_plot3d(eqr==eql,(x,-d,d),(y,-scale,scale),(z,-scale,scale),color="blue")
                         show(plot13,aspect_ratio=1)
                   </slate>
                 </interactive>
@@ -864,18 +875,23 @@
                     var('x,y,z')
                     @interact
                     def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):
-                        scale=4
-                        plot13=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                        var('t,s')
+                        scale=3.5; d=0.03; op=0.25;
+                        plot13=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
                         if sb=='Surface 1':
-                            plot13+=implicit_plot3d(x^2+y^2/4+z^2/9==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9+z^2; eql=1;
                         if sb=='Surface 2':
-                            plot13+=implicit_plot3d(-x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=-x^2/4+y^2/9+z^2; eql=1;
                         if sb=='Surface 3':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9+z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4-y^2/9+z^2; eql=1;
                         if sb=='Surface 4':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9-z^2==1,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9-z^2; eql=1;
                         if sb=='Surface 5':
-                            plot13+=implicit_plot3d(x^2/4+y^2/9==z^2,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=0.7)
+                            eqr=x^2/4+y^2/9; eql=z^2;
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=op)
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-d,d),color="red")
+                        plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-d,d),(z,-scale,scale),color="green")
+                        plot13+=implicit_plot3d(eqr==eql,(x,-d,d),(y,-scale,scale),(z,-scale,scale),color="blue")
                         show(plot13,aspect_ratio=1)
                   </slate>
                 </interactive>

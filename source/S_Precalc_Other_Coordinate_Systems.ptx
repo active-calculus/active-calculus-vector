@@ -810,7 +810,7 @@
     </figure> -->
 
     <assemblage xml:id="Cartesian-cylindrical">
-      <title>Converting between Rectangular and Cylindrical coordinates</title>
+      <title>Converting between Rectangular and Cylindrical Coordinates</title>
     <p>
       <ul>
         <li>
@@ -824,7 +824,7 @@
         </li>
 
         <li>
-          <title>Converting from Rectangular to Cylindrical</title>
+          <title>Converting from rectangular to cylindrical</title>
           <p>
             If we are given the Rectangular coordinates <m>(x,y,z)</m> of a point <m>P</m>, then the Cylindrical coordinates <m>(r,\theta,z)</m> of <m>P</m> satisfy
             <me>
@@ -910,19 +910,19 @@
                 <slate surface="sage">
                   from sage.plot.plot3d.plot3d import axes
                   var('s,t')
-                  scale=3.5
+                  scale=3
                   a=pi+2
                   plot17=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                  plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,-2,0),color="blue",opacity=.25,mesh=True,plot_points=3)
-                  plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,0,2),color="green",opacity=.25,mesh=True,plot_points=3)
-                  plot17+=parametric_plot3d((cos(t),sin(t),0),(t,0,2),color="red",thickness=2)
-                  plot17+=arrow3d((cos(2-0.1),sin(2-0.1),0),(cos(2),sin(2),0),color="orange",arrowsize=100)
+                  plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,-1.5,0),color="blue",opacity=.25,mesh=True,plot_points=3)
+                  plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,0,1.5),color="green",opacity=.25,mesh=True,plot_points=3)
+                  plot17+=parametric_plot3d((cos(t),sin(t),0),(t,0,2),color="red",thickness=2)+arrow3d((cos(a-0.1),sin(a-0.1),0),(cos(a),sin(a),0),color="red",arrowsize=100)
+                  plot17+=arrow3d((0.75*cos(2-0.1),0.75*sin(2-0.1),0),(cos(2),sin(2),0),color="orange",arrowsize=100)
                   plot17+=text3d("\u03B8=2",(1,2,0),color="red",fontsize=25)
                   plot17+=text3d("\u03B8=2+\u03C0",(-2,-1,0),color="orange",fontsize=25)
-                  plot17+=parametric_plot3d((cos(t),sin(t),0),(t,0,pi+2),color="orange",thickness=1)+arrow3d((cos(a-0.1),sin(a-0.1),0),(cos(a),sin(a),0),color="red",arrowsize=100)
-                  plot17+=text3d("\u03B8 with r \u003C 0",(3*cos(pi+2),3*sin(pi+2),5),color="green",fontsize=25)
-                  plot17+=text3d("\u03B8 with r \u003E 0",(3*cos(2),3*sin(2),5),color="blue",fontsize=25)
-                  show(plot17,aspect_ratio=1,viewpoint=[[-0.042,-0.5331,-0.845],172.39],camera_position=[3.3957,15.1258,7.5546])
+                  plot17+=parametric_plot3d((0.75*cos(t),0.75*sin(t),0),(t,0,pi+2),color="orange",thickness=2)
+                  plot17+=text3d("\u03B8 with r\u003C0",(4*cos(pi+2),4*sin(pi+2),4),color="green",fontsize=25)
+                  plot17+=text3d("\u03B8 with r\u003E0",(4*cos(2),4*sin(2),4),color="blue",fontsize=25)
+                  show(plot17,aspect_ratio=1,viewpoint=[[-0.0603,-0.5458,-0.8357],169.45],camera_position=[3.7514,13.4219,6.5388])
                 </slate>
               </interactive>
           </figure>
@@ -994,90 +994,71 @@
       These activities are meant not only to give you some algebraic experience with the cylindrical coordinate measurements, but also some examples where you can make sense of your results from a geometric perspective. 
     </p>
     <activity xml:id="CylCoorSurfaces">
-      <statement> 
-      <p>
-        In this activity, we graph some surfaces using cylindrical coordinates. To improve your intuition and test your understanding, you should first think about what each graph should look like before you plot it using appropriate technology.
-        <ol marker="a.">
-          <li>
-            <p>
-              What familiar surface is described by the points in cylindrical coordinates with <m>r=2</m>, <m>0 \leq \theta \leq 2\pi</m>, and <m>0 \leq z \leq 2</m>?  How does this example suggest that we call these coordinates <em>cylindrical coordinates</em>? How does your answer change if we restrict <m>\theta</m> to <m> 0 \leq \theta \leq \pi</m>? 
-            </p>
-          </li>
-
-          <li>
-            <p>
-              What familiar surface is described by the points in cylindrical coordinates with <m>\theta=2</m>, <m>0 \leq r \leq 2</m>, and <m>0 \leq z \leq 2</m>? 
-            </p>
-          </li>
-
-          <li>
-            <p>
-              What familiar surface is described by the points in cylindrical coordinates with <m>z=2</m>, <m>0 \leq \theta \leq 2\pi</m>, and <m>0 \leq r \leq 2</m>? 
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Plot the graph of the cylindrical equation <m>z=r</m>, where <m>0 \leq \theta \leq 2\pi</m> and <m>0 \leq r \leq 2</m>. What familiar surface results?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Plot the graph of the cylindrical equation <m>z= \theta</m> for <m>0 \leq \theta \leq 4 \pi</m>. What does this surface look like?
-            </p>
-          </li>
-        </ol>
-      </p>
-      </statement>
-      <solution>
-        <p> 
-        <ol marker="a.">
-          <li>
-            <p>
-              In polar coordinates,
-              the graph of <m>r=2</m> is a circle centered at the origin with radius 2.
-              Extending this to cylindrical coordinates,
-              we obtain a cylinder centered at the origin of radius 2, with base on the <m>xy</m>-plane and height 2.
-            </p>
-          </li>
-          <li>
-            <p>
-              In polar coordinates, the graph of
-              <m>\theta = 2</m> is a line through the origin making an angle of 2 radians with the positive <m>x</m>-axis.
-              Extending this to cylindrical coordinates,
-              the graph of <m>\theta=2</m> is a plane through the origin perpendicular to the <m>xy</m>-plane making an angle of 2 radians with the <m>xz</m>-plane.
-            </p>
-          </li>
-          <li>
-            <p>
-              The graph of <m>z=2</m> is just a plane parallel to the <m>xy</m>-plane at a distance 2 above the <m>xy</m>-plane.
-              With <m>0 \leq \theta \leq 2\pi</m> and <m>0 \leq r \leq 2</m>,
-              the graph of <m>z=2</m> is just a disk of radius 2 centered at <m>(0,0,2)</m> within the plane <m>z=2</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              For a fixed value of <m>r</m>,
-              the graph of <m>z=r</m> and
-              <m>0 \leq \theta \leq 2\pi</m> is a circle of radius <m>r</m> in the plane <m>z=r</m>.
-              As <m>r</m> increases the radii increase,
-              so we will obtain a cone with base at the origin,
-              opening up with height <m>2</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              For a fixed <m>\theta</m>,
-              the graph of <m>z=\theta</m> is a line in the
-              <m>z = \theta</m> plane making an angle of <m>\theta</m> with the <m>xz</m>-plane.
-              Allowing <m>\theta</m> to vary will produce a set of lines,
-              spiraling upward so that the result looks like a bit of an auger.
-            </p>
-          </li>
-        </ol>
+      <introduction>
+        <p>
+          In this activity, we graph some surfaces using cylindrical coordinates. To improve your intuition and test your understanding, you should first think about what each graph should look like before you plot it using appropriate technology.
         </p>
-      </solution>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            What familiar surface is described by the points in cylindrical coordinates with <m>r=2</m>, <m>0 \leq \theta \leq 2\pi</m>, and <m>0 \leq z \leq 2</m>?  How does this example suggest that we call these coordinates <em>cylindrical coordinates</em>? How does your answer change if we restrict <m>\theta</m> to <m> 0 \leq \theta \leq \pi</m>? 
+          </p>
+        </statement>
+        <solution>
+          <p>
+            In polar coordinates, the graph of <m>r=2</m> is a circle centered at the origin with radius 2. Extending this to cylindrical coordinates, we obtain a cylinder centered at the origin of radius 2, with base on the <m>xy</m>-plane and height 2.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            What familiar surface is described by the points in cylindrical coordinates with <m>\theta=2</m>, <m>0 \leq r \leq 2</m>, and <m>0 \leq z \leq 2</m>?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            In polar coordinates, the graph of <m>\theta = 2</m> is a line through the origin making an angle of 2 radians with the positive <m>x</m>-axis. Extending this to cylindrical coordinates,the graph of <m>\theta=2</m> is a plane through the origin perpendicular to the <m>xy</m>-plane making an angle of 2 radians with the <m>xz</m>-plane.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            What familiar surface is described by the points in cylindrical coordinates with <m>z=2</m>, <m>0 \leq \theta \leq 2\pi</m>, and <m>0 \leq r \leq 2</m>?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            The graph of <m>z=2</m> is just a plane parallel to the <m>xy</m>-plane at a distance 2 above the <m>xy</m>-plane. With <m>0 \leq \theta \leq 2\pi</m> and <m>0 \leq r \leq 2</m>, the graph of <m>z=2</m> is just a disk of radius 2 centered at <m>(0,0,2)</m> within the plane <m>z=2</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Plot the graph of the cylindrical equation <m>z=r</m>, where <m>0 \leq \theta \leq 2\pi</m> and <m>0 \leq r \leq 2</m>. What familiar surface results?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            For a fixed value of <m>r</m>, the graph of <m>z=r</m> and <m>0 \leq \theta \leq 2\pi</m> is a circle of radius <m>r</m> in the plane <m>z=r</m>. As <m>r</m> increases the radii increase, so we will obtain a cone with base at the origin, opening up with height <m>2</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Plot the graph of the cylindrical equation <m>z= \theta</m> for <m>0 \leq \theta \leq 4 \pi</m>. What does this surface look like?
+          </p>
+        </statement>
+        <solution>
+          <p>
+            For a fixed <m>\theta</m>, the graph of <m>z=\theta</m> is a line in the <m>z = \theta</m> plane making an angle of <m>\theta</m> with the <m>xz</m>-plane. Allowing <m>\theta</m> to vary will produce a set of lines, spiraling upward so that the result looks like a bit of an auger.
+          </p>
+        </solution>
+      </task>
     </activity>
     </subsection>
     <subsection xml:id="subsec-SphCoord">
@@ -1130,7 +1111,7 @@
           </li>
   
           <li>
-            <title>Converting from spherical to rectanglur</title>
+            <title>Converting from spherical to rectangular</title>
             <p>
               If we are given the spherical coordinates <m>(\rho,\theta,\phi)</m> of a point <m>P</m>, then the Cartesian coordinates <m>(x,y,z)</m> of <m>P</m> satisfy
               <me>
@@ -1274,11 +1255,11 @@
               scale=2
               a=arctan(sqrt(2))
               plot22=axes(scale,1.5,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-              plot22+=parametric_plot3d((s*cos(t),s*sin(t),s/sqrt(2)),(s,0,2),(t,0,2*pi),color="red",opacity=0.65)
-              plot22+=parametric_plot3d((0,sin(t),cos(t)),(t,0,a),color="blue",thickness=2)
-              plot22+=text3d("\u03C6 \u2248 54.73",(1,1,1.3*cos(a/2)),color="blue",fontsize=25)
-              plot22+=arrow3d((0,sin(a)-0.2,cos(a)+0.2),(0,sin(a),cos(a)),color="blue",width=10)
-              show(plot22,viewpoint=[[-0.3347,-0.6698,-0.6628],143.35],camera_position=[7.4262,5.6364,1.1111])
+              plot22+=parametric_plot3d((s*cos(t),s*sin(t),s/sqrt(2)),(s,0,1.75),(t,0,2*pi),color="red",opacity=0.45,mesh=True,plot_points=20)
+              plot22+=parametric_plot3d((0,1.5*sin(t),1.5*cos(t)),(t,0,a),color="blue",thickness=2)
+              plot22+=text3d("\u03C6\u224854.73\u00B0",(0,1,1.75),color="blue",fontsize=25)
+              plot22+=arrow3d((0,1.5*sin(a)-0.2,1.5*cos(a)+0.2),(0,1.5*sin(a),1.5*cos(a)),color="blue",width=10)
+              show(plot22,viewpoint=[[-0.5565,-0.5478,-0.6246],115.2],camera_position=[9.134,0.1137,2.3726])
             </slate>
             </interactive>
         </figure>
@@ -1297,7 +1278,7 @@
               plot23+=parametric_plot3d((s*cos(t),s*sin(t),-s/sqrt(2)),(s,0,2),(t,0,2*pi),color="red",opacity=0.65,mesh=True,plot_points=20)
               plot23+=parametric_plot3d((0,sin(t),cos(t)),(t,0,a),color="blue")
               plot23+=arrow3d((0,sin(a)+0.1,cos(a)+0.2),(0,sin(a),cos(a)),color="blue",width=2)
-              plot23+=text3d("\u03C6 \u2248 125.27",(0,2.5,0.25),color="blue",fontsize=25)
+              plot23+=text3d("\u03C6\u2248125.27\u00B0",(0,2,0.5),color="blue",fontsize=25)
               show(plot23,viewpoint=[[-0.3297,-0.6865,-0.6481],145.43],camera_position=[7.854,6.3402,-0.0187])
             </slate>
           </interactive>
@@ -1428,7 +1409,7 @@
         </interactive>
       </figure>
       <p>
-        We now want to think about the set of points that satisfy <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m>. The region given by <m>1 \leq \rho \leq 2 </m> is the set of points between the spheres of radius 1 and radius 2 centered at the origin. So the region given by <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m> is the part of the points between the spheres of radius 1 and radius 2 centered at the origin with positive <m>x</m>-cooridnates.
+        We now want to think about the set of points that satisfy <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m>. The region given by <m>1 \leq \rho \leq 2 </m> is the set of points between the spheres of radius 1 and radius 2 centered at the origin. So the region given by <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m> is the region between the spheres of radius 1 and radius 2 centered at the origin with positive <m>x</m>-coordinates.
       </p>
       <figure xml:id="sphex15">
         <caption>A plot of the region <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m></caption>
@@ -1441,8 +1422,8 @@
             plot25=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
             plot25+=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(s,0,pi),(t,0,pi),color="gray",opacity=.55)
             plot25+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),2*cos(s)),(s,0,pi),(t,0,pi),color="yellow",opacity=.35)
-            plot25+=parametric_plot3d((s*sin(t),0,s*cos(t)),(s,1,2),(t,0,pi),color="green",opacity=0.4)+text3d("Theta =0",(1.5,-0.75,-0.25),color="green")
-            plot25+=parametric_plot3d((-s*sin(t),0,s*cos(t)),(s,1,2),(t,0,pi),color="red",opacity=0.4)+text3d("Theta =pi",(-1.5,-0.75,0.25),color="red")
+            plot25+=parametric_plot3d((s*sin(t),0,s*cos(t)),(s,1,2),(t,0,pi),color="green",opacity=0.4)+text3d("\u03B8=0",(2,-0.75,0),color="green",fontsize=25)
+            plot25+=parametric_plot3d((-s*sin(t),0,s*cos(t)),(s,1,2),(t,0,pi),color="red",opacity=0.4)+text3d("\u03B8=\u03C0",(-4,-0.75,0.25),color="red",fontsize=25)
             plot25
           </slate>
         </interactive>
@@ -1461,10 +1442,10 @@
             plot26=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
             plot26+=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(s,pi/4,pi),(t,0,pi),color="gray",opacity=.55)
             plot26+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),2*cos(s)),(s,pi/4,pi),(t,0,pi),color="yellow",opacity=.35)
-            plot26+=parametric_plot3d((s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="green",opacity=0.4)+text3d("Theta =0",(1.5,-0.75,-0.25),color="green")
-            plot26+=parametric_plot3d((-s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="red",opacity=0.4)+text3d("Theta =pi",(-1.5,-0.75,0.25),color="red")
-            plot26+=parametric_plot3d((s*cos(t)*sqrt(2)/2,s*sin(t)*sqrt(2)/2,s*sqrt(2)/2),(s,1,2),(t,0,pi),color="orange",opacity=0.4)+text3d("phi = pi/4",(0,0.25,1.5),color="orange")
-            plot26
+            plot26+=parametric_plot3d((s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="green",opacity=0.4)+text3d("\u03B8=0",(3,-0.5,0),color="green",fontsize=25)
+            plot26+=parametric_plot3d((-s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="red",opacity=0.4)+text3d("\u03B8=\u03C0",(-2,-0.75,0),color="red",fontsize=25)
+            plot26+=parametric_plot3d((s*cos(t)*sqrt(2)/2,s*sin(t)*sqrt(2)/2,s*sqrt(2)/2),(s,1,2),(t,0,pi),color="blue",opacity=0.4)+text3d("\u03C6=\u03C0/4",(0,1,2),color="blue",fontsize=25)
+            show(plot26,viewpoint=[[-0.8195,-0.3319,-0.4671],81.86],camera_position=[8.3609,-6.4789,4.5585])
           </slate>
         </interactive>
       </figure>
@@ -1494,7 +1475,13 @@
     </activity>
     <example>
       <p>
-        The idea of lattitude and longitude are the most familiar use of spherical coordinates. In particular, if you look at a globe as a map of the earth, then you will notice a grid of lines that run from the top to bottom or around the globe (horizontally). These lines measure latittude and longitude of different locations on the surface of the Earth. This lattitude and longitude method of describing locations is actually spherical coordinates with a (slightly incorrect) assumption that the surface of the Earth is at a constant value of <m>\rho</m>. If you look at the lines of longitude and lattitude on a globe, you will see that these are actually angular measurements because each line in the grid is marked with a degree measurement. Lattitude describes how far a location is north or south of the equator and corresponds to a shifted measurement of the spherical coordinate <m>\phi</m>. Specifically, a lattitude of <m>0^\circ</m> corresponds to the equator, which corresponds to points on the surface of the sphere with <m>\phi = \frac{\pi}{2} = 90^\circ </m>. The location identified with the <q>top</q> of the globe is often called the North pole and corresponds to a lattitude of <m>90^\circ</m> North and a spherical coordinate measurement of <m>\phi = 0</m>. Similarly, the <q>bottom</q> of the globe is called the South pole and corresponds to a lattitude of <m>90^\circ</m> South and a spherical coordinate measurment of <m>\phi=\pi=180^\circ</m>. So you can convert between lattitude and <m>\phi</m> measurements by <m> \phi = 90^\circ + \text{lattitude}</m>, where north lattitudes are considered negative and south lattitudes are considered positive.
+        For many people, the idea of lattitude and longitude are the most familiar use of spherical coordinates. In particular, if you look at a globe as a map of the earth, then you will notice a grid of lines that run from the top to bottom or around the globe (horizontally). These lines measure latittude and longitude of different locations on the surface of the Earth. This lattitude and longitude method of describing locations is actually spherical coordinates with a (slightly incorrect) assumption that the surface of the Earth is at a constant value of <m>\rho</m>. 
+      </p>
+      <p>  
+        If you look at the lines of longitude and lattitude on a globe, you will see that these are actually angular measurements because each line in the grid is marked with a degree measurement. Lattitude describes how far a location is north or south of the equator and corresponds to a shifted measurement of the spherical coordinate <m>\phi</m>. Specifically, a lattitude of <m>0^\circ</m> corresponds to the equator, which corresponds to points on the surface of the sphere with <m>\phi = \frac{\pi}{2} = 90^\circ </m>. The location identified with the <q>top</q> of the globe is often called the North Pole and corresponds to a lattitude of <m>90^\circ</m> North and a spherical coordinate measurement of <m>\phi = 0</m>. Similarly, the <q>bottom</q> of the globe is called the South Pole and corresponds to a lattitude of <m>90^\circ</m> South and a spherical coordinate measurment of <m>\phi=\pi=180^\circ</m>. 
+      </p>
+      <p>
+        You can convert between lattitude and <m>\phi</m> measurements by <me> \phi = 90^\circ + \text{lattitude}</me>, where north lattitudes are considered negative and south lattitudes are considered positive.
       </p>
       <figure xml:id="sphex17">
         <caption>A plot of lines of constant lattitude (in red) and longitude (in blue), with labels for the North and South Poles as well as the equator </caption>
@@ -1503,25 +1490,25 @@
             from sage.plot.plot3d.shapes import *
             from sage.plot.plot3d.plot3d import axes
             var('s,t')
-            scale=1.5
+            scale=2
             nlat=10
             nlong=10
-            plot27=axes(scale,1,color="gray",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30,color="gray")+text3d("y",(0,scale+0.5,0),fontsize=30,color="gray")+text3d("z",(0,0,scale+0.5),fontsize=30,color="gray")
+            plot27=axes(scale,1,color="gray",frame=False,opacity=0.2)+text3d("x",(scale+0.5,0,0),fontsize=30,color="gray")+text3d("y",(0,scale+0.5,0),fontsize=30,color="gray")+text3d("z",(0,0,scale+0.5),fontsize=30,color="gray")
             for i in range(nlat):
               lat=pi*i/nlat
-              plot27+=parametric_plot3d((cos(t)*sin(lat),sin(t)*sin(lat),cos(lat)),(t,0,2*pi),color="red",thickness=3)
+              plot27+=parametric_plot3d((cos(t)*sin(lat),sin(t)*sin(lat),cos(lat)),(t,0,2*pi),color="red",thickness=1.5,opacity=0.5)
             for j in range(nlong):
               long=2*pi*j/nlong
-              plot27+=parametric_plot3d((sin(t)*cos(long),sin(t)*sin(long),cos(t)),(t,0,pi),color="blue",thickness=3)
-            plot27+=point3d((0,0,1),color="green",size=10)+text3d("North Pole",(0,0.5,1.25),color="green",fontsize=20)
-            plot27+=point3d((0,0,-1),color="orange",size=10)+text3d("South Pole",(0,-0.5,-1.25),color="orange",fontsize=20)
-            plot27+=parametric_plot3d((cos(t),sin(t),0),(t,0,2*pi),color="black",thickness=7)+text3d("Equator",(1,1,0),color="black",fontsize=20)
-            plot27
+              plot27+=parametric_plot3d((sin(t)*cos(long),sin(t)*sin(long),cos(t)),(t,0,pi),color="blue",thickness=1.5,opacity=0.5)
+            plot27+=point3d((0,0,1),color="green",size=40)+text3d("North Pole",(0,1,1.25),color="green",fontsize=20)
+            plot27+=point3d((0,0,-1),color="purple",size=40)+text3d("South Pole",(1,0,-1.25),color="purple",fontsize=20)
+            plot27+=parametric_plot3d((cos(t),sin(t),0),(t,0,2*pi),color="black",thickness=2.5)+text3d("Equator",(0,2,0.25),color="black",fontsize=20)
+            show(plot27,viewpoint=[[-0.2987,-0.6349,-0.7125],142.93],camera_position=[6.074,5.1549,1.4245])
           </slate>
         </interactive>
       </figure>
       <p>
-        The blue curves in <xref ref="sphex17" /> are lines with constant longitude. Longitude corresponds to an angular measurement of how far around (horizontally) on the surface of the sphere. Longitude corresponds to a shifted version of the <m>\theta</m> coordinate. Lines of Longitude are called meridians and the Prime Meridian corresponds to the meridian that goes through the Greenwich Naval Observatory in Greenwich England. If you were to flatten out the surface of the globe to make the lattitude and longitude lines form a rectangular grid, then you get a Mercator Projection map which you may recoginize. While these flat maps are convienent there is a considerable amount of distortion in these maps as you get closer to the poles. As you can see in <xref ref="sphex17" />, the lines with constant lattitude are NOT all the same length, but need to be stretched out considerably near the poles to get a nice rectangular grid, as in <xref ref="MercatorProj" />. Measuring the distortion of area (and later volume) based on these coordinates will be an important idea in the later part of <xref ref="C_MI" />.
+        The blue curves in <xref ref="sphex17" /> are lines with constant longitude. Longitude corresponds to an angular measurement of how far around (horizontally) on the surface of the sphere. Longitude corresponds to a shifted version of the <m>\theta</m> coordinate. Lines of Longitude are called meridians and the Prime Meridian corresponds to the meridian that goes through the Greenwich Naval Observatory in Greenwich England. If you were to flatten out the surface of the globe to make the lattitude and longitude lines form a rectangular grid, then you get a Mercator Projection map which you may recoginize. While these flat maps are convienent there is a considerable amount of distortion in these maps as you get closer to the poles. As you can see in <xref ref="sphex17" />, the lines with constant lattitude are NOT all the same length, but need to be stretched out considerably near the poles to get a nice rectangular grid, as in <xref ref="MercatorProj" />. Measuring the distortion of area (or volume) based on these coordinates will be an important idea in the later part of <xref ref="C_MI" />.
       </p>
       <figure xml:id="MercatorProj">
         <caption>A Mercator projection of the Earth with lattitude and longitude lines By Strebe - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=17700069</caption>
@@ -1540,7 +1527,7 @@
             from sage.plot.plot3d.shapes import *
             from sage.plot.plot3d.plot3d import axes
             var('s,t')
-            scale=2.5
+            scale=3
             nlat=10
             nlong=10
             nrho=4
@@ -1549,11 +1536,11 @@
               r=2*k/nrho
               for i in range(nlat):
                 lat=pi*i/nlat
-                plot28+=parametric_plot3d((r*cos(t)*sin(lat),r*sin(t)*sin(lat),r*cos(lat)),(t,0,2*pi),color="red",thickness=3)
+                plot28+=parametric_plot3d((r*cos(t)*sin(lat),r*sin(t)*sin(lat),r*cos(lat)),(t,0,2*pi),color="red",thickness=1,opacity=0.5)
               for j in range(nlong):
                 long=2*pi*j/nlong
-                plot28+=parametric_plot3d((r*sin(t)*cos(long),r*sin(t)*sin(long),r*cos(t)),(t,0,pi),color="blue",thickness=3)
-            plot28
+                plot28+=parametric_plot3d((r*sin(t)*cos(long),r*sin(t)*sin(long),r*cos(t)),(t,0,pi),color="blue",thickness=1,opacity=0.5)
+            show(plot28,viewpoint=[[-0.2733,-0.6455,-0.7132],146.39],camera_position=[8.3747,8.1398,1.8098])
           </slate>
         </interactive>
       </figure>

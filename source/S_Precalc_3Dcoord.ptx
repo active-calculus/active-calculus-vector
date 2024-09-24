@@ -220,13 +220,13 @@
         <description> A plot with the 2D coordinate measurements labeled for a point in the first quadrant and a point in the fourth quadrant</description>
         <sageplot>
           var('t')
-          plot11=point((3,1),color="black",size=20,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]],gridlines=True)
+          plot11=point((3,1),color="black",size=30,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]],gridlines=True)
           plot11+=line([(0,1),(3,1)],color="red")+line([(3,0),(3,1)],color="blue")
           plot11+=text("$a$",(1.5,1.3),color="red",fontsize=20)+text("$b$",(3.3,0.5),color="blue",fontsize=20)
           plot11+=text("$P=(a,b)$",(3.3,1.3),color="black",fontsize=20)+text("$Q=(c,d)$",(2.3,-2.3),color="black",fontsize=20)
-          plot11+=point((2,-2),color="black",size=20)
+          plot11+=point((2,-2),color="black",size=30)
           plot11+=line([(0,-2),(2,-2)],color="red")+line([(2,0),(2,-2)],color="blue")
-          plot11+=text("$c$",(1,-1.3),color="red",fontsize=20)+text("$d$",(2.3,-1),color="blue",fontsize=20,xmin=-2,xmax=4,ymin=-2,ymax=4,aspect_ratio=1)
+          plot11+=text("$c$",(1,-1.7),color="red",fontsize=20)+text("$d$",(2.3,-1),color="blue",fontsize=20,xmin=-2,xmax=4,ymin=-2,ymax=2,aspect_ratio=1)
           plot11
         </sageplot>
       </image>
@@ -240,11 +240,13 @@
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
-          plot12=axes(3,1,color="black")+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-          plot12+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False)+parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False)+parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False)
-          d=3.5
-          plot12+=text3d("xy-plane",(d,d,0),fontsize=15,color="green")+text3d("xz-plane",(d,0,d),fontsize=15,color="blue")+text3d("yz-plane",(0,d,d),fontsize=15,color="red")
-          show(plot12,aspect_ratio=1)
+          plot12=axes(4,1,color="black")+text3d("x",(4.5,0,0),fontsize=30)+text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
+          plot12+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
+          plot12+=parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
+          plot12+=parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
+          d=4
+          plot12+=text3d("xy-plane",(d,-d,0.5),fontsize=25,color="green")+text3d("xz-plane",(-d,0,d),fontsize=25,color="blue")+text3d("yz-plane",(0,-d,d),fontsize=25,color="red")
+          show(plot12,aspect_ratio=1,viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[12.3011,13.494,5.4476])
         </slate>
       </interactive>
     </figure>
@@ -271,12 +273,16 @@
       <interactive title="interactive-point-in3d-reference" platform="sage" width="100%" aspect="1:1">
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
-        var('t,s')
-        plot14=axes(3,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-        plot14+=point3d((1,-2,3),size=30,color="black")+parametric_plot3d((t,-2,0),(t,0,1),thickness=3,color="blue")+parametric_plot3d((1,-t,0),(t,0,2),color="green",thickness=3)
-        plot14+=parametric_plot3d((1,-2,t),(t,0,3),color="red",thickness=3)
-        plot14+=line([(0,0,0),(0,-3,0)],color="black",style="-")
-        plot14
+          var('t,s')
+          plot14=axes(3,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
+          plot14+=point3d((1,-2,3),size=30,color="black")+parametric_plot3d((t,-2,0),(t,0,1),thickness=2,color="blue")+parametric_plot3d((1,-t,0),(t,0,2),color="green",thickness=2)
+          plot14+=parametric_plot3d((1,-2,t),(t,0,3),color="red",thickness=2)
+          plot14+=line([(0,0,0),(0,-3,0)],color="black",style="-")
+          plot14+=text3d("-2",(1.5,-1,0),color="green",fontsize=20)
+          plot14+=text3d("1",(0.5,-1.5,0),color="blue",fontsize=20)
+          plot14+=text3d("3",(1.25,-2.25,1.5),color="red",fontsize=20)
+          plot14+=text3d("P=(1,-2,3)",(1,-2,3.5),color="black",fontsize=25)
+          plot14
         </slate>
       </interactive>
     </figure>
@@ -380,13 +386,15 @@
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
-          plot16=axes(3,1,color="black",frame=False)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
+          plot16=axes(4,1,color="black",frame=False)+text3d("x",(4.5,0,0),fontsize=30)+text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
           vals=[-2,-1,0,1,2]
-          d=3.5
+          d=3.25
           for c in vals:
-            plot16+=parametric_plot3d((s,t,c),(s,-3,3),(t,-3,3),color="green",opacity=.25)+parametric_plot3d((c,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25) +parametric_plot3d((s,c,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25)
-            plot16+=text3d("z="+str(c),(d,d,c),fontsize=15,color="green")+text3d("y="+str(c),(d,c,d),fontsize=15,color="blue")+text3d("x="+str(c),(c,d,d),fontsize=15,color="red")
-          show(plot16,aspect_ratio=1)
+              plot16+=parametric_plot3d((s,t,c),(s,-3,3),(t,-3,3),color="green",opacity=.2,mesh=True,plot_points=3)
+              plot16+=parametric_plot3d((c,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.2,mesh=True,plot_points=3)
+              plot16+=parametric_plot3d((s,c,t),(s,-3,3),(t,-3,3),color="blue",opacity=.2,mesh=True,plot_points=3)
+              plot16+=text3d("z="+str(c),(-d,d,c),fontsize=15,color="green")+text3d("y="+str(c),(-d,c,d),fontsize=15,color="blue")+text3d("x="+str(c),(c,-d,d),fontsize=15,color="red")
+          show(plot16,aspect_ratio=1,viewpoint=[[-0.1671,-0.4034,-0.8997],139.12],camera_position=[9.786,9.786,12.2931])
         </slate>
       </interactive>
     </figure>
@@ -424,14 +432,16 @@
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
-          plot3=axes(3,1,color="black")+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-          plot3+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False)+parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False)+parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False)
-          d=3
+          plot3=axes(1.2,1,color="black",frame=False)+text3d("x",(1.5,0,0),fontsize=30)+text3d("y",(0,1.5,0),fontsize=30)+text3d("z",(0,0,1.5),fontsize=30)
+          plot3+=parametric_plot3d((s,t,0),(s,-1,1),(t,-1,1),color="green",opacity=.25,mesh=True,plot_points=3)
+          plot3+=parametric_plot3d((0,t,s),(s,-1,1),(t,-1,1),color="red",opacity=.25,mesh=True,plot_points=3)
+          plot3+=parametric_plot3d((s,0,t),(s,-1,1),(t,-1,1),color="blue",opacity=.25,mesh=True,plot_points=3)
+          d=0.75
           names=["First Octant","Second Octant","Third Octant", "Fourth Octant","Fifth Octant","Sixth Octant","Seventh Octant","Eighth Octant"]
           locations=[(d,d,d),(-d,d,d),(-d,-d,d),(d,-d,d),(d,d,-d),(-d,d,-d),(-d,-d,-d),(d,-d,-d)]
           for i in range(len(names)):
               plot3+=text3d(names[i],locations[i],fontsize=20)
-          show(plot3,aspect_ratio=1)
+          show(plot3,aspect_ratio=1,viewpoint=[[-0.2432,-0.5619,-0.7907],142.22],camera_position=[4.2996,3.8202,1.9418])
         </slate>
       </interactive>
       
@@ -453,12 +463,12 @@
           <interactive title="interactive-distance" platform="sage" width="90%" aspect="1:1">
             <slate surface="sage">
               var('t')
-              plot18=point3d((0,0,0),size=30,color="black",frame=False)+point3d((1.5,2,1),size=30,color="black")
-              plot18+=text3d("P=(x0,y0,z0)",(0,0,-0.3),color="black",fontsize=20)+text3d("Q=(x1,y1,z1)",(1.5,2,1.3),color="black",fontsize=20)
-              plot18+=line3d([(0,0,0),(1.5,0,0),(1.5,0,1),(1.5,0,0),(1.5,2,0),(1.5,2,1),(1.5,2,0),(0,2,0),(0,2,1),(0,2,0),(0,0,0),(0,0,1),(1.5,0,1),(1.5,2,1),(0,2,1),(0,0,1)],thickness=4,color="black")
-              plot18+=line3d([(0,0,0),(1.5,2,0)],thickness=4,color="red")+text3d("R",(1.7,2.2,-0.1),color="black",fontsize=20)+point3d((1.5,2,0),color="black",size=30)
-              plot18+=point3d((1.5,0,0),size=30,color="black")+text3d("S",(1.7,0,-.1),color="black",fontsize=20)
-              plot18+=line3d([(0,0,0),(1.5,2,1)],thickness=4,color="blue")
+              plot18=point3d((0,0,0),size=20,color="black",frame=False)+point3d((1.5,2,1),size=20,color="black")
+              plot18+=text3d("P=(x\u2080,y\u2080,z\u2080)",(0,0,-0.3),color="black",fontsize=30)+text3d("Q=(x\u2081,y\u2081,z\u2081)",(1.5,2,1.3),color="black",fontsize=30)
+              plot18+=line3d([(0,0,0),(1.5,0,0),(1.5,0,1),(1.5,0,0),(1.5,2,0),(1.5,2,1),(1.5,2,0),(0,2,0),(0,2,1),(0,2,0),(0,0,0),(0,0,1),(1.5,0,1),(1.5,2,1),(0,2,1),(0,0,1)],thickness=2,color="black")
+              plot18+=line3d([(0,0,0),(1.5,2,0)],thickness=2,color="red")+text3d("R",(1.7,2.2,-0.1),color="black",fontsize=30)+point3d((1.5,2,0),color="black",size=20)
+              plot18+=point3d((1.5,0,0),size=20,color="black")+text3d("S",(1.7,0,-.1),color="black",fontsize=30)
+              plot18+=line3d([(0,0,0),(1.5,2,1)],thickness=2,color="blue")
               show(plot18,aspect_ratio=1,viewpoint=[[-0.9658,-0.1452,-0.2149],69.96],camera_position=[1.9934,-2.6168,2.0633])
             </slate>
           </interactive>
