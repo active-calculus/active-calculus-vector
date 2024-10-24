@@ -40,77 +40,118 @@
 
     <introduction>
     <p>
-      In <xref ref="S-Precalc-Vectors" />, we considered how to do vector addition and scalar multiplication algebraically and what the corresponding geometric meaning is. In this section, we will introduce a type of vector multiplication. We will build the idea of this kind of multiplication up (in terms of dimension) in our Preview Activity.
+      In <xref ref="S-Precalc-Vectors" />, we considered how to do vector addition and scalar multiplication algebraically and what the corresponding geometric meaning is. In this section, we will introduce a type of vector multiplication that will be used to measure how much two vectors move together. First we will discuss what is meant by <q>move together</q> in the context of vectors in a one-dimensional space (number line),then we will generalize this idea to two dimensions in <xref ref="PA-dotproduct" />.
+    </p>
+    <p>
+      We will now consider one-dimensional vectors which are denoted <m>\vv=\langle v_1 \rangle</m>. Notice that vectors in one dimension will only have one component. Graphically, these vectors will look like an arrow on the number line corresponding to the change described by the component. Remember that vector do not have an inherent starting or ending location, so we can translate vectors (without changing the magnitude or direction).
+    </p>
+    <figure xml:id="vec1Dex1">
+      <caption>A plot of <m>\langle 2\rangle</m> and <m>\langle -1.5 \rangle </m> in red and blue, respectively</caption>
+      <image width="100%" xml:id="img-vec1dex1">
+        <description>
+          <p>A plot of <m>\langle 2\rangle</m> and <m>\langle -1.5 \rangle </m> in red and blue, respectively</p>
+        </description>
+        <sageplot>
+          scale=5
+          ts=[i for i in range(-scale,scale+1)]
+          plot1=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
+          plot1+=arrow((0,0),(2,0),color="red")
+          plot1+=text("$\\langle 2\\rangle$",(1,0.35),color="red",fontsize=15)
+          plot1+=arrow((-2,0),(-3.5,0),color="blue")
+          plot1+=text("$\\langle -\\frac{3}{2}\\rangle$",(-2.5,0.35),color="blue",fontsize=15)
+          plot1
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      Given two vectors, we want measure how much these vectors move together with a scalar measurement. For instance, if we let <m>\vv=\langle 2\rangle</m> and <m>\vw=\langle -3\rangle </m>, then we can graphically represent these starting from the origin as in <xref ref="vec1Dex2" />. We want a multiplicative, scalar measure of how much <m>\vv</m> and <m>\vw</m> move together, so let's multiply their (one) components. By multiplying our components, we get <m>(2)(-3)=-6</m>. You probably notice the negative in this measurement first, so let's make sense of this right away.
+    </p>
+    <figure xml:id="vec1Dex2">
+      <caption>A plot of <m>\langle 2\rangle</m> and <m>\langle -3 \rangle </m> in red and blue, respectively</caption>
+      <image width="100%" xml:id="img-vec1dex2">
+        <description>
+          <p>A plot of <m>\langle 2\rangle</m> and <m>\langle -3 \rangle </m> in red and blue, respectively</p>
+        </description>
+        <sageplot>
+          scale=5
+          ts=[i for i in range(-scale,scale+1)]
+          plot21=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
+          plot21+=arrow((0,0),(2,0),color="red")
+          plot21+=text("$\\langle 2\\rangle$",(1,0.35),color="red",fontsize=15)
+          plot21+=arrow((0,0),(-3,0),color="blue")
+          plot21+=text("$\\langle -3\\rangle$",(-1.5,0.35),color="blue",fontsize=15)
+          plot21
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      The red and blue vectors in <xref ref="vec1Dex2"/> move completely opposite of each other, which is why we got a negative result. Generalizing this idea for all one-dimensional vectors, we see that taking the product of the components of the vectors will give a positive result when the vectors are in the same direction and a negative result when the vectors move opposite of each other. For example, the pair of vectors <m>\langle 2\rangle </m> and <m>\langle 3\rangle </m> will move together exactly as much as <m>\langle -2\rangle </m> and <m>\langle -3\rangle </m> will together. Note that the product of components for each of these pairs is <m>6</m>. 
+    </p>
+    <figure xml:id="vec1Dex3">
+      <caption>Plots of <m>\langle 2\rangle</m> and <m>\langle 3 \rangle </m> together and <m>\langle -2\rangle</m> and <m>\langle -3 \rangle </m> together</caption>
+      <image width="100%" xml:id="img-vec1dex31">
+        <sageplot>
+          scale=5
+          ts=[i for i in range(-scale,scale+1)]
+          plot22=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
+          plot22+=arrow((0,0),(2,0),color="red",width=3)
+          plot22+=text("$\\langle 2\\rangle$",(1,0.35),color="red",fontsize=15)
+          plot22+=arrow((0,0),(3,0),color="blue")
+          plot22+=text("$\\langle 3\\rangle$",(2,0.35),color="blue",fontsize=15)
+          plot22
+        </sageplot>
+      </image>
+      <image width="100%" xml:id="img-vec1dex32">
+        <sageplot>
+          scale=5
+          ts=[i for i in range(-scale,scale+1)]
+          plot23=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
+          plot23+=arrow((0,0),(-2,0),color="red",width=3)
+          plot23+=text("$\\langle -2\\rangle$",(-1,0.35),color="red",fontsize=15)
+          plot23+=arrow((0,0),(-3,0),color="blue")
+          plot23+=text("$\\langle -3\\rangle$",(-2.5,0.35),color="blue",fontsize=15)
+          plot23
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      Changing the length of the vectors in the pair you are comparing will also affect how much the vectors move together as measured by the product of the components (in one-dimension). For example, the pair of vector <m>\langle 2\rangle </m> and <m>\langle 1\rangle </m> do not move together as much as the pair of vectors <m>\langle 2\rangle </m> and <m>\langle 3\rangle </m> do. In fact, the product of the components says that the pair of vector <m>\langle 2\rangle </m> and <m>\langle 1\rangle </m> move only a third as much together as <m>\langle 2\rangle </m> and <m>\langle 3\rangle </m> do. This should make sense because there are not as long of arrows in the first figure as the second in <xref ref="vec1Dex4" />.
+    </p>
+    <figure xml:id="vec1Dex4">
+      <caption>Plots of <m>\langle 1\rangle</m> and <m>\langle 2 \rangle </m> together and <m>\langle 2\rangle</m> and <m>\langle 3 \rangle </m> together</caption>
+      <image width="100%" xml:id="img-vec1dex41">
+        <sageplot>
+          scale=5
+          ts=[i for i in range(-scale,scale+1)]
+          plot24=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
+          plot24+=arrow((0,0),(2,0),color="red",width=3)
+          plot24+=text("$\\langle 2\\rangle$",(1.5,0.35),color="red",fontsize=15)
+          plot24+=arrow((0,0),(1,0),color="blue")
+          plot24+=text("$\\langle 1\\rangle$",(0.5,0.35),color="blue",fontsize=15)
+          plot24
+        </sageplot>
+      </image>
+      <image width="100%" xml:id="img-vec1dex42">
+        <sageplot>
+          scale=5
+          ts=[i for i in range(-scale,scale+1)]
+          plot22=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
+          plot22+=arrow((0,0),(2,0),color="red",width=3)
+          plot22+=text("$\\langle 2\\rangle$",(1,0.35),color="red",fontsize=15)
+          plot22+=arrow((0,0),(3,0),color="blue")
+          plot22+=text("$\\langle 3\\rangle$",(2,0.35),color="blue",fontsize=15)
+          plot22
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      Our one dimensional examples above motivate why we will use the product of components to measure how much vectors move together, but we pause now to say something about what <q>move together</q> does <alert>NOT</alert> mean. Specifically, when we ask how much <m>\vv</m> <m>\vw</m> move together, we are NOT measuring how much of <m>\vv</m> is in the direction of <m>\vw</m> or how much of <m>\vw</m> is in the direction of <m>\vv</m>. Additionally, we are NOT measuring the difference between <m>\vv</m> and <m>\vw</m>. We need a scalar result (and not a vector) to measure how much <m>\vv</m> and <m>\vw</m> move together because this measurement of together does not have an associated direction. In the following Preview Activity, we will use our measurement of moving together in one-dimension, as computed by the product of the vector components, to develop a meaning for what <q>moving together</q> means in a two-dimensional setting.
     </p>
     <exploration xml:id="PA-dotproduct">
-      <task xml:id="PA-vec1D">
-        <statement>
-          <p>
-            For this part, we will consider one dimensional vectors which are denoted <m>\vv=\langle v_1 \rangle</m>. Notice that vectors in one dimension will only have one component. Graphically, these vectors will look like an arrow on the number line corresponding to the change described by the component. 
-          </p>
-          <figure xml:id="vec1Dex1">
-            <caption>A plot of <m>\langle 2\rangle</m> and <m>\langle -1.5 \rangle </m> in red and blue, respectively</caption>
-            <image width="100%" xml:id="img-vec1dex1">
-              <description>
-                <p>A plot of <m>\langle 2\rangle</m> and <m>\langle -1.5 \rangle </m> in red and blue, respectively</p>
-              </description>
-              <sageplot>
-                scale=5
-                ts=[i for i in range(-scale,scale+1)]
-                plot1=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
-                plot1+=arrow((0,0),(2,0),color="red")
-                plot1+=text("$\\langle 2\\rangle$",(1,0.35),color="red",fontsize=15)
-                plot1+=arrow((-2,0),(-3.5,0),color="blue")
-                plot1+=text("$\\langle -\\frac{3}{2}\\rangle$",(-2.5,0.35),color="blue",fontsize=15)
-                plot1
-              </sageplot>
-            </image>
-          </figure>
-          <p>
-            For this task, we will use the following vectors:
-            <me> \vv_1=\langle 3 \rangle , \quad \vv_2=\langle -2 \rangle , \quad \vv_3=\langle 1.5 \rangle , \quad \vv_4=\langle -\frac{5}{3} \rangle </me>
-          
-          <ol>
-            <li>
-              <p>
-                Draw representatives of each of <m>\vv_1,\vv_2,\vv_3,\vv_4</m> on the number line.
-              </p>
-              <figure xml:id="vec1Dnumline">
-                <caption>A plot of the number line</caption>
-                <image width="100%" xml:id="img-vec1dnumline">
-                  <description><p> A plot of the number line</p></description>
-                  <sageplot>
-                    scale=5
-                    ts=[i for i in range(-scale,scale+1)]
-                    plot2=text("0",(0,-0.4),color="black",ticks=[ts,[]],ymin=-0.2,ymax=0.2,xmin=-scale-0.5,xmax=scale+0.5,aspect_ratio=1)
-                    plot2
-                  </sageplot>
-                </image>
-              </figure>
-            </li>
-            <li>
-              <p>
-                Multiply the component of <m>\vv_1</m> and <m>\vv_2</m> together and use your result to explain how much do <m>\vv_1</m> and <m>\vv_2</m> move together.
-              </p>
-            </li>
-            <li>
-              <p>
-                Multiply the component of <m>\vv_1</m> and <m>\vv_3</m> together and use your result to explain how much do <m>\vv_1</m> and <m>\vv_3</m> move together. Be sure to note why the sign of this result is different than for the previous task.
-              </p>
-            </li>
-            <li>
-              <p>
-                Multiply the component of <m>\vv_2</m> and <m>\vv_4</m> together and use your result to explain how much do <m>\vv_2</m> and <m>\vv_4</m> move together. Be sure to note why the sign of this result is the same as for the previous task
-              </p>
-            </li>
-          </ol>
-          </p>
-        </statement>
-      </task>
       <task>
         <statement>
           <p>
-            Now we will look at some similar ideas for 2D vectors. In particular, we will use the following:
+            Let's look at some examples to understand what we mean by <q>moving together</q> for 2D vectors. In particular, we will use the following:
             <me> \vu_1=\langle 1,2 \rangle , \vu_2=\langle -1,1 \rangle , \vu_3=\langle 2,-1 \rangle , \vu_4=\langle 1,-2 \rangle </me>
           <ol>
             <li>
@@ -122,7 +163,7 @@
                 <image width="75%" xml:id="img-vec2dblank">
                   <description><p> A plot of the 2D plane</p></description>
                   <sageplot>
-                    plot3=point((0,0),color="black",size=0,xmin=-4,xmax=4,ymin=-4,ymax=4,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
+                    plot3=point((0,0),color="black",size=0,xmin=-3,xmax=3,ymin=-3,ymax=3,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
                     plot3
                   </sageplot>
                 </image>
@@ -130,12 +171,12 @@
             </li>
             <li>
               <p>
-                Multiply the first components of <m>\vu_1</m> and <m>\vu_2</m> and use your ideas from <xref ref="PA-vec1D" /> to explain what this value says about how much <m>\vu_1</m> and <m>\vu_2</m> move together horizontally.
+                Multiply the first components of <m>\vu_1</m> and <m>\vu_2</m> and use your ideas from one-dimensional vectors to explain what this value says about how much <m>\vu_1</m> and <m>\vu_2</m> move together horizontally.
               </p>
             </li>
             <li>
               <p>
-                Multiply the second components of <m>\vu_1</m> and <m>\vu_2</m> and use your ideas from <xref ref="PA-vec1D" /> to explain what this value says about how much <m>\vu_1</m> and <m>\vu_2</m> move together vertically.
+                Multiply the second components of <m>\vu_1</m> and <m>\vu_2</m> and use your ideas from one-dimensional vectors to explain what this value says about how much <m>\vu_1</m> and <m>\vu_2</m> move together vertically.
               </p>
             </li>
             <li>
@@ -158,7 +199,7 @@
               </li>
               <li>
                 <p>
-                  dd together the two results of the previous task and explain how this sum relates to how much <m>\vu_1</m> and <m>\vu_3</m> move together. You should also look at a plot of <m>\vu_1</m> and <m>\vu_3</m> starting at the same point.
+                  Add together the two results of the previous task and explain how this sum relates to how much <m>\vu_1</m> and <m>\vu_3</m> move together. You should also look at a plot of <m>\vu_1</m> and <m>\vu_3</m> starting at the same point.
                 </p>
               </li>
             </ol>
@@ -173,7 +214,6 @@
         </statement>
       </task>
     </exploration>
-    
   </introduction>
 
 
