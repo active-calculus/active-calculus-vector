@@ -145,7 +145,7 @@
       </image>
     </figure>
     <p>
-      Our one dimensional examples above motivate why we will use the product of components to measure how much vectors move together, but we pause now to say something about what <q>move together</q> does <alert>NOT</alert> mean. Specifically, when we ask how much <m>\vv</m> <m>\vw</m> move together, we are NOT measuring how much of <m>\vv</m> is in the direction of <m>\vw</m> or how much of <m>\vw</m> is in the direction of <m>\vv</m>. Additionally, we are NOT measuring the difference between <m>\vv</m> and <m>\vw</m>. We need a scalar result (and not a vector) to measure how much <m>\vv</m> and <m>\vw</m> move together because this measurement of together does not have an associated direction. In the following Preview Activity, we will use our measurement of moving together in one-dimension, as computed by the product of the vector components, to develop a meaning for what <q>moving together</q> means in a two-dimensional setting.
+      Our one dimensional examples above motivate why we will use the product of components to measure how much vectors move together, but we pause now to say something about what <q>move together</q> does <alert>NOT</alert> mean. Specifically, when we ask how much <m>\vv</m> and <m>\vw</m> move together, we are NOT measuring how much of <m>\vv</m> is in the direction of <m>\vw</m> or how much of <m>\vw</m> is in the direction of <m>\vv</m>. Additionally, we are NOT measuring the difference between <m>\vv</m> and <m>\vw</m>. We need a scalar result (and not a vector) to measure how much <m>\vv</m> and <m>\vw</m> move together because this measurement of together does not have an associated direction. In the following Preview Activity, we will use our measurement of moving together in one-dimension, as computed by the product of the vector components, to develop a meaning for what <q>moving together</q> means in a two-dimensional setting.
     </p>
     <exploration xml:id="PA-dotproduct">
       <task>
@@ -308,13 +308,13 @@
 
         <li>
           <p>
-            <m>(\vu + \vv) \cdot \vw = (\vu \cdot \vw) + (\vv \cdot \vw)</m>
+            <m>(\vu + \vv) \cdot \vw = (\vu \cdot \vw) + (\vv \cdot \vw)</m> (the dot product can be distributed across vector addition)
           </p>
         </li>
 
         <li>
           <p>
-            if <m>c</m> is a scalar, then <m>(c\vu) \cdot \vw = c(\vu \cdot \vw)</m>
+            if <m>c</m> is a scalar, then <m>(c\vu) \cdot \vw = c(\vu \cdot \vw)</m> (the dot product is associative with scalar multiplication)
           </p>
         </li>
       </ol>
@@ -337,7 +337,7 @@
   <subsection xml:id="subsec-vecangle">
     <title>The Angle between Vectors</title>
     <p>
-      As you saw in <xref ref="PA-dotproduct" />, the dot product measures how much vectors move together and can help us understand the angle between two vectors. If we are given two vectors <m>\vu</m> and <m>\vv</m>, there are two angles that these vectors create, as depicted at left in <xref ref="F_9_3_Angle_between">Figure</xref>. We will call <m>\theta</m>, the smaller of these angles, the <em>angle between these vectors</em><idx><h>vector</h><h>angle between</h></idx>. Notice that <m>\theta</m> lies between 0 and <m>\pi</m> because we would consider the angle from the other side if an angle was greater than <m>\pi</m>.
+      As you saw in <xref ref="PA-dotproduct" />, the dot product measures how much vectors move together and can help us understand the angle between two vectors. If we are given two vectors <m>\vu</m> and <m>\vv</m>, there are two angles that these vectors create, as depicted at left in <xref ref="F_9_3_Angle_between">Figure</xref>. We will call <m>\theta</m>, the smaller of these angles, the <em>angle between these vectors</em><idx><h>vector</h><h>angle between</h></idx>. Notice that <m>\theta</m> lies between 0 and <m>\pi</m> because we would consider the angle from the other side if the angle was greater than <m>\pi</m>.
     </p>
     
     <figure xml:id="F_9_3_Angle_between">
@@ -382,58 +382,59 @@
       </sidebyside> 
     </figure>
    
-
+    <proposition>
+      <statement>
+        <p>
+          Given vectors <m>\vu</m> and <m>\vv</m>, the following relationship holds for <m>\theta</m> being the smallest angle between the vectors:
+          <men xml:id="E_9_3_dot_angle" >
+            \vu\cdot\vv = u_1v_1+u_2v_2 + \ldots + u_nv_n = \Vert\vu\Vert\Vert\vv\Vert\cos(\theta)
+          </men>
+          Solving for the angle <m>\theta</m>, we get the following:
+          <men xml:id="anglebtwvec" >
+            \theta = \cos^{-1}\left(\frac{\vu\cdot\vv}{\Vert\vu\Vert \Vert\vv\Vert}\right)
+          </men>
+        </p>
+      </statement>
+      <proof>
+        <p>
+          To determine this angle, we may apply the Law of Cosines to the triangle shown at right in <xref ref="dotprodtri">Figure</xref>.
+        </p>
+        <figure xml:id="dotprodtri">
+          <caption>A triangle of vectors, <m>\vu</m>, <m>\vv</m>, and <m>\vu-\vv</m> </caption>
+          <image width="55%" xml:id="img-dotprodtri">
+            <description><p> A plot of two vectors with an acute angle between them</p></description>
+            <sageplot>
+              var('t')
+              at1=arctan(1/2)
+              at2=arctan(3)
+              plot5=arrow((0,0),(2,1),color="black",axes=False,width=4)+arrow((0,0),(1,3),color="black",width=4)
+              plot5+=text("$\\vec{v}$",(0.4,1.8),fontsize=25,color="black")
+              plot5+=text("$\\vec{u}$",(1,0.2),color="black",fontsize=25)
+              plot5+=parametric_plot((0.75*cos(t),0.75*sin(t)),(t,at1,at2),color="black")
+              plot5+=arrow((0.75*cos(at2-0.05),0.75*sin(at2-0.05)),(0.75*cos(at2),0.75*sin(at2)),color="black")
+              plot5+=text("$\\theta$",(cos((at1+at2)/2),sin((at1+at2)/2)),color="black",fontsize=25)
+              plot5+=arrow((2,1),(1,3),color="gray",width=4)
+              plot5+=text("$\\vec{u}-\\vec{v}$",(1.85,2.3),color="gray",fontsize=25)
+              plot5
+            </sageplot>
+          </image>
+        </figure>
+        <p>
+          Using the fact that the dot product of a vector with itself gives us the square of its length, together with other properties of the dot product, we find:
+          <md>
+            <mrow>\Vert\vu-\vv\Vert^2 =\mathstrut \amp  \Vert\vu\Vert^2 + \Vert\vv\Vert^2 - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
+            <mrow>(\vu-\vv)\cdot(\vu-\vv) =\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
+            <mrow>\vu\cdot(\vu-\vv) - \vv\cdot(\vu-\vv)=\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
+            <mrow>\vu\cdot\vu - 2\vu\cdot\vv + \vv\cdot\vv =\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
+            <mrow>-2\vu\cdot\vv =\mathstrut \amp  -2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
+            <mrow>\vu\cdot\vv =\mathstrut \amp  \Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
+          </md>
+        </p>
+      </proof>
+    </proposition>
+   
     <p>
-      To determine this angle, we may apply the Law of Cosines to the triangle shown at right in <xref ref="dotprodtri">Figure</xref>.
-    </p>
-    <figure xml:id="dotprodtri">
-      <caption>A triangle of vectors, <m>\vu</m>, <m>\vv</m>, and <m>\vu-\vv</m> </caption>
-      <image width="55%" xml:id="img-dotprodtri">
-        <description><p> A plot of two vectors with an acute angle between them</p></description>
-        <sageplot>
-          var('t')
-          at1=arctan(1/2)
-          at2=arctan(3)
-          plot5=arrow((0,0),(2,1),color="black",axes=False,width=4)+arrow((0,0),(1,3),color="black",width=4)
-          plot5+=text("$\\vec{v}$",(0.4,1.8),fontsize=25,color="black")
-          plot5+=text("$\\vec{u}$",(1,0.2),color="black",fontsize=25)
-          plot5+=parametric_plot((0.75*cos(t),0.75*sin(t)),(t,at1,at2),color="black")
-          plot5+=arrow((0.75*cos(at2-0.05),0.75*sin(at2-0.05)),(0.75*cos(at2),0.75*sin(at2)),color="black")
-          plot5+=text("$\\theta$",(cos((at1+at2)/2),sin((at1+at2)/2)),color="black",fontsize=25)
-          plot5+=arrow((2,1),(1,3),color="gray",width=4)
-          plot5+=text("$\\vec{u}-\\vec{v}$",(1.85,2.3),color="gray",fontsize=25)
-          plot5
-        </sageplot>
-      </image>
-    </figure>
-    <p>
-      Using the fact that the dot product of a vector with itself gives us the square of its length, together with other properties of the dot product, we find:
-      <md>
-        <mrow>\Vert\vu-\vv\Vert^2 =\mathstrut \amp  \Vert\vu\Vert^2 + \Vert\vv\Vert^2 - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
-        <mrow>(\vu-\vv)\cdot(\vu-\vv) =\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
-        <mrow>\vu\cdot(\vu-\vv) - \vv\cdot(\vu-\vv)=\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
-        <mrow>\vu\cdot\vu - 2\vu\cdot\vv + \vv\cdot\vv =\mathstrut \amp  \vu\cdot\vu + \vv\cdot\vv - 2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
-        <mrow>-2\vu\cdot\vv =\mathstrut \amp  -2\Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
-        <mrow>\vu\cdot\vv =\mathstrut \amp  \Vert\vu\Vert\Vert\vv\Vert\cos(\theta)</mrow>
-      </md>
-    </p>
-
-    <p>
-      To summarize, we have the important relationship
-      <men xml:id="E_9_3_dot_angle">
-        \vu\cdot\vv = u_1v_1+u_2v_2 + \ldots + u_nv_n = \Vert\vu\Vert\Vert\vv\Vert\cos(\theta)
-      </men>
-    </p>
-
-    <p>
-      It is sometimes useful to think of <xref ref="E_9_3_dot_angle"/> as giving us an expression for the angle between two vectors:
-      <me>
-        \theta = \cos^{-1}\left(\frac{\vu\cdot\vv}{\Vert\vu\Vert \Vert\vv\Vert}\right)
-      </me>
-    </p>
-
-    <p>
-      The real beauty of this expression is this: the dot product is a very simple algebraic calculation to perform yet it provides us with important geometric information about the angle between the vectors that would be difficult to determine otherwise. This should not be that surprising because we defined the dot product to measure how much vectors moved together, thus the dot product would be related to the angle between the vector inputs. 
+      The real beauty of <xref ref="E_9_3_dot_angle"/> is this: the dot product is a very simple algebraic calculation to perform yet it provides us with important geometric information about the angle between the vectors that would be difficult to determine otherwise. This should not be that surprising because we defined the dot product to measure how much vectors moved together, thus the dot product would be related to the angle between the vector inputs. While you normally need to interpret the angle that comes out of an inverse trig function, the result of <xref ref="anglebtwvec" /> does not need to be interpreted because the angle measurement and the range of arccos are both from <m>0</m> to <m>\pi</m>. 
     </p>
 
     <activity xml:id="A_9_3_2_a">
@@ -706,13 +707,286 @@
       </sidebyside>
     </figure>
     <p>
-      Notice that when the angle between <m>\vu</m> and <m>\vv</m> is obtuse, then the amount of <m>\vu</m> that is parallel to <m>\vv</m> will be in a direction opposite <m>\vv</m>. So in particular, we want to compute <m>\vw_1</m> and <m>\vw_2</m> in terms of <m>\vu</m> and <m>\vv</m>. Let's take our sum <m>\vu=\vw_1+\vw_2</m> and take the dot product of each side with <m>\vv</m>
+      Notice that when the angle between <m>\vu</m> and <m>\vv</m> is obtuse, then the amount of <m>\vu</m> that is parallel to <m>\vv</m> will be in a direction opposite <m>\vv</m>. Before we look at how to calculate the vectors <m>\vw_1</m> and <m>\vw_2</m>, we will do an activity about drawing the graphical representation of this splitting of <m>\vu</m> into parts that are parallel to <m>\vv</m> and orthogonal to <m>\vv</m>
+    </p>
+    <activity>
+      <introduction>
+        <p>
+          In this activity, we will be focused on drawing the graphical representation of this splitting of <m>\vu</m> into parts that are parallel to <m>\vv</m> (which we will call <m>\vw_1</m>) and orthogonal to <m>\vv</m> (which we will call <m>\vw_2</m>).
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <figure xml:id="projplot1">
+            <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
+            <image width="75%" xml:id="img-projplot1">
+              <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
+              <sageplot>
+                u=vector([5,-1])
+                v=vector([2,1])
+                putov=(u.dot_product(v)/v.dot_product(v))*v
+                perp=u-putov
+                plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+                plot11+=arrow((0,0),v,color="black",width=3)
+                plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+                plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+                plot11
+              </sageplot>
+            </image>
+          </figure>
+          <p>
+            For the configuration of vectors shown above, draw and label the following vectors: <m>\vw_1</m> and <m>\vw_2</m>
+          </p>
+        </statement>
+        <solution>
+          <image width="75%" >
+            <sageplot>
+              u=vector([5,-1])
+              v=vector([2,1])
+              putov=(v.dot_product(u)/u.dot_product(u))*u
+              perp=v-putov
+              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+              plot11+=arrow((0,0),v,color="black",width=3)
+              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+              plot11+=arrow((0,0),putov,color="red",width=2)
+              plot11+=arrow(putov,v,color="blue",width=2)
+              plot11+=text("$proj_{\\vec{u}} \\vec{v}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$proj_{\\perp \\vec{u}} \\vec{v}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <figure xml:id="projplot3">
+            <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
+            <image width="75%" xml:id="img-projplot3">
+              <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
+              <sageplot>
+                u=vector([3,-2])
+                v=vector([-4,1])
+                putov=(u.dot_product(v)/v.dot_product(v))*v
+                perp=u-putov
+                plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+                plot11+=arrow((0,0),v,color="black",width=3)
+                plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+                plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+                plot11
+              </sageplot>
+            </image>
+          </figure>
+          <p>
+            For the configuration of vectors shown above, draw and label the following vectors: <m>\vw_1</m> and <m>\vw_2</m>
+          </p>
+        </statement>
+        <solution>
+          <image width="75%" >
+            <sageplot>
+              u=vector([3,-2])
+              v=vector([-4,1])
+              putov=(u.dot_product(v)/v.dot_product(v))*v
+              perp=u-putov
+              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+              plot11+=arrow((0,0),v,color="black",width=3)
+              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+              plot11+=arrow((0,0),putov,color="red",width=2)
+              plot11+=arrow(putov,u,color="blue",width=2)
+              plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <figure xml:id="projplot2">
+            <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
+            <image width="75%" xml:id="img-projplot2">
+              <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
+              <sageplot>
+                u=vector([5,-1])
+                v=vector([2,1])
+                putov=(u.dot_product(v)/v.dot_product(v))*v
+                perp=u-putov
+                plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+                plot11+=arrow((0,0),v,color="black",width=3)
+                plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+                plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+                plot11
+              </sageplot>
+            </image>
+          </figure>
+          <p>
+            We want to switch the roles of <m>\vu</m> and <m>\vv</m> for the examples above. Specifically, for the configuration of vectors shown above, we want to split
+            <m>\vv</m> into parts that are parallel to <m>\vu</m> (which we will call <m>\vz_1</m>) and orthogonal to <m>\vu</m> (which we will call <m>\vz_2</m>). On the figure above, draw <m>\vz_1</m> and <m>\vz_2</m>.
+          </p>
+        </statement>
+        <solution>
+          <image width="75%" >
+            <sageplot>
+              u=vector([5,-1])
+              v=vector([2,1])
+              putov=(u.dot_product(v)/v.dot_product(v))*v
+              perp=u-putov
+              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+              plot11+=arrow((0,0),v,color="black",width=3)
+              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+              plot11+=arrow((0,0),putov,color="red",width=2)
+              plot11+=arrow(putov,u,color="blue",width=2)
+              plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <figure xml:id="projplot4">
+            <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
+            <image width="75%" xml:id="img-projplot4">
+              <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
+              <sageplot>
+                u=vector([3,-2])
+                v=vector([-4,1])
+                putov=(u.dot_product(v)/v.dot_product(v))*v
+                perp=u-putov
+                plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+                plot11+=arrow((0,0),v,color="black",width=3)
+                plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+                plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+                plot11
+              </sageplot>
+            </image>
+          </figure>
+          <p>
+            For the configuration of vectors shown above, draw and label the following vectors: <m>\vz_1</m> and <m>\vz_2</m>
+          </p>
+        </statement>
+        <solution>
+          <image width="75%" >
+            <sageplot>
+              u=vector([3,-2])
+              v=vector([-4,1])
+              putov=(u.dot_product(v)/v.dot_product(v))*v
+              perp=u-putov
+              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+              plot11+=arrow((0,0),v,color="black",width=3)
+              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+              plot11+=arrow((0,0),putov,color="red",width=2)
+              plot11+=arrow(putov,u,color="blue",width=2)
+              plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <figure xml:id="projplot5">
+            <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
+            <image width="75%" xml:id="img-projplot5">
+              <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
+              <sageplot>
+                u=vector([-2,-1])
+                v=vector([1/2,-1])
+                putov=(u.dot_product(v)/v.dot_product(v))*v
+                perp=u-putov
+                plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+                plot11+=arrow((0,0),v,color="black",width=3)
+                plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+                plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+                plot11
+              </sageplot>
+            </image>
+          </figure>
+          <p>
+            For the configuration of vectors shown above, draw and label the following vectors: <m>\vw_1</m> and <m>\vw_2</m>
+          </p>
+        </statement>
+        <solution>
+          <image width="75%" >
+            <sageplot>
+              u=vector([-2,-1])
+              v=vector([1/2,-1])
+              putov=(u.dot_product(v)/v.dot_product(v))*v
+              perp=u-putov
+              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+              plot11+=arrow((0,0),v,color="black",width=3)
+              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+              plot11+=arrow((0,0),putov,color="red",width=2)
+              plot11+=arrow(putov,u,color="blue",width=2)
+              plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <figure xml:id="projplot6">
+            <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
+            <image width="75%" xml:id="img-projplot6">
+              <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
+              <sageplot>
+                u=vector([-2,-1])
+                v=vector([1/2,-1])
+                putov=(u.dot_product(v)/v.dot_product(v))*v
+                perp=u-putov
+                plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+                plot11+=arrow((0,0),v,color="black",width=3)
+                plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+                plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+                plot11
+              </sageplot>
+            </image>
+          </figure>
+          <p>
+            For the configuration of vectors shown above, draw and label the following vectors: <m>\vz_1</m> and <m>\vz_2</m>
+          </p>
+        </statement>
+        <solution>
+          <image width="75%" >
+            <sageplot>
+              u=vector([-2,-1])
+              v=vector([1/2,-1])
+              putov=(v.dot_product(u)/u.dot_product(u))*u
+              perp=v-putov
+              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
+              plot11+=arrow((0,0),v,color="black",width=3)
+              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
+              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
+              plot11+=arrow((0,0),putov,color="red",width=2)
+              plot11+=arrow(putov,v,color="blue",width=2)
+              plot11+=text("$proj_{\\vec{u}} \\vec{v}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$proj_{\\perp \\vec{u}} \\vec{v}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+        </solution>
+      </task>
+    </activity>
+
+    <p>  
+      We want to compute <m>\vw_1</m> and <m>\vw_2</m> in terms of <m>\vu</m> and <m>\vv</m>. Let's take our sum <m>\vu=\vw_1+\vw_2</m> and take the dot product of each side with <m>\vv</m>
       <md>
         <mrow>\vu \cdot \vv= \amp  (\vw_1+\vw_2)\cdot\vv</mrow>
         <mrow>= \amp  (\vw_1)\cdot\vv + (\vw_2)\cdot\vv</mrow>
         <mrow>= \amp  (\vw_1)\cdot\vv </mrow>
       </md>
-      Notice that because <m>\vw_2</m> must be orthogonal to <m>\vv</m>, the second term will contribute nothing to the dot product <m>\vu \cdot \vv </m>. Because <m>\vw_1</m> is parallel to <m>\vv</m>, then <m>\vw_1 = k \vv</m>. Since <m>\vu \cdot \vv = (k \vv) \cdot \vv</m>, we can solve for <m>k=\frac{\vu \cdot \vv}{\vv \cdot \vv}</m>. In particular, this means that we can calculate <m>\vw_1 = \frac{\vu \cdot \vv}{\vv \cdot \vv} \vv</m>. Vector subtraction will also give us a way to solve for the piece of <m>\vu</m> that is orthogonal to <m>\vv</m>, namely <m>\vw_2=\vu-\vw_1= \vu-\frac{\vu \cdot \vv}{\vv \cdot \vv} \vv</m>. Using the property that a vector's dot product with itself is the vector's magnitude squared, we can write <m>\vw_1 = \left(\frac{\vu \cdot \vv}{\Vert \vv \Vert}\right) \frac{\vv}{\Vert \vv \Vert}</m>.
+      Notice that because <m>\vw_2</m> must be orthogonal to <m>\vv</m>, the second term will contribute nothing to the dot product <m>\vu \cdot \vv </m>. Because <m>\vw_1</m> is parallel to <m>\vv</m>, then <m>\vw_1 = k \vv</m>. Since <m>\vu \cdot \vv = (k \vv) \cdot \vv</m>, we can solve for <m>k=\frac{\vu \cdot \vv}{\vv \cdot \vv}</m>. In particular, this means that we can calculate <m>\vw_1 = \frac{\vu \cdot \vv}{\vv \cdot \vv} \vv</m>.
+    </p>
+    <p>
+      Vector subtraction will also give us a way to solve for the piece of <m>\vu</m> that is orthogonal to <m>\vv</m>, namely <m>\vw_2=\vu-\vw_1= \vu-\frac{\vu \cdot \vv}{\vv \cdot \vv} \vv</m>. Using the property that a vector's dot product with itself is the vector's magnitude squared, we can write <m>\vw_1 = \left(\frac{\vu \cdot \vv}{\Vert \vv \Vert}\right) \frac{\vv}{\Vert \vv \Vert}</m>.
     </p>
     <definition xml:id="def-vector-projections">
       <statement>
@@ -755,7 +1029,7 @@
       <figure xml:id="projexplot">
         <caption>A plot of <m>\vu</m>, <m>\vv</m>, <m>proj_\vv \va</m>, and <m>proj_{\perp \vv} \vu</m> </caption>
         <image width="75%" xml:id="img-projexplot">
-          <description><p> A plot of <m>\vu</m>, <m>\vv</m>, <m>proj_\vv \va</m>, and <m>proj_{\perp \vv} \vu</m></p></description>
+          <description><p> A plot of <m>\vu</m>, <m>\vv</m>, <m>proj_\vv \vu</m>, and <m>proj_{\perp \vv} \vu</m></p></description>
           <sageplot>
             plot10=arrow((0,0),(4,3),color="black",width=3,gridlines=True)
             plot10+=arrow((0,0),(0,2),color="black",width=3)
@@ -887,307 +1161,11 @@
         </solution>
       </task>
     </activity>
-    <activity>
-      <introduction>
-        <p>
-          In this activity, we will show that the roles of <m>\vu</m> and <m>\vv</m> are not symmetric in projection formula (<xref ref="def-vector-projections" />). We will use the same values as <xref ref="vecprojex" />, namely <m>\vu = \langle 4,3\rangle </m> and  <m>\vv = \langle 0,2 \rangle</m>, but we will be looking at the projection of <m>\vv</m> onto <m>\vu</m>. 
-        </p>
-      </introduction>
-      <task>
-        <statement>
-          <p>
-            Will <m>proj_\vu \vv</m> be parallel to <m>\vu</m> or <m>\vv</m>? Use this answer to explain how you know that the result of <m>proj_\vu \vv</m> must be different than <m>proj_\vv \vu</m> (which we calculated in <xref ref="vecprojex" />).
-          </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Use <xref ref="def-vector-projections" /> to calculate <m>comp_\vu \vv</m>, <m>proj_\vu \vv</m>, and <m>proj_{\perp \vu} \vv</m>.
-          </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Draw a plot with <m>\vu</m>, <m>\vv</m>, <m>proj_\vu \vv</m>, and <m>proj_{\perp \vu} \vv</m>.
-          </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Write a few sentences to explain how and why your plot for the previous part is different than <xref ref="projexplot" />.
-          </p>
-        </statement>
-      </task>
-    </activity>
+    <p>
+      <xref ref="ex-projnotsym" /> will show how switching the vectors in the projection formula will give a different result; in general <m>\proj_{\vv} \vw \neq \proj_{\vw} \vv</m>.
+    </p>
 
-  <activity>
-    <introduction>
-      <p>
-        This activity will be focused on looking at projections graphically.
-      </p>
-    </introduction>
-    <task>
-      <statement>
-        <figure xml:id="projplot1">
-          <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-          <image width="75%" xml:id="img-projplot1">
-            <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-            <sageplot>
-              u=vector([5,-1])
-              v=vector([2,1])
-              putov=(u.dot_product(v)/v.dot_product(v))*v
-              perp=u-putov
-              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-              plot11+=arrow((0,0),v,color="black",width=3)
-              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-              plot11
-            </sageplot>
-          </image>
-        </figure>
-        <p>
-          For the configuration of vectors shown above, draw and label the following vectors: <m>proj_\vu \vv</m> and <m>proj_{\perp \vu} \vv</m>
-        </p>
-      </statement>
-      <solution>
-        <image width="75%" >
-          <sageplot>
-            u=vector([5,-1])
-            v=vector([2,1])
-            putov=(v.dot_product(u)/u.dot_product(u))*u
-            perp=v-putov
-            plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-            plot11+=arrow((0,0),v,color="black",width=3)
-            plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-            plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-            plot11+=arrow((0,0),putov,color="red",width=2)
-            plot11+=arrow(putov,v,color="blue",width=2)
-            plot11+=text("$proj_{\\vec{u}} \\vec{v}$",0.5*putov-0.5*perp,color="red",fontsize=25)
-            plot11+=text("$proj_{\\perp \\vec{u}} \\vec{v}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
-            plot11
-          </sageplot>
-        </image>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <figure xml:id="projplot2">
-          <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-          <image width="75%" xml:id="img-projplot2">
-            <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-            <sageplot>
-              u=vector([5,-1])
-              v=vector([2,1])
-              putov=(u.dot_product(v)/v.dot_product(v))*v
-              perp=u-putov
-              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-              plot11+=arrow((0,0),v,color="black",width=3)
-              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-              plot11
-            </sageplot>
-          </image>
-        </figure>
-        <p>
-          For the configuration of vectors shown above, draw and label the following vectors: <m>proj_\vv \vu</m> and <m>proj_{\perp \vv} \vu</m>
-        </p>
-      </statement>
-      <solution>
-        <image width="75%" >
-          <sageplot>
-            u=vector([5,-1])
-            v=vector([2,1])
-            putov=(u.dot_product(v)/v.dot_product(v))*v
-            perp=u-putov
-            plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-            plot11+=arrow((0,0),v,color="black",width=3)
-            plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-            plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-            plot11+=arrow((0,0),putov,color="red",width=2)
-            plot11+=arrow(putov,u,color="blue",width=2)
-            plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
-            plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
-            plot11
-          </sageplot>
-        </image>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <figure xml:id="projplot3">
-          <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-          <image width="75%" xml:id="img-projplot3">
-            <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-            <sageplot>
-              u=vector([3,-2])
-              v=vector([-4,1])
-              putov=(u.dot_product(v)/v.dot_product(v))*v
-              perp=u-putov
-              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-              plot11+=arrow((0,0),v,color="black",width=3)
-              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-              plot11
-            </sageplot>
-          </image>
-        </figure>
-        <p>
-          For the configuration of vectors shown above, draw and label the following vectors: <m>proj_\vu \vv</m> and <m>proj_{\perp \vu} \vv</m>
-        </p>
-      </statement>
-      <solution>
-        <image width="75%" >
-          <sageplot>
-            u=vector([3,-2])
-            v=vector([-4,1])
-            putov=(u.dot_product(v)/v.dot_product(v))*v
-            perp=u-putov
-            plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-            plot11+=arrow((0,0),v,color="black",width=3)
-            plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-            plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-            plot11+=arrow((0,0),putov,color="red",width=2)
-            plot11+=arrow(putov,u,color="blue",width=2)
-            plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
-            plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
-            plot11
-          </sageplot>
-        </image>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <figure xml:id="projplot4">
-          <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-          <image width="75%" xml:id="img-projplot4">
-            <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-            <sageplot>
-              u=vector([3,-2])
-              v=vector([-4,1])
-              putov=(u.dot_product(v)/v.dot_product(v))*v
-              perp=u-putov
-              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-              plot11+=arrow((0,0),v,color="black",width=3)
-              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-              plot11
-            </sageplot>
-          </image>
-        </figure>
-        <p>
-          For the configuration of vectors shown above, draw and label the following vectors: <m>proj_\vv \vu</m> and <m>proj_{\perp \vv} \vu</m>
-        </p>
-      </statement>
-      <solution>
-        <image width="75%" >
-          <sageplot>
-            u=vector([3,-2])
-            v=vector([-4,1])
-            putov=(u.dot_product(v)/v.dot_product(v))*v
-            perp=u-putov
-            plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-            plot11+=arrow((0,0),v,color="black",width=3)
-            plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-            plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-            plot11+=arrow((0,0),putov,color="red",width=2)
-            plot11+=arrow(putov,u,color="blue",width=2)
-            plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
-            plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
-            plot11
-          </sageplot>
-        </image>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <figure xml:id="projplot5">
-          <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-          <image width="75%" xml:id="img-projplot5">
-            <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-            <sageplot>
-              u=vector([-2,-1])
-              v=vector([1/2,-1])
-              putov=(u.dot_product(v)/v.dot_product(v))*v
-              perp=u-putov
-              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-              plot11+=arrow((0,0),v,color="black",width=3)
-              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-              plot11
-            </sageplot>
-          </image>
-        </figure>
-        <p>
-          For the configuration of vectors shown above, draw and label the following vectors: <m>proj_\vv \vu</m> and <m>proj_{\perp \vv} \vu</m>
-        </p>
-      </statement>
-      <solution>
-        <image width="75%" >
-          <sageplot>
-            u=vector([-2,-1])
-            v=vector([1/2,-1])
-            putov=(u.dot_product(v)/v.dot_product(v))*v
-            perp=u-putov
-            plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-            plot11+=arrow((0,0),v,color="black",width=3)
-            plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-            plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-            plot11+=arrow((0,0),putov,color="red",width=2)
-            plot11+=arrow(putov,u,color="blue",width=2)
-            plot11+=text("$proj_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
-            plot11+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
-            plot11
-          </sageplot>
-        </image>
-      </solution>
-    </task>
-    <task>
-      <statement>
-        <figure xml:id="projplot6">
-          <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-          <image width="75%" xml:id="img-projplot6">
-            <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-            <sageplot>
-              u=vector([-2,-1])
-              v=vector([1/2,-1])
-              putov=(u.dot_product(v)/v.dot_product(v))*v
-              perp=u-putov
-              plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-              plot11+=arrow((0,0),v,color="black",width=3)
-              plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-              plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-              plot11
-            </sageplot>
-          </image>
-        </figure>
-        <p>
-          For the configuration of vectors shown above, draw and label the following vectors: <m>proj_\vu \vv</m> and <m>proj_{\perp \vu} \vv</m>
-        </p>
-      </statement>
-      <solution>
-        <image width="75%" >
-          <sageplot>
-            u=vector([-2,-1])
-            v=vector([1/2,-1])
-            putov=(v.dot_product(u)/u.dot_product(u))*u
-            perp=v-putov
-            plot11=arrow((0,0),u,color="black",width=3,axes=False,aspect_ratio=1)
-            plot11+=arrow((0,0),v,color="black",width=3)
-            plot11+=text("$\\vec{u}$",1.05*u,color="black",fontsize=25)
-            plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
-            plot11+=arrow((0,0),putov,color="red",width=2)
-            plot11+=arrow(putov,v,color="blue",width=2)
-            plot11+=text("$proj_{\\vec{u}} \\vec{v}$",0.5*putov-0.5*perp,color="red",fontsize=25)
-            plot11+=text("$proj_{\\perp \\vec{u}} \\vec{v}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
-            plot11
-          </sageplot>
-        </image>
-      </solution>
-    </task>
-  </activity>
+  
   </subsection>
   <subsection>
     <title>Summary</title>
