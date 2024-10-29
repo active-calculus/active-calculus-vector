@@ -13,22 +13,12 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-Precalc-LinesPlanes" xmlns:xi="http://www.w3.org/2001/XInclude" > 
-  <title>Lines and Planes in Space</title>
+<section xml:id="S-Precalc-Planes" xmlns:xi="http://www.w3.org/2001/XInclude" > 
+  <title>Planes in Space</title>
 
     <objectives>
         <ul>
-          <li>
-            <p>
-              How are lines in <m>\R^3</m> similar to and different from lines in <m>\R^2</m>?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              How can vectors make describing lines in <m>\R^3</m>
-            </p>
-          </li>
+          
 
           <li>
             <p>
@@ -46,47 +36,16 @@
 
   <introduction>
     <p>
-      In single variable calculus, we learn that a differentiable function is <em>locally linear</em>. <idx><h>locally linear</h></idx> In other words, if we zoom in on the graph of a differentiable function around a point, the graph  will look like the tangent line to the function at that point. 
-      </p>
-      <figure xml:id="LLline">
-        <caption>A plot with the ability to zoom in on a point of <m>y=f(x)</m>, where <m>f</m> is a nonlinear, differentiable function</caption>
-        <interactive title="interactive-LLline" platform="sage" width="100%" aspect="1:1">
-          <slate surface="sage">
-            @interact
-            def LLline(zoom=slider(0,8,1,default=0,label="Zoom"),val=slider(0,2,0.05,default=0.75,label="Location")):
-                var('x')
-                f(x)=x*cos(pi*x)
-                fv=f(val)
-                plot1=plot(f(x),(x,-4,4),color="black",gridlines=True)
-                plot1+=point((val,fv),color="black",size=25,xmin=val-2^(-zoom+1),xmax=val+2^(-zoom+1),ymin=fv-2^(-zoom+1),ymax=fv+2^(-zoom+1))
-                show(plot1)
-          </slate>
-        </interactive>
-        </figure>
-      <p>
-        
-      Linear functions (of the form <m>f(x)=ax+b</m>) play important roles in single variable calculus and are useful in approximating differentiable functions, in approximating roots of functions (Newton's Method), and approximating solutions to first order differential equations (Euler's Method). In multivariable calculus, we will study curves in space and we will see that connection between local linearity and differentiability exists for curves in three (or more!) dimensions. Additionally, as we study functions of two variables, we will see that a function is locally linear at a point if the surface defined by the function looks like a plane (the tangent plane) as we zoom in on the graph.
+     asdf
+    
     </p>
 
-    <p>
-      Consequently, it is important for us to understand both lines and planes in space, as these correspond to graphs of linear expressions in <m>\R^2</m> and <m>\R^3</m>. (Recall that a function is linear if it is a polynomial function whose terms all have degree less than or equal to 1. For example, <m>x-1</m> defines a single variable linear expression and <m>x+y+2</m> a two variable linear expression. But <m>xy</m> is not linear since it has degree two, the sum of the degrees of its factors.) We will study planes and lines in <m>\R^3</m> as flat graphs before we look at curves and surfaces in general. In your study of 1-variable functions, you probably worked with ideas like slope, direction, and measuring change using lines several times before you generalized those ideas for a curve in general. Similarly, we will want to have a good idea about how we talk about direction and measuring change along flat objects in <m>\R^3</m> (lines and planes) before we start generalizing to curved objects. 
-    </p>
-    <exploration xml:id="PA_9_5">
+    <exploration xml:id="PA_planes">
       <introduction>
        <p>
-          We will start our work on lines by considering some familiar ideas in <m>\R^2</m> but from a new perspective. You are probably familiar with equations of lines in the <m>xy</m>-plane in the form <m>y = mx+b</m>, where <m>m</m> is the slope of the line and <m>(0,b)</m> is the <m>y</m>-intercept. In this activity, we explore a more flexible way of representing lines that is useful in the <m>xy</m>-plane and higher dimensions. To begin, consider the line through the point <m>(2,-1)</m> with slope <m>\frac{2}{3}</m> as shown in <xref ref="PA-Lineplot1">Figure</xref>.
+         
         </p>
-        <figure xml:id="PA-Lineplot1">
-          <caption>The line through <m>(2,-1)</m> with slope <m>\frac{2}{3}</m></caption>
-          <image width="75%" xml:id="img-PA-Lineplot1">
-            <description><p> </p></description>
-            <sageplot>
-              plot2=line([(-4,-5),(8,3)],color="black",gridlines=True,aspect_ratio=1,xmin=-3,xmax=5,ymin=-5,ymax=3,axes_labels=["$x$","$y$"])
-              plot2+=circle((2,-1),0.1,edgecolor="black",fill=True,facecolor="gray",thickness=2)
-              plot2
-            </sageplot>
-          </image>
-        </figure>
+        
       </introduction>
       <task>
         <statement>
@@ -200,348 +159,6 @@
       </task>
      </exploration>
   </introduction>
-
-  <subsection>
-    <title>Lines in Space</title>
-    <p>
-      The way most people draw a line is more connected to the ideas in <xref ref="PA_9_5" /> than slope or algebraic forms. Take a minute and draw a plot of the line described by <m>x+y-1=0</m>. Look at how to hide the next part. You may have done some algebra or other calculation to get to slope intercept form or another familiar algebraic structure, but when you went to draw the line you almost certainly did the following steps 
-      <ol>
-        <li>found a point to start your plot (maybe the y-intercept)</li>
-        <li>found a second point on your plot (perhaps using the slope to find the second point)</li>
-        <li>drew a line segment from the first point to the second, then extended the line past the second point to the end of you plot</li>
-        <li>went back to the first point and extended the line in the direction opposite of the second point</li>
-      </ol>
-      In other words, you made a starting point, extended indefinitely far in a particular direction, then added in the opposite direction. This is the essence of the general description for a line we will give below. 
-    </p>
-    <p>
-      In two-dimensional space, a non-vertical line is defined to be the set of points satisfying the equation
-      <me>
-        y = mx + b,
-      </me>
-      for some constants <m>m</m> and <m>b</m>. The value of <m>m</m> (the slope) tells us how the dependent variable changes for every one unit increase in the independent variable, while the point <m>(0,b)</m> is the <m>y</m>-intercept and anchors the line to a location on the <m>y</m>-axis. Alternatively, we can think of the slope as being related to the vector <m>\langle 1, m \rangle</m>, which tells us the direction of the line, as shown on the left in <xref ref="Lineplot3">Figure</xref>. Thus, we can identify a line in space by fixing a point <m>P</m> and a direction <m>\vv</m>, as shown on the right. Since we also have vectors in space (<m>\R^n</m>) to provide direction, this same idea of a point and a direction determining a line works in <m>\R^n</m> for any <m>n</m>. 
-    </p>
-    <figure xml:id="Lineplot2">
-      <caption>The line through <m>(0,1)</m> with slope <m>m</m></caption>
-      <image width="75%" xml:id="img-Lineplot2">
-        <description><p> </p></description>
-        <sageplot>
-          plot3=line([(-2,-2),(4,7)],color="black",gridlines=True,aspect_ratio=1,xmin=-2,xmax=4,ymin=-1,ymax=5,axes_labels=["$x$","$y$"])
-          plot3+=circle((0,1),0.075,edgecolor="black",fill=True,facecolor="gray",thickness=2)
-          plot3+=arrow((0,1),(1,2.5),color="black",width=3)+text("$\\vec{v}=\\langle 1,m\\rangle$",(1.25,1.5),fontsize=15,color="black")
-          plot3
-        </sageplot>
-      </image>
-    </figure>
-    <definition xml:id="D_LineInSpace">
-      <statement>
-        <p>
-          A <term>line</term><idx><h>line</h><h>in space</h></idx> in space is the set of terminal points of vectors emanating from a given point <m>P</m> that are parallel to a fixed vector <m>\vv</m>.
-        </p>
-      </statement>
-    </definition>
-
-    <p>
-      The fixed vector <m>\vv</m> in the definition is called a <em>direction vector</em><idx><h>line</h><h>direction vector</h></idx> for the line. As we saw in <xref ref="PA_9_5">Preview Activity</xref>, to find an equation for a line through point <m>P</m> in the direction of vector <m>\vv</m>, observe that any vector parallel to <m>\vv</m> will have the form <m>t \vv</m> for some scalar <m>t</m>. So, any vector emanating from the point <m>P</m> in a direction parallel to the vector <m>\vv</m> will be of the form
-      <men xml:id="eq_9_5_lines_1">
-        \overrightarrow{OP} + \vv t
-      </men>
-      for some scalar <m>t</m> (where <m>O</m> is the origin).
-    </p>
-    <figure xml:id="Lineplot3">
-      <caption>A line in 2-space with vector definition</caption>
-      <interactive title="interactive-Lineplot3" platform="sage" width="100%" aspect="1:1">
-        <slate surface="sage">
-          @interact
-          def vecline(t=slider(-3,3,0.1,default=1,label="t=")):
-            plot4=line([(-3,0),(5,3)],color="black",aspect_ratio=1,xmin=-2,xmax=4,ymin=-1,ymax=4,axes_labels=["$x$","$y$"])
-            plot4+=arrow((0,0),(1,3/2),color="blue")
-            plot4+=text("$\\overrightarrow{OP}$",(1/4,3/4),color="blue",fontsize=15)
-            plot4+=arrow((0,0),(1+t,1.5+t*3/8),color="green")
-            plot4+=text("$t\\vec{v}$",(0.5+0.75*t,1.5+0.75*t*3/8),color="red",fontsize=15)
-            plot4+=arrow((1,1.5),(1+t,1.5+t*3/8),color="red")
-            plot4+=text("$t=$"+str(n(t,digits=1)),(1,3),color="red",fontsize=15)
-            show(plot4)
-        </slate>
-      </interactive>
-      </figure>
-      <!-- <figure xml:id="F_9_5_Line_2D">
-      <caption>A line in 2-space.</caption>
-      <sidebyside widths="33% 33% 33%" margins="0%">
-      <image source="images/fig_9_5_line_2d_01"/>
-      <image source="images/fig_9_5_line_2d_10"/>
-      <image source="images/fig_9_5_line_2d_20"/>
-      </sidebyside>
-      </figure> -->
-    <p>
-      <xref ref="Lineplot3">Figure</xref> shows the plot of a line in two-space in which we can identify the vector <m>\overrightarrow{OP}</m> (going from the origin to our starting point) and the vector <m>t \vv</m> as in Equation <xref ref="eq_9_5_lines_1"/>. Here, <m>\overrightarrow{OP}</m> is the fixed vector shown in blue, while the direction vector <m>\vv</m> is the vector parallel to the vector shown in red (that is, the red vector represents <m>t \vv</m>, and the line is traced out by the terminal points of the green vector). In other words, the tips (terminal points) of the green vectors (the vectors of the form <m>\overrightarrow{OP} + t \vv</m>) trace out the line as <m>t</m> changes.
-    </p>
-    <p>
-      In particular, the terminal points of the vectors of the form in <xref ref="eq_9_5_lines_1"/> define a linear function <m>\vr</m> in space of the following form, which is valid and gives some geometric intuition into each part for in any dimension.
-    </p>
-    <assemblage xml:id="Lines-vector-form">
-      <title>The vector form of a line</title>
-    <p>
-      The <em>vector form</em> of a line<idx><h>line</h><h>vector equation</h></idx> through the point <m>P</m> in the direction of the vector <m>\vv</m> is
-      <men xml:id="eq_9_5_line_vect">
-        \vr(t) = \vr_0 + t\vv,
-      </men>
-      where <m>\vr_0</m> is the position vector <m>\overrightarrow{OP}</m> from the origin to the point <m>P</m>.
-    </p>
-    </assemblage>
-
-    <p>
-      Lines in the <m>xy</m>-plane are commonly described using the slope-intercept equation <m>y=mx + b</m>. The vector form of the line, as described above, is an
-      alternative way to represent lines that has the two advantages. First, in two dimensions, we are able to represent vertical lines, whose slope <m>m</m> is not defined, using a vertical direction vector. For example, the vertical line described by <m>x=2</m> could be described in vector form with a direction vector like <m>\vv=\langle 0, 1\rangle</m>, giving <m>\vr(t)= \langle 2,0\rangle +t \langle 0,1\rangle</m>. The second advantage of the vector form of a line is that this
-      description of lines works in <em>any</em> dimension whereas the concept of slope of a line does not generalize to three or more dimensions. 
-    </p>
-    <figure xml:id="Lineplot3d">
-      <caption>A line in 2-space with vector definition</caption>
-      <interactive title="interactive-Lineplot3d" platform="sage" width="100%" aspect="1:1">
-        <slate surface="sage">
-          from sage.plot.plot3d.plot3d import axes
-          var('t,s')
-          x(t)=1+t
-          y(t)=2+t
-          z(t)=1-t/2
-          @interact
-          def vecline(tval=slider(-2,2,0.1,default=1,label="$t=$")):
-              xt=x(tval)
-              yt=y(tval)
-              zt=z(tval)
-              plot5=axes(3,1,color="black")+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-              plot5+=parametric_plot((x(t),y(t),z(t)),(t,-2,2),color="black",aspect_ratio=1,frame=False)
-              plot5+=arrow((0,0,0),(x(0),y(0),z(0)),color="blue",width=2)
-              plot5+=arrow((x(0),y(0),z(0)),(xt,yt,zt),color="red",width=2)
-              plot5+=arrow((0,0,0),(xt,yt,zt),color="green",width=2)
-              plot5+=point3d((1,2,1),size=30,color="black")+text3d("P",(1.2,2.3,1.1),color="black",fontsize=25)
-              plot5+=point3d((2,3,0.5),size=30,color="black")+text3d("Q",(2.2,3.3,0.5),color="black",fontsize=25)
-              plot5+=text3d("t="+str(n(tval,digits=1)),(1,3,3),color="red",fontsize=20)
-              show(plot5,viewpoint=[[-0.4339,-0.5504,-0.7134],121.3],camera_position=[7.1166,5.128,2.6254])
-        </slate>
-      </interactive>
-      </figure>
-    <!-- <figure xml:id="F_9_5_Line_3D">
-      <caption>A line in 3-space.</caption>
-      <sidebyside widths="33% 33% 33%" margins="0%">
-      <image source="images/fig_9_5_line_3d_01"/>
-      <image source="images/fig_9_5_line_3d_10"/>
-      <image source="images/fig_9_5_line_3d_20"/>
-      </sidebyside>
-    </figure> -->
-
-    <activity xml:id="ActLines3D1">
-      <introduction>
-        <p>
-          Let <m>P_1 = (1,2,-1)</m> and <m>P_2 = (-2,1,-2)</m> and let <m>\mathcal{L}</m> be the line in <m>\R^3</m> through <m>P_1</m> and <m>P_2</m>. Note that <xref ref="Lineplot3d">Figure</xref> shows a similar example of a line in 3D defined by two points.
-        </p>
-        </introduction>
-        <task>
-          <statement>
-            <p>
-              Give a direction vector for the line <m>\mathcal{L}</m>.
-            </p>
-          </statement>
-          <answer>
-            <p>
-              A direction vector for the line <m>\mathcal{L} = \langle -3, -1, -1 \rangle</m>
-            </p>
-          </answer>
-          <solution>
-            <p>
-              The direction vector the for line <m>\mathcal{L}</m> is <m>\langle ((-2) - (1), (1) - (2), (-2) - (-1)) \rangle = \angle -3, -1, -1 \rangle</m>.
-            </p>
-          </solution>
-        </task>
-        <task>
-          <statement>
-            <p>
-              Give a vector equation of <m>\mathcal{L}</m> in the form <m>\vr(t) = \vr_0 + t\vv</m>.
-            </p>
-          </statement>
-          <answer>
-            <p>
-              A vector equation of <m>\mathcal{L}</m> is <m>\vr(t) = \langle 1, 2, -1 \rangle + t \langle -3, -1, -1 \rangle</m>.
-            </p>
-          </answer>
-          <solution>
-            <p>
-              A vector equation of <m>\mathcal{L}</m> is <m>\vr(t) = \langle 1, 2, -1 \rangle + t \langle -3, -1, -1 \rangle</m>.
-            </p>
-          </solution>
-        </task>
-        <task>
-          <statement>
-            <p>
-              Consider the vector equation <m>\vs(t) = \langle -5, 0, -3 \rangle + t \langle 6, 2, 2 \rangle.</m>  What is the direction of the line given by <m>\vs(t)</m>?  Is this new line parallel to line <m>\mathcal{L}</m>?
-            </p>
-          </statement>
-          <answer>
-            <p>
-              The direction of the line given by <m>s(t)</m> is <m>\langle 6, 2, 2 \rangle</m>.
-            </p>
-            <p>
-              This line is parallel to the line <m>\mathcal{L}</m> because the direction vectors are scalar multiples of one another.
-            </p>
-          </answer>
-          <solution>
-            <p>
-              The direction of the line given by <m>s(t)</m> is given by the vector that is multiplied by <m>t</m>, which is <m>\langle 6, 2, 2 \rangle</m>.
-            </p>
-
-            <p>
-              This line is parallel to the line <m>\mathcal{L}</m> because the <m>\langle 6, 2, 2 \rangle = -2 * \langle -3, -1, -1 \rangle</m> meaning the direction vectors are scalar multiples of one another.
-            </p>
-          </solution>
-        </task>
-        <task>
-          <statement>
-            <p>
-              Do <m>\vr(t)</m> and <m>\vs(t)</m> represent the same line, <m>\mathcal{L}</m>? Write a couple of sentences to justify why you think <m>\vr(t)</m> and <m>\vs(t)</m> do or do not describe the same set of points.
-            </p>
-          </statement>
-          <answer>
-           <p>
-            <m>\vr(t)</m> and <m>\vs(t)</m> do represent the same line.
-          </p>
-          </answer>
-          <solution>
-            <p>
-              We know that the lines are parallel to each other from part <m>c</m>. Now we need to see if they have a point in common, either <m>(1, 2, -1)</m> or <m>(-2, 1, -2)</m>, by determining if there is a <m>t</m>-value such that <m>\langle 1, 2, -1 \rangle = \vs(t)</m> or <m>\langle -2, 1, -2 \rangle = \vs(t)</m>. 
-            </p>
-
-            <p>
-              <m>\langle 1, 2, -1 \rangle = \langle -5, 0, 3 \rangle + t * \langle 6, 2, 2 \rangle</m>.
-            </p>
-
-            <p>
-            Subtract <m>\langle -5, 0, 3 \rangle</m> from both sides to get <m>\langle 6, 2, 2 \rangle = t * \langle 6, 2, 2 \rangle</m>. This equation is true when <m>t = 1</m>. Therefore, <m>\vr(t)</m> and <m>\vs(t)</m> are the same lines.
-            </p>
-          </solution>
-        </task>
-    </activity>
-  </subsection>
-
-  <subsection>
-    <title>The Parametric Equations of a Line</title>
-    <p>
-      The vector form of a line, <m>\vr(t) = \vr_0 + t\vv</m> in Equation<nbsp/><xref ref="eq_9_5_line_vect"/>, describes a line as the set of terminal points of the vectors <m>\vr(t)</m>. If we view this vector equation in terms components,
-      <me>
-        \vr(t) = \langle x(t), y(t), z(t) \rangle, \ \ \ \vr_0 = \langle x_0, y_0, z_0 \rangle, \ \ \ \text{ and }  \ \ \ \vv = \langle a, b, c \rangle
-      </me>
-      then we can equate the components on both sides of <m>\vr(t) = \vr_0 +
-      t\vv</m> to obtain the following
-      <me>
-        x(t) = x_0 + at, \ \ \ \ \ y(t) = y_0 + bt, \ \ \ \ \ \text{ and }  \ \ \ z(t) = z_0 +
-        ct
-      </me>
-      These equations describe the coordinates of the points on the line separately where each is coordinate is a function of <m>t</m>. The variable <m>t</m> represents an arbitrary scalar and is called a <em>parameter</em>. In particular, we use the following language.
-    </p>
-
-    <assemblage xml:id="Lines-parametric-equations">
-      <title>The parametric equations of a line</title>
-    <p>
-      The <em>parametric equations</em> for a line<idx><h>line</h><h>parametric equations</h></idx> through the point <m>P = (x_0, y_0, z_0)</m> in the direction of the vector <m>\vv = \langle a,b,c \rangle</m> are
-      <me>
-        x(t) = x_0 + at, \ \ \ \ \ y(t) = y_0 + bt, \ \ \ \ \ z(t) = z_0 + ct
-      </me>
-    </p>
-    </assemblage>
-
-
-    <p>
-      We should note here that there are <em>many</em> different parametric equations for the same
-      line. For example, choosing another point <m>P</m> on the line or another direction vector <m>\vv</m> produces another set of parametric equations. In many physical applications, it is useful to think of <m>t</m> as a time parameter and the parametric equations as telling us where we are on the line at each time. In this way, the parametric equations describe a particular way to walk along the line; there are, of course, many possible ways to walk along the same line. In mathematical terms, we say that the parameterization of a line is not unique. 
-    </p>
-
-    <activity xml:id="A_9_5_3">
-      <introduction>
-       <p>
-          Let <m>P_1 = (1,2,-1)</m> and <m>P_2 = (-2,1,-2)</m>, and let <m>\mathcal{L}</m> be the line in <m>\R^3</m> through <m>P_1</m> and <m>P_2</m>, which is the same line as in <xref ref="ActLines3D1">Activity</xref>.
-        </p>
-      </introduction>
-      <task>
-        <statement>
-          <p>
-            Find parametric equations of the line <m>\mathcal{L}</m>.
-          </p>
-        </statement>
-        <answer>
-          <p>
-            <m>x(t) = 1 - 3t, y(t) = 2 - t, z(t) = -1 - t</m>
-          </p>
-        </answer>
-        <solution>
-          <p>
-            The vector form of the line <m>\mathcal{L}</m> was <m>\vr(t) = \langle 1, 2, -1 \rangle + t * \langle -3, -1, -1 \rangle</m>. This corresponds to the parametric equations of <m>x(t) = 1 - 3t, y(t) = 2 - t, z(t) = -1 - t</m>.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Does the point <m>(1, 2, 1)</m> lie on <m>\mathcal{L}</m>? If so, what value of <m>t</m> results in this point?
-          </p>
-        </statement>
-        <answer>
-          <p>
-            No the point does not lie on <m>\mathcal{L}</m>.
-          </p>
-        </answer>
-        <solution>
-          <p>
-            Set each parametric equation equal to the corresponding component of the given point: <m>1 = 1 - 3t, 2 = 2 - t, 1 = -1 - t</m>. Solve each equation to get <m>t = 0, t = 0,</m> and <m>t = -1</m>. Therefore, the point <m>(1, 2, 1)</m> does not lie on <m>\mathcal{L}</m>.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Consider another line, <m>\mathcal{K}</m>, whose parametric equations are
-            <me>
-              x(s) = 11 + 4s, \ \ y(s) = 1-3s, \ \ z(s) = 3 + 2s.
-            </me>
-            What is the direction of the line <m>\mathcal{K}</m>?
-          </p>
-        </statement>
-        <answer>
-          <p>
-            The direction of <m>\mathcalc{K}</m> is <m>\langle 4, -3, 2 \rangle</m>.
-          </p>
-        </answer>
-        <solution>
-          <p>
-            To find the direction vector of <m>\mathcal{K}</m>, we look at the coefficients of the <m>s</m> terms: <m>\langle 4, -3, 2 \rangle</m>.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Do the lines <m>\mathcal{L}</m> and <m>\mathcal{K}</m> intersect?  If so, provide the point of intersection and the <m>t</m> and <m>s</m> values, respectively, that result in the point.  If not, explain why.
-          </p>
-        </statement>
-        <answer>
-          <p>
-            <m>\mathcal{L}</m> and <m>\mathcalc{K}</m> intersect at <m>(7, 4, 1)</m>
-          </p>
-        </answer>
-        <solution>
-          <p>
-            The direction vectors for lines <m>\mathcal{L}</m> and <m>\mathcal{K}</m> are not scalar multiples. Therefore the lines will intersect. We can set the corresponding parametric equations equal to each other than then use 2 of the equations to solve a system.
-          </p>
-          <p>
-            <m>1 - 3t = 11 + 4s, 2 - t = 1- 3s</m>. Solve this system to get <m>s = -1, t = -2</m>. Plug either of these values into the parametric equations for the corresponding line to get the point <m>(7, 4, 1)</m>.
-          </p>
-        </solution>
-      </task>
-     
-    </activity>
-    <p>
-      Before we move on to our discussion of planes, we will talk about some terminology that may help in describing some features and measurements later. A line is a one-dimensional, flat graph in three (or <m>n</m>) dimensions. We say the line is a one-dimensional graph because there is only one direction to go and stay on the graph (forward/backward). We say that a line is flat because the direction you are allowed to go doesn't change as you move along the graph. Note that flat does not mean horizontal. A circle would be another example of a one-dimensional graph that can be drawn in two or more dimensional space (because there is only one direction to move along the circle) but is not flat since the direction you go to stay on the figure changes as you move along the graph. As we will see below, a plane in three dimensional space is an example of a flat, two-dimensional graph. If you were an ant on a plane, you would have two dimensions you can move in while staying on the graph (forward/backward or left/right), but the direction(s) that the graph extends does not change when you move locations on the plane.
-    </p>
-  </subsection>
-
-
   <subsection>
     <title>Planes in Space</title>
     <p>
@@ -923,22 +540,9 @@
     <ul>
       <li>
         <p>
-          While lines in <m>\R^3</m> do not have a slope, like lines in <m>\R^2</m> they can be characterized by a point and a direction vector.  Indeed, we define a line in space to be the set of terminal points of vectors emanating from a given point that are parallel to a fixed vector.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          Vectors play a critical role in representing the equation of a line.  In particular, the terminal points of the vector <m>\vr(t) = \vr_0 + t\vv</m> define a linear function <m>\vr</m> in space through the terminal point of the vector <m>\vr_0</m> in the direction of the vector <m>\vv</m>, tracing out a line in space.
-        </p>
-      </li>
-
-      <li>
-        <p>
           A plane in space is the set of all terminal points of vectors emanating from a given point perpendicular to a fixed vector.
         </p>
       </li>
-
       <li>
         <p>
           If <m>P_1</m>, <m>P_2</m>, and <m>P_3</m> are non-collinear points in space, the vectors <m>\overrightarrow{P_1P_2}</m> and and <m>\overrightarrow{P_1P_3}</m>  are vectors in the plane and the vector <m>\vn = \overrightarrow{P_1P_2} \times \overrightarrow{P_1P_3}</m> is a normal vector to the plane. So any point <m>P</m> in the plane satisfies the equation <m>\overrightarrow{PP_1} \cdot \vn = 0</m>.  If we let <m>P = (x,y,z)</m>, <m>\vn = \langle a,b,c \rangle</m> be the normal vector, and <m>P_1 = (x_0,y_0,z_0)</m>, we can also represent the plane with the equation
@@ -950,5 +554,5 @@
     </ul>
 
     </subsection>
-    <xi:include href="./exercises/ez-S_Precalc_Line_Plane.ptx" />
+    <xi:include href="./exercises/ez-S_Precalc_Plane.ptx" />
 </section>
