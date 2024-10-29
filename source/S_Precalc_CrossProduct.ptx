@@ -36,13 +36,22 @@
     <p>
       The last two sections have introduced some basic algebraic operations and useful geometric interpretations for vector addition, scalar multiplication, and the dot product. In this section, we will define and explore the <em>cross product</em>, another algebraic operation which measures useful geometric information related to pairs of vectors in <m>\R^3</m>.
     </p>
-
+    
     <p>
-      Remember that we use a right-hand coordinate system, as described in <xref ref="S-Precalc-3Dcoord">Section</xref>. In particular, recall that the vectors <m>\vi</m>, <m>\vj</m>, and <m>\vk</m> are oriented as shown below in <xref ref="F_9_4_basis">Figure</xref>. We would like to think of a right handed coordinate system in terms of vectors that are not just <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. We will call an ordered list of vectors <m>\{\vu, \vv, \vw\}</m> a <term>right-handed coordinate system</term> if when you put the fingers of your right hand in the direction of <m>\vu</m> and curl your fingers in the direction of <m>\vv</m>, then the thumb of your right hand will point in the direction of <m>\vw</m>. Remember that to get this orientation correct, you may need to rotate your right hand to get your fingers to curl in the correct direction, which will then give you the proper direction for the third vector <m>\vw</m>.
+      Remember that we use a right-hand coordinate system, as described in <xref ref="S-Precalc-3Dcoord">Section</xref>. In particular, recall that the vectors <m>\vi</m>, <m>\vj</m>, and <m>\vk</m> are oriented as shown below in <xref ref="F_9_4_basis">Figure</xref>. We would like to think of a right handed coordinate system in terms of vectors that are not just <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. 
     </p>
     <figure xml:id="F_9_4_basis">
       <caption>Basis vectors <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</caption>
       <image width="50%" source="images/fig_9_4_basis"/>
+    </figure>
+    <p>  
+      We will call an ordered list of vectors <m>\{\vu, \vv, \vw\}</m> a <term>right-handed coordinate system</term> (or right handed orientation) if when you put the fingers of your right hand in the direction of <m>\vu</m> and curl your fingers in the direction of <m>\vv</m>, then the thumb of your right hand will point in the direction of <m>\vw</m>. Remember that to get this orientation correct, you may need to rotate your right hand to get your fingers to curl in the correct direction, which will then give you the proper direction for the third vector <m>\vw</m>.
+    </p>
+    <figure xml:id="RHRule">
+      <caption>A right handed orientation of vectors <m>\{\vu,\vv,\vw\}</m></caption>
+      <image width="75%" source="images/RHRule.png">
+        <description><p>Adapted from https://en.m.wikipedia.org/wiki/File:Right_hand_rule_cross_product.svg with credit to user KdYpUvMgT. </p> </description>
+      </image>
     </figure>
     <p>
       We would like to create a product of two vectors, which we will call the cross product, that creates a right handed coordinate system with the input vectors as the first two vectors in our coordinate system. So if <m>\vu</m> and <m>\vv</m> are not parallel, we want the cross product of <m>\vu</m> with <m>\vv</m> (denoted <m>\vu \times \vv</m>) to make <m>\{\vu, \vv, \vu\times\vv\}</m> a right-handed coordinate system. Additionally, we would like the cross product (as with all of our vector operations) to work well with linear combinations of vectors. Specifically, we want the following algebraic property to be satisfied:
@@ -60,7 +69,7 @@
       <task>
         <statement>
           <p>
-            Our first task is to understand what it means to complete a right-handed coordinate system. For each of the cases below, you need to give a vector that fills in the blank to create a right-handed coordinate system. For example, the answer that would complete <m>\vi, \vj, ???</m> would be <m>\vk</m>. You should pay attention to when you have vectors that in opposite directions of <m>\vi</m> or <m>\vj</m> or <m>\vk</m>.
+            Our first task is to understand what it means to complete a right-handed coordinate system. For each of the cases below, you need to give a vector that fills in the blank to create a right-handed coordinate system. For example, the answer that would complete <m>\{\vi, \vj, ???\}</m> would be <m>\vk</m>. You should pay attention to when you have vectors that are in the opposite directions of <m>\vi</m> or <m>\vj</m> or <m>\vk</m>.
           <ol>
             <li> <m>\{\vj,\vi, ???\}</m> </li>
             <li> <m>\{-\vi,\vj, ???\}</m> </li>
@@ -70,6 +79,17 @@
           </ol>
         </p>
         </statement>
+        <solution>
+          <p>
+            <ol>
+              <li> <m>\{\vj,\vi, -\vk \}</m> </li>
+              <li> <m>\{-\vi,\vj, -\vk \}</m> </li>
+              <li> <m>\{\vk,\vi, \vj \}</m> </li>
+              <li> <m>\{-\vi,-\vj, \vk \}</m> </li>
+              <li> <m>\{\vk,\vj, -\vi \}</m> </li>
+            </ol>
+          </p>
+        </solution>
       </task>
       <task xml:id="zerocross">
         <statement>
@@ -77,6 +97,11 @@
             Explain why there is not a way to complete <m>\{\vi,\vi, ???\}</m> to be a right-handed coordinate system.
           </p>
         </statement>
+        <solution>
+          <p>
+            Because both vectors are in the same direction, it is not possible to specify a right handed orientation. You can't curl your fingers in the same direction they are extended in the right handed orientation definition.
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -90,6 +115,15 @@
             Be sure to note how your thumb is oriented in the last case and verify that the sum of the first two results gives you the last case. 
           </p>
         </statement>
+        <solution>
+          <p>
+            <ol>
+              <li><m>\{\vi,\vk, -\vj \}</m> </li>
+              <li><m>\{\vj,\vk, \vi \}</m> </li>
+              <li><m>\{\vi+\vj,\vk, \vi-\vj \}</m> </li>
+            </ol>
+          </p>
+        </solution>
       </task>
       <task xml:id="PA-crosslength">
         <statement>
@@ -98,11 +132,21 @@
             <ol>
               <li>What direction should the third vector in the right hand coordinate system be? <m>\{2\vi,3\vj, ???\}</m> </li>
               <li>What direction should the third vector in the right hand coordinate system be? <m>\{2\vk,\vj, ???\}</m> </li>
-              <li>Note that <m>3\vk=\vk+\vk</m>, so <m>(3\vk) \times \vj = (\vk \times \vj) + (\vk \times \vj) + (\vk \times \vj)</m>. What do you think the vector should be to complete the following right handed coordinate system? <m>\{(3\vk), \vj, ???\}</m></li>
+              <li>Note that <m>3\vk=\vk+\vk+\vk</m>, so <m>(3\vk) \times \vj = (\vk \times \vj) + (\vk \times \vj) + (\vk \times \vj)</m>. What do you think the vector <m>(3\vk) \times \vj</m> be? </li>
               <li>What do you think the result of <m>(4\vi)\times (-6\vj)</m> will be?</li>
             </ol>
           </p>
         </statement>
+        <solution>
+          <p>
+            <ol>
+              <li> <m>\vk</m> direction </li>
+              <li> <m>\vk</m> direciton </li>
+              <li><m>(3\vk) \times \vj = -3\vi </m></li>
+              <li><m>-24 \vk </m> </li>
+            </ol>
+          </p>
+        </solution>
       </task>
     </exploration>
   </introduction>
@@ -140,7 +184,7 @@
     </sidebyside> 
 
     <p>
-      We want the cross product to behave like we think a product should (e.g., the cross product distributes over vector addition), so using the ideas directly above, we can compute the cross product in terms of the components of general vectors. Applying these ideas of right-handed coordinate systems and the cross product working with linear combinations of vectors gives us the following:
+      We want the cross product to distribute over linear combinations (<m>(k \vv+\vu) \times \vw = k(\vv \times \vw) + (\vu \times \vw)</m>), so using the ideas directly above, we can compute the cross product in terms of the components of general vectors. Applying these ideas of right-handed coordinate systems and the cross product working with linear combinations of vectors gives us the following:
       <md>
         <mrow>\vu\times\vv =\mathstrut \amp  (u_1\vi + u_2\vj + u_3\vk) \times (v_1\vi + v_2\vj + v_3\vk)</mrow>
         <mrow>=\mathstrut \amp  u_1\vi\times  (v_1\vi + v_2\vj + v_3\vk)+u_2\vj\times  (v_1\vi + v_2\vj + v_3\vk) </mrow>
@@ -157,7 +201,7 @@
         Like the dot product, the cross product arises in physical applications, e.g., torque, but it is more convenient mathematically to begin from an algebraic perspective.
       </p>
     </aside>
-      <definition>
+    <definition>
       <statement>
         <p>
           The <term>cross product</term><idx><h>cross product</h></idx> <m>\vu \times \vv</m> of vectors <m>\vu = u_1\vi + u_2\vj + u_3\vk</m> and <m>\vv = v_1\vi + v_2\vj + v_3\vk</m> in <m>\R^3</m> is the vector 
@@ -477,29 +521,40 @@
     </p>
     </assemblage>
     <p>
-      While some of these properties may not seem natural, we need to look at these from the perspective of what we wanted to measure with the cross product. Remember that the result of the cross product should complete a right handed coordinate system and that the cross product should work well with linear combinations (distribute across vector addition and scalar multiplication). The first property above is a consequence of the cross product being the vector needed to complete the associated right hand coordinate system; If you switch the order of the first two vectors in our right handed coordinate system, then the third vector must switch direction in order for the orientation to follow the right hand rule. Properties 2 and 3 are exactly what we meant for the cross product to work well with linear combinations. Property 5 should make sense in the context of <xref ref="crossassoc" />.
+      While some of these properties may not seem natural, we need to look at these from the perspective of what we wanted the cross product to measure. The result of the cross product should complete a right handed coordinate system and the cross product should work well with linear combinations (distribute across vector addition and scalar multiplication). The first property above is a consequence of the cross product being the vector needed to complete the associated right hand coordinate system; If you switch the order of the first two vectors in our right handed coordinate system, then the third vector must switch direction in order for the orientation to follow the right hand rule. Properties 2 and 3 are exactly what we meant for the cross product to work well with linear combinations and can be verified algebraically from <xref ref="E_9_4_cross_def" />, and Property 5 should make sense in the context of <xref ref="crossassoc">Activity</xref>.
     </p>
   </subsection>
   <subsection xml:id="geocross">
     <title>The Vector Nature of the Cross Product</title>
     <p>
-      The output of the cross product is a vector and thus has both magnitude and direction. In this section, we will split up the cross product's geometric meaning into these two fundamental properties of vectors. We will begin by first mentioning that the cross product (as defined in <xref ref="E_9_4_cross_def" />) satisfies our claim in the introduction to this section.
+      The output of the cross product is a vector and thus has both magnitude and direction. In this section, we will split up the cross product's geometric meaning into these two fundamental properties of vectors. We will begin by first mentioning that the direction of the cross product (as defined in <xref ref="E_9_4_cross_def" />) satisfies our claim in the introduction to this section.
     </p>
+    <proposition xml:id="crossdirection">
+      <statement>
+        <p>
+          The cross product of <m>\vu</m> and <m>\vv</m> is oriented to make <m>\{\vu,\vv,\vu\times\vv\}</m> a right handed coordinate system. In particular, this means that <m>\vu\times\vv</m> is orthogonal to both <m>\vu</m> and <m>\vv</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          Remember from <xref ref="PA-crossprod">Preview Activity</xref> that the cross product of <m>\vu</m> and <m>\vv</m> will complete the right handed coordinate system, <m>\{\vu, \vv, ???\}</m>. In particular, the last vector in our right handed coordinate system will be at a <m>\frac{\pi}{2}</m> or <m>90^\circ</m> angle to the other vectors because your thumb makes a <m>90^\circ</m> angle with the plane that your fingers can extend and curl in. We defined the cross product to satisfy the right hand orientation relationship for <m>\vi</m>, <m>\vj</m>, and <m>\vk</m> (and for linear combinations of these vectors), so we need only verify the orthogonal relationship algebraically by computing <m>\vu\cdot(\vu\times\vv)</m>.
+          <md>
+            <mrow>\vu\cdot(\vu\times\vv)=\mathstrut \amp  u_1(u_2v_3-u_3v_2) - u_2(u_1v_3-u_3v_1) +
+              u_3(u_1v_2-u_2v_1)</mrow>
+            <mrow>=\mathstrut \amp  u_1u_2v_3 - u_1u_3v_2 - u_2u_1v_3+u_2u_3v_1 + u_3u_1v_2 -
+              u_3u_2v_1</mrow>
+            <mrow>=\mathstrut \amp  0</mrow>
+          </md>
+        </p>
+        <p>
+          To summarize, we have <m>\vu\cdot(\vu\times\vv) = 0</m>, which implies that <m>\vu</m> is orthogonal to <m>\vu\times\vv</m>. A similar algebraic argument will show that <m>\vv</m> is orthogonal to <m>\vu\times\vv</m>, and thus the output of <m>\vu\times\vv</m> is a vector that is perpendicular to both input vectors, <m>\vu</m> and <m>\vv</m>. Because the cross product works well with linear combinations, <m>\vu\times\vv</m> is perpendicular to any linear combination of <m>\vu</m> and <m>\vv</m> (to be shown in <xref ref="verifycrossortho" />).  
+        </p>
+      </proof>
+    </proposition>
+
+    
     <p>
-      Remember from <xref ref="PA-crossprod">Preview Activity</xref> that the cross product of <m>\vu</m> and <m>\vv</m> will complete the right handed coordinate system, <m>\{\vu, \vv, ???\}</m>. In particular, the last vector in our right handed coordinate system will be at a <m>\frac{\pi}{2}</m> or <m>90^\circ</m> angle to the other vectors because your thumb makes a <m>90^\circ</m> angle with the plane that your fingers can extend and curl in. We defined the cross product to satisfy the right hand orientation relationship for <m>\vi</m>, <m>\vj</m>, and <m>\vk</m> (and for linear combinations of these vectors), so we need only verify the orthogonal relationship algebraically by computing <m>\vu\cdot(\vu\times\vv)</m>.
-      <md>
-        <mrow>\vu\cdot(\vu\times\vv)=\mathstrut \amp  u_1(u_2v_3-u_3v_2) - u_2(u_1v_3-u_3v_1) +
-          u_3(u_1v_2-u_2v_1)</mrow>
-        <mrow>=\mathstrut \amp  u_1u_2v_3 - u_1u_3v_2 - u_2u_1v_3+u_2u_3v_1 + u_3u_1v_2 -
-          u_3u_2v_1</mrow>
-        <mrow>=\mathstrut \amp  0</mrow>
-      </md>
-    </p>
-    <p>
-      To summarize, we have <m>\vu\cdot(\vu\times\vv) = 0</m>, which implies that <m>\vu</m> is orthogonal to <m>\vu\times\vv</m>. A similar algebraic argument will show that <m>\vv</m> is orthogonal to <m>\vu\times\vv</m>, and thus the output of <m>\vu\times\vv</m> is a vector that is perpendicular to both input vectors, <m>\vu</m> and <m>\vv</m>. Because the cross product works well with linear combinations, <m>\vu\times\vv</m> is perpendicular to any linear combination of <m>\vu</m> and <m>\vv</m> (to be shown in <xref ref="verifycrossortho" />).  
-    </p>
-    <p>
-      We now look at the magnitude of the output of <m>\vu\times\vv</m> in terms of the magnitude and direction of the inputs <m>\vu</m> and <m>\vv</m>.
+      We now look at the magnitude of <m>\vu\times\vv</m> in terms of the vector attributes (magnitude and direction) of the input vectors <m>\vu</m> and <m>\vv</m>.
     </p>
     <proposition xml:id="crosslength">
       <statement>
@@ -537,16 +592,16 @@
       </proof>
     </proposition>
     <p>
-      Note that the property stated above implies <m>\vu\times\vv = \vzero</m> if <m>\vu</m> and <m>\vv</m> are parallel. 
+      Note that <xref ref="crosslength" /> stated above implies <m>\vu\times\vv = \vzero</m> if <m>\vu</m> and <m>\vv</m> are parallel. 
       If <m>\vu</m> and <m>\vv</m> are parallel, then <m>\theta=0</m> or <m>\pi</m>, which implies that <m>\sin(\theta)=0 \Rightarrow \vu\times\vv = \vzero</m> by Equation <xref ref="E_9_4_cross_length"/>.
     </p>
    
   </subsection>
    
-  <subsection xml:id="subsec-">
+  <subsection xml:id="subsec-crossapp">
     <title>Applications of the Cross Product</title>
      <p>
-      Equation <xref ref="E_9_4_cross_length"/> is also related to the parallelogram formed by two vectors <m>\vu</m> and <m>\vv</m>, as shown in <xref ref="F_9_4_area">Figure</xref>.
+      Equation <xref ref="E_9_4_cross_length"/> is also related to the parallelogram formed by two vectors <m>\vu</m> and <m>\vv</m>, as shown in <xref ref="F_9_4_area">Figure</xref>. We say that <m>\vw</m> is the outward direction of the parallelogram formed by <m>\vu</m> and <m>\vv</m> if <m>\vw</m> is perpendicular (in <m>\R^3</m>) to the parallelogram and <m>\{\vu,\vv,\vw\}</m> has a right hand orientation. You should now convince yourself that in <xref ref="F_9_4_area" /> the outward direction is coming directly out of the page (or screen).
     </p>
 
     <figure xml:id="F_9_4_area">
@@ -554,18 +609,35 @@
       <image width="50%" source="images/fig_9_4_area"/>
     </figure>
 
-    <p>
-      In general, the area of a parallelogram is the product of its base and height. Based on <xref ref="F_9_4_area" />, we consider the base of the parallelogram to be <m>\Vert\vu\Vert</m> and the height to be <m>\Vert\vv\Vert\sin(\theta)</m>. This means that the area of the parallelogram formed by <m>\vu</m> and <m>\vv</m> is
-      <me>
-        \Vert\vu\Vert \Vert\vv\Vert \sin(\theta) = \Vert\vu\times\vv\Vert
-      </me>
-    </p>
-    <assemblage xml:id="Cross-product-area">
-      <title>The length of the cross product</title>
-      <p>
-        The length, <m>\Vert\vu \times \vv\Vert</m>, of the cross product of vectors <m>\vu</m> and <m>\vv</m> is the area of the parallelogram determined by <m>\vu</m> and <m>\vv</m>.
-      </p>
-    </assemblage>
+    <proposition xml:id="crossparallelogram">
+      <statement>
+        <p>
+          The magnitude of the cross product, <m>\vu\times\vv= \Vert\vu\Vert\Vert\vv\Vert\sin(\theta)</m>, is the area of the parallelogram defined by <m>\vu</m> and <m>\vv</m>. Additionally, <m>\vu\times\vv</m> is the outward direction for the parallelogram defined by <m>\vu</m> and <m>\vv</m>.
+        </p>
+      </statement>
+      <proof>
+        <p>
+          In general, the area of a parallelogram is the product of its base and height. Based on <xref ref="F_9_4_area" />, we consider the base of the parallelogram to be <m>\Vert\vu\Vert</m> and the height to be <m>\Vert\vv\Vert\sin(\theta)</m>. This means that the area of the parallelogram formed by <m>\vu</m> and <m>\vv</m> is
+          <me>
+            \Vert\vu\Vert \Vert\vv\Vert \sin(\theta) = \Vert\vu\times\vv\Vert
+          </me>
+        </p>
+        <p>
+          Note also that if <m>\vu = u_1\vi + u_2\vj + 0\vk</m> and <m>\vv = v_1\vi + v_2\vj + 0\vk</m> are vectors in the <m>xy</m>-plane, then Equation <xref ref="E_9_4_cross_def"/> shows that the area of the parallelogram determined by <m>\vu</m> and <m>\vv</m> is <m> \Vert\vu \times \vv\Vert = \vert u_1v_2-u_2v_1 \vert</m> is the absolute value of the <m>2 \times 2</m> determinant 
+          <m>\left|
+            \begin{array}{cc}
+              u_1 \amp  u_2 \\
+              v_1 \amp  v_2
+            \end{array} 
+            \right|
+          </m>. 
+          So the absolute value of a determinant of a <m>2 \times 2 </m> matrix is also the area of a parallelogram. 
+        </p>
+        <p>
+          The outward direction of the parallelogram is a consequence of <xref ref="crossdirection" />.
+        </p>
+      </proof>
+    </proposition>
 
     <activity xml:id="A_9_4_4">
       <task>
@@ -594,9 +666,10 @@
       <task>
         <statement>
           <p>
-            Find the area of the parallelogram in <m>\R^3</m> whose vertices are <m>(1,0,1)</m>, <m>(0,0,1)</m>, <m>(2,1,0)</m>, and <m>(1,1,0)</m>. (Hint: It might be helpful to draw a picture to see how the vertices are arranged so you can determine which vectors you might use.)
+            Find the area of the parallelogram in <m>\R^3</m> whose vertices are <m>(1,0,1)</m>, <m>(0,0,1)</m>, <m>(2,1,0)</m>, and <m>(1,1,0)</m>. 
           </p>
         </statement>
+        <hint><p>It might be helpful to draw a picture to see how the vertices are arranged so you can determine which vectors you might use.</p></hint>
         <answer>
           <p>
             <m>A = 1.414</m>
@@ -615,50 +688,17 @@
         </solution>
       </task>
     </activity>
-     <p>
-      Note also that if <m>\vu = u_1\vi + u_2\vj + 0\vk</m> and <m>\vv = v_1\vi + v_2\vj + 0\vk</m> are vectors in the <m>xy</m>-plane, then Equation <xref ref="E_9_4_cross_def"/> shows that the area of the parallelogram determined by <m>\vu</m> and <m>\vv</m> is <m> \Vert\vu \times \vv\Vert = \vert u_1v_2-u_2v_1 \vert</m> is the absolute value of the <m>2 \times 2</m> determinant 
-      <m>\left|
-        \begin{array}{cc}
-          u_1 \amp  u_2 \\
-          v_1 \amp  v_2
-        \end{array} 
-        \right|
-      </m>. 
-      So the absolute value of a determinant of a <m>2 \times 2 </m> matrix is also the area of a parallelogram. 
-    </p>
+
     <p>
-      In light of our earlier work that showed <m>\Vert\vu\Vert \Vert\vv\Vert \sin(\theta) = \Vert\vu\times\vv\Vert.</m>, we may now express <m>\vu \times \vv</m> in the following different way.
-    </p>
-<!-- I'm not a fan of all this talk about normal vector to a plane before we have planes and normal vectors. Maybe this is a place to preview that element. This presentation sets up the triple product well, so,... --> 
-    <assemblage xml:id="Cross-product-alternative">
-      <title>The cross product as normal vector</title>
-    <p>
-      Suppose that <m>\vu</m> and <m>\vv</m> are not parallel and that
-      <m>\vn</m> is the unit vector perpendicular to the plane containing <m>\vu</m>
-      and <m>\vv</m> determined by the right-hand rule. Then
-      <me>
-        \vu\times\vv = \Vert\vu\Vert \Vert\vv\Vert \sin(\theta) ~\vn.
-      </me>
-    </p>
-    </assemblage>
-    <p>
-      There is yet one more geometric implication we may draw from this
-      result. Suppose <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> are vectors in <m>\R^3</m> that
-      are not coplanar and that form a three-dimension parallelepiped as
-      shown in <xref ref="F_9_4_volume">Figure</xref>.
+      There is yet one more geometric implication we may draw from <xref ref="crossparallelogram" />. Suppose <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> are vectors in <m>\R^3</m> that
+      are not coplanar (<m>\vw</m> is not a linear combination of <m>\vu</m> and <m>\vv</m>). Then, <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> define a three-dimension parallelepiped as shown in <xref ref="F_9_4_volume">Figure</xref>.
     </p>
     <figure xml:id="F_9_4_volume">
       <caption>The parallelepiped determined by <m>\vu</m>, <m>\vv</m>, and <m>\vw</m></caption>
       <image width="50%" source="images/fig_9_4_volume"/>
     </figure>
     <p>
-      The volume of the parallelepiped is determined by multiplying <m>A</m>, the
-      area of the base, by the height <m>h</m>. As we have just seen, the area
-      of the base is <m>\Vert\vu\times\vv\Vert</m>. Moreover, the height
-      <m>h=\Vert\vw\Vert\cos(\alpha)</m> where <m>\alpha</m> is the angle between <m>\vw</m> and the
-      vector <m>\vn</m>, which is orthogonal to the plane formed by <m>\vu</m> and
-      <m>\vv</m>. Since <m>\vn</m> is parallel to <m>\vu\times\vv</m>, the angle between
-      <m>\vw</m> and <m>\vu\times\vv</m> is also <m>\alpha</m>. This shows that
+      The volume of the parallelepiped is determined by multiplying <m>A</m>, the area of the base, by the height <m>h</m>. As we have just seen, the area of the base is <m>\Vert\vu\times\vv\Vert</m>. Moreover, the height <m>h=\Vert\vw\Vert\cos(\alpha)</m> where <m>\alpha</m> is the angle between <m>\vw</m> and the vector <m>\vn</m>, which is orthogonal to the plane formed by <m>\vu</m> and <m>\vv</m>. Since <m>\vn</m> is parallel to <m>\vu\times\vv</m>, the angle between <m>\vw</m> and <m>\vu\times\vv</m> is also <m>\alpha</m>. This shows that
       <me>
         \Vert(\vu\times\vv)\cdot\vw\Vert = \Vert\vu\times\vv\Vert\Vert\vw\Vert\cos(\alpha) = Ah,
       </me>
@@ -666,196 +706,145 @@
     </p>
     <assemblage xml:id="Cross-product-parallelepiped">
       <title>The cross product and the volume of a parallelepiped</title>
-    <p>
-      The volume of the parallelepiped determined by <m>\vu</m>, <m>\vv</m>, and
-      <m>\vw</m> is <m>\Vert(\vu\times\vv)\cdot\vw\Vert</m>.
-    </p>
+      <p>
+        The volume of the parallelepiped determined by <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> is <m>\Vert(\vu\times\vv)\cdot\vw\Vert</m>.
+      </p>
     </assemblage>
     <p>
-      As a dot product of two vectors, the quantity <m>(\vu \times
-        \vv) \cdot \vw</m> is a scalar and is called the <em>triple scalar product</em><idx><h>triple scalar product</h></idx>.
+      As a dot product of two vectors, the quantity <m>(\vu \times \vv) \cdot \vw</m> is a scalar and is called the <em>triple scalar product</em><idx><h>triple scalar product</h></idx>.
     </p>
     <activity xml:id="A_9_4_6">
-      <statement>
-       <p>
-          Suppose
-          <m>\vu = \langle 3, 5, -1\rangle</m> and <m>\vv = \langle 2, -2, 1\rangle</m>.
-          <ol marker="a.">
-            <li>
-              <p>
-                Find two unit vectors orthogonal to both <m>\vu</m> and <m>\vv</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Find the volume of the parallelepiped formed by the
-                    vectors <m>\vu</m>, <m>\vv</m>, and <m>\vw = \langle 3,3,1\rangle</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Find a vector orthogonal to the plane containing the points
-                    <m>(0,1,2)</m>, <m>(4,1,0)</m>, and <m>(-2,2,2)</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Given the vectors
-                    <m>\vu</m> and <m>\vv</m> shown below in <xref ref="F_9_4_activity_2">Figure</xref>,
-                    sketch the cross products <m>\vu\times\vv</m> and <m>\vv\times\vu</m>.
-              </p>
-              <figure xml:id="F_9_4_activity_2">
-                <caption>Vectors <m>\vu</m> and <m>\vv</m></caption>
-                <image width="50%" source="images/fig_9_4_activity_2"/>
-              </figure>
-            </li>
-
-            <li>
-              <p>
-                Do the vectors <m>\va = \langle 1,3,-2\rangle</m>,<m>\vb=\langle2,1,-4\rangle</m>, and <m>\vc=\langle 0, 1, 0\rangle</m> in standard position lie in the same plane?  Use the concepts from this section to explain.
-              </p>
-           </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
+      <introduction>
         <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                <m>\va = \langle \frac{3}{\sqrt{290}}, \frac{-5}{\sqrt{290}}, \frac{-16}{\sqrt{290}}\rangle, \vb = \langle \frac{-3}{\sqrt{290}}, \frac{5}{\sqrt{290}}, \frac{16}{\sqrt{290}}\rangle</m>. 
-              </p>
-            </li>
-
-            <li>
-              <p>
-                <m>V = 22</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                <m>2\vi + 4\vj + 4\vk</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Sketch the cross product vectors
-              </p>
-            </li>
-
-            <li>
-              <p>
-                All 3 vectors lie in the same plane.
-              </p>
-            </li>
-          </ol>
+          Suppose <m>\vu = \langle 3, 5, -1\rangle</m> and <m>\vv = \langle 2, -2, 1\rangle</m>.
         </p>
-      </answer>
-      <solution>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                The cross product of 2 vectors is a vector that is perpendicular to both vectors. <m>\vu \times \vv = ((5)(1) - (-1)(-2))\vi - ((3)(1) - (2)(-1))\vj + ((3)(-2) - (2)(5))\vk = 3\vi + -5\vj + -16\vk</m>.
-              </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Find two unit vectors orthogonal to both <m>\vu</m> and <m>\vv</m>.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            <m>\va = \langle \frac{3}{\sqrt{290}}, \frac{-5}{\sqrt{290}}, \frac{-16}{\sqrt{290}}\rangle, \vb = \langle \frac{-3}{\sqrt{290}}, \frac{5}{\sqrt{290}}, \frac{16}{\sqrt{290}}\rangle</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            The cross product of 2 vectors is a vector that is perpendicular to both vectors. <m>\vu \times \vv = ((5)(1) - (-1)(-2))\vi - ((3)(1) - (2)(-1))\vj + ((3)(-2) - (2)(5))\vk = 3\vi + -5\vj + -16\vk</m>.
+          </p>
 
-              <p>
-                The magnitude of this vector is <m>\sqrt{(3)^2 + (-5)^2 + (-16)^2} = \sqrt{290}</m>. Divide the cross product vector by the magnitude to get a unit vector orthogonal to <m>\vu</m> and <m>\vv</m> which is <m>\langle \frac{3}{\sqrt{290}}, \frac{-5}{\sqrt{290}}, \frac{-16}{\sqrt{290}}\rangle</m>. The second unit vector is the opposite of this unit vector.
-              </p>
-            </li>
+          <p>
+            The magnitude of this vector is <m>\sqrt{(3)^2 + (-5)^2 + (-16)^2} = \sqrt{290}</m>. Divide the cross product vector by the magnitude to get a unit vector orthogonal to <m>\vu</m> and <m>\vv</m> which is <m>\langle \frac{3}{\sqrt{290}}, \frac{-5}{\sqrt{290}}, \frac{-16}{\sqrt{290}}\rangle</m>. The second unit vector is the opposite of this unit vector.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Find the volume of the parallelepiped formed by the vectors <m>\vu</m>, <m>\vv</m>, and <m>\vw = \langle 3,3,1\rangle</m>.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            <m>V = 22</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            The volume of a parallelepiped is <m>\Vert(\vu \times \vv) \cdot \vw\Vert = \langle 3, -5, -16\rangle \cdot \langle 3, 3, 1\rangle = (3)(3) + (-5)(3) + (-16)(1) = 22</m>. 
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Find a vector orthogonal to the parallelogram containing the points <m>(0,1,2)</m>, <m>(4,1,0)</m>, and <m>(-2,2,2)</m>.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            <m>2\vi + 4\vj + 4\vk</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            Two vectors between these 3 points are <m>\langle 4, 0, -2\rangle</m> and <m>\langle -2, 1, 0\rangle</m>. We need to find the cross product between these 2 vectors to fin an orthogonal vector <m>\vu \times \vv = ((0)(0) - (1)(-2))\vi - ((4)(0) - (-2)(-2))\vj + ((4)(1) - (0)(-2))\vk = 2\vi + 4\vj + 4\vk</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Given the vectors <m>\vu</m> and <m>\vv</m> shown below in <xref ref="F_9_4_activity_2">Figure</xref>, sketch the cross products <m>\vu\times\vv</m> and <m>\vv\times\vu</m>.
+          </p>
+          <figure xml:id="F_9_4_activity_2">
+            <caption>Vectors <m>\vu</m> and <m>\vv</m></caption>
+            <image width="50%" source="images/fig_9_4_activity_2"/>
+          </figure>
+        </statement>
+        <answer>
+          <p>
+            Sketch the cross product vectors
+          </p>
+        </answer>
+        <solution>
+          <p>
+            Sketch the cross product vectors
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Are the vectors <m>\va = \langle 1,3,-2\rangle</m>,<m>\vb=\langle2,1,-4\rangle</m>, and <m>\vc=\langle 0, 1, 0\rangle</m> in standard position coplanar?  Use the concepts from this section to explain.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            All 3 vectors lie in the same plane.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            If we find the cross product and all 3 vectors are perpendicular to this vector, they will all lie in the same plane. Assume <m>\va</m> and <m>\vb</m> lie in the same plane. The cross product of <m>\va</m> and <m>\vb</m> is <m>((3)(-4) - (1)(-2))\vi - ((1)(-4) - (2)(-2))\vj + ((1)(1) - (2)(3))\vk = -10\vi + 0\vj + -5\vk</m>.
+          </p>
 
-            <li>
-              <p>
-                The volume of a parallelepiped is <m>\Vert(\vu \times \vv) \cdot \vw\Vert = \langle 3, -5, -16\rangle \cdot \langle 3, 3, 1\rangle = (3)(3) + (-5)(3) + (-16)(1) = 22</m>. 
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Two vectors between these 3 points are <m>\langle 4, 0, -2\rangle</m> and <m>\langle -2, 1, 0\rangle</m>. We need to find the cross product between these 2 vectors to fin an orthogonal vector <m>\vu \times \vv = ((0)(0) - (1)(-2))\vi - ((4)(0) - (-2)(-2))\vj + ((4)(1) - (0)(-2))\vk = 2\vi + 4\vj + 4\vk</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Sketch the two cross product vectors.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                If we find the cross product and all 3 vectors are perpendicular to this vector, they will all lie in the same plane. Assume <m>\va</m> and <m>\vb</m> lie in the same plane. The cross product of <m>\va</m> and <m>\vb</m> is <m>((3)(-4) - (1)(-2))\vi - ((1)(-4) - (2)(-2))\vj + ((1)(1) - (2)(3))\vk = -10\vi + 0\vj + -5\vk</m>.
-              </p>
-
-              <p>
-                If <m>\vc</m> is perpendicular to the cross product vector, the dot product between the vectors will be zero. <m>(0)(-10) + (1)(0) + (0)(-5) = 0</m>. Therefore, all 3 vectors lie in the same plane. 
-              </p>
-            </li>
-          </ol>
-        </p>
-      </solution>
+          <p>
+            If <m>\vc</m> is perpendicular to the cross product vector, the dot product between the vectors will be zero. <m>(0)(-10) + (1)(0) + (0)(-5) = 0</m>. Therefore, all 3 vectors lie in the same plane. 
+          </p>
+        </solution>
+      </task>
     </activity>
-  </subsection>
-  <subsection>
-    <title>Torque is measured by a cross product</title>
     <p>
-      We have seen that the cross product enables us to produce a vector
-      perpendicular to two given vectors, to measure the area of a
-      parallelogram, and to measure the volume of a parallelepiped. Besides
-      these geometric applications, the cross product also enables us to
-      describe a physical quantity called <em>torque</em>.
+      We have seen that the cross product enables us to produce a vector perpendicular to two given vectors, to measure the area of a parallelogram, and to measure the volume of a parallelepiped. Besides these geometric applications, the cross product also enables us to describe a physical quantity called <em>torque</em>.
     </p>
-
     <p>
-      Suppose that we would like to turn a bolt using a wrench as shown
-      in <xref ref="F_9_4_wrench">Figure</xref>. If a force <m>\vF</m> is applied to the
-      wrench and <m>\vr</m> is the vector from the position on the wrench at which the force is applied to center of the bolt, we define the
-      torque, <m>\tau</m>, to be
+      Suppose that we would like to turn a bolt using a wrench as shown in <xref ref="F_9_4_wrench">Figure</xref>. If a force <m>\vF</m> is applied to the wrench and <m>\vr</m> is the vector from the position on the wrench at which the force is applied to center of the bolt, we define the <term>torque</term>, <m>\tau</m>, to be
       <me>
         \tau=\vF\times\vr.
       </me>
     </p>
-
     <figure xml:id="F_9_4_wrench">
       <caption>A force applied to a wrench</caption>
       <image width="50%" source="images/fig_9_4_wrench"/>
     </figure>
-
     <p>
-      When a force is applied to an object, Newton's Second Law tells us
-      that the force is equal to the rate of change of the object's linear
-      momentum. Similarly, the torque applied to an object is equal to the
-      rate of change of the object's angular momentum. In other words,
-      torque will cause the bolt to rotate.
+      When a force is applied to an object, Newton's Second Law tells us that the force is equal to the rate of change of the object's linear momentum. Similarly, the torque applied to an object is equal to the rate of change of the object's angular momentum. In other words, torque will cause the bolt to rotate.
     </p>
 
     <p>
-      In many industrial applications, bolts are required to be tightened
-      using a specified torque. Of course, the magnitude of the torque is
-      <m>\Vert\tau\Vert =\Vert\vF\times\vr\Vert=\Vert\vF\Vert\Vert\vr\Vert\Vert\sin(\theta)</m>. Thus, to produce a
-      larger torque, we can increase either <m>\Vert\vF\Vert</m> or <m>\Vert\vr\Vert</m>, which you
-      may know if you have ever removed lug nuts when changing a flat tire.
-      The ancient Greek mathematician Archimedes said: <q>Give me a lever
-      long enough and a fulcrum on which to place it, and I shall move the
-      world.</q> A modern spin on this statement is: <q>Allow me to make
-      <m>\Vert\vr\Vert</m> large enough, and I shall produce a torque large enough to
-      move the world.</q>
+      In many industrial applications, bolts are required to be tightened using a specified torque. Of course, the magnitude of the torque is <m>\Vert\tau\Vert =\Vert\vF\times\vr\Vert =\Vert\vF\Vert\Vert\vr\Vert\Vert\sin(\theta)</m>. Thus, to produce a larger torque, we can increase either <m>\Vert\vF\Vert</m> or <m>\Vert\vr\Vert</m>, which you may know if you have ever removed lug nuts when changing a flat tire. Increasing <m>\Vert\vF\Vert</m> means you exert more force and increasing <m>\Vert\vr\Vert</m> means you use a longer wrench. The ancient Greek scientist and mathematician Archimedes said: <q>Give me a lever long enough and a fulcrum on which to place it, and I shall move the world.</q> A modern spin on this statement is: <q>Allow me to make <m>\Vert\vr\Vert</m> large enough, and I shall produce a torque large enough to move the world.</q>
     </p>
     <p>
-      Might want to discuss this is why doorknobs and handles are put opposite of the hinge. Try to push a door open by pressing in the middle of the door. Is the force twice as large? What if you 
+      When opening a door, you use the knob or push bar as far from the hinge as possible. If you were to try to open a door by pushing on the middle of the door (rather than the edge farthest from the hinges), you would need to push twice as hard normal because you have half of <m>\Vert\vr\Vert</m>.
     </p>
   </subsection>
   <subsection>
     <title>Comparing the dot and cross products</title>
     <p>
-      Finally, it is worthwhile to compare and contrast the dot and cross
-      products.
+      In this subsection we summarize the last few sections by comparing and contrasting several properties of the dot and cross products.
       <ol>
         <li>
           <p>
@@ -883,49 +872,84 @@
       </ol>
     </p>
   </subsection>
-
+  <subsection xml:id="vecnotation">
+    <title>Object Types and Vector Notation</title>
+    <p>
+      In this final subsection, we are taking some time to make sense of what kind of objects are described by different expressions involving vectors. It is very easy to get caught up in all of the manipulations of symbols and new operations and write an expression that <q>looks</q> reasonable but does not actually make sense. For example <m>(\vu \cdot \vv) \times \vw</m> looks like a nice and reasonable calculation involving vectors (and looks a lot like the triple product...), but <m>(\vu \cdot \vv) \times \vw</m> doesn't make sense because the quantity in the parentheses is a scalar and you can't take the cross product of a scalar and a vector. 
+    </p>
+    <activity>
+      <introduction>
+        <p>
+          In this activity, we are focused on the type of objects being used and whether the expression makes sense to do at all. We are <em>not</em> going to worry about interpreting or understanding what is being measured by these expressions. 
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            For each of the expressions below, state whether the result will be a scalar, a vector, or the expression does not make sense. You should write a sentence or two about each to explain your reasoning.
+            <ol>
+              <li><m>\frac{\vv}{\vw}</m></li>
+              <li><m>\frac{\vv}{\vw\cdot\vv}</m></li>
+              <li><m>(\vu\times\vw)+\vv</m></li>
+              <li><m>k(\vu\cdot\vw)+c\vv</m></li>
+              <li><m>k(\vu\cdot\vv)\cdot\vw</m></li>
+            </ol>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Use the operations of dot product and vector subtraction to write an expression involving <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> that evaluates to a scalar. You can use other operations if you want.
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Use the operations of cross product, scalar multiplication, and vector addition to write an expression involving <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> that evaluates to a vector. You can use other operations if you want.
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Use the operations of dot product and vector addition to write an expression involving <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> that does not make sense to perform. You can use other operations if you want.
+          </p>
+        </statement>
+      </task>
+    </activity>
+  </subsection>
   <subsection>
     <title>Summary</title>
     <ul>
       <li>
         <p>
-          The cross product is defined <em>only</em> for vectors in
-            <m>\R^3</m>. The cross product of vectors <m>\vu = u_1 \vi + u_2 \vj + u_3 \vk</m> and <m>\vv = v_1 \vi + v_2 \vj + v_3 \vk</m> in <m>\R^3</m> is
-            the vector
+          The cross product is defined <em>only</em> for vectors in <m>\R^3</m>. The cross product of vectors <m>\vu = u_1 \vi + u_2 \vj + u_3 \vk</m> and <m>\vv = v_1 \vi + v_2 \vj + v_3 \vk</m> in <m>\R^3</m> is the vector
           <me>
             \vu \times \vv =
             (u_2v_3-u_3v_2) \vi - (u_1v_3 - u_3v_1) \vj + (u_1v_2 - u_2v_1) \vk.
           </me>
         </p>
       </li>
-
       <li>
         <p>
           Geometrically, the cross product is
           <me>
             \vu \times \vv = \Vert\vu\Vert \ \Vert\vv\Vert \ \sin(\theta) \ \vn,
           </me>
-          where <m>\theta</m> is the angle between <m>\vu</m> and <m>\vv</m> and <m>\vn</m> is a
-          unit vector perpendicular to both <m>\vu</m> and <m>\vv</m> as determined by the
-          right-hand rule.
+          where <m>\theta</m> is the angle between <m>\vu</m> and <m>\vv</m> and <m>\vn</m> is a unit vector perpendicular to both <m>\vu</m> and <m>\vv</m> as determined by the right-hand rule.
         </p>
       </li>
-
       <li>
         <p>
-          The cross product of vectors <m>\vu</m> and <m>\vv</m> is a vector
-            perpendicular to both <m>\vu</m> and <m>\vv</m>.
+          The cross product of vectors <m>\vu</m> and <m>\vv</m> is a vector perpendicular to both <m>\vu</m> and <m>\vv</m>.
         </p>
       </li>
-
       <li>
         <p>
-          The magnitude <m>\Vert\vu \times \vv\Vert</m> of the cross product of the
-            vectors <m>\vu</m> and <m>\vv</m> gives the area of the parallelogram
-            determined by <m>\vu</m> and <m>\vv</m>. Also, 
-            the scalar triple product <m>\Vert(\vu \times
-            \vv) \cdot \vw\Vert</m> gives the volume of the parallelepiped determined by
-            <m>\vu</m>, <m>\vv</m>, and <m>\vw</m>.
+          The magnitude <m>\Vert\vu \times \vv\Vert</m> of the cross product of the vectors <m>\vu</m> and <m>\vv</m> gives the area of the parallelogram determined by <m>\vu</m> and <m>\vv</m>. Also, 
+            the scalar triple product <m>\Vert(\vu \times \vv) \cdot \vw\Vert</m> gives the volume of the parallelepiped determined by <m>\vu</m>, <m>\vv</m>, and <m>\vw</m>.
         </p>
       </li>
     </ul>
