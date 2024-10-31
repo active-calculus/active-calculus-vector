@@ -74,8 +74,39 @@
           <p>
             Verify that each of the following vectors is also orthogonal to <m>\langle 1,2,3 \rangle</m>.
             <ul>
-              <li><m>\langle - \rangle</m></li>
+              <li><m>\langle -2,-2,2 \rangle</m></li>
+              <li><m>\langle c_0,a_0+d_0,b_0 \rangle</m> with your values from parts (a) and (b)</li>
+              <li><m>\langle -2c_1,a_0-2d_1,b_0-2 \rangle</m> with your values from parts (a) and (c)</li>
             </ul>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Put all of the vectors you have computed into the interact below to visually verify that each of them is orthogonal to <m>\langle 1,2,3 \rangle</m>. You should put the component values of each vector into this array with each vector corresponding to a row. 
+          </p>
+          <figure xml:id="multivecplane">
+            <caption>A plot of your vectors that should be orthogonal to <m>\langle 1,2,3 \rangle</m></caption>
+            <interactive title="interactive-multivecplane" platform="sage" width="100%" aspect="1:2">
+              <slate surface="sage">
+                from sage.plot.plot3d.plot3d import axes
+                @interact
+                def vecplot(vecs=input_grid(8, 3, default=[[0,0,0],[0,0,0],[0,0,1],[0,0,1],[0,0,1],[-2,-2,2],[0,0,0],[0,0,0]],label="vectors")):
+                    plot10=axes(3,1,color="black",opacity=0.5)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
+                    plot10+=arrow((0,0,0),(1,2,3),color="red",width=2)
+                    for i in range(len(vecs)):
+                        plot10+=arrow((0,0,0),(vecs[i][0],vecs[i][1],vecs[i][2]),color="blue",width=2)
+                    show(plot10)
+              </slate>
+            </interactive>
+          </figure>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Describe what you think the plot of the set of vectors that are orthogonal to <m>\langle 1,2,3 \rangle</m> will look like.
           </p>
         </statement>
       </task>
@@ -142,7 +173,7 @@
     </figure> -->
 
     <p>
-      The definition allows us to find the equation of a plane. Assume that <m>\vn=\langle a,b,c\rangle</m>, <m>P = (x_0, y_0, z_0)</m>, and that <m>Q=(x,y,z)</m> is an arbitrary point on the plane. Since the vector <m>\overrightarrow{PQ}</m> lies in the plane, it must be perpendicular to <m>\vn</m>. This means that
+      This description of a plane allows us to find the equation of a plane. Assume that <m>\vn=\langle a,b,c\rangle</m>, <m>P = (x_0, y_0, z_0)</m>, and that <m>Q=(x,y,z)</m> is an arbitrary point on the plane. Since the vector <m>\overrightarrow{PQ}</m> lies in the plane, it must be perpendicular to <m>\vn</m>. This means that
       <md>
         <mrow>0 =\mathstrut \amp  \vn\cdot\overrightarrow{PQ}</mrow>
         <mrow>=\mathstrut \amp  \vn\cdot \big(\langle x,y,z \rangle - \langle x_0, y_0,
@@ -191,6 +222,12 @@
       </me>
       That is, we may write an equation of a plane as <m>ax+by+cz = d</m> where <m>d = \vn\cdot\langle x_0,y_0,z_0\rangle</m>.
     </p>
+    <p>
+      Before we look at some examples, we will mention a few ideas that relate planes (as a collection of points), equations for these planes, and normal vectors for these planes. As we saw with lines and will see for most other types of graphs, there is not a unique way to give an equation for a plane. This highlights the difference between an equation that describes a graph and the set of points that make up the graph or make the equation true. For instance, <m>x+y+z=1</m> and <m>2x+2y+2z=2</m> are different equations but describe the same graph (have the same set of <m>(x,y,z)</m> points that make the equation a true statement.) You may be tempted to say <q>Those are the same equations. They just differ by a scalar multiple!</q>, but this difference is the same as the difference between parallel vectors. 
+    </p>
+    <p>
+      The good news is that the orientation of a plane is encoded into the normal vector, thus we can use all the powerful tools we developed for vectors. We say that two planes are <term>parallel</term> if their normal vectors are parallel (as vectors). In fact, we can describe the angle between two planes using normal vectors. The angle between two planes is the acute angle between their respective normal vector directions. While the angle between two vectors (as defined in <xref ref="subsec-vecangle" />) can be obtuse, the angle between planes will not be greater than <m>\frac{\pi}{2}</m>. When using normal vectors to describe the orientation of a plane (like when we want to measure the angle between planes), we need to consider all the vectors parallel to our choice of the normal vector because any vector parallel to our choice would give an equivalent equations for the plane. We will look at specifics of this in our next example. 
+    </p>
     <example>
       <p>
         If we would like to describe the plane passing through the point <m>P=(4,-2,1)</m> and perpendicular to the vector <m>\vn = \langle 1, 2, 1 \rangle</m>, we have
@@ -223,6 +260,55 @@
           -2x + y - 3z = 4,
         </me>
         we know that <m>\vn = \langle -2, 1, -3\rangle</m> is a vector perpendicular to the plane.
+      </p>
+      <p>
+        Using our definition of parallel planes, we can see that our plane given by <m>x+2y+z=1</m> will be parallel to planes given by <m>x+2y+z=-2</m>, <m>2x+4y+2z=1</m>, and <m>-\frac{3}{2}x-3y-\frac{3}{2}z=12,345</m> because the respective normal vectors (<m>\langle1,2,1\rangle</m>, <m>\langle1,2,1\rangle</m>, <m>\langle2,4,2\rangle</m>, and <m>\langle -\frac{3}{2},-3,-\frac{3}{2}\rangle</m>) are all scalar multiples of each other. 
+      </p>
+      <figure xml:id="parallelplanes">
+        <caption>A plot of three parallel planes with normal vectors</caption>
+        <interactive title="interactive-parallelplanes" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            from sage.plot.plot3d.plot3d import axes
+            var('t,s')
+            plot11=axes(3,1,color="black",opacity=0.5)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
+            plot11+=parametric_plot3d((s,t,1-s-2*t),(s,-1.5,1.5),(t,-1.5,1.5),color="green",mesh=True,plot_points=4,opacity=0.25,aspect_ratio=1,mesh_opacity=0.25)
+            plot11+=arrow((0,0,1),(0+(1),0+2,1+1),color="red",width=2)
+            plot11+=text3d("\u27E81,2,1\u27E9",(1.2,2.5,2.5),color="red",fontsize=25)
+            plot11+=parametric_plot3d((s+1,t-1,1-s-2*t-2),(s,-1.5,1.5),(t,-1.5,1.5),color="green",mesh=True,plot_points=4,opacity=0.25,aspect_ratio=1,mesh_opacity=0.25)
+            plot11+=arrow((1,-2,-1),(1+(1),-2+2,-1+1),color="red",width=2)
+            #plot11+=text3d("\u27E81,2,1\u27E9",(1.2,2.5,2.5),color="red",fontsize=25)
+            plot11+=parametric_plot3d((s-3,t-1,1-s-2*t),(s,-1.5,1.5),(t,-1.5,1.5),color="green",mesh=True,plot_points=4,opacity=0.25,aspect_ratio=1,mesh_opacity=0.25)
+            plot11+=arrow((-3,-1,1),(-3+(-2),-1+(-4),1-2),color="red",width=2)
+            plot11+=text3d("\u27E8-2,-4,2\u27E9",(-5.5,-5.5,2.5),color="red",fontsize=25)
+            show(plot11,viewpoint=[[0.3135,-0.6034,-0.7333],221.71],camera_position=[-18.6475,11.4002,4.2321])
+          </slate>
+        </interactive>
+      </figure>
+      <p>
+        If we wanted to find the angle between <m>x+2y+z=1</m> and <m>-2x+y-3z=4</m>, we would need to consider the angle between the normal vectors <m>\langle1,2,1\rangle</m> and <m>\langle -2,1,-3\rangle</m>. The dot product of these normal vectors is <m>\langle1,2,1\rangle \cdot \langle -2,1,-3\rangle=-3</m>, so the angle between these vectors is obtuse, but the (smallest) angle between the planes is NOT obtuse. The equation <m>x-\frac{1}{2}y+\frac{3}{2}z=2</m> will describe the same set of points as <m>-2x+y-3z=4</m> but the normal vector for <m>x-\frac{1}{2}y+\frac{3}{2}z=2</m> will be <m>\langle 1,-\frac{1}{2},\frac{3}{2} \rangle</m>, which makes an acute angle with <m>\langle1,2,1\rangle </m>. So the angle between <m>x+2y+z=1</m> and <m>-2x+y-3z=4</m> is 
+        <me>\arccos\left(\frac{\langle1,2,1\rangle \cdot \langle1,\frac{1}{2},\frac{3}{2} \rangle}{\sqrt{7} \sqrt{\frac{7}{2}}}\right)\approx 1.2373</me>
+      </p>
+      <figure xml:id="planesangle">
+        <caption>A plot of planes <m>x+2y+z=1</m> and <m>-2x+y-3z=4</m> with normal vectors</caption>
+        <interactive title="interactive-planesangle" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            from sage.plot.plot3d.plot3d import axes
+            var('t,s')
+            plot12=axes(3,1,color="black",opacity=0.5)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
+            plot12+=parametric_plot3d((s,t,1-s-2*t),(s,-2.5,2.5),(t,-1.5,1.5),color="green",mesh=True,plot_points=4,opacity=0.25,aspect_ratio=1,mesh_opacity=0.25)
+            plot12+=arrow((0,1,-1),(0+(1),1+2,-1+1),color="green",width=2)
+            plot12+=text3d("\u27E81,2,1\u27E9",(1.2,3.5,0.5),color="green",fontsize=15)
+            plot12+=parametric_plot3d((s,t,(4+2*s-t)/-3),(s,-3,3),(t,-2,2),color="blue",mesh=True,plot_points=4,opacity=0.25,mesh_opacity=0.25)
+            plot12+=arrow((0,1,-1),(0+(-2),1+(1),-1+(-3)),color="blue",width=2)
+            plot12+=text3d("\u27E8-2,1,-3\u27E9",(-2.5,2.5,-4.5),color="blue",fontsize=15)
+            plot12+=arrow((0,1,-1),(0+(1),1+(-0.5),-1+(1.5)),color="red",width=2)
+            plot12+=text3d("\u27E81,-0.5,1.5\u27E9",(1.5,2,1),color="red",fontsize=15)
+            show(plot12,viewpoint=[[-0.6347,-0.6448,-0.426],134.51],camera_position=[16.9653,1.0142,-6.1312])
+          </slate>
+        </interactive>
+      </figure>
+      <p>
+        
       </p>
     </example>
     <activity xml:id="A_9_5_9">
