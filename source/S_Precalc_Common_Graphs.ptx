@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- **********************************************************************-->
-<!-- Copyright 2013-2018                                                   -->
-<!-- Steven Schlicker                                                      -->
+<!-- Copyright 2013-2024                                                   -->
+<!-- Nicholas Long, Mitch Keller, Steven Schlicker                                                      -->
 <!--                                                                       -->
 <!-- This file is part of Active Calculus Multivariable.                   -->
 <!--                                                                       -->
@@ -28,7 +28,9 @@
     </objectives>
 
     <introduction> 
-  
+    <p>
+      In this section, we will introduce some examples of graphs in two and three dimensions that have nice algebraic properties and a variety of interesting geometric features. For our preview activity, we will recall some properties of graphs and equations that will be useful in describing our new examples. While some users may have more or less experience with graphs like circles, parabolas, ellipses, and hyperbolas, we will focus our work on the correspondence between the algebraic presentations of these shapes and the important geometric features. 
+    </p>
     <exploration xml:id="PA-Precalc-CG">
       <introduction>
        <p>
@@ -148,6 +150,9 @@
         </solution>
       </task>
     </exploration>
+    </introduction>
+    <subsection xml:id="coordtransform">
+      <title>Coordinate Transformations</title>
     <p>
       We have seen how the distance formula leads to the equation of a sphere and how the idea of flat one and two dimensional graphs gave rise to lines and planes. In this section, we will introduce some other curves and surfaces that will be used throughout the rest of this text as examples. These objects will allow us to have graphs with a variety of geometric features while still being algebraically simple. The next activity will go over a couple of basic coordinate transformation ideas that will be helpful in generalizing our common graphs. 
     </p>
@@ -231,7 +236,7 @@
         </statement>
       </task>
     </activity>
-   </introduction>
+  </subsection>
    
 
 
@@ -252,37 +257,40 @@
    <definition xml:id="def-ellipse">
     <statement>
       <p>
-        An <term>ellipse</term> is the set of all points such that the sum of the distances from the point <m>(x,y)</m> to a pair of distinct points (called foci) is a fixed constant.
+        An <term>ellipse</term> is the set of all points such that the sum of the distances from the point <m>(x,y)</m> to a pair of distinct points (called foci) is a fixed constant. In the interact below, you can use the slider to change the location on the ellipse being displayed. You should see how as you move around the ellipse, the sum of the lengths of the blue and red segments remains constant, as shown compared to the green segment (which is a fixed length). 
       </p>
       <figure xml:id="base-ellipse">
         <caption>A plot of an ellipse with foci in green</caption>
         <interactive title="interactive-base-ellipse" platform="sage" width="110%" aspect="1:1">
           <slate surface="sage">
-            var('t')
+            var('x,y,t')
             @interact
-            def ellipseinteract(tval=slider(0,2*pi,default=0.6,display_value=False,label="Move around the ellipse:")):
-                a=3
-                c=2
-                d=4
-                b=sqrt(a^2-c^2)
-                os=0.25
-                plot1=point((c,0),color="green",size=20,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
-                plot1+=point((-c,0),color="green",size=20)
-                plot1+=line([(c,0),(a*cos(tval),b*sin(tval))],color="red")
-                plot1+=line([(-c,0),(a*cos(tval),b*sin(tval))],color="blue")
-                plot1+=point((a*cos(tval),b*sin(tval)),color="purple",size=20)
-                rv=sqrt((a*cos(tval)-c)^2+(b*sin(tval))^2)
-                bv=sqrt((a*cos(tval)+c)^2+(b*sin(tval))^2)
-                plot1+=parametric_plot((a*cos(t),b*sin(t)),(t,0,2*pi),color="black")
-                plot1+=line([(os,d),(os+rv,d)],color="red")+line([(os+rv,d),(os+rv+bv,d)],color="blue")
-                plot1+=line([(os,d+os),(os+2*a,d+os)],color="green")
-                show(plot1,aspect_ratio=1)
+            def ellipseinteract(nval=slider(0,32,1,default=4,display_value=False,label="Angle")):
+              a=3
+              c=2
+              d=4
+              b=sqrt(a^2-c^2)
+              os=0.25
+              tval=nval/16*pi
+              plot1=point((c,0),color="green",size=20,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
+              plot1+=point((-c,0),color="green",size=20)
+              plot1+=line([(c,0),(a*cos(tval),b*sin(tval))],color="red")
+              plot1+=line([(-c,0),(a*cos(tval),b*sin(tval))],color="blue")
+              plot1+=point((a*cos(tval),b*sin(tval)),color="purple",size=20)
+              rv=sqrt((a*cos(tval)-c)^2+(b*sin(tval))^2)
+              bv=sqrt((a*cos(tval)+c)^2+(b*sin(tval))^2)
+              fr=str(simplify(nval/32))
+              txt="\u03B8 \u003D"+fr+" \u03C0"
+              #txt="$\\theta=\\frac{"+str(nval)+"}{32} \p\i$"
+              #plot1+=text(txt,(1.25*a*cos(tval),1.25*b*sin(tval)),color="purple",fontsize=15)
+              plot1+=text(txt,(3.5,3),color="purple",fontsize=15)
+              plot1+=parametric_plot((a*cos(t),b*sin(t)),(t,0,2*pi),color="black")
+              plot1+=line([(os,d),(os+rv,d)],color="red")+line([(os+rv,d),(os+rv+bv,d)],color="blue")
+              plot1+=line([(os,d+os),(os+2*a,d+os)],color="green")
+              show(plot1,aspect_ratio=1)
           </slate>
         </interactive>
       </figure>
-      <p>
-        In the interact above, you can see how as you move around the ellipse, the sum of the lengths of the blue and red segments remains constant, as shown compared to the green segment (which is a fixed length). 
-      </p>
     </statement>
    </definition>
    <p>
