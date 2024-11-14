@@ -15,251 +15,287 @@
 <!-- **********************************************************************-->
 <section xml:id="S-VVF-ArcLength" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Arc Length</title>
-  
-    <objectives>
+
+<objectives>
+  <ul>
+    <li>
+      <p>
+        How can a definite integral be used to measure the length of a curve in 2- or 3-space?
+      </p>
+    </li>
+    <li>
+      <p>
+        Why is arc length useful as a parameter?
+      </p>
+    </li>
+  </ul>
+</objectives>
+<introduction>
+<p>
+  In the previous sections we have introduced the notation and graphs for vector valued functions, as well as how the calculus operations of limits, derivatives, and integrals will apply to these functions. In this section we will start our work on utilizing these calculus elements alongside our vector tools (like magnitude, direction, or projections) to measure important properties and find ways to efficiently calculate how these properties change along our curve. The first property we will investigate comes up very naturally when looking at curves in space: <q>What is the length of a given curve in space?</q> Remember that <xref ref="Distance-formula" >the distance between two points in space</xref> is given by 
+  <me>
+    \vert{PQ}\vert = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}
+  </me>
+  The length of a curve is different than the displacement (change in position) as we will see in the Preview Activity.
+</p>
+<exploration xml:id="PA-arclength" >
+  <introduction>
+    <p>
+      In <xref ref="PA_9_6" /> and <xref ref="PA_9_7" /> we saw how the location tracking system's (LTS)output is related to a vector valued function that corresponds to how our car is being driven. In order to attract investors and drive shareholder value in <em>Steer Clear</em>, you decide to use the location tracking system's output to build a customized navigation and telemetry tool for a self driving car. The first element you will need to build is a way to use the LTS output to calculate how far the car has driven in a given time. 
+    </p>
+  </introduction> 
+  <task xml:id="PA-arclength1">
+    <statement>
+      <p>
+        In your testing center, you drive your car up a parking ramp and note that the LTS recorded the car had coordinates of <m>\langle 10,-5,0\rangle</m> at <m>t=0</m> and <m>\langle -8,10,12\rangle</m> when <m>t=30</m>. What is the distance between initial (<m>t=0</m>) and final (<m>t=30</m>)positions of the car?
+      </p>
+    </statement>
+  </task> 
+  <task>
+    <statement>
+      <p>
+        Do you think the distance the car actually traveled is greater than, less than, or the same as your answer to <xref ref="PA-arclength1" />? Write a couple of sentences to explain your reasoning.
+      </p>
+    </statement>
+  </task>
+  <task xml:id="PA-arclength3">
+    <statement>
+      <p>
+        In order to get more information for your telemetry system, you decide to pull the location data from your drive up the parking ramp every 10 seconds. The LTS gives the following data
         <ul>
-          <li>
-            <p>
-              How can a definite integral be used to measure the length of a curve in 2- or 3-space?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Why is arc length useful as a parameter?
-            </p>
-          </li>
+          <li><m>\langle 10,-5,0\rangle</m> at <m>t=0</m></li>
+          <li><m>\langle 6,0,6 \rangle</m> when <m>t=10</m></li>
+          <li><m>\langle -10,2,10\rangle</m> when <m>t=20</m></li>
+          <li><m>\langle -8,10,12\rangle</m> when <m>t=30</m></li>
         </ul>
-    </objectives>
-
-    <introduction>
-    <p>
-      Given a space curve, there are two natural geometric questions one might ask: how long is the curve and how much
-      does the curve bend? In this section, we answer the first question by developing techniques for measuring the length of a space
-      curve and will address the second question in <xref ref="S-VVF-Curvature" />. 
-    </p>
-
-    <p>
-      Change the preview activity to be an approximation of the arc length using 5 points. Do you think your approximation is above or below the actual length? Ask questions about whether you think an approximation with 10 points would have to be a better approximation? Do you think there is any way to use line segments to overestimate arc length?
-    </p>
-    <exploration xml:id="PA_9_8">
-      <statement> 
-      <p>
-        In earlier investigations, we have used integration to calculate quantities such as area, volume, mass, and  work. We are now interested in determining the length of a space curve.
+        Calculate the distance between successive times and estimate how far your car went in on the drive up the parking ramp. 
       </p>
-
+    </statement>
+  </task>
+  <task>
+    <statement>
       <p>
-        Consider the smooth curve in 3-space defined by the vector-valued function <m>\vr</m>, where
+        Do you think your estimate from <xref ref="PA-arclength3" /> is greater than, less than, or equal to the actual distance traveled? Write a couple of sentences to explain your reasoning. 
+      </p>
+    </statement>
+  </task>
+  <task>
+    <statement>
+      <p>
+        You look into the documentation on your location tracking system and see that you can specify how often to output the location data. You decide that getting the location every half a second seems like a good idea. How many data points will that correspond to for your drive up the parking ramp? Write a few sentences to describe what steps you would take with this new location data to calculate a better estimate on the distance traveled by your car.
+      </p>
+    </statement>
+  </task>
+</exploration>
+<p>
+  The last task is an example of a vital skill mathematics, scientific, and engineering fields called algorithmic thinking. Algorithmic thinking involves breaking larger problems into different tasks where a precise set of rules or operations can be stated for each task. We have referred to our classic calculus approach in a few scenarios (and will again this section) and we will take a moment here to mention how the classic calculus approach has the structure of this algorithmic thinking. Specifically, the tasks for our classic calculus approach can be summarized as as 1) approximate, 2) quantify how approximation changes with scale or refinement, 3) apply limit to describe how approximation converges to the measurement of interest. The details of how each of these tasks is done will change depending on the measurement, which is why so much time will be spent talking about the details of tasks 1 and 2 when introducing new concepts. 
+</p>
+</introduction>
+<subsection>
+  <title>Arc Length</title>
+  <p>
+    The central question we want to answer in this section is <q>Given, <m>C</m>, a curve from <m>P</m> to <m>Q</m>, what the length of <m>C</m>?</q>
+  </p>
+  <figure xml:id="arclength1">
+    <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> </caption>
+    <image width="80%" label="line-arclength1"> <!--source="/line_int_defn3"-->
+      <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
+      <sageplot >
+        tpoints=[4,0.5]
+        offsetx=[0.1,0.2]
+        offsety=[-0.2,-0.2]
+        labels=["$P$","$Q$"]
+        var('t');
+        r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+        plot1=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+        for i in range(len(tpoints)):
+          position=r1(tpoints[i])
+          withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+          plot1+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=20,color='black')
+        plot1
+      </sageplot>
+    </image>
+  </figure>
+  <p>
+    As suggested by our work in the Preview Activity and the classic calculus approach, we will approximate the length of the curve <m>C</m> by computing the length of a collection of line segments between points on <m>C</m>. In particular, we will call these intermediate points <m>\vr_0,\vr_1,...\vr_n</m>. Remember that we are specifying location using vectors to be graphed in standard position. Using vectors to specify position means that the corresponding line segments between successive <m>vr_i</m> positions can be represented by the vector difference <m>\Delta\vr_i = \vr_{i}-\vr_{i-1}</m>.
+  </p>
+  <figure xml:id="arclength2">
+    <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> split into <m>n</m> parts with endpoints <m>\vr_0,\vr_1,...\vr_n</m></caption>
+    <image width="80%" label="line-arclength2"> <!--source="/line_int_defn3"-->
+      <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
+      <sageplot >
+        tpoints=[4,3.5,3,2.5,1.5,1,0.5]
+        offsetx=[0.1,-0.2,-0.25,0.2,0,0,0.2]
+        offsety=[-0.2,-0.1,0.1,0.2,0.3,0.3,-0.2]
+        labels=["$P=\\vec{r}_0$","$\\vec{r}_1$","$\\vec{r}_2$","","$\\vec{r}_{n-2}$","$\\vec{r}_{n-1}$","$Q=\\vec{r}_{n}$"]
+        var('t');
+        r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+        plot2=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+        for i in range(len(tpoints)):
+          position=r1(tpoints[i])
+          withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+          if(i!=len(tpoints)-1 and i!=3):
+            plot2+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='blue',zorder=5)
+          if(i==3):
+            plot2+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+          plot2+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=20,color='black')
+          plot2+=text("$\\Delta \\vec{r}_i=\\vec{r}_{i}-\\vec{r}_{i-1}$",(-0.8,0.75),color='red',fontsize=20)
+        plot2
+      </sageplot>
+    </image>
+  </figure>
+  <p>
+    Notice that the description above does not involve a parameterization of <m>C</m> or a description for how you are traveling along <m>C</m>. In general, it is easiest to generate the positions <m>\vr_i</m> by evaluating a parameterization at a different <m>t</m>-values. In particular, we will use <m>\vr(t)=\langle x(t),y(t),z(t)</m>, a parameterization of <m>C</m> to specify the points between <m>P</m> and <m>Q</m>. Specifically, if <m>\vr(t)</m> is a parameterization of <m>C</m> with <m>P=\vr(a)</m> and <m>Q=\vr(b)</m>, then we divide <m>C</m> into <m>n</m> parts given by <m>\vr_i=\vr(t_i)</m> where <m>t_i=a+ i \Delta t</m> with <m>\Delta t= \frac{b-a}{n}</m>. This divides <m>C</m> into parts that correspond to equal steps in the parameter <m>t</m> which will not correspond to parts with equal length. 
+  </p>
+  <p>
+    Our approximation of the length of <m>C</m> will be the sum of the lengths of the vectors <m>\Delta\vr_i = \vr(t_{i})-\vr(t_{i-1})</m>. The length or magnitude of <m>\Delta \vr_i</m> will be given by the distance formula
+    <me>
+      \sqrt{(x(t_{i}) - x(t_{i-1}))^2 + (y(t_{i}) - y(t_{i-1}))^2 + (z(t_{i}) - z(t_{i-1}))^2}
+    </me>
+    To make our notation a little more compact, we will write <m>x(t_{i}) - x(t_{i-1})</m> as <m>\Delta x_i</m>, <m>y(t_{i}) - y(t_{i-1})</m> as <m>\Delta y_i</m>, and <m>z(t_{i}) - z(t_{i-1})</m> as <m>\Delta z_i</m>.
+    Our approximation of the length of the curve will be calculated by the sum of these lengths which gives
+    <md>
+      <mrow> L \approx\amp \sum_{i=1}^{n} \Vert\Delta\vr_i\Vert</mrow>
+      <mrow>   \approx\amp \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2} </mrow>
+    </md>
+  </p>
+  <p>
+    Since this approximation will approach the actual length as we use smaller and smaller steps, we define the arclength as follows:
+  </p>
+  <definition xml:id="def-arclength">
+    <statement>
+      <p>
+        The arclength of <m>C</m>, a curve in space is given by 
         <me>
-          \vr(t) = \langle x(t), y(t), z(t) \rangle = \langle \cos(t), \sin(t), t \rangle
+          \lim_{n \rightarrow \infty} \sum_{i=1}{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2}
         </me>
-        for <m>t</m> in the interval <m>[0,2\pi]</m>. Pictures of the graph of <m>\vr</m> are shown in <xref ref="F-9-8-Arclength">Figure</xref>.
-        We will use the integration process to calculate the length of this curve. In this situation we partition the interval <m>[0,2\pi]</m> into <m>n</m> subintervals of equal length and let <m>0 = t_0 \lt  t_1 \lt  t_2 \lt  \cdots \lt  t_n = b</m> be the endpoints of the subintervals. We then approximate the length of the curve on each subinterval with some related quantity that we can compute. In this case, we approximate the length of the curve on each subinterval with the length of the segment connecting the endpoints. <xref ref="F-9-8-Arclength">Figure</xref> illustrates the process in three different instances using increasing values of <m>n</m>.
+        
       </p>
+    </statement>
+  </definition>
+  <p>
+    You can use the slider on the interact to change the number of segments to be used in the approximation of the arclength of <m>C</m>. Notice that as the number of segments increases, the difference between the actual length of the curve and the line segments gets smaller. You can also see how the sum of the lengths of the blue segments will approach the true length of the curve (<m>\approx 6.3286</m>).
+  </p>
+  <figure xml:id="arclengthinteract">
+    <caption>A plot of curve in space</caption>
+    <interactive title="interactive-arclength1" platform="sage" width="125%" aspect="1:1">
+      <slate surface="sage">
+        @interact
+        def arclengthdemo(n=slider(1,25,1,default=1,label="Number of Segments")):
+            tpoints=[4-3.5*i/n for i in range(n+1)]
+            r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+            plot3=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+            plot3+=text("$P$",r1(4.1),color="black",fontsize=20)
+            plot3+=text("$Q$",r1(0.4),color="black",fontsize=20)
+            dist=0
+            for i in range(len(tpoints)):
+              position=r1(tpoints[i])
+              plot3+=point([position],color='black',size=50)
+              if(i!=0):
+                plot3+=line([position,oldposition],color="blue")
+                dist+=norm(position-oldposition)
+              oldposition=position
+            plot3+=text("The approximate arc length is "+str(dist.n(digits=5)),(0.5,-0.5),color="black",fontsize=10)    
+            show(plot3)
+      </slate>
+    </interactive>
+  </figure>
+  <p>
+    Since we will want to shrink the step size <m>\Delta t</m> to get better approximations we will rewrite our approximation to allow us to see how our approximation will change as we look at smaller scales (smaller <m>\Delta t</m>).
+    <md>
+      <mrow> L \approx\amp \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2} \frac{\Delta t}{\Delta t}</mrow>
+      <mrow>   \approx\amp \sum_{i=1}^{n} \sqrt{(\frac{\Delta x_i}{\Delta t})^2 + (\frac{\Delta y_i}{\Delta t})^2 + (\frac{\Delta z_i}{\Delta t})^2} \ \Delta t</mrow>
+    </md>
+    This give use the second task in our classic calculus approach (quantify how the approximation changes over a refinement) and this formats our approximation as a Riemann sum. In particular, our approximation is a Riemann sum of the function <m>\sqrt{(\frac{\Delta x_i}{\Delta t})^2 + (\frac{\Delta y_i}{\Delta t})^2 + (\frac{\Delta z_i}{\Delta t})^2}</m> which will simplify greatly when we look at this function as <m>\Delta t</m> goes to 0. Because
+    <md>
+      <mrow> x'(t) \amp= \lim_{\Delta t \to 0} \frac{x(t_i) - x(t_{i-1})}{\Delta t},</mrow> 
+      <mrow> y'(t) \amp= \lim_{\Delta t \to 0} \frac{y(t_i) - y(t_{i-1})}{\Delta t}, \ \text{ and }  </mrow>
+      <mrow> z'(t) \amp= \lim_{\Delta t \to 0} \frac{z(t_i) - z(t_{i-1})}{\Delta t}, </mrow> 
+    </md>
+    the function we are evaluating in our Riemann sum becomes 
+    <me> \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} </me> 
+    as <m>\Delta t \rightarrow 0</m> or <m>n\rightarrow \infty</m>. Thus the limit of the Riemann sum from <xref ref="def-arclength" >our definition of arc length</xref> gives a definite integral
+    <md>
+      <mrow> \lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2} =\amp \sum_{i=1}^{n} \sqrt{(\frac{\Delta x_i}{\Delta t})^2 + (\frac{\Delta y_i}{\Delta t})^2 + (\frac{\Delta z_i}{\Delta t})^2} \ \Delta t</mrow>
+      <mrow> =\amp \int_a^b  \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} \ dt </mrow>
+    </md>
+    The following theorem summarizes how  our definition of arc length can be evaluated as a definite integral based on the 
+  </p>
+  <theorem xml:id="Length-of-a-curve">
+    <title>The length of a curve</title>
+  <p>
+    If <m>\vr(t)</m> defines a smooth curve <m>C</m> on an interval <m>[a,b]</m>, then the <em>length</em><idx><h>arclength</h></idx> <m>L</m> of <m>C</m> is given by
+    <men xml:id="eq_9_8_arclength_2">
+      L = \int_a^b \Vert\vr'(t)\Vert \, dt.
+    </men>
+  </p>
+</theorem>
+<p>
+  Note that formula <xref ref="eq_9_8_arclength_2"/> applies to curves in any dimensional space. Moreover, this formula has a natural interpretation: if <m>\vr(t)</m> records the position of a moving object, then <m>\vr'(t)=\vv(t)</m> is the object's velocity and <m>\Vert\vr'(t)\Vert</m> its speed. Formula <xref ref="eq_9_8_arclength_2"/> says that we simply integrate the speed of an object traveling over the curve to find the distance traveled by the object, which is the same as the length of the curve, just as in one-variable calculus.
+</p>
 
-      <figure xml:id="F-9-8-Arclength">
-        <caption>Approximating the length of the curve with <m>n=3</m>, <m>n=6</m>, and <m>n=9</m>.</caption>
-        <sidebyside widths="33% 33% 33%" margins="0%">
-        <image source="images/fig_9_8_length_animate_02"/>
-        <image source="images/fig_9_8_length_animate_05"/>
-        <image source="images/fig_9_8_length_animate_08"/>
-        </sidebyside>
-      </figure>
-
-      <ol marker="a.">
-        <li>
-          <p>
-            Write a formula for the length of the line segment that connects the endpoints of the curve on the <m>i</m>th subinterval <m>[t_{i-1},t_i]</m>. (This length is our approximation of the length of the curve on this interval.)
-          </p>
-        </li>
-
-        <li>
-          <p>
-            Use your formula in part (a) to write a sum that adds all of the approximations to the lengths on each subinterval.
-          </p>
-        </li>
-
-        <li>
-          <p>
-            What do we need to do with the sum in part (b) in order to obtain the exact value of the length of the graph of <m>\vr(t)</m> on the interval <m>[0,2\pi]</m>?
-          </p>
-        </li>
-      </ol>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              The length of the line segment connecting the points <m>\vr(t_{i-1})</m> and
-              <m>\vr(t_i)</m> is given by the distance formula
-              <me>
-                \sqrt{(x_i-x_{i-1})^2+(y_{i}-y_{i-1})^2 + (z_{i}-z_{i-1})^2}
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We add the lengths given in part (b) to obtain the sum
-              <me>
-                \sum_{i=1}^n \sqrt{(x_i-x_{i-1})^2+(y_{i}-y_{i-1})^2 + (z_{i}-z_{i-1})^2}
-              </me>
-              that approximates the total length of the graph of <m>\vr(t)</m> on the interval <m>[0,2 \pi]</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We must take the limit of the sum as <m>n</m> goes to infinity.
-            </p>
-          </li>
-        </ol>
-      </solution>
-    </exploration>
+<activity xml:id="A_9_8_1">
+  <introduction>
+    <p>
+      In this activity, we will use parameterizations to find the length of a couple of common curves.
+    </p>
   </introduction>
-
-
-  <subsection>
-    <title>Arc Length</title>
-    <p>
-      Consider a smooth curve in 3-space that is parametrically described by
-      the vector-valued function <m>\vr</m> defined by <m>\vr(t) = \langle x(t), y(t), z(t)
-      \rangle.</m>
-      <xref ref="PA_9_8">Preview Activity</xref> shows that to approximate the
-      length of the curve defined by <m>\vr(t)</m> as the values of <m>t</m> run over
-      an interval <m>[a,b]</m>, we partition the interval <m>[a,b]</m> into <m>n</m>
-      subintervals of equal length <m>\Delta t</m>, with <m>a = t_0 \lt  t_1 \lt  \cdots
-      \lt  t_n = b</m> as the endpoints of the subintervals. On each subinterval,
-      we approximate the length of the curve by the length of the line
-      segment connecting the endpoints. The points on the curve
-      corresponding to <m>t = t_{i-1}</m> and <m>t = t_i</m> are <m>(x(t_{i-1}),
-      y(t_{i-1}), z(t_{i-1}))</m> and <m>(x(t_i), y(t_i), z(t_i))</m>, respectively,
-      so the length of the line segment connecting these points is
-      <me>
-        \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) -
-          z(t_{i-1}))^2}.
-      </me>
-    </p>
-
-    <p>
-      Now we add all of these approximations together to obtain an
-      approximation to the length <m>L</m> of the curve:
-      <me>
-        L \approx \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) -
-          y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2}.
-      </me>
-    </p>
-
-    <p>
-      We now want to take the limit of this sum as <m>n</m> goes to infinity, but in its present form it
-      might be difficult to see how. We first introduce <m>\Delta t</m> by multiplying by <m>\frac{\Delta t}{\Delta t}</m>, and see that
-      <md>
-        <mrow>L \amp \approx \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2}</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2} \frac{\Delta t}{\Delta t}</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1}))^2} \frac{\Delta t}{\sqrt{(\Delta t)^2}}</mrow>
-      </md>
-    </p>
-
-    <p>
-      To get the difference quotients under the radical, we use properties of the square root function to see further that
-      <md>
-        <mrow>L \amp \approx \sum_{i=1}^n \sqrt{\left[(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2 + (z(t_i) - z(t_{i-1})^2\right] \frac{1}{(\Delta t)^2}} \Delta t</mrow>
-        <mrow>\amp = \sum_{i=1}^n \sqrt{\left(\frac{x(t_i) - x(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{y(t_i) - y(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{z(t_i) - z(t_{i-1})}{\Delta t}\right)^2} \Delta t.</mrow>
-      </md>
-    </p>
-
-    <p>
-      Recall that as <m>n \to \infty</m> we also have <m>\Delta t \to 0</m>. Since
-      <md>
-        <mrow> x'(t) \amp = \lim_{\Delta t \to 0} \frac{x(t_i) - x(t_{i-1})}{\Delta t},</mrow> 
-        <mrow> y'(t) \amp = \lim_{\Delta t \to 0} \frac{y(t_i) - y(t_{i-1})}{\Delta t}, \ \text{ and }  </mrow>
-        <mrow> z'(t) \amp \lim_{\Delta t \to 0} \frac{z(t_i) - z(t_{i-1})}{\Delta t}, </mrow> 
-      </md>
-
-      we see that
-          <me>\lim_{n \to \infty} \sum_{i=1}^n \sqrt{\left(\frac{x(t_i) - x(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{y(t_i) - y(t_{i-1})}{\Delta t}\right)^2 + \left(\frac{z(t_i) - z(t_{i-1})}{\Delta t}\right)^2} \Delta t
-          </me>
-          is equal to 
-        <me>
-           \int_a^b \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} \, dt.
-         </me>
-    </p>
-
-    <p>
-      Noting further that
-      <me>
-        |\vr'(t)| = \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2},
-      </me>
-      we can rewrite our arclength formula in a more succinct form as follows.
-    </p>
-
-    <assemblage xml:id="Length-of-a-curve">
-      <title>The length of a curve</title>
-    <p>
-      If <m>\vr(t)</m> defines a smooth curve <m>C</m> on an interval <m>[a,b]</m>, then the <em>length</em><idx><h>arclength</h></idx> <m>L</m> of <m>C</m> is given by
-      <men xml:id="eq_9_8_arclength_2">
-        L = \int_a^b |\vr'(t)| \, dt.
-      </men>
-    </p>
-    </assemblage>
-
-
-    <p>
-      Note that formula <xref ref="eq_9_8_arclength_2"/> applies to curves in any
-      dimensional space. Moreover, this formula has a natural interpretation: if
-      <m>\vr(t)</m> records the position of a moving object, then <m>\vr'(t)</m> is
-      the object's velocity and <m>|\vr'(t)|</m> its speed. Formula
-      <xref ref="eq_9_8_arclength_2"/> says that we simply integrate the speed of
-      an object traveling over the curve to find the distance traveled by
-      the object, which is the same as the length of the curve,
-      just as in one-variable calculus.
-    </p>
-
-    <activity xml:id="A_9_8_1">
-      <statement> 
+  <task>
+    <statement>
       <p>
-        Here we calculate the arc length of two familiar curves.
-        <ol marker="a.">
-          <li>
-            <p>
-              Use Equation<nbsp/><xref ref="eq_9_8_arclength_2"/> to calculate the circumference of a circle of radius <m>r</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Find the exact length of the spiral defined by <m>\vr(t) = \langle \cos(t), \sin(t), t \rangle</m> on the interval <m>[0,2\pi]</m>.
-            </p>
-          </li>
-        </ol>
+        Parameterize a circle of radius <m>R</m> centered at the origin and be sure to give bounds on your parameter.
       </p>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              We can parameterize a circle of radius <m>r</m> centered at the origin by
-              <m>\vr(t) = \langle \cos(t), \sin(t) \rangle</m> for <m>t</m> in the interval <m>[0, 2\pi]</m>.
-              The circumference of this circle is the length of curve defined by <m>r</m>, or
-              <me>
-                \int_0^{2\pi} \lvert \vr'(t) \rvert \, dt = \int_0^{2\pi} \sqrt{(-r\sin(t))^2 + (r\cos(t))^2} \, dt = \int_0^{2\pi} r \, dt = 2 \pi r
-              </me>
-              as expected.
-            </p>
-          </li>
-          <li>
-            <p>
-              The length of curve defined by <m>r</m> on the interval <m>[0,2 \pi]</m> is
-              <me>
-                \int_0^{2\pi} \lvert \vr'(t) \rvert \, dt = \int_0^{2\pi} \sqrt{(-\sin(t))^2 + (\cos(t))^2 + 1^2} \, dt = \int_0^{2\pi} \sqrt{2} \, dt = 2 \pi \sqrt{2}
-              </me>.
-            </p>
-          </li>
-        </ol>
-      </solution>
-    </activity>
-
+    </statement>
+    <solution>
+      <p>
+        We can parameterize a circle of radius <m>R</m> centered at the origin by <m>\vr(t) = \langle R\cos(t), R\sin(t) \rangle</m> for <m>t</m> in the interval <m>[0, 2\pi]</m>.
+      </p>
+    </solution>
+  </task>
+  <task>
+    <statement>
+      <p>
+        Use your parameterization from the previous task in the definite integral of <xref ref="Length-of-a-curve" /> to calculate the circumference of a circle of radius <m>R</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The circumference of this circle is the length of curve defined by <m>R</m>, or
+        <me>
+          \int_0^{2\pi} \Vert \vr'(t) \Vert \, dt = \int_0^{2\pi} \sqrt{(-R\sin(t))^2 + (R\cos(t))^2} \, dt = \int_0^{2\pi} R \, dt = 2 \pi R
+        </me>
+        as expected.
+      </p>
+    </solution>
+  </task>
+  <task>
+    <statement>
+      <p>
+        Find the exact length of the spiral defined by <m>\vr(t) = \langle R\cos(t), R\sin(t), t \rangle</m> on the interval <m>[0,2\pi]</m>.
+      </p>
+    </statement>
+    <solution>
+      <p>
+        The length of curve defined by <m>\vr</m> on the interval <m>[0,2 \pi]</m> is
+        <me>
+          \int_0^{2\pi} \lvert \vr'(t) \rvert \, dt = \int_0^{2\pi} \sqrt{(-R\sin(t))^2 + (R\cos(t))^2 + 1^2} \, dt = \int_0^{2\pi} R \sqrt{2} \, dt = 2 \pi \sqrt{2} R
+        </me>
+      </p>
+    </solution>
+  </task>
+  <task>
+    <statement>
+      <p>
+        Explain why your result for the length of the spiral is larger than the circumference of the circle of the same radius.
+      </p>
+    </statement>
+  </task>
+</activity>
+<p>
+  I think we can move the following activity to be an exercise and reference the exercise here.
+</p>
     <p>
-      We can adapt the arc length formula to curves in 2-space that define
-      <m>y</m> as a function of <m>x</m> as the following activity shows.
+      We can adapt the arc length formula to curves in 2-space that define <m>y</m> as a function of <m>x</m> as the following activity shows.
     </p>
 
     <activity xml:id="A_9_8_3">

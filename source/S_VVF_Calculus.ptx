@@ -834,975 +834,170 @@
   <p>
     Applying this accumulation of rates of change or velocity ideas componentwise means that if we are able to separate the velocity of our motion into components, then we can integrate (componentwise!) to get the position in terms of each coordinate separately! Additionally, we can integrate acceleration to get the velocity as a function of <m>t</m>. Whether we are integrating velocity to get position or acceleration to get velocity, it will be necessary to have a particular point (in position or velocity) that will us to solve for the particular integration constant (the <m>+C</m>).
   </p>
-  <example>
+  <example xml:id="projectilemotion">
     <p>
-      For this example, we will look at the motion of a projectile in two dimensions where the only force on the projectile is gravity. This type of problem applies to sports like archery or shotput or to military applications like mortar or artillery placements, as well applications to firefighting or fireworks construction. This kind of simplified physics problem is common in introductory courses because there is only one force involved, the force is constant (does not change based on location, speed, or time), and the force is in only one coordinate direction. Even this description is a greatly simplified version of gravity acts in a greater sense. 
+      For this example, we will look at the motion of a projectile in two dimensions where the only force on the projectile is gravity. This type of problem applies to sports like archery or shotput or to military applications like mortar or artillery placements, as well applications to firefighting or fireworks construction. This kind of simplified physics problem is common in introductory courses because there is only one force involved, the force is constant (does not change based on location, speed, or time), and the force is in only one coordinate direction. Even this description is a greatly simplified version of how gravity acts in a greater sense. 
     </p>
     <p>
-      Newton's second law of motion says that that sum of the forces acting on an object is equal to the mass of the object times the acceleration vector. In our problem, the only force is gravity pulling the object in the negative <m>y</m>-direction. In our example, we will try to completely determine the path traveled by an object that is launched from a fixed position at a given angle from the horizontal with a given initial velocity. This information can be stated as follows: <m>m \va(t) = -mg \vj</m> (the only force is gravity pulling down with a constant force), the initial position <m> \vr(0)=\langle x_0,y_0\rangle </m>, and the initial velocity is <m>\vv(0)=\frac{\vr}{dt}(0)=\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m>.
+      Newton's second law of motion says that that sum of the forces acting on an object is equal to the mass of the object times the acceleration vector. In our problem, the only force is gravity pulling the object in the negative <m>y</m>-direction. In our example, we will try to completely determine the path traveled by an object that is launched from a fixed position at a given angle from the horizontal with a given initial velocity. This information can be stated as follows: 
+      <ul>
+        <li>the acceleration is given by <m>m \va(t) = -mg \vj</m> (the only force is gravity pulling down with a constant force)</li>
+        <li>the initial position is <m> \vr(0)=\langle x_0,y_0\rangle </m></li>
+        <li>the initial velocity is <m>\vv(0)=\frac{\vr}{dt}(0)=\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m></li>
+      </ul>
     </p>
     <figure xml:id="F_9_7_Motion">
       <caption>Projectile motion</caption>
       <image width="50%" source="images/fig_9_7_projectile"/>
     </figure>
     <p>
-      We can simplify <m>m \va(t) = -mg \vj</m> to get <m>\va(t)=\langle 0,-g\rangle</m>, then integrate acceleration to get the velocity as a function of <m>t</m>. The indefinite integral of <m>\va(t)=\langle 0,-g\rangle</m> with respect to <m>t</m> will be <m>\langle 0,-gt\rangle +\vec{C}</m>, where <m>\vec{C}</m> is some constant vector. We need to pick the constant such that the initial velocity is <m>\vv(0)=\frac{\vr}{dt}(0)=\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m>, so we will have 
+      We can simplify <m>m \va(t) = -mg \vj</m> to get <m>\va(t)=\langle 0,-g\rangle</m>, then integrate acceleration to get the velocity as a function of <m>t</m>. The indefinite integral of <m>\va(t)=\langle 0,-g\rangle</m> with respect to <m>t</m> will be <m>\langle 0,-gt\rangle +\vec{C}</m>, where <m>\vec{C}</m> is some constant vector. We need to pick the constant such that the initial velocity is <m>\vv(0)\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m>, so we will have 
       <me>
         \vv(t)=\langle 0,-gt\rangle+\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle=\langle v_0 \cos(\theta),v_0 \sin(\theta)-gt \rangle
       </me>
     </p>
     <p>
-      We can integrate our velocity function to get the position as a function of <m>t</m>. The indefinite integral of <m>langle v_0 \cos(\theta),v_0 \sin(\theta)-gt \rangle</m> will be 
+      We can integrate our velocity function to get the position as a function of <m>t</m>. The indefinite integral of <m>\langle v_0 \cos(\theta),v_0 \sin(\theta)-gt \rangle</m> will be 
       <me>
-        langle v_0 \cos(\theta) t ,v_0 \sin(\theta)t- \frac{1}{2}gt^2 \rangle+ \vec{C}
+        \langle v_0 \cos(\theta) t ,v_0 \sin(\theta)t- \frac{1}{2}gt^2 \rangle+ \vec{C}
       </me>
-      Again we need to pick the integration constant, <m>\vec{C}</m>, that satisifes our initial position <m> \vr(0)=\langle x_0,y_0\rangle </m>. So we get a 
+      Again we need to pick the integration constant, <m>\vec{C}</m>, that satisifes our initial position <m> \vr(0)=\langle x_0,y_0\rangle </m>. This gives the following vector valued function for the position of the object as a function of time.
+      <me>
+        \vr(t) = \left\langle v_0 \cos(\theta)t + x_0, -\frac{g}{2}t^2 + v_0 \sin(\theta)t + y_0 \right\rangle
+      </me>
+
     </p>
   </example>
-
-
-
-<p>
-  Assume we fire a projectile from a launcher and the only force acting
-  on the fired object is the force of gravity pulling down on the
-  object. That is, we assume no effect due to spin, wind, or air
-  resistance. With these assumptions, the motion of the object will be
-  planar, so we can also assume that the motion occurs in
-  two-dimensional space. Suppose we launch the object from an initial
-  position <m>(x_0, y_0)</m> at an angle <m>\theta</m> with the positive <m>x</m>-axis
-  as illustrated in <xref ref="F_9_7_Motion">Figure</xref>, and that we fire the
-  object with an initial speed of <m>v_0 = |\vv(0)|</m>, where <m>\vv(t)</m> is
-  the velocity vector of the object at time <m>t</m>. Assume <m>g</m> is the
-  positive constant acceleration force due to gravity, which acts to
-  pull the fired object toward the ground (in the negative <m>y</m>
-  direction). Note particularly that there is no external force acting
-  on the object to move it in the <m>x</m> direction.
-</p>
-
-<p>
-  We first observe that since gravity only acts in the downward
-  direction and that the acceleration due to gravity is constant,
-  the acceleration vector is <m>\langle 0, -g
-  \rangle</m>. That is, <m>\va(t) = \langle 0, -g \rangle</m>. We may use this
-  fact about acceleration, together with the initial position and
-  initial velocity in order to fully determine the position <m>\vr(t)</m> of the object at time <m>t</m>. In <xref ref="Ez_9_7_5">Exercise</xref>, you
-  can work through the details to show that the following general
-  formula holds.
-</p>
-
-<assemblage xml:id="Projectile-motion">
-  <title>The motion of a projectile</title>
-<p>
-  If an object is launched from a point <m>(x_0,y_0)</m>
-  with initial velocity <m>v_0</m> at an angle <m>\theta</m> with the horizontal,
-  then the position of the object at time <m>t</m> is given by
-  <me>
-    \vr(t) = \left\langle v_0 \cos(\theta)t + x_0, -\frac{g}{2}t^2 + v_0
-    \sin(\theta)t + y_0 \right\rangle.
-  </me>
-</p>
-</assemblage>
-
-
-
-<p>
-  This assumes that the only force
-  acting on the object is the acceleration <m>g</m> due to
-  gravity.<idx><h>projectile motion</h><h>parametric equations</h></idx>
-</p>
-
-
-
-
-
-
-
-
-
-
-    <p>
-      Recall from single variable calculus that an antiderivative of a function <m>f</m> of the independent variable <m>x</m> is a function <m>F</m> that satisfies <m>F'(x) = f(x)</m>. We then defined the indefinite integral <m>\int f(x) \ dx</m> to be the general antiderivative of <m>f</m>. Recall that      the general antiderivative includes an added constant <m>C</m> in order to
-      indicate that the general antiderivative is in fact an entire family
-      of functions. We can do the similar work with vector-valued functions.
-    </p>
-
-
-
-
-    <definition>
-      <statement>
-        <p>
-          An
-          <term>antiderivative</term><idx><h>vector-valued function</h><h>antiderivative</h></idx>
-          of a vector-valued function <m>\vr</m> is a vector-valued function <m>\vR</m>
-          such that
-          <me>
-            \vR'(t) = \vr(t).
-          </me>
-        </p>
-
-        <p>
-          The <term>indefinite integral</term><idx><h>vector-valued
-          function</h><h>indefinite integral</h></idx> <m>\int \vr(t) \ dt</m> of a vector-valued
-          function <m>\vr</m> is the general antiderivative of <m>\vr</m> and represents the
-          collection of all antiderivatives of <m>\vr</m>.
-        </p>
-      </statement>
-    </definition>
-
-    <p>
-      The same reasoning that allows us to differentiate a vector-valued
-      function componentwise applies to integrating as well. Recall that the
-      integral of a sum is the sum of the integrals and also that we can
-      remove constant factors from integrals. So, given <m>{\vr(t) = x(t) \vi
-      + y(t) \vj + z(t) \vk}</m>, it follows that we can integrate
-      componentwise. Expressed more formally,
-    </p>
-
-    <assemblage xml:id="Vector-valued-function-integral">
-      <title>Integrating a vector-valued function</title>
-    <p>
-      If <m>\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk</m>, then
-      <me>
-        \int \vr(t) \ dt = \left(\int x(t) \ dt\right) \vi + \left( \int
-        y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
-      </me>
-    </p>
-    </assemblage>
-
-
-    <p>
-      In light of being able to integrate and differentiate componentwise
-      with vector-valued functions, we can solve many problems that are
-      analogous to those we encountered in single-variable calculus. For
-      instance, recall problems where we were given an object moving along
-      an axis with velocity function <m>v</m> and an initial position <m>s(0)</m>.
-      In that context, we were able to differentiate <m>v</m> in order to find
-      acceleration, and integrate <m>v</m> and use the initial condition in order
-      to find the position function <m>s</m>. In the following activity, we
-      explore similar ideas with vector-valued functions.
-    </p>
-
-    <activity xml:id="A_9_7_7">
-      <statement>
+  <p>
+    In the next activity, we will look at relationships between position, velocity, and acceleration in a situation that is more complicated than the constant acceleration of <xref ref="projectilemotion" />. The process of using integration and differentiation will remain the same but the results will not be nearly as simple.
+  </p>
+  <activity xml:id="A_9_7_7">
+    <introduction>
       <p>
         Suppose a moving object in space has its velocity given by
         <me>
           \vv(t) = (-2\sin(2t)) \vi + (2 \cos(t)) \vj + \left(1 - \frac{1}{1+t}\right) \vk.
         </me>
-      </p>
-
-      <p>
         A graph of the position of the object for times <m>t</m> in <m>[-0.5,3]</m> is shown in <xref ref="F_9_7_VVD_Example">Figure</xref>. Suppose further that the object is at the point <m>(1.5,-1,0)</m> at time <m>t=0</m>.
-        <ol marker="a.">
-          <li>
-            <p>
-              Determine <m>\va(t)</m>, the acceleration of the object at time <m>t</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Determine <m>\vr(t)</m>, position of the object at time <m>t</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Compute and sketch the position, velocity, and acceleration vectors of the object at time <m>t=1</m>, using <xref ref="F_9_7_VVD_Example">Figure</xref>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Finally, determine the vector equation for the tangent line, <m>\vL(t)</m>, that is tangent to the position curve at <m>t = 1</m>.
-            </p>
-          </li>
-        </ol>
       </p>
-
-      <figure xml:id="F_9_7_VVD_Example">
-        <caption>The position graph for the function in <xref ref="A_9_7_7">Activity</xref>.</caption>
-        <image width="50%" source="images/fig_9_7_activity"/>
-      </figure>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Determine <m>\va(t)</m>, the acceleration of the object at time <m>t</m>.
+        </p>
       </statement>
       <solution>
-        <ol marker="a.">
-          <li>
-            <p>
-              Since acceleration is the derivative of the velocity we have
-              <me>
-                \va(t) = \vv'(t) = -4\cos(2t)\vi -2\sin(t) \vj + \left(\frac{1}{(1+t)^2}\right) \vk
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              The position of the object is an antiderivative of the velocity, so
-              <me>
-                \vr(t) = \int \vv(t) \, dt = \cos(2t) \vi + 2\sin(t) \vj + \left( t - \ln|1+t| \right) \vk + \vC
-              </me>
-              for some constant <m>\vC</m>.
-              Since <m>\vr(0) = \langle 1.5, -1, 0 \rangle</m>, we have
-              <me>
-                \langle 1.5, -1, 0 \rangle = \vr(0) = \langle 1, 0, 0 \rangle + \vC
-              </me>
-              and so <m>\vC = \langle 0.5, -1, 0 \rangle</m>.
-              Therefore,
-              <me>
-                \vr(t) = (\cos(2t)+0.5) \vi + (2\sin(t)-1) \vj + \left( t - \ln|1+t| \right) \vk
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              The position <m>\vr(1) = (\cos(2)+1) \vi + (2\sin(1)-1) \vj + (1-ln(2)) \vk</m>,
-              velocity <m>\vv(1) = (-2\sin(2)) \vi + (2\cos(1)) \vj + \left(\frac{1}{2}\right) \vk</m>,
-              and acceleration vector <m>\va(1) = (-4\cos(2)) \vi - (2\sin(1)) \vj + \left(\frac{1}{4}\right) \vk</m> of the object at time <m>t=1</m> are shown below.
-              <image width="73%" source="images/9_7_Act30_c_sol"/>
-            </p>
-          </li>
-          <li>
-            <p>
-              The vector <m>\vv(1)</m> is a direction vector for <m>\vL(t)</m> and so
-              <me>
-                \vL(t) = \vr(1) + t\vv(1) = \langle \cos(2)+\frac{1}{2}, 2\sin(1)-1, 1-\ln(2) \rangle + t \left\langle -2\sin(2), 2\cos(1), + \frac{1}{2} \right\rangle
-              </me>.
-            </p>
-          </li>
-        </ol>
+        <p>
+          Since acceleration is the derivative of the velocity we have
+          <me>
+            \va(t) = \vv'(t) = -4\cos(2t)\vi -2\sin(t) \vj + \left(\frac{1}{(1+t)^2}\right) \vk
+          </me>.
+        </p>
       </solution>
-    </activity>
-  </subsection>
-
-
-  <subsection>
-    <title>Projectile Motion</title>
-    <p>
-      Any time that an object is launched into the air with a given velocity
-      and launch angle, the path the object travels is determined almost
-      exclusively by the force of gravity. Whether in sports such as
-      archery or shotput, in military applications with artillery, or in
-      important fields like firefighting, it is important to be able to know
-      when and where a launched projectile will land. We can use our
-      knowledge of vector-valued functions in order to completely determine
-      the path traveled by an object that is launched from a given position
-      at a given angle from the horizontal with a given initial velocity.
-    </p>
-
-    <figure xml:id="F_9_7_Motion">
-      <caption>Projectile motion.</caption>
-      <image width="50%" source="images/fig_9_7_projectile"/>
-    </figure>
-
-    <p>
-      Assume we fire a projectile from a launcher and the only force acting
-      on the fired object is the force of gravity pulling down on the
-      object. That is, we assume no effect due to spin, wind, or air
-      resistance. With these assumptions, the motion of the object will be
-      planar, so we can also assume that the motion occurs in
-      two-dimensional space. Suppose we launch the object from an initial
-      position <m>(x_0, y_0)</m> at an angle <m>\theta</m> with the positive <m>x</m>-axis
-      as illustrated in <xref ref="F_9_7_Motion">Figure</xref>, and that we fire the
-      object with an initial speed of <m>v_0 = |\vv(0)|</m>, where <m>\vv(t)</m> is
-      the velocity vector of the object at time <m>t</m>. Assume <m>g</m> is the
-      positive constant acceleration force due to gravity, which acts to
-      pull the fired object toward the ground (in the negative <m>y</m>
-      direction). Note particularly that there is no external force acting
-      on the object to move it in the <m>x</m> direction.
-    </p>
-
-    <p>
-      We first observe that since gravity only acts in the downward
-      direction and that the acceleration due to gravity is constant,
-      the acceleration vector is <m>\langle 0, -g
-      \rangle</m>. That is, <m>\va(t) = \langle 0, -g \rangle</m>. We may use this
-      fact about acceleration, together with the initial position and
-      initial velocity in order to fully determine the position <m>\vr(t)</m> of the object at time <m>t</m>. In <xref ref="Ez_9_7_5">Exercise</xref>, you
-      can work through the details to show that the following general
-      formula holds.
-    </p>
-
-    <assemblage xml:id="Projectile-motion">
-      <title>The motion of a projectile</title>
-    <p>
-      If an object is launched from a point <m>(x_0,y_0)</m>
-      with initial velocity <m>v_0</m> at an angle <m>\theta</m> with the horizontal,
-      then the position of the object at time <m>t</m> is given by
-      <me>
-        \vr(t) = \left\langle v_0 \cos(\theta)t + x_0, -\frac{g}{2}t^2 + v_0
-        \sin(\theta)t + y_0 \right\rangle.
-      </me>
-    </p>
-    </assemblage>
-
-    
-
-    <p>
-      This assumes that the only force
-      acting on the object is the acceleration <m>g</m> due to
-      gravity.<idx><h>projectile motion</h><h>parametric equations</h></idx>
-    </p>
-  </subsection>
-
-
-  <subsection>
-    <title>Summary</title>
-    <ul>
-      <li>
+    </task>
+    <task>
+      <statement>
         <p>
-          If <m>\vr</m> is a vector-valued function, then the derivative of
-          <m>\vr</m> is defined by
-          <me>
-            \vr'(t) = \lim_{h \to 0} \frac{\vr(t+h)-\vr(t)}{h}
-          </me>
-          for those
-          values of <m>t</m> at which the limit exists, and is computed componentwise
-          by the formula
-          <me>
-            \vr'(t) = x'(t) \vi + y'(t) \vj + z'(t) \vk
-          </me>
-          for those values of
-          <m>t</m> at which <m>x</m>, <m>y</m>, and <m>z</m> are differentiable, where <m>\vr(t) =
-          x(t) \vi + y(t) \vj + z(t) \vk</m>.
+          Determine <m>\vr(t)</m>, position of the object at time <m>t</m>.
         </p>
-      </li>
-
-      <li>
+      </statement>
+      <solution>
         <p>
-          The derivative <m>\vr'(t)</m> of the vector-valued function <m>\vr</m>
-          tells us the instantaneous rate of change of <m>\vr</m> with respect to
-          time, <m>t</m>, which can be interpreted as a direction vector for the line
-          tangent to the graph of <m>\vr</m> at the point <m>\vr(t)</m>, or also as the
-          instantaneous velocity of an object traveling along the graph defined
-          by <m>\vr(t)</m> at time <m>t</m>.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          An antiderivative of <m>\vr</m> is a vector-valued function <m>\vR</m>
-          such that <m>\vR'(t) = \vr(t)</m>.  The indefinite integral <m>\int \vr(t) \
-          dt</m> of a vector-valued function <m>\vr</m> is the general antiderivative of
-          <m>\vr</m> (which is a collection of all of the antiderivatives of <m>\vr</m>,
-          with any two antiderivatives differing by at most a constant vector).
-          Moreover, if <m>\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk</m>, then
+          The position of the object is an antiderivative of the velocity, so
           <me>
-            \int \vr(t) \ dt = \left(\int x(t) \ dt\right) \vi + \left( \int
-            y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
+            \vr(t) = \int \vv(t) \, dt = \cos(2t) \vi + 2\sin(t) \vj + \left( t - \ln|1+t| \right) \vk + \vC
+          </me>
+          for some constant <m>\vC</m>. Since <m>\vr(0) = \langle 1.5, -1, 0 \rangle</m>, we have
+          <me>
+            \langle 1.5, -1, 0 \rangle = \vr(0) = \langle 1, 0, 0 \rangle + \vC
+          </me>
+          and so <m>\vC = \langle 0.5, -1, 0 \rangle</m>. Therefore,
+          <me>
+            \vr(t) = (\cos(2t)+0.5) \vi + (2\sin(t)-1) \vj + \left( t - \ln|1+t| \right) \vk
           </me>
         </p>
-      </li>
-
-      <li>
+      </solution>
+    </task>
+    <task>
+      <statement>
         <p>
-          If an object is launched from a point <m>(x_0,y_0)</m> with initial
-          velocity <m>v_0</m> at an angle <m>\theta</m> with the horizontal, then the
-          position of the object at time <m>t</m> is given by
-          <me>
-            \vr(t) = \left\langle v_0 \cos(\theta)t + x_0, -\frac{g}{2}t^2 + v_0
-            \sin(\theta)t + y_0 \right\rangle,
-          </me>
-          provided that that the only force
-          acting on the object is the acceleration <m>g</m> due to gravity.
+          Compute the position, velocity, and acceleration vectors of the object at time <m>t=1</m> and plot these vectors using <xref ref="F_9_7_VVD_Example">Figure</xref>.
         </p>
-      </li>
-    </ul>
-
-    </subsection>
-
-    
-    <exercises>
+        <figure xml:id="F_9_7_VVD_Example">
+          <caption>The position graph for the function in <xref ref="A_9_7_7">Activity</xref></caption>
+          <image width="50%" source="images/fig_9_7_activity"/>
+        </figure>
+      </statement>
+      <solution>
+        <p>
+          The position <m>\vr(1) = (\cos(2)+1) \vi + (2\sin(1)-1) \vj + (1-ln(2)) \vk</m>, velocity <m>\vv(1) = (-2\sin(2)) \vi + (2\cos(1)) \vj + \left(\frac{1}{2}\right) \vk</m>, and acceleration vector <m>\va(1) = (-4\cos(2)) \vi - (2\sin(1)) \vj + \left(\frac{1}{4}\right) \vk</m> of the object at time <m>t=1</m> are shown below.
+        </p>
+        <image width="73%" source="images/9_7_Act30_c_sol"/>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Give the vector equation for the tangent line, <m>\vL(t)</m>, that is tangent to the position curve at <m>t = 1</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The vector <m>\vv(1)</m> is a direction vector for <m>\vL(t)</m> and so
+          <me>
+            \vL(t) = \vr(1) + t\vv(1) = \langle \cos(2)+\frac{1}{2}, 2\sin(1)-1, 1-\ln(2) \rangle + t \left\langle -2\sin(2), 2\cos(1), + \frac{1}{2} \right\rangle
+          </me>.
+        </p>
+      </solution>
+    </task>
+  </activity>
+  <p>
+    The situation in the previous activity shows a case where the motion of our object seems to be driven by forces with different behaviors that either turn the object or change the speed of the object in the <m>z</m>-coordinate direction. We will spend the rest of this chapter looking at different measurements related to motion along curves like this. Key to these measurements will be the combined use of our new calculus tools for vector valued functions with the vector measurements from the previous chapter. 
+  </p>
+</subsection>
+<subsection>
+  <title>Summary</title>
+  <ul>
+    <li>
       <p>
-        The WeBWorK problems are written by many different authors. Some authors use parentheses when writing vectors, e.g., <m>(x(t),y(t),z(t))</m> instead of angle brackets <m>\langle x(t),y(t),z(t) \rangle</m>. Please keep this in mind when working WeBWorK exercises. 
+        If <m>\vr</m> is a vector-valued function, then the derivative of <m>\vr</m> is defined by
+        <me>
+          \vr'(t) = \lim_{h \to 0} \frac{\vr(t+h)-\vr(t)}{h}
+        </me>
+        for those values of <m>t</m> at which the limit exists, and is computed componentwise by the formula
+        <me>
+          \vr'(t) = x'(t) \vi + y'(t) \vj + z'(t) \vk
+        </me>
+        for those values of <m>t</m> at which <m>x</m>, <m>y</m>, and <m>z</m> are differentiable, where <m>\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk</m>.
       </p>
-      
-      <exercise label="Library__maCalcDB__setVecFunction2Curvature__ur_vc_4_3.pg" xml:id="ex-9-7-WW-velocity-acceleration">
-      <!--<title>Vecocity and acceleration calculation</title>-->
-         <webwork source="Library/maCalcDB/setVecFunction2Curvature/ur_vc_4_3.pg"/>
-      </exercise>
+    </li>
+    <li>
+      <p>
+        The derivative <m>\vr'(t)</m> of the vector-valued function <m>\vr</m> tells us the instantaneous rate of change of <m>\vr</m> with respect to time, <m>t</m>, which can be interpreted as a direction vector for the line tangent to the graph of <m>\vr</m> at the point <m>\vr(t)</m>, or also as the instantaneous velocity of an object traveling along the graph defined by <m>\vr(t)</m> at time <m>t</m>.
+      </p>
+    </li>
+    <li>
+      <p>
+        An antiderivative of <m>\vr</m> is a vector-valued function <m>\vR</m> such that <m>\vR'(t) = \vr(t)</m>.  The indefinite integral <m>\int \vr(t) \ dt</m> of a vector-valued function <m>\vr</m> is the general antiderivative of <m>\vr</m> (which is a collection of all of the antiderivatives of <m>\vr</m>, with any two antiderivatives differing by at most a constant vector). Moreover, if <m>\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk</m>, then
+        <me>
+          \int \vr(t) \ dt = \left(\int x(t) \ dt\right) \vi + \left( \int y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
+        </me>
+      </p>
+    </li>
 
-        <exercise label="Library__maCalcDB__setVecFunction3Motion__ur_vc_4_7.pg" xml:id="ex-9-7-WW-velocity-position">
-        <!--<title>Velocity and position calculation</title>-->
-         <webwork source="Library/maCalcDB/setVecFunction3Motion/ur_vc_4_7.pg"/>
-      </exercise>
+    <li>
+      <p>
+        If an object is launched from a point <m>(x_0,y_0)</m> with initial velocity <m>v_0</m> at an angle <m>\theta</m> with the horizontal, then the position of the object at time <m>t</m> is given by
+        <me>
+          \vr(t) = \left\langle v_0 \cos(\theta)t + x_0, -\frac{g}{2}t^2 + v_0 \sin(\theta)t + y_0 \right\rangle
+        </me>
+        provided that that the only force acting on the object is the acceleration <m>g</m> due to gravity.
+      </p>
+    </li>
+  </ul>
+</subsection>
 
-      <exercise label="Library__maCalcDB__setVecFunction1Curves__urvc_3_13.pg" xml:id="ex-9-7-WW-integral">
-      <!--<title>Integrating a vector-valued function</title>-->
-         <webwork source="Library/maCalcDB/setVecFunction1Curves/urvc_3_13.pg"/>
-      </exercise>
+<xi:include href="./exercises/ez-S_VVF_Calculus.ptx" />
 
-      <exercise label="Library__maCalcDB__setVecFunction1Curves__urvc_3_12.pg" xml:id="ex-9-7-WW-tangent-line">
-      <!--<title>Finding a tangent line to a curve</title>-->
-         <webwork source="Library/maCalcDB/setVecFunction1Curves/urvc_3_12.pg"/>
-      </exercise>
-
-      <exercise label="Library__maCalcDB__setVecFunction1Curves__urvc_3_14.pg" xml:id="ex-9-7-WW-derivative-integeral">
-      <!--<title>Differentiating and integrating a vector-valued fuction</title>-->
-         <webwork source="Library/maCalcDB/setVecFunction1Curves/urvc_3_14.pg"/>
-      </exercise>
-
-      <exercise label="Library__maCalcDB__setVecFunction1Curves__urvc_3_10.pg" xml:id="ex-9-7-WW-tangent-velocity">
-      <!--<title>Finding tangent vectors</title>-->
-         <webwork source="Library/maCalcDB/setVecFunction1Curves/urvc_3_10.pg"/>
-      </exercise>
-
-      <exercise label="Library__FortLewis__Calc3__17-2-Motion-velocity__HGM4-17-2-30-Motion-velocity-acceleration.pg" xml:id="ex-9-7-WW-motion-velocity-acceleration">
-      <!--<title>Investigating a position function</title>-->
-         <webwork source="Library/FortLewis/Calc3/17-2-Motion-velocity/HGM4-17-2-30-Motion-velocity-acceleration.pg"/>
-      </exercise>
-
-      <exercise label="Library__FortLewis__Calc3__17-2-Motion-velocity__HGM4-17-2-06-Motion-velocity-acceleration.pg" xml:id="ex-9-7-WW-speed-stationary">
-      <!--<title>Calculating the speed of a particle</title>-->
-         <webwork source="Library/FortLewis/Calc3/17-2-Motion-velocity/HGM4-17-2-06-Motion-velocity-acceleration.pg"/>
-      </exercise>
-
-      <exercise label="Library__Dartmouth__setStewartCh14S2__problem_2.pg" xml:id="ex-9-7-WW-derivative-cross">
-      <!--<title>Differentiating a function defined by a cross product</title>-->
-         <webwork source="Library/Dartmouth/setStewartCh14S2/problem_2.pg"/>
-      </exercise>
-
-      <exercise label="Library__272__setStewart13_4__problem_2.pg" xml:id="ex-9-7-WW-derivative-dot-cross">
-      <!--<title>Differentiating with cross and dot products</title>-->
-         <webwork source="Library/272/setStewart13_4/problem_2.pg"/>
-      </exercise>
-
-      <exercise label="Library__maCalcDB__setVecFunction3Motion__ur_vc_4_8.pg" xml:id="ex-9-7-WW-projectile">
-      <!--<title>Calculating an angle of elevation</title>-->
-         <webwork source="Library/maCalcDB/setVecFunction3Motion/ur_vc_4_8.pg"/>
-      </exercise>
-
-      <exercise label="Library__Michigan__Chap17Sec2__Q29.pg" xml:id="ex-9-7-WW-tower">
-      <!--<title>Analyzing a parametrically defined curve</title>-->
-         <webwork source="Library/Michigan/Chap17Sec2/Q29.pg"/>
-      </exercise>
- 
-
-
-
-      <exercise xml:id="Ez_9_7_1">
-        <statement>
-          <p>
-            Compute the derivative of each of the following functions in two different ways: (1) use the rules provided in the theorem stated just after <xref ref="A_9_7_2">Activity</xref>, and (2) rewrite each given function so that it is stated as a single function (either a scalar function or a vector-valued function with three components), and differentiate component-wise. Compare your answers to ensure that they are the same.
-            <ol marker="a.">
-              <li>
-                <p>
-                  <m>\vr(t) = \sin(t) \langle 2t, t^2, \arctan(t) \rangle</m>
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  <m>\vs(t) = \vr(2^t)</m>, where <m>\vr(t) = \langle t+2, \ln(t), 1 \rangle</m>.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  <m>f(t) = \langle \cos(t), \sin(t), t \rangle \cdot \langle -\sin(t), \cos(t), 1 \rangle</m>
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  <m>\vr(t) = \langle \cos(t), \sin(t), t \rangle \times \langle -\sin(t), \cos(t), 1 \rangle</m>
-                </p>
-              </li>
-            </ol>
-          </p>
-        </statement>
-        <solution>
-          <ol>
-            <li>
-              <p>
-                First we use part 2 of the theorem to find that
-                <me>
-                  \vr'(t) = \sin(t) \left\langle 2, 2t, \frac{1}{1+t^2} \right\rangle + \cos(t) \langle 2t, t^2, \arctan(t) \rangle
-                </me>.
-                Next we write <m>\vr(t)</m> as a vector-valued function with three components:
-                <me>
-                  \vr(t) = \langle 2t \sin(t), t^2 \sin(t), \arctan(t) \sin(t) \rangle
-                </me>.
-                Then we differentiate component-wise to obtain
-                <me>
-                  \frac{d}{dt} \vr(t)  = \left\langle 2\sin(t) + 2t \cos(t), 2t \sin(t) + t^2 \cos(t), \frac{1}{1+t^2} \sin(t) + \arctan(t) \cos(t) \right\rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                First we use part 5 of the theorem to calculate
-                <me>
-                  \vs'(t) = \vr'(2^t)(2^t \ln(2)) = 2^t \ln(2) \left\langle 1, \frac{1}{2^t}, 0 \right\rangle
-                </me>.
-                Next we write <m>\vs(t)</m> as a vector-valued function with three components and differentiate component-wise to obtain
-                <me>
-                  \frac{d}{dt} \langle 2^t+2, \ln(2^t), 1 \rangle = \left\langle 2^t \ln(2), \ln(2), 0 \right\rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                First we use part 3 of the theorem to calculate
-                <me>
-                  \vr'(t) = \langle -\sin(t), \cos(t), 1 \rangle \cdot \langle -\sin(t), \cos(t), 1 \rangle + \langle \cos(t), \sin(t), t \rangle \cdot \langle -\cos(t), -\sin(t), 0 \rangle
-                </me>.
-                Next we write <m>\vr(t)</m> as a vector-valued function with three components and differentiate component-wise to obtain
-                <me>
-                  \frac{d}{dt} \langle -\cos(t) \sin(t), \sin(t) \cos(t), t \rangle = \langle -(\cos^2(t)-\sin^2(t)), \cos^2(t)-\sin^2(t), 1 \rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                First we use part 4 of the theorem and see that
-                <me>
-                  \vr'(t) = \langle -\sin(t), \cos(t), 1 \rangle \times \langle -\sin(t), \cos(t), 1 \rangle + \langle \cos(t), \sin(t), t \rangle \times \langle -\cos(t), -\sin(t), 0 \rangle = \langle t \sin(t), -t\cos(t), 0 \rangle
-                </me>.
-                Next we write <m>\vr(t)</m> as a vector-valued function with three components and differentiate component-wise to obtain
-                <md>
-                  <mrow>\frac{d}{dt} \langle \sin(t)-t\cos(t), -\cos(t)-t\sin(t), 1 \rangle \amp = \langle \cos(t) - (\cos(t)-t\sin(t)), \sin(t)-(\sin(t)+t\cos(t)), 0 \rangle</mrow>
-                  <mrow>\amp = \langle t \sin(t), -t\cos(t), 0 \rangle</mrow>
-                </md>.
-              </p>
-            </li>
-          </ol>
-        </solution>
-      </exercise>
-      <exercise xml:id="Ez_9_7_2">
-        <statement>
-          <p>
-            Consider the two vector-valued functions given by
-            <me>
-              \vr(t) = \left\langle t + 1, \cos\left(\frac{\pi}{2} t\right), \frac{1}{1+t} \right\rangle
-            </me>
-            and
-            <me>
-              \vw(s) = \left\langle s^2, \sin\left(\frac{\pi}{2}s\right), s \right\rangle.
-            </me>
-            <ol marker="a.">
-              <li>
-                <p>
-                  Determine the point of intersection of the curves generated by <m>\vr(t)</m> and <m>\vw(s)</m>.  To do so, you will have to find values of <m>a</m> and <m>b</m> that result in <m>\vr(a)</m> and <m>\vw(b)</m> being the same vector.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Use the value of <m>a</m> you determined in (a) to find a vector form of the tangent line to <m>\vr(t)</m> at the point where <m>t = a</m>.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Use the value of <m>b</m> you determined in (a) to find a vector form of the tangent line to <m>\vw(s)</m> at the point where <m>s = b</m>.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Suppose that <m>z = f(x,y)</m> is a function that generates a surface in three-dimensional space, and that the curves generated by <m>\vr(t)</m> and <m>\vw(s)</m> both lie on this surface.  Note particularly that the point of intersection you found in (a) lies on this surface.  In addition, observe that the two tangent lines found in (b) and (c) both lie in the tangent plane to the surface at the point of intersection.  Use your preceding work to determine the equation of this tangent plane.
-                </p>
-              </li>
-            </ol>
-          </p>
-        </statement>
-        <solution>
-          <ol>
-            <li>
-              <p>
-                We will need to find values of <m>a</m> and <m>b</m> so that <m>a+1=b^2</m>,
-                <m>\cos\left(\frac{\pi}{2} a\right) = \sin\left(\frac{\pi}{2}b\right)</m>,
-                and <m>\frac{1}{1+a} = b</m>.
-                The first equation tells us that <m>a = b^2-1</m>.
-                Substituting into the third equation results in
-                <me>
-                  \frac{1}{1+b^2-1} = \frac{1}{b^2} = b
-                </me>.
-                This equation is satisfied when <m>b^3=1</m> or when <m>b=1</m>.
-                This makes <m>a=0</m>.
-                Note that the second equation is also satisfied when <m>a=0</m> and <m>b=1</m>.
-                So the point of intersection of the curves occurs when <m>a=0</m> and <m>b=1</m>,
-                which produces the point <m>(1, 1,1)</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                A direction vector for this tangent line will be
-                <me>
-                  \vr'(a) = \left\langle 1, -\sin\left(\frac{\pi}{2} (0)\right)\left(\frac{\pi}{2}\right), -\frac{1}{(1+0)^2} \right\rangle = \langle 1,0,-1\rangle
-                </me>.
-                So a vector form of the tangent line to <m>\vr(t)</m> at the point where <m>t = a</m> is
-                <me>
-                  \langle 1 + t, 1, 1-t \rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                A direction vector for this tangent line will be
-                <me>
-                  \vw'(b) = \left\langle 2(1), \cos\left(\frac{\pi}{2} (1)\right)\left(\frac{\pi}{2}\right), 1 \right\rangle = \langle 2,0,1\rangle
-                </me>.
-                So a vector form of the tangent line to <m>\vw(t)</m> at the point where <m>s = b</m> is
-                <me>
-                  \langle 1 + 2t, 1, 1+t \rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                A normal vector for this tangent plane will be perpendicular to the direction vectors for the two tangent lines.
-                So a normal vector for this tangent plane is
-                <me>
-                  \langle 1, 0, -1 \rangle \times \langle 2, 0, 1 \rangle = \langle 0, -3, 0 \rangle
-                </me>.
-                So the equation of the tangent plane to the surface at <m>(1,1,1)</m> is
-                <me>
-                  -3(y-1) = 0 \text{ or }  y=1
-                </me>.
-              </p>
-            </li>
-          </ol>
-        </solution>
-      </exercise>
-      <exercise xml:id="Ez_9_7_3">
-        <statement>
-          <p>
-            In this exercise, we determine the equation of a plane tangent to the surface defined by <m>f(x,y) = \sqrt{x^2+y^2}</m> at the point <m>(3,4,5)</m>.
-            <ol marker="a.">
-              <li>
-                <p>
-                  Find a parameterization for the <m>x=3</m> trace of <m>f</m>. What is a direction vector for the line tangent to this trace at the point <m>(3,4,5)</m>?
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Find a parameterization for the <m>y=4</m> trace of <m>f</m>. What is a direction vector for the line tangent to this trace at the point <m>(3,4,5)</m>?
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  The direction vectors in parts (a) and (b) form a plane containing the point <m>(3,4,5)</m>. What is a normal vector for this plane?
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Use your work in parts (a), (b), and (c) to determine an equation for the tangent plane.  Then, use appropriate technology to draw the graph of <m>f</m> and the plane you determined on the same set of axes. What do you observe? (We will discuss tangent planes in more detail in Chapter 10.)
-                </p>
-              </li>
-            </ol>
-          </p>
-        </statement>
-        <solution>
-          <ol>
-            <li>
-              <p>
-                A parameterization for the <m>x=3</m> trace of <m>f</m> is
-                <me>
-                  \langle 3, t, f(3,t) \rangle = \langle 3,t, \sqrt{t^2+9} \rangle
-                </me>.
-                A direction vector for the line tangent to this trace at the point <m>(3,4,5)</m> is
-                <me>
-                  \frac{d}{dt}\langle 3,t, \sqrt{t^2+9} \rangle\biggm|_{t=4} = \left\langle 0, 1, \frac{1}{2}\frac{2(4)}{\sqrt{4^2+9}} \right\rangle = \left\langle 0, 1, \frac{4}{5} \right\rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                A parameterization for the <m>y=4</m> trace of <m>f</m> is
-                <me>
-                  \langle t, 4, f(t,4) \rangle = \langle t,4, \sqrt{16+t^2} \rangle
-                </me>.
-                A direction vector for the line tangent to this trace at the point <m>(3,4,5)</m> is
-                <me>
-                  \frac{d}{dt}\langle t,4, \sqrt{16+t^2} \rangle\biggm|_{t=3} = \left\langle 1, 0, \frac{1}{2}\frac{2(3)}{\sqrt{16+3^2}} \right\rangle = \left\langle 1, 0, \frac{3}{5} \right\rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                A normal vector for this plane is
-                <me>
-                  \left\langle 0, 1, \frac{4}{5} \right\rangle \times \left\langle 1, 0, \frac{3}{5} \right\rangle = \left\langle \frac{3}{5}, \frac{4}{5}, -1 \right\rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                An equation for the tangent plane to the surface <m>f</m> at the point <m>(3,4,5)</m> is
-                <me>
-                  \frac{3}{5}(x-3) + \frac{4}{5}(x-4) + (-1)(z-5) = 0
-                </me>
-                or
-                <me>
-                  z=\frac{3}{5}(x-3) + \frac{4}{5}(x-4) - 5
-                </me>.
-              </p>
-            </li>
-          </ol>
-        </solution>
-      </exercise>
-      <exercise xml:id="Ez_9_7_4">
-        <statement>
-          <p>
-            For each given function <m>\vr</m>, determine <m>\int \vr(t) \ dt</m>. In addition, recalling the Fundamental Theorem of Calculus for functions of a single variable, also evaluate <m>\int_0^1 \vr(t) \ dt</m> for each given function <m>\vr</m>. Is the resulting quantity a scalar or a vector? What does it measure?
-            <ol marker="a.">
-              <li>
-                <p>
-                  <m>\vr(t) = \left\langle \cos(t), \frac{1}{t+1}, te^t \right\rangle</m>
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  <m>\vr(t) = \left\langle \cos(3t), \sin(2t), t \right\rangle</m>
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  <m>\vr(t) = \left\langle \frac{t}{1+t^2}, te^{t^2}, \frac{1}{1+t^2} \right\rangle</m>
-                </p>
-              </li>
-            </ol>
-          </p>
-        </statement>
-        <solution>
-          <ol>
-            <li>
-              <p>
-                We integrate component-wise to obtain
-                <md>
-                  <mrow>\int \vr(t) \, dt \amp = \left\langle \int \cos(t) \, dt, \int \frac{1}{t+1} \, dt, \int te^t \, dt \right\rangle</mrow>
-                  <mrow>\amp = \left\langle \sin(t),  \ln|t+1|, te^t - e^t \right\rangle + \vc</mrow>
-                </md>.
-                So
-                <md>
-                  <mrow>\int_0^1 \vr(t) \, dt \amp = \left\langle \sin(t),  \ln|t+1|, te^t - e^t \right\rangle \biggm|_0^1</mrow>
-                  <mrow>\amp = \langle \sin(1), \ln(2), 0 \rangle - \langle 0, 0, -1 \rangle</mrow>
-                  <mrow>\amp = \langle \sin(1), \ln(2), 1 \rangle</mrow>
-                </md>.
-                If <m>\vr(t)</m> represents the velocity of an object at time <m>t</m>,
-                then <m>\int_0^1 \vr(t) \ dt</m> is the total change in position of the object from time <m>t=0</m> to time <m>t=1</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                We integrate component-wise to obtain
-                <md>
-                  <mrow>\int \vr(t) \, dt \amp = \left\langle \int \cos(3t) \, dt, \int \sin(2t) \, dt, \int t \, dt \right\rangle</mrow>
-                  <mrow>\amp = \left\langle \frac{1}{3}\sin(3t), -\frac{1}{2} \cos(2t), \frac{1}{2}t^2 \right\rangle + \vc</mrow>
-                </md>.
-                So
-                <md>
-                  <mrow>\int_0^1 \vr(t) \, dt \amp = \left\langle \frac{1}{3}\sin(3t), -\frac{1}{2} \cos(2t), \frac{1}{2}t^2 \right\rangle \biggm|_0^1</mrow>
-                  <mrow>\amp = \left\langle \frac{1}{3}\sin(3), -\frac{1}{2} \cos(2), \frac{1}{2} \right\rangle - \left\langle 0, -\frac{1}{2}, 0 \right\rangle</mrow>
-                  <mrow>\amp = \left\langle \frac{1}{3}\sin(3), -\frac{1}{2} \cos(2)+\frac{1}{2}, \frac{1}{2} \right\rangle </mrow>
-                </md>.
-              </p>
-            </li>
-            <li>
-              <p>
-                We integrate component-wise to obtain
-                <md>
-                  <mrow>\int \vr(t) \, dt \amp = \left\langle \int \frac{t}{1+t^2} \, dt, \int te^{t^2} \, dt, \int \frac{1}{1+t^2} \, dt \right\rangle</mrow>
-                  <mrow>\amp = \left\langle \frac{1}{2}\ln(1+t^2), \frac{1}{2} e^{t^2}, \arctan(t) \right\rangle + \vc</mrow>
-                </md>.
-                So
-                <md>
-                  <mrow>\int_0^1 \vr(t) \, dt \amp = \left\langle \frac{1}{2}\ln(1+t^2), \frac{1}{2} e^{t^2}, \arctan(t) \right\rangle \biggm|_0^1</mrow>
-                  <mrow>\amp = \left\langle \frac{1}{2}\ln(2), \frac{1}{2} e, \arctan(1) \right\rangle - \left\langle 0, \frac{1}{2}, \arctan(0) \right\rangle</mrow>
-                  <mrow>\amp = \left\langle \frac{1}{2}\ln(2), \frac{1}{2} e - \frac{1}{2}, \frac{\pi}{4} \right\rangle</mrow>
-                </md>.
-              </p>
-            </li>
-          </ol>
-        </solution>
-      </exercise>
-      <exercise xml:id="Ez_9_7_5">
-        <statement>
-          <p>
-            In this exercise, we develop the formula for the position function of a projectile that has been launched at an initial speed of <m>|\vv_0|</m> and a launch angle of <m>\theta.</m> Recall that <m>\va(t) = \langle 0, -g \rangle</m> is the constant acceleration of the projectile at any time <m>t</m>.
-            <ol marker="a.">
-              <li>
-                <p>
-                  Find all velocity vectors for the given acceleration vector <m>\va</m>.  When you anti-differentiate, remember that there is an arbitrary constant that arises in each component.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Use the given information about initial speed and launch angle to find <m>\vv_0</m>, the initial velocity of the projectile.  You will want to write the vector in terms of its components, which will involve <m>\sin(\theta)</m> and <m>\cos(\theta)</m>.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Next, find the specific velocity vector function <m>\vv</m> for the projectile. That is, combine your work in (a) and (b) in order to determine expressions in terms of <m>|\vv_0|</m> and <m>\theta</m> for the constants that arose when integrating.
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Find all possible position vectors for the velocity vector <m>\vv(t)</m> you determined in (c).
-                </p>
-              </li>
-
-              <li>
-                <p>
-                  Let <m>\vr(t)</m> denote the position vector function for the given projectile. Use the fact that the object is fired from the position <m>(x_0, y_0)</m> to show it follows that
-                  <me>
-                    \vr(t) = \left\langle |\vv_0| \cos(\theta)t + x_0, -\frac{g}{2}t^2 + |\vv_0| \sin(\theta)t + y_0 \right\rangle.
-                  </me>
-                </p>
-              </li>
-            </ol>
-          </p>
-        </statement>
-        <solution>
-          <ol>
-            <li>
-              <p>
-                Integrating the acceleration vector gives us the family of velocity functions
-                <me>
-                  \vv(t) = \int \va(t) \, dt = \langle 0, -gt \rangle + \vc
-                </me>,
-                where <m>\vc</m> is some constant vector.
-              </p>
-            </li>
-            <li>
-              <p>
-                An application of trigonometry shows that <m>\vv_0 = \langle |\vv_0| \cos(\theta), |\vv_0| \sin(\theta) \rangle</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                Note that
-                <me>
-                  \langle |\vv_0| \cos(\theta), |\vv_0| \sin(\theta) \rangle = \vv_(0) = \langle 0, (-g)(0) \rangle + \vc
-                </me>,
-                so
-                <me>
-                  \vc = \langle |\vv_0| \cos(\theta), |\vv_0| \sin(\theta) \rangle
-                </me>.
-                Thus,
-                <me>
-                  \vv(t) =  \langle |\vv_0| \cos(\theta), -gt + |\vv_0| \sin(\theta) \rangle
-                </me>.
-              </p>
-            </li>
-            <li>
-              <p>
-                If <m>\vr</m> is the vector-valued function that gives the position of the object at time <m>t</m>, then
-                <me>
-                  \vr(t) = \int \vv(t) \, dt = \left\langle |\vv_0| \cos(\theta)t, -g\frac{t^2}{2} + |\vv_0| \sin(\theta)t \right\rangle + \vk
-                </me>,
-                where <m>\vk</m> is some constant vector.
-              </p>
-            </li>
-            <li>
-              <p>
-                Now <m>\vr(0) = \langle x_0, y_0 \rangle</m>, so we have
-                <me>
-                  \langle x_0, y_0 \rangle =  \langle |\vv_0| \cos(\theta)(0), -g\frac{0^2}{2} + |\vv_0| \sin(\theta)(0) \rangle + \vk
-                </me>
-                and
-                <me>
-                  \vk = \langle x_0, y_0 \rangle
-                </me>.
-                We conclude that
-                <me>
-                  \vr(t) = \langle |\vv_0| \cos(\theta)t + x_0, -g\frac{t^2}{2} + |\vv_0| \sin(\theta)t + y_0 \rangle
-                </me>.
-              </p>
-            </li>
-          </ol>
-        </solution>
-      </exercise>
-      <exercise xml:id="Ez_9_7_6">
-        <statement>
-          <p>
-            A <em>central force</em> is one that
-            acts on an object so that the force <m>\vF</m> is parallel to the
-            object's position <m>\vr</m>. Since Newton's Second Law says that an
-            object's acceleration is proportional to the force exerted on it,
-            the acceleration <m>\va</m> of an object moving under a central force
-            will be parallel to its position <m>\vr</m>. For instance, the Earth's
-            acceleration due to the
-            gravitational force that the sun exerts on the Earth is parallel to
-            the Earth's position vector as shown in <xref ref="F_9_7_sun">Figure</xref>.
-          </p>
-
-          <figure xml:id="F_9_7_sun">
-            <caption>A central force.</caption>
-            <image width="50%" source="images/fig_9_7_sun"/>
-          </figure>
-
-          <ol marker="a.">
-            <li>
-              <p>
-                If an object of mass <m>m</m> is moving under a central force, 
-                  the angular momentum vector is defined to be <m>\vL=m\vr\times\vv</m>.
-                  Assuming the mass is constant, show that the angular momentum is
-                  constant by showing that
-                <me>
-                  \frac{d\vL}{dt} = \vzero.
-                </me>
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Explain why <m>\vL\cdot\vr = 0</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Explain why we may conclude that the object is constrained to
-                  lie in the plane passing through the origin and perpendicular to
-                  <m>\vL</m>.
-              </p>
-            </li>
-          </ol>
-        </statement>
-        <solution>
-          <ol>
-            <li>
-              <p>
-                Since the acceleration is parallel to the position under a central force,
-                if follows that <m>\vr \times \va = \vzero</m>.
-                By the product rule we have that
-                <md>
-                  <mrow>\frac{d\vL}{dt} \amp = \frac{d}{dt} m\vr\times\vv</mrow>
-                  <mrow>\amp = (m\vr \times \vv') + (m\vr' \times \vv)</mrow>
-                  <mrow>\amp = m(\vr \times \va) + m(\vv \times \vv)</mrow>
-                  <mrow>\amp = \vzero</mrow>
-                </md>.
-                Since the derivative of <m>\vL</m> is <m>\vzero</m>,
-                it follows that <m>\vL</m> is constant.
-              </p>
-            </li>
-            <li>
-              <p>
-                Recall that the cross product of two vectors is perpendicular to both vectors,
-                so <m>\vL = m(\vr\times\vv)</m> is perpendicular to <m>\vr</m>.
-                Thus, <m>\vL\cdot\vr = 0</m>.
-              </p>
-            </li>
-            <li>
-              <p>
-                Since <m>\vL = m(\vr \times \vv)</m> is constant,
-                the position and velocity vectors lie in a single plane perpendicular to <m>\vL</m>.
-                To the objects position and motion are constrained to lie in the plane passing through the origin and perpendicular to <m>\vL</m>.
-              </p>
-            </li>
-          </ol>
-        </solution>
-      </exercise>
-    </exercises>
 </section>
