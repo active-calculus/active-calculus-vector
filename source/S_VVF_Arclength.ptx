@@ -292,274 +292,128 @@
   </task>
 </activity>
 <p>
-  I think we can move the following activity to be an exercise and reference the exercise here.
+  <xref ref="A_9_8_3" /> will apply <xref ref="def-arclength"/> and <xref ref="Length-of-a-curve" /> to get the length of a graph given by <m>y=f(x)</m>, which you may have seen in previous calculus courses.   
 </p>
-    <p>
-      We can adapt the arc length formula to curves in 2-space that define <m>y</m> as a function of <m>x</m> as the following activity shows.
-    </p>
-
-    <activity xml:id="A_9_8_3">
-      <statement> 
-      <p>
-        Let <m>y = f(x)</m> define a smooth curve in 2-space. Parameterize this curve and use Equation<nbsp/><xref ref="eq_9_8_arclength_2"/> to show that the length of the curve defined by <m>f</m> on an interval <m>[a,b]</m> is
-        <me>
-          \int_a^b \sqrt{1+[f'(t)]^2} \, dt.
-        </me>
-      </p>
-      </statement>
-      <solution>
-        <p>
-          We can parameterize <m>y=f(x)</m> on <m>[a,b]</m> by
-          <m>\vr(t) = \langle t, f(t) \rangle</m> for <m>t</m> in <m>[a,b]</m>.
-          Then the length of the curve defined by <m>y=f(x)</m> on <m>[a,b]</m> is
-          <me>
-            \int_a^b \lvert \vr'(t) \rvert \, dt =  \int_a^b \lvert \langle 1, f'(t) \rvert \, dt = \int_a^b \sqrt{1+[f'(t)]^2} \, dt
-          </me>.
-        </p>
-      </solution>
-    </activity>
-  </subsection>
-
-
-  <subsection>
-    <title>Parameterizing With Respect To Arc Length</title>
-    <p>
-      In addition to helping us to find the length of space curves, the
-      expression for the length of a curve enables us to find a natural
-      parametrization of space curves in terms of arc length, as we now
-      explain.
-    </p>
-
-    <p>
-      Shown below in <xref ref="F_9_8_parametrization">Figure</xref> is a portion of the
-      parabola <m>y = x^2/2</m>. Of course, this space curve may be parametrized by
-      the vector-valued function <m>\vr</m> defined by <m>\vr(t) = \langle t, t^2/2\rangle</m> as shown
-      on the left, where we see the location at a few different times <m>t</m>.
-      Notice that the points are not equally spaced on the curve.
-    </p>
-
-    <p>
-      A more natural parameter describing the points along the space curve
-      is the distance traveled <m>s</m> as we move along the parabola starting at
-      the origin. For instance, the right side of <xref ref="F_9_8_parametrization">Figure</xref> shows the points corresponding to various
-      values of <m>s</m>. We call this an <em>arc length parametrization</em>.
-    </p>
-
-    <figure xml:id="F_9_8_parametrization">
-      <caption>The parametrization <m>\vr(t)</m> (left) and a
-            reparametrization by arc length.</caption>
-      <image width="100%" source="images/fig_9_8_param"/>
-    </figure>
-
-    <p>
-      To see that this is a more natural parametrization, consider an
-      interstate highway cutting across a state. One way
-      to parametrize the curve defined by the highway is to drive along the
-      highway and record our position at every time, thus creating a
-      function <m>\vr</m>. If we encounter an accident or road construction,
-      however,
-      this parametrization might not be at all relevant to another person
-      driving the same highway. An arc length parametrization, however, is
-      like using the mile markers on the side of road to specify our
-      position on the highway. If we know how far we've traveled along the
-      highway, we know exactly where we are.
-    </p>
-
-    <p>
-      If we begin with a parametrization of a space curve, we can
-      modify it to find an arc length parametrization, as we now describe.
-      Suppose that the curve is parametrized by the vector-valued function
-      <m>\vr = \vr(t)</m> where <m>t</m> is in the interval <m>[a,b]</m>. We define the
-      parameter <m>s</m> through the function
-      <me>
-        s=L(t) = \int_a^t \sqrt{(x'(w))^2 + (y'(w))^2 + (z'(w))^2} \,dw,
-      </me>
-      which measures the length along the curve from <m>\vr(a)</m> to
-      <m>\vr(t)</m>.
-    </p>
-
-    <p>
-      The Fundamental Theorem of Calculus shows us that
-      <men xml:id="eq_9_8_arc_length_prime">
-        \frac{ds}{dt} =
-          L'(t)=
-          \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} = \lvert \vr'(t) \rvert
-      </men>
-      and so
-      <me>
-        L(t) = \int_a^t \left| \frac{d}{dw}\vr(w)\right| \,dw.
-      </me>
-    </p>
-
-    <p>
-      If we assume that <m>\vr'(t)</m> is never 0, then <m>L'(t) &gt; 0</m> for all <m>t</m>
-      and <m>s=L(t)</m> is always increasing. This should seem reasonable: unless we
-      stop, the distance traveled along the curve increases as we move along
-      the curve.
-    </p>
-
-    <p>
-      Since <m>s=L(t)</m> is an increasing function, it is invertible, which means
-      we may view the time <m>t</m> as a function of the distance traveled; that
-      is, we have the relationship <m>t=L^{-1}(s)</m>. We then obtain the arc length
-      parametrization by composing <m>\vr(t)</m> with <m>t=L^{-1}(s)</m> to obtain
-      <m>\vr(s)</m>. Let's illustrate this with an example.
-    </p>
-
-    <example xml:id="ex_9_8_circle_arc_length">
-        <p>
-          Consider a circle of
-          radius <m>5</m> in 2-space centered at the origin. We know that we can
-          parameterize this circle as
-          <me>
-            \vr(t) = \langle 5\cos(t), 5\sin(t) \rangle,
-          </me>
-          where <m>t</m> runs from 0 to <m>2\pi</m>.
-          We see that <m>\vr'(t) = \langle -5\sin(t), 5\cos(t) \rangle</m>, and hence
-          <m>|\vr'(t)| = 5</m>. It then follows that
-          <me>
-            s=L(t) = \int_0^t |\vr'(w)|~dw = \int_0^t 5~dw = 5t.
-          </me>
-        </p>
-
-        <p>
-          Since <m>s=L(t) = 5t</m>, we may solve for <m>t</m> in terms of <m>s</m> to obtain
-          <m>t(s)=L^{-1}(s) 
-            = s/5</m>. We then find the arc length parametrization by composing
-          <me>
-            \vr(t(s))=\vr(L^{-1}(s)) = \left\langle 5\cos\left(\frac s5\right),
-              5\sin\left(\frac s5\right)\right\rangle.
-          </me>
-        </p>
-
-        <p>
-          More generally, for a circle of radius <m>a</m> centered at the origin, a
-          similar computation shows that
-          <men xml:id="eq_9_8_circle_arc_length_parameterization">
-            \left\langle a\cos\left(\frac sa\right), a\sin\left(\frac sa\right)\right\rangle
-          </men>
-          is an arc length parametrization.
-        </p>
-    </example>
-
-    <p>
-      Notice that equation <xref ref="eq_9_8_arc_length_prime"/> shows that
-      <me>
-        \frac{d\vr}{dt} = \frac{d\vr}{ds}\frac{ds}{dt} = \frac{d\vr}{ds}\lvert \vr'(t) \rvert,
-      </me>
-      so
-      <me>
-        \left| \frac{d\vr}{ds} \right| = \left|\frac{1}{\lvert \vr'(t) \rvert}\frac{d\vr}{dt} \right| = 1,
-      </me>
-      which means that we move along the curve with unit speed when we parameterize by arc length. This is clearly seen in <xref ref="ex_9_8_circle_arc_length">Example</xref> where <m>|\vr'(s)| = 1</m>. It follows that the parameter <m>s</m>
-      is the distance traveled along the curve, as shown by:
-      <me>
-        L(s) = \int_0^s\left|\frac{d}{ds}\vr(w)\right|~dw = \int_0^s1~dw = s.
-      </me>
-    </p>
-
-    <activity xml:id="A_9_8_4">
-      <statement> 
-      <p>
-        In this activity we parameterize a
-        line in 2-space in terms of arc length. Consider the line with
-        parametric equations
-        <me>
-          x(t) = x_0+at \ \ \ \ \text{ and }  \ \ \ \ y(t) = y_0+bt.
-        </me>
-        <ol marker="a.">
-          <li>
-            <p>
-              To write <m>t</m> in terms of <m>s</m>, evaluate the integral
-              <me>
-                s=L(t) = \int_{0}^t \sqrt{(x'(w))^2 + (y'(w))^2} \, dw
-              </me>
-              to determine the length of the line from time 0 to time <m>t</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Use the formula from (a) for <m>s</m> in terms of <m>t</m> to write <m>t</m>
-                  in terms of <m>s</m>. Then explain why a parameterization of the line
-                  in terms of arc length is
-              <men xml:id="eq_9_8_line_arc_length_parameterization">
-                x(s) = x_0+\frac{a}{\sqrt{a^2+b^2}}s \ \ \ \ \text{ and }  \ \ \ \ y(s) = y_0+\frac{b}{\sqrt{a^2+b^2}}s.
-              </men>
-            </p>
-          </li>
-        </ol>
-      </p>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              The length of the line from time 0 to time <m>t</m> is
-              <md>
-                <mrow>s(t) \amp = \int_{0}^t \sqrt{(x'(w))^2 + (y'(w))^2} \, dw</mrow>
-                <mrow>\amp = \int_0^t \sqrt{a^2+b^2} \, dw</mrow>
-                <mrow>\amp = \sqrt{a^2+b^2}t</mrow>
-              </md>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We have <m>t = \frac{s}{\sqrt{a^2+b^2}}</m>,
-              and so a parameterization for the line in terms of arc length is
-              <me>
-                x(s) = x_0+\frac{a}{\sqrt{a^2+b^2}}s \ \ \ \ \text{ and }  \ \ \ \ y(s) = y_0+\frac{b}{\sqrt{a^2+b^2}}s
-              </me>.
-            </p>
-          </li>
-        </ol>
-      </solution>
-    </activity>
-
-    <p>
-      A little more complicated example is the following.
-    </p>
-
-    <example xml:id="ex_9_8_AL_curvature_ex_2">
-      <statement>
-        <p>
-          Let us parameterize the curve defined by
-          <me>
-            \vr(t) = \left\langle t^2, \frac{8}{3}t^{3/2}, 4t \right\rangle
-          </me>
-          for <m>t \geq 0</m> in terms of arc length. To write <m>t</m> in terms of <m>s</m> we find <m>s</m> in terms of <m>t</m>:
-          <md>
-            <mrow>s(t) \amp = \int_{0}^t \sqrt{(x'(w))^2 + (y'(w))^2 +(z'(w))^2} \, dw</mrow>
-            <mrow>\amp = \int_0^t \sqrt{(2w)^2 + (4w^{1/2})^2 + (4)^2} \, dw</mrow>
-            <mrow>\amp = \int_0^t \sqrt{4w^2 + 16w + 16} \, dw</mrow>
-            <mrow>\amp = 2\int_0^t \sqrt{(w+2)^2} \, dw</mrow>
-            <mrow>\amp = 2\int_0^t w+2 \, dw</mrow>
-            <mrow>\amp = \left(w^2+4w\right)\biggm|_{0}^{t}</mrow>
-            <mrow>\amp = t^2+4t.</mrow>
-          </md>
-        </p>
-
-        <p>
-          Since <m>t \geq 0</m>, we can solve the equation <m>s = t^2+4t</m> (or <m>t^2+4t-s=0</m>) for <m>t</m> to obtain <m>t = \frac{-4 +\sqrt{16+4s}}{2} = -2 + \sqrt{4+s}</m>. So we can parameterize our curve in terms of arc length by
-          <me>
-            \vr(s) = \left\langle \left(-2 + \sqrt{4+s}\right)^2, \frac{8}{3}\left(-2 + \sqrt{4+s}\right)^{3/2}, 4\left(-2 + \sqrt{4+s}\right) \right\rangle.
-          </me>
-        </p>
-      </statement>
-    </example>
-
-    <p>
-      These examples illustrate a general method. Of course, evaluating an
-      arc length integral and finding a formula for the
-      inverse of a function can be difficult, so while this process is
-      theoretically possible, it is not always practical to parameterize a
-      curve in terms of arc length. However, we can guarantee that such a
-      parameterization exists, and this observation plays an important role
-      in the next section.
-    </p>
+</subsection>
+<subsection>
+  <title>Traveling with Unit Speed</title>
+  <p>
+    In <xref ref="A_9_8_1" />, you looked at parameterizations of a circle and a helix that traveled with constant speed. This made the calculation of arc length in each case much easier and since there is not one parameterization for a curve, you may be wondering if it is possible to create a parameterization for each curve that moves with constant speed. The answer is YES but in practice this parameterization might be difficult to write out algebraically. 
+  </p>
     
+  <p>  
+    Before we dig into the details of this constant speed parameterization, we will make our lives even easier by trying find a parameterization that describes traveling on our curve with unit speed; In other words, we want to find a parameterization of our curve, <m>\vr(t)</m>, that has speed one for all time, <m>\Vert \vr'(t) \Vert=1</m>. If you are always moving with speed one, then the distance traveled IS the time ellapsed. If you walk at exactly 1 meter per second for 47 seconds, how far have you gone? If you walk at exactly 1 meter per second, how long will it take you to travel 47 meters? The answer to both is 47 (the units are different...) Remember that we do not have to walk in a straight line (constant direction) to keep our speed constant.
+  </p>
+  <example>
     <p>
-      In the next activity, we will look at several measurements as we consider race car drivers completing one lap around the track seen in <xref ref="racetrack_plot">Figure</xref>.
+      In this example, we look a few simple paths and how to write a parameterization that moves with unit speed. For our first path, we will consider the linear path given by starting at the point <m>(x_0,y_0,z_0)</m> when <m>t=a</m> and going to the point <m>(x_1,y_1,z_1)</m> when <m>t=b</m>. This line will be described by the parameterization <m>\vr(t) = \langle x_0+\frac{t-a}{b-a}(x_1-x_0),y_0+\frac{t-a}{b-a}(y_1-y_0),z_0+\frac{t-a}{b-a}(z_1-z_0) \rangle </m>. This parameterization will have speed 
+      <me>\Vert \vr'(t)\Vert = \sqrt{(\frac{x_1-x_0}{b-a})^2+(\frac{y_1-y_0}{b-a})^2+(\frac{z_1-z_0}{b-a})^2} </me>
+      Note that the speed of this parameterization is constant, so for simplicity we will call this constant speed <m>v_{line}</m>.
+    </p>
+    <p>
+      In order to change this parameterization to move with speed 1, we will need to travel <m>v_{line}</m> times slower, which can be accomplished by replacing <m>t</m> in our parameterization with <m>\frac{t}{v_{line}}</m>. In other words, we adjusted the parameter used to make sure the speed with respect to new parameter will be one. This adjustment was easy to do because the amount we needed to change the parameter did not change at different times.
+    </p>
+    <p>
+      Algebraically, we can characterize this change by thinking of <m>\vr(u)</m> as the <q>old</q> parameterization with parameter <m>u</m> and we are looking to replace <m>u</m> with some function <m>\alpha(t)</m> so that <m>\Vert \vr'(t)\Vert=1</m> for all <m>t</m>. In our linear path case, our choice of <m>\alpha(t) = \frac{t}{v_{line}}</m> meant that applying the chain rule to <m>\Vert \vr'(t)\Vert</m> gives
+      <me>\Vert \vr(\alpha(t)) \Vert= \left\Vert \frac{d\vr}{du}\right\Vert \left\vert\frac{d\alpha}{dt}\right\vert=v_{line} \frac{1}{v_{line}} =1</me>
+    </p>
+  </example>
+  <p>
+    The left part of the equation at the end of the previous example shows the big idea needed to find our unit speed parameterization; Specifically, we will need to pick our <m>\alpha(t)</m> transformation to satisfy 
+    <me> \left\Vert \frac{d\vr}{du}\right\Vert \left\vert\frac{d\alpha}{dt}\right\vert =1</me>
+    and this is algebraically <alert>VERY</alert> difficult to write out in closed form but will be possible because arclength traveled as a function of your parameter cannot decrease. If we graph the parameter versus arclength traveled, we get a graph that passes the horizontal line test and is thus invertible. An example of this kind of plot is shown in <xref ref="arclengthplot" />.
+  </p>
+  <figure xml:id="arclengthplot">
+    <caption>A plot of the arclength traveled as a function of the parameter value to that point for <m>\vr(t)=\langle 3t\cos(4t)\sin(3-2t),t-\cos(2+t)\rangle</m></caption>
+    <image width="80%" label="line-arclengthplot"> <!--source="/line_int_defn3"-->
+      <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m></p></description>
+      <sageplot>
+        var('t,x')
+        r2(t)=(3*t*cos(4*t)*sin(3-2*t),t-cos(2+t))
+        speed(t)=norm(diff(r2,t))
+        points=[]
+        ps=0
+        N=500
+        for i in range(1,N):
+          a=i/N*5
+          ns=n(speed(a)*5/N+ps)
+          points.append([a,ns])
+          ps=ns
+        plot4=scatter_plot(points,markersize=2,axes_labels=["$t$","Arclength"])
+        plot4
+      </sageplot>
+    </image>
+  </figure>
+  <p>
+    In the next example, we will work through the details of finding this transformation of a parameterization with variable speed into one that has unit speed.
+  </p>
+  <example>
+    <p>
+      In this example, we will consider the curve <m>C</m> parameterized by
+        <me>
+          \vr(t) = \left\langle t^2, \frac{8}{3}t^{3/2}, 4t \right\rangle
+        </me>
+        for <m>t \geq 0</m>. Our goal is to give a parameterization of <m>C</m> that has unit speed. Our first step is to find the speed of our parameterization, so 
+        <md>
+          <mrow>\Vert \vr'(t)\Vert \amp =  \sqrt{(x'(t))^2 + (y'(t))^2 +(z'(t))^2} </mrow>
+          <mrow>\amp =  \sqrt{(2t)^2 + (4t^{1/2})^2 + (4)^2} </mrow>
+          <mrow>\amp =  \sqrt{4t^2 + 16t + 16} </mrow>
+          <mrow>\amp =  \sqrt{(2t+4)^2} </mrow>
+          <mrow>\amp = 2t+4 </mrow>
+        </md>
+        An important element of this example is that our speed is not constant but still algebraically easy enough to work with for later calculations. Note that because we have stated that <m>t\gt 0</m> we only need to consider the positive branch of the square root calculation. 
+    </p>
+    <p>
+      Next, we will calculate <m>s(x)</m>, the arclength traveled from <m>t=0</m> to <m>t=a</m> along the curve <m>C</m> in order to help us figure out how to transform our parameterization into one with unit speed. We can use <xref ref="Length-of-a-curve" /> to get the following for our arclength calculation:
+      <md>
+        <mrow>s(a) \amp = \int_{0}^a \sqrt{(x'(t))^2 + (y'(t))^2 +(z'(t))^2} \, dt</mrow>
+        <mrow>\amp = 2\int_0^a t+2 \, dt</mrow>
+        <mrow>\amp = \left(t^2+4t\right)\biggm|_{0}^{a}</mrow>
+        <mrow>\amp = a^2+4a</mrow>
+      </md>
+      So the arclength traveled from <m>t=0</m> to <m>t=a</m> along the curve <m>C</m> is <m>a^2+4a</m>. It is important to remember at this point that we want to transform our parameterization to have unit speed, which will mean that the arclength and the parameter will be the same value as we move along the curve. This means that we want a function that takes an input of arclength along the curve <m>C</m> and outputs the time at which our original parameter reaches that location. In other words, we want the inverse function of <m>s(a)=a^2+4a</m> because <m>s(a)</m> gives the arclength that corresponds to the parameter value <m>a</m>. Since <m>t \geq 0</m>, we can solve the equation <m>s = a^2+4a</m> (or <m>a^2+4a-s=0</m>) for <m>a</m> to obtain <m>a = \frac{-4 +\sqrt{16+4s}}{2} = -2 + \sqrt{4+s}</m>. Note again that by restricting to positive parameter values, we only need to consider one branch of our solutions. 
+    </p>
+    <p>
+       Let's slow down and make sure we understand our two functions and their composition. The original parameterization <m>\vr(t)</m> has inputs of parameter values and outputs corresponding to locations on our curve <m>C</m>. Our function <m>a(s)</m> has inputs that are arclengths (specifically, the arclength traveled from <m>t=0</m> to <m>t=a</m> along the curve <m>C</m>) and outputs corresponding to the parameter values (of the original parameterization).  
+    </p>
+    <p>
+      We can now do a composition of our result of <m>a=-2+\sqrt{4+s}</m> with the original parameterization to get our unit speed parameterization; specifically, we claim that <m>\vr(a(s))</m> will be a unit speed parameterization. Remember that a unit speed parameterization of a curve is equivalent to idea that the <q>time elapsed = arclength traveled</q>, which is exactly <m>\vr(a(s))</m> because the parameter being used is the amount of arclength being traveled. The composition <m>\vr(a(s))</m> will have an input of arclength traveled as it's parameter and the <q>inner</q> function, <m>a(s)</m>, will output the parameter value (of the original parameterization) where that arclength is achieved. Thus <m>\vr(a(s))</m> will output the location on <m>C</m> where an arclength of <m>s</m> will be achieved. 
+    </p>
+    <p>
+      You may be a bit overwhelmed by the previous paragraphs conceptually, so let's go back to the algebra of our problem. For our example, the composition <m>\vr(a(s))</m> will give the following as the unit speed parameterization. 
+      <me>\vr_{new}(s)=\left\langle \left(-2 + \sqrt{4+s}\right)^2, \frac{8}{3}\left(-2 + \sqrt{4+s}\right)^{3/2}, 4\left(-2 + \sqrt{4+s}\right) \right\rangle</me>
+      If we are diligent and persistent with our calculations, we can show that <m>\Vert \vr_{new}' \Vert=1</m>.
+      <md>
+        <mrow> \Vert \vr_{new}' \Vert =\amp \Vert \left\langle 2(-2+\sqrt{4+s})\frac{1/2}{\sqrt{4+s}} \right.</mrow>
+        <mrow>  \amp \quad \quad \left. , \frac{8}{3}\left(\frac{3}{2}\left(-2+\sqrt{4+s}\right)^{1/2}\left(\frac{1/2}{\sqrt{4+s}}\right)\right) ,  4 \frac{1/2}{\sqrt{4+s}} \right\rangle</mrow>
+        <mrow> =\amp \left\Vert \frac{1}{\sqrt{4+s}} \left\langle -2+\sqrt{4+s},2\sqrt{-2+\sqrt{4+s}},2 \right\rangle \right\Vert</mrow>
+        <mrow> =\amp \sqrt{\frac{1}{\sqrt{4+s}}\left( \left(-2+\sqrt{4+s}\right)^2+\left(2\sqrt{-2+\sqrt{4+s}}\right)^2+(2)^2 \right)} </mrow>
+        <mrow> =\amp \sqrt{\frac{1}{\sqrt{4+s}}\left( (-2+\sqrt{4+s})+2\right)^2} </mrow>
+        <mrow> =\amp \sqrt{\frac{4+s}{4+s}} = 1</mrow>
+      </md>
+    </p>
+    <p>
+      The crucial step in our work (algebraically and conceptually) was the inverse function of <m>s(a)</m> which was relatively simple for this example. In general, this can be very difficult to write out explicitly.
+    </p>
+  </example>
+  <p>
+    The example above shows how to convert a parameterization to one that has unit speed. Key to this was understanding that distance along the curve is not the same as the parameter being used (in general). If we consider the curve defined by the parabola <m>y = x^2/2</m> with <m>x\in[0,2]</m>, then we can parameterize this curve by <m>\vr(t) = \langle t, t^2/2\rangle</m> for <m>t\in[0,2]</m>. We can plot equally spaced points in our parameter and equally spaced points in arclength to see th
+  </p>
+  <figure xml:id="F_9_8_parametrization">
+    <caption>A plot of <m>y = x^2/2</m> with <m>x\in[0,2]</m> with points equally spaced in the parameter value (on left) and in arclength (on right)</caption>
+    <image width="100%" source="images/fig_9_8_param"/>
+  </figure>
+  <p>
+    In many ways, a parameterization with unit speed is a more natural parametrization. Consider an interstate highway cutting across a state. One way to parametrize the curve defined by the highway is to drive along the highway and record our position at every time, thus creating a function <m>\vr</m>. If we encounter an accident or road construction, however, this parametrization might not be at all relevant to another person driving the same highway. A parameterization using unit speed is like using the mile markers on the side of road to specify our position on the highway. If we know how far we've traveled along the highway, we know exactly where we are. Another way to think about this is that by driving at exactly one mile per hour, we can put mile markers down every hour.
+    </p>
+    <p>
+      These examples illustrate a general method. Of course, evaluating an arc length integral and finding a formula for the inverse of a function can be difficult, so while this process is theoretically possible, it is not always practical to parameterize a curve in terms of arc length. However, we can guarantee that such a parameterization exists, and this observation plays an important role in the next section.
+    </p>
+  </subsection>
+  <subsection xml:id="driverroad">
+    <title>The Driver or The Road?</title>
+    <p>
+      In the next activity, we will look at several measurements as we consider different drivers completing one lap around the track seen in <xref ref="racetrack_plot">Figure</xref>.
     </p>
     <figure xml:id="racetrack_plot">
       <caption>A plot of the racetrack with scale in meters</caption>
@@ -569,7 +423,7 @@
       </sidebyside>
     </figure>
       <p>
-        All of the drivers in our race are going the same way around the track, all start at the same location at <m>t=0</m>, all complete one lap of the track, and all of the cars have perfect grip of the road (the race cars are never sliding). The picture of the racetrack above is given so you have an example to help you think about the tasks in this problem, not because any particular feature of the track needs to be considered for the following activity.
+        All of the drivers are going the same way around the track, all start at the same location at <m>t=0</m>, all complete one lap of the track, and all of the cars have perfect grip of the road (the race cars are never sliding). The picture of the racetrack above is given so you have an example to help you think about the tasks in this problem, not because any particular feature of the track needs to be considered for the following activity.
       </p>
     <activity xml:id="driver_road_act">
       <title>Is it a property of the driver or the road?</title>
@@ -585,7 +439,7 @@
           </p>
         </statement>
         <hint>
-          Remember that we are NOT asking if the driver or road can control time. We are asking if the elapsed time is the same for all drivers at a fixed point on the racetrack or if drivers can have a different elapsed time to a particular location on the racetrack.
+          <p>Remember that we are NOT asking if the driver or road can control time. We are asking if the elapsed time is the same for all drivers at a fixed point on the racetrack or if drivers can have a different elapsed time to a particular location on the racetrack.</p>
         </hint>
       </task>
       <task>
@@ -648,16 +502,7 @@
 
       <li>
         <p>
-          Arc length is useful as a parameter because when we parameterize with respect to arc length, we eliminate the role of speed in our calculation of curvature and the result is a measure that depends only on the geometry of the curve and not on the parameterization of the curve.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          We define the curvature <m>\kappa</m> of a curve in 2- or 3-space to be the rate of change of the magnitude of the unit tangent vector with respect to arc length, or
-          <me>
-            \kappa = \left\lvert \frac{d\vT}{ds} \right\rvert.
-          </me>
+          A parameterization with unit speed is useful because when we move with unit speed our parameter is the same as the arclength traveled to that point.
         </p>
       </li>
     </ul>
