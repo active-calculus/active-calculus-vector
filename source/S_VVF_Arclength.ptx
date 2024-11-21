@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- **********************************************************************-->
-<!-- Copyright 2013-2018                                                   -->
-<!-- Steven Schlicker                                                      -->
+<!-- Copyright 2013-2024                                                   -->
+<!-- Nicholas Long, Mitchel Keller, Steven Schlicker                       -->
 <!--                                                                       -->
 <!-- This file is part of Active Calculus Multivariable.                   -->
 <!--                                                                       -->
@@ -178,7 +178,7 @@
   </p>
   <figure xml:id="arclengthinteract">
     <caption>A plot of curve in space</caption>
-    <interactive label="interactive-arclength1" platform="sage" width="125%" aspect="1:1">
+    <interactive label="interactive-arclength1" platform="sage" width="100%" aspect="1:1">
       <slate surface="sage">
         @interact
         def arclengthdemo(n=slider(1,25,1,default=1,label="Number of Segments")):
@@ -206,20 +206,20 @@
       <mrow> L \approx\amp \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2} \frac{\Delta t}{\Delta t}</mrow>
       <mrow>   \approx\amp \sum_{i=1}^{n} \sqrt{(\frac{\Delta x_i}{\Delta t})^2 + (\frac{\Delta y_i}{\Delta t})^2 + (\frac{\Delta z_i}{\Delta t})^2} \ \Delta t</mrow>
     </md>
-    This give use the second task in our classic calculus approach (quantify how the approximation changes over a refinement) and this formats our approximation as a Riemann sum. In particular, our approximation is a Riemann sum of the function <m>\sqrt{(\frac{\Delta x_i}{\Delta t})^2 + (\frac{\Delta y_i}{\Delta t})^2 + (\frac{\Delta z_i}{\Delta t})^2}</m> which will simplify greatly when we look at this function as <m>\Delta t</m> goes to 0. Because
+    This accomplishes the second task in our classic calculus approach (quantify how the approximation changes over a refinement) and formats our approximation as a Riemann sum. In particular, our approximation is a Riemann sum of the function <m>\sqrt{(\frac{\Delta x_i}{\Delta t})^2 + (\frac{\Delta y_i}{\Delta t})^2 + (\frac{\Delta z_i}{\Delta t})^2}</m> which will simplify greatly when we look at this function as <m>\Delta t</m> goes to 0. Looking at how the limit will apply to each term in the square root separately, we can see
     <md>
       <mrow> x'(t) \amp= \lim_{\Delta t \to 0} \frac{x(t_i) - x(t_{i-1})}{\Delta t},</mrow> 
       <mrow> y'(t) \amp= \lim_{\Delta t \to 0} \frac{y(t_i) - y(t_{i-1})}{\Delta t}, \ \text{ and }  </mrow>
       <mrow> z'(t) \amp= \lim_{\Delta t \to 0} \frac{z(t_i) - z(t_{i-1})}{\Delta t}, </mrow> 
     </md>
-    the function we are evaluating in our Riemann sum becomes 
+    and the function we are evaluating in our Riemann sum becomes 
     <me> \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} </me> 
     as <m>\Delta t \rightarrow 0</m> or <m>n\rightarrow \infty</m>. Thus the limit of the Riemann sum from <xref ref="def-arclength" >our definition of arc length</xref> gives a definite integral
     <md>
       <mrow> \lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2} =\amp \sum_{i=1}^{n} \sqrt{(\frac{\Delta x_i}{\Delta t})^2 + (\frac{\Delta y_i}{\Delta t})^2 + (\frac{\Delta z_i}{\Delta t})^2} \ \Delta t</mrow>
       <mrow> =\amp \int_a^b  \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} \ dt </mrow>
     </md>
-    The following theorem summarizes how  our definition of arc length can be evaluated as a definite integral based on the 
+    The following theorem summarizes how our definition of arc length can be evaluated as a definite integral using a parameterization.
   </p>
   <theorem xml:id="Length-of-a-curve">
     <title>The length of a curve</title>
@@ -304,7 +304,7 @@
   <p>  
     Before we dig into the details of this constant speed parameterization, we will make our lives even easier by trying find a parameterization that describes traveling along our curve with unit speed; In other words, we want to find a parameterization of our curve, <m>\vr(t)</m>, that has speed one for all time, <m>\Vert \vr'(t) \Vert=1</m>. If you are always moving with speed one, then the distance traveled IS the time elapsed. If you walk at exactly 1 meter per second for 47 seconds, how far have you gone? If you walk at exactly 1 meter per second, how long will it take you to travel 47 meters? The answer to both is 47 (the units are different...) Remember that we do not have to walk in a straight line (constant direction) to keep our speed constant.
   </p>
-  <example>
+  <example xml:id="linearclength">
     <p>
       In this example, we look a few simple paths and how to write a parameterization that moves with unit speed. For our first path, we will consider the linear path given by starting at the point <m>(x_0,y_0,z_0)</m> when <m>t=a</m> and going to the point <m>(x_1,y_1,z_1)</m> when <m>t=b</m>. This line will be described by the parameterization <m>\vr(t) = \langle x_0+\frac{t-a}{b-a}(x_1-x_0),y_0+\frac{t-a}{b-a}(y_1-y_0),z_0+\frac{t-a}{b-a}(z_1-z_0) \rangle </m>. This parameterization will have speed 
       <me>\Vert \vr'(t)\Vert = \sqrt{(\frac{x_1-x_0}{b-a})^2+(\frac{y_1-y_0}{b-a})^2+(\frac{z_1-z_0}{b-a})^2} </me>
@@ -318,7 +318,7 @@
       <me>\Vert \vr(\alpha(t)) \Vert= \left\Vert \frac{d\vr}{du}\right\Vert \left\vert\frac{d\alpha}{dt}\right\vert=v_{line} \frac{1}{v_{line}} =1</me>
     </p>
   </example>
-  <p>
+  <p xml:id="coordchangetounitspeed">
     The left part of the equation at the end of the previous example shows the big idea needed to find our unit speed parameterization; Specifically, we will need to pick our <m>\alpha(t)</m> transformation to satisfy 
     <me> \left\Vert \frac{d\vr}{du}\right\Vert \left\vert\frac{d\alpha}{dt}\right\vert =1</me>
     and this is algebraically <alert>VERY</alert> difficult to write out in closed form but will be possible because the arclength traveled as a function of your parameter cannot decrease. If we graph the parameter versus arclength traveled, we get a graph that passes the horizontal line test and is thus invertible. An example of this kind of plot is shown in <xref ref="arclengthplot" />. 
