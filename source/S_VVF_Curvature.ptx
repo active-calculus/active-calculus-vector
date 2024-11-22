@@ -289,7 +289,7 @@
         <p>
           We can write <m>\vT</m> as a function of the parameter <m>t</m> by the composition <m>\vT(t)=\vT(s(t))</m>. Taking the derivative of this composition with respect to <m>t</m> will utilize a chain rule argument.
           <me>
-            \frac{d\vT}{dt}=\frac{d}{dt}\left(\vT(s(t)))=\frac{d\vT}{ds} \frac{ds}{dt}
+            \frac{d\vT}{dt}=\frac{d}{dt}\left(\vT(s(t))\right)=\frac{d\vT}{ds} \frac{ds}{dt}
           </me>
           Note here that <m>\frac{d\vT}{dt}=\vT'</m> is the same derivative of <m>\vT</m> we have seen a few times. 
         </p>
@@ -305,42 +305,105 @@
           If this chain rule argument seems a little technical to you, there is a nice conceptual interpretation of the equation above. Specifically, if we want to convert a measurement like curvature or the derivative of <m>\vT</m> between the unit speed parameterization and any other parameterization, we literally need to adjust by the speed. <xref ref="eqn-curv"/> shows that the adjustment between the derivative of <m>\vT</m> with respect to the unit speed parameter and another parameter is to divide by the variable speed. 
         </p>
         <p>
-          We omit the proof of <xref ref="ec-curv"/> because the argument involves a lot of technical algebraic ideas that do not offer a lot of insight into what is measured by curvature.
+          We omit the proof of <xref ref="ec-curv"/> because the argument involves a lot of technical algebraic ideas that do not offer a lot of insight into what is measured by curvature. <xref ref="Ez_9_8_5" /> will guide you through this calculation if you are interested in these ideas.
         </p>
       </proof>
     </theorem>
     <p>
-      Before we do our activity that calculates curvature for a few other examples, we will take a moment to use <xref ref="ec-curv"/> to make sense of when curvature will not be defined or make sense. From algebraic perspective, the curvature will not be defined when the speed is zero. This should make sense by the fact that if you are not moving along the curve (speed is zero), then it does not make sense to measure how quickly the curve is turning. In <xref ref="S-VVF-Splitting-Acceleration" />, we will make sense of why <m>\Vert \vv(t) \times \va(t) \Vert</m> being zero means that there will be zero curvature (which is very different than the curvature being undefined.)
+      Before we do our example and activity that calculate curvature for a few other examples, we will take a moment to use <xref ref="ec-curv"/> to make sense of when curvature will not be defined or make sense. From algebraic perspective, the curvature will not be defined when the speed is zero. This should make sense by the fact that if you are not moving along the curve (speed is zero), then it does not make sense to measure how quickly the curve is turning. In <xref ref="S-VVF-Spliting-Acceleration" />, we will make sense of why <m>\Vert \vv(t) \times \va(t) \Vert</m> being zero means that there will be zero curvature (which is very different than the curvature being undefined.)
     </p>
-    
-    <activity xml:id="A_9_8_6">
-      <statement>
+    <example>
       <p>
-        Use one of the two formulas for <m>\kappa</m> in terms of <m>t</m> to help you answer the following questions.
-        <ol marker="a.">
-          <li>
-            <p>
-              The ellipse <m>\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1</m> has parameterization
+        In this example, we will calculate the curvature of the parabola given by <m>y=x^2</m> for <m>-2 \lt x \lt 2</m>. We will parameterize this curve in three dimensions so that we can use <xref ref="ec-curv" /> (cross product is defined in 3D only). Let <m>\vr(t)=\langle t,t^2,0\rangle</m> with <m>t\in[-2,2]</m>. 
+      </p>
+      <figure xml:id="paracurv1">
+        <caption> A plot of <m>y=x^2</m> with points <m>(0,0)</m> and <m>(-\frac{3}{2},\frac{9}{4})</m></caption>
+        <image width="55%" xml:id="img-paracurv1">
+          <description><p>A 2D curve with points </p></description>
+          <sageplot>
+            var('t,x')
+            plot4=plot(x^2, (x,-2,2),aspect_ratio=1,gridlines=True,color="black",thickness=2)
+            plot4+=point((0,0),size=30,color="black",xmin=-2,xmax=2,ymin=-0.5,ymax=4)
+            plot4+=point((-1.5,9/4),size=30,color="black",xmin=-2,xmax=2,ymin=-0.5,ymax=4)
+            plot4
+          </sageplot>
+        </image>
+      </figure>
+      <p>  
+        Using this parameterization, we get the following set of results:
+        <md>
+          <mrow>\vr'(t)=\vv(t) \amp=\langle1,2t,0\rangle </mrow>
+          <mrow>\vr''(t)=\va(t) \amp=\langle0,2,0\rangle </mrow>
+          <mrow>\vv(t)\times\va(t) \amp=\langle0,0,2\rangle </mrow>
+          <mrow>\Vert\vv(t)\times\va(t)\Vert \amp=2 </mrow>
+          <mrow>\Vert\vv(t)\Vert \amp=\sqrt{1=4t^2} </mrow>
+        </md>
+        Using <xref ref="ec-curv" />, we get the curvature to be
+        <me>
+          \kappa(t) = \frac{\Vert \vv(t) \times \va(t) \Vert}{\Vert \vv(t) \Vert^3} = \frac{2}{(1+4t^2)^{3/2}}
+        </me>
+      </p>
+      <p>
+        Comparing the points <m>(0,0)</m> and <m>(-\frac{3}{2},\frac{9}{4})</m> on <xref ref="paracurv1" />, you can see that the parabola will have a larger curvature at <m>(0,0)</m> because the path is bending much more at <m>(0,0)</m> than at <m>(-\frac{3}{2},\frac{9}{4})</m>. Using our result above, we can see that the curvature at <m>(0,0)\Rightarrow t=0</m> is <m>\kappa(0)=2</m> and the curvature at <m>(-\frac{3}{2},\frac{9}{4})\Rightarrow t=-\frac{3}{2}</m> is <m>\kappa(\frac{3}{2})=\frac{2}{(5)^{3/2}}\approx0.1789</m>. This calculation of the curvature will match up with our geometric meaning.
+      </p>
+      <p>
+        We can also think of the curvature as a function of the parameter we used (in our case <m>t=x</m>.) A plot of <m>\kappa(t) = \frac{2}{(1+4t^2)^{3/2}}</m> as a function of <m>x</m> is shown in <xref ref="curvparabola"/>. You can see that the curvature is highest near the vertex of the parabola and the curvature gets closer to zero as you look farther up the parabola. This should make sense because the parabola is <q>flatter</q> away from the origin.
+      </p>
+      <figure xml:id="curvparabola">
+        <caption> A plot of the curvature of <m>y=x^2</m> as a function of <m>x</m></caption>
+        <image width="55%" xml:id="img-curvparabola">
+          <description><p>A 2D curve with points </p></description>
+          <sageplot>
+            var('t,x')
+            plot5=plot(2/(1+4*x^2)^(3/2), (x,-2,2),aspect_ratio=1,gridlines=True,color="black",thickness=2)
+            plot5
+          </sageplot>
+        </image>
+      </figure>
+      <p>
+        Suppose you were driving along the path given by <m>y=x^2</m> at unit speed and your steering wheel locked up and prevented you from changing how you were turning at the instant <m>t=0</m>. Because the steering wheel is held fixed, you will no longer stay on the path given by <m>y=x^2</m> but instead will drive in a circle. What do you think the radius of the circle will be?
+      </p>
+      <p>
+        It turns out that the radius of this circle will be <m>\frac{1}{\kappa(0)}=\frac{1}{2}</m>! This shouldn't be too surprising because in <xref ref="A_9_8_5"/>, we saw that the curvature of a circle of radius <m>R</m> is <m>\frac{1}{R}</m>. In general, the <term>radius of curvature</term> is <m>\frac{1}{\kappa}</m> and the circle that is tangent to the curve and has radius <m>\frac{1}{\kappa}</m> is called the <term>osculating circle</term>. The osculating circle can be described as the circle that best approximates the curve at the tangent point since the osculating circle goes through the tangent point and has the same curvature. 
+      </p>
+      <p>  
+        In <xref ref="paracurv2" />, you can see a plot of the path with the osculating circle drawn at a particular point. You can use the slider to change the parameter value at which the osculating circle is drawn. You should notice how the radius of the circle becomes much larger as you move farther away from the vertex in either direction. Remember that curvature and the radius of curvature have an reciprical relationship; large curvature means small radius and small curvature means a large radius. 
+      </p>
+      <figure xml:id="paracurv2">
+        <caption>A plot of <m>y=x^2</m> with the osculating circle drawn tangent to the curve</caption>
+        <interactive label="interactive-paracurv2" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            var('s,t,x')
+            @interact
+            def paracurv(a=slider(-2,2,1/10,default=0,display_value=False,label="Parameter Value")):
+              plot6=plot(x^2, (x,-2,2),aspect_ratio=1,gridlines=True,color="black",thickness=2)
+              plot6+=point((a,a^2),size=30,color="black",xmin=-2,xmax=2,ymin=-0.5,ymax=4)
+              k(s)=2/(1+4*s^2)^(3/2)
+              plot6+=parametric_plot((cos(t)/k(a)-2*a/k(a)/(1+4*a^2)^(1/2)+a,sin(t)/k(a)+1/(1+4*a^2)^(1/2)/k(a)+a^2),(t,0,2*pi),color="blue",thickness=2,zorder=3)
+              show(plot6)
+          </slate>
+        </interactive>
+      </figure>
+    </example>
+    <activity xml:id="A_9_8_6">
+      <introduction>
+        <p>
+          In this activity, we will calculate the curvature for an ellipse and a helix, then make sense of these results in terms of their graphs. 
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            The ellipse <m>\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1</m> has parameterization
               <me>
                 \vr(t) = \langle a\cos(t), b\sin(t) \rangle.
               </me>
-              Find the curvature of the ellipse. Assuming <m>0 \lt  b \lt  a</m>, at what points is the curvature the greatest and at what points is the curvature the smallest? Does this agree with your intuition?
-            </p>
-          </li>
-
-          <li>
-            <p>
-              The standard helix has parameterization <m>\vr(t) = \cos(t) \vi + \sin(t) \vj + t \vk</m>.  Find the curvature of the helix.  Does the result agree with your intuition?
-            </p>
-          </li>
-        </ol>
-      </p>
-      </statement>
-      <solution>
-        <ol>
-          <li>
-            <p>
-              We have
+              Find the curvature of the ellipse using this parameterization.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            We have
               <me>
                 \vT(t) = \left\langle -\frac{a\sin(t)}{\sqrt{a^2\sin^2(t) + b^2\cos^2(t)}}, \frac{b\cos(t)}{\sqrt{a^2\sin^2(t) + b^2\cos^2(t)}} \right\rangle
               </me>
@@ -354,7 +417,18 @@
                 <mrow>\amp = \frac{ab}{\left(a^2\sin^2(t) + b^2\cos^2(t)\right)^2} \sqrt{b^2\cos^(t) + a^2\sin^2(t)}</mrow>
                 <mrow>\amp = \frac{ab}{\left(a^2\sin^2(t) + b^2\cos^2(t)\right)^{3/2}}</mrow>
               </md>.
-              If we assume that <m>0 \lt  b \lt  a</m>,
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Plot the ellipse given by <m>\frac{x^2}{4} + \frac{y^2}{1} = 1</m>. Use your result from the previous task (with <m>a=2</m> and <m>b=1</m>) to compare the curvature at the extreme points on this ellipse. Write a few sentences that describes which points on the ellipse with have the largest curvature (in terms of both your plot and your calculation). Additionally, describe which points on the ellipse with have the smallest curvature (in terms of both your plot and your calculation).
+          </p>
+        </statement>
+        <solution>
+          <p>
+            If we assume that <m>0 \lt  b \lt  a</m>,
               then we should expect that ellipse to have the largest curvature at the points
               <m>(\pm a, 0)</m> and the smallest at the points <m>(0, \pm b)</m>
               (when <m>t = \frac{\pi}{2} + \pi k</m> for some integer <m>k</m>).
@@ -368,11 +442,18 @@
               Similarly, the curvature of the ellipse is smallest when the denominator is largest,
               or when <m>t = \frac{\pi}{2}</m> and <m>t = \frac{3\pi}{2}</m>.
               These <m>t</m> values correspond to the points <m>(0, \pm b)</m> as expected.
-            </p>
-          </li>
-          <li>
-            <p>
-              Here we have
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            The standard helix has parameterization <m>\vr(t) = \cos(t) \vi + \sin(t) \vj + t \vk</m>.  Find the curvature of the helix using this parameterization.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            Here we have
               <me>
                 \vr'(t) = (-\sin(t)) \vi + \cos(t) \vj + \vk
               </me>
@@ -387,53 +468,59 @@
               and so
               <me>
                 \kappa(t) = \frac{1}{2}
-              </me>.
-            </p>
-          </li>
-        </ol>
-      </solution>
+              </me>
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Write a few sentences to describe why the curvature of the helix given above is constant. You may want to include a plot of the curve. 
+          </p>
+        </statement>
+      </task>
     </activity>
-
-    <p>
-      The curvature has another interpretation. Recall that the tangent line to a curve at a point is the line that best approximates the curve at that point. The curvature at a point on a curve describes the <em>circle</em> that best approximates the curve at that point. Remembering that a circle of radius <m>a</m> has curvature <m>1/a</m>, then the
-      circle that best approximates the curve near a point on a curve whose curvature is <m>\kappa</m> has radius <m>1/\kappa</m> and will be tangent to the tangent line at that point and has its center on the concave side of the curve. This circle, called the <em>osculating circle</em> of the curve at the point, is shown in <xref ref="F_9_8_osculating">Figure</xref> for a portion of a parabola.
-    </p>
-
-    <figure xml:id="F_9_8_osculating">
-      <caption>The osculating circle</caption>
-      <image width="50%" source="images/fig_9_8_curvature"/>
-    </figure>
-  </subsection>
-
-  <subsection>
-    <title>Summary</title>
-    <ul>
-      
-
-      <li>
-        <p>
-          We define the curvature <m>\kappa</m> of a curve in 2- or 3-space to be the rate of change of the magnitude of the unit tangent vector with respect to arc length, or
-          <me>
-            \kappa = \left\lvert \frac{d\vT}{ds} \right\rvert.
-          </me>
-        </p>
-      </li>
-    </ul>
     <activity>
       <introduction>
         <p>
-          In this activity we will look at additional measurements and determine if these measurements are properties of the driver or properties of the road. This is a continuation of <xref ref="driver_road_act" />. As a reminder, a measurement is a property of the driver if the value(s) of that measurement <alert>can</alert> be different for different drivers (when measured at the same location on the racetrack). A measurement is a property of the road when different drivers <alert>must</alert> have the same value(s) (when measured at the same location on the racetrack). The explanations for the next tasks may be difficult for you to write but will be very helpful in ensuring you understand the vector calculus concepts of this chapter.
+          In this activity we will look at the measurement of curvature and determine if curvature is a property of the driver or a property of the road. This is a continuation of <xref ref="driver_road_act" />. As a reminder, a measurement is a property of the driver if the value(s) of that measurement <alert>can</alert> be different for different drivers (when measured at the same location on the racetrack). A measurement is a property of the road when different drivers <alert>must</alert> have the same value(s) (when measured at the same location on the racetrack). The explanations for the next tasks may be difficult for you to write but will be very helpful in ensuring you understand the vector calculus concepts of this chapter.
         </p>
       </introduction>
       <task>
         <statement>
           <p>
-           Is curvature a property of the driver or the road?
+           Is curvature a property of the driver or the road? Write a few sentences about your reasoning and be sure to address why every driver may or may not have the same measurement at the same location on the track. 
           </p>
         </statement>
       </task>
-      
+      <task>
+        <statement>
+          <p>
+            What is the curvature on a straightaway (the race track is a line segment)? What would the radius of curvature be for a straightaway? Write a couple of sentences to justify your answers. 
+            
+          </p>
+        </statement>
+      </task>
     </activity>
+  </subsection>
+  <subsection>
+    <title>Summary</title>
+    <ul>
+      <li>
+        <p>
+          We define the curvature <m>\kappa</m> of a curve in 2- or 3-space to be the rate of change of the magnitude of the unit tangent vector with respect to arc length, or
+          <me>
+            \kappa = \left\Vert \frac{d\vT}{ds} \right\Vert
+          </me>
+          Curvature can be efficiently calculated by the following formula for curves in space:
+          <me>
+            \kappa = \frac{\Vert \vr'(t) \times \vr''(t) \Vert}{\Vert \vr'(t) \Vert^3}= \frac{\Vert \vv(t) \times \va(t) \Vert}{\Vert \vv(t) \Vert^3}
+          </me>
+          
+        </p>
+      </li>
+    </ul>
+    
     </subsection>
 
     <xi:include href="exercises/ez-S_VVF_Curvature.ptx" />
