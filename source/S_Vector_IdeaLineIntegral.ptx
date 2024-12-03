@@ -314,22 +314,25 @@ def curve_explorer(r1=input_box(default=cos(t),label='r1(t)=',width=30),
     </p>
     <figure xml:id="fig_line_int_defn3">
       <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces</caption>
-      <image width="80%" xml:id="line-int-defn3"> <!--source="/line_int_defn3"-->
+      <image width="80%" label="line-int-defn3"> <!--source="/line_int_defn3"-->
         <description>An oriented curve from a point <m>P</m> to a point <m>Q</m></description>
         <sageplot >
           tpoints=[4,3.5,3,2.5,1.5,1,0.5]
           offsetx=[0.1,-0.2,0.2,0.2,0,0,0.2]
           offsety=[-0.2,-0.1,0,0.2,-0.2,-0.2,-0.2]
-          labels=['$P=\\mathbf{r}_0$','$\\mathbf{r}_1$','$\\mathbf{r}_2$','','$\\mathbf{r}_{n-2}$','$\\mathbf{r}_{n-1}$','$Q=\\mathbf{r}_{n}$']
-          
+          labels=['$P=\mathbf{r}_0$','$\mathbf{r}_1$','$\mathbf{r}_2$','','$\mathbf{r}_{n-2}$','$\mathbf{r}_{n-1}$','$Q=\mathbf{r}_{n}$']
           var('t');
           r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
           plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
           for i in range(len(tpoints)):
             position=r1(tpoints[i])
             withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+            if(i!=len(tpoints)-1 and i!=3):
+              plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='blue')
+            if(i==3):
+              plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
             plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=25,color='black')
-          plot99+=arrow(r1(t=2),r1(t=1.99),color='black',axes=False)
+          plot99+=text('$\Delta \mathbf{r}_i=\mathbf{r}_{i+1}-\mathbf{r}_i$',(-1,0.7),color='red',fontsize=25)
           plot99
         </sageplot>
       </image>
@@ -460,8 +463,11 @@ def curve_explorer(r1=input_box(default=cos(t),label='r1(t)=',width=30),
             <figure>
               <caption>A plot of <m>\vF</m> with paths <m>C_1</m> and <m>C_2</m></caption>
               <image xml:id="fig_12_2_idea_field_1">
-                <description>A vector field radiating from the origin with vectors getting longer as distance from the
-                origin increases. There is an oriented line segment labeled <m>C_1</m> from <m>(-2,-2)</m> to <m>(2,2)</m> and an oriented line segment labeled <m>C_2</m> from <m>(2,-2)</m> to <m>(0,-2)</m>.</description>
+                <description>
+                  <p>
+                    A vector field radiating from the origin with vectors getting longer as distance from the origin increases. There is an oriented line segment labeled <m>C_1</m> from <m>(-2,-2)</m> to <m>(2,2)</m> and an oriented line segment labeled <m>C_2</m> from <m>(2,-2)</m> to <m>(0,-2)</m>.
+                  </p>
+                </description>
                 <sageplot>
                   var('x,y,t')
                   plot2=parametric_plot((t,t),(t,-2,2),color="red",thickness=2,axes_labels=["$x$","$y$"])+arrow((1.85,1.85),(2,2),color="red")
@@ -638,7 +644,6 @@ def curve_explorer(r1=input_box(default=cos(t),label='r1(t)=',width=30),
             <figure>
               <caption><m>C_1</m></caption>
               <image xml:id="PoLI_plot_C1">
-                <description>An oriented curve from point <m>P</m> to point <m>Q</m></description>
                 <sageplot>
                   var('t,x,y')
                   a=1.5
@@ -651,6 +656,10 @@ def curve_explorer(r1=input_box(default=cos(t),label='r1(t)=',width=30),
                   plot2+=arrow(r1(2.5),r1(2.501),color='black')
                   plot2
                 </sageplot>
+                <description>
+                  <p>An oriented curve from point <m>P</m> to point <m>Q</m> 
+                  </p>
+                </description>
               </image>
             </figure>
             <figure>
