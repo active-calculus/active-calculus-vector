@@ -15,134 +15,141 @@
 <!-- **********************************************************************-->
 <section xml:id="S-VVF-Spliting-Acceleration" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Splitting the Acceleration Vector</title>
-  
-    <objectives>
-        <ul>
-          <li>
-            <p>
-              How can we split acceleration into the direction of travel and the direction of turning. 
-            </p>
-          </li>
-
-        </ul>
-    </objectives>
-
-    <introduction>
+  <objectives>
+      <ul>
+        <li>
+          <p>
+            How can we split acceleration into the direction of travel and the direction of turning. 
+          </p>
+        </li>
+      </ul>
+  </objectives>
+  <introduction>
     <p>
-      Velocity and acceleration are vital measurements in the study of physics and mechanics. Velocity is the derivative of position/location (the central measurement of in kinematics, the study of motion). To understand velocity as a vector valued function of time, we looked at how the magnitude and direction of position change. In particular, we separated velocity into its critical parts, namely speed (magnitude of velocity) and unit tangent vector (direction of travel). Speed measures how fast the position of an object is changing as a function of time (as a scalar) and <m>\vT</m> measures in what direction position is changing (measured with a unit vector).
+      Velocity and acceleration are vital measurements in the study of physics and mechanics. Velocity is the derivative of position/location (the central measurement of kinematics, the study of motion). To better understand velocity as a vector valued function of time, we looked at how the magnitude and direction of position change. In particular, we separated velocity into its critical parts, namely speed (magnitude of velocity) and unit tangent vector (direction of travel). Speed is a scalar measurement for how fast the position of an object is changing as a function of time and <m>\vT</m> is a unit vector that measures in what direction position is changing.
     </p>
     <p>
-      Newton's Second Law of Motion relates the forces acting on an object to its acceleration through the formula <m> \vec{F}_{net}= m \vec{A}</m>, which is summarized as the sum of the forces acting on an object is the same as the mass times the acceleration of the object. We would like to understand acceleration as a change in the magnitude and direction of the velocity vector. In this section we will use our knowledge of calculus and vector measurements to split the acceleration vector up into parts dealing with changes in he magnitude and direction of the velocity vector. Further, we wil make sense of these measurements in terms of thier physical meaning. 
+      Newton's Second Law of Motion relates the forces acting on an object to its acceleration through the formula <m> \vec{F}_{net}= m \vec{a}</m>, which is summarized as the sum of the forces acting on an object is the same as the mass times the acceleration of the object. We would like to understand acceleration as a change in the magnitude and direction of the velocity vector. In this section we will use our knowledge of calculus and vector measurements to split the acceleration vector into parts related to the changes in the magnitude and direction of the velocity vector. Further, we will make sense of the physical meaning of these different measurements. 
     </p>
-
     <exploration xml:id="PA_split_a">
-      <task>
-        <statement>
-          <p>
-            Given the curve in <xref ref="PA-splita-P1" /> with direction of travel labeled and the point <m>P</m> labeled, draw and label vectors in the direction of <m>\vT</m> and <m>\vN</m> at the point <m>P</m>.
-          </p>
-          <figure xml:id="PA-splita-P1">
-            <caption>The curve <m>C</m> with direction of travel and point <m>P</m> labeled</caption>
-            <image width="55%" xml:id="img-splita-PA1">
-              <description> A 2D plot with a point P on a curve with direction traveled labeled</description>
-              <sageplot>
-                var('t')
-                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
-                tval=0.75
-                plot1=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
-                plot1+=point(r1(tval),color="black",size=30)+text("$P$",(r1(tval)[0]+0.1,r1(tval)[1]+0.2),color="black",fontsize=20)
-                plot1+=arrow(r1(2),r1(2.01),color="black")
-                plot1            
-              </sageplot>
-            </image>
-          </figure>
-        </statement>
-      </task>
-      <task xml:id="PA-splita-part2">
-        <statement>
-          <p>
-            <xref ref="PA-splita-P2" /> shows <m>\va</m>, the acceleration vector at the point <m>P</m> (drawn in red). Draw the projection of <m>\va</m> on <m>\vT</m> and the projection of <m>\va</m> on <m>\vN</m> at the point <m>P</m>.
-          </p>
-          <figure xml:id="PA-splita-P2">
-            <caption> A 2D curve with acceleration vector shown in red at the point <m>P</m></caption>
-            <image width="55%" xml:id="img-splita-PA2">
-              <description> A 2D curve with acceleration vector shown in red at the point <m>P</m></description>
-              <sageplot>
-                var('t')
-                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
-                tval=0.75
-                rx,ry =r1(tval)
-                plot2=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
-                plot2+=point(r1(tval),color="black",size=30)+text("$P$",(rx+0.1,ry+0.2),color="black",fontsize=20)
-                plot2+=arrow(r1(2),r1(2.01),color="black")
-                plot2+=arrow((rx,ry),(rx-3/4,ry+1/5),color="red")
-                plot2           
-              </sageplot>
-            </image>
-          </figure>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Based on your answers to <xref ref="PA-splita-part2" />, Is <m> \va \cdot \vT</m> is positive, negative, or zero at <m>P</m>? Write a sentence or two to justify your answer.
-          </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Based on your answers to <xref ref="PA-splita-part2" />, Is <m> \va \cdot \vN</m> is positive, negative, or zero at <m>P</m>? Write a sentence or two to justify your answer.
-          </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Given the curve in <xref ref="PA-splita-Q1" /> with direction of travel labeled and the point <m>Q</m> labeled, draw and label vectors in the direction of <m>/vT</m> and <m>/vN</m> at the point <m>Q</m>.
-          </p>
-          <figure xml:id="PA-splita-Q1">
-            <caption>The curve <m>C</m> with direction of travel and point <m>Q</m> labeled</caption>
-            <image width="55%" xml:id="img-splita-Q1">
-              <description> A 2D plot with a point P on a curve with direction traveled labeled</description>
-              <sageplot>
-                var('t')
-                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
-                tval=3.1
-                rx,ry =r1(tval)
-                plot3=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
-                plot3+=point(r1(tval),color="black",size=30)+text("$Q$",(rx+0.2,ry-0.1),color="black",fontsize=20)
-                plot3+=arrow(r1(2),r1(2.01),color="black")
-                plot3           
-              </sageplot>
-            </image>
-          </figure>
-        </statement>
-      </task>
-      <task xml:id="PA-splita-part6">
-        <statement>
-          <p>
-            <xref ref="PA-splita-Q2" /> shows <m>\va</m>, the acceleration vector at the point <m>Q</m> (drawn in red). Draw the projection of <m>\va</m> on <m>\vT</m> and the projection of <m>\va</m> on <m>\vN</m> at the point <m>Q</m>.
-          </p>
-          <figure xml:id="PA-splita-Q2">
-            <caption> A 2D curve with acceleration vector shown in red at the point <m>Q</m></caption>
-            <image width="55%" xml:id="img-splita-Q2">
-              <description> A 2D curve with acceleration vector shown in red at the point <m>Q</m></description>
-              <sageplot>
-                var('t')
-                r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
-                tval=3.1
-                rx,ry =r1(tval)
-                plot4=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
-                plot4+=point(r1(tval),color="black",size=30)+text("$Q$",(rx+0.2,ry-0.1),color="black",fontsize=20)
-                plot4+=arrow(r1(2),r1(2.01),color="black")
-                plot4+=arrow((rx,ry),(rx+2/3,ry+2/5),color="red")
-                plot4           
-              </sageplot>
-            </image>
-          </figure>
-        </statement>
-      </task>
+    <introduction>
+      <p>
+        All your good work as CEO and lead engineer at <em>Steer Clear</em> has started to pay off, literally. When you showed your work on using the location tracking system (LTS) to develop navigation and telemetry tools to an investment group (your grandparents), they were impressed and decided to give you money to further develop your self driving car. You decided to use this new infusion of cash to buy a gyroscopic accelerometer which will measure the acceleration as a vector with magnitude and direction. You will need to understand how your accelerometer readings will relate to the operations needed to drive the car.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <task>
+          <statement>
+            <p>
+              <xref ref="PA-splita-P1" /> shows the path you drove on a test drive with the point <m>P</m> and the direction of travel <m>P</m> labeled. Draw and label vectors in the directions of <m>\vT</m> and <m>\vN</m> at the point <m>P</m>.
+            </p>
+            <figure xml:id="PA-splita-P1">
+              <caption>The curve <m>C</m> with direction of travel and point <m>P</m> labeled</caption>
+              <image width="55%" xml:id="img-splita-PA1">
+                <description><p>A 2D plot with a point P on a curve with direction traveled labeled</p></description>
+                <sageplot>
+                  var('t')
+                  r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                  tval=0.75
+                  plot1=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                  plot1+=point(r1(tval),color="black",size=30)+text("$P$",(r1(tval)[0]+0.1,r1(tval)[1]+0.2),color="black",fontsize=20)
+                  plot1+=arrow(r1(2),r1(2.01),color="black")
+                  plot1            
+                </sageplot>
+              </image>
+            </figure>
+          </statement>
+        </task>
+        <task xml:id="PA-splita-part2">
+          <statement>
+            <p>
+              <xref ref="PA-splita-P2" /> shows <m>\va</m>, the acceleration vector of your test car at the point <m>P</m> (drawn in red). Draw the projection of <m>\va</m> on <m>\vT</m> and the projection of <m>\va</m> on <m>\vN</m> at the point <m>P</m>.
+            </p>
+            <figure xml:id="PA-splita-P2">
+              <caption> A 2D curve with acceleration vector shown in red at the point <m>P</m></caption>
+              <image width="55%" xml:id="img-splita-PA2">
+                <description><p>A 2D curve with acceleration vector shown in red at the point <m>P</m></p></description>
+                <sageplot>
+                  var('t')
+                  r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                  tval=0.75
+                  rx,ry =r1(tval)
+                  plot2=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                  plot2+=point(r1(tval),color="black",size=30)+text("$P$",(rx+0.1,ry+0.2),color="black",fontsize=20)
+                  plot2+=arrow(r1(2),r1(2.01),color="black")
+                  plot2+=arrow((rx,ry),(rx-3/4,ry+1/5),color="red")
+                  plot2           
+                </sageplot>
+              </image>
+            </figure>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Based on your answers to <xref ref="PA-splita-part2" />, Is <m> \va \cdot \vT</m> is positive, negative, or zero at <m>P</m>? Write a sentence or two to justify your answer.
+            </p>
+          </statement>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Based on your answers to <xref ref="PA-splita-part2" />, Is <m> \va \cdot \vN</m> is positive, negative, or zero at <m>P</m>? Write a sentence or two to justify your answer.
+            </p>
+          </statement>
+        </task>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <task>
+          <statement>
+            <p>
+              <xref ref="PA-splita-P1" /> shows the path you drove on a test drive with the point <m>Q</m> and the direction of travel <m>P</m> labeled. Draw and label vectors in the directions of <m>\vT</m> and <m>\vN</m> at the point <m>Q</m>.
+            </p>
+            <figure xml:id="PA-splita-Q1">
+              <caption>The curve <m>C</m> with direction of travel and point <m>Q</m> labeled</caption>
+              <image width="55%" xml:id="img-splita-Q1">
+                <description><p>A 2D plot with a point P on a curve with direction traveled labeled</p></description>
+                <sageplot>
+                  var('t')
+                  r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                  tval=3.1
+                  rx,ry =r1(tval)
+                  plot3=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                  plot3+=point(r1(tval),color="black",size=30)+text("$Q$",(rx+0.2,ry-0.1),color="black",fontsize=20)
+                  plot3+=arrow(r1(2),r1(2.01),color="black")
+                  plot3           
+                </sageplot>
+              </image>
+            </figure>
+          </statement>
+        </task>
+        <task xml:id="PA-splita-part6">
+          <statement>
+            <p>
+              <xref ref="PA-splita-Q2" /> shows <m>\va</m>, the acceleration vector at the point <m>Q</m> (drawn in red). Draw the projection of <m>\va</m> on <m>\vT</m> and the projection of <m>\va</m> on <m>\vN</m> at the point <m>Q</m>.
+            </p>
+            <figure xml:id="PA-splita-Q2">
+              <caption> A 2D curve with acceleration vector shown in red at the point <m>Q</m></caption>
+              <image width="55%" xml:id="img-splita-Q2">
+                <description><p>A 2D curve with acceleration vector shown in red at the point <m>Q</m></p></description>
+                <sageplot>
+                  var('t')
+                  r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+                  tval=3.1
+                  rx,ry =r1(tval)
+                  plot4=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+                  plot4+=point(r1(tval),color="black",size=30)+text("$Q$",(rx+0.2,ry-0.1),color="black",fontsize=20)
+                  plot4+=arrow(r1(2),r1(2.01),color="black")
+                  plot4+=arrow((rx,ry),(rx+2/3,ry+2/5),color="red")
+                  plot4           
+                </sageplot>
+              </image>
+            </figure>
+          </statement>
+        </task>
       <task>
         <statement>
           <p>
@@ -157,45 +164,54 @@
           </p>
         </statement>
       </task>
-      
-      
-    </exploration>
-  </introduction>
-  <subsection>
-    <title>Splitting Acceleration</title>
+    </statement>
+  </task>
+  </exploration>
   <p>
-    By definition (of <m>vT</m>), recall that <m>\vv</m> is parallel to <m>\vT</m> (when not the zero vector or DNE) and that <m>\vT \cdot \vN =0 </m>. In other words, all of the velocity is in a parallel direction to the unit tangent vector and the unit normal is always orthogonal to the unit tangent to a curve (when they exist). In this subsection, we will look at splitting the acceleration vector up into the direction of travel and the direction of turning.
+    The preview activity shows how you can graphically separate the acceleration vector into parts in the direction of travel and direction of turning. In this section, we will look at how to calculate these separate parts algebraically, understand what is being measured by these quantities, and show how these tools will give us important physical measurements and efficient tools for calculating the unit normal vector to a curve, <m>\vN</m>.
+  </p>
+</introduction>
+<subsection>
+  <title>Splitting Acceleration</title>
+  <p>
+    Recall that by the definition of <m>\vT</m>, <m>\vv</m> is parallel to <m>\vT</m> (when <m>\vv</m> is not the zero vector or DNE) and that <m>\vT \cdot \vN =0 </m>. In other words, all of the velocity is in a parallel direction to the unit tangent vector and the unit normal is <em>always</em> orthogonal to the unit tangent to a curve (when they exist). In this subsection, we will look at splitting the acceleration vector into parts in the direction of travel and the direction of turning.
   </p>
   <definition xml:id="def-aTaN">
     <statement>
       <p>
-        The <term>tangential component of acceleration</term> is defined as <m>a_\vT = \va \cdot \vT </m> and the <term>normal component of acceleration</term> is defined as <m>a_\vN = \va \cdot \vN </m>. Because <m>\vT</m> and <m>\vN</m> are orthogonal to each other and unit vectors, <m>a_\vT</m> and  <m>a_\vN</m> will give the amount of acceleration in the direction of travel and the direction of turning, respectively. 
+        The <term>tangential component of acceleration</term> is defined as <m>a_{\vT} = \va \cdot \vT </m> and the <term>normal component of acceleration</term> is defined as <m>a_{\vN} = \va \cdot \vN </m>. Because <m>\vT</m> and <m>\vN</m> are orthogonal to each other and unit vectors, <m>a_{\vT}</m> and  <m>a_{\vN}</m> will give the amount of acceleration in the direction of travel and the direction of turning, respectively. 
       </p>
     </statement>
   </definition>
-  
+
   <p>
-    Given the definitions of <m>a_\vT</m> and <m>a_\vN</m>, can the acceleration vector of parameterized curve have any additional parts? Can <m>\va</m> have any component in another direction (like <m>\vB</m>)? It is not obvious, but the answer is <alert>No!</alert>. The acceleration vector will only have components in the <m>\vT</m> and <m>\vN</m> directions. The scalar <m>a_\vN</m> measures the acceleration due to change in the direction of <m>\vv</m> and the scalar <m>a_\vT</m> measures the acceleration due to the change in magnitude of <m>\vv</m>. This interpretation of <m>a_\vT</m> and <m>a_\vN</m> follows from a neat product rule argument based on how we split the velocity vector into speed (magnitude) and <m>\vT</m> (direction):
+    Given the definitions of <m>a_{\vT}</m> and <m>a_{\vN}</m>, can the acceleration vector of parameterized curve have any additional parts? Can <m>\va</m> have any component in another direction (like <m>\vB</m>)? 
+  </p>
+  <p>  
+    It is not obvious, but the answer is <alert>No!</alert> The acceleration vector will only have components in the <m>\vT</m> and <m>\vN</m> directions. The scalar <m>a_{\vN}</m> measures the acceleration due to change in the direction of <m>\vv</m> and the scalar <m>a_{\vT}</m> measures the acceleration due to the change in magnitude of <m>\vv</m>. This interpretation of <m>a_{\vT}</m> and <m>a_{\vN}</m> follows from a neat product rule argument based on how we split the velocity vector into speed (magnitude) and <m>\vT</m> (direction):
     <md>
-       <mrow> \vv(t) =\amp \text{speed}(t) \vT(t) </mrow>
-       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(\text{speed}) \vT + (\text{speed}) \frac{d\vT}{dt} </mrow>
-       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(\text{speed}) \vT + (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert \vN </mrow>
+       <mrow> \vv(t) =\amp \text{speed}(t) \enspace \vT(t) </mrow>
+       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(\text{speed}) \enspace \vT + (\text{speed}) \enspace \frac{d}{dt}(\vT) </mrow>
+       <mrow> \frac{d\vv}{dt} =\amp \frac{d}{dt}(\text{speed}) \enspace \vT + (\text{speed}) \enspace \left\Vert{\frac{d\vT}{dt}}\right\Vert \vN </mrow>
     </md>
-    The last line of this algebra follows from the definition of the unit normal vector (<m>\vN=\frac{\vT'}{\Vert\vT'\Vert}</m>).
+    The last line of this algebra follows from the definition of the unit normal vector, <m>\vN=\frac{\vT'}{\Vert\vT'\Vert} \Rightarrow \vT'= \Vert\vT'\Vert \vN</m>.
   </p>
   <p>
-    This algebraic splitting of acceleration gives a nice way to interpret <m>a_\vT</m>. Specifically, <m>a_\vT</m> is the rate of change of speed!
+    This algebraic splitting of acceleration gives a nice way to interpret <m>a_{\vT}</m>. Specifically, <m>a_{\vT}</m> is the rate of change of speed!
   </p>
   <p>
-    The scalar <m>a_\vN</m> is much harder to interpret right now because our algebraic splitting above gives <m>a_\vN = (\text{speed}) \Vert\frac{d\vT}{dt}\Vert</m> and <m> \frac{d\vT}{dt}</m> (and <m> \Vert\frac{d\vT}{dt}\Vert</m>) are just as hard to calculate as <m>\vN</m> directly (which is awful as shown in <xref ref="difficult-calcN" />). In the next section, we will address the meaning of <m>a_\vN</m> a bit more, but for now you should think of <m>a_\vN</m> as the acceleration due to a change in the direction of the velocity vector. In other words, <m>a_\vN</m> is the amount of acceleration due to turning. 
+    The scalar <m>a_{\vN}</m> is harder to interpret right now because our algebraic splitting above gives <m>a_{\vN} = (\text{speed}) \Vert\frac{d\vT}{dt}\Vert</m> and <m> \frac{d\vT}{dt}</m> (and <m> \Vert\frac{d\vT}{dt}\Vert</m>) are just as hard to calculate as <m>\vN</m> directly (which is awful as shown in <xref ref="difficult-calcN" />). We will address the meaning of <m>a_{\vN}</m> later in this section, but for now you should think of <m>a_{\vN}</m> as the acceleration due to a change in the direction of the velocity vector. In other words, <m>a_{\vN}</m> is the amount of acceleration due to turning. 
   </p>
   <definition xml:id="def-splita">
     <statement>
       <p>
-        When we refer to the splitting of the acceleration, we mean that we want to explicitly describe how much of the acceleration is in the unit tangent direction and how much is in the unit normal direction (relative to the motion on the curve). In particular, we want to find <m>a_\vT</m> and <m>a_\vN</m> such that <m> \va = a_\vT \vT + a_\vN \vN</m>. Graphically, this will look like 
+        When we refer to the <term>splitting of the acceleration (vector)</term>, we mean that we want to explicitly describe how much of the acceleration is in the unit tangent direction and how much is in the unit normal direction (relative to the motion on the curve).
+      </p> 
+      <p> 
+        In particular, we want to find <m>a_{\vT}</m> and <m>a_{\vN}</m> such that <m> \va = a_{\vT} \vT + a_{\vN} \vN</m>. <xref ref="splita-graph"/> shows graphically what this splitting looks like. You can use the slider at the change the location on the curve where the splitting of the acceleration is shown. You should look at different points along the curve to see how each of <m>\vT</m>, <m>\vN</m>, <m>a_{\vT}</m>, and <m>a_{\vN}</m> change at different locations. The vector <m>a_{\vN} \vN</m> is drawn twice to demonstrate it's relationship to <m>\vN</m> and how <m>\va</m> is a vector sum of <m>a_{\vT} \vT</m> and <m>a_{\vN} \vN</m>.
       </p>
       <figure xml:id="splita-graph">
-        <caption> A 2D curve with the splitting of the acceleration vector shown graphically</caption>
+        <caption>A 2D curve with the splitting of the acceleration vector shown graphically</caption>
         <interactive title="interactive-splita-graph" platform="sage" width="100%" aspect="1:1">
           <slate surface="sage">
             var('t')
@@ -203,7 +219,7 @@
             rescale=1/3
             offset=0.25
             @interact
-            def splita(tval=slider(0,1.7,0.1,default=0.7,label="t value")):
+            def splita(tval=slider(0,1.7,0.1,default=0.5,label="t value")):
                 pos=r2(tval)
                 plot5=parametric_plot(r2(t),(t,0,1.7),aspect_ratio=1,color="black",thickness=2,axes=False)
                 plot5+=point(pos,color="black",size=25)
@@ -234,407 +250,228 @@
     </statement>
   </definition>
   <activity>
-    <task>
-      <statement>
-        <p>
-          The tangential part of acceleration is defined as <m>a_\vT = \va \cdot \vT </m> and our algebraic interpretation also gives us that <m>a_\vT = \frac{d\text{speed}}{dt}</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vT</m> can be zero or not. Either explain why this is not possible or what it would mean for <m>a_\vT</m> to be zero.
-        </p>
-
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          The tangential part of acceleration is defined as <m>a_\vT = \va \cdot \vT </m> and our algebraic interpretation also gives us that <m>a_\vT = \frac{d\text{speed}}{dt}</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vT</m> can be negative or not. Either explain why this is not possible or what it would mean for <m>a_\vT</m> to be negative.
-        </p>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          The normal part of acceleration is defined as <m>a_\vN = \va \cdot \vN </m> and our algebraic interpretation also gives us that <m>a_\vN = (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vN</m> can be negative or not. Either explain why this is not possible or what it would mean for <m>a_\vN</m> to be negative.
-        </p>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          The normal part of acceleration is defined as <m>a_\vN = \va \cdot \vN </m> and our algebraic interpretation also gives us that <m>a_\vN = (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert</m>. Using these formulas as a basis for your explanations, state whether <m>a_\vN</m> can be zero or not. Either explain why this is not possible or what it would mean for <m>a_\vN</m> to be zero.
-        </p>
-      </statement>
-    </task>
-  </activity>
-  <activity>
     <introduction>
       <p>
-        In this activity we want to relate the scalar and vector measurements involved in the splitting of acceleration to different modes of transportation. While everyone has different experiences with piloting different modes of transportation, we will phrase this question in terms of driving a car. Feel free to substitute another mode of transportation like riding a bike, riding a scooter, driving a boat, rowing a boat, flying a plane, or flying a spaceship. 
+        In this activity we will make sense for whether <m>a_{\vT}</m> or <m>a_{\vN}</m> can be zero or negative.
       </p>
     </introduction>
     <task>
       <statement>
         <p>
-          In the context of driving a car (or substitute your mode of transportation), write a couple sentences about what vector calculus quantity is controlled by the brake pedal. Be specific which vector calculus quantity is involved and how the brake pedal changes this measurement.
-        </p>
-      </statement>
-      <hint>
-        <p>
-          The vector calculus quantities we have covered are time, position, velocity, acceleration, speed, arc length, unit tangent, unit normal, binormal, tangential acceleration component, and normal acceleration component.
-        </p>
-      </hint>
-    </task>
-    <task>
-      <statement>
-        <p>
-          In the context of driving a car (or substitute your mode of transportation), write a couple sentences about what vector calculus quantity is controlled by the accelerator pedal. Be specific which vector calculus quantity is involved and how the accelerator pedal changes this measurement.
+          The tangential part of acceleration is defined as <m>a_{\vT} = \va \cdot \vT </m> and our algebraic interpretation also gives us that <m>a_{\vT} = \frac{d\text{(speed)}}{dt}</m>. Using these formulas as a basis for your explanations, state whether <m>a_{\vT}</m> can be zero or not. Either explain why this is not possible or what it would mean for <m>a_{\vT}</m> to be zero.
         </p>
       </statement>
     </task>
     <task>
       <statement>
         <p>
-          In the context of driving a car (or substitute your mode of transportation), write a couple sentences about what vector calculus quantity is controlled by the direction of the steering wheel (consider this to be either left, right, or straight). Be specific which vector calculus quantity is involved and how the the direction of the steering wheel changes this measurement.
+          The tangential part of acceleration is defined as <m>a_{\vT} = \va \cdot \vT </m> and our algebraic interpretation also gives us that <m>a_{\vT} = \frac{d\text{(speed)}}{dt}</m>. Using these formulas as a basis for your explanations, state whether <m>a_{\vT}</m> can be negative or not. Either explain why this is not possible or what it would mean for <m>a_{\vT}</m> to be negative.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          The normal part of acceleration is defined as <m>a_{\vN} = \va \cdot \vN </m> and our algebraic interpretation also gives us that <m>a_{\vN} = (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert</m>. Using these formulas as a basis for your explanations, state whether <m>a_{\vN}</m> can be negative or not. Either explain why this is not possible or what it would mean for <m>a_{\vN}</m> to be negative.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          The normal part of acceleration is defined as <m>a_{\vN} = \va \cdot \vN </m> and our algebraic interpretation also gives us that <m>a_{\vN} = (\text{speed}) \Vert{\frac{d\vT}{dt}}\Vert</m>. Using these formulas as a basis for your explanations, state whether <m>a_{\vN}</m> can be zero or not. Either explain why this is not possible or what it would mean for <m>a_{\vN}</m> to be zero.
         </p>
       </statement>
     </task>
   </activity>
-  <activity>
-    <introduction>
+  <p>
+    <xref ref="splita-howtochange" /> and <xref ref="splita-travelmeanings" /> relate the scalar and vector measurements involved in the splitting of acceleration to different modes of transportation and looks at how different actions (when riding a bike or driving a car) will affect these vector calculus quantities. In <xref ref="splita-visual" />, we will look at how to visually identify the different measurements involved the splitting of the acceleration vector.
+  </p>  
+  <example>
+    <task>
       <p>
-        In this activity we want to relate the scalar and vector measurements involved in the splitting of acceleration to different modes of transportation. While everyone has different experiences with piloting different modes of transportation, we will phrase this question in terms of riding a bike. Feel free to substitute another mode of transportation like driving a car, riding a scooter, driving a boat, rowing a boat, flying a plane, or flying a spaceship. 
+        In this example we will look at the splitting of acceleration for an algebraically simple curve traced by <m>\vr(t)=\langle t, t^2,t^3\rangle</m> as <m>t</m> goes from 0 to 2. We will first look at calculating the splitting of acceleration for all <m>t</m>-values in our interval. In particular, we will calculate <m>\vv</m>, <m>\va</m>, <m>\vT</m>, <m>a_{\vT}</m>, <m>a_{\vN}</m>, and <m>\vN</m> as functions of <m>t</m>.
+        <md>
+          <mrow>\vr(t) \amp=\langle t, t^2,t^3\rangle </mrow>
+          <mrow>\vv(t) \amp=\langle 1, 2t,3t^2\rangle </mrow>
+          <mrow>\va(t) \amp=\langle 0, 2,6t\rangle </mrow>
+        </md>
+        The calculation of the velocity and acceleration are generally speaking the most familiar and as this example will show, it is possible to state each of our other calculations in terms of velocity and acceleration.
       </p>
-    </introduction>
-    <task>
-      <statement>
-        <p>
-          In the context of riding a bike, what does the unit tangent vector, <m>\vT</m>, measure?
-        </p>
-      </statement>
+      <p>
+        The next quantity to calculate is <m>\vT</m>. Note that <m>\text{speed}(t)=\Vert\vv(t)\Vert= \sqrt{1+4t^2+9t^4}</m> for our example.
+        <me> \vT(t) = \frac{\vv}{\Vert\vv\Vert} = \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}</me>
+        This will allow us to calculate <m>a_{\vT}</m> next from the definition <m>a_{\vT} = \va \cdot \vT</m>
+        <md>
+          <mrow> a_{\vT} = \va \cdot \vT \amp= \langle 0, 2,6t\rangle \cdot \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}} </mrow>
+          <mrow>                       \amp= \frac{1}{\sqrt{1+4t^2+9t^4}} \left(1(0)+2(2t)+6t(3t^2)\right)</mrow>
+          <mrow>                       \amp= \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}}</mrow>
+        </md> 
+      </p>
+      <p>
+        So far in this example, we have used the definitions to calculate both <m>\vT</m> and <m>a_{\vT}</m>, but <m>\vN</m> is quite difficult to calculate using the definition. Our next couple of steps will use some vector calculations related to <xref ref="def-splita" />. Because the unit tangent and unit normal vectors are both length one and are orthogonal to each other, then <m> \Vert \va \Vert^2 =(a_{\vT})^2+(a_{\vN})^2</m>. In particular, we can solve for <m>a_{\vN}= \sqrt{\Vert \va \Vert^2  -(a_{\vT})^2}</m> which will not require an interpretation of positive/negative because <m>a_{\vN}</m> will always be non-negative. 
+        For our example,
+        <md>
+          <mrow> a_{\vN}     \amp= \sqrt{\Vert \va \Vert^2  -(a_{\vT})^2} </mrow>
+          <mrow>           \amp= \sqrt{(4+36t^2)- \left(\frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}}\right)^2}</mrow>
+          <mrow>           \amp= \sqrt{(4+36t^2)- \frac{(4t+18t^3)^2}{1+4t^2+9t^4}}</mrow>
+          <mrow>           \amp= \sqrt{\frac{(1+4t^2+9t^4)(4+36t^2)-(4t+18t^3)^2}{1+4t^2+9t^4}}</mrow>
+          <mrow>           \amp= \sqrt{\frac{4(9t^4+9t^2+1)}{1+4t^2+9t^4}}</mrow>
+        </md>
+        Note how we were able to find the acceleration in the normal direction (<m>a_{\vN} \vN</m>) by subtracting out the acceleration in the tangential direction. Our calculation above utilizes that <m>a_{\vN}</m> is the length of this acceleration in the normal direction. The other side to this is that we can calculate <m>\vN</m> as a function of <m>t</m> without having to go through the difficulties involved in <m>\frac{d\vT}{dt}</m>. Specifically, <m>a_{\vN} \vN = \va - a_{\vT} \vT</m> implies that <m> \vN = \frac{\va - a_{\vT} \vT}{a_{\vN}}</m>. This is hugely useful because we were able to calculate everything on the right side of this equation in terms of <m>\vv</m> and <m>\va</m>. For our example, 
+        <md>
+          <mrow> a_{\vN} \vN \amp= \va - a_{\vT} \vT </mrow>
+          <mrow>           \amp= \langle 0, 2,6t \rangle - \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}} \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}</mrow>
+        </md>
+        Thus we can write <m>\vN</m> as 
+        <md> 
+          <mrow> \vN \amp= \frac{\va - a_{\vT} \vT}{a_{\vN}}</mrow>
+          <mrow> \amp= \sqrt{\frac{1+4t^2+9t^4}{4(9t^4+9t^2+1)}}\left(\langle 0, 2,6t \rangle - \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}} \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}\right)</mrow>
+        </md>
+      </p>
+      <p>
+        While this process may seem a bit algebraically tedious, these steps are much less difficult than finding <m>\vN</m> directly (as in <xref ref="difficult-calcN" />) AND we get insight into how the acceleration is split in the direction of travel and direction of turning. Graphically, we can represent this splitting with the following figure.
+      </p>
+      <figure xml:id="splita-ex1">
+        <caption> The curve given by <m>\vr(t) = \langle t, t^2,t^3\rangle </m> with the splitting of acceleration shown graphically</caption>
+        <interactive title="interactive-splita-ex1" platform="sage" width="100%" aspect="1:1">
+          <slate surface="sage">
+            var('t')
+            r2(t)=(t,t^2,t^3)
+            rescale=1/3
+            offset=0.25
+            @interact
+            def splita(tval=slider(0,1.7,0.1,default=1,label="t value")):
+                pos=r2(tval)
+                plot7=parametric_plot3d(r2(t),(t,0,1.7),aspect_ratio=1,color="black",thickness=2,axes=False)
+                plot7+=point(pos,color="black",size=25)
+                v2(t)=diff(r2,t)
+                a2(t)=diff(v2,t)
+                vt=v2(tval)
+                at=a2(tval)
+                T=vt/norm(vt)
+                aTT=(at*T)*T
+                aN=sqrt(norm(at)^2-(at*T)^2)
+                aNN=at-aTT
+                N=(1/aN)*aNN
+                plot7+=arrow(pos,pos+T,color="orange",thickness=2)
+                plot7+=text3d("T",pos+T-2*offset*N,color="orange",fontsize=20)
+                plot7+=arrow(pos,pos+N,color="green",thickness=2)
+                plot7+=text3d("N",pos+N-offset*T,color="green",fontsize=20)
+                plot7+=arrow(pos,pos+rescale*aTT,color="red")
+                #plot7+=text3d("$a_{\\vec{T}} \\vec{T}$",pos+rescale*aTT-2*offset*N,color="red",fontsize=20)
+                plot7+=arrow(pos,pos+rescale*aNN,color="blue")
+                plot7+=arrow(pos+rescale*aTT,pos+rescale*aTT+rescale*aNN,color="blue")
+                #plot7+=text3d("$a_{\\vec{N}} \\vec{N}$",pos+rescale*aNN-offset*T,color="blue",fontsize=20)
+                plot7+=arrow(pos,pos+rescale*at,color="purple")
+                plot7+=text3d("a",pos+(1+offset/3)*rescale*at,color="purple",fontsize=20)
+                show(plot7,viewpoint=[[-0.6897,-0.4378,-0.5767],95.48],camera_position=[7.6231,-1.7416,4.5464],aspect_ratio=1)
+          </slate>
+        </interactive>
+      </figure>
     </task>
     <task>
       <statement>
         <p>
-          In the context of riding a bike, what does the unit normal vector, <m>\vN</m>, measure?
-        </p>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          In the context of riding a bike, how would you increase <m>a_\vT</m>?
-        </p>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          In the context of riding a bike, how would you decrease <m>a_\vT</m>?
-        </p>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          In the context of riding a bike, how would you decrease <m>a_\vN</m>?
-        </p>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          In the context of riding a bike, how would you increase <m>a_\vN</m>?
-        </p>
-      </statement>
-    </task>
-  </activity>  
-    <example>
-      <task>
-        <p>
-          In this example we will look at the splitting of acceleration for an algebraically simple curve traced by <m>\vr(t)=\langle t, t^2,t^3\rangle</m> as <m>t</m> goes from 0 to 2. We will first look at calculating the splitting of acceleration for all <m>t</m>-values in our interval. In particular, we will calculate <m>\vv</m>, <m>\va</m>, <m>\vT</m>, <m>a_\vT</m>, <m>a_\vN</m>, and <m>\vN</m> as functions of <m>t</m>.
+          In many circumstances, we need to compute the splitting of acceleration for only one time. For our example, we will look at how much cleaner the computations above will be if we want to look only at <m>t=1</m>. The first steps for calculating <m>\vv</m> and <m>\va</m> will be the same as before.
           <md>
             <mrow>\vr(t) \amp=\langle t, t^2,t^3\rangle </mrow>
             <mrow>\vv(t) \amp=\langle 1, 2t,3t^2\rangle </mrow>
             <mrow>\va(t) \amp=\langle 0, 2,6t\rangle </mrow>
           </md>
-          The calculation of the velocity and acceleration are generally speaking the most familiar and as this example will show, it is possible to state each of our other calculations in terms of velocity and acceleration.
+          You may want to go back and note that this was the only calculus done in the example above; all of our other steps were vector calculations and properties of orthogonal or unit vectors. We will follow the same method as above, but instead of applying these ideas for all <m>t</m>-values, we will look only at <m>t=1</m>. Remember if the formula we are using works for all <m>t</m>, then the formula will work for a specific <m>t</m>.
+          <md>
+            <mrow>\vr(1) \amp=\langle 1, 1, 1 \rangle </mrow>
+            <mrow>\vv(1) \amp=\langle 1, 2, 4 \rangle </mrow>
+            <mrow>\va(1) \amp=\langle 0, 2, 6 \rangle </mrow>
+          </md>
         </p>
         <p>
-          The next quantity to calculate is <m>\vT</m>. Note that <m>\text{speed}(t)=\Vert\vv(t)\Vert= \sqrt{1+4t^2+9t^4}</m> for our example.
+          The next quantity to calculate is <m>\vT</m>. Note that <m>\text{speed}(1)=\Vert\vv(1)\Vert= \sqrt{1+4+9}=\sqrt{14}</m> for our example.
+          <me>\vT(1) = \frac{\vv}{\Vert\vv\Vert}  = \frac{\langle 1, 2, 3 \rangle}{\sqrt{14}} </me>
+          This will allow us to calculate <m>a_{\vT}(1)</m> next from the definition <m>a_{\vT}(1) = \va(1) \cdot \vT(1)</m>
           <md>
-            <mrow> \vT(t) \amp= \frac{\vv}{\Vert\vv\Vert} </mrow>
-            <mrow>        \amp= \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}</mrow>
-          </md>
-          This will allow us to calculate <m>a_\vT</m> next from the definition <m>a_\vT = \va \cdot \vT</m>
-          <md>
-            <mrow> a_\vT = \va \cdot \vT \amp= \langle 0, 2,6t\rangle \cdot \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}} </mrow>
-            <mrow>                       \amp= \frac{1}{\sqrt{1+4t^2+9t^4}} \left(1(0)+2(2t)+6t(3t^2)\right)</mrow>
-            <mrow>                       \amp= \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}}</mrow>
+            <mrow> a_{\vT}(1) = \va(1) \cdot \vT(1) \amp= \langle 0, 2, 6 \rangle \cdot \frac{\langle 1, 2 , 3 \rangle}{\sqrt{14}} </mrow>
+            <mrow>                       \amp= \frac{1}{\sqrt{14}} \left(1(0)+2(2)+3(6)\right)= \frac{22}{\sqrt{14}}</mrow>
           </md> 
         </p>
         <p>
-          So far in this example, we have used the definitions to calculate both <m>\vT</m> and <m>a_\vT</m>, but <m>\vN</m> is quite difficult to calculate using the definition. Our next couple of steps will use some vector calculations related to <xref ref="def-splita" />. Because the unit tangent and unit normal vectors are both length one and are orthogonal to each other, then <m> \Vert \va \Vert^2 =(a_\vT)^2+(a_\vN)^2</m>. In particular, we can solve for <m>a_\vN= \sqrt{\Vert \va \Vert^2  -(a_\vT)^2}</m> which will not require an interpretation of positive/negative because <m>a_\vN</m> will always be non-negative. 
-          For our example,
+          We now use <m>a_{\vN}(1) = \sqrt{\Vert \va(1) \Vert^2  -(a_{\vT}(1))^2}</m> to efficiently calculate the normal component of the acceleration.
           <md>
-            <mrow> a_\vN     \amp= \sqrt{\Vert \va \Vert^2  -(a_\vT)^2} </mrow>
-            <mrow>           \amp= \sqrt{(4+36t^2)- \left(\frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}}\right)^2}</mrow>
-            <mrow>           \amp= \sqrt{(4+36t^2)- \frac{(4t+18t^3)^2}{1+4t^2+9t^4}}</mrow>
-            <mrow>           \amp= \sqrt{\frac{(1+4t^2+9t^4)(4+36t^2)-(4t+18t^3)^2}{1+4t^2+9t^4}}</mrow>
-            <mrow>           \amp= \sqrt{\frac{4(9t^4+9t^2+1)}{1+4t^2+9t^4}}</mrow>
+            <mrow> a_{\vN}(1)  \amp= \sqrt{\Vert \va(1) \Vert^2  -(a_{\vT}(1))^2} </mrow>
+            <mrow>           \amp= \sqrt{(40)- \left(\frac{22}{\sqrt{14}}\right)^2}</mrow>
+            <mrow>           \amp= \sqrt{\frac{560}{14}-\frac{22^2}{14}}</mrow>
+            <mrow>           \amp= \sqrt{\frac{76}{14}}</mrow>
           </md>
-          Note how we were able to find the acceleration in the normal direction (<m>a_\vN \vN</m>) by subtracting out the acceleration in the tangential direction. Our calculation above utilizes that <m>a_\vN</m> is the length of this acceleration in the normal direction. The other side to this is that we can calculate <m>\vN</m> as a function of <m>t</m> without having to go through the difficulties involved in <m>\frac{d\vT}{dt}</m>. Specifically, <m>a_\vN \vN = \va - a_\vT \vT</m> implies that <m> \vN = \frac{\va - a_\vT \vT}{a_\vN}</m>. This is hugely useful because we were able to calculate everything on the right side of this equation in terms of <m>\vv</m> and <m>\va</m>. For our example, 
+          We can now compute how much acceleration there is due to turning and use that explicitly compute <m>\vN(1)</m>.
           <md>
-            <mrow> a_\vN \vN \amp= \va - a_\vT \vT </mrow>
-            <mrow>           \amp= \langle 0, 2,6t \rangle - \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}} \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}</mrow>
+            <mrow> a_{\vN}(1) \vN(1) \amp= \va(1) - a_{\vT}(1) \vT(1) </mrow>
+            <mrow>           \amp= \langle 0, 2,6 \rangle - \frac{22}{\sqrt{14}} \frac{\langle 1, 2, 3\rangle}{\sqrt{14}}</mrow>
+            <mrow>           \amp= \langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7} \rangle </mrow>
           </md>
-          Thus we can write <m>\vN</m> as 
-          <md> 
-            <mrow> \vN \amp= \frac{\va - a_\vT \vT}{a_\vN}</mrow>
-            <mrow> \amp= \sqrt{\frac{1+4t^2+9t^4}{4(9t^4+9t^2+1)}}\left(\langle 0, 2,6t \rangle - \frac{4t+18t^3}{\sqrt{1+4t^2+9t^4}} \frac{\langle 1, 2t,3t^2\rangle}{\sqrt{1+4t^2+9t^4}}\right)</mrow>
-          </md>
+          You can show that the length of <m>\langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7}\rangle</m> is the same as our calculation for <m>a_{\vN}</m>above. In particular, this means that 
+          <me> \vN = \frac{\va - a_{\vT} \vT}{a_{\vN}} = \sqrt{\frac{7}{38}}\langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7} \rangle</me>
+          With some diligent computations, you should be able to verify that this result is the same as applying <m>t=1</m> to our expression for <m>\vN</m> from the first task.
         </p>
-        <p>
-          While this process may seem a bit algebraically tedious, these steps are much less difficult than finding <m>\vN</m> directly (as in <xref ref="difficult-calcN" />) AND we get insight into how the acceleration is split in the direction of travel and direction of turning. Graphically, we can represent this splitting with the following figure.
-        </p>
-        <figure xml:id="splita-ex1">
-          <caption> The curve given by <m>\vr(t) = \langle t, t^2,t^3\rangle </m> with the splitting of acceleration shown graphically</caption>
-          <interactive title="interactive-splita-ex1" platform="sage" width="100%" aspect="1:1">
-            <slate surface="sage">
-              var('t')
-              r2(t)=(t,t^2,t^3)
-              rescale=1/3
-              offset=0.25
-              @interact
-              def splita(tval=slider(0,1.7,0.1,default=1,label="t value")):
-                  pos=r2(tval)
-                  plot7=parametric_plot3d(r2(t),(t,0,1.7),aspect_ratio=1,color="black",thickness=2,axes=False)
-                  plot7+=point(pos,color="black",size=25)
-                  v2(t)=diff(r2,t)
-                  a2(t)=diff(v2,t)
-                  vt=v2(tval)
-                  at=a2(tval)
-                  T=vt/norm(vt)
-                  aTT=(at*T)*T
-                  aN=sqrt(norm(at)^2-(at*T)^2)
-                  aNN=at-aTT
-                  N=(1/aN)*aNN
-                  plot7+=arrow(pos,pos+T,color="orange",thickness=2)
-                  plot7+=text3d("T",pos+T-2*offset*N,color="orange",fontsize=20)
-                  plot7+=arrow(pos,pos+N,color="green",thickness=2)
-                  plot7+=text3d("N",pos+N-offset*T,color="green",fontsize=20)
-                  plot7+=arrow(pos,pos+rescale*aTT,color="red")
-                  #plot7+=text3d("$a_{\\vec{T}} \\vec{T}$",pos+rescale*aTT-2*offset*N,color="red",fontsize=20)
-                  plot7+=arrow(pos,pos+rescale*aNN,color="blue")
-                  plot7+=arrow(pos+rescale*aTT,pos+rescale*aTT+rescale*aNN,color="blue")
-                  #plot7+=text3d("$a_{\\vec{N}} \\vec{N}$",pos+rescale*aNN-offset*T,color="blue",fontsize=20)
-                  plot7+=arrow(pos,pos+rescale*at,color="purple")
-                  plot7+=text3d("a",pos+(1+offset/3)*rescale*at,color="purple",fontsize=20)
-                  show(plot7,viewpoint=[[-0.6897,-0.4378,-0.5767],95.48],camera_position=[7.6231,-1.7416,4.5464],aspect_ratio=1)
-            </slate>
-          </interactive>
-        </figure>
-      </task>
-      <task>
-        <statement>
-          <p>
-            In many circumstances, we need to compute the splitting of acceleration for only one time. For our example, we will look at how much cleaner the computations above will be if we want to look only at <m>t=1</m>. The first steps for calculating <m>\vv</m> and <m>\va</m> will be the same as before.
-            <md>
-              <mrow>\vr(t) \amp=\langle t, t^2,t^3\rangle </mrow>
-              <mrow>\vv(t) \amp=\langle 1, 2t,3t^2\rangle </mrow>
-              <mrow>\va(t) \amp=\langle 0, 2,6t\rangle </mrow>
-            </md>
-            You may want to go back and note that this was the only calculus done in the example above; all of our other steps were vector calculations and properties of orthogonal or unit vectors. We will follow the same method as above, but instead of applying these ideas for all <m>t</m>-values, we will look only at <m>t=1</m>. Remember if the formula we are using works for all <m>t</m>, then the formula will work for a specific <m>t</m>.
-            <md>
-              <mrow>\vr(1) \amp=\langle 1, 1, 1 \rangle </mrow>
-              <mrow>\vv(1) \amp=\langle 1, 2, 4 \rangle </mrow>
-              <mrow>\va(1) \amp=\langle 0, 2, 6 \rangle </mrow>
-            </md>
-          </p>
-          <p>
-            The next quantity to calculate is <m>\vT</m>. Note that <m>\text{speed}(1)=\Vert\vv(1)\Vert= \sqrt{1+4+9}=\sqrt{14}</m> for our example.
-            <md>
-              <mrow> \vT(1) \amp= \frac{\vv}{\Vert\vv\Vert} </mrow>
-              <mrow>        \amp= \frac{\langle 1, 2, 3 \rangle}{\sqrt{14}}</mrow>
-            </md>
-            This will allow us to calculate <m>a_\vT(1)</m> next from the definition <m>a_\vT(1) = \va(1) \cdot \vT(1)</m>
-            <md>
-              <mrow> a_\vT(1) = \va(1) \cdot \vT(1) \amp= \langle 0, 2, 6 \rangle \cdot \frac{\langle 1, 2 , 3 \rangle}{\sqrt{14}} </mrow>
-              <mrow>                       \amp= \frac{1}{\sqrt{14}} \left(1(0)+2(2)+3(6)\right)</mrow>
-              <mrow>                       \amp= \frac{22}{\sqrt{14}}</mrow>
-            </md> 
-          </p>
-          <p>
-            We now use <m>a_\vN(1) = \sqrt{\Vert \va(1) \Vert^2  -(a_\vT(1))^2}</m> to efficiently calculate the normal component of the acceleration.
-            <md>
-              <mrow> a_\vN(1)  \amp= \sqrt{\Vert \va(1) \Vert^2  -(a_\vT(1))^2} </mrow>
-              <mrow>           \amp= \sqrt{(40)- \left(\frac{22}{\sqrt{14}}\right)^2}</mrow>
-              <mrow>           \amp= \sqrt{\frac{560}{14}-\frac{22^2}{14}}</mrow>
-              <mrow>           \amp= \sqrt{\frac{76}{14}}</mrow>
-            </md>
-            We can now compute how much acceleration there is due to turning and use that explicitly compute <m>\vN(1)</m>.
-            <md>
-              <mrow> a_\vN(1) \vN(1) \amp= \va(1) - a_\vT(1) \vT(1) </mrow>
-              <mrow>           \amp= \langle 0, 2,6 \rangle - \frac{22}{\sqrt{14}} \frac{\langle 1, 2, 3\rangle}{\sqrt{14}}</mrow>
-              <mrow>           \amp= \langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7} \rangle </mrow>
-            </md>
-            You can show that the length of <m>\langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7}</m> is the same as our calculation for <m>a_\vN</m>above. In particular, this means that 
-            <me> \vN = \frac{\va - a_\vT \vT}{a_\vN} = \sqrt{\frac{7}{38}}\langle -\frac{11}{7},-\frac{16}{7},\frac{9}{7} \rangle</me>
-            Will some diligent computations, you should be able to verify that this result is the same as applying <m>t=1</m> to our expression for <m>\vN</m> from the first task.
-          </p>
-        </statement>
-      </task>
-    </example>
+      </statement>
+    </task>
+  </example>
+  <p>
+    The method used in the previous example can be applied broadly and shows how to calculate all parts of <xref ref="def-splita" /> in terms of <m>\vv</m> and <m>\va</m> (for both an interval or a single value of <m>t</m>).
+  </p>
+  <assemblage xml:id="assemblage-splita-calc">
+    <title>Efficient Calculation of <m>a_{\vT}, a_{\vN}, \vT, \vN</m></title>
     <p>
-      The method used in the previous example can be applied broadly and shows how to calculate all parts of <xref ref="def-splita" /> in terms of <m>\vv</m> and <m>\va</m> (for both an interval or a single value of <m>t</m>).
+      <md>
+        <mrow>\vT \amp= \frac{\vv}{\Vert\vv\Vert} </mrow>
+        <mrow> a_{\vT} \amp= \frac{\va\cdot\vv}{\Vert\vv\Vert} \Rightarrow a_{\vT} \vT = \frac{\va\cdot \vv}{\vv \cdot \vv} \vv</mrow>
+        <mrow> a_{\vN} \amp= \Vert \va - a_{\vT} \vT \Vert = \sqrt{\Vert \va \Vert - (a_{\vT})^2}= \sqrt{(\va \cdot \va)- \frac{(\va\cdot\vv)^2}{\Vert\vv\Vert}} </mrow>
+        <mrow> a_{\vN} \vN \amp= \va - a_{\vT} \vT </mrow>
+        <mrow> a_{\vN} \amp= \frac{\va - a_{\vT} \vT}{a_{\vN}} </mrow>
+      </md>
+    </p>
+  </assemblage>
+  <activity>
+    <statement>
+      <p>
+        Compute the splitting of the acceleration for the curve given by <m>\vr(t)= \langle t, \frac{t^2}{2},\frac{t^3}{6} \rangle</m> at <m>t=1</m>. You should calculate <m>a_{\vT}</m>, <m>a_{\vN}</m>, <m>\vT</m>, and <m>\vN</m>, then verify <m>\va = a_{\vT} \vT +a_{\vN} \vN </m> and that <m>\vT</m> is orthogonal to <m>\vN</m>.
       </p>
-      <assemblage xml:id="assemblage-splita-calc">
-        <title>Efficient Calculation of <m>a_\vT, a_vN, \vT, \vN</m></title>
-        <p>
-          <md>
-            <mrow>\vT \amp= \frac{\vv}{\Vert\vv\Vert} </mrow>
-            <mrow> a_\vT \amp= \frac{\va\cdot\vv}{\Vert\vv\Vert} \Rightarrow a_\vT \vT = \frac{\va\cdot \vv}{\vv \cdot \vv} \vv</mrow>
-            <mrow> a_\vN \amp= \Vert \va - a_\vT \vT \Vert = \sqrt{\Vert \va \Vert - (a_\vT)^2}= \sqrt{(\va \cdot \va)- \frac{(\va\cdot\vv)^2}{\Vert\vv\Vert}} </mrow>
-            <mrow> a_\vN \vN \amp= \va - a_\vT \vT </mrow>
-            <mrow> a_\vN \amp= \frac{\va - a_\vT \vT}{a_\vN} </mrow>
-          </md>
-        </p>
-      </assemblage>
-
-  <activity>
-    <task>
-      <statement>
-        <p>
-          Compute the splitting of the acceleration for the curve given by <m>\vr(t)= \langle t, \frac{t^2}{2},\frac{t^3}{6} \rangle</m> at <m>t=1</m>. You should calculate <m>a_\vT</m>, <m>a_\vN</m>, <m>\vT</m>, and <m>\vN</m>, then verify <m>\va = a_\vT \vT +a_\vN \vN </m> and that <m>\vT</m> is orthogonal to <m>\vN</m>.
-        </p>
-      </statement>
-      <answer>
-        <p>
-          <m>\va = a_\vT \vT +a_\vN \vN = \langle 0,1,1\rangle = 1 \langle \frac{2}{3}.\frac{2}{3},\frac{1}{3}\rangle + 1 \langle -\frac{2}{3}.\frac{1}{3},\frac{2}{3}\rangle</m>
-        </p>
-      </answer>
-    </task>  
+    </statement>
+    <answer>
+      <p>
+        <m>\va = a_{\vT} \vT +a_{\vN} \vN = \langle 0,1,1\rangle = 1 \langle \frac{2}{3}.\frac{2}{3},\frac{1}{3}\rangle + 1 \langle -\frac{2}{3}.\frac{1}{3},\frac{2}{3}\rangle</m>
+      </p>
+    </answer>
+    <solution>
+      <p>
+        <m>\va = a_{\vT} \vT +a_{\vN} \vN = \langle 0,1,1\rangle = 1 \langle \frac{2}{3}.\frac{2}{3},\frac{1}{3}\rangle + 1 \langle -\frac{2}{3}.\frac{1}{3},\frac{2}{3}\rangle</m>
+      </p>
+    </solution>
   </activity>
-  <activity>
-    <task>
-      <statement>
-        <p>
-          The vectors <m>\va</m>, <m>\vT</m>, <m>\vN</m>, <m>a_\vT \vT</m>, and <m>a_\vN \vN</m> are drawn in different colors in <xref ref="splita-random1" />. Match each color with proper vector.
-        </p>
-        <figure xml:id="splita-random1">
-          <caption> A 2D curve with splitting of acceleration shown using randomized colors</caption>
-          <image width="55%" xml:id="img-splita-random1">
-            <description>A 2D curve with splitting of acceleration shown using randomized colors</description>
-            <sageplot>
-              var('t')
-              r2(t)=(3*t^2*sin(3-2*t),t-cos(2+t))
-              c=['purple', 'red', 'blue', 'orange', 'green']
-              tval=2/3
-              rescale=1/3
-              pos=r2(tval)
-              plot8=parametric_plot(r2(t),(t,0,1.3),aspect_ratio=1,color="black",thickness=2,axes=False)
-              plot8+=point(pos,color="black",size=30)
-              v2(t)=diff(r2,t)
-              a2(t)=diff(v2,t)
-              vt=v2(tval)
-              at=a2(tval)
-              T=vt/norm(vt)
-              aTT=(at*T)*T
-              aN=sqrt(norm(at)^2-(at*T)^2)
-              aNN=at-aTT
-              N=(1/aN)*aNN
-              offset=0.25
-              plot8+=arrow(pos,pos+T,color=c[0],thickness=2)
-              plot8+=arrow(pos,pos+N,color=c[1],thickness=2)
-              plot8+=arrow(pos,pos+rescale*aTT,color=c[2])
-              plot8+=arrow(pos,pos+rescale*aNN,color=c[3])
-              plot8+=arrow(pos,pos+rescale*at,color=c[4])
-              plot8  
-            </sageplot>
-          </image>
-        </figure>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          The vectors <m>\va</m>, <m>\vT</m>, <m>\vN</m>, <m>a_\vT \vT</m>, and <m>a_\vN \vN</m> are drawn in different colors in <xref ref="splita-random2" />. Match each color with proper vector.
-        </p>
-        <figure xml:id="splita-random2">
-          <caption> A 2D curve with splitting of acceleration shown using randomized colors</caption>
-          <image width="55%" xml:id="img-splita-random2">
-            <description>A 2D curve with splitting of acceleration shown using randomized colors</description>
-            <sageplot>
-              var('t')
-              r2(t)=(3*t*cos(4*t)*sin(3-2*t),t-cos(2+t))
-              c=['red', 'purple', 'green', 'blue', 'orange']
-              tval=0.2
-              rescale=1/4
-              pos=r2(tval)
-              plot9=parametric_plot(r2(t),(t,0,0.75),aspect_ratio=1,color="black",thickness=2,axes=False)
-              plot9+=point(pos,color="black",size=30)
-              v2(t)=diff(r2,t)
-              a2(t)=diff(v2,t)
-              vt=v2(tval)
-              at=a2(tval)
-              T=vt/norm(vt)
-              aTT=(at*T)*T
-              aN=sqrt(norm(at)^2-(at*T)^2)
-              aNN=at-aTT
-              N=(1/aN)*aNN
-              offset=0.25
-              plot9+=arrow(pos,pos+T,color=c[0],thickness=2)
-              plot9+=arrow(pos,pos+N,color=c[1],thickness=2)
-              plot9+=arrow(pos,pos+rescale*aTT,color=c[2])
-              plot9+=arrow(pos,pos+rescale*aNN,color=c[3])
-              plot9+=arrow(pos,pos+rescale*at,color=c[4])
-              plot9    
-            </sageplot>
-          </image>
-        </figure>
-      </statement>
-    </task>
-    <task>
-      <statement>
-        <p>
-          The vectors <m>\va</m>, <m>\vT</m>, <m>\vN</m>, <m>a_\vT \vT</m>, and <m>a_\vN \vN</m> are drawn in different colors in <xref ref="splita-random3" />. Match each color with proper vector.
-        </p>
-        <figure xml:id="splita-random3">
-          <caption> A 2D curve with splitting of acceleration shown using randomized colors</caption>
-          <image width="55%" xml:id="img-splita-random3">
-            <description>A 2D curve with splitting of acceleration shown using randomized colors</description>
-            <sageplot>
-              var('t')
-              r2(t)=(3*cos(4*t)*sin(3-2*t),t/2-3*cos(2+t))
-              c=['red', 'purple', 'orange', 'blue', 'green']
-              tval=0.5
-              rescale=1/4
-              pos=r2(tval)
-              plot10=parametric_plot(r2(t),(t,0,0.75),aspect_ratio=1,color="black",thickness=2,axes=False)
-              plot10+=point(pos,color="black",size=30)
-              v2(t)=diff(r2,t)
-              a2(t)=diff(v2,t)
-              vt=v2(tval)
-              at=a2(tval)
-              T=vt/norm(vt)
-              aTT=(at*T)*T
-              aN=sqrt(norm(at)^2-(at*T)^2)
-              aNN=at-aTT
-              N=(1/aN)*aNN
-              offset=0.25
-              plot10+=arrow(pos,pos+T,color=c[0],thickness=2)
-              plot10+=arrow(pos,pos+N,color=c[1],thickness=2)
-              plot10+=arrow(pos,pos+rescale*aTT,color=c[2])
-              plot10+=arrow(pos,pos+rescale*aNN,color=c[3])
-              plot10+=arrow(pos,pos+rescale*at,color=c[4])
-              plot10      
-            </sageplot>
-          </image>
-        </figure>
-      </statement>
-    </task>
-  </activity>
+  
+</subsection>
+<subsection xml:id="subsec-DR-splita">
+  <title>The Driver or the Road?</title>
+  <p>
+    <xref ref="splita-howtochange" />, <xref ref="splita-travelmeanings" />, and  <xref ref="splita-visual" /> offer great conceptual and physical meaning to the different measurements involved in the splitting of acceleration, but we will take a moment now to relate <m>a_{\vN}</m>, the acceleration due to a change in the direction of travel, and <m>\kappa</m>, the curvature, which measures rate of change for the direction of travel on a curve.
+  </p>
+  <p>
+    The previous statement may seem a bit like I said the same thing twice, but <m>a_{\vN}</m> and <m>\kappa</m> are not the same. 
+    <xref ref="thm-calc-curvature"/> shows that 
+    <me>\kappa  = \frac{\left\Vert \frac{d\vT}{dt} \right\Vert}{ \left\lvert \vr'(t) \right\rvert}</me>
+    We can solve for <m>\left\Vert \frac{d\vT}{dt} \right\Vert</m> in terms of <m>\kappa</m> to get <m>\left\Vert \frac{d\vT}{dt} \right\Vert= \kappa (speed)</m>.
+  </p>
+  <p>
+    We saw earlier in this section that 
+    <me>a_{\vN}= (speed) \Vert\frac{d\vT}{dt}\Vert</me>
+    Thus, we can write <m>a_{\vN}</m> in terms of speed and curvature as 
+    <men xml:id="kaN"> a_{\vN}=\kappa (\text{speed})^2 </men>
+    <xref ref="kaN" /> should help to demonstrate the difference between <m>a_{\vN}</m> and <m>\kappa</m>. Specifically, <m>\kappa</m> measures how fast the path is curving and the normal component of acceleration, <m>a_{\vN}</m>, measures the acceleration felt due to turning. <xref ref="kaN" /> shows that if you and I are moving along the same path but you are going twice as fast as I am, then you will feel <em>four times</em> as much acceleration due to turning (even though we are going along the exact same path). Curvature is how fast the path is turning and <m>a_{\vN}</m> is how fast you feel like you are turning (based on your speed and the parameterization).
+  </p>
   <activity>
     <introduction>
       <p>
-        In this activity we will look at additional measurements and determine if these measurements are properties of the driver or properties of the road. This is a continuation of <xref ref="driver_road_act" />. As a reminder, a measurement is a property of the driver if the value(s) of that measurement <alert>can</alert> be different for different drivers (when measured at the same location on the racetrack). A measurement is a property of the road when different drivers <alert>must</alert> have the same value(s) (when measured at the same location on the racetrack). The explanations for the next tasks may be difficult for you to write but will be very helpful in ensuring you understand the vector calculus concepts of this chapter.
+        In this activity, we will look at the measurements related to the splitting of acceleration and determine if these measurements are properties of the driver or properties of the road. This is a continuation of <xref ref="driver_road_act" />. As a reminder, a measurement is a property of the driver if the value(s) of that measurement <alert>can</alert> be different for different drivers (when measured at the same location on the racetrack). A measurement is a property of the road when different drivers <alert>must</alert> have the same value(s) (when measured at the same location on the racetrack). The explanations for the next tasks may be difficult for you to write but will be very helpful in ensuring you understand the vector calculus concepts of this chapter.
       </p>
     </introduction>
     <task>
@@ -728,32 +565,26 @@
       </statement>
     </task>
   </activity>
-    </subsection>
+  </subsection>
 
   <subsection>
     <title>Summary</title>
     <ul>
       <li>
         <p>
-          The integration process shows that the length <m>L</m> of a smooth curve defined by <m>\vr(t)</m> on an interval <m>[a,b]</m> is
+          The acceleration vector for a parameterization of a curve, <m>C</m>, can be split into parts in the direction of travel and direction of turning
           <me>
-            L = \int_a^b |\vr'(t)| \, dt.
+            \va=a_{\vT}\vT+a_{\vN}\vN
           </me>
+          where <m>a_{\vT}=\va \cdot \vT</m> and <m>a_{\vN}=\va \cdot \vN</m>. 
         </p>
       </li>
 
       <li>
         <p>
-          Arc length is useful as a parameter because when we parameterize with respect to arc length, we eliminate the role of speed in our calculation of curvature and the result is a measure that depends only on the geometry of the curve and not on the parameterization of the curve.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          We define the curvature <m>\kappa</m> of a curve in 2- or 3-space to be the rate of change of the magnitude of the unit tangent vector with respect to arc length, or
-          <me>
-            \kappa = \left\lvert \frac{d\vT}{ds} \right\rvert.
-          </me>
+          The scalar <m>a_{\vT}</m> measures the rate of change of the speed. The scalar <m>a_{\vN}</m> measure the acceleration due to change in direction and can be calculated by 
+          <me>a_{\vN}=\kappa (speed)^2</me>
+          where <m>\kappa</m> is the curvature.
         </p>
       </li>
     </ul>
