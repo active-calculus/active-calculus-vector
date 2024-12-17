@@ -568,7 +568,7 @@
     </p>
 
     <p>
-      As <xref ref="A_9_3_2_a">Activity</xref> indicates, the dot product provides a simple means to determine whether two vectors are orthogonal to one another. In this case,<m>\vu\cdot\vv=\Vert\vu\Vert\Vert\vv\Vert\cos(\pi/2) = 0</m>, so we make the following important observation.
+      As <xref ref="A_9_3_2_a">Activity</xref> indicates, the dot product provides a simple means to determine whether two vectors are orthogonal to one another. In this case,<m>\vu\cdot\vv=\vecmag{\vu}\vecmag{\vv}\cos(\pi/2) = 0</m>, so we make the following important observation.
     </p>
 
     <assemblage xml:id="Dot-product-orthogonality">
@@ -656,7 +656,7 @@
       </answer>
       <solution>
         <p>
-          <m>W = \Vert25\Vert * \Vert10\Vert * \cos(30^{\circ}) = 216.506</m> lb-ft.
+          <m>W = 25 \cdot 10\cdot \cos(30^{\circ}) = 216.506</m> lb-ft.
         </p>
       </solution>
 
@@ -677,7 +677,7 @@
         </answer>
         <solution>
           <p>
-            If the angle is increased, the value of <m>\cos(\theta)</m> decreases and approaches 0. Therefore, less work is done if the angle to the direction of the object's motion is <m>60^{\circ}</m>. <m>W = \Vert25\Vert * \Vert10\Vert * \cos(60^{\circ}) = 125</m> lb-ft.            
+            If the angle is increased, the value of <m>\cos(\theta)</m> decreases and approaches 0. Therefore, less work is done if the angle to the direction of the object's motion is <m>60^{\circ}</m>. <m>W = 25\cdot 10\cdot \cos(60^{\circ}) = 125</m> lb-ft.            
           </p>
         </solution>
       </task>
@@ -1047,7 +1047,7 @@
         </md>.
         Using the other formula for the projection, we have
         <md>
-          <mrow> \proj_\vv \vu \amp= \left(\frac{\langle 4,3\rangle \cdot \langle 0,2 \rangle  }{\Vert \langle 0,2 \rangle \Vert} \right) \frac{\langle 0,2 \rangle}{\Vert \langle 0,2 \rangle \Vert} </mrow>
+          <mrow> \proj_\vv \vu \amp= \left(\frac{\langle 4,3\rangle \cdot \langle 0,2 \rangle  }{\vecmag{\langle 0,2 \rangle}} \right) \frac{\langle 0,2 \rangle}{\vecmag{\langle 0,2 \rangle }} </mrow>
           <mrow> \amp= \left(\frac{6}{2}\right) \frac{\langle 0,2 \rangle}{2} </mrow>
           <mrow> \amp= (3) \langle 0,1 \rangle = \langle 0,3 \rangle </mrow>
         </md>.
@@ -1055,7 +1055,8 @@
       </p>
       <figure xml:id="projexplot">
         <caption>A plot of <m>\vu</m>, <m>\vv</m>, <m>\proj_\vv \va</m>, and <m>\proj_{\perp \vv} \vu</m> </caption>
-        <image width="75%" xml:id="img-projexplot">
+        <!--FIXME proj is italicized in this figure-->
+        <image width="75%" label="img-projexplot">
           <description><p> A plot of <m>\vu</m>, <m>\vv</m>, <m>\proj_\vv \vu</m>, and <m>\proj_{\perp \vv} \vu</m></p></description>
           <sageplot>
             plot10=arrow((0,0),(4,3),color="black",width=3,gridlines=True)
@@ -1064,8 +1065,8 @@
             plot10+=arrow((0,3),(4,3),color="blue",width=2)
             plot10+=text("$\\vec{u}$",(4.2,3.2),color="black",fontsize=25)
             plot10+=text("$\\vec{v}$",(0.1,1.25),color="black",fontsize=25)
-            plot10+=text("$\text{proj}_{\\vec{v}} \\vec{u}$",(0.5,2.25),color="red",fontsize=25)
-            plot10+=text("$\text{proj}_{\\perp \\vec{v}} \\vec{u}$",(2.5,3.25),color="blue",fontsize=25)
+            plot10+=text("$proj_{\\vec{v}} \\vec{u}$",(0.5,2.25),color="red",fontsize=25)
+            plot10+=text("$proj_{\\perp \\vec{v}} \\vec{u}$",(2.5,3.25),color="blue",fontsize=25)
             plot10
           </sageplot>
         </image>
@@ -1131,7 +1132,7 @@
           <p>
             <m>\langle 2, 6 \rangle = \langle -2, 4 \rangle + \langle a, b \rangle</m>. Solve for <m>\proj_{\perp \vv} \vu</m> to get <m>\langle 4, 2 \rangle</m>.
           </p>
-          <image width="75%" >
+          <image width="75%" label="img-projection-activity">
             <sageplot>
               u=vector([2,6])
               v=vector([4,-8])
@@ -1143,8 +1144,8 @@
               plot11+=text("$\\vec{v}$",1.05*v,color="black",fontsize=25)
               plot11+=arrow((0,0),putov,color="red",width=2)
               plot11+=arrow(putov,u,color="blue",width=2)
-              plot11+=text("$\text{proj}_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
-              plot11+=text("$\text{proj}_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
+              plot11+=text("$\\text{proj}_{\\vec{v}} \\vec{u}$",0.5*putov-0.5*perp,color="red",fontsize=25)
+              plot11+=text("$\\text{proj}_{\\perp \\vec{v}} \\vec{u}$",1.5*putov+0.5*perp,color="blue",fontsize=25)
               plot11
             </sageplot>
           </image>
@@ -1212,7 +1213,7 @@
       <li>
         <p>
           The dot product is related to the length of a vector since
-            <m>\vu\cdot\vu = \Vert\vu\Vert^2</m>.
+            <m>\vu\cdot\vu = \vecmag{\vu}^2</m>.
         </p>
       </li>
 
@@ -1221,7 +1222,7 @@
           The dot product provides us with information about the angle
             between the vectors since
           <me>
-            \vu\cdot\vv = \Vert\vu\Vert \ \Vert\vv\Vert\cos(\theta),
+            \vu\cdot\vv = \vecmag{\vu} \vecmag{\vv}\cos(\theta),
           </me>
           where <m>\theta</m> is the angle
             between <m>\vu</m> and <m>\vv</m>.
