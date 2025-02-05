@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exercises>
+<introduction>
   <p>
     The WeBWorK problems are written by many different authors. Some authors use parentheses when writing vectors, e.g., <m>(x(t),y(t),z(t))</m> instead of angle brackets <m>\langle x(t),y(t),z(t) \rangle</m>. Please keep this in mind when working WeBWorK exercises. 
   </p>
-  
+  </introduction>
+
   <exercise label="Library__maCalcDB__setVecFunction2Curvature__ur_vc_4_3.pg" xml:id="ex-9-7-WW-velocity-acceleration">
   <!--<title>Vecocity and acceleration calculation</title>-->
      <webwork source="Library/maCalcDB/setVecFunction2Curvature/ur_vc_4_3.pg"/>
@@ -156,6 +158,137 @@
       </ol>
     </solution>
   </exercise>
+
+<exercise xml:id="A_9_7_8">
+  <introduction>
+    <p>
+      The left side of <xref ref="F_9_7_space_curve">Figure</xref> shows the curve described by the vector-valued function <m>\vr</m> defined by
+      <me>
+        \vr(t) = \left\langle 2t-\frac12 t^2 + 1,t-1\right\rangle.
+      </me>
+    </p>
+
+    <figure xml:id="F_9_7_space_curve">
+      <caption>The curve <m>\vr(t) = \left\langle 2t-\frac12 t^2 + 1, t-1\right\rangle</m> and its speed.</caption>
+      <sidebyside widths="50% 50%" margins="0%">
+      <image source="images/fig_9_7_space_curve"/>
+      <image source="images/fig_9_7_speed_graph"/>
+      </sidebyside>
+    </figure>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          Find the object's velocity <m>\vv(t)</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+            Velocity is the derivative of position, so
+            <me>
+              \vv(t) = \vr'(t)= \langle 2-t, 1 \rangle
+            </me>.
+          </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Find the object's acceleration <m>\va(t)</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Acceleration is the derivative of velocity, so
+            <me>
+              \va(t) = \vv'(t)= \langle -1, 0 \rangle
+            </me>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Indicate on the left of <xref ref="F_9_7_space_curve">Figure</xref> the object's position, velocity and acceleration at the times <m>t=0, 2, 4</m>.  Draw the velocity and acceleration vectors with their tails placed at the object's position.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          <p>
+            Notice that <m>\vr(0) = \langle 1,-1 \rangle</m>, <m>\vr(2) = \langle 2,1 \rangle</m>, and <m>\vr(4) = \langle 0,3 \rangle</m>. The vectors at each point are shown in the figure below at left.
+          </p>
+        </p>
+      </solution>
+    </task>
+    <task>
+    <statement>
+      <p>
+        Recall that the speed is <m>\vecmag{\vv} = \sqrt{\vv\cdot\vv}</m>. Find the object's speed and graph it as a function of time <m>t</m> on the right of <xref ref="F_9_7_space_curve">Figure</xref>.  When is the object's speed the slowest?  When is the speed increasing?  When is it decreasing?
+      </p>
+    </statement>
+    <solution>
+      <p>
+        <p>
+            Speed is the magnitude of the velocity, so the speed of the object at time <m>t</m> is
+            <me>
+              s(t) = \sqrt{(2-t)^2+1}
+            </me>
+            The speed of the object is at its least when <m>t=2</m>. The speed is increasing on the interval <m>(2,4)</m> and decreasing on the interval <m>(-4,2)</m>.
+
+            <image width="73%" source="images/9_7_8_a"/>   
+            <image width="73%" source="images/9_7_8_b"/>
+          </p>
+      </p>
+    </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          What seems to be true about the angle between <m>\vv</m> and <m>\va</m> when the speed is at a minimum?  What is the angle between <m>\vv</m> and <m>\va</m> when the speed is increasing?  when the speed is decreasing?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          When <m>t \lt 2</m> in the position graph, the angle between <m>\vv</m> and <m>\va</m> is larger than <m>90^{\circ}</m>. When <m>t \gt 2</m> in the position graph, the angle between <m>\vv</m> and <m>\va</m> is less than <m>90^{\circ}</m>. Note that at the point when <m>t=2</m>, the vectors <m>\vv</m> and <m>\va</m> are orthogonal.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Since the square root is an increasing function, we see that the speed increases precisely when <m>\vv\cdot\vv</m> is increasing.  Use the product rule for the dot product to express <m>\frac{d}{dt}(\vv\cdot\vv)</m> in terms of the velocity <m>\vv</m> and acceleration <m>\va</m>.  Use this to explain why the speed is increasing when <m>\vv\cdot\va \gt 0</m> and decreasing when <m>\vv\cdot\va \lt  0</m>. Compare this to part d.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Using derivative properties we have
+            <me>
+              \frac{d}{dt}(\vv\cdot\vv) = \vv \cdot \frac{d}{dt} \vv + \frac{d}{dt} \vv \cdot \vv = 2(\vv \cdot \va)
+            </me>.
+            So the derivative of the speed is positive when <m>\vv \cdot \va</m> is positive and negative when <m>\vv \cdot \va</m> is negative. In other words, speed is increasing when <m>\vv \cdot \va</m> is positive and decreasing when <m>\vv \cdot \va</m> is negative. When <m>t \lt  2</m> in the position graph, the angle between <m>\vv</m> and <m>\va</m> is larger than <m>90^{\circ}</m> and so <m>\vv \cdot \va \lt  0</m>. When <m>t \gt 2</m> in the position graph, the angle between <m>\vv</m> and <m>\va</m> is less than <m>90^{\circ}</m> and so <m>\vv \cdot \va \gt 0</m>. Note that at the point when <m>t=2</m>, the vectors <m>\vv</m> and <m>\va</m> are orthogonal.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Show that the speed's rate of change is
+          <me>
+            \frac{d}{dt}\vecmag{\vv(t)} = \comp_{\vv} \va.
+          </me>
+        </p>
+      </statement>
+      <solution>
+        <p>
+          In general, if <m>\vr(t) = \langle x(t), y(t) \rangle</m>, then <m>\vv(t) = \langle x'(t), y'(t) \rangle</m>, <m>\va(t) = \langle x''(t), y''(t) \rangle</m>, and the speed is <m>s(t) = \sqrt{(x'(t))^2 + (y'(t))^2}</m>. Recall that <m>\comp_{\vv} \va = \frac{\va \cdot \vv}{|\vv|}</m>, so
+          <me>
+            \frac{d}{dt} s(t) = \frac{x'(t)x''(t) +y'(t)y''(t)}{|\vv|} = \comp_{\vv} \va
+          </me>
+        </p>
+      </solution>
+    </task>
+  </exercise>
+
   <exercise xml:id="Ez_9_7_2">
     <statement>
       <p>
@@ -278,7 +411,7 @@
 
           <li>
             <p>
-              Use your work in parts (a), (b), and (c) to determine an equation for the tangent plane.  Then, use appropriate technology to draw the graph of <m>f</m> and the plane you determined on the same set of axes. What do you observe? (We will discuss tangent planes in more detail in Chapter 10.)
+              Use your work in parts (a), (b), and (c) to determine an equation for the tangent plane.  Then, use appropriate technology to draw the graph of <m>f</m> and the plane you determined on the same set of axes. What do you observe? (We will discuss tangent planes in more detail in Chapter 11.)
             </p>
           </li>
         </ol>

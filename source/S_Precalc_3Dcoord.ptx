@@ -21,21 +21,29 @@
         <ul>
           <li>
             <p>
-              How can you describe a location in three dimensional space?
+              How can we define coordinates to describe a location in three-dimensional space?
             </p>
           </li>
-
           <li>
             <p>
-              How do you measure distance between points in three or more dimensions?
+              How can we draw and understand plots of points and basic figures in a three-dimensional space?
             </p>
           </li>
+          <li>
+            <p>
+              How do you measure distance between locations in three or more dimensions?
+            </p>
+          </li>
+          
         </ul>
     </objectives>
 
     <introduction> 
     <p>
-      As you read in the <xref ref="intro_C_MVPrecalc" text="custom">introduction</xref> to this chapter, we will be expanding beyond the idea of measuring change of expressions with one number as an input or output. We first need to think about how to represent the basic ideas of coordinates and functions in a more general setting. The following preview activity asks you to recall some algebraic and geometric ideas from before your single variable calculus course. 
+      The functions you are most familiar with have the form <m>y=f(x)</m> where <m>x</m> is the input or domain variable and <m>y</m> is viewed as the output variable. The graphs of these functions are plotted on a coordinate plane with the input expressed in terms of the horizontal coordinate and the output as the vertical coordinate. 
+    </p>
+    <p>
+      As you read in the <xref ref="intro_C_MVPrecalc" text="custom">introduction</xref> to this chapter, we will need to expand beyond the idea of measuring change involving expressions with one number as an input or output. One of the new kinds of functions we will examine is of the form <m>z=g(x,y)</m>, where the input is an ordered pair, <m>(x,y)</m>, and the output of the function <m>g</m> is the real number <m>z</m>. In order to graph such a function,  we will need to represent the basic ideas of coordinates and functions in a more general setting to accommodate more dimensions. The following preview activity asks you to recall some algebraic and geometric ideas from before your single variable calculus course. 
     </p>
 
     <exploration xml:id="PA-2D-coord">
@@ -112,94 +120,33 @@
           </figure>
         </statement>
       </task>
-      <task xml:id="PA-distance">
+      <task xml:id="PA-distance1">
         <statement>
           <p>
-            What is the formula for the distance from <m>(x_1,y_1)</m> to <m>(x_2,y_2)</m>? Use this formula to find how far <m>(-1,2)</m> is from <m>(7,-4)</m>. 
+            Draw a plot of the points <m>(-1,2)</m> and <m>(7,-4)</m>. On your plot, draw the line segment that measures the distance between the given points and the segments that measure the horizontal and vertical changes. Your plotted segments should make a right triangle. 
           </p>
         </statement>
       </task>
-      <task>
+      <task xml:id="PA-distance2">
         <statement>
           <p>
-            Draw a plot of the points <m>(-1,2)</m> and <m>(7,-4)</m>. On your plot, draw the line segment that measures the distance between the given points and the segments that measure the horizontal and vertical changes. Your plotted segments should make a right triangle. Explain how the right triangle you drew here relates to the calculation in (<xref ref="PA-distance" text="local" />).
+            Find the length of each of line segments in the plot that is your answer to <xref ref="PA-distance1" />. Explain how the right triangle idea you drew can be generalized to find the distance between two points <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>.
           </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            For each graph in <xref ref="coord2d-four-graphs" />, state whether the graph can be expressed with <m>y</m> as a function of <m>x</m> or not. If the graph cannot be expressed with <m>y</m> as a function of <m>x</m>, write a sentence about what property you used to determine this. 
-          </p>
-          <figure xml:id="coord2d-four-graphs">
-            <caption>Four plots to determine if the graphs depict <m>y</m> as a function of <m>x</m></caption>
-            <sbsgroup widths="45% 45%" margins="0% 10% 0%">
-              <sidebyside>
-
-                <figure>
-                  <caption></caption>
-                <image width="45%" label="img-coord2d-PA6">
-                  <description><p>A two-dimensional plot of a parabola opening in the positive vertical direction. </p></description>
-                  <sageplot>
-                    var('x')
-                    plot6=plot(x^2,(x,-4,4),color="black",axes=true,axes_labels=["$x$","$y$"],gridlines=True,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1)
-                    plot6   
-                  </sageplot>
-                </image>
-              </figure>
-              <figure>
-                <caption></caption>
-                <image width="45%" label="img-coord2d-PA7">
-                  <description><p>A two-dimensional plot of a parabola opening in the positive horizontal direction.</p></description>
-                  <sageplot>
-                    var('t')
-                    plot7=parametric_plot((t^2,t),(t,-4,4),color="black",axes=true,axes_labels=["$x$","$y$"],gridlines=True,aspect_ratio=1)
-                    plot7+=point((0,0),color="black",size=0,xmin=-4,xmax=4,ymin=-4,ymax=4)
-                    plot7
-                  </sageplot>
-                </image>  
-                </figure>
-              </sidebyside>
-              <sidebyside>
-                <figure>
-                  <caption></caption>
-                <image width="45%" label="img-coord2d-PA8">
-                  <description><p>A two-dimensional plot of a line with slope <m>1</m> and <m>y</m>-intercept <m>1</m>.</p></description>
-                  <sageplot>
-                    var('t')
-                    plot8=parametric_plot((t,t+1),(t,-4,4),color="black",axes=true,axes_labels=["$x$","$y$"],gridlines=True,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1)
-                    plot8
-                  </sageplot>
-                </image>
-                </figure>
-                <figure>
-                  <caption></caption>
-                <image width="45%" label="img-coord2d-PA9">
-                  <description><p>A two-dimensional plot of a vertical line with <m>x</m>-intercept <m>2</m>.</p></description>
-                  <sageplot>
-                    var('t')
-                    plot9=parametric_plot((2,t),(t,-4,4),color="black",gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
-                    plot9+=point((0,0),color="black",size=0,xmin=-4,xmax=4,ymin=-4,ymax=4)
-                    plot9
-                  </sageplot>
-                </image>             
-                </figure>       
-              </sidebyside>
-            </sbsgroup>
-        </figure>
         </statement>
       </task>
     </exploration>
   
   <p>
-    The tasks in <xref ref="PA-2D-coord" /> connect some of the meaning and formulas used in coordinates and graphing for two dimensions to specific measurements. We will use these ideas to build useful tools for three or more dimensions. In the rest of this section, we will define the measurements for coordinates and basic measurements in three dimensions. 
+    The tasks in <xref ref="PA-2D-coord" /> connect ideas used in coordinates and graphing for two dimensions to specific measurements. We will use these connections to build useful tools for three or more dimensions. In the rest of this section, we will define the measurements for coordinates and basic measurements in three dimensions. 
   </p>
 </introduction>
   <subsection>
     <title>Three Dimensional Space and Coordinates</title>
-  
   <p>
-    To plot points in three-dimensional space, we need to set up a coordinate system with three mutually perpendicular axes<mdash/>the <m>x</m>-axis, the <m>y</m>-axis, and the <m>z</m>-axis (called the <term>coordinate axes</term>). There are essentially two different ways we could set up a 3D coordinate system, as shown in <xref ref="F-9-1-left-right-hand">Figure</xref>, which depicts only the positive portions of the axes. Thus, before we can proceed, we need to establish a convention.
+    We let <m>\R^2</m> denote the set of all ordered pairs of real numbers in the plane (two copies of the real number system) and let <m>\R^3</m> represent the set of all ordered triples of real numbers, which constitutes three-dimensional space. For example, <m>(1,\pi)</m> is in <m>\R^2</m> and <m>(-e^2,\frac{\sqrt{7}}{4},0)</m> is in <m>\R^3</m>, but <m>(\ln(3),2i)</m> is not in <m>\R^2</m> because the second coordinate is not a real number because <m>2i</m> is imaginary.
+  </p>
+  <p>
+    To plot points in three-dimensional space, we will set up a coordinate system with three mutually perpendicular axes<mdash/>the <m>x</m>-axis, the <m>y</m>-axis, and the <m>z</m>-axis (called the <term>coordinate axes</term>). There are essentially two different ways we could set up a 3D coordinate system, as shown in <xref ref="F-9-1-left-right-hand">Figure</xref>, which depicts only the positive portions of the axes. Thus, before we can proceed, we need to establish a convention.
   </p>
     <figure xml:id="F-9-1-left-right-hand">
       <sidebyside widths="50% 50%">
@@ -221,17 +168,14 @@
             </description>
           </image>
         </figure>
-        </sidebyside>
+      </sidebyside>
     </figure>
-    
     <p>
       The distinction between these two figures is subtle, but important. In the coordinate system shown in <xref ref="fig-coord-sys-left-hand" />, imagine that you are sitting on the positive <m>z</m>-axis next to the label <q><m>z</m>.</q> Looking down at the <m>x</m>- and <m>y</m>-axes, you see that the <m>y</m>-axis is obtained by rotating the <m>x</m>-axis by <m>90^\circ</m> in the <em>clockwise</em> direction. Again sitting on the positive <m>z</m>-axis in the coordinate system at right in <xref ref="fig-coord-sys-right-hand" />, you see that the <m>y</m>-axis is obtained by rotating the <m>x</m>-axis by <m>90^\circ</m> in the <em>counterclockwise</em> direction.
     </p>
-
     <p>
       We call the coordinate system in <xref ref="fig-coord-sys-right-hand"/> a <term>right-hand system</term>; if we point the index finger of our <em>right</em> hand along the positive <m>x</m>-axis and our middle finger along the positive <m>y</m>-axis, then our thumb points in the direction of the positive <m>z</m>-axis. Following mathematical conventions, we choose to use a right-hand system throughout this book.
     </p>
-
     <p>
       We let <m>\R^2</m> denote the set of all ordered pairs of real numbers in the plane (two copies of the real number system) and let <m>\R^3</m> represent the set of all ordered triples of real numbers (which constitutes three-space). For example, <m>(1,\pi)</m> is in <m>\R^2</m> and <m>(-e^2,\frac{\sqrt{7}}{4},0)</m> is in <m>\R^3</m>, but <m>(\ln(3),2i)</m> is not in <m>\R^2</m> because the second coordinate is not a real number because <m>2i</m> is imaginary.
     </p>
@@ -249,10 +193,10 @@
       </image>
     </figure>
     <p>
-      Now that we have established how our axes will be defined, we can use these axes to define how to measure coordinates and make a few basic graphs. In two dimensions, the horizontal coordinate was measured as the (minimum) distance to the vertical axis and the vertical coordinate was measured as the (minimum) distance to the horizontal axis. It is convenient to treat these measurements as signed distances with the measurement being positive when the point is above the given axis and negative when the measurement is below the given axis. 
-    </p>
+      Now that we have established how our axes will be defined, we can use these axes to define how to measure coordinates and make a few basic graphs. 
+    </p> 
     <p>
-      <xref ref="coord2d-measurement" /> shows the measurement of coordinates for <m>P</m>, a point in the first quadrant, and <m>Q</m>, a point in the fourth quadrant. Notice that the coordinates <m>a</m>, <m>b</m>, and <m>c</m> will be positive because each of the segments used to measure the distance are above the other coordinate axis. The coordinate  <m>d</m> will be negative because the segment used to measure the vertical distance to the <m>x</m>-axis is below the <m>x</m>-axis. This is what we mean when we say that the coordinate measurements are a signed distance: the distance specifies how far the point is from each axis, while the sign specifies whether that distance is above or below the axis.
+      In two dimensions, the horizontal coordinate was measured as the (perpendicular) distance to the vertical axis and the vertical coordinate was measured as the (perpendicular) distance to the horizontal axis. It is convenient to treat these measurements as signed distances with the measurement being positive when the point is above the given axis and negative when the measurement is below the given axis. 
     </p>
     <figure xml:id="coord2d-measurement">
       <caption>A plot with the 2D coordinate measurements labeled</caption>
@@ -272,7 +216,19 @@
       </image>
     </figure>
     <p>
-      In a three dimensional space, we need to pay attention to not just the axes but also the <term>coordinate planes</term><idx><h>coordinate plane</h></idx><idx><h>plane</h></idx><h>coordinate</h>. <xref ref="coor-planes"/> shows how the <m>xy</m>-plane is the plane that contains the <m>x</m>- and <m>y</m>-axes. We can define the <m>xz</m>-plane as the plane that contain the <m>x</m>-and <m>z</m>-axes and the <m>yz</m>-plane as the plane that contain the <m>y</m>-and <m>z</m>-axes. In many ways the coordinate planes in three dimensions are analogous to the axes in two dimensions. We will split up three-dimensional space based on whether a location is above or below different coordinate planes and we will measure coordinates in three dimensions as distances from the coordinate planes.
+      <xref ref="coord2d-measurement" /> shows the measurement of coordinates for <m>P</m>, a point in the first quadrant, and <m>Q</m>, a point in the fourth quadrant. Notice that the coordinates <m>a</m>, <m>b</m>, and <m>c</m> will be positive because each of the segments used to measure the distance are above the other coordinate axis. The coordinate  <m>d</m> will be negative because the segment used to measure the vertical distance to the <m>x</m>-axis is below the <m>x</m>-axis. This is what we mean when we say that the coordinate measurements are a <em>signed distance</em>: the distance specifies how far the point is from each axis, while the sign specifies whether that distance is above or below the axis.
+    </p>
+    <p>
+      In a three dimensional space, we need to pay attention to not just the axes but also the <term>coordinate planes</term><idx><h>coordinate plane</h></idx><idx><h>plane</h></idx>. <xref ref="coor-planes"/> shows how the <m>xz</m>-plane is the plane that contains the <m>x</m>- and <m>z</m>-axes. We can define the <m>xy</m>-plane as the plane that contain the <m>x</m>-and <m>y</m>-axes and the <m>yz</m>-plane as the plane that contain the <m>y</m>-and <m>z</m>-axes.
+    </p>  
+    <p>  
+      In <xref ref="coor-planes" />, you can click on the buttons to either show or hide each of the coordinate planes. You should explore and turn each of the coordinate planes on and pay attention to how each plane is oriented with respect to the different axes. <xref ref="coor-planes"/> is the first interactable 3D plot, so we will take a moment to talk about other important ways you should interact with figures like this. 
+    </p>
+    <p>
+      A wonderful feature of a figure like this is that you can rotate the figure, zoom in/out, and change the point from which the figure is viewed. These will be very helpful actions to try when looking at interactive 3D graphs because this will help you visualize the fullest version of these graphs. There are often parts of these 3D figures that are "behind" other elements or might make more sense to you if viewed from a different perspective. By giving you control over how the graph is viewed, you will have the ability to look at features in whatever way help you make the most sense at the time. We will always try to have the first orientation shown in these types of figure be helpful, but we will always be a bit limited by showing a 3D figure in a 2D medium. 
+    </p>
+    <p>
+      To rotate a 3D interactable figure, you should left click and hold somewhere on the figure. While holding, you can rotate the figure by moving the point where you clicked up/down/left right. Additionally, you can move the point you are viewing the graph from by right clicking and holding while moving the cursor up/down/left/right. On touchscreen devices, you will need to touch with two fingers to act as a right click. The arrow keys on a keyboard will also move the point at which the figure is being viewed from. You can also zoom in or out having your cursor over the 3D interactable figure and using the scroll wheel on a mouse or using pinching/expanding motions with two fingers on touchscreen devices. Take a few minutes to explore these actions on the figure below and pay attention to how each of these actions will change your view of the graph. 
     </p>
     <figure xml:id="coor-planes">
       <caption>The coordinate planes in three dimensions</caption>
@@ -280,16 +236,26 @@
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
-          plot12=axes(4,1,color="black")+text3d("x",(4.5,0,0),fontsize=30)+text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
-          plot12+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
-          plot12+=parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
-          plot12+=parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
           d=4
-          plot12+=text3d("xy-plane",(d,-d,0.5),fontsize=25,color="green")+text3d("xz-plane",(-d,0,d),fontsize=25,color="blue")+text3d("yz-plane",(0,-d,d),fontsize=25,color="red")
-          show(plot12,aspect_ratio=1,viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[12.3011,13.494,5.4476])
+          @interact
+          def coordplanes(xyp=checkbox(False,'Show xy-plane'),xzp=checkbox(True,'Show xz-plane'),yzp=checkbox(False,'Show yz-plane')):
+              plot12=axes(3.5,1,color="black")+text3d("x",(4,0,0),fontsize=30)+text3d("y",(0,4,0),fontsize=30)+text3d("z",(0,0,4),fontsize=30)
+              if(xyp):
+                  plot12+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
+                  plot12+=text3d("xy-plane",(d,-d,0.5),fontsize=25,color="green")
+              if(xzp):
+                  plot12+=parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
+                  plot12+=text3d("xz-plane",(-d,0,d),fontsize=25,color="blue")
+              if(yzp):
+                  plot12+=parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
+                  plot12+=text3d("yz-plane",(0,-d,d),fontsize=25,color="red")
+              show(plot12,aspect_ratio=1,viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[12.3011,13.494,5.4476])
         </slate>
       </interactive>
     </figure>
+    <p>  
+      In many ways the coordinate planes in three dimensions are analogous to the axes in two dimensions. We will split up three-dimensional space based on whether a location is above or below different coordinate planes and we will measure coordinates in three dimensions as distances from the coordinate planes.
+    </p>
     <p> 
       In two dimensions, the four regions that are separated by the coordinate axes are called <term>quadrants</term> and are typically labeled as in the plot below.
     </p>
@@ -307,27 +273,34 @@
       </image>
     </figure>
      <p>
-       The coordinate planes will divide our three dimensional space up into eight regions, which we will call <term>octants</term>. The octants above the <m>xy</m>-plane are ordered just like the quadrants in two dimensions and octants 5 through 8 have the same relationships but below the <m>xy</m>-plane. For example, octant 7 lies below Qudrant III of the <m>xy</m>-plane.
+       The coordinate planes will divide our three dimensional space up into eight regions, which we will call <term>octants</term>. The first octant is the part of <m>\mathbb{R}^3</m> that is in the positive <m>x-</m>, <m>y-</m>, and <m>z-</m>directions. You should rotate <xref ref="octants"/> to see how there are eight regions that our 3D space is split into and how the orientation of the positive axis directions relates to the first octant. 
      </p>
      <figure xml:id="octants">
        <caption>A plot of the eight octants </caption>
        <interactive label="interactive-octants" platform="sage" width="91%" aspect="1:1">
          <slate surface="sage">
-           from sage.plot.plot3d.plot3d import axes
-           var('t,s')
-           plot3=axes(1.2,1,color="black",frame=False)+text3d("x",(1.5,0,0),fontsize=30)+text3d("y",(0,1.5,0),fontsize=30)+text3d("z",(0,0,1.5),fontsize=30)
-           plot3+=parametric_plot3d((s,t,0),(s,-1,1),(t,-1,1),color="green",opacity=.25,mesh=True,plot_points=3)
-           plot3+=parametric_plot3d((0,t,s),(s,-1,1),(t,-1,1),color="red",opacity=.25,mesh=True,plot_points=3)
-           plot3+=parametric_plot3d((s,0,t),(s,-1,1),(t,-1,1),color="blue",opacity=.25,mesh=True,plot_points=3)
-           d=0.75
-           names=["First Octant","Second Octant","Third Octant", "Fourth Octant","Fifth Octant","Sixth Octant","Seventh Octant","Eighth Octant"]
-           locations=[(d,d,d),(-d,d,d),(-d,-d,d),(d,-d,d),(d,d,-d),(-d,d,-d),(-d,-d,-d),(d,-d,-d)]
-           for i in range(len(names)):
-               plot3+=text3d(names[i],locations[i],fontsize=20)
-           show(plot3,aspect_ratio=1,viewpoint=[[-0.2432,-0.5619,-0.7907],142.22],camera_position=[4.2996,3.8202,1.9418])
+          from sage.plot.plot3d.plot3d import axes
+          var('t,s')
+          @interact
+          def octants(otherlabels=checkbox(False,"Show Labels for Other Octants")):
+            plot3=axes(3,1,color="black")+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
+            plot3+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False)
+            plot3+=parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False)
+            plot3+=parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False)
+            d=3
+            plot3+=text3d("First Octant",(d,d,d),fontsize=20)
+            names=["Second Octant","Third Octant", "Fourth Octant","Fifth Octant","Sixth Octant","Seventh Octant","Eighth Octant"]
+            locations=[(-d,d,d),(-d,-d,d),(d,-d,d),(d,d,-d),(-d,d,-d),(-d,-d,-d),(d,-d,-d)]
+            if(otherlabels):
+              for i in range(len(names)):
+                plot3+=text3d(names[i],locations[i],fontsize=20)
+            show(plot3,aspect_ratio=1,viewpoint=[[-0.2432,-0.5619,-0.7907],142.22],camera_position=[4.2996,3.8202,1.9418])
          </slate>
        </interactive>      
      </figure>
+     <p>
+      The octants above the <m>xy</m>-plane are ordered just like the quadrants in two dimensions (when viewed looking down the <m>z-</m>axis) and octants 5 through 8 have the same relationships but below the <m>xy</m>-plane. For example, octant 7 lies below quadrant III of the <m>xy</m>-plane. You can use the checkbox in <xref ref="octants" /> to show the labels of the other octants. 
+     </p>
     <p>
       The location of a point in a three-dimensional space is measured with three coordinates. The three-dimensional rectangular coordinates are measured as the signed distances to each of the coordinate planes. For example, the point <m>(1,-2,3)</m> is shown in <xref ref="point-in3d"/>.
     </p>
@@ -337,66 +310,44 @@
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
-          plot15=axes(3,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-          plot15+=point3d((1,-2,3),size=30,color="black")
-          plot15
+          @interact
+          def pointin3d(supports=checkbox(True, label='Show Segments'),coordplanes=checkbox(False,label='Show Coordinate Planes')):
+            plot14=axes(3.5,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(4,0,0),fontsize=30)+text3d("y",(0,4,0),fontsize=30)+text3d("z",(0,0,4),fontsize=30)
+            plot14+=point3d((1,-2,3),size=50,color="black")
+            plot14+=text3d("P=(1,-2,3)",(1,-2,3.5),color="black",fontsize=25)
+            if(supports):
+              plot14+=parametric_plot3d((t,-2,0),(t,0,1),thickness=2,color="red")+parametric_plot3d((1,-t,0),(t,0,2),color="blue",thickness=2)
+              plot14+=parametric_plot3d((1,-2,t),(t,0,3),color="green",thickness=2)
+              plot14+=line([(0,0,0),(0,-3,0)],color="black",style="-")
+              plot14+=text3d("-2",(1.5,-1,0),color="blue",fontsize=20)
+              plot14+=text3d("1",(0.5,-1.5,0),color="red",fontsize=20)
+              plot14+=text3d("3",(1.25,-2.25,1.5),color="green",fontsize=20)
+            if(coordplanes):
+              plot14+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
+              plot14+=parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
+              plot14+=parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
+              plot14+=parametric_plot3d((t,-2,3),(t,0,1),thickness=2,color="red")
+              plot14+=parametric_plot3d((1,-t,3),(t,0,2),color="blue",thickness=2)
+              plot14+=parametric_plot3d((1,-2,t),(t,0,3),color="green",thickness=2)
+              plot14+=text3d("-2",(1.5,-1,3),color="blue",fontsize=20)
+              plot14+=text3d("1",(0.5,-1.5,3),color="red",fontsize=20)
+              plot14+=text3d("3",(1.25,-2.25,1.5),color="green",fontsize=20)
+            show(plot14)
         </slate>
       </interactive>
     </figure>
     <p>
-      Notice how hard it is to see where that point is located without turning the axes. In the interactive version of this text, most three-dimensional plots are interactive, which means you click and drag to rotate the perspective. Additionally, you can zoom in and out by either using a scroll wheel on a mouse or pinching on touch screens. Interacting with the three-dimensional plots is an important part of building your understanding.
+      When drawing points (or other plots) in three dimensions, it is often useful to draw segments or other features that are parallel to coordinate axes in order to help the viewer see the orientation and locations. For instance, we hope that you will find it easier to understand the location of the point <m>(1,-2,3)</m> in <xref ref="point-in3d"/> because of the parallel structures shown on the plot.
+    </p>
+    <p>
+      In <xref ref="point-in3d" /> you should click on the box labeled <q>Show Segments</q> to turn of the colored line segments. You should notice how hard it is to see where our point is located without turning the axes or having the colored line segments. You can rotate the figure with the point drawn without the segments and get some idea of where the point lies relative to the axes but this is a difficult visual task.
     </p> 
     <p>
-      When drawing points (or other plots) in three dimensions, it is often useful to draw segments or other features that are parallel to coordinate axes in order to help the viewer see the orientation and locations. For instance, we hope that you will find it easier to understand the location of the point <m>(1,-2,3)</m> in <xref ref="point-in3d-reference2"/> because of the parallel structures shown on the plot.
+      You should now click on the box labeled <q>Show Coordinate Planes</q> in <xref ref="point-in3d" /> to display the segments used to determine the coordinates in three dimensions as they are measured from the point to the coordinate planes. Most of our plots will not draw the coordinate planes. Framing the important measurements of your plot with structures that are parallel to the coordinate axes is a helpful way to make plots more easily understood. 
     </p>
-    <figure xml:id="point-in3d-reference2">
-      <caption>A plot of the point <m>(1,-2,3)</m> with line segments parallel to the coordinate axes</caption>
-      <interactive title="interactive-point-in3d-reference2" platform="sage" width="91%" aspect="1:1">
-        <slate surface="sage">
-          from sage.plot.plot3d.plot3d import axes
-          var('t,s')
-          plot24=axes(4,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(4.5,0,0),fontsize=30)
-          plot24+=text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
-          plot24+=point3d((1,-2,3),size=50,color="black")
-          plot24+=parametric_plot3d((t,-2,3),(t,0,1),thickness=2,color="red")
-          plot24+=parametric_plot3d((1,-t,3),(t,0,2),color="blue",thickness=2)
-          plot24+=parametric_plot3d((1,-2,t),(t,0,3),color="green",thickness=2)
-          plot24+=line([(0,0,0),(0,-3,0)],color="black",style="-")
-          plot24+=text3d("-2",(1.5,-1,3),color="blue",fontsize=20)
-          plot24+=text3d("1",(0.5,-1.5,3),color="red",fontsize=20)
-          plot24+=text3d("3",(1.25,-2.25,1.5),color="green",fontsize=20)
-          plot24+=text3d("P=(1,-2,3)",(2.5,-3.5,3.25),color="black",fontsize=25)
-          plot24+=parametric_plot3d((s,t,0),(s,-3.5,3.5),(t,-3.5,3.5),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
-          plot24+=parametric_plot3d((0,t,s),(s,-3.5,3.5),(t,-3.5,3.5),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
-          plot24+=parametric_plot3d((s,0,t),(s,-3.5,3.5),(t,-3.5,3.5),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
-          #d=4.5
-          #plot24+=text3d("xy-plane",(d,-d,0.5),fontsize=25,color="green")+text3d("xz-plane",(-d,0,d),fontsize=25,color="blue")+text3d("yz-plane",(0,-d,d),fontsize=25,color="red")
-          show(plot24,viewpoint=[[-0.3953,-0.4277,-0.8129],106.16],camera_position=[12.6151,1.4535,8.8522])
-        </slate>
-      </interactive>
-    </figure>
     <p>
-      <xref ref="point-in3d-reference2" /> shows the segments used to determine the coordinates in three dimensions as they are measured from the point to the coordinate planes. Many plots will not show the coordinate planes. Framing the important measurements of your plot with structures that are parallel to the coordinate axes is a helpful way to make plots more easily understood. For instance, see how it is easier to understand the location of the point <m>(1,-2,3)</m> in <xref ref="point-in3d-reference"/> because of the parallel structures that are shown on the plot. In particular, you can see the <m>x</m>- and <m>y</m>-coordinates measured in the <m>xy</m>-plane with the <m>z</m>-coordinate extended up. The segments drawn in <xref ref="point-in3d-reference" /> are usually reasonable to add to a drawing done by hand as well.
-    </p>
-
-    <figure xml:id="point-in3d-reference">
-      <caption>A plot of the point <m>(1,-2,3)</m> with line segments parallel to the coordinate axes</caption>
-      <interactive label="interactive-point-in3d-reference" platform="sage" width="91%" aspect="1:1">
-        <slate surface="sage">
-          from sage.plot.plot3d.plot3d import axes
-          var('t,s')
-          plot14=axes(3,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-          plot14+=point3d((1,-2,3),size=30,color="black")+parametric_plot3d((t,-2,0),(t,0,1),thickness=2,color="blue")+parametric_plot3d((1,-t,0),(t,0,2),color="green",thickness=2)
-          plot14+=parametric_plot3d((1,-2,t),(t,0,3),color="red",thickness=2)
-          plot14+=line([(0,0,0),(0,-3,0)],color="black",style="-")
-          plot14+=text3d("-2",(1.5,-1,0),color="green",fontsize=20)
-          plot14+=text3d("1",(0.5,-1.5,0),color="blue",fontsize=20)
-          plot14+=text3d("3",(1.25,-2.25,1.5),color="red",fontsize=20)
-          plot14+=text3d("P=(1,-2,3)",(1,-2,3.5),color="black",fontsize=25)
-          plot14
-        </slate>
-      </interactive>
-    </figure>
+      If you select the <q>Show Segments</q> option and turn off the <q>Show Coordinate Planes</q> in <xref ref="point-in3d"/>, you can see how it is easier to understand the location of the point <m>(1,-2,3)</m> because of the parallel structures that are shown on the plot. In particular, you can see the <m>x</m>- and <m>y</m>-coordinates measured in the <m>xy</m>-plane with the <m>z</m>-coordinate extended up. The segments drawn in this plot are usually reasonable to add to a drawing done by hand as well. Remember that interacting with and exploring different features you notice in the three-dimensional plots is an important part of building your understanding.
+    </p> 
     <activity xml:id="rect3d_followup">
       <title>Drawing Points in 3D</title>
       <introduction>
@@ -419,7 +370,7 @@
       <task>
         <statement>
           <p>
-            Draw the point <m>A</m> (that is, your answer to (<xref ref="rect3dpart1" text="local" />)) on a set of three-dimensional axes and include the line segments that show that coordinate's points as a set of directions from the origin (like in <xref ref="point-in3d-reference" />).            
+            Draw the point <m>A</m> (that is, your answer to (<xref ref="rect3dpart1" text="local" />)) on a set of three-dimensional axes and include the line segments that show that coordinate's points as a set of directions from the origin (like in <xref ref="point-in3d" /> with the <q>Show Segments</q> option).            
           </p>
         </statement>
         <answer>
@@ -442,7 +393,7 @@
       </task>
       <task>
         <p>
-          Draw the point <m>B</m> (that is, your answer to (<xref ref="rect3dpart2" text="local" />)) on a set of three-dimensional axes and include the line segments that show that coordinate's points as a set of directions from the origin (like in <xref ref="point-in3d-reference" />).
+          Draw the point <m>B</m> (that is, your answer to (<xref ref="rect3dpart2" text="local" />)) on a set of three-dimensional axes and include the line segments that show that coordinate's points as a set of directions from the origin (like in <xref ref="point-in3d" /> with the <q>Show Segments</q> option).
         </p>
       </task>
     </activity>
@@ -451,7 +402,28 @@
   <subsection>
     <title>Fundamental Planes</title>
     <p>
-      At this point we are ready to understand graphs of some simple equations in three dimensions. For example, in <m>\R^2</m>, the graphs of the equations <m>x=a</m> and <m>y=b</m>, where <m>a</m> and <m>b</m> are constants, are lines parallel to the coordinate axes. Remember that a graph of an equation is a plot of all points that satisfy this equation. This means that the graph of an equation is a visual representation of all locations whose coordinates will make the left side of your equation equal to the right side of the equation. The equation should give you a way to test whether a point is on the graph or not. For instance, the graph of <m>x=2</m> in two dimensions will be a vertical line with <m>x</m>-intercept of 2, because the points of the form <m>(2,y)</m> satisfy the equation <m>x=2</m> (for any choice of <m>y \in \mathbb{R}</m>). In the next activity we consider the three-dimensional analogs.
+      At this point we are ready to understand graphs of some simple equations in three dimensions. For example, in <m>\R^2</m>, the graphs of the equations <m>x=a</m> and <m>y=b</m>, where <m>a</m> and <m>b</m> are constants, are lines parallel to the coordinate axes. Remember that a graph of an equation is a plot of all points that satisfy this equation. This means that the graph of an equation is a visual representation of all locations whose coordinates will make the left side of your equation equal to the right side of the equation. The equation should give you a way to test whether a point is on the graph or not. 
+    </p> 
+    <figure xml:id="x2plot">
+      <caption>A 2D plot of <m>x=2</m></caption>
+      <image width="55%" label="img-x2plot">
+        <shortdescription>A plot of coordinate axes and the vertical line two units to the right of the vertical axis</shortdescription>
+        <description><p>A two-dimensional plot with the vertical line two units to the right of the vertical axis and points <m>(2,1)</m>, <m>(2,\pi)</m>, and <m>(2,-e)</m> labeled</p></description>
+        <sageplot>
+          var('t')
+          plot19=parametric_plot((2,t),(t,-4,4),color="black",gridlines=False,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
+          plot19+=point((2,1),color="black",size=25,xmin=-4,xmax=4,ymin=-4,ymax=4)
+          plot19+=point((2,pi),color="black",size=25)
+          plot19+=point((2,-2.718),color="black",size=25)
+          plot19+=text("$(2,1)$",(2.75,1),color="black",fontsize=15)
+          plot19+=text("$(2,\\pi)$",(2.75,pi),color="black",fontsize=15)
+          plot19+=text("$(2,-e)$",(2.75,-2.718),color="black",fontsize=15)
+          plot19           
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      For instance, the graph of <m>x=2</m> in two dimensions will be a vertical line with <m>x</m>-intercept of 2, because the points of the form <m>(2,y)</m> satisfy the equation <m>x=2</m> (for any choice of <m>y \in \mathbb{R}</m>) as shown in <xref ref="x2plot"/>. In the next activity we consider the three-dimensional analogs of these kinds equations.
     </p>
 
     <activity xml:id="A-9-1-3">
@@ -509,24 +481,49 @@
 
     </activity>
     <p>
-      <xref ref="A-9-1-3" /> illustrates that equations where one of the rectangular coordinates is held constant lead to planes parallel to the coordinate planes. When we make the constant 0, we get the coordinate planes themselves<idx><h>coordinate plane</h></idx><idx><h>plane</h></idx><h>coordinate</h>. The <m>xy</m>-plane satisfies <m>z=0</m>, the <m>xz</m>-plane satisfies <m>y=0</m>, and the <m>yz</m>-plane
-      satisfies <m>x=0</m> (see <xref ref="coor-planes" />). Planes of the form <m>x=a</m>, <m>y=b</m>, <m>z=c</m> are called <term>fundamental planes</term><idx><h>fundamental plane</h></idx><idx><h>plane</h><h>fundamental</h></idx> are useful in understanding and building structures in three dimensions. In a plot like <xref ref="coord2d-PA3" />, you see a grid that helps measure coordinates of points in 2D. <xref ref="fundamental-planes" /> has a lot of visual clutter and is very hard to distinguish fine features, especially something in the middle of the plot. Contrast this to how helpful the grid in <xref ref="coord2d-four-graphs" /> is. 
-    </p>
+      <xref ref="A-9-1-3" /> illustrates that equations where one of the rectangular coordinates is held constant lead to planes parallel to the coordinate planes. When we make the constant 0, we get the coordinate planes themselves<idx><h>coordinate plane</h></idx><idx><h>plane</h></idx><h>coordinate</h>. The <m>xy</m>-plane satisfies <m>z=0</m>, the <m>xz</m>-plane satisfies <m>y=0</m>, and the <m>yz</m>-plane satisfies <m>x=0</m> (see <xref ref="coor-planes" />). Planes of the form <m>x=a</m>, <m>y=b</m>, <m>z=c</m> are called <term>fundamental planes</term><idx><h>fundamental plane</h></idx><idx><h>plane</h><h>fundamental</h></idx> are useful in understanding and building structures in three dimensions. You can see how the intersection of fundamental planes <m>x=1</m>, <m>y=-2</m>, and <m>z=3</m> corresponds to the point <m>(1,-2,3)</m> in <xref ref="fundamental-planes" />. As always, you should rotate and change the viewpoint of the figure to make sure you understand how each fundamental plane and the point <m>P</m> are oriented relative to the axes.
+    </p> 
     <figure xml:id="fundamental-planes">
       <caption>A grid of fundamental planes in three dimensions</caption>
-      <interactive label="interactive-fundamental-plane" platform="sage" width="91%" aspect="1:1">
+      <interactive label="interactive-fundamental-planes" platform="sage" width="91%" aspect="1:1">
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
-          plot16=axes(4,1,color="black",frame=False)+text3d("x",(4.5,0,0),fontsize=30)+text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
-          vals=[-2,-1,0,1,2]
-          d=3.25
-          for c in vals:
+          plot34=axes(4,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(4.5,0,0),fontsize=30)
+          plot34+=text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
+          plot34+=point3d((1,-2,3),size=50,color="black")
+          plot34+=text3d("P=(1,-2,3)",(1.5,-2.5,4),color="black",fontsize=25)
+          plot34+=parametric_plot3d((s,t,3),(s,-3.5,3.5),(t,-3.5,3.5),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
+          plot34+=parametric_plot3d((1,t,s),(s,-3.5,3.5),(t,-3.5,3.5),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
+          plot34+=parametric_plot3d((s,-2,t),(s,-3.5,3.5),(t,-3.5,3.5),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
+          d=4.5
+          plot34+=text3d("z=3",(d,0,3),fontsize=25,color="green")
+          plot34+=text3d("y=-2",(-d,-2,d),fontsize=25,color="blue")
+          plot34+=text3d("x=1",(1,d,0),fontsize=25,color="red")
+          show(plot34,viewpoint=[[-0.2318,-0.5257,-0.8185],140.3],camera_position=[12.6846,12.0834,8.3556])
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      In a plot like <xref ref="coord2d-PA3" />, you see a grid that helps measure coordinates of points in 2D. In <xref ref="grid3d" /> you can look at how a different number of fundamental planes forming a grid looks. You can use the slider to increase or decrease the number of fundamental planes displayed in the grid. When you have more than one plane in each direction there will be a lot of visual clutter and very hard to distinguish fine features, especially something in the middle of the plot. Contrast this to how helpful the grid in <xref ref="coord2d-four-graphs" /> is. 
+    </p>
+    <figure xml:id="grid3d">
+      <caption>A grid of fundamental planes in three dimensions</caption>
+      <interactive label="interactive-grid3d" platform="sage" width="91%" aspect="1:1">
+        <slate surface="sage">
+          from sage.plot.plot3d.plot3d import axes
+          var('t,s')
+          @interact
+          def grid3d(n=slider(0,3,1,default=2,display_value=False,label="Number of grid parts")):
+            plot16=axes(4,1,color="black",frame=False)+text3d("x",(4.5,0,0),fontsize=30)+text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
+            vals=[i for i in range(-n,n+1)]
+            d=3.25
+            for c in vals:
               plot16+=parametric_plot3d((s,t,c),(s,-3,3),(t,-3,3),color="green",opacity=.2,mesh=True,plot_points=3)
               plot16+=parametric_plot3d((c,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.2,mesh=True,plot_points=3)
               plot16+=parametric_plot3d((s,c,t),(s,-3,3),(t,-3,3),color="blue",opacity=.2,mesh=True,plot_points=3)
               plot16+=text3d("z="+str(c),(-d,d,c),fontsize=15,color="green")+text3d("y="+str(c),(-d,c,d),fontsize=15,color="blue")+text3d("x="+str(c),(c,-d,d),fontsize=15,color="red")
-          show(plot16,aspect_ratio=1,viewpoint=[[-0.1671,-0.4034,-0.8997],139.12],camera_position=[9.786,9.786,12.2931])
+            show(plot16,aspect_ratio=1,viewpoint=[[-0.1671,-0.4034,-0.8997],139.12],camera_position=[9.786,9.786,12.2931])
         </slate>
       </interactive>
     </figure>
@@ -550,6 +547,13 @@
     <activity xml:id="act-precalc-3dcoord-Distance">
       <introduction>
         <p>
+          Remember that in two dimensions, the distance between <m>P=(x_0, y_0)</m> and <m>Q=(x_1, y_1)</m> is 
+          <me>
+            \sqrt{(x_1-x_0)^2+(y_1-y_0)^2}
+          </me>
+          and is related to the pythagorean theorem applied to a right triangle that measures changes in each coordinate direction (as demonstrated in <xref ref="PA-distance2" />).
+        </p>
+        <p>
           Let <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> be two points in <m>\R^3</m>. These two points form opposite vertices of a rectangular box whose sides are fundamental planes as illustrated in <xref ref="distance-box" />, and the distance between <m>P</m> and <m>Q</m> is the length of the blue diagonal shown in <xref ref="distance-box" />.
         </p>
         <figure xml:id="distance-box">
@@ -563,7 +567,10 @@
               plot18+=line3d([(0,0,0),(1.5,2,0)],thickness=2,color="red")+text3d("R",(1.7,2.2,-0.1),color="black",fontsize=30)+point3d((1.5,2,0),color="black",size=20)
               plot18+=point3d((1.5,0,0),size=20,color="black")+text3d("S",(1.7,0,-.1),color="black",fontsize=30)
               plot18+=line3d([(0,0,0),(1.5,2,1)],thickness=2,color="blue")
-              show(plot18,aspect_ratio=1,viewpoint=[[-0.9658,-0.1452,-0.2149],69.96],camera_position=[1.9934,-2.6168,2.0633])
+              plot18+=arrow3d((-1,-1,-1),(1,-1,-1),color="black")+text3d("x",(1.15,-1,-1),color="black",fontsize=30)
+              plot18+=arrow3d((-1,-1,-1),(-1,1,-1),color="black")+text3d("y",(-1,1.15,-1),color="black",fontsize=30)
+              plot18+=arrow3d((-1,-1,-1),(-1,-1,1),color="black")+text3d("z",(-1,-1,1.15),color="black",fontsize=30)
+              show(plot18,aspect_ratio=1,viewpoint=[[-0.8373,-0.3474,-0.4221],89.02],camera_position=[4.7429,-3.835,1.3429])
             </slate>
           </interactive>
         </figure>
