@@ -13,7 +13,7 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-10-5-Chain-Rule" xmlns:xi="http://www.w3.org/2001/XInclude">
+<section xml:id="S_mv_deriv-chain_rule" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The Multivariable Chain Rule</title>
   <objectives>
       <ul>
@@ -33,14 +33,15 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section use the ideas of partial derivatives and provides an algebraic description for the chain rule (which is used in <xref ref="S-10-6-Directional-Derivative"/>). Some instructors will do a cursory coverage this material, but we relate the concept and development of the chain rule to our tools of linearization from <xref ref="S-10-4-Linearization"/>. 
+      This section use the ideas of partial derivatives and provides an algebraic description for the chain rule (which is used in <xref ref="S-mv_deriv-directional"/>). Some instructors will do a cursory coverage this material, but we relate the concept and development of the chain rule to our tools of linearization from <xref ref="S-mv_deriv-linearization"/>. 
     </p>
   </introduction>
   <subsection>
     <title>Introduction</title>
     <p>
-      In single-variable calculus, we encountered situations in which some quantity was related through a composition of related quantities. For instance, let <m>P</m> be the price of a product and <m>P</m> depends on <m>x</m>, the wages of people making the product. The wages of people making the product will also change over time, denoted <m>t</m>, because of seasonal availability and other factors. So a change in the value of <m>t</m> will produce a change in the value of <m>x</m>, which will produce a change in the value of <m>P</m>. This means that we can write <m>P</m> as a function of <m>x</m> and <m>x</m> as a function of <m>t</m>, thus we can express <m>P</m>'s dependence on <m>t</m> by a composition of functions:
+      In single-variable calculus, we encountered situations in which some quantity was related through a composition of related quantities. For instance, suppose <m>P</m> is the price of a product and <m>P</m> depends on the wages <m>x</m> of people making the product. The wages of people making the product will also change over time because of seasonal availability and other factors. So a change in the value of time <m>t</m> produces a change in the value of <m>x</m>, which produces a change in the value of <m>P</m>. This means that we can write <m>P</m> as a function of <m>x</m> and <m>x</m> as a function of <m>t</m>, thus we can express <m>P</m>'s dependence on <m>t</m> by a composition of functions: <m>(P\circ x)(t) = P(x(t))</m>.
     </p> 
+    <!-- If restoring this image, there are two lines in the image that need fixing since they broke XML comments.
     <figure xml:id="compositionoffns">
       <caption>Composition of <m>P(x)</m> and <m>x(t)</m> </caption>
       <image width="50%">
@@ -54,354 +55,175 @@
           \begin{scope}[xshift=8cm]
           \node[font=\large] (P) at (0, 4) {\(P\)};
           \end{scope}
-          \draw [->] (t) -- (X) node [pos=0.5, above] {\(x(t)\)};
-          \draw [->] (X) -- (P) node [pos=0.5, above] {\(P(x)\)};
+          \draw [->] (t) - - (X) node [pos=0.5, above] {\(x(t)\)}; % FIX ME BY REMOVING THE SPACE BETWEEN THE DASHES
+          \draw [->] (X) - - (P) node [pos=0.5, above] {\(P(x)\)}; % FIX ME BY REMOVING THE SPACE BETWEEN THE DASHES
           \draw [->,out=60, in=120, line width=1.5pt, red!80!black] (t) .. controls ++(1, 1) and ++(-1, 1) .. (P) node [pos=0.5, above] {\(P(x(t))= (P \circ x) (t)\)};
           \end{tikzpicture}      
         </latex-image>
       </image>
-    </figure>
-    <p>  
-      Using the language of differentials that we saw in the previous section and the ideas of local linearity we can express these changes as follows. 
-      For a small change in <m>x</m>, the change in the price of the product will be approximately proportional to the change in <m>x</m>
-      <me> dP = (m) dx  </me>
-      with <m>m</m> being the value of <m>\frac{dP}{dx}</m> at <m>x_0</m>, the current value of <m>x</m>. We can write <m>v</m> as <m>m=\frac{dP}{dx}\restrict{x=x_0}</m> because <m>m</m> is current instantaneous rate of change in the product price per unit of labor cost. 
-    </p>
-    <p>  
-      A small change in the value of <m>t</m> will also cause a proportional change in the value of <m>x</m>.
-      <me> dx = (v) dt</me>
-      with <m>v</m> being the value of <m>\frac{dx}{dt}</m> at the current value of <m>t</m>, which we will call <m>t_0</m>. So <m>v=\frac{dx}{dt}\restrict{t=t_0}</m>.
+    </figure>-->
+    <p>
+      Applying the <url href="https://activecalculus.org/single/sec-2-5-chain.html#chain-rule" >chain rule</url> from single-variable calculus to find the rate of change of the price <m>P</m> with respect to time <m>t</m> likely leads you to write
+      <me>
+        \frac{dP}{dt} = P'(x(t))x'(t)
+      </me>.
+      However, this form of the chain rule is only useful when we have algebraic expressions for <m>P(x)</m> and <m>x(t)</m>. It may be that we know about the rate of change of <m>P</m> with respect to <m>x</m> at a specific value <m>x_0</m> and the rate of change of <m>x</m> with respect to <m>t</m> at a specific value <m>t_0</m> for which we have <m>x(t_0)=x_0</m>. Using the language of differentials and local linearity we can express these changes as follows.  For a small change in <m>x</m>, the change in the price of the product is approximately proportional to the change in <m>x</m>:
+      <me> dP = \frac{dP}{dx}\restrict{x=x_0} dx  </me>,
+      where <m>\frac{dP}{dx}\restrict{x=x_0}</m> denotes the instantaneous rate of change in the product price per unit of labor cost at <m>x=x_0</m>. Similarly, a small change in the value of <m>t</m> will also cause a proportional change in the value of <m>x</m>:
+      <me> dx = \frac{dx}{dt}\restrict{t=t_0} dt</me>.
     </p>
     <p>
-      We can now combine these relationships to express how a change in <m>t</m> will produce a change in <m>P</m>.
-      <me>dP=(m) dx = (m)(v)dt = \left( \frac{dP}{dx}\restrict{x=x_0} \right)\left( \frac{dx}{dt}\restrict{t=t_0} \right) dt</me>
-      In particular, this says that a change in the price of our product will the current instantaneous rate of change of the price per step in <m>x</m> times the current rate of change in the price of labor times the step in time. 
+      We can combine these relationships to express how a change in <m>t</m> produces a change in <m>P</m>:
+      <me>dP=\frac{dP}{dx}\restrict{x=x_0} dx =  \left( \frac{dP}{dx}\restrict{x=x_0} \right)\left( \frac{dx}{dt}\restrict{t=t_0} \right) dt</me>
+      We should interpret this as telling us that the change in the price of the product is approximately the current instantaneous rate of change of the price per step in <m>x</m> times the current rate of change in the price of labor times the step in time. 
     </p>
     <p>
-      The previous equation is called the <em>Chain Rule</em>. In single variable calculus, you likely saw the <url href="https://activecalculus.org/single/sec-2-5-chain.html#chain-rule" >Chain Rule</url> stated as: If <m>C</m> is the composition of functions <m>f</m> and <m>g</m> such <m>C(x)=f(g(x))</m>, <m>f</m> is differentiable at <m>g(x)</m>, and <m>g</m> is differentiable at <m>x</m>, then 
-      <me>C'(x)=f'(g(x)) g'(x)</me>
-    </p>
-    <p>
-      If we look at a function of two variables where <m>z = f(x,y)</m>, it might be that both <m>x</m> and <m>y</m> depend on another variable <m>t</m>. A change in <m>t</m> then produces changes in <em>both</em> <m>x</m> and <m>y</m>, which then causes <m>z</m> to change. In this section, we will see how to describe the change in <m>z</m> that is caused by a change in <m>t</m>, leading us to multivariable versions of the Chain Rule involving both regular and partial derivatives.
+      As we look at functions of two (or more) variables in this text, we will encounter a situation where <m>z = f(x,y)</m> and both <m>x</m> and <m>y</m> depend on another variable <m>t</m>. A change in <m>t</m> then produces changes in <em>both</em> <m>x</m> and <m>y</m>, which then causes <m>z</m> to change. In this section, we will see how to describe the change in <m>z</m> that is caused by a change in <m>t</m>, leading us to multivariable versions of the chain rule involving both regular and partial derivatives.
     </p>
     <worksheet>
   <exploration workspace="1.5in"
  xml:id="PA-chain">
       <introduction>
         <p>
-          Your self-driving car company, <em>Steer Clear</em>, is doing well and almost ready to launch its first car. Some of your engineers have reported that the car has problems when the air intake encounters too much large particulate matter in the air (like sand, dust, large pollen, smog, etc.). In order to fix this issue, you have created a new type of filter that uses a sophisticated mesh and gravity to filter out large particulate matter, but this new type of filter gets clogged if exposed to too much large particulate matter too quickly. So we will need to measure the rate at which your car's intake will be exposed to large particulate matter per unit time. 
+          Your self-driving car company, <em>Steer Clear</em>, is doing well and almost ready to launch its first car. Some of your engineers have reported that the car has problems when the air intake encounters a large quantity of large particulate matter (sand, dust, large pollen, smog, etc.) in the air. To fix this issue, you have created a new type of filter that uses a sophisticated mesh and gravity to filter out large particulate matter. However, this new type of filter gets clogged if exposed to too much large particulate matter too quickly. To determine the viability of this filter, you must measure the rate at which your car's intake will be exposed to large particulate matter per unit time. 
         </p>
         <p>
-          You consult a friend Alex who does atmospheric modeling of large particulate matter in your area. Alex created <m>P(x,y)=10-\frac{1}{2} x^2-\frac{1}{5}y^2</m>, a function that describes the amount of large particular matter in the air in terms of location relative to Alex's lab. In particular, the <m>x</m> coordinate is the distance East/West of from Alex's lab in kilometers and the <m>y</m>-coordinate is the distance North/South from Alex's lab in kilometers. 
+          You consult a friend Alex who does atmospheric modeling of large particulate matter in your area. Alex created a function that describes the amount of large particulate matter in the air in terms of location relative to her lab. This function is expressed algebraically as <m>P(x,y)=10-\frac{1}{2} x^2-\frac{1}{5}y^2</m>. Here <m>x</m> is the distance east/west from Alex's lab and <m>y</m> is the distance north/south from her lab. Both distances are measured in kilometers and <m>P</m> is measured in parts per million.
         </p>
         <p>
-          Since you have completed the self-driving part of your car, you know that your car will move along a test course as a function of time given by 
+          Using the self-driving feature of your car, you specify that your car will move along a test course that can be described as
           <me>
-            \vr(t) = \langle x(t), y(t) \rangle = \langle 2-t^2, t^3 + 1\rangle.
-          </me>
+            \vr(t) = \langle x(t), y(t) \rangle = \langle 2-t^2, t^3 + 1\rangle
+          </me>,
           where the <m>x</m> and <m>y</m> coordinates are the same as measured by Alex's function and <m>t</m> is measured in minutes. 
         </p>
       </introduction>
       <task xml:id="PA-chain-t1">
         <statement>
           <p>
-            Substitute <m>x(t)</m> and <m>y(t)</m> (from your self-driving car path) into your expression for <m>P(x,y)</m> to get an expression for <m>P(t)</m>, the amount of large particulate matter encountered at each location on your test course as a function of time driven. Do not simplify your expression for <m>P(t)</m>.
+            Substitute the path component functions <m>x(t)</m> and <m>y(t)</m> into the expression for <m>P(x,y)</m> but <alert>do not simplify</alert> the resulting expression for <m>P(t)</m>. This gives a one-variable function that describes the amount of large particulate matter encountered at each location on your test course as a function of <em>time</em>. 
           </p>
         </statement>
       </task>
       <task xml:id="PA-chain-t2">
         <statement>
           <p>
-            Use your derivative rules from single variable calculus to find <m>P'(t)=\frac{dP}{dt}</m>. Note that this is not a partial derivative because <m>P(t)</m> only has <em>one</em> dependent variable. You should NOT simplify your expression for <m>P'(t)</m>. 
+            Use derivative rules from single-variable calculus to find <m>P'(t)=\frac{dP}{dt}</m>. <alert>Do not simplify this expression.</alert> Note that this is <em>not</em> a partial derivative because <m>P(t)</m> only has <em>one</em> dependent variable. 
           </p>
         </statement>
       </task>
       <task xml:id="PA-chain-t3">
         <statement>
           <p>
-            Alex has told you that the amount of large particulate matter in the air changes in the <m>y</m>-direction (North/South) because of the proximity to industrial pollution from a factory complex. Also, the amount of large particulate matter in the air changes in the <m>x</m>-direction (East/West) because of tree pollen from a particular kind of tree in a nearby forest. We would like to understand how the rate of large particulate matter encountered on our drive is split into these two factor (industrial pollution and tree pollen).
+            Alex has told you that the amount of large particulate matter in the air changes in the <m>y</m>-direction (north/south) because of the proximity to industrial pollution from a factory complex. Also, the amount of large particulate matter in the air changes in the <m>x</m>-direction (east/west) because of tree pollen from a species of tree in a nearby forest. You would like to understand how the rate of large particulate matter encountered on the car's drive is split into these two factors.
           </p>
           <p>
             Alex suggests that you measure <m>\frac{dP}{dt}</m> at a location <m>(x,y)=(a,b)</m> by taking the derivative of the linearization for <m>P</m> at <m>(a,b)</m>. The linearization of <m>P</m> at <m>(a,b)</m> is given by
             <me> L(x,y)=P(a,b)+P_x(a,b)(x-a)+P_y(a,b)(y-b)</me>
-            Remember that we will need to treat <m>x</m> and <m>y</m> as functions of time.
+            Remember that <m>x=x(t)</m> and <m>y=y(t)</m> are being considered as functions of time in this scenario.
           </p>
           <p>
-            Write a few sentences to explain why 
+            Write a couple of sentences to explain why 
             <men xml:id="dLinear">\frac{dP}{dt}\approx\frac{dL}{dt} = 0 + P_x(a,b) \frac{dx}{dt}+P_y(a,b) \frac{dy}{dt}</men> 
-            and how each of <m>P_x(a,b) \frac{dx}{dt}</m> and <m>P_y(a,b) \frac{dy}{dt}</m> measure the rate of change in pollution coming from tree pollen and industrial pollution. 
+            and how <m>P_x(a,b) \frac{dx}{dt}</m> and <m>P_y(a,b) \frac{dy}{dt}</m> measure the rates of change in pollution coming from tree pollen and industrial pollution, respectively. 
           </p>
         </statement>
       </task>
       <task xml:id="PA-chain-t4">
         <statement>
           <p>
-            Compute each of the following and substitute your expressions into <xref ref="dLinear"/>, Alex's approximation. Do NOT simplify your expression, just substitute in the values for each element below.
-            <ul>
-              <li><m>P_x(a,b) </m></li>
-              <li><m>P_x(a,b) </m></li>
-              <li><m>\frac{dx}{dt} </m></li>
-              <li><m>\frac{dy}{dt} </m></li>
-            </ul>
+            Use the formulas provided at the beginning of the Preview Activity for <m>P(x,y)</m>, <m>x(t)</m>, and <m>y(t)</m> to compute each of the following. Then substitute your expressions into Alex's approximation given in equation <xref ref="dLinear"/>. <alert>Do not simplify this expression.</alert>
+            <me>P_x(a,b)\qquad P_x(a,b)\qquad \frac{dx}{dt}\qquad \frac{dy}{dt}\qquad </me>
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Compare your results for <xref ref="PA-chain-t2"/> and <xref ref="PA-chain-t4"/> and write a few sentences that identifies how each part of your answer for <xref ref="PA-chain-t4"/> corresponds to different parts of <xref ref="PA-chain-t2"/>. Remember your work for <xref ref="PA-chain-t2"/> is completely in terms of <m>t</m> so you will need to translate some terms from <m>t</m> into its meaning in <m>x</m>, <m>y</m>, or others.
+            Compare your results for <xref ref="PA-chain-t2" text="type-local"/> and <xref ref="PA-chain-t4" text="type-local"/> and write a couple of sentences that describe how each part of your answer for <xref ref="PA-chain-t4" text="type-local"/> corresponds to different parts of <xref ref="PA-chain-t2" text="type-local"/>. Remember your work for <xref ref="PA-chain-t2" text="type-local"/> is completely in terms of <m>t</m> so you will need to translate some terms from <m>t</m> into its meaning in other quantities.
           </p>
         </statement>
       </task>
     </exploration>
 </worksheet>
-    <!-- <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA_10_5">
-      <statement>
-        <p>
-          Suppose you are driving around in the
-          <m>xy</m>-plane in such a way that your position <m>\vr(t)</m> at time <m>t</m> is given by
-          function
-          <me>
-            \vr(t) = \langle x(t), y(t) \rangle = \langle 2-t^2, t^3 + 1\rangle.
-          </me>
-        </p>
-
-        <p>
-          The path taken is shown on the left of <xref ref="F_10_5_preview">Figure</xref>.
-        </p>
-
-        <figure xml:id="F_10_5_preview">
-          <caption>Left: Your position in the plane. Right: The corresponding temperature.</caption>
-          <sidebyside widths="50% 50%">
-          <image source="images/fig_10_5_preview_r"/>
-          <image source="images/fig_10_5_preview_h"/>
-          </sidebyside>
-        </figure>
-
-        <p>
-          Suppose, furthermore, that
-          the temperature at a point in the plane is given by
-          <me>
-            T(x,y) = 10 - \frac12x^2 -\frac15y^2,
-          </me>
-          and note that the surface generated by <m>T</m> is shown on the right of <xref ref="F_10_5_preview">Figure</xref>. Therefore, as
-          time passes, your position <m>(x(t), y(t))</m> changes, and, as your position
-          changes, the temperature <m>T(x,y)</m> also changes.
-          <ol marker="a.">
-            <li>
-              <p>
-                The position function <m>\vr</m> provides a parameterization <m>x = x(t)</m> and <m>y = y(t)</m> of the position at time <m>t</m>. By substituting <m>x(t)</m> for <m>x</m> and <m>y(t)</m> for <m>y</m> in the formula for <m>T</m>, we can write <m>T = T(x(t), y(t))</m> as a function of <m>t</m>. Make these substitutions to write <m>T</m> as a function of <m>t</m> and then use the Chain Rule from single variable calculus to find <m>\frac{dT}{dt}</m>. (Do not do any algebra to simplify the derivative, either before taking the derivative, nor after.)
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Now we want to understand how the result from part (a) can be obtained from <m>T</m> as a multivariable function.  Recall from the previous section that small changes in <m>x</m> and <m>y</m> produce a change in <m>T</m> that is approximated by
-                <me>
-                  \Delta T \approx  T_x\Delta x + T_y\Delta y.
-                </me>
-                The Chain Rule tells us about the instantaneous rate of change of <m>T</m>, and this can be found as
-                <men xml:id="eq_PA_10_5_1">
-                  \lim_{\Delta t \to 0} \frac{\Delta T}{\Delta t} = \lim_{\Delta t \to 0} \frac{T_x \Delta x + T_y \Delta y}{\Delta t}.
-                </men>
-                Use equation <xref ref="eq_PA_10_5_1"/> to explain why the instantaneous rate of change of <m>T</m> that results from a change in <m>t</m> is
-                <men xml:id="eq_PA_10_5_2">
-                  \frac{dT}{dt} = \frac{\partial T}{\partial x} \frac{dx}{dt} + \frac{\partial T}{\partial y} \frac{dy}{dt}.
-                </men>
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Using the original formulas for <m>T</m>, <m>x</m>, and <m>y</m> in the problem statement, calculate all of the derivatives in Equation <xref ref="eq_PA_10_5_2"/> (with <m>T_x</m> and <m>T_y</m> in terms of <m>x</m> and <m>y</m>, and <m>x'</m> and <m>y'</m> in terms of <m>t</m>), and hence write the right-hand side of Equation <xref ref="eq_PA_10_5_2"/> in terms of <m>x</m>, <m>y</m>, and <m>t</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Compare the results of parts (a) and (c). Write a couple of sentences that identify specifically how each term in (c) relates to a corresponding terms in  (a). This connection between parts (a) and (c) provides a multivariable version of the Chain Rule.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
-        <ol marker="a.">
-          <li>
-            <p>
-              <me>
-                T(x(t),y(t)) = 10-\frac{1}{2}\left(2-t^2\right)^2-\frac{1}{5}\left(t^3+1\right)^2
-              </me>
-              and
-              <me>
-                \frac{dT}{dt} = -\frac{1}{2}(2)\left(2-t^2\right)(-2t)-\frac{1}{5}(2)\left(t^3+1\right)(3t^2)
-              </me>
-            </p>
-          </li>
-          <li>
-            <p>
-              Since <m>\lim_{\Delta t \to 0} \frac{\Delta T}{\Delta t} = \frac{dT}{dt}</m> and <m>T_x</m> and <m>T_y</m> don't depend on <m>\Delta t</m>, we have
-              <md>
-                <mrow>\lim_{\Delta t \to 0} \frac{T_x \Delta x + T_y \Delta y}{\Delta t} \amp = T_x \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t} + T_y  \lim_{\Delta t \to 0} \frac{\Delta y}{\Delta t}</mrow>
-                <mrow>\amp = T_x \frac{dx}{dt} + T_y \frac{dy}{dt}</mrow>
-                <mrow>\amp = \frac{\partial T}{\partial x} \frac{dx}{dt} + \frac{\partial T}{\partial y} \frac{dy}{dt}</mrow>
-              </md>.
-            </p>
-          </li>
-          <li>
-            <p>
-              <me>
-                T_x(x,y) = -x, \ T_y(x,y) = -\frac{2}{5}y, \ \frac{dx}{dt} = -2t, \ \text{ and }  \ \frac{dy}{dt} = 3t^2
-              </me>
-              so
-              <me>
-                \frac{dT}{dt} = (-x)(-2t) - \frac{2}{5}y(3t^2)
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              With <m>x=2-t^2</m> and <m>y = t^3+1</m>,
-              the results of parts (a) and (c) are the same.
-              The terms <m>-x</m> and <m>-\frac{2}{5}y</m> in (c) agree with what we get when we differentiate the outermost functions in (a).
-              We can see where the terms <m>-2t</m> and <m>3t^2</m> in part (c) come from using the Chain Rule in (a) when we differentiate the innermost functions.
-            </p>
-          </li>
-        </ol>
-      </answer>  
-
-      <solution>
-        <ol marker="a.">
-          <li>
-            <p>
-              With <m>x(t) = 2-t^2</m> and <m>y(t) = t^3+1</m> we have
-              <me>
-                T(x(t),y(t)) = 10-\frac{1}{2}\left(2-t^2\right)^2-\frac{1}{5}\left(t^3+1\right)^2
-              </me>.
-              So
-              <me>
-                \frac{dT}{dt} = -\frac{1}{2}(2)\left(2-t^2\right)(-2t)-\frac{1}{5}(2)\left(t^3+1\right)(3t^2)
-              </me>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Since <m>\lim_{\Delta t \to 0} \frac{\Delta T}{\Delta t} = \frac{dT}{dt}</m> and <m>T_x</m> and <m>T_y</m> don't depend on <m>\Delta t</m>, we have
-              <md>
-                <mrow>\lim_{\Delta t \to 0} \frac{T_x \Delta x + T_y \Delta y}{\Delta t} \amp = T_x \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t} + T_y  \lim_{\Delta t \to 0} \frac{\Delta y}{\Delta t}</mrow>
-                <mrow>\amp = T_x \frac{dx}{dt} + T_y \frac{dy}{dt}</mrow>
-                <mrow>\amp = \frac{\partial T}{\partial x} \frac{dx}{dt} + \frac{\partial T}{\partial y} \frac{dy}{dt}</mrow>
-              </md>.
-            </p>
-          </li>
-          <li>
-            <p>
-              We find that 
-              <me>
-                T_x(x,y) = -x, \ T_y(x,y) = -\frac{2}{5}y, \ \frac{dx}{dt} = -2t, \ \text{ and }  \ \frac{dy}{dt} = 3t^2
-              </me>.
-              Then
-              <md>
-                <mrow>\frac{dT}{dt} \amp = \frac{\partial T}{\partial x} \frac{dx}{dt} + \frac{\partial T}{\partial y} \frac{dy}{dt}</mrow>
-                <mrow>\amp = (-x)(-2t) - \frac{2}{5}y(3t^2)</mrow>
-              </md>.
-            </p>
-          </li>
-          <li>
-            <p>
-              With <m>x=2-t^2</m> and <m>y = t^3+1</m>,
-              the results of parts (a) and (c) are the same.
-              The terms <m>-x</m> and <m>-\frac{2}{5}y</m> in (c) agree with what we get when we differentiate the outermost functions in (a).
-              We can see where the terms <m>-2t</m> and <m>3t^2</m> in part (c) come from using the Chain Rule in (a) when we differentiate the innermost functions.
-            </p>
-          </li>
-        </ol>
-      </solution>
-  
-    </exploration>
-</worksheet> -->
   </subsection>
   <subsection>
     <title>The Chain Rule</title>
     <p>
-      As <xref ref="PA-mv_deriv-second_order">Preview Activity</xref> suggests, the following version of the Chain Rule holds in general.
+      As <xref ref="PA-mv_deriv-second_order">Preview Activity</xref> suggests, the following version of the chain rule holds in general.
     </p>
     <assemblage xml:id="Chain-rule">
       <title>The Chain Rule</title>
       <p>
-        Let <m>z = f(x,y)</m>, where <m>f</m> is a differentiable function of the independent variables <m>x</m> and <m>y</m>, and let <m>x</m> and <m>y</m> each be differentiable functions of an independent variable <m>t</m>. Then
-        <men xml:id="E_10_5_chain_rule">
-          \frac{dz}{dt} = \frac{\partial z}{\partial x} \frac{dx}{dt} + \frac{\partial z}{\partial y} \frac{dy}{dt}.
-        </men>
+        If <m>z = f(x,y)</m> is a differentiable function of <m>x</m> and <m>y</m> and <m>x</m> and <m>y</m> are each differentiable functions of <m>t</m>, then
+        <men xml:id="eqn_chain_rule">
+          \frac{dz}{dt} = \frac{\partial z}{\partial x} \frac{dx}{dt} + \frac{\partial z}{\partial y} \frac{dy}{dt}
+        </men>.
       </p>
     </assemblage>
     <p>
-      It is important to note the differences among the derivatives in <xref ref="E_10_5_chain_rule"/>. Since <m>z</m> is a function of the two variables <m>x</m> and <m>y</m>, the derivatives in the Chain Rule for <m>z</m> with respect to <m>x</m> and <m>y</m> are partial derivatives. However, since <m>x = x(t)</m> and <m>y = y(t)</m> are functions of the single variable <m>t</m>, their derivatives are the standard derivatives of functions of one variable. When we compose <m>z</m> with <m>x(t)</m> and <m>y(t)</m>, we then have <m>z</m> as a function of the single variable <m>t</m>, making the derivative of <m>z</m> with respect to <m>t</m> a standard derivative from single variable calculus as well.
+      It is important to note the differences among the derivatives in <xref ref="eqn_chain_rule"/>. Since <m>z</m> is a function of the two variables <m>x</m> and <m>y</m>, the derivatives in the chain rule for <m>z</m> with respect to <m>x</m> and <m>y</m> are <em>partial</em> derivatives. However, since <m>x = x(t)</m> and <m>y = y(t)</m> are functions of the single variable <m>t</m>, their derivatives are the standard derivatives of functions of one variable. When we compose <m>z</m> with <m>x(t)</m> and <m>y(t)</m>, <m>z</m> is represented as a function of the single variable <m>t</m>. Therefore, the derivative of <m>z</m> with respect to <m>t</m> is a derivative from single-variable calculus as well.
     </p>
 
     <p>
-      To understand why this Chain Rule works in general, suppose that some quantity <m>z</m> depends on <m>x</m> and <m>y</m> so
+      To understand why this chain rule works in general, suppose that <m>z</m> depends on <m>x</m> and <m>y</m> so
       that we can express the change in <m>z</m> in terms of the differential as
-      <men xml:id="E_10_5_1">
+      <men xml:id="eqn_chain_rule_differential1">
         dz = \frac{\partial z}{\partial x} dx + \frac{\partial z}{\partial
-            y} dy.
-      </men>
-    </p>
-
-    <p>
-      Next, suppose that <m>x</m> and <m>y</m> each depend on another quantity <m>t</m>, so that
-      <men xml:id="E_10_5_2">
+            y} dy
+      </men>.
+      Further suppose that <m>x</m> and <m>y</m> each depend on <m>t</m>, so that
+      <men xml:id="eqn_chain_rule_differential2">
         dx = \frac{dx}{dt}~dt
           \ 
           \mbox{and} 
           \ 
-          dy = \frac{dy}{dt}~dt.
-      </men>
+          dy = \frac{dy}{dt}~dt
+      </men>.
     </p>
 
     <p>
-      Combining Equations<nbsp/><xref ref="E_10_5_1"/> and <xref ref="E_10_5_2"/>, we find that
+      Combining equations <xref ref="eqn_chain_rule_differential1"/> and <xref ref="eqn_chain_rule_differential2"/>, we find that
       <me>
         dz = \frac{\partial z}{\partial x}\frac{dx}{dt}~dt 
         + \frac{\partial z}{\partial y}\frac{dy}{dt}~dt = \frac{dz}{dt}~dt,
       </me>
-      which is the Chain Rule in this particular context, as expressed in <xref ref="E_10_5_chain_rule">Equation</xref>.
+      which is the chain rule in this particular context, as expressed in <xref ref="eqn_chain_rule">equation</xref>.
     </p>
     <p>
-      This approach to understanding the change in z using the differential or linearization also has the added benefit that we have separated how much of the change in <m>x</m> is coming through each of the intermediate variables <m>x</m> and <m>y</m>. Let's go back to the context of our <xref ref="PA-chain">Preview Activity</xref> where <m>P</m> is the amount of the large particulate matter in the air as function of location <m>(x,y)</m> and our location is changing according to time along the path <m>\vr(t)=\langle x(t),y(t)\rangle </m>. The chain rule will express the rate of change in <m>P</m> as a function of time as 
-      <me>\frac{dP}{dt} =  \frac{\partial P}{\partial x} \frac{dx}{dt}+ \frac{\partial P}{\partial y} \frac{dy}{dt}</me>
-      Because the amount of large particulate matter in terms of the <m>x</m> coordinate is governed by tree pollen, the term <m>\frac{\partial P}{\partial x} \frac{dx}{dt}</m> describes the rate of change in the large particulate matter per unit time along our drive due to tree pollen. Similarly, the amount of large particulate matter in terms of the <m>y</m> coordinate is governed by industrial pollution, so the second term, <m>\frac{\partial P}{\partial y} \frac{dy}{dt}</m>, describes the rate of change in the large particulate matter per unit time along our drive due to industrial pollution. Because our function is locally linear, the total rate of change in large particulate matter is the sum of these individual rates of change. 
+      This approach to understanding the change in <m>z</m> using the differential or linearization also separates how much of the change in <m>x</m> is coming through each of the intermediate variables <m>x</m> and <m>y</m>. In the context of the <xref ref="PA-chain">Preview Activity</xref> where <m>P</m> is the amount of the large particulate matter in the air as function of location <m>(x,y)</m> and location is changing according to time along the path <m>\vr(t)=\langle x(t),y(t)\rangle </m>, the chain rule expresses the rate of change in <m>P</m> as a function of time as 
+      <me>\frac{dP}{dt} =  \frac{\partial P}{\partial x} \frac{dx}{dt}+ \frac{\partial P}{\partial y} \frac{dy}{dt}</me>.
+    </p>
+    <p>
+      Because the amount of large particulate matter in terms of the <m>x</m>-coordinate is governed by tree pollen, the term <m>\frac{\partial P}{\partial x} \frac{dx}{dt}</m> describes the rate of change in the large particulate matter per unit time along our drive attributable to tree pollen. Similarly, the amount of large particulate matter in terms of the <m>y</m>-coordinate is governed by industrial pollution. Hence, the second term <m>\frac{\partial P}{\partial y} \frac{dy}{dt}</m> describes the rate of change in the large particulate matter per unit time along our drive attributable to industrial pollution. Because this function is locally linear, the total rate of change in large particulate matter is the sum of these individual rates of change. 
     </p>
 
     <worksheet>
-  <activity workspace="1.5in" xml:id="PA_10_11">
+  <activity workspace="1.5in" xml:id="act-mv_deriv-chain_rule">
     <introduction>
       <p>
-         In the following questions, we apply the Chain Rule in several different contexts.
+         In the following questions, we apply the chain rule in several different contexts.
       </p>
     </introduction>
     <task>
       <statement>
         <p>
-          Suppose that we have a function <m>z</m> defined by <m>z(x,y) = x^2+xy^3</m>.  In addition, suppose that <m>x</m> and <m>y</m> are restricted to points that move around the plane by following a circle of radius <m>2</m> centered at the origin that is parameterized by
-          <me> x(t) = 2\cos(t), \  \mbox{ and } \  y(t) = 2\sin(t) </me>
+          Suppose <m>z(x,y) = x^2+xy^3</m>.  In addition, suppose that <m>x</m> and <m>y</m> are restricted to points that move around the plane by following a circle of radius <m>2</m> centered at the origin that is parameterized by
+          <me> x(t) = 2\cos(t), \  \mbox{ and } \  y(t) = 2\sin(t) </me>.
           <ol marker="i.">
             <li>
               <p>
-                Use the Chain Rule to find the resulting instantaneous rate of change <m>\frac{dz}{dt}</m>.
+                Use the chain rule to find the instantaneous rate of change <m>\frac{dz}{dt}</m>.
               </p>
             </li>
             <li>
               <p>
-                Substitute <m>x(t)</m> for <m>x</m> and <m>y(t)</m> for <m>y</m> in the rule for <m>z</m> to write <m>z</m> in terms of <m>t</m> and calculate <m>\frac{dz}{dt}</m> directly. 
+                Substitute <m>x(t)</m> for <m>x</m> and <m>y(t)</m> for <m>y</m> in the rule for <m>z</m> to write <m>z</m> in terms of <m>t</m> and calculate <m>\frac{dz}{dt}</m> using only techniques from single-variable calculus. 
               </p>
             </li>
             <li>
               <p>
-                Write a couple of sentences comparing your answers to parts i. and ii.
+                Write a couple of sentences comparing your answers above.
               </p>
             </li>
           </ol>
@@ -409,13 +231,12 @@
       </statement>
       <answer>
         <p>
-          <ol marker="i">
+          <ol marker="i.">
             <li>
               <p>
-                According to the Chain Rule we have
                 <me>
                   \frac{dz}{dt} = (4\cos(t) + 8\sin^3(t))(-2\sin(t)) + 48 \cos^2(t)\sin^2(t)
-                </me>.
+                </me>
               </p>
             </li>
             <li>
@@ -423,7 +244,12 @@
                 <me>
                   \frac{dz}{dt} = 8 \cos(t) (-\sin(t)) + 16 \left [ (\cos(t)) (3\sin^2(t)\cos(t)) - \sin^4(t) \right]
                 </me>
-                This is the same as the derivative above.
+                
+              </p>
+            </li>
+            <li>
+              <p>
+                They are equal.
               </p>
             </li>
           </ol>
@@ -431,10 +257,10 @@
       </answer>
       <solution>
         <p>
-          <ol marker="i">
+          <ol marker="i.">
             <li>
               <p>
-                According to the Chain Rule we have
+                According to the chain rule we have
                 <me>
                   \frac{dz}{dt} = (4\cos(t) + 8\sin^3(t))(-2\sin(t)) + 48 \cos^2(t)\sin^2(t)
                 </me>.
@@ -445,6 +271,11 @@
                 <me>
                   \frac{dz}{dt} = 8 \cos(t) (-\sin(t)) + 16 \left [ (\cos(t)) (3\sin^2(t)\cos(t)) - \sin^4(t) \right]
                 </me>
+                
+              </p>
+            </li>
+            <li>
+              <p>
                 This is the same as the derivative above.
               </p>
             </li>
@@ -466,13 +297,12 @@
             </li>
             <li>
               <p>
-                Suppose an ant is walking along the <m>x</m>-axis at the rate of 2 feet per minute toward the origin.  When the ant is at the point <m>(2,0)</m>, what is the
-                    instantaneous rate of change in the temperature <m>dT/dt</m> that the ant experiences. Include units on your response.
+                Suppose an ant is walking along the <m>x</m>-axis at the rate of 2 feet per minute toward the origin.  When the ant is at the point <m>(2,0)</m>, what is the instantaneous rate of change in the temperature <m>dT/dt</m> that the ant experiences. Include units on your response.
               </p>
             </li>
             <li>
               <p>
-                Suppose instead that the ant walks along an ellipse with <m>x = 6\cos(t)</m> and <m>y = 3\sin(t)</m>, where <m>t</m> is measured in minutes.  Find <m>\frac{dT}{dt}</m> at <m>t = \pi/6</m>, <m>t=\pi/4</m>, and <m>t = \pi/3</m>.  What does this seem to tell you about the path along which the ant is walking?
+                Suppose instead that the ant walks along the ellipse <m>\vr(t) = \langle  6\cos(t), 3\sin(t)\rangle</m>, where <m>t</m> is measured in minutes. Use the multivariable chain rule to find <m>\frac{dT}{dt}</m>. What does this tell you about the path along which the ant is walking?
               </p>
             </li>
           </ol>
@@ -480,7 +310,7 @@
       </statement>
       <answer>
         <p>
-          <ol marker="i">
+          <ol marker="i.">
             <li>
               <p>
                 <md>
@@ -493,28 +323,13 @@
             <li>
               <p>
                 <me>
-                  \frac{dT}{dt}\mid_{(2,0)} = -8 \frac{^{\circ}F}{\text{ min } }
+                  \frac{dT}{dt}\restrict{(2,0)} = -8 \frac{^{\circ}F}{\text{ min } }
                 </me>
               </p>
             </li>
             <li>
               <p>
-                In this case we have
-                <md>
-                  <mrow>\frac{dT}{dt} \amp = \frac{\partial T}{\partial x} \frac{dx}{dt} + \frac{\partial T}{\partial y} \frac{dy}{dt}</mrow>
-                  <mrow>\amp = (-2x)(-6\sin(t)) - (8y)(3\cos(t))</mrow>
-                  <mrow>\amp = 72\cos(t)\sin(t) - 72 \sin(t)\cos(t)</mrow>
-                  <mrow>\amp = 0</mrow>
-                </md>.
-                So
-                <me>
-                  \frac{dT}{dt}\mid_{t=\pi/6} = 0 = \frac{dT}{dt}\mid_{t=\pi/4} =\frac{dT}{dt}\mid_{t=\pi/3}
-                </me>.
-                The fact that <m>\frac{dT}{dt} = 0</m> means that <m>T</m> is not changing, so on the path the ant is walking the temperature is constant. Note that
-                <me>
-                  T(6\cos(t), 3\sin(t)) = 100 - (36\cos^2(t) + 36\sin^2(t)) = 100-36 = 64
-                </me>,
-                so the ant is walking along a path of constant temperature <m>64^{\circ}F</m>.
+                <m>\frac{dT}{dt} = 0</m>, so on the path the ant is walking the temperature is constant.
               </p>
             </li>
           </ol>
@@ -522,7 +337,7 @@
       </answer>
       <solution>
         <p>
-          <ol marker="i">
+          <ol marker="i.">
             <li>
               <p>
                 <md>
@@ -548,10 +363,6 @@
                   <mrow>\amp = 72\cos(t)\sin(t) - 72 \sin(t)\cos(t)</mrow>
                   <mrow>\amp = 0</mrow>
                 </md>.
-                So
-                <me>
-                  \frac{dT}{dt}\mid_{t=\pi/6} = 0 = \frac{dT}{dt}\mid_{t=\pi/4} =\frac{dT}{dt}\mid_{t=\pi/3}
-                </me>.
                 The fact that <m>\frac{dT}{dt} = 0</m> means that <m>T</m> is not changing, so on the path the ant is walking the temperature is constant. Note that
                 <me>
                   T(6\cos(t), 3\sin(t)) = 100 - (36\cos^2(t) + 36\sin^2(t)) = 100-36 = 64
@@ -566,17 +377,14 @@
     <task>
       <statement>
         <p>
-          Suppose that you are walking along a surface whose elevation is given by a function <m>f</m>.  Furthermore, suppose that if you consider how your location corresponds to points in the <m>xy</m>-plane, you know that when you pass the point <m>(2,1)</m>, your velocity vector is <m>\vv=\langle -1,2\rangle</m>.  If some contours of <m>f</m> are as shown in <xref ref="F_10_5_contour">Figure</xref>, estimate the rate of change <m>df/dt</m> when you pass through <m>(2,1)</m>.
+          Suppose that you are walking along a surface whose elevation is given by a function <m>f</m>. Some contours of <m>f</m> are as shown in the image below. Furthermore, suppose that if you consider how your location corresponds to points in the <m>xy</m>-plane, you know that when you pass the point <m>(2,1)</m>, your velocity vector is <m>\vv=\langle -1,2\rangle</m>.  Estimate the rate of change <m>df/dt</m> when you pass through <m>(2,1)</m>.
         </p>
-        <figure xml:id="F_10_5_contour">
-          <caption>Some contours of <m>f</m>.</caption>
-          <image width="50%" source="images/fig_10_3_activity_contour"/>
-        </figure>
+        <image width="50%" source="images/fig_10_3_activity_contour"/>
       </statement>
       <answer>
         <p>
           <me>
-            \frac{df}{dt}\mid_{(2,1)} \approx -1.45(-1) + 1.3(2) = 4.05
+            \frac{df}{dt}\restict{(2,1)} \approx 4.05
           </me>
         </p>
       </answer>
@@ -595,37 +403,37 @@
           The velocity vector at the point <m>(2,1)</m> tells us <m>\frac{dx}{dt}</m> and
           <m>\frac{dy}{dt}</m> at the point <m>(2,1)</m>, so
           <me>
-            \frac{df}{dt}\mid_{(2,1)} \approx -1.45(-1) + 1.3(2) = 4.05
-          </me>
+            \frac{df}{dt}\restrict{(2,1)} \approx -1.45(-1) + 1.3(2) = 4.05
+          </me>.
         </p>
       </solution>
     </task>  
   </activity>
 </worksheet>
   <p>
-    The previous activity and discussion have all dealt with a multivariable function where each of the inputs of the function depend on a separate variable, <m>t</m>. The next example generalizes the concept of the chain rule for multivariable functions with more than two inputs as well as the situation that the input variables depend on more than one separate variable.
+    The previous activity and discussion have all dealt with a multivariable function where each input of the function depends on a single variable <m>t</m>. The next example generalizes the concept of the chain rule for multivariable functions. We show how the multivariable chain rule can be applied to functions with more than two input variables as well as the situation where the input variables depend on more than one other variable.
   </p>
   <example>
     <p>
-      Let <m>C</m> be the cost to manufacture flibertygibbits. The cost to produce flibertygibbits depends on the costs of two parts, which we will call <m>p</m> and <m>q</m>, and the cost of labor to construct the flibertygibbits, which we will call <m>L</m>. So <m>C</m> is a multivariable function of <m>p</m>, <m>q</m>, and <m>L</m>, which we will denote <m>C(p,q,L)</m>. The part costs (<m>p</m> and <m>q</m>) and the labor costs each depend on <m>s</m>, the distance to nearby suppliers and cities, and <m>t</m>, time. This means that <m>p</m>, <m>q</m>, and <m>L</m> are themselves multivariable functions of <m>s</m> and <m>t</m>; in other words we need to consider <m>p(s,t)</m>, <m>q(s,t)</m>, and <m>L(s,t)</m>.
+      Let <m>C</m> be the cost to manufacture flibertygibbits. The cost to produce flibertygibbits depends on the costs of two parts, which we will call <m>p</m> and <m>q</m>, and the cost of labor to construct the flibertygibbits, which we will call <m>L</m>. This means that <m>C</m> is a multivariable function of <m>p</m>, <m>q</m>, and <m>L</m>, which we will denote <m>C(p,q,L)</m>. The part costs and the labor costs each depend on the distance <m>s</m> to nearby suppliers and cities and time <m>t</m>. This means that <m>p</m>, <m>q</m>, and <m>L</m> are themselves multivariable functions of <m>s</m> and <m>t</m>. In other words, we need to consider <m>p(s,t)</m>, <m>q(s,t)</m>, and <m>L(s,t)</m>.
     </p>
     <p>
-      All of these dependencies mean that <m>C</m> is dependent on <m>s</m> and <m>t</m> through composition with <m>p(s,t)</m>, <m>q(s,t)</m>, and <m>L(s,t)</m>. So we can ask how the cost to produce flibertygibbits depends on changes in <m>s</m> or <m>t</m>, which we can use the Chain Rule to describe. We can look at the differential of <m>C</m> in particular to see how these dependencies will affect each other. The differential 
-      <me>dC = \frac{\partial C}{\partial p} dp + \frac{\partial C}{\partial q} dq + \frac{\partial C}{\partial L} dL</me>
-      describes how a change in <m>C</m> will depend on changes in each variable <m>p</m>, <m>q</m>, and <m>L</m>.
+      To find how the cost to produce flibertygibbits depends on changes in <m>s</m> or <m>t</m>, we can use the chain rule. We can look at the differential of <m>C</m> to determine how these dependencies affect each other. This differential can be expressed as
+      <me>dC = \frac{\partial C}{\partial p} dp + \frac{\partial C}{\partial q} dq + \frac{\partial C}{\partial L} dL</me>,
+      and it describes how a change in <m>C</m> depends on changes in each variable <m>p</m>, <m>q</m>, and <m>L</m>.
     </p>
     <p>
-       We can look at how this change in <m>C</m> will depend on either <m>s</m> or <m>t</m> by taking the appropriate partial derivatives with respect to <m>s</m> or <m>t</m>. In particular, we get 
+       We can look at how this change in <m>C</m> depends on either <m>s</m> or <m>t</m> considering the differentials <m>dC</m>, <m>dp</m>, <m>dq</m>, and <m>dL</m> via the appropriate partial derivatives with respect to <m>s</m> or <m>t</m>. In particular, we have
        <me>\frac{\partial C}{\partial s} = \frac{\partial C}{\partial p} \frac{\partial p}{\partial s} + \frac{\partial C}{\partial q} \frac{\partial q}{\partial s} + \frac{\partial C}{\partial L} \frac{\partial L}{\partial s} </me> 
        and 
-       <me>\frac{\partial C}{\partial t} = \frac{\partial C}{\partial p} \frac{\partial p}{\partial t} + \frac{\partial C}{\partial q} \frac{\partial q}{\partial t} + \frac{\partial C}{\partial L} \frac{\partial L}{\partial t} </me>
+       <me>\frac{\partial C}{\partial t} = \frac{\partial C}{\partial p} \frac{\partial p}{\partial t} + \frac{\partial C}{\partial q} \frac{\partial q}{\partial t} + \frac{\partial C}{\partial L} \frac{\partial L}{\partial t} </me>.
     </p>
     <p>
       These chain rule expressions have the same separation of intermediate variables as in our earlier discussion. For instance, the term <m>\frac{\partial C}{\partial q} \frac{\partial q}{\partial s} </m> describes the rate of change in the cost of making flibertygibbits per unit of distance from other cities that depends on the cost of part <m>q</m>. The term <m>\frac{\partial C}{\partial L} \frac{\partial L}{\partial t} </m> describes the rate of change in the cost of making flibertygibbits per unit time that depends on the cost of labor <m>L</m>. In both cases, the partial derivatives of <m>C</m> with respect to <m>s</m> and <m>t</m> are a linear combination of the changes through each of the intermediate variables <m>p</m>, <m>q</m>, and <m>L</m>.
     </p>
   </example>
   <p>
-    We close this section with another statement on what linearity means in a bigger conceptual way. Every version of the chain rule we have looked at (including the chain rule from single variable calculus) states that the change in our output variable is a linear combination of the instantaneous rate of change in terms of each variable and the step size in that variable. The chain rule is simply an algebraic statement of this linear combination. As we said at the end of the previous section, if we are using a locally linear function then the instantaneous rate of change of the function will be the same as the corresponding measurement of change along the linearization/tangent plane.
+    The chain rule and local linearity are related, conceptually-significant ideas. Every version of the chain rule we have seen, including the chain rule from single-variable calculus, ultimately states that the change in an output variable is a linear combination of the instantaneous rates of change of each input variable and the step size of that variable. The chain rule is an algebraic statement of this linear combination. Recall from the previous section that when a function is locally linear, the instantaneous rate of change of the function is the same as the corresponding measurement of change along the linearization/tangent plane.
   </p>
   </subsection>
 
