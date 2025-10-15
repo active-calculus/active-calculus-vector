@@ -132,31 +132,46 @@
       <caption>A plot of <m>f(x,y)=6-\frac{x^2}{2}-y^2</m> with the point <m>(1,1,\frac{9}{2})</m> highlighted and the option to zoom in around the highlighted point.</caption>
       <interactive label="interactive-fig-mv_deriv-linearization-tangent_4" platform="sage" width="100%" aspect="1:1.15">
         <slate surface="sage">
+          gz=0
           var('x,y,s,t')
+          #print(gz)
           @interact
-          def LLsurface2(a=slider(0,8,1,default=0,label="Zoom"),sp=checkbox(False,label="Show Tangent Plane:")):
-              z=4*2^(-a)
-              g(x,y)=6-x^2/2-y^2
-              #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
-              param(s,t)=(s,t,g(s,t));s1=1-z;s2=z+1;t1=1-z;t2=1+z;
-              #set up grid      n is number of steps in s    m is number of steps in t  
-              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-              n=4;m=4;a1=s1;a2=s2;b1=t1;b2=t2; 
-              #c1 is surface color     o1 is surface opacity
-              #c2 and o2 are for constant t value traces
-              #c3 and o3 are for constant s value traces
-              c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.8; o3=0.8;
-              plot4=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1)
-              for i in range(n+1):
-                sv=a1+i/n*(a2-a1)
-                plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-              for i in range(m+1):
-                tv=b1+i/m*(b2-b1)
-                plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          def LLSurface2(Zoom=selector(['Reset','Zoom In','Zoom Out'],buttons=True),sp=checkbox(False,label="Show Tangent Plane:")):
+            global gz
+            try:
+              gz
+            except:
+              gz=0
+            if(Zoom=='Zoom In'):
+              cz=-1;
+            if(Zoom=='Zoom Out'):
+              cz=1;
+            if(Zoom=='Reset'):
+              cz=-gz
+            gz+=cz
+            #print(gz)
+            z=4*2^(gz)
+            g(x,y)=6-x^2/2-y^2
+            #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
+            param(s,t)=(s,t,g(s,t));s1=1-z;s2=z+1;t1=1-z;t2=1+z;
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=4;m=4;a1=s1;a2=s2;b1=t1;b2=t2; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.8; o3=0.8;
+            plot4=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)                  
               plot4+=point3d((1,1,4.5),color="black",size=30*z)
-              if(sp):
-                plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
-              show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False)
+            if(sp):
+              plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
+            show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False)
         </slate>
       </interactive>
     </figure>
