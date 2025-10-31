@@ -13,7 +13,7 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-10-7-Optimization" xmlns:xi="http://www.w3.org/2001/XInclude">
+<section xml:id="S-mv_deriv-optimization" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>Optimization</title>
   <objectives>
     <ul>
@@ -37,241 +37,101 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section relies on the geometric tools developed with in the sections on the first and second partial derivatives (<xref ref="S-mv_deriv-first_order"/> and <xref ref="S-mv_deriv-second_order"/>). If you omit the material on absolute extrema, then this can be covered in a single class meeting. Because absolute extrema involve a significant amount more work to do optimization on the boundary, that is likely a separate class meeting (or could be paired with Lagrange Multipliers).
+      This section relies on the geometric tools developed in the sections on the first and second partial derivatives (<xref ref="S-mv_deriv-first_order"/> and <xref ref="S-mv_deriv-second_order"/>). If you omit the material on absolute extrema, then this can be covered in a single class meeting. Because absolute extrema involve a significant amount more work to do optimization on the boundary, that is likely a separate class meeting (or could be paired with Lagrange Multipliers).
     </p>
   </introduction>
   <subsection>
     <title>Introduction</title>
     <p>
-      In <url href="https://activecalculus.org/single/sec-3-1-tests.html">single-variable calculus</url> we learned that the derivative is useful for finding the local maxima and minima of functions and these ideas are often employed in applied settings. In particular, if a function <m>f</m>, such as the one shown in <xref ref="F_10_7_preview_1">Figure</xref> is differentiable everywhere, we know that the tangent line is horizontal at any point where <m>f</m> has a local maximum or minimum. Horizontal tangent lines occur when the derivative <m>f'</m> is zero at any such point. Thus, one way we can find possible extreme values of a given function is to first find where the derivative of the function is zero. Remember that not every point where <m>f'(a)=0</m> will correspond to either a local maximum or local minimum. 
+      In <url href="https://activecalculus.org/single/sec-3-1-tests.html">single-variable calculus</url> we learned that the derivative is useful for finding the local maxima and minima of functions. We also saw how these ideas can be employed in applied settings. In particular, if a function <m>f</m>, such as the one shown in <xref ref="fig-mv_deriv-opt-intro">Figure</xref> is differentiable everywhere, we know that the tangent line is horizontal at any point where <m>f</m> has a local maximum or minimum. Horizontal tangent lines occur when the derivative <m>f'</m> is zero. Thus, one way to find possible extreme values of a function is to first find where the function's derivative is zero. Not every point where <m>f'(a)=0</m> will correspond to either a local maximum or local minimum, however. You may also recall that the concavity at a location where the derivative is zero can be used to help determine if a point is a local maximum or local minimum. 
     </p>
-    <figure xml:id="F_10_7_preview_1">
+    <figure xml:id="fig-mv_deriv-opt-intro">
       <caption>The graph of <m>y=f(x)</m>.</caption>
       <image width="50%" source="images/fig_10_7_preview_1"/>
     </figure>
     <p>
-      After finding the critical points by looking where <m>f'(a)=0</m> or is undefined, you may have used the derivative of <m>f</m> to determine whether the output of <m>f</m> at the critical point changed from increasing to decreasing or vice versa. This change would determine if the critical point was a local maximum, local minimum, or something else. Additionally, the concavity at the critical point could sometimes be used to classify critical points. 
-    </p>
-    <p>
-      In multivariable calculus, we are often similarly interested in finding the greatest or least value(s) that a function may achieve. Moreover, there are many applied settings in which a quantity of interest depends on several different variables. In the preview activity below, we will use the application of elevation being a function of location (with coordinates in terms of North/South and East/West) to look at what characteristics are necessary for an input to a function of two variables to correspond with a local maximum or minimum. An emphasis of this activity is that we can only look at measurements at our current location (local information) to determine if a point is a local maximum or minimum. 
+      In multivariable calculus, we are often similarly interested in finding the greatest or least values that a function may achieve. Moreover, there are many applied settings in which a quantity of interest depends on several variables. In the preview activity below, we will use the application of elevation as a function of location to consider the characteristics that are necessary for an input to a function of two variables to correspond to a local maximum or local minimum. An emphasis of this activity is that we can only look at measurements at our current location to determine if a point is a local maximum or minimum. 
       <!-- In the following preview activity, we begin to see how some key ideas in multivariable calculus can help us answer such questions by thinking about the geometry of the surface generated by a function of two variables. -->
     </p>
     <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA_10_7">
+  <exploration workspace="1.5in" xml:id="PA-mv_deriv-opt">
       <introduction>
         <p>
-          In this activity, we will use a function corresponding to elevation (as a function of 2D location) to explore what properties a point corresponding to a local maximum or local minimum (of a function of two variables) must have. Similar to <xref ref="foggymtn1"/>, we are hiking in a foggy park and cannot see anything more than a few feet in front of us. There is nothing blocking us from walking in any particular direction, but because of the fog, we cannot see where the highest point on the mountain is. We want to try to find the top of the mountain, but we don't have a map or trail or any line of sight to other landmarks. Our compass still works in the fog, so we can tell what direction North/South/East/West are.
-        </p>
-        <p>  
-          We also brought a level that we can place on the ground at our feet to measure how steep the change in elevation will be in a particular direction. In other words, the level can measure the directional derivative at our current location. Conceptually, we want to understand how the measurements we can take with our level will allow us to identify when we have reached the top of the mountain. 
+          In this activity, we will use a function that takes a two-dimensional location as its input and outputs the elevation of a surface at that point to explore what properties a point corresponding to a local maximum or local minimum of a function of two variables must have. Similar to <xref ref="foggymtn1"/>, imagine that you are hiking in a foggy park and cannot see anything more than a few feet in front of you. There is nothing blocking you from walking in any particular direction, but because of the fog, you cannot see where the highest point on the mountain is. You want to try to find the top of the mountain, but you don't have a map to consult or trail to follow or even a line of sight to other landmarks. You do have a compass that works in the fog, which you can use to determine directions. You also have a level that can be placed on the ground at your feet to measure how steep the change in elevation is in a particular direction. In other words, the level can measure the directional derivative at a location. Conceptually, our goal in this preview activity is to understand how the measurements you can take with your level allows you to identify when you have reached the top of the mountain. 
         </p>
       </introduction>
       <task>
         <statement>
           <p>
-            In <xref ref="foggymtn1"/>, we saw how we can move toward the top of the mountain by taking steps in the <q>uphill</q> direction (the direction of greatest rate of increase for elevation). We want to state some conditions for our measurement using the level that will determine if we have reached the top of the mountain.
-          </p>
-          <p>
-            Suppose you are actually standing at the top of the mountain (which will correspond to a local maximum for the elevation) and you set the level at your feet in the East direction. Will the level measure that the elevation is increasing, decreasing, or constant elevation? Write a couple of sentences to justify your answer.
+            In <xref ref="foggymtn1"/>, you saw how you can move toward the top of the mountain by taking steps in the <q>uphill</q> direction, which is the direction of greatest rate of increase for elevation. Suppose you are standing at the top of the mountain, which corresponds to a local maximum for elevation, and you set the level at your feet while facing east. Will the level measure that the elevation is increasing, decreasing, or constant? Write a couple of sentences to justify your answer.
           </p>
         </statement>
         <hint>
           <p>
-            Remember that the level will measure the instantaneous rate of change of elevation at your current location, but will not describe what happens for a small step in the East direction. 
+            Remember that the level measures the <em>instantaneous</em> rate of change of elevation at your current location, but will not describe what happens for a small step to the east. 
           </p>
         </hint>
       </task>
       <task>
         <statement>
           <p>
-            If you are at the top of the mountain and set the level at your feet in the South direction, will the level measure that the elevation is increasing, decreasing, or constant elevation? Write a couple of sentences to justify your answer.
+            If you are at the top of the mountain and set the level at your feed while facing south, will the level measure that the elevation is increasing, decreasing, or constant? Write a couple of sentences to justify your answer.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Write a few sentences to explain why your level MUST show a zero rate of change in <em>every</em> direction at the top of the mountain.
+            Write a few sentences to explain why your level <em>must</em> show a zero rate of change in <em>every</em> direction at the top of the mountain.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            If you took a step to the West from the top of the mountain, should your level measurement in the West direction at your new location be increasing, decreasing, or constant elevation? Explain your reasoning.
+            If you took a small step to the west from the top of the mountain, should your level measurement to the west at your new location indicate that the elevation is increasing, decreasing, or constant? Explain your reasoning.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            If you took at step in <em>any direction</em> from the top of the mountain, should your level measurement in the direction you took the step at your new location be increasing, decreasing, or constant elevation? Explain your reasoning. 
+            If you took a small step in <em>any direction</em> from the top of the mountain, should your level measurement in the direction you took the step at your new location indicate that the elevation is increasing, decreasing, or constant? Explain your reasoning. 
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            If you were at the lowest point in the foggy park, write a few sentences to explain why your level MUST show a zero rate of change in <em>every</em> direction.
+            Now imagine that you are at the <em>lowest</em> point in the foggy park. Write a couple of sentences to explain why your level <em>must</em> show a zero rate of change in <em>every</em> direction.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            If you took at step in <em>any direction</em> from the lowest point in the park, should your level measurement in the forward direction (the direction in which you took the step) at your new location be increasing, decreasing, or constant elevation? Explain your reasoning.
+            If you took at step in <em>any direction</em> from the lowest point in the park, should your level measurement at your new location in the the direction in which you took the step indicate that the elevation is increasing, decreasing, or constant? Explain your reasoning.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Is it possible on your hike in the fog that you find a point where your level shows constant elevation in every direction but you are NOT at the top of the mountain or lowest point on the mountain? Explain what the the terrain would look like at this kind of location. 
+            Is it possible on your hike in the fog that you find a point where your level shows constant elevation in every direction but you are <em>not</em> at the top of the mountain or lowest point on the mountain? Explain what the the terrain would look like at this type of location. 
           </p>
         </statement>
       </task>
     </exploration>
 </worksheet>
     <p>
-      As you saw in the preview activity, you saw how points corresponding to local minimums and local maximums must have a zero slope in <em>every</em> direction and the rate of the change after taking a small step in any direction will also need to be either positive or negative (respectively). This will form the conceptual basis of our attempt to find and classify extreme points of functions of two variables.
+      As the Preview Activity demonstrates, points corresponding to local minima and local maxima must have a zero slope in <em>every</em> direction and the rate of the change after taking a small step in any direction must also be positive or negative, respectively. This will form the conceptual basis of our attempt to find and classify extreme points of functions of two variables.
     </p>
-    <!-- <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA_10_7">
-      <statement>
-        <p>
-          Let <m>z = f(x,y)</m> be a differentiable function, and suppose that at the point <m>(x_0, y_0)</m>, <m>f</m> achieves a local maximum. That is, the value of <m>f(x_0,y_0)</m> is greater than the value of <m>f(x,y)</m> for all <m>(x,y)</m> nearby <m>(x_0,y_0)</m>. You might find it helpful to sketch a rough picture of a possible function <m>f</m> that has this property.
-          <ol marker="a.">
-            <li>
-              <p>
-                If we consider the trace given by
-                    holding <m>y=y_0</m> constant, then the single-variable function defined by <m>f(x, y_0)</m> must have a local maximum at
-                    <m>x_0</m>.  What does this say about the value of the partial derivative
-                    <m>f_x(x_0,y_0)</m>?
-              </p>
-            </li>
-
-            <li>
-              <p>
-                In the same way, the trace given by holding <m>x=x_0</m> constant
-                    has a local maximum at <m>y=y_0</m>.  What does this say about the value of the
-                    partial derivative <m>f_y(x_0,y_0)</m>?
-              </p>
-            </li>
-
-            <li>
-              <p>
-                What may we now conclude about the gradient <m>\nabla f(x_0,y_0)</m> at the
-                    local maximum?  How is this consistent with the statement <q><m>f</m>
-                    increases most rapidly in the direction <m>\nabla f(x_0,y_0)</m>?</q>
-              </p>
-            </li>
-
-            <li>
-              <p>
-                How will the tangent plane to the surface <m>z = f(x,y)</m> appear at the point <m>(x_0, y_0, f(x_0,y_0))</m>?
-              </p>
-            </li>
-
-            <li>
-              <p>
-                By first computing the partial derivatives, find any points at which <m>f(x,y) = 2x -   x^2 - (y + 2)^2</m> may have a local maximum.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
-        <ol marker="a.">
-          <li>
-            <p>
-               <m>f_x(x_0,y_0) = 0</m>
-            </p>
-          </li>
-          <li>
-            <p>
-               <m>f_y(x_0,y_0) = 0</m>
-            </p>
-          </li>
-          <li>
-            <p>
-              <m>\nabla f(x_0,y_0) = \vzero</m>
-            </p>
-          </li>
-          <li>
-            <p>
-              The tangent plane to the surface <m>z = f(x,y)</m> at the point
-              <m>(x_0, y_0, f(x_0,y_0))</m> will have the form <m>z = f(x_0,y_0)</m>.
-              So the tangent plane will be parallel to the <m>x</m>-<m>y</m> plane.
-            </p>
-          </li>
-          <li>
-            <p>
-              The point <m>(1,-2)</m>  is the only point at which the function
-              <m>f(x,y) = 2x -   x^2 - (y + 2)^2</m> may have a local maximum.
-            </p>
-          </li>
-        </ol>
-      </answer>
-  
-
-      <solution>
-        <ol marker="a.">
-          <li>
-            <p>
-              Since <m>f</m> is a differentiable function,
-              its derivative <m>f_x</m> in the <m>x</m>-direction must be 0 at a local maximum.
-              In other words, <m>f_x(x_0,y_0) = 0</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Since <m>f</m> is a differentiable function,
-              its derivative <m>f_y</m> in the <m>y</m>-direction must be 0 at a local maximum.
-              In other words, <m>f_y(x_0,y_0) = 0</m>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Since <m>\nabla f(x_0,y_0) = \langle f_x(x_0,y_0),
-              f_y(x_0,y_0) \rangle</m>, we must have <m>\nabla f(x_0,y_0) = \vzero</m>.
-              Since the function has a local maximum at the point <m>(x_0,y_0)</m>,
-              the rate of change of <m>f</m> in any direction at <m>(x_0,y_0)</m> is 0.
-            </p>
-          </li>
-          <li>
-            <p>
-              With both <m>f_x(x_0,y_0)=0</m> and <m>f_y(x_0,y_0) = 0</m>,
-              the tangent plane to the surface <m>z = f(x,y)</m> at the point
-              <m>(x_0, y_0, f(x_0,y_0))</m> will have the form <m>z = f(x_0,y_0)</m>.
-              So the tangent plane will be parallel to the <m>x</m>-<m>y</m> plane.
-            </p>
-          </li>
-          <li>
-            <p>
-              We have
-              <me>
-                f_x(x,y) = 2-2x \ \text{ and }  \ f_y(x,y) = 2(y+2)
-              </me>,
-              so <m>\nabla f = \vzero</m> at the point <m>(1,-2)</m>.
-              This is the only point at which the function
-              <m>f(x,y) = 2x -   x^2 - (y + 2)^2</m> may have a local maximum.
-            </p>
-          </li>
-        </ol>
-      </solution>
-  
-
-    </exploration>
-</worksheet> -->
   </subsection>
 
   <subsection>
     <title>Extrema and Critical Points</title>
     <p>
-      One of the important applications of single-variable calculus is the use of derivatives to identify local extremes of functions (that is, local maxima and local minima). Using the tools we have developed so far, we can naturally extend the concept of local maxima and minima to several-variable functions.
+      One of the important applications of single-variable calculus is the use of derivatives to identify local extremes of functions (that is, local maxima and local minima). Using the tools we have developed so far, we can extend the concept of local maxima and minima to multivariable functions.
     </p>
 
     <definition>
@@ -312,14 +172,14 @@
     </p>
     <figure xml:id="F_10_7_extrema">
       <caption>An local maxima and a local minima</caption>
-      <interactive title="interactive-F_10_7_extrema" platform="sage" width="100%" aspect="1:1">
+      <interactive title="interactive-F_10_7_extrema" platform="sage" width="100%" aspect="1:1.1">
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('x,y,z,t,s')
           scale=3
           @interact
-          def maxmin(sb=selector(['Local Maximum','Local Minimum'],label="Surface Options:")):
-            if(sb=='Local Maximum'):
+          def maxmin(sb=selector(['Local Minimum','Local Maximum'],label="Surface Options:")):
+            if(sb=='Local Minimum'):
               param(s,t)=(s*cos(t),s*sin(t),1/2+s^2)
             else:
               param(s,t)=(s*cos(t),s*sin(t),2.25-s^2)
@@ -353,42 +213,42 @@
     </figure> -->
 
     <p>
-      In single-variable calculus, we saw that the extrema of a continuous function <m>f</m> always occur at <em>critical points</em>, values of <m>x</m> where <m>f</m> fails to be differentiable or where <m>f'(x) = 0</m>. Said differently, critical points provide the locations where the extrema of a function may appear. Our work in <xref ref="PA_10_7">Preview Activity</xref> suggests that something similar happens with two-variable functions.
+      In single-variable calculus, we saw that the extrema of a continuous function <m>f</m> always occur at <term>critical numbers</term>, which are values of <m>x</m> where <m>f</m> fails to be differentiable or where <m>f'(x) = 0</m>. Said differently, critical numbers provide the locations where the extrema of a function may appear. Our work in <xref ref="PA-mv_deriv-opt">Preview Activity</xref> suggests that something similar happens with two-variable functions.
     </p>
 
     <p>
-      Suppose that a continuous function <m>f</m> has an extremum at <m>(x_0,y_0)</m>. In this case, the trace <m>f(x,y_0)</m> has an extremum at <m>x_0</m>, which means that <m>x_0</m> is a critical value of <m>f(x,y_0)</m>. Therefore, either <m>f_x(x_0,y_0)</m> does not exist or <m>f_x(x_0,y_0) = 0</m>. Similarly, either <m>f_y(x_0,y_0)</m> does not exist or <m>f_y(x_0,y_0) = 0</m>. This implies that the extrema of a two-variable function occur at points that satisfy the following definition.
+      Suppose that a continuous function <m>f</m> has an extremum at <m>(x_0,y_0)</m>. In this case, the trace <m>f(x,y_0)</m> has an extremum at <m>x_0</m>, which means that <m>x_0</m> is a critical number of <m>f(x,y_0)</m>. Therefore, either <m>f_x(x_0,y_0)</m> does not exist or <m>f_x(x_0,y_0) = 0</m>. Similarly, either <m>f_y(x_0,y_0)</m> does not exist or <m>f_y(x_0,y_0) = 0</m>. This implies that the extrema of a two-variable function occur at points that satisfy the following definition.
     </p>
 
     <definition>
       <statement>
         <p>
-          A <term>critical point</term><idx><h>critical point</h></idx> <m>(x_0,y_0)</m> of a function <m>f=f(x,y)</m> is a point in the domain of <m>f</m> at which <m>f_x(x_0,y_0) = 0</m> and <m>f_y(x_0,y_0) = 0</m>, or such that one of <m>f_x(x_0,y_0)</m> or <m>f_y(x_0,y_0)</m> fails to exist.
+          A <term>critical point</term><idx><h>critical point</h></idx> <m>(x_0,y_0)</m> of a function <m>f=f(x,y)</m> is a point in the domain of <m>f</m> at which either <m>f_x(x_0,y_0)</m> and <m>f_y(x_0,y_0)</m> are both zero or at least one of <m>f_x(x_0,y_0)</m> and <m>f_y(x_0,y_0)</m> fails to exist.
         </p>
       </statement>
     </definition>
     <p>
-      In the analogy of <xref ref="PA_10_7"/>, these critical points correspond to locations where our level will measure no change in elevation for every direction. How can we ensure that directional derivative will be zero in every direction? If <m> \nabla f =\vec{0}</m>, then <m>Df_{\vu} = \vec{0}\cdot\vu = 0 </m> for <em>every direction</em>. Geometrically, if <m>\nabla f =\vec{0}</m> at a point <m>(x_0,y_0)</m>, then the tangent plane at this point will be horizontal (of the form <m>z=\text{constant}</m>).
+      In the analogy of <xref ref="PA-mv_deriv-opt"/>, these critical points correspond to locations where our level will measure no change in elevation for every direction. How can we ensure that directional derivative will be zero in every direction? If <m> \nabla f =\vec{0}</m>, then <m>Df_{\vu} = \vec{0}\cdot\vu = 0 </m> for <em>every direction</em>. Geometrically, if <m>\nabla f =\vec{0}</m> at a point <m>(x_0,y_0)</m>, then the tangent plane at this point will be horizontal, meaning its equation has the form <m>z=c</m> for a constant <m>c</m>.
     </p>
     <p>
-      We can therefore find critical points of a function <m>f</m> by computing partial derivatives and identifying any values of <m>(x,y)</m> for which one of the partials doesn't exist or for which both partial derivatives are simultaneously zero. For the latter, note that we have to solve the system of equations
+      This means that we can find critical points of a function <m>f</m> by computing partial derivatives and identifying any values of <m>(x,y)</m> for which one of the partials doesn't exist or for which both partial derivatives are simultaneously zero. For the latter, note that we have to solve the system of equations
       <md>
         <mrow>f_x(x,y) \amp = 0</mrow>
         <mrow>f_y(x,y) \amp  = 0</mrow>
-      </md>
+      </md>.
     </p>
     <example>
       <p>
-        In this example, we will look for the critical points of the two variable function <m>f(x,y)=4x^4+y^2-16xy</m>. By the definition of critical points above, we will need to solve for the <m>(x,y)</m> points with both <m>f_x</m> and <m>f_y</m> equal to zero. Note here that there will be no points for which the partial derivatives of <m>f</m> will be undefined. Because <m>f_x=16x^3-16y</m> and <m>f_y=2y-16x</m>, critical points will be solutions to the system of equations
+        In this example, we will look for the critical points of the two-variable function <m>f(x,y)=4x^4+y^2-16xy</m>. By the definition of critical points above, we will need to solve for the <m>(x,y)</m> points with both <m>f_x</m> and <m>f_y</m> equal to zero. There are no points for which the partial derivatives of <m>f</m> are undefined for this function because <m>f_x=16x^3-16y</m> and <m>f_y=2y-16x</m> are polynomials. The critical points will be solutions to the system of equations
         <md>
           <mrow>16x^3-16y \amp=0 </mrow>
           <mrow>2y-16x   \amp=0 </mrow>
-        </md>
+        </md>.
       </p>
       <p>
-        Solving the second equation for <m>y</m>, we get <m>y=8x</m>, which we can plug into the first equation to get <m>16x^3-16(8x)=0</m>. Factoring this equation, we get
-        <me>16x(x-\sqrt{8})(x+\sqrt{8})=0</me>
-        which means our critical points must have either <m>x=0</m>, <m>x=\sqrt{8}</m>, or <m>x=-\sqrt{8}</m>. We can substitute each of these values back into <m>y=8x</m> to get the following critcal points:
+        Solving the second equation for <m>y</m>, we get <m>y=8x</m>, which we can substitute into the first equation: <m>16x^3-16(8x)=0</m>. Factoring this equation, we have
+        <me>16x(x-\sqrt{8})(x+\sqrt{8})=0</me>,
+        which means our critical points must have <m>x=0</m>, <m>x=\sqrt{8}</m>, or <m>x=-\sqrt{8}</m>. We can substitute each of these values into <m>y=8x</m> to obtain the following critical points:
         <ol>
           <li><m>(x,y)=(0,0)</m> </li>
           <li><m>(x,y)=(\sqrt{8},8\sqrt{8})</m> </li>
@@ -396,11 +256,11 @@
         </ol>
       </p>
       <p>
-        For each point above, <xref ref="critvals1"/> will show a plot of <m>z=f(x,y)</m> for a small region around the critical value. You can use the selector at the top of <xref ref="critvals1"/> to choose which critical point to look at. Pay attention to how the coordinate values are changing in each case. 
+        For each point above, you can use <xref ref="critvals1"/> to show a plot of <m>z=f(x,y)</m> for a small region around the critical point by selecting from the selector. Pay attention to how the coordinate values on the axes change in each case!
       </p>
       <figure xml:id="critvals1">
       <caption>Plots of <m>z=f(x,y)</m> around each of the critical points</caption>
-      <interactive title="interactive-critvals1" platform="sage" width="100%" aspect="1:1">
+      <interactive title="interactive-critvals1" platform="sage" width="100%" aspect="1:1.1">
         <slate surface="sage">
           var('x,y,z')
           f(x,y)=4*x^4+y^2-16*x*y
@@ -420,33 +280,43 @@
         </interactive>
       </figure>
       <p>
-        You can see from the plots around each of the critical points in <xref ref="critvals1"/>, that our first critical point <m>(x,y)=(0,0)</m> will NOT be a local maximum or local minimum, but both of <m>(x,y)=(\sqrt{8},8\sqrt{8})</m> and <m>(x,y)=(-\sqrt{8},-8\sqrt{8})</m> will be local minimums. 
+        You can see from the plots around each of the critical points in <xref ref="critvals1"/>, that the first critical point <m>(x,y)=(0,0)</m> will <em>not</em> be a local maximum or local minimum, but both of <m>(x,y)=(\sqrt{8},8\sqrt{8})</m> and <m>(x,y)=(-\sqrt{8},-8\sqrt{8})</m> will be local minima. 
       </p>
     </example>
     <p>
-      The previous example shows how between minimums there does not have to be maximum (like was the case for continuous functions of one variable). We encourage you to think carefully about how possibilities can be very different than in one variable functions as we move forward. 
+      For continuous functions of one variable, you may recall that between two local minima, there must be a local maximum. The previous example shows how for functions of more than one variable, there does not need to be a local maximum between two local minima. We encourage you to think carefully about how possibilities can be different than for one-variable functions as we move forward. 
     </p>
 
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_10_7_3">
+  <activity workspace="1.5in" xml:id="act-mv_deriv-opt-classify">
     <introduction>
       <p>
-        For each of the functions below, do the following
+        For each of the functions below, do the following:
         <ol>
           <li>Find all critical points for the function. </li>
-          <li>Use <xref ref="critvalsact"/> to plot the surface near each of your critical points. You will need to put in the coordinates of your critical point as <m>(a,b)</m> and the function you are using for <m>f(x,y)</m>. </li>
+          <li>Use <xref ref="critvalsact"/> to plot the surface near each critical point. Enter the coordinates of your critical point as <m>(a,b)</m> and the function you are using for <m>f(x,y)</m>. </li>
           <li>Use your plots of the surfaces <m>z=f(x,y)</m> near your critical point to decide whether each critical point is a local maximum, a local minimum, or not an extreme point. </li>
         </ol>
       </p>
       <figure xml:id="critvalsact">
         <caption>Plots of <m>z=f(x,y)</m> around each of the critical points</caption>
-        <interactive title="interactive-critvalsact" platform="sage" width="100%" aspect="1:1">
+        <interactive label="interactive-critvalsact" platform="sage" width="100%" aspect="1:1.2">
           <slate surface="sage">
             var('x,y,z')
-            d=0.25
+            fn_options=["part (a)","part (b)","part (c)","part (d)","part (e)"]
             @interact
-            def critvalcheck(p=input_grid(1,2,default=[[0,0]],label="\\( (a,b)= \\)"),func=input_box(default=x-y,label="\\(f(x,y)=\\)"),auto_update=False):
+            def critvalcheck(p=input_grid(1,2,default=[[1/2,-1/2]],label="\\( (a,b)= \\)"),funcs=selector(fn_options,label="Select Function")):
               a=p[0][0];b=p[0][1];
+              if(funcs=="part (a)"):
+                func=2+x^2+y^2; disp_fn="\\text{A plot of }"+LatexExpr("f(x,y)= 2+x^2+y^2")+"\\text{ around the input }"+str((a,b)); ar=(1,1,1); d=0.3
+              elif(funcs=="part (b)"):
+                func=2+x^2-y^2; disp_fn="\\text{A plot of }"+LatexExpr("f(x,y)= 2+x^2-y^2")+"\\text{ around the input }"+str((a,b)); ar=(1,1,0.5); d=0.5
+              elif(funcs=="part (c)"):
+                func=2*x-x^2-1/4*y^2; disp_fn="\\text{A plot of }"+LatexExpr("f(x,y)= 2x-x^2-\\frac{1}{4}y^2")+"\\text{ around the input }"+str((a,b)); ar=(1,1,2); d=0.5
+              elif(funcs=="part (d)"):
+                func=abs(x)+abs(y); disp_fn="\\text{A plot of }"+LatexExpr("f(x,y)= |x| +|y|")+"\\text{ around the input }"+str((a,b)); ar=(1,1,1); d=0.3
+              elif(funcs=="part (e)"):
+                func=2*x*y-4*x+2*y-3; disp_fn="\\text{A plot of }"+LatexExpr("f(x,y)= 2xy-4x+2y-3")+"\\text{ around the input }"+str((a,b)); ar=(1,1,1); d=0.25
               f(x,y)=func
               #plot1=plot3d(f(x,y),(x,a-d,a+d),(y,b-d,b+d),color="blue",opacity=0.6,plot_points=31,mesh=True)
               param(s,t)=(s,t,f(s,t))
@@ -463,7 +333,8 @@
                 tv=b1+i/m*(b2-b1)
                 plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
               plot1+=point3d((a,b,f(x=a,y=b)),size=10,color="black")
-              show(plot1)
+              show(disp_fn)
+              show(plot1,aspect_ratio=ar)
           </slate>
         </interactive>
       </figure>
@@ -516,6 +387,11 @@
           <m>f(x,y) = 2x-x^2-\frac{1}{4}y^2</m>
         </p>
       </statement>
+      <!-- <hint>
+        <p>
+          The interactive requires that multiplication be entered explicitly, so you need to enter <c>2*x</c> instead of <m>2x</m>, and you will need to type <c>(1/4)*y^2</c> for the last term.
+        </p>
+      </hint> -->
       <answer>
         <p>
           Here, <m>(1,0)</m> is the only critical point of <m>f</m>. The graph of <m>f</m> is a paraboloid that opens in the negative <m>z</m>-direction, so we should expect only one critical point (at which <m>f</m> has an absolute maximum value).
@@ -537,6 +413,11 @@
           <m>f(x,y) = |x| + |y|</m>
         </p>
       </statement>
+      <!-- <hint>
+        <p>
+          To enter the absolute value function in the interactive, use <c>abs(x)</c>.
+        </p>
+      </hint> -->
       <answer>
         <p>
           This function has infinitely many critical points <mdash/> those points of the form <m>(0,y)</m> or <m>(x,0)</m>. The graph of <m>f</m> has sharp folds along the <m>x</m>-axis or <m>y</m>-axis, so we should expect that <m>f</m> is not differentiable at those points. The graph of <m>f</m> also indicates that <m>f</m> has an absolute minimum value at the point <m>(0,0)</m>.
@@ -571,14 +452,13 @@
     </task>        
   </activity>
 </worksheet>     
-
-  </subsection>
+</subsection>
 
 
   <subsection>
     <title>Classifying Critical Points: The Second Derivative Test</title>
     <p>
-      While the extreme values of a continuous function <m>f</m> always occur at critical points, it is important to note that not every critical point leads to an extremum. Recall, for instance, <m>f(x) = x^3</m> from single variable calculus. We know that <m>x_0=0</m> is a critical point since <m>f'(x_0) = 0</m>, but <m>x_0 = 0</m> is neither a local maximum nor a local minimum of <m>f</m>. Geometrically, this corresponds to the tangent line <m>x_0=0</m> being horizontal (as seen in <xref ref="critptx3"/>) but the critical point does not correspond to a place where <m>f</m> is not increasing or decreasing in all directions away from the <m>x_0=0</m> critical point.
+      While the extreme values of a continuous function <m>f</m> always occur at critical numbers, it is important to note that not every critical point leads to an extremum. Recall, for instance, <m>f(x) = x^3</m> from single variable calculus. Because <m>f'(0)=0</m>, we know that <m>x_0=0</m> is a critical number. However, <m>x_0 = 0</m> is not the location of a local maximum or a local minimum of <m>f</m>. Geometrically, this corresponds to the tangent line <m>x_0=0</m> being horizontal as seen in <xref ref="critptx3"/> but at a critical number where <m>f(x_0)</m> is neither greater than or equal to or less than or equal to all values <m>f(x)</m> with <m>x</m> near <m>x_0</m>.
     </p>
     <figure xml:id="critptx3">
       <caption>A plot of <m>y=x^3</m> with the horizontal tangent line at <m>x_0=0</m></caption>
@@ -592,11 +472,11 @@
       </image>
     </figure>
     <p>
-      As you have seen a few times already, a similar situation can arise in a multivariable setting. Let's look at the function <m>f</m> defined by <m>f(x,y) = x^2 - y^2</m> whose graph and contour plot are shown in <xref ref="F_10_7_saddle">Figure</xref>. Because <m>\nabla f = \langle 2x, -2y\rangle</m>, we see that the origin <m>(x_0,y_0)=(0,0)</m> is a critical point. However, this critical point is neither a local maximum or minimum; the origin is a local minimum on the trace defined by <m>y=0</m>, while the origin is a local maximum on the trace defined by <m>x=0</m>. We call such a critical point a <em>saddle point</em> due to the shape of the graph near the critical point.
+      As we have seen a few times already, a similar situation can arise in a multivariable setting. Let's look at the function <m>f(x,y) = x^2 - y^2</m> whose graph and contour plot are shown in <xref ref="fig-mv_deriv-opt-saddle">Figure</xref>. Because <m>\nabla f = \langle 2x, -2y\rangle</m>, we see that the origin <m>(x_0,y_0)=(0,0)</m> is a critical point. However, this critical point is neither a local maximum nor a local minimum. We can explain why this happens by noticing that the origin is a local <em>minimum</em> on the trace defined by <m>y=0</m>, while the origin is a local <em>maximum</em> on the trace defined by <m>x=0</m>. We call such a critical point a <term>saddle point</term> due to the shape of the graph near the critical point.
     </p>
-    <figure xml:id="F_10_7_saddle">
+    <figure xml:id="fig-mv_deriv-opt-saddle">
     <caption>The surface plot and contour plot of  <m>f(x,y)=x^2-y^2</m></caption>
-      <interactive title="interactive-F_10_7_saddle" platform="sage" width="100%" aspect="1:1.75">
+      <interactive title="interactive-fig-mv_deriv-opt-saddle" platform="sage" width="100%" aspect="1:1.75">
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('x,y,z,t,s')
@@ -628,7 +508,7 @@
         </slate>
       </interactive>
     </figure>
-    <!-- <figure xml:id="F_10_7_saddle">
+    <!-- <figure xml:id="fig-mv_deriv-opt-saddle">
       <caption>A saddle point.</caption>
       <sidebyside widths="50% 50%">
       <image source="images/saddle"/>
@@ -637,21 +517,21 @@
     </figure> -->
 
     <p>
-      As in single-variable calculus, we would like to have an algebraic test to help us identify whether a critical point is a local maximum, local minimum, or neither. Recall that the <em>Second Derivative Test</em> for single-variable functions states that if <m>x_0</m> is a critical point of a function <m>f</m> so that <m>f'(x_0)=0</m> and if <m>f''(x_0)</m> exists, then
+      As in single-variable calculus, we would like to have an algebraic test to help us identify whether a critical point is a local maximum, local minimum, or neither. Recall that the <term>Second Derivative Test</term> for single-variable functions states that if <m>x_0</m> is a critical number of a function <m>f</m> for which <m>f'(x_0)=0</m> and <m>f''(x_0)</m> exists, then we can conclude that
       <ul>
-        <li>if <m>f''(x_0) \lt  0</m>, then <m>x_0</m> is a local maximum </li>
+        <li>if <m>f''(x_0) \lt  0</m>, then <m>x_0</m> is a local maximum, </li>
 
-        <li> if <m>f''(x_0) \gt 0</m>, then <m>x_0</m> is a local minimum </li>
+        <li> if <m>f''(x_0) \gt 0</m>, then <m>x_0</m> is a local minimum, and </li>
 
-        <li> if <m>f''(x_0) = 0</m>, then the test is inconclusive </li>
+        <li> if <m>f''(x_0) = 0</m>, then the test is inconclusive. </li>
       </ul>
-      The first two cases are shown geometrically in <xref ref="seconddertest"/>. The inconclusive case does not necessarily mean that you have critical point like the one shown in <xref ref="critptx3"/>, but that you need more information to determine the behavior of the critical point.
+      The first two cases are shown geometrically in <xref ref="seconddertest"/>. The inconclusive case does not necessarily mean that you have critical number like the one shown in <xref ref="critptx3"/>, but that you need more information to determine the behavior of <m>f</m> at the critical number.
     </p>
     <figure xml:id="seconddertest">
-      <caption>Three possible outcomes of the Second Derivative Test</caption>
-      <sidebyside widths="30% 30% 30%" >
-      <image  xml:id="img-PA-2der1">
-        <sageplot>
+      <caption>Conclusive outcomes of the single-variable Second Derivative Test</caption>
+      <sidebyside widths="40% 40%" >
+      <image>
+        <sageplot label="img-PA-2der1">
           var('x,y')
           plot8=plot((x-0.5)^2+0.5,(x,-0.5,1.5),color="black",thickness=2,xmin=-1,ymin=-1,xmax=1,ymax=1,aspect_ratio=1,ticks=[[],[]])
           plot8+=line([(0.25,0.5),(0.75,0.5)],color="blue",thickness=2)
@@ -662,8 +542,8 @@
           plot8
         </sageplot>
       </image>
-      <image  xml:id="img-PA-2der2">
-        <sageplot>
+      <image  >
+        <sageplot label="img-PA-2der2">
           var('x,y')
           plot9=plot(-(x-0.5)^2+0.5,(x,-0.5,1.5),color="black",thickness=2,xmin=-1,ymin=-1,xmax=1,ymax=1,aspect_ratio=1,ticks=[[],[]])
           plot9+=line([(0.25,0.5),(0.75,0.5)],color="blue",thickness=2)
@@ -674,8 +554,8 @@
           plot9
         </sageplot>
       </image>
-      <image  xml:id="img-PA-2der3">
-        <sageplot>
+      <!-- <image  >
+        <sageplot label="img-PA-2der3">
           var('x,y')
           plot10=plot((x-0.5)^3+0.5,(x,-0.5,1.5),color="black",thickness=2,xmin=-1,ymin=-1,xmax=1,ymax=1,aspect_ratio=1,ticks=[[],[]])
           plot10+=line([(0.1,0.5),(0.9,0.5)],color="blue",thickness=2)
@@ -685,189 +565,15 @@
           plot10+=text("$\\left(x_0,f(x_0)\\right)$",(0.5,0.65),color="black",fontsize=15)
           plot10
         </sageplot>
-      </image>
+      </image> -->
       </sidebyside>
     </figure>
-    <!-- <worksheet>
-  <activity workspace="1.5in" xml:id="A_10_7_4">
-      <statement>
-        <p>
-          Recall that the <em>Second Derivative Test</em> for single-variable functions states that if <m>x_0</m> is a critical point of a function <m>f</m> so that <m>f'(x_0)=0</m> and if <m>f''(x_0)</m> exists, then
-          <ul>
-            <li>
-              <p>
-                if <m>f''(x_0) \lt  0</m>, <m>x_0</m> is a local maximum,
-              </p>
-            </li>
-
-            <li>
-              <p>
-                if <m>f''(x_0) &gt; 0</m>, <m>x_0</m> is a local minimum, and
-              </p>
-            </li>
-
-            <li>
-              <p>
-                if <m>f''(x_0) = 0</m>,  this test yields no information.
-              </p>
-            </li>
-          </ul>
-        </p>
-
-        <p>
-          Our goal in this activity is to understand a similar test for classifying extreme values of functions of two variables. Consider the following three functions:
-          <me> f_1(x,y) = 4-x^2-y^2, \ \ f_2(x,y) = x^2+y^2, \ \ f_3(x,y) = x^2-y^2. </me>
-          You can verify that each function has a critical point at the origin <m>(0,0)</m>. You should check this. 
-
-          <figure xml:id="F_10_7_max_min_saddle">
-          <caption>Three surfaces.</caption>
-          <sidebyside widths="33% 33% 33%">
-          <image source="images/zis4r2"/>
-          <image source="images/zisr2"/>
-          <image source="images/saddle"/>
-          </sidebyside>
-          </figure>  
-
-
-          <ol marker="a.">
-            <li>
-              <p>
-                The graphs of these three functions are shown in <xref ref="F_10_7_max_min_saddle">Figure</xref>, with <m>z=4-x^2-y^2</m> at left, <m>z=x^2+y^2</m> in the middle, and <m>z=x^2-y^2</m> at right. Use the graphs to decide if a function has a local maximum, local minimum, saddle point, or none of the above at the origin. 
-              </p>
-            </li>
-
-            <li>
-              <p>
-                There is no single second derivative of a function of two variables, so we consider a quantity that combines the second order partial derivatives. Let <m> D = f_{xx}f_{yy} - f_{xy}^2</m>. Calculate <m>D</m> at the origin for each of the functions <m>f_1</m>,  <m>f_2</m>, and <m>f_3</m>. What difference do you notice between the values of <m>D</m> when a function has a maximum or minimum value at the origin versus when a function has a saddle point at the origin? 
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Now consider the cases where <m>D \gt 0</m>. It is in these cases that a function has a local maximum or minimum at a point. What is necessary in these cases is to find a condition that will distinguish between a maximum and a minimum. In the cases where  <m>D \gt 0</m> at the origin, evaluate <m>f_{xx}(0,0)</m>. What value does <m>f_{xx}(0,0)</m> have when <m>f</m> has a local maximum value at the origin? When <m>f</m> has a local minimum value at the origin? Explain why. (Hint: This should look very similar to the Second Derivative Test for functions of a single variable.) What would happen if we considered the values of <m>f_{yy}(0,0)</m> instead? 
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
-        <ol marker="a.">
-          <li>
-            From the graphs, we can conclude that <m>z=4-x^2-y^2</m> has a local maximum at the origin, <m>z=x^2+y^2</m> has a local minimum at the origin, and <m>z=x^2-y^2</m> has neither a maximum nor a minimum at the origin.
-          </li> 
-          <li>
-            <p>
-              For <m>f(x, y) = 4-x^2-y^2</m>, we have  
-              <me> f_{xx}(0,0) = -2, f_{yy}(0,0) = -2,\ \mbox{and}  \ f_{xy}(0,0) = 0
-              </me>,
-              giving <m>D = (-2)(-2) - 0^2 = 4 \gt 0</m>.
-            </p>
-            <p>
-              For <m>f(x, y) = x^2+y^2</m>, we have  
-              <me>
-                f_{xx}(0,0) = 2, f_{yy}(0,0) = 2,\ \mbox{and}  \ f_{xy}(0,0) = 0
-              </me>,
-              giving <m>D = 2\cdot2 - 0^2 = 4 \gt 0</m>.
-            </p>
-            <p>
-              For <m>f(x, y) = x^2 - y^2</m>, we find that
-              <me>
-                f_{xx}(0,0) = 2, f_{yy}(0,0) = -2,\ \mbox{and}  \ f_{xy}(0,0) = 0
-              </me>,
-              giving <m>D = 2\cdot(-2) - 0^2 = -4 \lt  0</m>.
-            </p>
-            <p>
-              Combining the above information with our conclusions from the previous part, we see that <m>D \gt 0</m> at a point where the function has a maximum or minimum value but <m>D \lt 0</m> at a point where the function has a saddle point.
-            </p>
-          </li> 
-          <li>
-            <p>
-              For our first function, <m>f(x, y) = 4-x^2-y^2</m>, <m>D \gt 0</m> and <m>f_{xx}(0,0) = -2 \lt  0</m>, and <m>f</m> has a local maximum at <m>(0, 0)</m>. For our second function, <m>f(x, y) = x^2+y^2</m>, <m>D \gt 0</m> and <m>f_{xx}(0,0) = 2 \gt 0</m>, and <m>f</m> has a local minimum at <m>(0, 0)</m>.
-            </p>
-            <p>
-              To understand the connection, recall that <m>f_{x}(0, 0) </m> is the slope of the trace of <m>f(x,y)</m> in the plane <m>y = 0</m>. In turn, <m>f_{xx}</m> gives us information about the concavity of that trace. If <m>f_{xx}(0,0) \lt  0</m>, we might expect that <m>f</m> appears to be concave down in the <m>x</m>-direction, which, like the single variable case, may indicate a local maximum at <m>(0, 0)</m>. On the other hand, if <m>f_{xx}(0,0) \gt  0</m>, we might expect that <m>f</m> appears to be concave up in the <m>x</m>-direction, which like the single variable case, may indicate a local minimum at <m>(0, 0)</m>. Since we have a function of two variables, we need to consider the other direction as well. Note that in both of our examples above, the sign of <m>f_{xx}(0,0)</m> is the same as the sign of <m>f_{yy}(0, 0)</m>. In fact, we need these two partials to have the same sign to get <m>D \gt 0</m>.
-            </p>  
-          </li>
-        </ol>    
-      </answer>
-
-      <solution>
-        <ol marker="a.">
-          <li>
-            From the graphs, we can conclude that <m>z=4-x^2-y^2</m> has a local maximum at the origin, <m>z=x^2+y^2</m> has a local minimum at the origin, and <m>z=x^2-y^2</m> has neither a maximum nor a minimum at the origin.
-          </li> 
-          <li>
-            <p>
-              For <m>f(x, y) = 4-x^2-y^2</m>, we have  
-              <me> f_{xx}(0,0) = -2, f_{yy}(0,0) = -2,\ \mbox{and}  \ f_{xy}(0,0) = 0
-              </me>,
-              giving <m>D = (-2)(-2) - 0^2 = 4 \gt 0</m>.
-            </p>
-            <p>
-              For <m>f(x, y) = x^2+y^2</m>, we have  
-              <me>
-                f_{xx}(0,0) = 2, f_{yy}(0,0) = 2,\ \mbox{and}  \ f_{xy}(0,0) = 0
-              </me>,
-              giving <m>D = 2\cdot2 - 0^2 = 4 \gt 0</m>.
-            </p>
-            <p>
-              For <m>f(x, y) = x^2 - y^2</m>, we find that
-              <me>
-                f_{xx}(0,0) = 2, f_{yy}(0,0) = -2,\ \mbox{and}  \ f_{xy}(0,0) = 0
-              </me>,
-              giving <m>D = 2\cdot(-2) - 0^2 = -4 \lt  0</m>.
-            </p>
-            <p>
-              Combining the above information with our conclusions from the previous part, we see that <m>D \gt 0</m> at a point where the function has a maximum or minimum value but <m>D \lt 0</m> at a point where the function has a saddle point.
-            </p>
-          </li> 
-          <li>
-            <p>
-              For our first function, <m>f(x, y) = 4-x^2-y^2</m>, <m>D \gt 0</m> and <m>f_{xx}(0,0) = -2 \lt  0</m>, and <m>f</m> has a local maximum at <m>(0, 0)</m>. For our second function, <m>f(x, y) = x^2+y^2</m>, <m>D \gt 0</m> and <m>f_{xx}(0,0) = 2 \gt 0</m>, and <m>f</m> has a local minimum at <m>(0, 0)</m>.
-            </p>
-            <p>
-              To understand the connection, recall that <m>f_{x}(0, 0) </m> is the slope of the trace of <m>f(x,y)</m> in the plane <m>y = 0</m>. In turn, <m>f_{xx}</m> gives us information about the concavity of that trace. If <m>f_{xx}(0,0) \lt  0</m>, we might expect that <m>f</m> appears to be concave down in the <m>x</m>-direction, which, like the single variable case, may indicate a local maximum at <m>(0, 0)</m>. On the other hand, if <m>f_{xx}(0,0) \gt  0</m>, we might expect that <m>f</m> appears to be concave up in the <m>x</m>-direction, which like the single variable case, may indicate a local minimum at <m>(0, 0)</m>. Since we have a function of two variables, we need to consider the other direction as well. Note that in both of our examples above, the sign of <m>f_{xx}(0,0)</m> is the same as the sign of <m>f_{yy}(0, 0)</m>. In fact, we need these two partials to have the same sign to get <m>D \gt 0</m>.
-            </p>  
-          </li>
-        </ol>    
-      </solution>
-    </activity>
-</worksheet> -->
     <p>
-      If we have a critical point for a function of two variables, we will need to look at the concavity in all directions around our point. In <xref ref="critpoints2"/>, you can use the dropdown box to select three different types of critical points (local maximum, local minimum, and saddle point) to examine graphically. You can also use the slider to change the direction in which the trace is plotted (in red). Notice that no matter what kind of critical point behavior is selected, the tangent plane (shown in blue) is horizontal and the trace curve (shown in red) will be tangent to the blue plane. 
-    </p>
-    <p>
-      <ul>
-        <li>
-          <p>
-            If you look at the local maximum critical point in <xref ref="critpoints2"/>, you can use the slider to look at all directions in which you can move away from the critical point. In EVERY direction, the trace curves are concave down at our local maximum.
-          </p>
-        </li>
-        <li>
-          <p>
-            If you look at the local minimum critical point in <xref ref="critpoints2"/>, you can use the slider to look at all directions in which you can move away from the critical point. In EVERY direction, the trace curves are concave up at our local minimum.
-          </p>
-        </li>
-        <li>
-          <p>
-            However, if you look at the saddle point and you change the direction that you move away from the critical point, then you will have some directions where the trace curve is concave up and some directions where the trace curve is concave down. 
-          </p>
-        </li>
-      </ul>  
-    </p>
-    <p>
-      The inverse of these patterns should also make sense to you geometrically:
-      <ul>
-        <li>If every direction is concave up for a critical point, then the critical point is a local minimum.</li>
-        <li>If every direction is concave down for a critical point, then the critical point is a local maximum.</li>
-        <li>If the concavity changes from up to down in different directions, then the critical point is a saddle.</li>
-      </ul>
-      In order to classify our critical points, we will need to figure out if the behavior around our critical point is always concave up, always concave down, or if there is a directional dependence on concave up/down.
+      At a critical point for a function of two variables, we must look at the concavity in all directions around our point. Use the dropdown box in <xref ref="critpoints2"/> to select three different types of critical point to examine graphically. Use the slider to change the direction in which the red trace is plotted. Notice that no matter what kind of critical point behavior is selected, the blue tangent plane is horizontal and the red trace curve is tangent to the blue plane. 
     </p>
     <figure xml:id="critpoints2">
-    <caption>Possible Critical Points and concavity</caption>
-      <interactive title="interactive-critpoints2" platform="sage" width="100%" aspect="1:1.25">
+    <caption>Possible critical points and concavity</caption>
+      <interactive label="interactive-critpoints2" platform="sage" width="93%" aspect="1:1.25">
         <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('x,y,z,t,s')
@@ -875,11 +581,11 @@
           @interact
           def maxmin(sb=selector(['Local Maximum','Local Minimum','Saddle Point'],label="Surface Options:"),d=slider(0,6.2,0.1,default=0.8,display_value=False,label="direction")):
             plot20=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-            if(sb=='Local Maximum'):
-              param(s,t)=(s*cos(t),s*sin(t),s^2+0.5); h=0.5;
             if(sb=='Local Minimum'):
+              param(s,t)=(s*cos(t),s*sin(t),s^2+0.5); h=0.5;
+            elif(sb=='Local Maximum'):
               param(s,t)=(s*cos(t),s*sin(t),1.25-s^2); h =1.25;
-            if(sb=='Saddle Point'):
+            elif(sb=='Saddle Point'):
               param(s,t)=(s*cos(t),s*sin(t),s^2*cos(2*t)); h =0;
             #param(s,t)=(s,t,f(s,t))
             #set up grid      n is number of steps in s    m is number of steps in t  
@@ -904,14 +610,43 @@
       </interactive>
     </figure>
     <p>
-      The good news is that we have a couple of convenient directions to look at concavity in (parallel to the <m>x</m> and <m>y</m> axes). Recall from <xref ref="S-mv_deriv-second_order"/> that <m>f_{xx}</m> and <m>f_{yy}</m> will measure the concavity of the traces in the <m>x</m> and <m>y</m> directions, respectively. If <m>f_{xx} \gt 0</m> at our critical point, then in the direction parallel to the <m>x</m>-axis, the trace curve will be concave up. If <m>f_{xx} \lt 0</m> at our critical point, then in the direction parallel to the <m>x</m>-axis, the trace curve will be concave down. Similar statements hold for <m>f_{yy}</m>. 
+      <ul>
+        <li>
+          <p>
+            When looking at the local maximum critical point in <xref ref="critpoints2"/>, use the slider to look at all directions in which you can move away from the critical point. In <em>every</em> direction, the trace curves are concave down at the local maximum.
+          </p>
+        </li>
+        <li>
+          <p>
+            When looking at the local minimum critical point in <xref ref="critpoints2"/>, use the slider to look at all directions in which you can move away from the critical point. In <em>every</em> direction, the trace curves are concave up at the local minimum.
+          </p>
+        </li>
+        <li>
+          <p>
+            When looking at the saddle point, however, changing the direction of movement away from the critical point leads to some directions where the trace curve is concave up and some directions where the trace curve is concave down. 
+          </p>
+        </li>
+      </ul>  
     </p>
     <p>
-      Suppose that <m>f_{xx} (a,b) \lt 0</m> and <m>f_{yy} \gt 0</m> at a critical point <m>(a,b)</m>. Because the concavity is different (up/down) for two different direction, the critical point <m>(a,b)</m> <em>must</em> be a saddle point. Unfortunately, if <m>f_{xx} (a,b) \gt 0</m> and <m>f_{yy} \gt 0</m> at a critical point <m>(a,b)</m>, then we do not necessarily have a local minimum, as shown in <xref ref="critpoints3"/>.
+      The converse of these patterns should also make sense to you geometrically:
+      <ul>
+        <li>If every direction is concave up for a critical point, then the critical point is a local minimum.</li>
+        <li>If every direction is concave down for a critical point, then the critical point is a local maximum.</li>
+        <li>If the concavity changes from up to down in different directions, then the critical point is a saddle.</li>
+      </ul>
+      In order to classify our critical points, we will need to figure out if the behavior around a critical point is always concave up, always concave down, or if there is a directional dependence on concave up/down.
+    </p>
+    
+    <p>
+      We begin with the convenient directions in which to look at concavity: parallel to the <m>x</m>- and <m>y</m>-axes. Recall from <xref ref="S-mv_deriv-second_order"/> that <m>f_{xx}</m> and <m>f_{yy}</m> measure the concavity of the traces in the <m>x</m> and <m>y</m> directions, respectively. If <m>f_{xx} \gt 0</m> at a critical point, then in the direction parallel to the <m>x</m>-axis, the trace curve is concave up. If <m>f_{xx} \lt 0</m> at a critical point, then in the direction parallel to the <m>x</m>-axis, the trace curve is concave down. Similar statements hold for <m>f_{yy}</m>. 
+    </p>
+    <p>
+      Suppose that <m>f_{xx} (a,b) \lt 0</m> and <m>f_{yy} \gt 0</m> at a critical point <m>(a,b)</m>. Because the concavity is different for two different direction, the critical point <m>(a,b)</m> <em>must</em> be a saddle point. Unfortunately, if <m>f_{xx} (a,b) \gt 0</m> and <m>f_{yy} \gt 0</m> at a critical point <m>(a,b)</m>, then we do not necessarily have a local minimum, as shown in <xref ref="critpoints3"/>.
     </p>
     <figure xml:id="critpoints3">
     <caption>A surface plot where <m>f_{xx} (a,b) \gt 0</m> and <m>f_{yy} \gt 0</m> at the origin.</caption>
-      <interactive title="interactive-critpoints3" platform="sage" width="100%" aspect="1:1">
+      <interactive title="interactive-critpoints3" platform="sage" width="91%" aspect="1:1">
         <slate surface="sage">
           var('x,y,z,t,s')
           from sage.plot.plot3d.plot3d import axes
@@ -942,43 +677,41 @@
       </interactive>
     </figure>
     <p>
-      As the plot in <xref ref="critpoints3"/> shows, we will need to look at the concavity in more than the coordinate axes directions. Recall from <xref ref="act-mv_deriv-second_order-shape">Activities</xref> and <xref ref="act-mv_deriv-second_order-windchill"/>, our mixed second partial derivative <m>f_{xy}</m> measures the <q>twist</q> of the graph as we vary <m>y</m> along a particular trace where <m>x</m> is held constant. In the same way, <m>f_{yx}</m> measures how the graph twists as we vary <m>x</m>. For our nice functions, remember that Clairaut's theorem tells us that <m>f_{xy} = f_{yx}</m>, so we will see that the amount of twisting is the same in both directions. These mixed second partial derivatives will be used to see if there is enough twist to change the concavity in the directions between the coordinate axes. 
+      As the plot in <xref ref="critpoints3"/> shows, we must look at the concavity in more than the directions corresponding to the coordinate axes. Recall from <xref ref="act-mv_deriv-second_order-shape">Activities</xref> and <xref ref="act-mv_deriv-second_order-windchill"/> that the mixed second partial derivative <m>f_{xy}</m> measures the <q>twist</q> of the graph as <m>y</m> varies along a particular trace where <m>x</m> is held constant. In the same way, <m>f_{yx}</m> measures how the graph twists as <m>x</m> varies along a trace with <m>y</m> fixed. For most functions of interest, remember that Clairaut's theorem tells us that <m>f_{xy} = f_{yx}</m>. Hence, the amount of twisting is the same in both directions. These mixed second partial derivatives are used to see if there is enough twist to change the concavity in the directions between the coordinate axes. 
     </p>
     <!-- <p>
       <xref ref="A_10_7_4">Activity</xref> provides the basic ideas for the Second Derivative Test for functions of two variables. 
     </p> -->
     <p>
-      We introduce the discriminant of a function of two variables as 
-      <me>  D = f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) - f_{xy}(x_0,y_0)^2 </me>
-      We claim here that if the discriminant is negative, then the concavity will change depending on direction and that if the discriminant is positive, then all directions have the same concavity. Let's look at a few cases here.
-    </p>
-    <p>
+      The <term>discriminant</term> of a function of two variables is
+      <me>  D = f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) - f_{xy}(x_0,y_0)^2 </me>.
+      If the discriminant is negative, then the concavity will change depending on direction. On the other hand, if the discriminant is positive, then all directions have the same concavity. To illustrate this, we consider a few cases:
       <ul>
         <li>
           <p>
-            If <m>f_{xx}(x_0,y_0)</m> and <m>f_{yy}(x_0,y_0)</m> are not both positive or both negative, then the discriminant must be negative because the second term in <m>D</m> is always negative. This is the case of the saddle shown above; one coordinate direction is concave up and one is concave down, thus we do not have an extreme point.
+            If <m>f_{xx}(x_0,y_0)</m> and <m>f_{yy}(x_0,y_0)</m> have different signs or at least one unmixed second partial is zero, then the discriminant is negative because the second term in <m>D</m> is always negative. This is the case of the saddle shown above: one coordinate direction is concave up and one is concave down. In this situation, we do not have an extreme point.
           </p>
         </li>
         <li>
           <p>
-            If <m>f_{xx}(x_0,y_0)</m> and <m>f_{yy}(x_0,y_0)</m> are both positive or both negative, then the first term will be positive. If our coordinate directions have the same concavity, then we will need to see if there is enough <q>twist</q> in our surface to change the concavity for directions between the coordinate axes. In other words, if <m>f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) \lt f_{xy}(x_0,y_0)^2</m> there will be enough twist to have some direction to have different concavity from the coordinate directions.
+            If <m>f_{xx}(x_0,y_0)</m> and <m>f_{yy}(x_0,y_0)</m> are both positive or both negative, then the first term is positive. If our coordinate directions have the same concavity, then we will need to see if there is enough twist in the surface to change the concavity for directions between the coordinate axes. In other words, if <m>f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) \lt f_{xy}(x_0,y_0)^2</m>, there is enough twist to have some direction to have different concavity from the coordinate directions.
           </p>
         </li>
         <li>
           <p>
-            If <m>f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) \gt f_{xy}(x_0,y_0)^2</m>, then there will not be enough twist between the coordinate directions and every direction has the same concavity.
+            If <m>f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) \gt f_{xy}(x_0,y_0)^2</m>, then there is not enough twist between the coordinate directions and every direction has the same concavity.
           </p>
         </li>
       </ul>
-       These conceptual arguments are summarized in the following.
+       These conceptual arguments are summarized below.
     </p>
     <assemblage xml:id="Second-derivative-test">
       <title>The Second Partial Derivatives Test</title>
       <p>
-        Suppose <m>(x_0,y_0)</m> is a critical point of the function <m>f</m> for which <m>f_x(x_0,y_0) = 0</m> and <m>f_y(x_0,y_0) = 0</m>. Let <m>D</m> be the quantity defined by
+        Suppose <m>(x_0,y_0)</m> is a critical point of a function <m>f</m> for which <m>f_x(x_0,y_0) = 0</m>, <m>f_y(x_0,y_0) = 0</m>, and all four second-order partial derivatives exist. Let 
         <me>
-          D = f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) - f_{xy}(x_0,y_0)^2.
-        </me>
+          D = f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) - f_{xy}(x_0,y_0)^2
+        </me>.
         <ul>
           <li>
             <p>
@@ -997,33 +730,33 @@
           </li>
           <li>
             <p>
-              If <m>D = 0</m>, then this test yields no information about what happens at <m>(x_0,y_0)</m>.
+              If <m>D = 0</m>, then this test is inconclusive about the behavior of <m>f</m> at <m>(x_0,y_0)</m>.
             </p>
           </li>
         </ul>
       </p>
       <p>
-        The quantity <m>D</m> is called the <em>discriminant</em><idx><h>discriminant</h></idx> of the function <m>f</m> at <m>(x_0,y_0)</m>.
+        The quantity <m>D</m> is called the <term>discriminant</term><idx><h>discriminant</h></idx> of the function <m>f</m> at <m>(x_0,y_0)</m>.
       </p>
     </assemblage>
     <p>
-      A key idea of the Second Partial Derivatives Test is that if the discriminant is positive, all directions have the same concavity and if the discriminant is negative, then the concavity changes from up to down depending on the direction. The last case of the Second Partial Derivatives Test is similar to the inconclusive case for the Second Derivative Test from single variable calculus. 
+      A key idea of the Second Partial Derivatives Test is that if the discriminant is positive, all directions have the same concavity, while if the discriminant is negative, then the concavity changes from up to down depending on the direction. The last case of the Second Partial Derivatives Test is similar to the inconclusive case for the Second Derivative Test from single-variable calculus. 
     </p>
     <p>
-      To properly understand the origin of the Second Partial Derivatives Test, we would need to introduce a <q>second-order directional derivative.</q> If this second-order directional derivative were negative in every direction, for instance, we could guarantee that the critical point is a local maximum. A complete justification of the Second Partial Derivatives Test requires key ideas from linear algebra that are beyond the scope of this course, so instead of presenting a detailed explanation, we will accept the conceptual description given above. 
+      To properly understand the origin of the Second Partial Derivatives Test, we would need to introduce a <q>second-order directional derivative.</q> If this second-order directional derivative were negative in every direction, for instance, we could guarantee that the critical point is a local maximum. A complete justification of the Second Partial Derivatives Test requires key ideas from linear algebra that are beyond the scope of this book.
     </p>
     <p>  
-      In <xref ref="A_10_7_5">Activity</xref>, we apply the test to more complicated examples.
+      In <xref ref="act-mv_deriv-opt-use_spdt">Activity</xref>, we apply the test to more complicated examples.
     </p>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_10_7_5">
+  <activity workspace="1.5in" xml:id="act-mv_deriv-opt-use_spdt">
     <introduction>
       <p>
         For each of the functions given below:
         <ol>
           <li>Find the critical points of the function  </li>
           <li>Compute the discriminant <m>D</m> and evaluate <m>D</m> for each critical point.</li>
-          <li>Use the Second Derivative Test to classify the critical points</li>
+          <li>Use the Second Partial Derivatives Test to classify the critical points</li>
         </ol> 
       </p>
     </introduction>
@@ -1143,7 +876,7 @@
       As we learned in single-variable calculus, finding extremal values of functions can be particularly useful in applied settings. For instance, we can often use calculus to determine the least expensive way to construct something or to find the most efficient route between two locations. The same possibility holds in settings with two or more variables.
     </p>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_10_7_10">
+  <activity workspace="1.5in" xml:id="act-mv_deriv-opt-supply_demand">
       <introduction>
         <p>
           <p>
@@ -1151,7 +884,7 @@
         </p>
 
         <p>
-          Suppose we have two goods whose respective prices are <m>p_1</m> and <m>p_2</m>. The demand for these goods, <m>q_1</m> and <m>q_2</m>, depend on the prices as
+          Suppose we have two goods whose respective prices are <m>p_1</m> and <m>p_2</m>. The demand for these goods, <m>q_1</m> and <m>q_2</m>, depend on the prices by the following relations:
           <mdn>
             <mrow xml:id="eq_good1"> q_1 \amp = 150 - 2p_1 - p_2 </mrow>
             <mrow xml:id="eq_good2"> q_2 \amp = 200 - p_1 - 3p_2 </mrow>
@@ -1159,10 +892,10 @@
         </p>
 
         <p>
-          The seller would like to set the prices <m>p_1</m> and <m>p_2</m> in order to maximize revenue. We will assume that the seller meets the full demand for each product. Thus, if we let <m>R</m> be the revenue obtained by selling <m>q_1</m> items of the first good at price <m>p_1</m> per item and <m>q_2</m> items of the second good at price <m>p_2</m> per item, we have
+          The seller wants to set the prices <m>p_1</m> and <m>p_2</m> in order to maximize revenue. We will assume that the seller meets the full demand for each product. Thus, if we let <m>R</m> be the revenue obtained by selling <m>q_1</m> items of the first good at price <m>p_1</m> per item and <m>q_2</m> items of the second good at price <m>p_2</m> per item, we have
           <me>
-            R = p_1q_1 + p_2q_2.
-          </me>
+            R = p_1q_1 + p_2q_2
+          </me>.
         </p>
 
         <p>
@@ -1173,17 +906,17 @@
               R(p_1,p_2) \amp = p_1(150 - 2p_1 - p_2) + p_2(200 - p_1 - 3p_2)
               </mrow>
               <mrow>
-              \amp  = 150p_1 + 200p_2 - 2p_1p_2 -2p_1^2 - 3p_2^2.
+              \amp  = 150p_1 + 200p_2 - 2p_1p_2 -2p_1^2 - 3p_2^2
               </mrow>
-            </md>
+            </md>.
         </p>
 
         <p>
-          A graph of <m>R</m> as a function of <m>p_1</m> and <m>p_2</m> is shown in <xref ref="F_10_7_Optimize1">Figure</xref>.
+          A graph of <m>R</m> as a function of <m>p_1</m> and <m>p_2</m> is shown in below.
         </p>
-      <figure xml:id="F_10_7_Optimize1">
-      <caption>A plot of the revenue function <m>R(p_1,p_2)</m></caption>
-        <interactive title="interactive-F_10_7_Optimize1" platform="sage" width="100%" aspect="1:1">
+      <!-- <figure xml:id="fig-mv_deriv-opt-optimize1">
+      <caption>A plot of the revenue function <m>R(p_1,p_2)</m></caption> -->
+        <interactive label="interactive-fig-mv_deriv-opt-optimize1" platform="sage" width="91%" aspect="1:1">
           <slate surface="sage">
             var('x,y,z,t,s')
             f(x,y)=150*x+200*y-2*x*y-2*x^2-3*y^2
@@ -1205,8 +938,8 @@
             show(plot99,aspect_ratio=(1,1,100/14000),viewpoint=[[-0.1958,-0.5867,-0.7858],150.62],camera_position=[6.2458,8.2356,2.958])
           </slate>
         </interactive>
-      </figure>
-       <!--  <figure xml:id="F_10_7_Optimize1">
+      <!-- </figure> -->
+       <!--  <figure xml:id="fig-mv_deriv-opt-optimize1">
           <caption>A revenue function.</caption>
           <image width="50%" source="images/fig_10_7_revenue"/>
         </figure> -->
@@ -1215,7 +948,7 @@
       <task>
         <statement>
           <p>
-            Find all critical points of the revenue function, <m>R</m>. 
+            Find all critical points of the revenue function <m>R</m>. 
           </p>
         </statement>
         <hint>
@@ -1263,7 +996,7 @@
       <task>
         <statement>
           <p>
-            Apply the Second Derivative Test to determine the type of any critical point(s).
+            Apply the Second Partial Derivatives Test to determine the type of any critical point(s).
           </p>
         </statement>
         <answer>
@@ -1311,19 +1044,19 @@
   <subsection>
     <title>Optimization on a Restricted Domain</title>
     <p>
-      The Second Partials Derivative Test helps us classify critical points for a function of two variables, but it does not tell us if the function actually has an absolute maximum or minimum at each such point. For single-variable functions, the <url href="https://activecalculus.org/single/sec-3-3-optimization.html#extreme-value-theorem">Extreme Value Theorem</url> told us that a continuous function on a closed interval <m>[a, b]</m> always has both an absolute maximum and minimum on that interval, and that these absolute extremes must occur at either an endpoint or at a critical point. Thus, to find the absolute maximum and minimum, we determine the critical points in the interval and then evaluate the function at these critical points and at the endpoints of the interval. A similar approach works for functions of two variables. 
+      The Second Partial Derivatives Test helps classify critical points for a function of two variables, but it does not tell us if the function has an <em>absolute</em> maximum or minimum at each such point. For single-variable functions, the <url href="https://activecalculus.org/single/sec-3-3-optimization.html#extreme-value-theorem">Extreme Value Theorem</url> says that a continuous function on a closed interval <m>[a, b]</m> must have both an absolute maximum and minimum on that interval, and that these absolute extremes must occur at either an endpoint or at a critical number inside the interval. Thus, finding the absolute maximum and absolute minimum of a single-variable function follows a straightforward list of steps: determine the critical points in the interval, evaluate the function at these critical points and at the endpoints of the interval, and identify the largest and smallest output values as the absolute maximum and absolute minimum respectively. 
     </p>
     <p>
-      For functions of two variables, closed and bounded regions play the role that closed intervals did for functions of a single variable. A closed region is a region that contains its boundary (the unit disk <m>x^2+y^2 \leq 1</m> is closed, while its interior <m>x^2+y^2 \lt  1</m> is not, for example), while a bounded region is one that does not stretch to infinity in any direction. Just as for functions of a single variable, continuous functions of several variables that are defined on closed, bounded regions must have absolute maxima and minima in those regions.
+      A similar approach works for functions of two variables, once we have determined the appropriate replacement for the idea of the endpoints of an interval. For functions of two variables, regions in the <m>xy</m>-plane that are both closed and bounded  play the role that closed intervals did for functions of a single variable. A closed region is a region that contains its boundary. The unit disk <m>x^2+y^2 \leq 1</m> is closed, for example, while its interior <m>x^2+y^2 \lt  1</m> is not. A bounded region is one that does not stretch to infinity in any direction. Just as for functions of a single variable, continuous functions of several variables that are defined on closed, bounded regions must have absolute maxima and minima in those regions. The endpoints of <m>[a,b]</m> are the boundary of the interval, and the boundary of a region in the <m>xy</m>-plane will provide the additional locations beyond critical points at which we must check for absolute extremes. 
     </p>
     <assemblage xml:id="Extreme-value-theorem">
       <title>The Extreme Value Theorem</title>
       <p>
-        Let <m>f= f(x,y)</m> be a continuous function on a closed and bounded region <m>R</m>. Then <m>f</m> has an absolute maximum and an absolute minimum in <m>R</m>.
+        If <m>f= f(x,y)</m> is a continuous function on a closed and bounded region <m>R</m> in the <m>xy</m>-plane, then <m>f</m> has an absolute maximum and an absolute minimum in <m>R</m>.
       </p>
     </assemblage>
     <p>
-      If you wanted to find the highest point in your state, you need to look up the elevations for the tops of the hills/mountains and compare those values to the elevation along the borders. Note that the elevation along a border of your state is a one-dimensional maximization problem and you can use your tools from single variable calculus. 
+      To find the highest point in a state, you would need to look up the elevations for the tops of the hills/mountains and compare those values to the elevation along the state's borders. Note that the elevation along a border of a state is a one-dimensional maximization problem, which means that tools from single-variable calculus can be applied.
     </p>
     <p>
       The absolute extremes must occur at either a critical point in the interior of <m>R</m> or at a boundary point of <m>R</m>. We therefore must test both possibilities, as we demonstrate in the following example.
@@ -1331,7 +1064,7 @@
     <example>
       <statement>
         <p>
-          For this example we will be looking to find the maximum and minimum temperature values on a heated circular plate. The plate has a 1 meter radius and we will measure the location on the plate from the center. The domain <m>R=\{(x,y):x^2+y^2 \leq 1\}</m> of our temperature function is a closed and bounded region, as shown in <xref ref="plate1">Figure</xref>.
+          Consider a heated circular plate of radius 1 meter with location on the plate described relative to the center. The domain <m>R=\{(x,y):x^2+y^2 \leq 1\}</m> of our temperature function is a closed and bounded region, as shown in <xref ref="plate1">Figure</xref>.
         </p>
         <figure xml:id="plate1">
           <caption>A plot of the circular plate as the domain of our temperature function</caption>
@@ -1347,15 +1080,16 @@
           Suppose the temperature <m>T</m> at each point on the circular plate <m>x^2+y^2 \leq 1</m> is given by
           <me>
             T(x,y) = 2x^2+y^2-y
-          </me>
+          </me>.
+          We would like to find the absolute maximum and absolute minimum temperature of the circular plate.
         </p>
 
         <p>
-          Because our domain for <m>T</m> is closed and bounded, the Extreme Value Theorem guarantees that <m>T</m> has an absolute maximum and minimum on the plate. The graph of <m>T</m> over its domain <m>R</m> is shown in <xref ref="F_10_7_temperature">Figure</xref>. We will find the hottest and coldest points on the plate.
+          Because the domain of <m>T</m> is closed and bounded, the Extreme Value Theorem guarantees that <m>T</m> has an absolute maximum and minimum on the plate. The graph of <m>T</m> over its domain <m>R</m> is shown in <xref ref="fig-mv_deriv-opt-temperature">Figure</xref>. We will find the hottest and coldest points on the plate.
         </p>
-        <figure xml:id="F_10_7_temperature">
+        <figure xml:id="fig-mv_deriv-opt-temperature">
           <caption>A plot of the temperature across the circular metal plate</caption>
-          <interactive title="interactive-F_10_7_temperature" platform="sage" width="100%" aspect="1:1">
+          <interactive label="interactive-fig-mv_deriv-opt-temperature" platform="sage" width="91%" aspect="1:1">
             <slate surface="sage">
               var('x,y,z,t,s')
               f(x,y)=2*x^2+y^2-y
@@ -1379,7 +1113,7 @@
             </slate>
           </interactive>
         </figure>
-        <!-- <figure xml:id="F_10_7_temperature">
+        <!-- <figure xml:id="fig-mv_deriv-opt-temperature">
           <caption>Domain of the temperature <m>T(x,y) = 2x^2+y^2-y</m> and its graph.</caption>
           <sidebyside widths="50% 50%">
           <image source="images/fig_10_7_temperature_domain"/>
@@ -1387,17 +1121,17 @@
           </sidebyside>
         </figure> -->
         <p>
-          If the absolute maximum or minimum occurs inside the disk, then the absolute extreme point will be at a critical point, so we begin by looking for critical points inside the disk. To do this, notice that critical points are given by the conditions <m>T_x= 4x=0</m> and <m>T_y=2y - 1=0</m>. This means that there is one critical point of the function at the point <m>(x_0,y_0) =(0,1/2)</m>, which lies inside the disk.
+          If the absolute maximum or absolute minimum occurs inside the disk, then the absolute extreme point will be at a critical point. We begin by looking for critical points inside the disk. To do this, notice that critical points are given by the conditions <m>T_x= 4x=0</m> and <m>T_y=2y - 1=0</m>. This means that there is one critical point of the function at the point <m>(x_0,y_0) =(0,1/2)</m>, which does lie inside the disk.
         </p>
         <p>
-          We now find the hottest and coldest points on the boundary of the disk, which is the circle of radius 1. As we have seen, the points on the unit circle can be parametrized as
+          We now find the hottest and coldest points on the boundary of the disk, which is the circle of radius 1. To turn this into a single-variable calculus problem, we use the familiar parameterization of the unit circle as 
           <me>
             x(t) = \cos(t), \ y(t) = \sin(t),
           </me>
           where <m>0\leq t \leq 2\pi</m>. The temperature at a point on the circle is then described by
           <me>
             T(x(t), y(t)) = 2\cos^2(t) + \sin^2(t) - \sin(t)
-          </me>
+          </me>.
         </p>
 
         <p>
@@ -1409,121 +1143,90 @@
             </mrow>
             <mrow>
              \amp  = -2\cos(t)\sin(t) - \cos(t) = \cos(t) (-2\sin(t) - 1) 
-             </mrow>
-             <mrow>
-              \amp = 0
-              </mrow>
+             </mrow>.
           </md>
-        </p>
-
-        <p>
-          This shows that we have critical points when <m>\cos(t) = 0</m> or <m>\sin(t) = -1/2</m>. This occurs when <m>t=\pi/2</m>, <m>3\pi/2</m>, <m>7\pi/6</m>, and <m>11\pi/6</m>. Since we have <m>x(t) = \cos(t)</m> and <m>y(t) = \sin(t)</m>, the corresponding
+          Therefore, we need to identify the points where <m>\cos(t) (-2\sin(t) - 1) =0</m>. These happen when <m>\cos(t) = 0</m> or <m>\sin(t) = -1/2</m> on the interval <m>0\leq t\leq 2\pi</m>. This occurs when <m>t=\pi/2</m>, <m>3\pi/2</m>, <m>7\pi/6</m>, and <m>11\pi/6</m>. Since <m>x(t) = \cos(t)</m> and <m>y(t) = \sin(t)</m>, the corresponding
           points are
-        </p>
-        <sidebyside>
-          <tabular>
-          <row>
-            <cell><m>\bullet\ \ (x,y) = (0,1)</m> when <m>t = \frac{\pi}{2}</m></cell>
-          </row>
-          <row>
-            <cell><m>\bullet\ \ (x,y) = \left(\frac{\sqrt{3}}{2},-\frac{1}{2}\right)</m> when <m>t = \frac{11\pi}{6}</m></cell>
-          </row>
-          </tabular>
-          <tabular>
-            <row>
-              <cell><m>\bullet\ \ (x,y) = (0,-1)</m> when <m>t = \frac{3\pi}{2}</m></cell>
-            </row>
-            <row>
-              <cell><m>\bullet\ \ (x,y) = \left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right)</m> when <m>t = \frac{7\pi}{6}</m></cell>
-          </row>
-          </tabular>
-        </sidebyside>
-        <p>
-          These are the critical points of <m>T</m> on the boundary and so this collection of points includes the hottest and coldest points on the boundary.
+          <ul cols="2">
+            <li><m>(x,y) = (0,1)</m> when <m>t = \frac{\pi}{2}</m></li>
+            <li><m>(x,y) = \left(\frac{\sqrt{3}}{2},-\frac{1}{2}\right)</m> when <m>t = \frac{11\pi}{6}</m></li>
+            <li><m>(x,y) = (0,-1)</m> when <m>t = \frac{3\pi}{2}</m></li>
+            <li><m>(x,y) = \left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right)</m> when <m>t = \frac{7\pi}{6}</m></li>
+          </ul>
+          These are the critical points of <m>T</m> on the boundary which means that this collection of points includes the hottest and coldest points on the boundary.
         </p>
 
         <p>
           We now have a list of candidates for the hottest and coldest points: the critical point in the interior of the disk and the critical points on the boundary. We find the hottest and coldest points by evaluating the temperature at each of these points, and find that
-       </p>
-
-    <sidebyside>
-        <tabular>
-          <row>
-            <cell><m>\bullet\ \  T\left(0,\frac{1}{2}\right) = -\frac{1}{4}</m></cell>
-          </row>
-          <row>
-            <cell><m>\bullet\ \  T\left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right) = \frac{9}{4}</m> </cell>
-          </row>
-        </tabular>
-
-        <tabular>
-          <row>
-            <cell><m>\bullet\ \  T\left(0,1\right) = 0</m> </cell>
-          </row>
-          <row>
-            <cell><m>\bullet\ \  T\left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right) = \frac{9}{4}</m></cell>
-          </row>          
-        </tabular>
-
-        <tabular>
-          <row>
-            <cell><m>\bullet\ \  T\left(0,-1\right) = 2</m></cell>
-          </row>
-        </tabular>
-
-      </sidebyside>
-
-        <p>
-          So the maximum temperature on the disk <m>x^2+y^2\leq 1</m> is <m>\frac{9}{4}</m>, which occurs at the two points <m>\left(\pm\frac{\sqrt{3}}{2},-\frac{1}{2}\right)</m> on the boundary, and the minimum value of <m>T</m> on the disk is <m>-\frac{1}{4}</m> which occurs at the critical point <m>\left(0,\frac{1}{2}\right)</m> in the interior of <m>R</m>.
+          <ul cols="2">
+            <li><m>T\left(0,\frac{1}{2}\right) = -\frac{1}{4}</m></li>
+            <li><m>T\left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right) = \frac{9}{4}</m> </li>
+            <li><m>T\left(0,1\right) = 0</m> </li>
+            <li><m>T\left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right) = \frac{9}{4}</m></li>
+            <li><m>T\left(0,-1\right) = 2</m></li>
+          </ul>
+          Hence, the maximum temperature on the disk <m>x^2+y^2\leq 1</m> is <m>\frac{9}{4}</m>, which occurs at the two points <m>\left(\pm\frac{\sqrt{3}}{2},-\frac{1}{2}\right)</m> on the boundary, and the minimum value of <m>T</m> on the disk is <m>-\frac{1}{4}</m> which occurs at the critical point <m>\left(0,\frac{1}{2}\right)</m> in the interior of <m>R</m>.
         </p>
       </statement>
     </example>
 
     <p>
-      From this example, we see that we use the following procedure for determining the absolute maximum and absolute minimum of a function on a closed and bounded domain.
-      <ul>
+      From this example, we see that we use the following procedure for determining the absolute maximum and absolute minimum of a function on a closed and bounded domain:
+      <dl>
         <li>
-          <title>Step 1:</title>
+          <title>Step 1</title>
           <p>
             Find all critical points of the function in the interior of the domain.
           </p>
         </li>
         <li>
-          <title>Step 2:</title>
+          <title>Step 2</title>
           <p>
-            Find all the critical points of the function on the boundary of the domain. Working on the boundary of the domain reduces this part of the problem to one or more single variable optimization problems. Note that there may be endpoints on portions of the boundary that need to be considered. 
+            Find all the critical points of the function on the boundary of the domain.
+            <ul>
+              <li>
+                <p>
+                  This involves one or more single-variable optimization problems
+                </p>
+              </li>
+              <li>
+                <p>
+                  There may be endpoints on portions of the boundary that need to be considered. 
+                </p>
+              </li>
+            </ul>
           </p>
         </li>
         <li>
-          <title>Step 3:</title>
+          <title>Step 3</title>
           <p>
             Evaluate the function at each of the points found in Steps 1 and 2.
           </p>
         </li>
         <li>
-          <title>Step 4:</title>
+          <title>Step 4</title>
           <p>
             The maximum value of the function is the largest value obtained in Step 3, and the minimum value of the function is the smallest value obtained in Step 3.
           </p>
         </li>
-      </ul>
+      </dl>
     </p>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_10_7_6">
+  <activity workspace="1.5in" xml:id="act-mv_deriv-opt-bounded">
       <introduction>
         <p>
-          Let <m>f(x,y) = x^2-3y^2-4x+6y</m> with triangular domain <m>R</m> whose vertices are at <m>(0,0)</m>, <m>(4,0)</m>, and <m>(0,4)</m>. The domain <m>R</m> appears in <xref ref="triangleregion1">Figure</xref>. In this activity, we will go through the steps to find the absolute maximum and minimum of <m>f</m> on <m>R</m>.
+          Let <m>f(x,y) = x^2-3y^2-4x+6y</m> with triangular domain <m>R</m> whose vertices are at <m>(0,0)</m>, <m>(4,0)</m>, and <m>(0,4)</m>. The domain <m>R</m> is illustrated below. In this activity, you will carry out the steps to find the absolute maximum and absolute minimum of <m>f</m> on <m>R</m>.
         </p>
-        <figure xml:id="triangleregion1">
-          <caption> A plot of <m>R</m>, the domain of <m>f(x,y) = x^2-3y^2-4x+6y</m></caption>
-            <image width="60%" xml:id="img-triangleregion1">
-              <sageplot>
+        <!-- <figure xml:id="triangleregion1">
+          <caption> A plot of <m>R</m>, the domain of <m>f(x,y) = x^2-3y^2-4x+6y</m></caption> -->
+            <image width="60%" >
+              <sageplot label="img-triangleregion1">
                 var('x,y,t,s')
                 plot22=polygon([(0,0),(4,0),(0,4),(0,0)],edgecolor="gray",fill=True,color="mediumturquoise",gridlines=True,xmin=0,xmax=4.5,ymin=0,ymax=4.5,thickness=2,axes_labels=["$x$","$y$"])
                 plot22            
               </sageplot>
             </image>
-        </figure>
+        <!-- </figure> -->
       </introduction>
       <task>
         <statement>
@@ -1550,7 +1253,7 @@
         </statement>
         <hint>
           <p>
-            You may need to consider endpoints
+            You may need to consider endpoints.
           </p>
         </hint>
         <answer>
@@ -1580,7 +1283,7 @@
         </statement>
         <hint>
           <p>
-            You may need to consider endpoints
+            You may need to consider endpoints.
           </p>
         </hint>
         <answer>
@@ -1610,7 +1313,7 @@
         </statement>
         <hint>
           <p>
-            You may need to consider endpoints
+            You may need to consider endpoints.
           </p>
         </hint>
         <answer>
@@ -1635,11 +1338,11 @@
       <task>
         <statement>
           <p>
-            Find the absolute maximum and absolute minimum values of <m>f</m> on <m>R</m> and write a couple of sentences to compare your results to the surface plot 
+            Find the absolute maximum and absolute minimum values of <m>f</m> on <m>R</m>. Write a couple of sentences to describe how the surface plot of <m>f</m> shown below illustrates your results.
           </p>
-          <figure xml:id="surface-triangle1">
-            <caption> </caption>
-              <interactive title="interactive-surface-triangle1" platform="sage" width="100%" aspect="1:1">
+          <!-- <figure xml:id="surface-triangle1">
+            <caption> </caption> -->
+              <interactive label="interactive-surface-triangle1" platform="sage" width="91%" aspect="1:1">
                 <slate surface="sage">
                   var('x,y,z,t,s')
                   f(x,y)=x^2-3*y^2-4*x+6*y
@@ -1664,7 +1367,7 @@
                   show(plot99,aspect_ratio=(1,1,5/25),viewpoint=[[-0.0928,-0.691,-0.7169],169],camera_position=[1.3005,4.752,1.1816]) 
                 </slate>
               </interactive>
-          </figure>
+          <!-- </figure> -->
         </statement>
         <answer>
           <p>
@@ -1720,19 +1423,19 @@
     <ul>
       <li>
         <p>
-          To find the extrema of a function <m>f=f(x,y)</m>, we first find the critical points, which are points where one of the partials of <m>f</m> fails to exist, or where <m>f_x = 0</m> and <m>f_y=0</m>.
+          To find the extrema of a function <m>f=f(x,y)</m>, we first find the critical points, which are points where one of the partials of <m>f</m> fails to exist or where both <m>f_x = 0</m> and <m>f_y=0</m>.
         </p>
       </li>
 
       <li>
         <p>
-          The Second Partial Derivative Test helps determine whether a critical point is a local maximum, local minimum, or saddle point.
+          The Second Partial Derivatives Test helps determine whether a critical point is a local maximum, local minimum, or saddle point.
         </p>
       </li>
 
       <li>
         <p>
-          If <m>f</m> is defined on a closed and bounded domain, we find the absolute maxima and minima by finding the critical points in the interior of the domain, finding the critical points on the boundary, and testing the value of <m>f</m> at both sets of critical points.
+          If <m>f</m> is defined on a closed and bounded domain, we find the absolute maxima and absolute minima by finding the critical points in the interior of the domain, finding the critical points on the boundary, and testing the value of <m>f</m> at both sets of critical points.
         </p>
       </li>
     </ul>
