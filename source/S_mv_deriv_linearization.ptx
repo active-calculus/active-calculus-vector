@@ -129,10 +129,61 @@
       <!-- On plots like <xref ref="fig-mv_deriv-linearization-tangent_4">Figure</xref>, you should pay attention to the scale on the edge of the plot to see how small of a scale you are viewing around your point.  -->
     </p>
     <figure xml:id="fig-mv_deriv-linearization-tangent_4">
-      <caption>A plot of <m>f(x,y)=6-\frac{x^2}{2}-y^2</m> with the point <m>(1,1,\frac{9}{2})</m> highlighted and the option to zoom in around the highlighted point.</caption>
+      <caption>A plot of <m>f(x,y)=6-\frac{x^2}{2}-y^2</m> with the point <m>(1,1,4.5)</m> highlighted and the option to zoom in around the highlighted point.</caption>
       <interactive label="interactive-fig-mv_deriv-linearization-tangent_4" platform="sage" width="100%" aspect="1:1.15">
         <slate surface="sage">
-          gz=0
+          var('x,y,s,t')
+          @interact
+          def LLSurface2(Zoom=selector(['0','1','2','3','4','5','6','7'],label='Zoom Level',buttons=True),sp=checkbox(False,label="Show Tangent Plane:")):
+            gz=-int(Zoom)
+            z=4*2^(gz)
+            g(x,y)=6-x^2/2-y^2
+            #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
+            param(s,t)=(s,t,g(s,t));s1=1-z;s2=z+1;t1=1-z;t2=1+z;
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=4;m=4;a1=s1;a2=s2;b1=t1;b2=t2; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.8; o3=0.8;
+            plot4=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)                  
+              plot4+=point3d((1,1,4.5),color="black",size=30*z)
+            if(sp):
+              plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
+            show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False)
+          <!-- var('x,y,s,t')
+          @interact(layout=dict(bottom=[['a','sp']]))
+          def LLsurface2(a=slider(0,8,1,default=0,label="Zoom"),sp=checkbox(False,label="Show Tangent Plane:")):
+            z=4*2^(-a)
+            g(x,y)=6-x^2/2-y^2
+            #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
+            param(s,t)=(s,t,g(s,t));s1=1-z;s2=z+1;t1=1-z;t2=1+z;
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=4;m=4;a1=s1;a2=s2;b1=t1;b2=t2; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.8; o3=0.8;
+            plot4=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            plot4+=point3d((1,1,4.5),color="black",size=30*z)
+            if(sp):
+                plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
+            show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False) -->
+          <!-- gz=0
           var('x,y,s,t')
           #print(gz)
           @interact
@@ -171,7 +222,7 @@
               plot4+=point3d((1,1,4.5),color="black",size=30*z)
             if(sp):
               plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
-            show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False)
+            show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False) -->
         </slate>
       </interactive>
     </figure>
@@ -183,7 +234,7 @@
       </sidebyside>
     </figure> -->
     <p>
-      Just as the graph of a differentiable single-variable function or a differentiable vector-valued function of one variable looks like a line when viewed on a small scale, the graph of this two-variable function looks like a plane when viewed on a small scale. The Preview Activity guies you through finding an equation for this plane, but we first state a key idea that will be helpful algebraic form to use when thinking about tangent planes to surfaces of the form <m>z=f(x,y)</m>.
+      Just as the graph of a differentiable single-variable function or a differentiable vector-valued function of one variable looks like a line when viewed on a small scale, the graph of this two-variable function looks like a plane when viewed on a small scale. The Preview Activity guides you through finding an equation for this plane, but we first state a key idea that will be helpful algebraic form to use when thinking about tangent planes to surfaces of the form <m>z=f(x,y)</m>.
     </p>
     <!-- <figure xml:id="fig-mv_deriv-linearization-tangent_4">
       <caption>A plot of <m>f(x,y)=6-\frac{x^2}{2}-y^2</m> with tangent plane at the point <m>(1,1,\frac{9}{2})</m> drawn and the option to zoom in around <m>(1,1,\frac{9}{2})</m></caption>
@@ -224,9 +275,8 @@
         </p>
       </proof>
     </proposition>
-    <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA-mv_deriv-linearization">
+  <worksheet>
+  <exploration workspace="1.5in" xml:id="PA-mv_deriv-linearization">
     <introduction>
       <p>
         We want to find the equation of the plane, using the form given in <xref ref="nvplaneeqn"/>, that best describes the surface given by <m>z=f(x,y)=6-\frac{x^2}2 - y^2</m> for input values around <m>(x_0,y_0) = (1,1)</m>. In particular, we will need to find how the values of <m>z_0</m>, <m>a</m>, and <m>b</m> are related to <m>f(x,y)</m>. 
@@ -300,7 +350,7 @@
     <task>
       <statement>
         <p>
-          What are the slopes of the tangent lines to the traces that you drew in the previous part? Write a couple of sentences to explain why the tilt of the tangent plane in the <m>x</m>-direction is given by the partial derivative <m>f_x</m> and the tilt of the tangent plane in the <m>y</m>-direction is given by the partial derivative <m>f_y</m>. Your answer should discuss how each of these slopes/partial derivatives relates to the traces of the surface and the plane illustrated below.
+          What are the slopes of the tangent lines to the traces that you drew in the previous part? Write a couple of sentences to explain why the tilt of the tangent plane in the <m>x</m>-direction is given by the partial derivative <m>f_x</m> and the tilt of the tangent plane in the <m>y</m>-direction is given by the partial derivative <m>f_y</m>. Your answer should discuss how each of these slopes/partial derivatives relates to the traces of the surface and the plane illustrated below. You should identify whether the red/orange traces along the plane and the black/blue traces along the surface correspond to constant values of <m>x</m> or <m>y</m>.
         </p>
           <interactive label="interactive-F_10_4_tangent_traces" platform="sage" width="91%" aspect="1:1">
             <slate surface="sage">
@@ -327,8 +377,8 @@
                 plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
               plot6+=point((1,1,4.5),color="black",size=10)
               sv=1; plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color="blue",thickness=3)
-              tv=1; plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color="blue",thickness=3)
-              sv=1; plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color="red",thickness=3)
+              tv=1; plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color="black",thickness=3)
+              sv=1; plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color="orange",thickness=3)
               tv=1; plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color="red",thickness=3)
               show(plot6,aspect_ratio=(1,1,0.35),viewpoint=[[-0.396,-0.6577,-0.6407],137.81],camera_position=[3.2568,2.1949,1.6581])
             </slate>
@@ -407,87 +457,16 @@
     </exploration>
 </worksheet>
   </subsection>
-
-  <subsection>
-    <title>Differentiability and Local Linearity</title>
-    <p>
-      We will soon state a general formula for the equation of the tangent plane at a particular point on the graph of <m>z=f(x,y)</m>. However, before we do this, we briefly discuss some ways in which a function can fail to be locally linear. In single-variable calculus, one of the first functions you studied that was continuous but had a point where it was not locally linear was the absolute value function <m>f(x) = |x|</m>. When zooming in on the graph of <m>f</m> near the point <m>(0,0)</m>, the graph maintains a sharp corner, and thus <m>f</m> is not locally linear at the point on its graph with <m>x=0</m>.
-    </p>
-    <!-- <p>  
-      As we have noted, when we look at the graph of a <q>nice</q> single-variable function on a small scale near a point <m>x_0</m>, we expect to see a line; in this case, we say that <em><m>f</m> is locally linear near <m>x_0</m></em> since the graph looks like a linear function locally around <m>x_0</m>. Of course, there are functions, such as the absolute value function given by <m>f(x)=|x|</m>, that are not locally linear at every point. In single-variable calculus, we learn that if the derivative of a function exists at a point, then the function is guaranteed to be locally linear there.
-    </p> -->
-    <p>
-      In a similar way, we say that a two-variable function <term><m>f</m> is locally linear<idx><h>function</h><h>locally linear</h></idx> near <m>(x_0,y_0)</m></term> provided that the graph of <m>f</m> looks like a plane (its <term>tangent plane</term>) when viewed on a small scale near <m>(x_0,y_0)</m>. Determining when a function of two variables is locally linear at a point involves more nuance than in the single-variable setting, as the next example illustrates.
-    </p>
-    <example>
-      <task>
-        <statement>
-          <p>
-            The function <m>f(x,y)=|x|+|y|</m> is graphed in <xref ref="fig-mv_deriv-linearization-absxabsy"/>. No matter how much you zoom in around the origin, the surface will not look like a plane. You can also see this if you zoom in near any point on the surface with either <m>x=0</m> or <m>y=0</m>. While this function is continuous at every point, neither partial derivative will be defined when either <m>x</m> or <m>y</m> is zero. 
-          </p>
-          <figure xml:id="fig-mv_deriv-linearization-absxabsy">
-            <caption>A plot of <m>f(x,y)=|x|+|y|</m> </caption>
-            <interactive label="interactive-fig-mv_deriv-linearization-absxabsy" platform="sage" width="91%" aspect="1:1">
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                plot8=axes(2.5,1,color="black")+text3d("x",(3,0,0),fontsize=30)+text3d("y",(0,3,0),fontsize=30)+text3d("z",(0,0,3),fontsize=30)
-                var('x,y')
-                plot8+=plot3d(abs(x)+abs(y),(x,-2,2),(y,-2,2),plot_points=31,mesh=True,opacity=0.8,color="lightblue")
-                show(plot8)
-              </slate>
-            </interactive>
-          </figure>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Your experience from single-variable calculus may lead you to reasonably expect that if <m>f_x(a,b)</m> and <m>f_y(a,b)</m> both exist at a point <m>(a,b)</m>, then <m>f</m> is locally linear at <m>(a,b)</m>. <alert>This is not sufficient, however.</alert> To illustrate this, consider the function defined by <m>f(x,y) = x^{1/3} y^{1/3}</m>. You can see from the figure below that as you zoom in around the origin, the graph does not flatten out and look like a plane. In <xref ref="Ez_10_4_0" text="type-local"/> guides you through using the limit definition of the partial derivative to show that <m>f_x(0,0)</m> and <m>f_y(0,0)</m> both exist, but that <m>f</m> is not locally linear at <m>(0,0)</m>. 
-          </p>
-          <figure xml:id="fig-mv_deriv-linearization-x13y13">
-            <caption>A plot of <m>f(x,y)= x^{1/3} y^{1/3}</m> </caption>
-            <interactive label="interactive-fig-mv_deriv-linearization-x13y13" platform="sage" width="100%" aspect="1:1">
-              <slate surface="sage">
-                var('x,y,t,s')
-                f(x,y)=x^(1/3.)*y^(1/3.)
-                @interact
-                def notLL1(a=slider(0,6,1,default=0,label="Zoom:")):
-                    b=2^(-a)
-                    p1=parametric_plot3d((s,t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5,color="lightblue")
-                    p1+=parametric_plot3d((-s,-t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5)
-                    p1+=parametric_plot3d((-s,t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5)
-                    p1+=parametric_plot3d((s,-t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5)
-                    show(p1)
-              </slate>
-            </interactive>
-          </figure>
-        </statement>
-      </task>
-    </example>
-    <p>
-      A precise discussion of differentiability of functions of more than one variable is beyond the scope of this text, but if you are interested in exploring these ideas a bit more, see <xref ref="Ez_10_4_4" text="type-local" />. We will be content to define a stronger, but more easily verified, set of conditions called continuous differentiability that ensure local linearity. For our purposes, continuous differentiability is the only condition we will need to use. All of the results we encounter will apply to differentiable functions, and so also apply to continuously differentiable functions.
-    </p>
-    <assemblage xml:id="Differentiability">
-      <title>Differentiability</title>
-      <p>
-        If <m>f</m> is a function of <m>x</m> and <m>y</m> for which both <m>f_x</m> and <m>f_y</m> exist and are continuous in an open disk containing the point <m>(x_0,y_0)</m>, then <m>f</m> is <term>continuously differentiable</term><idx><h>function</h><h>continuously differentiable</h></idx> at <m>(x_0,y_0)</m>.
-      </p>
-    </assemblage>
-
-    <p>
-      If a function <m>f</m> of two variables is continuously differentiable at a point <m>(x_0,y_0)</m>, then <m>f</m> has a tangent plane at <m>(x_0,y_0)</m>. This means that when viewed up close, the tangent plane and the graph of the function are virtually indistinguishable. You can see this illustrated in <xref ref="fig-mv_deriv-linearization-tangent_4"/> if you enable the Show Tangent Plane check box. 
-    </p>
-    </subsection>
     <subsection xml:id="subsec-tangentplane">
       <title>The Tangent Plane</title>
-    <p>  
-       Now that we have a good set of conditions to check if a tangent plane exists at a point, we return to the result of <xref ref="PA-mv_deriv-linearization">Preview Activity</xref> and have the following general formula for the tangent plane. 
+    <p>
+      As the preview activity suggests, the graph of most functions we have encountered will be approximated well by a plane tangent to the graph at a point of interest. In <xref ref="differentiability"/>, we will talk more about the technical conditions for the tangent plane to be a good approximation to the surface, but for now we will use the following general formula for the tangent plane from our final result of <xref ref="PA-mv_deriv-linearization">Preview Activity</xref>.
     </p>
 
     <assemblage xml:id="Tangent-plane">
       <title>The Tangent Plane</title>
       <p>
-        If <m>f(x,y)</m> is continuously differentiable at <m>(x_0,y_0)</m>, then the equation of the plane tangent to the graph of <m>f</m> at the point <m>(x_0,y_0,f(x_0,y_0))</m> is
+        If <m>f</m> is a function of <m>x</m> and <m>y</m> for which both <m>f_x</m> and <m>f_y</m> exist and are continuous in an open disk containing the point <m>(x_0,y_0)</m>, then the equation of the plane tangent to the graph of <m>f</m> at the point <m>(x_0,y_0,f(x_0,y_0))</m> is
         <men xml:id="eq_mv_deriv-linearization_tan_plane">
           z = f(x_0,y_0) + f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)
         </men>.
@@ -617,19 +596,11 @@
         </p>
       </solution>
     </task>
-    </activity>
-</worksheet>
-    <p>
-      <alert>Important Note:</alert> As discussed before, the function <m>f(x,y)=x^{1/3}y^{1/3}</m>, which we saw in <xref ref="fig-mv_deriv-linearization-x13y13" />, is not locally linear as we zoom in near the point <m>(0,0)</m>. However, as <xref ref="Ez_10_4_0" text="type-local" /> demonstrates, both <m>f_x(0,0)</m> and <m>f_y(0,0)</m> exist for this function. Thus, we can define the plane <m>z = f(x_0,y_0) + f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)</m>. However, this plane is <em>not</em> <q>tangent</q> to the graph in any reasonable sense. This is why we have specified that we require that <m>f</m> be continuously differentiable at a point in order to discuss the tangent plane at that point. The function <m>f(x,y)=x^{1/3}y^{1/3}</m> is not continuously differentiable (or differentiable) at <m>(0,0)</m>! Differentiability for a function of two variables implies the existence of a tangent plane. However, the existence of the two first order partial derivatives of a function at a point does <em>not</em> imply differentiability. This is quite different from single-variable calculus, where the derivative existing at a point is equivalent to the function being locally linear at that point. 
-    </p>
-    
-
-  </subsection>
-  <subsection>
-    <title>Linearization</title>
-    <p>
-      In single-variable calculus, an important use of the tangent line is to approximate a differentiable function. Near the point <m>x_0</m>, the tangent line to the graph of <m>f</m> at <m>x_0</m> is close to the graph of <m>f</m> for input values close to <m>x_0</m>, as shown in <xref ref="fig-mv_deriv-linearization-LL2">Figure</xref>. Adjust the Zoom slider to examine a small region around the highlighted point to see how the tangent line is a good approximation for a small region around that point. In fact, the smaller the scale around the point, the better the approximation is. 
-    </p>
+  </activity>
+  </worksheet>
+  <p>
+    In single-variable calculus, an important use of the tangent line is to approximate a differentiable function. Near the point <m>x_0</m>, the tangent line to the graph of <m>f</m> at <m>x_0</m> is close to the graph of <m>f</m> for input values close to <m>x_0</m>, as shown in <xref ref="fig-mv_deriv-linearization-LL2">Figure</xref>. Adjust the Zoom slider to examine a small region around the highlighted point to see how the tangent line is a good approximation for a small region around that point. In fact, the smaller the scale around the point, the better the approximation is. 
+  </p>
     <figure xml:id="fig-mv_deriv-linearization-LL2">
       <caption>A plot of a locally linear function <m>f</m> </caption>
       <interactive label="interactive-LL2" platform="sage" width="100%" aspect="1:1">
@@ -638,7 +609,7 @@
           def LL2D(zoom=slider(0,8,1,default=0,label="Zoom")):
               var('x')
               val=1
-              s=0.8
+              s=0.7
               f(x)=x*cos(pi*x)
               df(x)=diff(f,x)
               fv=f(val)
@@ -661,7 +632,16 @@
       <image source="images/fig_10_4_2d_linear_gray"/>
       </sidebyside>
     </figure> -->
+  <p>
+    In a similar way, we say that a two-variable function <term><m>f</m> is locally linear<idx><h>function</h><h>locally linear</h></idx> near <m>(x_0,y_0)</m></term> provided that the graph of <m>f</m> looks like a plane (its <term>tangent plane</term>) when viewed on a small scale near <m>(x_0,y_0)</m>. Determining when a function of two variables is locally linear at a point involves more nuance than in the single-variable setting. In <xref ref="differentiability"/> we will discuss the technical details and present some examples of functions that are not locally linear.
+  </p> 
+  <p>
+    If we consider a locally linear function, the tangent plane is a geometric version of the approximation to a surface given by <m>z=f(x,y)</m>, as shown in <xref ref="subsec-tangentplane"/>. In the next subsection, we will discuss the linearization, a functional form of the tangent plane that facilitates approximations near the point of tangency.
+  </p>
 
+  </subsection>
+  <subsection>
+    <title>Linearization</title>
     <p>
       In this single-variable setting, we let <m>L</m> denote the function whose graph is the tangent line, and thus
       <me>
@@ -670,7 +650,7 @@
       Furthermore, <m>f(x) \approx L(x)</m> near <m>x_0</m>. We call <m>L</m> the <term>linearization</term> of <m>f</m>.
     </p>
     <p>
-      In the same way, the tangent plane to the graph of a differentiable function <m>z = f(x,y)</m> at a point <m>(x_0,y_0)</m> provides a good approximation of <m>f(x,y)</m> near <m>(x_0, y_0)</m>. Here, we define the <term>linearization</term>, <m>L</m>, to be the two-variable function whose graph is the tangent plane. Thus
+      In the same way, the tangent plane to the graph of a locally linear function, <m>f(x,y)</m> at a point <m>(x_0,y_0)</m>, provides a good approximation of <m>f(x,y)</m> near <m>(x_0, y_0)</m>. Here, we define the <term>linearization</term>, <m>L</m>, to be the two-variable function whose graph is the tangent plane. Thus
       <men xml:id="linearizationeqn">
         L(x,y) = f(x_0,y_0) + f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)
       </men>
@@ -917,60 +897,7 @@
     </task>
     </activity>
 </worksheet>
-  </subsection>
-  <subsection>
-    <title>Differentials</title>
-    <p>
-      As we have seen, the linearization <m>L(x,y)</m> allows us to estimate the value of <m>f(x,y)</m> for points <m>(x,y)</m> near the point <m>(x_0, y_0)</m>. Sometimes, however, we are more interested in the <em>change</em> in <m>f</m> as we move from the point <m>(x_0,y_0)</m> to another point <m>(x,y)</m>.
-    </p>
-    <figure xml:id="fig-mv_deriv-linearization-differential">
-      <caption>A plot of a locally linear function <m>f(x,y)</m> </caption>
-      <interactive label="interactive-fig-mv_deriv-linearization-differential" platform="sage" width="91%" aspect="1:1">
-        <slate surface="sage">
-          <xi:include href="interacts/differentialplot.txt" parse="text" />
-        </slate>
-      </interactive>
-    </figure>
-    <!-- <figure xml:id="fig-mv_deriv-linearization-differential">
-      <caption>The differential <m>df</m> approximates the change in <m>f(x,y)</m>.</caption>
-      <image width="50%" source="images/fig_10_4_tangent_10"/>
-    </figure> -->
-    <p>
-      <xref ref="fig-mv_deriv-linearization-differential">Figure</xref> illustrates a perspective on measuring the change in the output of <m>f</m>. The graph of <m>f</m> is shown in blue, while the graph of its tangent plane is shown in red. The change we seek to measure is identified as <m>\Delta f</m> in blue. If we consider the displacement <m>\langle \Delta x, \Delta y\rangle</m> to a new point <m>(x,y) = (x_0+\Delta x, y_0 + \Delta y)</m>, we would like to know how much the output of the function <m>f</m> has changed. We denote this change by <m>\Delta f</m>, where
-      <me>
-        \Delta f = f(x,y) - f(x_0, y_0)
-      </me>.
-    </p>
-    <p>
-      A simple way to estimate the change <m>\Delta f</m> is to approximate it by <m>df</m>, which represents the change in the linearization <m>L(x,y)</m> as we move from <m>(x_0,y_0)</m> to <m>(x,y)</m>. This gives
-      <md>
-        <mrow>\Delta f \approx df \amp = L(x,y)-L(x_0, y_0)</mrow>
-        <mrow>\amp = [f(x_0,y_0)+ f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)] - f(x_0, y_0)</mrow>
-        <mrow>\amp = f_x(x_0,y_0)\Delta x + f_y(x_0, y_0)\Delta y</mrow>
-      </md>.
-    </p>
-    <p>
-      For consistency, we will denote the change in the input variables as <m>dx = \Delta x</m> and <m>dy = \Delta y</m>. These quantities are equal because the change in the <m>x</m>- and <m>y</m>-coordinates are the same whether we use the function <m>f</m> or the linearization <m>L</m>. Thus,
-      <men xml:id="eq-mv_deriv-linearization-differential">
-        \Delta f \approx df = f_x(x_0,y_0) dx + f_y(x_0,y_0) dy
-      </men>.
-    </p>
-    <p>
-      The equivalent expression using Leibniz notation is
-      <men xml:id="eq-mv_deriv-linearization-differential_leib">
-        df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy
-      </men>.
-    </p>
-    <p>
-      We call the quantities <m>dx</m>, <m>dy</m>, and <m>df</m> <term>differentials</term><idx><h>differentials</h></idx>, and we think of them as measuring small changes in the quantities <m>x</m>, <m>y</m>, and <m>f</m>. Equations <xref ref="eq-mv_deriv-linearization-differential"/> and <xref ref="eq-mv_deriv-linearization-differential_leib"/> express the relationship between these changes. Equation <xref ref="eq-mv_deriv-linearization-differential_leib"/> resembles an important idea from single-variable calculus: when <m>y</m> depends on <m>x</m>, we can use the notation of differentials to write
-      <me>
-        dy = y' dx = \frac{dy}{dx} dx
-      </me>.
-    </p>
-    <p>
-      We will illustrate the use of differentials with an example. 
-    </p>
-    <example>
+<example>
       <p>
         Suppose we have a machine that cuts rectangles of width <m>x=20</m> cm and height <m>y=10</m> cm. However, the machine isn't perfect, and therefore the width could be off by <m>dw = \Delta w = 0.2</m> cm and the height could be off by <m>dh = \Delta h = 0.4</m> cm.
       </p>
@@ -1098,8 +1025,139 @@
       </task>
     </activity>
 </worksheet>
+  </subsection>
+  <subsection>
+    <title>Differentials</title>
+    <p>
+      As we have seen, the linearization <m>L(x,y)</m> allows us to estimate the value of <m>f(x,y)</m> for points <m>(x,y)</m> near the point <m>(x_0, y_0)</m>. Sometimes, however, we are more interested in the <em>change</em> in <m>f</m> as we move from the point <m>(x_0,y_0)</m> to another point <m>(x,y)</m>.
+    </p>
+    <figure xml:id="fig-mv_deriv-linearization-differential">
+      <caption>A plot of a locally linear function <m>f(x,y)</m> </caption>
+      <interactive label="interactive-fig-mv_deriv-linearization-differential" platform="sage" width="91%" aspect="1:1">
+        <slate surface="sage">
+          <xi:include href="interacts/differentialplot.txt" parse="text" />
+        </slate>
+      </interactive>
+    </figure>
+    <!-- <figure xml:id="fig-mv_deriv-linearization-differential">
+      <caption>The differential <m>df</m> approximates the change in <m>f(x,y)</m>.</caption>
+      <image width="50%" source="images/fig_10_4_tangent_10"/>
+    </figure> -->
+    <p>
+      <xref ref="fig-mv_deriv-linearization-differential">Figure</xref> illustrates a perspective on measuring the change in the output of <m>f</m>. The graph of <m>f</m> is shown in blue, while the graph of its tangent plane is shown in red. The change we seek to measure is identified as <m>\Delta f</m> in blue. If we consider the displacement <m>\langle \Delta x, \Delta y\rangle</m> to a new point <m>(x,y) = (x_0+\Delta x, y_0 + \Delta y)</m>, we would like to know how much the output of the function <m>f</m> has changed. We denote this change by <m>\Delta f</m>, where
+      <me>
+        \Delta f = f(x,y) - f(x_0, y_0)
+      </me>.
+    </p>
+    <p>
+      A simple way to estimate the change <m>\Delta f</m> is to approximate it by <m>df</m>, which represents the change in the linearization <m>L(x,y)</m> as we move from <m>(x_0,y_0)</m> to <m>(x,y)</m>. This gives
+      <md>
+        <mrow>\Delta f \approx df \amp = L(x,y)-L(x_0, y_0)</mrow>
+        <mrow>\amp = [f(x_0,y_0)+ f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)] - f(x_0, y_0)</mrow>
+        <mrow>\amp = f_x(x_0,y_0)\Delta x + f_y(x_0, y_0)\Delta y</mrow>
+      </md>.
+    </p>
+    <p>
+      For consistency, we will denote the change in the input variables as <m>dx = \Delta x</m> and <m>dy = \Delta y</m>. These quantities are equal because the change in the <m>x</m>- and <m>y</m>-coordinates are the same whether we use the function <m>f</m> or the linearization <m>L</m>. Thus,
+      <men xml:id="eq-mv_deriv-linearization-differential">
+        \Delta f \approx df = f_x(x_0,y_0) dx + f_y(x_0,y_0) dy
+      </men>.
+    </p>
+    <p>
+      The equivalent expression using Leibniz notation is
+      <men xml:id="eq-mv_deriv-linearization-differential_leib">
+        df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy
+      </men>.
+    </p>
+    <p>
+      We call the quantities <m>dx</m>, <m>dy</m>, and <m>df</m> <term>differentials</term><idx><h>differentials</h></idx>, and we think of them as measuring small changes in the quantities <m>x</m>, <m>y</m>, and <m>f</m>. Equations <xref ref="eq-mv_deriv-linearization-differential"/> and <xref ref="eq-mv_deriv-linearization-differential_leib"/> express the relationship between these changes. Equation <xref ref="eq-mv_deriv-linearization-differential_leib"/> resembles an important idea from single-variable calculus: when <m>y</m> depends on <m>x</m>, we can use the notation of differentials to write
+      <me>
+        dy = y' dx = \frac{dy}{dx} dx
+      </me>.
+    </p>
+   
+    <p>
+      linearization approximates around a particular point but differentials show the algebraic form corresponding to the same measures of change in terms of linear combinations. 
+    </p>
+
     <p>
       We close this section by highlighting an idea that was used throughout this section and will be used time and again in this chapter. For a <q>nice</q> function (e.g., locally linear, differentiable, or continuously differentiable), the rate of change in the output of the function as you approach a specific point is the same as the rate of change along the linearization. In other words, we can approximate change near a point by looking at the change on the linearization. We can also evaluate the rates of change along our surface by evaluating the corresponding change on the linearization. Regardless of the direction, these rates of change will be the same at the specified point.
+    </p>
+  </subsection>
+  <subsection xml:id="differentiability">
+    <title>Differentiability and Local Linearity</title>
+    <p>
+      In <xref ref="Tangent-plane"/>, we gave general formula for the equation of the tangent plane at a particular point on the graph of <m>z=f(x,y)</m>, but we had a condition involving partial derivatives that we needed to satisfy in order for the tangent plane to make sense. We will briefly discuss some ways in which a function can fail to be locally linear; in other words, we will look at several examples of functions of two variables where the tangent plane is either not defined or is <alert>not</alert> a good approximation of the surface near a particular point. 
+    </p>
+    <p>    
+      In single-variable calculus, one of the first functions you studied that was continuous but had a point where the graph was not locally linear was the absolute value function <m>f(x) = |x|</m>. When zooming in on the graph of <m>f</m> near the point <m>(0,0)</m>, the graph maintains a sharp corner, and thus <m>f</m> is not locally linear at the point on its graph with <m>x=0</m>.
+    </p>
+    <!-- <p>  
+      As we have noted, when we look at the graph of a <q>nice</q> single-variable function on a small scale near a point <m>x_0</m>, we expect to see a line; in this case, we say that <em><m>f</m> is locally linear near <m>x_0</m></em> since the graph looks like a linear function locally around <m>x_0</m>. Of course, there are functions, such as the absolute value function given by <m>f(x)=|x|</m>, that are not locally linear at every point. In single-variable calculus, we learn that if the derivative of a function exists at a point, then the function is guaranteed to be locally linear there.
+    </p> -->
+    <p>
+      In a similar way, we say that a two-variable function <term><m>f</m> is locally linear<idx><h>function</h><h>locally linear</h></idx> near <m>(x_0,y_0)</m></term> provided that the graph of <m>f</m> looks like a plane (its <term>tangent plane</term>) when viewed on a small scale near <m>(x_0,y_0)</m>. Determining when a function of two variables is locally linear at a point involves more nuance than in the single-variable setting, as the next example illustrates.
+    </p>
+    <example>
+      <task>
+        <statement>
+          <p>
+            The function <m>f(x,y)=|x|+|y|</m> is graphed in <xref ref="fig-mv_deriv-linearization-absxabsy"/>. No matter how much you zoom in around the origin, the surface will not look like a plane. You can also see this if you zoom in near any point on the surface with either <m>x=0</m> or <m>y=0</m>. While this function is continuous at every point, neither partial derivative will be defined when either <m>x</m> or <m>y</m> is zero. 
+          </p>
+          <figure xml:id="fig-mv_deriv-linearization-absxabsy">
+            <caption>A plot of <m>f(x,y)=|x|+|y|</m> </caption>
+            <interactive label="interactive-fig-mv_deriv-linearization-absxabsy" platform="sage" width="91%" aspect="1:1">
+              <slate surface="sage">
+                from sage.plot.plot3d.plot3d import axes
+                plot8=axes(2.5,1,color="black")+text3d("x",(3,0,0),fontsize=30)+text3d("y",(0,3,0),fontsize=30)+text3d("z",(0,0,3),fontsize=30)
+                var('x,y')
+                plot8+=plot3d(abs(x)+abs(y),(x,-2,2),(y,-2,2),plot_points=31,mesh=True,opacity=0.8,color="lightblue")
+                show(plot8)
+              </slate>
+            </interactive>
+          </figure>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Your experience from single-variable calculus may lead you to reasonably expect that if <m>f_x(a,b)</m> and <m>f_y(a,b)</m> both exist at a point <m>(a,b)</m>, then <m>f</m> is locally linear at <m>(a,b)</m>. <alert>This is not sufficient, however.</alert> To illustrate this, consider the function defined by <m>f(x,y) = x^{1/3} y^{1/3}</m>. You can see from the figure below that as you zoom in around the origin, the graph does not flatten out and look like a plane. In <xref ref="Ez_10_4_0" text="type-local"/> guides you through using the limit definition of the partial derivative to show that <m>f_x(0,0)</m> and <m>f_y(0,0)</m> both exist, but that <m>f</m> is not locally linear at <m>(0,0)</m>. 
+          </p>
+          <figure xml:id="fig-mv_deriv-linearization-x13y13">
+            <caption>A plot of <m>f(x,y)= x^{1/3} y^{1/3}</m> </caption>
+            <interactive label="interactive-fig-mv_deriv-linearization-x13y13" platform="sage" width="100%" aspect="1:1">
+              <slate surface="sage">
+                var('x,y,t,s')
+                f(x,y)=x^(1/3.)*y^(1/3.)
+                @interact
+                def notLL1(a=slider(0,6,1,default=0,label="Zoom:")):
+                    b=2^(-a)
+                    p1=parametric_plot3d((s,t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5,color="lightblue")
+                    p1+=parametric_plot3d((-s,-t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5)
+                    p1+=parametric_plot3d((-s,t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5)
+                    p1+=parametric_plot3d((s,-t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=21,opacity=0.5)
+                    show(p1)
+              </slate>
+            </interactive>
+          </figure>
+        </statement>
+      </task>
+    </example>
+    <p>
+      A precise discussion of differentiability of functions of more than one variable is beyond the scope of this text, but if you are interested in exploring these ideas a bit more, see <xref ref="Ez_10_4_4" text="type-local" />. We will be content to define a stronger, but more easily verified, set of conditions called continuous differentiability that ensure local linearity. For our purposes, continuous differentiability is the only condition we will need to use. All of the results we encounter will apply to differentiable functions, and so also apply to continuously differentiable functions.
+    </p>
+    <assemblage xml:id="Differentiability">
+      <title>Differentiability</title>
+      <p>
+        If <m>f</m> is a function of <m>x</m> and <m>y</m> for which both <m>f_x</m> and <m>f_y</m> exist and are continuous in an open disk containing the point <m>(x_0,y_0)</m>, then <m>f</m> is <term>continuously differentiable</term><idx><h>function</h><h>continuously differentiable</h></idx> at <m>(x_0,y_0)</m>.
+      </p>
+    </assemblage>
+
+    <p>
+      If a function <m>f</m> of two variables is continuously differentiable at a point <m>(x_0,y_0)</m>, then <m>f</m> has a tangent plane at <m>(x_0,y_0)</m>. This means that when viewed up close, the tangent plane and the graph of the function are virtually indistinguishable. You can see this illustrated in <xref ref="fig-mv_deriv-linearization-tangent_4"/> if you enable the Show Tangent Plane check box. 
+    </p>
+    <p>
+      <alert>Important Note:</alert> As discussed before, the function <m>f(x,y)=x^{1/3}y^{1/3}</m>, which we saw in <xref ref="fig-mv_deriv-linearization-x13y13" />, is not locally linear as we zoom in near the point <m>(0,0)</m>. However, as <xref ref="Ez_10_4_0" text="type-local" /> demonstrates, both <m>f_x(0,0)</m> and <m>f_y(0,0)</m> exist for this function. Thus, we can define the plane <m>z = f(x_0,y_0) + f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)</m>. However, this plane is <em>not</em> <q>tangent</q> to the graph in any reasonable sense. This is why we have specified that we require that <m>f</m> be continuously differentiable at a point in order to discuss the tangent plane at that point. The function <m>f(x,y)=x^{1/3}y^{1/3}</m> is not continuously differentiable (or differentiable) at <m>(0,0)</m>! Differentiability for a function of two variables implies the existence of a tangent plane. However, the existence of the two first order partial derivatives of a function at a point does <em>not</em> imply differentiability. This is quite different from single-variable calculus, where the derivative existing at a point is equivalent to the function being locally linear at that point. 
     </p>
   </subsection>
   <subsection>
