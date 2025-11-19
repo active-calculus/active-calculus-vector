@@ -71,17 +71,17 @@
             from matplotlib import ticker
             var('x,y,z,s,t')
             f(x,y)=(x*y+(y-20)^2)/125+90*exp(-(((x-70)/90)^2+((y+10)/30)^2))+100+100*exp(-(((x+75)/30)^2+((y-50)/60)^2))
-            n=30
-            c=[70+i*5 for i in range(n)]
-            plot2=contour_plot(f(x,y),(x,-100,100),(y,-100,100),fill=False,labels=True,linewidths=1,contours=c,label_fmt="%1.0f",gridlines=True,plot_points=100,tick_formatter=(ticker.NullFormatter(),
+            n=20
+            c=[100+i*7.5 for i in range(n)]
+            plot2=contour_plot(f(x,y),(x,-100,100),(y,-100,100),fill=False,cmap="twilight",labels=True,label_inline=True,linewidths=1,contours=c,label_fmt="%1.0f",gridlines=True,plot_points=100,tick_formatter=(ticker.NullFormatter(),
             ticker.NullFormatter()))
             plot2+=arrow((-90,-90),(-80,-90),color="black",arrowsize=2)+arrow((-90,-90),(-90,-80),color="black",arrowsize=2)
             plot2+=arrow((-90,-90),(-100,-90),color="black",arrowsize=2)+arrow((-90,-90),(-90,-100),color="black",arrowsize=2)
             plot2+=text("N",(-90,-75),color="black")+text("S",(-90,-105),color="black")
             plot2+=text("E",(-75,-90),color="black")+text("W",(-105,-90),color="black")
-            plot2+=text("A",(0,10),color="red")
-            plot2+=text("B",(50,-35),color="red")
-            plot2+=text("C",(60,60),color="red")
+            plot2+=text("A",(0,15),color="red",zorder=5)
+            plot2+=text("B",(50,-30),color="red",zorder=5)
+            plot2+=text("C",(60,65),color="red",zorder=5)
             plot2
           </sageplot>
         </image>
@@ -674,7 +674,6 @@
       </task>
     </activity>
 </worksheet>
-
     <p>
       Because <m>\nabla f(x_0,y_0)</m> is a vector, we can consider its direction and length separately. The next subsection discusses the information conveyed by these geometetric aspects  about the behavior of <m>f</m> near <m>(x_0,y_0)</m>.
     </p>
@@ -708,6 +707,86 @@
       </ul>
       The first statement explains why the gradient is perpendicular to the level curve through the point of interest. Because a level curve is the set of points for which the function has a particular output value, the output will not change along the level curve. Thus, the directional derivative in a direction tangent to the level curve must be zero. We can expand this explanation to the other statements as well. The output of <m>f</m> increases in any direction that makes an acute angle with the gradient vector and the output of <m>f</m> decreases in any direction that makes an obtuse angle with the gradient.
     </p>
+    <worksheet>
+      <activity>
+        <introduction>
+          <p>
+            For this activity, we will look at the value of the directional derivative for temperature as a function of location. When looking at a plot of thermoclines (locations with the same temperature), you notice that your town is exactly on the thermocline labeled as 70 degrees, shown as the point <m>P</m> on <xref ref="thermocline"/>
+          </p>
+          <figure xml:id="thermocline">
+            <caption>A plot of the thermocline corresponding to 70 degrees going through the point <m>P</m></caption>
+            <image width="60%" xml:id="img-thermocline">
+              <sageplot>
+                var('t,x')
+                plot50=point((1,1),color="black",size=50,axes=False) 
+                plot50+=plot(x+0.25*sin(1-x)*cos(5*x+7),(0,1.8),color="black",thickness=2)
+                d=0.1;a=.25;b=1.75;
+                plot50+=arrow((a,b),(a+d,b),color="black",arrowsize=2)+arrow((a,b),(a-d,b),color="black",arrowsize=2)
+                plot50+=arrow((a,b),(a,b+d),color="black",arrowsize=2)+arrow((a,b),(a,b-d),color="black",arrowsize=2)
+                plot50+=text("N",(a,b+1.5*d),color="black")+text("S",(a,b-1.5*d),color="black")
+                plot50+=text("E",(a+1.5*d,b),color="black")+text("W",(a-1.5*d,b),color="black")
+                plot50+=text("70",(1.5,1.5),color="black",background_color="white")
+                plot50+=text("70",(0.15,0.15),color="black",background_color="white")
+                plot50+=text("60s",(0.5,1),color="black",background_color="white")
+                plot50+=text("70s",(1.5,0.5),color="black",background_color="white")
+                plot50+=text("60s",(1.5,1.8),color="black",background_color="white")
+                plot50+=text("P",(1,1.1),color="black",fontsize=20)
+                plot50+=arrow((1,1),(1.15,0.6),color="black",arrowsize=2)
+                plot50                  
+              </sageplot>
+            </image>
+          </figure>
+        </introduction>
+      <task>
+        <statement>
+          <p>
+            Write a few sentences about why the gradient at <m>P</m> goes in the southeast direction and not the northwest (which is also perpendicular to the thermocline/ level curve at <m>P</m>).
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Draw a vector in each of the following directions starting at <m>P</m> and state whether the directional derivative will be positive/negative/0 in each of these directions. You should write a couple of sentences for each direction vector about how the sign of the directional derivative is related to the angle between the direction and the gradient vectors.
+          </p>
+          <p>
+            <ol>
+              <li>
+                <p>
+                  West
+                </p>
+              </li>
+              <li>
+                <p>
+                  South
+                </p>
+              </li>
+              <li>
+                <p>
+                  Northeast
+                </p>
+              </li>
+            </ol>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Write a few sentences about why any direction moving up and left will have negative rate of change for the temperature in the direction given.
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Explain what direction you would need to move in to have the greatest positive rate of change for the temperature. Write a couple of sentences to relate your answer to the gradient using <xref ref="DD-vecprop">Equation</xref>.
+          </p>
+        </statement>
+      </task>
+      </activity>
+    </worksheet>
+
     <p>
       Here are some questions about how the directional derivative changes at a point that we will address:
       <ul>
@@ -741,6 +820,46 @@
         </ul>
       </p>
     </assemblage>
+    <activity>
+      <introduction>
+        <p>
+          We will look algebraically calculating and explaining the vector properties of the gradient using the function <m>f(x,y)=xy-2y^2+\frac{x^2}{2}+2y-x</m> at the input <m>(1,1)</m>.
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Calculate the gradient of <m>f</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Calculate <m>\nabla f (1,1)</m>.
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Calculate <m>D_\vec{u} f (1,1)</m> for each of the following vectors:
+            <ol>
+              <li><m>\vec{u}=\langle -1,0\rangle </m> </li>
+              <li><m>\vec{u}=\langle \frac{3}{5},-\frac{4}{5} \rangle </m> </li>
+              <li><m>\vec{u}=\langle -\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}} \rangle </m> </li>
+            </ol>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            What direction will correspond to the greatest rate of increase for <m>f</m> at the input <m>(1,1)</m>? Find the value of the directional derivative in this direction. 
+          </p>
+        </statement>
+      </task>
+    </activity>
     <p>
       Note that the third and fifth bullets above are algebraic statements of the second and fourth bullets, respectively.
     </p>
@@ -826,7 +945,7 @@
       A heat-seeking missile will always travel in the direction in which the temperature increases most rapidly; that is, it will always travel in the direction of the gradient <m>\nabla T</m>. If a missile is fired from the point <m>(2,4)</m>, then its path will be that shown on the right in <xref ref="F_10_6_missile">Figure</xref>.
     </p>
     <p>
-      This type strategy is sometimes called <term>gradient ascent</term> and has uses in economics and machine learning.
+      This type strategy is sometimes called <term>gradient ascent</term>. The gradient decent method is used to find relative minimums for functions by taking steps in the direction opposite the gradient. Gradient decent methods are used extensively in economics and machine learning to find where the difference between predictions from a model and data are as small as possible (minimize error).
     </p>
 
   </subsection>
