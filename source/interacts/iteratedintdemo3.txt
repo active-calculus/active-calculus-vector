@@ -1,0 +1,38 @@
+var('s,t,x,y,z')
+f(x,y)=(3-(-1.5+x)^2/2-(1-y)^2/1.5)*(3+sin(1.6*x*y))/4-.5
+x1=0.5;x2=2.5; y1=0.75;y2=2;
+param(s,t)=(s,t,f(s,t))
+sel=["Constant x","Constant y"]
+@interact
+def slicesinteract(sel=selector(sel,label="Slices Along ")):
+    ns=8
+    a1=x1;a2=x2;b1=y1;b2=y2; 
+    xscale=3;yscale=3;zscale=3
+    plot1=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=2)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
+    plot1+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5)
+    if(sel=="Constant x"):
+        dx=(x2-x1)/ns;sc="pink";o4=.4;
+        for i in range(ns):
+            a=x1+i*dx
+            plot1+=parametric_plot3d((a,t,s*f(a,t)),(t,b1,b2),(s,0,1),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((a+dx,t,s*f(a,t)),(t,b1,b2),(s,0,1),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((a+s,t,f(a,t)),(t,b1,b2),(s,0,dx),color="purple",opacity=o4)
+            plot1+=parametric_plot3d((a+s,t,0),(t,b1,b2),(s,0,dx),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((a+s,y2,t*f(a,y2)),(t,0,1),(s,0,dx),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((a+s,y1,t*f(a,y1)),(t,0,1),(s,0,dx),color=sc,opacity=o4)
+    if(sel=="Constant y"):
+        dy=(y2-y1)/ns;sc="lightblue";o4=.4;
+        for i in range(ns):
+            a=y1+i*dy
+            plot1+=parametric_plot3d((t,a,s*f(t,a)),(t,a1,a2),(s,0,1),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((t,a+dy,s*f(t,a+dy)),(t,a1,a2),(s,0,1),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((t,a+s,f(t,a)),(t,a1,a2),(s,0,dy),color="purple",opacity=o4)
+            plot1+=parametric_plot3d((t,a+s,0),(t,b1,b2),(s,0,dy),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((x1,a+s,t*f(x1,a)),(t,0,1),(s,0,dy),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((x2,a+s,t*f(x2,a)),(t,0,1),(s,0,dy),color=sc,opacity=o4)
+    plot1+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color="red",opacity=0.5)
+    plot1+=line([(x1,y2,0),(x1,0,0)],color="black",thickness=2)+text3d("x=a",(x1,-0.5,0),color="black",fontsize=20)
+    plot1+=line([(x2,y2,0),(x2,0,0)],color="black",thickness=2)+text3d("x=b",(x2,-0.5,0),color="black",fontsize=20)
+    plot1+=line([(x2,y1,0),(0,y1,0)],color="black",thickness=2)+text3d("y=c",(-0.5,y1,0),color="black",fontsize=20)
+    plot1+=line([(x2,y2,0),(0,y2,0)],color="black",thickness=2)+text3d("y=d",(-0.5,y2,0),color="black",fontsize=20)
+    show(plot1,viewpoint=[[-0.099,-0.6027,-0.7918],165.17],camera_position=[4.2065,9.5131,4.0273],frame=False)

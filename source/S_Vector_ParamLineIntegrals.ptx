@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!-- **********************************************************************-->
 <!-- Copyright 2013-2025                                                   -->
 <!-- Nicholas Long, Mitch Keller                                           -->
@@ -45,8 +44,7 @@
     We begin this section by taking a look at how to calculate a line integral of a vector field along different line segments. We will use this calculation as inspiration to see how treating oriented curves as vector-valued functions will allow us to quickly turn a line integral of a vector field into a single variable integral.
   </p>
 <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA_Vector_ParamLineIntegrals">
+  <exploration workspace="1.5in" xml:id="PA_Vector_ParamLineIntegrals">
   <introduction>
     <p>
       Let <m>\vF=\langle xy,y^2\rangle</m>, let <m>C_1</m> be the line segment from <m>(1,1)</m> to <m>(4,1)</m>, let <m>C_2</m> be the line segment from <m>(4,1)</m> to <m>(4,3)</m>, and let <m>C_3</m> be the line segment from <m>(1,1)</m> to <m>(4,3)</m>. Also let <m>C = C_1 + C_2</m>. This vector field and the curves are shown in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/>.
@@ -160,7 +158,7 @@
 <subsection xml:id="SS_Vector_ParamLineIntegrals_Evaluation">
   <title>Parametrizations in the Definition of <m>\int_C\vF\cdot d\vr</m></title>
 	<p>
-		In <xref ref="PA_Vector_ParamLineIntegrals" />, you saw how line integrals along vertical and horizontal line segments can be done as integrals of a single variable. Before moving on to the general case, let us consider in the next example how we might tackle <m>\int_{C_3}\vF\cdot d\vr</m> in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments" />.
+		In <xref ref="PA_Vector_ParamLineIntegrals"/>, you saw how line integrals along vertical and horizontal line segments can be done as integrals of a single variable. Before moving on to the general case, let us consider in the next example how we might tackle <m>\int_{C_3}\vF\cdot d\vr</m> in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/>.
 	</p>
 	<example xml:id="ex_Vector_ParamLineIntegrals_oblique_segment">
 		<p>
@@ -170,7 +168,7 @@
 			<md>
 				<mrow> \int_{C_3}\vF\cdot d\vr \amp = \int_1^4 \left\langle \frac{2}{3}x^2+\frac{1}{3}x,(\frac{2}{3}x+\frac{1}{3})^2\right\rangle \cdot \left\langle 1,\frac{2}{3}\right\rangle\, dx </mrow>
 				<mrow> \amp = \int_1^4 \frac{2}{3}x^2 + \frac{1}{3}x + \frac{2}{3}\left(\frac{2}{3}x + \frac{1}{3}\right)^2\, dx = \frac{151}{6} </mrow>
-			</md>. Notice that this result is different than what you obtained for <m>\int_{C}\vF\cdot d\vr</m> in <xref ref="PA_Vector_ParamLineIntegrals" />, even though <m>C</m> and <m>C_3</m> both start at <m>(1,1)</m> and end at <m>(4,3)</m>.
+			</md>. Notice that this result is different than what you obtained for <m>\int_{C}\vF\cdot d\vr</m> in <xref ref="PA_Vector_ParamLineIntegrals"/>, even though <m>C</m> and <m>C_3</m> both start at <m>(1,1)</m> and end at <m>(4,3)</m>.
 		</p>
 	</example>
 	<p>
@@ -182,7 +180,7 @@
 			<p> Is <m>\vF=\langle xy,y^2\rangle</m> a gradient vector field? Why or why not? </p>
 		</statement>
 		<hint>
-			<p> What would <xref ref="thm-clairaut" text="title" /> tell you about a potential function <m>f</m> such that <m>\vF = \grad{f}</m>? </p>
+			<p> What would <xref ref="thm-clairaut" text="title"/> tell you about a potential function <m>f</m> such that <m>\vF = \grad{f}</m>? </p>
 		</hint>
 		<answer>
 			<p>No.</p>
@@ -200,11 +198,11 @@
 </worksheet>
 	
 	<p>
-    <xref ref="PA_Vector_ParamLineIntegrals"/> and <xref ref="ex_Vector_ParamLineIntegrals_oblique_segment" /> have shown us that it is possible to evaluate line integrals without needing to work with Riemann sums directly. However, the approaches taken there seem rather cumbersome to use for oriented curves that are not line segments. It was not critical that the paths in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments" /> were straight lines, but rather that the paths had a description where both <m>x</m> and <m>y</m> could be expressed in terms of one variable. Fortunately, parametrizing the oriented curve along which a line integral is calculated provides exactly the tool we are looking for. Namely a parameterization gives a way to express the points <m>(x,y,z)</m> of the oriented curve in terms of a single variable (the parameter). Note that given a parameterization, we can also translate the vector field component equations into functions of the parameter as well.
+    <xref ref="PA_Vector_ParamLineIntegrals"/> and <xref ref="ex_Vector_ParamLineIntegrals_oblique_segment"/> have shown us that it is possible to evaluate line integrals without needing to work with Riemann sums directly. However, the approaches taken there seem rather cumbersome to use for oriented curves that are not line segments. It was not critical that the paths in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/> were straight lines, but rather that the paths had a description where both <m>x</m> and <m>y</m> could be expressed in terms of one variable. Fortunately, parametrizing the oriented curve along which a line integral is calculated provides exactly the tool we are looking for. Namely a parameterization gives a way to express the points <m>(x,y,z)</m> of the oriented curve in terms of a single variable (the parameter). Note that given a parameterization, we can also translate the vector field component equations into functions of the parameter as well.
   </p>
   <example xml:id="equal_space_param">
   	<p>
-  		In this example, we will look at the particulars of applying a parameterization of <m>C</m> (given by <m>\vr(t) =\langle f(t),g(t)\rangle</m> with <m>t \in [a,b]</m>) to <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" />. In particular, we will use this parameterization and a set of points along <m>C</m> that are equally spaced in terms of parameter values. To make this discussion a bit easier to read, we will work with a curve in two dimensions. However, all the ideas here generalize directly to curves in <m>\R^3</m>.
+  		In this example, we will look at the particulars of applying a parameterization of <m>C</m> (given by <m>\vr(t) =\langle f(t),g(t)\rangle</m> with <m>t \in [a,b]</m>) to <xref ref="def_Vector_IdeaLineIntegral_LineIntegral"/>. In particular, we will use this parameterization and a set of points along <m>C</m> that are equally spaced in terms of parameter values. To make this discussion a bit easier to read, we will work with a curve in two dimensions. However, all the ideas here generalize directly to curves in <m>\R^3</m>.
   	</p>
   	<p>
     	Suppose that <m>C</m> is an oriented curve traced out by the vector-valued function <m>\vr(t)</m> for <m>a\leq t\leq b</m>, and let <m>\vF</m> be a continuous vector field defined on a region containing <m>C</m>. We can divide the interval <m>[a,b]</m> into <m>n</m> sub-intervals, each of length <m>\Delta t = (b-a)/n</m>, by letting <m>t_i = a + i\Delta t</m> for <m>i = 0,1,\dots,n</m>. Dividing the interval <m>[a,b]</m> into <m>n</m> pieces using <m>t_i</m> then can be used to break <m>C</m> up into <m>n</m> pieces by letting <m>C_i</m> be the part of the curve from <m>\vr(t_{i})</m> to <m>\vr(t_{i-1})</m> for <m>i=1,\dots,n</m>.
@@ -232,7 +230,7 @@
       </image>
     </figure>
     <p>
-    	We can approximate the path <m>C_i</m> with the displacement vector <m>\Delta \vr_i = \vr(t_{i}) - \vr(t_{i-1})</m> as we did in <xref ref="fig_line_int_defn3" />. Now notice that <me> \Delta \vr_i = \vr(t_{i}) - \vr(t_{i-1}) = \vr(t_{i} ) - \vr(t_{i} - \Delta t) = \left(\frac{\vr(t_{i} ) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t </me>.
+    	We can approximate the path <m>C_i</m> with the displacement vector <m>\Delta \vr_i = \vr(t_{i}) - \vr(t_{i-1})</m> as we did in <xref ref="fig_line_int_defn3"/>. Now notice that <me> \Delta \vr_i = \vr(t_{i}) - \vr(t_{i-1}) = \vr(t_{i} ) - \vr(t_{i} - \Delta t) = \left(\frac{\vr(t_{i} ) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t </me>.
 	  </p>
 	  <figure xml:id="fig_param_line_int2">
 	      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the paramter <m>t</m> with displacement vectors <m>\Delta r_i</m></caption>
@@ -266,7 +264,7 @@
 	    </me>
 	  </p>
 	  <p>
-	  	We can now substitute these pieces into <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> to obtain the following
+	  	We can now substitute these pieces into <xref ref="def_Vector_IdeaLineIntegral_LineIntegral"/> to obtain the following
       <md>
       	<mrow>
       		\int_C \vF\cdot d\vr \amp = \lim_{|\Delta \vr_i| \to 0} \sum_{i=1}^{n}\vF(\vr_i)\cdot\Delta\vr_i
@@ -296,7 +294,7 @@
 	</statement>
 </theorem>
 <p>
-	To illustrate how useful <xref ref="thm_LineIntParam" /> is for evaluating line integrals, consider the following example.
+	To illustrate how useful <xref ref="thm_LineIntParam"/> is for evaluating line integrals, consider the following example.
 </p>
 <example xml:id="ex_Vector_ParamLineIntegrals_QuarterCircle">
   <statement>
@@ -343,7 +341,7 @@
   </statement>
 </example>
   <p>
-  	As <xref ref="ex_Vector_ParamLineIntegrals_QuarterCircle" /> shows, <xref ref="thm_LineIntParam"/> allows us to reduce the problem of calculating a line integral of a vector-valued function along an oriented curve to one of finding a suitable parametrization for the curve. Once we have such a parametrization, evaluating the line integral becomes evaluating a single-variable integral, which is something you have done many times before. The example also illustrates that using the properties of line integrals can allow us to use a more <q>natural</q> parametrization. You may find it interesting to use the parametrization <m>\langle 3\sin(t),3\cos(t)\rangle</m> for <m>0\leq t\leq \pi/2</m> to evaluate the line integral. Do you get the same result?
+  	As <xref ref="ex_Vector_ParamLineIntegrals_QuarterCircle"/> shows, <xref ref="thm_LineIntParam"/> allows us to reduce the problem of calculating a line integral of a vector-valued function along an oriented curve to one of finding a suitable parametrization for the curve. Once we have such a parametrization, evaluating the line integral becomes evaluating a single-variable integral, which is something you have done many times before. The example also illustrates that using the properties of line integrals can allow us to use a more <q>natural</q> parametrization. You may find it interesting to use the parametrization <m>\langle 3\sin(t),3\cos(t)\rangle</m> for <m>0\leq t\leq \pi/2</m> to evaluate the line integral. Do you get the same result?
   </p>
 <worksheet>
   <activity workspace="1.5in" xml:id="act_Vector_ParamLineIntegrals_CalculateTwoFields">
@@ -382,7 +380,7 @@
 </worksheet>
 
 <p>
-	<xref ref="act_Vector_ParamLineIntegrals_DifferentPaths" /> will have you look at line integrals of the same vector field over several different types of curves. This will be an important, recurring theme as we study a variety of different integrals and vector fields in this chapter. In particular, we will use this approach of varying the region of integration for a fixed function several times in later activities.
+	<xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/> will have you look at line integrals of the same vector field over several different types of curves. This will be an important, recurring theme as we study a variety of different integrals and vector fields in this chapter. In particular, we will use this approach of varying the region of integration for a fixed function several times in later activities.
 </p>
 <worksheet>
   <activity workspace="1.5in" xml:id="act_Vector_ParamLineIntegrals_DifferentPaths">
@@ -523,7 +521,7 @@
     </p>
   </example>
   <p>
-  	As promised, the final activity of this section (<xref ref="act_Vector_ParamLineIntegrals_ParamIndep" />) asks you to look at another parametrization of the curve <m>C_3</m> from the previous example. It also asks you to look at two different oriented curves between a pair of points, similarly to what you did in <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>.
+  	As promised, the final activity of this section (<xref ref="act_Vector_ParamLineIntegrals_ParamIndep"/>) asks you to look at another parametrization of the curve <m>C_3</m> from the previous example. It also asks you to look at two different oriented curves between a pair of points, similarly to what you did in <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>.
   </p>
   <worksheet>
   <activity workspace="1.5in" xml:id="act_Vector_ParamLineIntegrals_ParamIndep">
@@ -628,10 +626,10 @@
 <subsection component="instructor">
  <title>Notes to Instructors and Dependencies</title>
   <p>
-    This section relies heavily on the idea of line integrals developed in <xref ref="S_Vector_IdeaLineIntegral" />, understanding curves in space (from <xref ref="S-VVF-Plotting" />), and the work interpretation of the dot product from <xref ref="S-Precalc-DotProduct" />.
+    This section relies heavily on the idea of line integrals developed in <xref ref="S_Vector_IdeaLineIntegral"/>, understanding curves in space (from <xref ref="S-VVF-Plotting"/>), and the work interpretation of the dot product from <xref ref="S-Precalc-DotProduct"/>.
   </p>
 	<p>
-		<xref ref="PA_Vector_FTCLI" /> compares its result with the first two parts of <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>, so prioritize getting those done in class.
+		<xref ref="PA_Vector_FTCLI"/> compares its result with the first two parts of <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>, so prioritize getting those done in class.
 	</p>
 </subsection>
 </section>

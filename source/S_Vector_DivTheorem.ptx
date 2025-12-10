@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!-- **********************************************************************-->
 <!-- Copyright 2013-2025                                                   -->
 <!-- Nicholas Long, Mitch Keller                                           -->
@@ -43,12 +42,13 @@
     In <xref ref="S_Vector_FluxInt"/>, we measured how much of a vector field flowed through a section of a surface in three dimensions as a generalization of our argument from <xref ref="S_Vector_Div"/>. In this section, we will connect the ideas of flux of a vector field through a closed surface in three dimensions and the divergence of that vector field.
   </p>
   <p>
-    Recalling the surfaces we studied in <xref ref="S_Vector_StokesThm"/>, where we applied <xref ref="thm_Stokes" text="title"/>, notice that all of these surfaces had the property that they had a <term>boundary</term> along which we calculated circulation. It turns out that giving a precise definition for boundary is challenging. For our purposes, however, you might think of a boundary curve of a surface as being a curve along which you could walk with your arms stretched out on either side with one arm lying over the surface and the other arm not lying over the surface as you walk. In this section, we will study <term>closed</term> surfaces in three dimensions, which are those surfaces without boundary. In <xref ref="S_Vector_StokesThm" />, <em>none</em> of the surfaces were closed, because each had a boundary curve. On the other hand, in <xref ref="fig_Vector_DivThm_NotClosedSurfaces"/>, we show two more surfaces that are <em>not</em> closed, as demonstrated by the magenta curves marking the edge where the surface ends.
+    Recalling the surfaces we studied in <xref ref="S_Vector_StokesThm"/>, where we applied <xref ref="thm_Stokes" text="title"/>, notice that all of these surfaces had the property that they had a <term>boundary</term> along which we calculated circulation. It turns out that giving a precise definition for boundary is challenging. For our purposes, however, you might think of a boundary curve of a surface as being a curve along which you could walk with your arms stretched out on either side with one arm lying over the surface and the other arm not lying over the surface as you walk. In this section, we will study <term>closed</term> surfaces in three dimensions, which are those surfaces without boundary. In <xref ref="S_Vector_StokesThm"/>, <em>none</em> of the surfaces were closed, because each had a boundary curve. On the other hand, in <xref ref="fig_Vector_DivThm_NotClosedSurfaces"/>, we show two more surfaces that are <em>not</em> closed, as demonstrated by the magenta curves marking the edge where the surface ends.
   </p>
     <figure xml:id="fig_Vector_DivThm_NotClosedSurfaces">
       <caption>Two surfaces that are <em>not</em> closed</caption>
       <interactive label="int_Vector_DivThm_NotClosedSurfaces" platform="sage" width="87%" aspect="1:2.02">
-        <slate surface="sage">
+        <description><p>Two surfaces that are <em>not</em> closed</p>
+      </description><slate surface="sage">
           var('t,s')
           r=2*cos(s^2/2)+s*e^(-10*(t/2/pi-1/2)^2)
           plot6=parametric_plot3d((r*sin(s)*cos(t),r*sin(s)*sin(t),r*cos(s)),(s,0,pi/2),(t,0,2*pi),frame=False,color='#1E88E5',opacity=.75)
@@ -71,7 +71,8 @@
     <figure xml:id="fig_Vector_DivThm_ClosedSurfaces">
       <caption>Two closed surfaces</caption>
       <interactive label="int_Vector_DivThm_ClosedSurfaces" platform="sage" width="87%" aspect="1:2.02">
-        <slate surface="sage">
+        <description><p>Two closed surfaces</p>
+      </description><slate surface="sage">
           var('t,s')
           plot6=parametric_plot3d((2*sin(s)*cos(t),2*sin(s)*sin(t),2*cos(s)),(s,0,pi),(t,0,2*pi),frame=False,color='#D81B60',opacity=.5)
           plot6+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
@@ -92,7 +93,8 @@
   <figure xml:id="fig_Vector_DivThm_TopsAndBottoms">
     <caption>Three ways to close a cylindrical surface by adding a top and bottom</caption>
     <interactive label="int_Vector_DivThm_TopsAndBottoms" platform="sage" width="100%" aspect="1:1.07">
-      <slate surface="sage">
+      <description><p>Three ways to close a cylindrical surface by adding a top and bottom</p>
+    </description><slate surface="sage">
         var('t,s')
         plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='#FFC107',opacity=.25)
         plot1+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
@@ -115,8 +117,7 @@
     </interactive>
   </figure>
 <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA_Vector_Divthm">
+  <exploration workspace="1.5in" xml:id="PA_Vector_Divthm">
   <title>Locating sources of a poisonous gas</title>
   <introduction>
   <p>
@@ -134,7 +135,8 @@
       <figure xml:id="fig_Vector_DivThm_Poisongas1">
         <caption>Unit ball with boundary given by the combination of <m>S_{\text{top}}</m> and <m>S_{\text{bottom}}</m></caption>
         <interactive label="int_Vector_DivThm_Poisongas1" platform="sage" width="87%" aspect="1:1.05">
-          <slate surface="sage">
+          <description><p>Unit ball with boundary given by the combination of <m>S_{\text{top}}</m> and <m>S_{\text{bottom}}</m></p>
+        </description><slate surface="sage">
             var('t,s,x,y,z')
             plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
             plot1+=arrow((0,0,.8),(0,0,1.5),color="#DC267F")
@@ -164,7 +166,8 @@
       <figure xml:id="fig_Vector_DivThm_Poisongas2">
         <caption>Upper half of the unit ball with boundaries given by <m>S_{\text{top}}</m> and <m>S_{\text{mid}}</m></caption>
         <interactive label="fig_Vector_DivThm_Poisongas2" platform="sage" width="87%" aspect="1:1.05">
-          <slate surface="sage">
+          <description><p>Upper half of the unit ball with boundaries given by <m>S_{\text{top}}</m> and <m>S_{\text{mid}}</m></p>
+        </description><slate surface="sage">
             var('t,s,x,y,z')
             plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
             plot1+=arrow((0,0,.8),(0,0,1.5),color="#DC267F")
@@ -194,7 +197,8 @@
       <figure xml:id="fig_Vector_DivThm_Poisongas3">
         <caption>Lower half of the unit ball with boundaries given by <m>S_{\text{mid}}</m> and <m>S_{\text{bottom}}</m></caption>
         <interactive label="fig_Vector_DivThm_Poisongas3" platform="sage" width="87%" aspect="1:1.05">
-          <slate surface="sage">
+          <description><p>Lower half of the unit ball with boundaries given by <m>S_{\text{mid}}</m> and <m>S_{\text{bottom}}</m></p>
+        </description><slate surface="sage">
             var('t,s,x,y,z')
             plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
             plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
@@ -259,17 +263,17 @@
   </theorem>
 
   <p>
-    The preview activity and the discussion before the statement of the <xref ref="thm_Div" text="title"/> have hopefully given you some intuition as to why the theorem is true. The ideas should also seem similar to the manner in which we approached <xref ref="thm_Green" text="title"/> and <xref ref="thm_Stokes" text="title" />. In the next example, we will verify the Divergence Theorem for a particular case.
+    The preview activity and the discussion before the statement of the <xref ref="thm_Div" text="title"/> have hopefully given you some intuition as to why the theorem is true. The ideas should also seem similar to the manner in which we approached <xref ref="thm_Green" text="title"/> and <xref ref="thm_Stokes" text="title"/>. In the next example, we will verify the Divergence Theorem for a particular case.
   </p>
   <example>
     <introduction>
       <p>
-        In this example we will apply the <xref ref="thm_Div" text="title" /> to the vector field <m>\vF=\langle xy-z, yz+e^x,z(x-y) \rangle </m> and the region in the first octant bounded above by <m>z=1-x-y</m>. We will go through the calculations of the flux integral on the right side and the triple integral on the left side. 
+        In this example we will apply the <xref ref="thm_Div" text="title"/> to the vector field <m>\vF=\langle xy-z, yz+e^x,z(x-y) \rangle </m> and the region in the first octant bounded above by <m>z=1-x-y</m>. We will go through the calculations of the flux integral on the right side and the triple integral on the left side. 
       </p>
     </introduction>
     <task>
       <p>
-        We first calculate the left side of the Divergence Theorem using four flux integrals (one for each of the four boundary surfaces) as illustrated in <xref ref="verifyDiv_part1" />. We will need to parametrize each of the four faces which we will call <m>S_1</m> (in magenta), <m>S_2</m> (in yellow), <m>S_3</m> (in blue), and <m>S_4</m> (in green). 
+        We first calculate the left side of the Divergence Theorem using four flux integrals (one for each of the four boundary surfaces) as illustrated in <xref ref="verifyDiv_part1"/>. We will need to parametrize each of the four faces which we will call <m>S_1</m> (in magenta), <m>S_2</m> (in yellow), <m>S_3</m> (in blue), and <m>S_4</m> (in green). 
         <md>
           <mrow>\vr_1(s,t)\amp= \langle 0,s,t \rangle</mrow>
           <mrow>\vr_2(s,t)\amp= \langle s,0,t \rangle</mrow>
@@ -288,7 +292,8 @@
       <figure xml:id="verifyDiv_part1">
         <caption>The region of integration <m>Q</m> with each of the four faces in a different color.</caption>
         <interactive label="int_verifyDiv_part1" platform="sage" width="87%" aspect="1:1.05">
-          <slate surface="sage">
+          <description><p>The region of integration <m>Q</m> with each of the four faces in a different color.</p>
+        </description><slate surface="sage">
             var('s,t,x,y,z')
             plot6=parametric_plot3d((s,t*(1-s),0),(t,0,1),(s,0,1),color='#1E88E5',opacity=0.8)
             plot6+=parametric_plot3d((0,s,t*(1-s)),(t,0,1),(s,0,1),color='#D81B60',opacity=0.8)
@@ -299,7 +304,7 @@
         </interactive>
       </figure>
         <p>
-          We set up and evaluate each of these flux integrals using <xref ref="thm_flux_int_calc" />:
+          We set up and evaluate each of these flux integrals using <xref ref="thm_flux_int_calc"/>:
           <md>
             <mrow>S_1\amp : \int_0^{1} \int_0^{1-s} \langle (0)s-t,st-e^1,t(0-s) \rangle \cdot \langle 1,0,0 \rangle \, dt\, ds</mrow>
             <mrow>S_2\amp :  \int_0^{1} \int_0^{1-s} \langle s(0)-t,0(t)-e^s,t(s-0) \rangle \cdot \langle 0,-1,0 \rangle \, dt\, ds</mrow>
@@ -340,7 +345,7 @@
     </task>
   </example>
   <p>
-    The next activity walks you through evaluating both the flux integrals necessary to calculate the flux directly and the triple integral given in the <xref ref="thm_Div" text="title" /> for a specific vector field and closed surface. 
+    The next activity walks you through evaluating both the flux integrals necessary to calculate the flux directly and the triple integral given in the <xref ref="thm_Div" text="title"/> for a specific vector field and closed surface. 
   </p>
   <worksheet>
   <activity workspace="1.5in" xml:id="act_Vector_DivThm_Verify">
@@ -351,7 +356,8 @@
       <figure xml:id="fig_Vector_DivThm_Cylinder">
       <caption>A closed cylindrical surface</caption>
       <interactive label="int_Vector_DivThm_Cylinder" platform="sage" width="87%" aspect="1:1.05">
-        <slate surface="sage">
+        <description><p>A closed cylindrical surface</p>
+      </description><slate surface="sage">
           var('t,s')
           plot5=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,1),(t,0,2*pi),frame=False,color='#648FFF',opacity=.5)
           plot5+=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='#DC267F',opacity=.5)
@@ -374,7 +380,8 @@
         <figure xml:id="fig_act_Vector_DivThm_Verify_Field">
           <caption>The vector field <m>\vF=\langle xy-2z,y^2-yz,3x+z^2\rangle</m> in the region near <m>Q</m></caption>
           <interactive label="int_act_Vector_DivThm_Verify_Field" platform="sage" width="87%" aspect="1:1.05">
-            <slate surface="sage">
+            <description><p>The vector field <m>\vF=\langle xy-2z,y^2-yz,3x+z^2\rangle</m> in the region near <m>Q</m></p>
+          </description><slate surface="sage">
               var('t,s,x,y,z')
               plot5=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,1),(t,0,2*pi),frame=False,color='#648FFF',opacity=.5)
               plot5+=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='#DC267F',opacity=.5)
@@ -549,7 +556,7 @@
   </activity>
 </worksheet>
   <p>
-    The next activity asks you to compute flux in some circumstances where it may be wise to apply <xref ref="thm_Div" text="title" />.
+    The next activity asks you to compute flux in some circumstances where it may be wise to apply <xref ref="thm_Div" text="title"/>.
   </p>
   <worksheet>
   <activity workspace="1.5in">
@@ -616,11 +623,11 @@
   </ul>
   </p>
 </subsection>
-<xi:include  href="exercises/ez-S_Vector_DivTheorem.ptx" />
-<subsection component="instructor" >
+<xi:include href="exercises/ez-S_Vector_DivTheorem.ptx"/>
+<subsection component="instructor">
   <title>Notes to Instructors and Dependencies</title>
   <p>
-    This section relies heavily on understanding flux integrals <xref ref="S_Vector_FluxInt" /> as well as the meaning of the divergence of a vector field from <xref ref="S_Vector_Div" /> and triple integrals from <xref ref="S-11-7-Triple-Integrals" />. 
+    This section relies heavily on understanding flux integrals <xref ref="S_Vector_FluxInt"/> as well as the meaning of the divergence of a vector field from <xref ref="S_Vector_Div"/> and triple integrals from <xref ref="S-11-7-Triple-Integrals"/>. 
   </p>
 </subsection>
 </section>
