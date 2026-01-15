@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!-- **********************************************************************-->
 <!-- Copyright 2013-2025                                                   -->
 <!-- Nicholas Long, Mitchel Keller, Steven Schlicker                       -->
@@ -13,7 +12,7 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-11-2-Iterated-Integrals" xmlns:xi="http://www.w3.org/2001/XInclude">
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sec-mult_int-iterated">
   <title>Iterated Integrals</title>
   <objectives>
       <ul>
@@ -27,49 +26,46 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section introduces iterated integrals as an algebraic tool and motivates their use in evaluating double integrals by using a horizontal or vertical slicing of the domain. Because we are still using rectangular regions of integration, we do not yet introduce horizontally or vertically simple descriptions of regions in the plane. This section can likely be done in a single class but sets up many of the elements that will be defined and used in double integrals over non-rectangular regions. While this section can be given a quick description, the practice with the mechanics of slicing and setting up interated integrals to evaluate double integrals is a very valuable step in student understanding. 
+      This section introduces iterated integrals as an algebraic tool and motivates their use in evaluating double integrals by using a horizontal or vertical slicing of the domain. Because we are still using rectangular regions of integration, we do not yet introduce horizontally or vertically simple descriptions of regions in the plane. This section can likely be done in a single class but sets up many of the elements that will be defined and used in double integrals over non-rectangular regions. While this section can be given a quick description, the practice with the mechanics of slicing and setting up interated integrals to evaluate double integrals is an important step in student understanding. 
     </p>
   </introduction>
   <subsection>
     <title>Introduction</title>
     <p>
-      In <xref ref="S-11-1-Double-Integrals-Rectangles">Section</xref>, we defined the double integral of a continuous function <m>f = f(x,y)</m> over a rectangle <m>R = [a,b] \times [c,d]</m> as
+      In <xref ref="sec-mult_ints-double_ints_rects"/>, we defined the double integral of a continuous function <m>f = f(x,y)</m> over a rectangle <m>R = [a,b] \times [c,d]</m> as
       <me>
         \iint_R f(x,y) \, dA = \lim_{m,n \to \infty} \sum_{j=1}^n \sum_{i=1}^m f\left(x_{ij}^*, y_{ij}^*\right) \cdot \Delta A,
       </me>
-      using the classic calculus approach. Thus <m>\iint_R f(x,y) \, dA</m> is a limit of double Riemann sums, but while this definition tells us exactly what a double integral is, it is not very helpful for determining the value of a double integral. Fortunately, there is a way to view a double integral as an <em>iterated integral</em><idx><h>iterated integral</h><h>rectangular coordinates</h></idx>, which will make computations feasible in many cases.
+      using the classic calculus approach. Thus <m>\iint_R f(x,y) \, dA</m> is a limit of double Riemann sums. However, while this definition tells us exactly what a double integral <em>is</em>, it is not very helpful for computing the <em>value</em> of a double integral. Fortunately, there is a way to view a double integral as an <term>iterated integral</term><idx><h>iterated integral</h><h>rectangular coordinates</h></idx>, which will make computations feasible in many cases.
     </p>
 
     <p>
-      The viewpoint of an iterated integral is closely connected to an important idea from single-variable calculus. When we studied solids of revolution, such as the one shown in <xref ref="F_6_2_Ex1">Figure</xref>, we saw that in some circumstances we could slice the solid perpendicular to an axis and approximate the volume using circular disks. From there, we were able to find the volume of each disk, and then use an integral to add the volumes of the slices to find the total volume of the rotated solid. 
+      The viewpoint of an iterated integral is closely connected to an important idea from single-variable calculus. When we studied solids of revolution, such as the one shown in <xref ref="fig-mult_ints-iteration-solid_rot">Figure</xref>, we saw that in some circumstances we could slice the solid perpendicular to an axis and approximate the volume using circular disks or washers. From there, we were able to find the volume of each disk, after which we used an integral to add the volumes of the slices and found the total volume of the rotated solid. 
     </p>
-    <figure xml:id="F_6_2_Ex1">
+    <figure xml:id="fig-mult_ints-iteration-solid_rot">
       <caption>A plot of a volume of revolution with circular disk used in estimating the enclosed volume</caption>
-        <interactive title="interactive-F_6_2_Ex1" platform="sage" width="100%" aspect="1:1">
-          <slate surface="sage">
-            <xi:include href="interacts/surfrot.txt" parse="text" />     
+        <interactive label="interactive-fig-mult_ints-iteration-solid_rot" platform="sage" width="91%" aspect="1:1">
+          <description><p>A plot of a volume of revolution with circular disk used in estimating the enclosed volume</p>
+        </description><slate surface="sage">
+            <xi:include href="interacts/surfrot.txt" parse="text"/>     
           </slate>
         </interactive>
     </figure>
     <p>  
-      We will look at an example of this approach in the following Preview Activity, we will look at how use single variable integrals along traces in a similar way to the rotation volume described above. We will generalize this approach in this section for double integrals over rectangular regions. In <xref ref="S-11-3-Double-Integrals-General"/>, we will look at using this technique on non-rectangular regions of integration. 
+      We will consider an example of this approach in the following Preview Activity. Specifically, you examine how to how use single-variable integrals along traces in a similar way to the rotation volume described above. We will generalize this approach in this section for double integrals over rectangular regions. In <xref ref="S-mult_ints-general"/>, we will look at using this technique on non-rectangular regions of integration. 
     </p>
     <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA_11_2">
+  <exploration workspace="1.5in" xml:id="PA-mult_ints-iterated">
       <introduction>
         <p>
-          In this activity we will explore the double integral of <m>f(x,y) = 25-x^2-y^2</m> on the rectangular domain <m>R = [-3,3] \times [-4,4]</m>.
-        </p>
-        <p>
-          As with partial derivatives, we may treat one of the variables in <m>f</m> as constant and think of the resulting function as a function of a single variable. We will now investigate what this means geometrically and algebraically when we integrate with one input variable fixed. 
+          In this activity we will explore the double integral of <m>f(x,y) = 25-x^2-y^2</m> on the rectangular domain <m>R</m> containing the points that satisfy <m>-3\leq x\leq 3</m> and <m>-4\leq y\leq 4</m>. As with partial derivatives, we may treat one of the variables in <m>f</m> as constant and think of the resulting function as a function of a single variable. We will now investigate what this means geometrically and algebraically when we integrate with one input variable fixed. 
         </p>
       </introduction>
       <task>
         <statement>
           <p>
             Let <m>a</m> be a fixed value in the interval <m>[-3,3]</m>. Compute 
-            <me>\int_{-4}^4 f(a,y) dy </me>
+            <me>\int_{-4}^4 f(a,y) dy </me>.
           </p>
         </statement>
         <answer>
@@ -87,18 +83,17 @@
       <task>
         <statement>
           <p>
-            The answer of your previous task depended on the value of <m>a</m> but the process would be the exact same set of steps for every <m>a</m>, so we can define a function <m>A(x)</m> as 
+            The answer of the previous part depended on the value of <m>a</m>, but the process would be the exact same set of steps for every <m>a</m>. This allows us to define a function <m>A(x)</m> as 
             <me>
               A(x) = \int_{-4}^4 f(x,y) \, dy
-            </me>
-          </p>
-          <p>
-            Explain the geometric meaning of the value of <m>A(x)</m> relative to the surface defined by <m>f</m> in the context of the trace determined by the fixed value of <m>x</m>. Your explanation should refer to different parts of <xref ref="surftrace"/>
+            </me>.
+            Write a couple of sentences to explain the geometric meaning of the value of <m>A(x)</m>. Your explanation should refer to different parts of <xref ref="fig-mult_ints-iteration-surftrace"/>, including the surface defined by <m>f</m> and the trace determined by the fixed value of <m>x</m>.
           </p> 
-          <figure xml:id="surftrace">
+          <figure xml:id="fig-mult_ints-iteration-surftrace">
             <caption>A plot of the surface <m>z= 25-x^2-y^2</m> with a cross section shown at <m>x=a</m></caption>
-              <interactive title="interactive-surftrace" platform="sage" width="100%" aspect="1:1">
-                <slate surface="sage">
+              <interactive label="interactive-fig-mult_ints-iteration-surftrace" platform="sage" width="91%" aspect="1:1">
+                <description><p>A plot of the surface <m>z= 25-x^2-y^2</m> with a cross section shown at <m>x=a</m></p>
+              </description><slate surface="sage">
                   var('s,t,x,y,z')
                   f(x,y)=25-x^2-y^2
                   x1=-3;x2=3;y1=-4;y2=4;
@@ -139,13 +134,14 @@
       <task>
         <statement>
           <p>
-            For a fixed value of <m>x</m>, say <m>x_i^*</m>, write a few sentences to explain the geometric meaning of <m>A(x_i^*) \ \Delta x</m>. Your explanation of <m>A(x_i^*) \Delta x</m> should refer to the parts of  <xref ref="F_11_2_Cross_section_PA_y">Figure</xref>.
+            Write a couple of sentences explaining the geometric meaning of <m>A(x_i^*) \ \Delta x</m>, where <m>x_i^*</m> is a fixed value of <m>x</m>. Your explanation should refer to the parts of  <xref ref="fig-mult_ints-iterated-PA_cross_y">Figure</xref>.
           </p>
-          <figure xml:id="F_11_2_Cross_section_PA_y">
+          <figure xml:id="fig-mult_ints-iterated-PA_cross_y">
             <caption> </caption>
-              <interactive title="interactive-F_11_2_Cross_section_PA_y" platform="sage" width="100%" aspect="1:1">
+              <interactive label="interactive-fig-mult_ints-iterated-PA_cross_y" platform="sage" width="91%" aspect="1:1">
+                <description><p>ADD ALT TEXT TO THIS IMAGE</p></description>
                 <slate surface="sage">
-                  <xi:include href="interacts/surftrace2.txt" parse="text" />     
+                  <xi:include href="interacts/surftrace2.txt" parse="text"/>     
                 </slate>
               </interactive>
           </figure>
@@ -161,7 +157,7 @@
           </p>
         </solution>
       </task>     
-      <!-- <figure xml:id="F_11_2_Cross_section_PA_y">
+      <!-- <figure xml:id="fig-mult_ints-iterated-PA_cross_y">
         <caption>Left: A cross section with fixed <m>x</m>. Right: A cross section with fixed <m>x</m> and <m>\Delta x</m>.</caption>
         <sidebyside widths="50% 50%">
           <image source="images/fig_11_2_preview_slice"/>
@@ -171,7 +167,7 @@
       <task>
         <statement>
           <p>
-            Since <m>f</m> is continuous on <m>R</m>, we can define the function <m>A = A(x)</m> at every value of <m>x</m> in <m>[-3,3]</m>. Now think about subdividing the <m>x</m>-interval <m>[-3,3]</m> into <m>m</m> subintervals, and choosing a value <m>x_i^*</m> in each of those subintervals.  What will be the meaning of the sum <m>\sum_{i=1}^m A(x_i^*) \ \Delta x</m>?
+            Since <m>f</m> is continuous on <m>R</m>, we can define the function <m>A = A(x)</m> at every value of <m>x</m> in <m>[-3,3]</m>. Think about subdividing the <m>x</m>-interval <m>[-3,3]</m> into <m>m</m> subintervals and choosing a value <m>x_i^*</m> in each of those subintervals. Write a sentence describing the meaning of the sum <m>\sum_{i=1}^m A(x_i^*) \ \Delta x</m>.
           </p>
         </statement>
         <answer>
@@ -188,7 +184,7 @@
       <task>
         <statement>
           <p>
-            Explain why <m>\int_{-3}^3 A(x) \, dx</m> will determine the exact value of the volume under the surface <m>z = f(x,y)</m> over the rectangle <m>R</m>.
+            Write a couple of sentences to explain why <m>\displaystyle\int_{-3}^3 A(x) \, dx</m> determines the exact value of the volume under the surface <m>z = f(x,y)</m> over the rectangle <m>R</m>.
           </p>
         </statement>
         <answer>
@@ -217,16 +213,57 @@
   <subsection>
     <title>Iterated Integrals</title>
     <p>
-      The ideas that we explored in <xref ref="PA_11_2">Preview Activity</xref> work more generally and lead to the idea of an iterated integral. Let <m>f</m> be a continuous function on a rectangular domain <m>R = [a,b] \times [c,d]</m>, and let
+      The ideas that we explored in <xref ref="PA-mult_ints-iterated">Preview Activity</xref> work more generally and lead to the idea of an iterated integral. We will explore how these ideas generalize by considering a surface <m>z=f(x,y)</m> such as the one shown in <xref ref="fig-mult_ints-iterated-wavy_surface"/> over a rectangular region <m>R</m> satisfying <m>a\leq x\leq b</m> and <m>c\leq x\leq d</m>. Our goal will be to use an interated integral to find the volume beneath this surface and above the <m>xy</m>-plane over the region <m>R</m>.
+    </p>
+    <figure xml:id="fig-mult_ints-iterated-wavy_surface">
+      <caption>A surface and the region below it</caption>
+      <interactive label="interactive-mult_ints-iterated-wavy_surface" platform="sage" width="91%" aspect="1:1"> 
+        <description><p>A surface and the region below it</p>
+      </description><slate surface="sage">
+          <xi:include href="interacts/iteratedintdemo1.txt" parse="text"/>
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      To avoid technical issues, we assume that <m>f</m> is continuous. As in the Preview Activity, we define a function
       <me>
-        A(x) = \int_c^d f(x,y) \, dy.
-      </me>
+        A(x) = \int_c^d f(x,y) \, dy
+      </me>.
+      The function <m>A(x)</m> determines the net signed area of a slice of the solid. The slice has a fixed value of <m>x</m>. By adjusting the slider in <xref ref="fig-mult_ints-iterated-wavy_surface2"/>, you can see a tickened version of such a slice, which we will refer to as a slab. (Thus, a slice will is a <em>two</em>-dimensional object and a slab is a <em>three</em>-dimensional object.) You should also observe how the <em>shape</em> of the slice changes as the value of <m>x</m> changes. This illustrates how it is essential to use an integral to find the area of a cross section, as this area cannot be determined by using only the value of <m>x</m> and simple formulas from geometry.
+    </p>
+    <figure xml:id="fig-mult_ints-iterated-wavy_surface2">
+      <caption>A slab with variable position underneath a surface </caption>
+      <interactive label="interactive-mult_ints-iterated-wavy_surface2" platform="sage" width="95%" aspect="1:1.1"> 
+        <description><p>A slab with variable position underneath a surface </p>
+      </description><slate surface="sage">
+          <xi:include href="interacts/iteratedintdemo2.txt" parse="text"/>
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      If we add up the volumes of the slabs in <xref ref="fig-mult_ints-iterated-wavy_surface2"/>, then we obtain an approximation for the volume of the solid between the surface and the <m>xy</m>-plane over the region <m>R</m>. If we let <m>\Delta x</m> denote the thickness of each slab, the volume of the slab with constant <m>x</m>-value <m>x_i^*</m> is <m>A(x_i^*)\Delta x</m>. Hence, the sum
+      <md>
+        \sum_{i=1}^m A(x_i^*) \Delta x
+      </md>
+      is an approximation of this volume. This sum is a Riemann summ of the single-variable function <m>A</m>. Therefore, as we let the number <m>m</m> of slabs go to infinity we obtain the integral
+      <md>
+        \int_a^b A(x) \, dx
+      </md>
+      as the volume of the solid.
     </p>
 
-    <p>
-      The function <m>A = A(x)</m> determines the value of the cross sectional area (by area we mean <q>signed</q> area) in the <m>y</m> direction for the fixed value of <m>x</m> of the solid bounded between the surface defined by <m>f</m> and the <m>xy</m>-plane.
-    </p>
-    <figure xml:id="F_11_2_Cross_section_y_slab_sum">
+    <!-- <p>
+      As we let the number of subintervals in the <m>x</m> direction approach infinity, we can see that the Riemann sum <m>\sum_{i=1}^m A(x_i^*) \Delta x</m>
+      approaches a limit and that limit is the sum of signed volumes bounded by the function <m>f</m> on <m>R</m>. Therefore, since <m>A(x)</m> is itself determined by an integral, we have
+      <md>
+        <mrow> \iint_R f(x,y) \, dA \amp= \lim_{m \to \infty} \sum_{i=1}^m A(x_i^*) \Delta x </mrow>
+        <mrow> \amp= \int_a^b A(x) \, dx = \int_a^b \left[ \int_c^d f(x,y) \, dy \right] \, dx. </mrow>
+      </md>
+    </p> -->
+
+   
+    
+    <!-- <figure xml:id="F_11_2_Cross_section_y_slab_sum">
       <caption> </caption>
         <interactive title="interactive-F_11_2_Cross_section_y_slab_sum" platform="sage" width="100%" aspect="1:1">
           <slate surface="sage">
@@ -252,7 +289,7 @@
               show(plot1,viewpoint=[[-0.099,-0.6027,-0.7918],165.17],camera_position=[4.2065,9.5131,4.0273],aspect_ratio=(1,1,.2))
           </slate>
         </interactive>
-    </figure>
+    </figure> -->
     <!-- <figure xml:id="F_11_2_Cross_section_y_slab_sum">
       <caption>Summing volumes of cross section slices</caption>
       <sidebyside widths="33% 33% 33%">
@@ -262,36 +299,35 @@
       </sidebyside>
     </figure> -->
 
-    <p>
-      The value of this cross sectional area is determined by the input <m>x</m> in <m>A</m>. Since <m>A</m> is a function of <m>x</m>, it follows that we can integrate <m>A</m> with respect to <m>x</m>. In doing so, we use a partition of <m>[a, b]</m> and make an approximation to the integral given by
-      <me>
-        \int_a^b A(x) \, dx  \approx \sum_{i=1}^m A(x_i^*) \Delta x,
-      </me>
-      where <m>x_i^*</m> is any number in the subinterval <m>[x_{i-1},x_i]</m>. Each term <m>A(x_i^*) \Delta x</m> in the sum represents an approximation of a fixed cross sectional slice of the surface in the <m>y</m> direction with a fixed width of <m>\Delta x</m> as illustrated in <xref ref="F_11_2_Cross_section_y_slab_sum">Figure</xref>. We add the signed volumes of these slices as shown in the frames in <xref ref="F_11_2_Cross_section_y_slab_sum">Figure</xref> to obtain an approximation of the total signed volume.
-    </p>
+
 
     <p>
-      As we let the number of subintervals in the <m>x</m> direction approach infinity, we can see that the Riemann sum <m>\sum_{i=1}^m A(x_i^*) \Delta x</m>
-      approaches a limit and that limit is the sum of signed volumes bounded by the function <m>f</m> on <m>R</m>. Therefore, since <m>A(x)</m> is itself determined by an integral, we have
-      <md>
-        <mrow> \iint_R f(x,y) \, dA \amp= \lim_{m \to \infty} \sum_{i=1}^m A(x_i^*) \Delta x </mrow>
-        <mrow> \amp= \int_a^b A(x) \, dx = \int_a^b \left[ \int_c^d f(x,y) \, dy \right] \, dx. </mrow>
-      </md>
-    </p>
-
-    <p>
-      Hence, we can compute the double integral of <m>f</m> over <m>R</m> by first integrating <m>f</m> with respect to <m>y</m> on <m>[c, d]</m>, then integrating the resulting function of <m>x</m> with respect to <m>x</m> on <m>[a, b]</m>. The nested integral
+      Now remember how we originally defined <m>A(x)</m> by using an integral. Thus, since the double integral represents the (net signed) volume of the solid enclosed by the <m>xy</m>-plane and the surface <m>z=f(x,y)</m> over the region <m>R</m>, we have
+      <md number="no" xml:id="eqn-iint">
+        \iint_R f(x,y)\, dA = \int_a^b A(x)\, dx = \int_a^b \left[\int_c^d f(x,y)\, dy\right]\, dx = \int_a^b \int_c^d f(x,y) \, dy \, dx
+      </md>.
+      We call these nested integrals an <term>iterated integral</term>, which will prove to be a frequently-used tool for evaluating double integrals.
+      
+      <!-- Hence, we can compute the double integral of <m>f</m> over <m>R</m> by first integrating <m>f</m> with respect to <m>y</m> on <m>[c, d]</m>, then integrating the resulting function of <m>x</m> with respect to <m>x</m> on <m>[a, b]</m>. The nested integral
       <me>
         \int_a^b \left[ \int_c^d f(x,y) \, dy \right] \, dx = \int_a^b \int_c^d f(x,y) \, dy \, dx
       </me>
-      is called an <em>iterated integral</em>, and we see that each double integral may be represented by two single integrals.
+      is called an <em>iterated integral</em>, and we see that each double integral may be represented by two single integrals. -->
     </p>
     <p>
+      In our future discussions of double integrals, it will be helpful to recognize the roles of the different components of an interated integral. When we consider
+      <md>
+        \int_a^b \int_c^d f(x,y) \, dy \, dx
+      </md>,
+      the differentials <m>dy</m> and <m>dx</m> carry both geometric and computational meaning. From a computational perspective, that <m>dy</m> is the <em>inner</em> differential tells us that the limits of integration on the inner integral sign are values of <m>y</m>: <m>c\leq y\leq d</m> for this rectangular region. Similarly, the position of <m>dx</m> as the <em>outer</em> differential tells us that when computing the inner integral, we consider <m>x</m> to be constant. After that computation is complete, we then have a single-variable integral on the interval with <m>a\leq x\leq b</m>. Thinking geometrically, since the inner integral computes the area of a cross section of the solid, we can think of <m>dy</m> as being the width of the rectangles whose areas are summed. Recalling that the <m>dx</m> arose from the limit where we had previously used <m>\Delta x</m> to find the volume of a slab, we see that the outer integral can be considered as summing up the volumes of slabs of thickness <m>dx</m>.
+    </p>
+    <!-- <p>
       We can also think of these iterated integrals as a description for evaluating one of our Riemann sums over fixed values (corresponding to the other input variable). As in our descriptions above, we can partition our space into pieces such that the inner sum of 
       <me>  \sum_{j=1}^m \sum_{i=1}^n f\left(x_{ij}^*, y_{ij}^*\right) \, \Delta A</me>
-      corresponds to our gridding in <m>y</m> (along a constant value <m>x_i^*</m>). This corresponds to the inner sum being along a column of smaller rectangles, as shown in <xref ref="iigrid"/>. 
-    </p>
-    <figure xml:id="iigrid">
+      corresponds to our gridding in <m>y</m> (along a constant value <m>x_i^*</m>). This corresponds to the inner sum being along a column of smaller rectangles, as shown in <xref provisional="iigrid"/>. 
+    </p> -->
+
+    <!-- <figure xml:id="iigrid">
       <caption>A splitting of a rectangular region of integration into smaller rectangles</caption>
         <image width="100%" xml:id="img-iigrid">
           <sageplot>
@@ -310,19 +346,27 @@
             plot12           
           </sageplot>
         </image>
-    </figure>
-    <p>
+    </figure> -->
+    <!-- <p>
       Our outer sum will then correspond to the sum over each of these cross sectional areas (column sums). Because we are working with a rectangular region of integration, the limit as <m>n \to \infty</m> will make these column sums converge to integrals of the form <m>\int_c^d f(x_i^*,y) \, dy</m>, which we called <m>A(x^*_i)</m>. The outer sum will converge to the integral <m>\int_a^b A(x) \, dx</m>, giving the iterated integral form. 
-    </p>
+    </p> -->
 
     <p>
-      In our arguments above, we made the choice to integrate first with respect to <m>y</m> (holding <m>x</m> constant first). A parallel argument shows that we can also find the double integral as an iterated integral integrating with respect to <m>x</m> first, or
+      In our arguments above, we made the choice to integrate first with respect to <m>y</m> (holding <m>x</m> constant). We could just as easiy have chosen to hold <m>y</m> constant first, which yields the double integral as an iterated integral that integrates first with respect to <m>x</m>:
       <me>
-        \iint_R f(x,y) \, dA = \int_c^d \left( \int_a^b f(x,y) \, dx \right) \, dy = \int_c^d  \int_a^b f(x,y) \, dx  \, dy.
-      </me>
-      You could visualize this as first taking the sum across rows of smaller rectangles in <xref ref="iigrid"/>, then taking the sum of this column of sums. This order of operations would correspond to integrating with respect to <m>x</m> first (holding <m>y</m> constant for a particular row), then integrating across the range of <m>y</m> values.
+        \iint_R f(x,y) \, dA = \int_c^d \left( \int_a^b f(x,y) \, dx \right) \, dy = \int_c^d  \int_a^b f(x,y) \, dx  \, dy
+      </me>.
+      <xref ref="fig-mult_ints-iterated-wavy_surface3"/> allows you to change the direction of slicing and provides a visualization of the slabs whose volumes are integrated by the outer integral in this iterated integral.
     </p>
-
+     <figure xml:id="fig-mult_ints-iterated-wavy_surface3">
+      <caption>Decomposition of the solid below a surface into slices along constant <m>x</m>-values or <m>y</m>-values</caption>
+      <interactive label="interactive-mult_ints-iterated-wavy_surface3" platform="sage" width="95%" aspect="1:1.1"> 
+        <description><p>Decomposition of the solid below a surface into slices along constant <m>x</m>-values or <m>y</m>-values</p>
+      </description><slate surface="sage">
+          <xi:include href="interacts/iteratedintdemo3.txt" parse="text"/>
+        </slate>
+      </interactive>
+    </figure>
     <p>
       The fact that integrating in either order results in the same value is known as Fubini's Theorem.
     </p>
@@ -344,17 +388,16 @@
         This is another time in which we trade a multi-dimensional problem (double integral) for multiple one-dimensional problems that we have much more experience with.
       </p>
        <image source="LBmeme.png" width="50%">
-        <shortdescription>(for accessibility)</shortdescription>
-       </image>
+        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
     </aside>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_2_1">
+  <activity workspace="1.5in" xml:id="act-mult_ints-iterated_paraboloid">
       <introduction>
         <p>
-          Let <m>f(x,y) = 25-x^2-y^2</m> on the rectangular domain <m>R = [-3,3] \times [-4,4]</m>.
+          Let <m>f(x,y) = 25-x^2-y^2</m> on the rectangular domain <m>R</m> with <m>-3\leq x\leq 3</m> and <m>-4\leq y\leq 4</m>.
         </p>
       </introduction>
-      <task >
+      <task>
         <statement>
           <p>
             Viewing <m>x</m> as a fixed constant, use the Fundamental Theorem of Calculus to evaluate the integral
@@ -408,7 +451,7 @@
       <task>
         <statement>
           <p>
-            What is the value of <m>\displaystyle{\iint_R f(x,y) \, dA}</m>? Write a sentence to interpret the meaning of this value for two out of the three different ways mentioned in <xref ref="interpret-dblint"/>.
+            What is the value of <m>\displaystyle{\iint_R f(x,y) \, dA}</m>? Write a sentence to interpret the meaning of this value for two out of the three different ways mentioned in <xref ref="keyidea-double-int-interp"/>.
           </p>
         </statement>
         <answer>
@@ -437,7 +480,7 @@
   <activity workspace="1.5in" xml:id="A_11_2_2">
       <introduction>
         <p>
-          Let <m>f(x,y) = x+y^2</m> on the rectangle <m>R = [0,2] \times [0,3]</m>.
+          Let <m>f(x,y) = x+y^2</m> on the rectangle <m>R</m> with <m>0\leq x\leq 2</m> and <m>0\leq y\leq 3</m>.
         </p>
       </introduction>
       <task>
@@ -491,8 +534,7 @@
     </activity>
 </worksheet>
   </subsection>
-  <subsection>
-    <title>Summary</title>
+  <outcomes>
     <ul>
       <li>
         <p>
@@ -514,7 +556,7 @@
       </li>
     </ul>
 
-  </subsection>
+  </outcomes>
 
-    <xi:include href="exercises/ez-S_multi_ints_iterated_ints.ptx" />
+    <xi:include href="exercises/ez-S_multi_ints_iterated_ints.ptx"/>
 </section>

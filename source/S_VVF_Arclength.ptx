@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!-- **********************************************************************-->
 <!-- Copyright 2013-2025                                                   -->
 <!-- Nicholas Long, Mitchel Keller, Steven Schlicker                       -->
@@ -13,7 +12,7 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-VVF-ArcLength" xmlns:xi="http://www.w3.org/2001/XInclude">
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S-VVF-ArcLength">
   <title>Arc Length</title>
 
 <objectives>
@@ -44,7 +43,7 @@
     <caption>A curve <m>C</m> from the point <m>P</m> to the point <m>Q</m> </caption>
     <image width="80%" label="line-arclength1"> <!--source="/line_int_defn3"-->
       <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m></p></description>
-      <sageplot >
+      <sageplot>
         tpoints=[4,0.5]
         offsetx=[0.1,0.2]
         offsety=[-0.2,-0.2]
@@ -68,11 +67,10 @@
     However, if this curve is a portion of a road on which we drive a car, the distance traveled as measured by the change in the car's odometer value from point <m>P</m> to point <m>Q</m> will be different to the staight-line distance <m>\vert PQ\vert</m> calculated by the distance formula. You likely saw how to calculate the length of a portion of a curve <m>y=f(x)</m> in your <url href="https://activecalculus.org/single/sec-6-1-area.html" visual="activecalculus.org/single/sec-6-1-area.html">single-variable calculus class</url>. In this section, we will use the idea of vector-valued functions to find the lengths of a larger family of curves.
   </p>
 <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA-arclength" >
+  <exploration workspace="1.5in" xml:id="PA-arclength">
   <introduction>
     <p>
-      In <xref ref="PA-VVF-Plotting" /> and <xref ref="PA-VVF-Calculus" /> we saw how the position reported by the location tracking system (LTS) of a self-driving car corresponds to a vector-valued function that describes the location of the car at a given time. We want to relate the location at different times to properties about how the car is being driven. In order to attract investors and drive shareholder value in <em>Steer Clear</em>, you decide to use the location tracking system's output to build a customized navigation and telemetry tool for a self-driving car. The first element you will need to build is a way to use the LTS output to calculate how far the car has driven in a given time. 
+      In <xref ref="PA-VVF-Plotting"/> and <xref ref="PA-VVF-Calculus"/> we saw how the position reported by the location tracking system (LTS) of a self-driving car corresponds to a vector-valued function that describes the location of the car at a given time. We want to relate the location at different times to properties about how the car is being driven. In order to attract investors and drive shareholder value in <em>Steer Clear</em>, you decide to use the location tracking system's output to build a customized navigation and telemetry tool for a self-driving car. The first element you will need to build is a way to use the LTS output to calculate how far the car has driven in a given time. 
     </p>
   </introduction> 
   <task xml:id="PA-arclength1">
@@ -152,7 +150,7 @@
     <image width="80%" label="line-arclength2"> <!--source="/line_int_defn3"-->
       <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m>. Point <m>P</m> is labeled as <m>\vr_0</m> and point <m>Q</m> is labeled as <m>\vr_n</m>. There are five intermediate points drawn as well as vectors connecting consecutive intermediate points. The vector from <m>\vr_{3}</m> to <m>\vr_4</m> is labeled <m>\Delta\vr_4 = \vr_4-\vr_{3}</m>. </p></description>
       
-      <sageplot >
+      <sageplot>
         tpoints=[4,3.5,3,2.5,1.5,1,0.5]
         offsetx=[0.1,-0.2,-0.25,0,0,0,0.2]
         offsety=[-0.2,-0.1,0.1,0.3,0.3,0.3,-0.2]
@@ -190,7 +188,8 @@
   <figure xml:id="arclengthinteract">
     <caption>A plot of curve in space</caption>
     <interactive label="interactive-arclength1" platform="sage" width="110%" aspect="1:0.75">
-      <slate surface="sage">
+      <description><p>A plot of curve in space</p>
+    </description><slate surface="sage">
         @interact
         def arclengthdemo(n=slider(1,25,1,default=1,label="Number of Segments")):
             tpoints=[4-3.5*i/n for i in range(n+1)]
@@ -283,7 +282,7 @@
   <task>
     <statement>
       <p>
-        Use your parameterization from the previous part in the definite integral of <xref ref="Length-of-a-curve" /> to calculate the circumference of a circle of radius <m>3</m>.
+        Use your parameterization from the previous part in the definite integral of <xref ref="Length-of-a-curve"/> to calculate the circumference of a circle of radius <m>3</m>.
       </p>
     </statement>
     <solution>
@@ -326,23 +325,24 @@
 </activity>
 </worksheet>
 <p>
-  <xref ref="ex-VVF-arclength-fn" text="type-local" /> will apply <xref ref="def-arclength"/> and <xref ref="Length-of-a-curve" /> to arrive at a formula for the length of a graph given by <m>y=f(x)</m> that may be familiar from single-variable calculus courses.   
+  <xref ref="ex-VVF-arclength-fn" text="type-local"/> will apply <xref ref="def-arclength"/> and <xref ref="Length-of-a-curve"/> to arrive at a formula for the length of a graph given by <m>y=f(x)</m> that may be familiar from single-variable calculus courses.   
 </p>
 </subsection>
 <subsection>
   <title>Moving with Unit Speed</title>
   <p>
-    In <xref ref="act-VVF-arclength-circle-helix" />, we considered parameterizations of a circle and a helix. The computation of the arc length in these problems was made easier by the fact that the speed of an object with motion described by the parameterizations used did not depend on the time <m>t</m>. That is, the speed of an object moving according to the parameterization was <em>constant</em>. Moving with constant speed is always feasible. For example, we can set our self-driving car to move at a constant speed of 60 miles per hour, and the car then moves with constant speed. (Of course, this is probably only recommended on a road where no obstacles or other vehicles will appear.) However, finding a parameterization with constant speed may involve some complex algebra, as we will see while working through this section.
+    In <xref ref="act-VVF-arclength-circle-helix"/>, we considered parameterizations of a circle and a helix. The computation of the arc length in these problems was made easier by the fact that the speed of an object with motion described by the parameterizations used did not depend on the time <m>t</m>. That is, the speed of an object moving according to the parameterization was <em>constant</em>. Moving with constant speed is always feasible. For example, we can set our self-driving car to move at a constant speed of 60 miles per hour, and the car then moves with constant speed. (Of course, this is probably only recommended on a road where no obstacles or other vehicles will appear.) However, finding a parameterization with constant speed may involve some complex algebra, as we will see while working through this section.
   </p>
   <p>
     We will focus on finding a parameterization with unit speed. That is, one for which <m>\vecmag{\vv(t)} = \vecmag{\vr\, '(t)} = 1</m> for all values of <m>t</m>. We call such a parameterization a <term>unit speed parameterization</term> of the curve. The key idea involves recognizing that, in general, distance along the curve is not the same as the parameter being used. If an object moves with constant speed one, then the numerical value of the distance it travels <em>is</em> the numerical value of the time elapsed. For example, if you walk at exactly 1 meter per second for 47 seconds, how far have you gone? If you walk at exactly 1 meter per second, how long will it take you to travel 47 meters? The answer to both is 47 but the units are different. Remember that we do not have to walk in a straight line (i.e., with constant direction) to keep speed constant.
   </p>
   <p>
-    As a more concrete illustration of this idea, consider the curve defined by the parabola <m>y = x^2/2</m> with <m>x\in[0,2]</m>. We can parameterize this curve by <m>\vr(t) = \langle t, t^2/2\rangle</m> for <m>t\in[0,2]</m>. <xref ref="F_9_8_parametrization" /> shows a plot of this parabola with equally-spaced points in the parameter <m>t</m> on the left. You can see in the plot on the left that equally-spaced points based on parameter values are <em>not</em> be separated by equal distances along the curve. On the right, however, the points are equally-spaced by arc length. By this we mean that the distance <em>along the curve</em> between the point labeled <m>s=0.5</m> and the point labeled <m>s=1.0</m> is <m>0.5</m>. Similarly, the distance along the curve between the point labeled <m>s=0.5</m> and the point labeled <m>s=2.5</m> is <m>2</m>. For this reason, a unit speed parameterization is also often called a <term>parameterization by arc length</term>.
+    As a more concrete illustration of this idea, consider the curve defined by the parabola <m>y = x^2/2</m> with <m>x\in[0,2]</m>. We can parameterize this curve by <m>\vr(t) = \langle t, t^2/2\rangle</m> for <m>t\in[0,2]</m>. <xref ref="F_9_8_parametrization"/> shows a plot of this parabola with equally-spaced points in the parameter <m>t</m> on the left. You can see in the plot on the left that equally-spaced points based on parameter values are <em>not</em> be separated by equal distances along the curve. On the right, however, the points are equally-spaced by arc length. By this we mean that the distance <em>along the curve</em> between the point labeled <m>s=0.5</m> and the point labeled <m>s=1.0</m> is <m>0.5</m>. Similarly, the distance along the curve between the point labeled <m>s=0.5</m> and the point labeled <m>s=2.5</m> is <m>2</m>. For this reason, a unit speed parameterization is also often called a <term>parameterization by arc length</term>.
   </p>
   <figure xml:id="F_9_8_parametrization">
     <caption>A plot of <m>y = x^2/2</m> with <m>x\in[0,2]</m> with points equally spaced in the parameter value (on left) and in arc length (on right)</caption>
-    <image width="100%" source="images/fig_9_8_param"/>
+    <image width="100%" source="images/fig_9_8_param"><description><p>A plot of <m>y = x^2/2</m> with <m>x\in[0,2]</m> with points equally spaced in the parameter value (on left) and in arc length (on right)</p>
+    </description></image>
   </figure>
   <aside>
     <title>Terminology</title>
@@ -391,7 +391,7 @@
   <p xml:id="coordchangetounitspeed">
     The left part of equation <xref ref="unitspeedidea"/> shows the important idea needed to find a unit speed parameterization: we can adjust the speed of the parameterization. This requires that we pick a transformation <m>s(t)</m> to satisfy 
     <me>\vecmag{\frac{d\vr}{ds}} \left\vert\frac{ds}{dt}\right\vert =1</me>.
-    Algebraically, this is <alert>very</alert> difficult to write out in closed form. However, it will be possible because the arc length traveled as a function of the parameter cannot decrease. If we make a two-dimensional plot with the parameter value on the horizontal axis and the arc length traveled on the vertical axis, then we have a graph that passes the horizontal line test. This means that this function has an inverse! An example of this kind of plot is shown in <xref ref="arclengthplot" />. The point highlighted on the graph indicates that at the parameter value <m>t=4</m>, the arc length from the point with <m>t=0</m> (or the distance traveled by an object following the curve from <m>t=0</m> to <m>t=4</m>) is approximately <m>48.134</m>. In other words, when finding a parameterization by arc length or unit speed parameterization, we will need to arrive at the same point on the curve when the parameter value is <m>48.134</m>.
+    Algebraically, this is <alert>very</alert> difficult to write out in closed form. However, it will be possible because the arc length traveled as a function of the parameter cannot decrease. If we make a two-dimensional plot with the parameter value on the horizontal axis and the arc length traveled on the vertical axis, then we have a graph that passes the horizontal line test. This means that this function has an inverse! An example of this kind of plot is shown in <xref ref="arclengthplot"/>. The point highlighted on the graph indicates that at the parameter value <m>t=4</m>, the arc length from the point with <m>t=0</m> (or the distance traveled by an object following the curve from <m>t=0</m> to <m>t=4</m>) is approximately <m>48.134</m>. In other words, when finding a parameterization by arc length or unit speed parameterization, we will need to arrive at the same point on the curve when the parameter value is <m>48.134</m>.
   </p>
   
   <!--The figure below can be changed to be anything we want but I wanted something that showed some variation in speed. The other examples that can be referenced are (cos(t),sin(t),cos(2*t)) xml:id="vvf-example1" or (-2*sin(2*t),2*cos(t),1-1/(1+t)) xml:id="act-vvf-calc-position" -->
@@ -399,7 +399,6 @@
   <figure xml:id="arclengthplot">
     <caption>A plot of the arc length traveled as a function of the parameter value to that point for <m>\vr(t)=\langle 3t\cos(4t)\sin(3-2t),t-\cos(2+t)\rangle</m></caption>
     <image width="80%"> <!--source="/line_int_defn3"-->
-      <shortdescription>A graph in the first quadrant showing arc length as a function of time</shortdescription>
       <description><p>Axes for the first quadrant. The horizontal axis is labeled with time <m>t</m> and the vertical axis is labeled arc length <m>s</m>. The graph depicts a function that starts at the origin and increases, although the rate of increase varies. There is also a point identified on the graph with <m>t</m>-coordinate <m>4</m> and <m>s</m>-coordinate approximately <m>48</m>. Dashed lines go from the axes to this point. </p></description>
       <sageplot label="line-arclengthplot">
         var('t,x')
@@ -442,7 +441,7 @@
         An important element of this example is that our speed is not constant but still algebraically easy enough to work with for later calculations. Note that because we have stated that <m>t\gt 0</m> we only need to consider the positive square root calculation. 
     </p>
     <p>
-      Next, we will calculate <m>s(a)</m>, the arc length traveled from <m>t=0</m> to <m>t=a</m> along the curve <m>C</m> in order to help us figure out how to transform our parameterization into one with unit speed. We use <xref ref="Length-of-a-curve" /> to compute the arc length of <m>C</m> as <m>t</m> goes from <m>0</m> to <m>a</m>. 
+      Next, we will calculate <m>s(a)</m>, the arc length traveled from <m>t=0</m> to <m>t=a</m> along the curve <m>C</m> in order to help us figure out how to transform our parameterization into one with unit speed. We use <xref ref="Length-of-a-curve"/> to compute the arc length of <m>C</m> as <m>t</m> goes from <m>0</m> to <m>a</m>. 
       <md>
         <mrow>s(a) \amp = \int_{0}^a \sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 +\left(z'(t)\right)^2} \, dt</mrow>
         <mrow>\amp = 2\int_0^a t+2 \, dt</mrow>
@@ -454,7 +453,6 @@
     <figure xml:id="fig-arclength-inverse">
       <caption>The arc length function for the curve <m>\vr(t)</m></caption>
       <image width="51%">
-        <shortdescription>A graph of the arc length function</shortdescription>
         <description>
           <p>The graph of an increasing curve in the first quadrant. The horizontal axis is labeled <m>t</m> and the vertical axis is labeled <m>s</m>. A point on the graph is identified and labeled <m>(a,s(a))</m>. Vertical and horizontal dashed lines from this point to the axes are included as well.
           </p>
@@ -465,8 +463,8 @@
             <definition>a = 1.35</definition>
             <coordinates bbox="(-0.5,-2,3,20)">
               <grid-axes xlabel="t" ylabel="s"/>
-              <line endpoints="((a,0),(a,f(a)))" stroke="gray" dash="9 9" />
-              <line endpoints="((0,f(a)),(a,f(a)))" stroke="gray" dash="9 9" />
+              <line endpoints="((a,0),(a,f(a)))" stroke="gray" dash="9 9"/>
+              <line endpoints="((0,f(a)),(a,f(a)))" stroke="gray" dash="9 9"/>
               <graph function="f" domain="(0,3)"/>
               <point p="(a,f(a))" alignment="e">
                 <m>(a,s(a))</m>
@@ -536,8 +534,10 @@
     <!-- TODO These plots are really not awesome. -->
     <caption>A plot of the racetrack with scale in meters</caption>
     <sidebyside>
-      <image width="45%" source="images/racetrack1.png"/>
-      <image width="45%" source="images/racetrack2.png"/>
+      <image width="45%" source="images/racetrack1.png"><description><p>A plot of the racetrack with scale in meters</p>
+    </description></image>
+      <image width="45%" source="images/racetrack2.png"><description><p>A plot of the racetrack with scale in meters</p>
+    </description></image>
     </sidebyside>
   </figure>
   <p>
@@ -623,6 +623,6 @@
   </ul>
 </outcomes>
 
-<xi:include href="exercises/ez-S_VVF_Arclength.ptx" />
+<xi:include href="exercises/ez-S_VVF_Arclength.ptx"/>
     
 </section>
