@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!-- **********************************************************************-->
 <!-- Copyright 2013-2025                                                   -->
 <!-- Nicholas Long, Mitch Keller                                           -->
@@ -32,7 +31,7 @@
   <subsection>
     <title>Introduction</title>
   <p>
-    In <xref ref="S_Vector_IdeaLineIntegral" />, the idea of a line integral was introduced by looking at the work done by a vector field when traveling along <m>C</m>, a path in space. In particular, the line integral measured the accumulated amount of the vector field that is along the path <m>C</m> (in the direction of travel.) <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> shows how to use a Riemann sum to measure the accumulation of the vector field in the direction of travel along the given curve. Additionally, <xref ref="thm_LineIntParam" /> shows how the line integral <m>\int_C \vF\cdot d\vr </m> can be efficently calculated in terms of the vector field and the derivative of <em>any</em> paramaterization of <m>C</m>. Philosophically, the Riemann sum in <xref ref="def_Vector_IdeaLineIntegral_LineIntegral" /> is adding up the scalar function given by the dot product of the vector field and the unit vector in the direction of travel (along the curve).
+    In <xref ref="S_Vector_IdeaLineIntegral"/>, the idea of a line integral was introduced by looking at the work done by a vector field when traveling along <m>C</m>, a path in space. In particular, the line integral measured the accumulated amount of the vector field that is along the path <m>C</m> (in the direction of travel.) <xref ref="def_Vector_IdeaLineIntegral_LineIntegral"/> shows how to use a Riemann sum to measure the accumulation of the vector field in the direction of travel along the given curve. Additionally, <xref ref="thm_LineIntParam"/> shows how the line integral <m>\int_C \vF\cdot d\vr </m> can be efficently calculated in terms of the vector field and the derivative of <em>any</em> paramaterization of <m>C</m>. Philosophically, the Riemann sum in <xref ref="def_Vector_IdeaLineIntegral_LineIntegral"/> is adding up the scalar function given by the dot product of the vector field and the unit vector in the direction of travel (along the curve).
   </p>
   <p>
     We will devote the rest of this section to answering these questions about generalizing the ideas of line integrals as fully as possible.
@@ -51,8 +50,7 @@
     </ul>
   </p>
   <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA_ScalarLI" >
+  <exploration workspace="1.5in" xml:id="PA_ScalarLI">
     <introduction>
       <p>
         In order to pay for tutition, you take a job driving a mining machine that collects a very valuable mineral called copium. Copium is only produced on the surface and is mined by scooping up the soil at the front of your machine, so the amount of copium ore collected depends on the density of the ore and the distance driven by the mining machine. The plot of land you are mining has been surveyed for the density of copium ore and is presented in the contour plot below.
@@ -60,8 +58,9 @@
       <figure xml:id="CopiumPlot">
         <caption>A plot of land with density of copium deposits </caption>
         <image xml:id="CopiumMinePlot">
-          <sageplot>
-<xi:include href="CopiumMinePlot.sage" parse="text" />
+          <description><p>A plot of land with density of copium deposits </p>
+        </description><sageplot>
+<xi:include href="CopiumMinePlot.sage" parse="text"/>
           </sageplot>
         </image>
       </figure>
@@ -127,7 +126,8 @@
         <figure>
           <caption>A plot of land with copium density and a path plotted in blue</caption>
           <image xml:id="CopiumPlotwithPath2">
-            <sageplot>
+            <description><p>A plot of land with copium density and a path plotted in blue</p>
+          </description><sageplot>
               var('x,y,t')
               f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
               cp=contour_plot(f,(x,0,550),(y,0,550),colorbar=True)
@@ -151,7 +151,7 @@
 <subsection>
   <title>Defining line integrals of scalar functions</title>
 <p>
-  In <xref ref="PA_ScalarLI" />, you approximated the distance traveled for various paths and multiplied by the density of the copium on each piece of the path. In contrast to the line integral of a vector field, the calculations of the ore mined does not depend on what direction the path was traveled. We will now use these same ideas to give precise meaning to the measurement of the acculumation of a scalar function's output over a path in space.
+  In <xref ref="PA_ScalarLI"/>, you approximated the distance traveled for various paths and multiplied by the density of the copium on each piece of the path. In contrast to the line integral of a vector field, the calculations of the ore mined does not depend on what direction the path was traveled. We will now use these same ideas to give precise meaning to the measurement of the acculumation of a scalar function's output over a path in space.
 </p>
 <p>
   Let <m>f</m> be a contiunuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>, a curve from a point <m>P</m> to a point <m>Q</m>. We will begin to approximate the acculumlation of the output of <m>f</m> over <m>C</m> by breaking <m>C</m> into pieces with boundary points <m>P=\vr_0, \vr_1, \dots, \vr_n-1, \vr_n=Q</m>. The curve <m>C_i</m> is the part of <m>C</m> that goes from <m>\vr_{i-1}</m> to <m>\vr_i</m> and <m>\Delta \vr_i</m> is the displacement vector from <m>\vr_{i-1}</m> to <m>\vr_i</m>
@@ -159,7 +159,8 @@
 <figure>
   <caption>A curve in space with segments given by <m>\mathbf{r}_i</m></caption>
   <image width="80%" xml:id="scalar_line_int_segments">
-    <sageplot>
+    <description><p>A curve in space with segments given by <m>\mathbf{r}_i</m></p>
+  </description><sageplot>
       tpoints=[4,3.5,3,2.5,1.5,1,0.5]
       offsetx=[0.1,-0.2,0.2,0.2,0,0,0.2]
       offsety=[-0.2,-0.1,0,0.2,-0.2,-0.2,-0.2]
@@ -202,9 +203,9 @@
   </statement>
 </definition>
 <p>
-  The notation for a scalar line integral (<m>\int_C f \, ds </m>) may not immediately make sense. As with the other types of integration we have done (single variable integration, double integrals, line integrals of vector fields, etc.), the subscript of the integral symbol denotes the region of integration. In the case of a scalar line integral, the region of integration is a collection of points given by a curve in space. The function we are integrating is <m>f</m>, a scalar-valued functiton of multiple variables. The differential <m>ds</m> may seem unusual to you. If you remember from <xref ref="S-VVF-ArcLength" />, <m>s</m> is the arc length of a curve in space. So the differential <m>ds</m> in the scalar line integral notation means that we are adding up the output of <m>f</m> over steps in arc length. This should make sense in terms of how we set up our Riemann sums. We did not set up the pieces of our curve as steps in <m>x</m>, <m>y</m>, or <m>z</m>, but rather as steps in arc length (estimated by <m>|{\vr_{i+1}-\vr_{i}}|</m>). This may feel similar to situations such as double integrals, where we generically used <m>dA</m> for the differential, but the different contexts called for different values of <m>dA</m>. For instance, in polar coordinates, we use <m>dA = r\, dr\, d\theta</m>
+  The notation for a scalar line integral (<m>\int_C f \, ds </m>) may not immediately make sense. As with the other types of integration we have done (single variable integration, double integrals, line integrals of vector fields, etc.), the subscript of the integral symbol denotes the region of integration. In the case of a scalar line integral, the region of integration is a collection of points given by a curve in space. The function we are integrating is <m>f</m>, a scalar-valued functiton of multiple variables. The differential <m>ds</m> may seem unusual to you. If you remember from <xref ref="S-VVF-ArcLength"/>, <m>s</m> is the arc length of a curve in space. So the differential <m>ds</m> in the scalar line integral notation means that we are adding up the output of <m>f</m> over steps in arc length. This should make sense in terms of how we set up our Riemann sums. We did not set up the pieces of our curve as steps in <m>x</m>, <m>y</m>, or <m>z</m>, but rather as steps in arc length (estimated by <m>|{\vr_{i+1}-\vr_{i}}|</m>). This may feel similar to situations such as double integrals, where we generically used <m>dA</m> for the differential, but the different contexts called for different values of <m>dA</m>. For instance, in polar coordinates, we use <m>dA = r\, dr\, d\theta</m>
 </p>
-<example xml:id="sli_pm" >
+<example xml:id="sli_pm">
   <introduction>
     <p>
       Before getting into the details of computing line integrals of scalar functions, we will first make arguments about when the line integral of a scalar function is positive, negative, or zero. For all of this example, we will use the curve <m>C</m> given by <m>y=x^2</m> for <m>-1\leq x \leq 2</m>. We also will define the following three scalar-valued functions on <m>\R^2</m>.
@@ -215,9 +216,10 @@
       </ul>
     </p>
     <figure xml:id="fig_sli_pm1">
-      <caption>The curve <m>C</m> used in the line integral for <xref ref="sli_pm" /></caption>
+      <caption>The curve <m>C</m> used in the line integral for <xref ref="sli_pm"/></caption>
       <image width="75%" xml:id="fig_scalarlineint_pmexample1">
-        <sageplot>
+        <description><p>The curve <m>C</m> used in the line integral for <xref ref="sli_pm"/></p>
+      </description><sageplot>
           var('x')
           plot11=plot(x^2,(x,-1,2),color='#1E88E5',axes_labels=["$x$","$y$"],thickness=2)
           plot11+=text("$C$",(1.5,1),color='#1E88E5',fontsize=20)
@@ -233,7 +235,8 @@
     <figure xml:id="fig_sli_pm3">
       <caption>The curve <m>C</m> split into regions with positive (blue) and negative (magenta) outputs of <m>f</m></caption>
       <image width="75%" xml:id="fig_scalarlineint_pmexample3">
-        <sageplot>
+        <description><p>The curve <m>C</m> split into regions with positive (blue) and negative (magenta) outputs of <m>f</m></p>
+      </description><sageplot>
           var('x')
           plot13=plot(x^2,(x,0,2),color='#1E88E5',thickness=2)
           plot13+=plot(x^2,(x,-1,0),color='#D81B60',thickness=2)
@@ -245,7 +248,7 @@
       </image>
     </figure>
     <p>
-      If we break our curve <m>C</m> into three pieces by dividing at <m>x=0</m> and <m>x=1</m> as shown in <xref ref="fig_sli_pm2" />, we can make a rigourous argument about why the result of <m>\int_C f \, ds</m> will be positive. We will call the magenta, green, and blue sections of <xref ref="fig_sli_pm2" /> <m>C_1</m>, <m>C_2</m>, and <m>C_3</m>, respectively. Using the notation of <xref ref="asm_Vector_IdeaLineIntegral_Properties" text="title"/>, we have <m>C = C_1+C_2+C_3</m>. No matter how we break up the curve <m>C_1</m> to set up a Riemann sum used in <xref ref="ScalarLineIntegral_def" /> we can do the symmetric version on curve <m>C_2</m>. The only difference between the Riemann sums and thier associated line integrals for <m>C_1</m> and <m>C_2</m> will be the sign on the output of <m>f</m>. This means that <me> \int_{C_1} f \, ds = -\int_{C_2} f \, ds</me> and thus
+      If we break our curve <m>C</m> into three pieces by dividing at <m>x=0</m> and <m>x=1</m> as shown in <xref ref="fig_sli_pm2"/>, we can make a rigourous argument about why the result of <m>\int_C f \, ds</m> will be positive. We will call the magenta, green, and blue sections of <xref ref="fig_sli_pm2"/> <m>C_1</m>, <m>C_2</m>, and <m>C_3</m>, respectively. Using the notation of <xref ref="asm_Vector_IdeaLineIntegral_Properties" text="title"/>, we have <m>C = C_1+C_2+C_3</m>. No matter how we break up the curve <m>C_1</m> to set up a Riemann sum used in <xref ref="ScalarLineIntegral_def"/> we can do the symmetric version on curve <m>C_2</m>. The only difference between the Riemann sums and thier associated line integrals for <m>C_1</m> and <m>C_2</m> will be the sign on the output of <m>f</m>. This means that <me> \int_{C_1} f \, ds = -\int_{C_2} f \, ds</me> and thus
       <md>
         <mrow> \int_C f \, ds \amp= \int_{C_1} f \, ds + \int_{C_2} f \, ds +\int_{C_3} f \, ds </mrow>
         <mrow>\amp =-\int_{C_2} f \, ds + \int_{C_2} f \, ds +\int_{C_3} f \, ds</mrow>
@@ -255,7 +258,8 @@
     <figure xml:id="fig_sli_pm2">
       <caption>The curve <m>C</m> split into three regions with positive (blue and green) and negative (magenta) outputs of <m>f</m></caption>
       <image width="75%" xml:id="fig_scalarlineint_pmexample2">
-        <sageplot>
+        <description><p>The curve <m>C</m> split into three regions with positive (blue and green) and negative (magenta) outputs of <m>f</m></p>
+      </description><sageplot>
           var('x')
           plot12=plot(x^2,(x,1,2),color='#1E88E5',axes_labels=["$x$","$y$"],thickness=2)
           plot12+=plot(x^2,(x,0,1),color='#004D40',thickness=2)
@@ -269,10 +273,10 @@
       </image>
     </figure>
     <p>
-      The argument for why <m>\int_{C_1} f \, ds = -\int_{C_2} f \, ds</m> requires that both the points on the curves <m>C_1</m> and <m>C_2</m> and the output of <m>f</m> on those parts is symmetric. In <xref ref="act_Vector_ScalarLineIntegral_caution" /> you will see examples where having only one part of this symmetry is not sufficent to make this type of argument.
+      The argument for why <m>\int_{C_1} f \, ds = -\int_{C_2} f \, ds</m> requires that both the points on the curves <m>C_1</m> and <m>C_2</m> and the output of <m>f</m> on those parts is symmetric. In <xref ref="act_Vector_ScalarLineIntegral_caution"/> you will see examples where having only one part of this symmetry is not sufficent to make this type of argument.
     </p>
     <p>
-      We have shown that <m>\int_C f \, ds =  \int_{C_3} f \, ds </m> and want to demonstrate why <m>\int_{C_3} f \, ds </m> will be positive. Because the output of <m>f</m> is positive for all of the points on the curve <m>C_3</m>, all elements of the associated Riemann sum in <xref ref="ScalarLineIntegral_def" /> will be positive (the length of the displacement vectors and corresponding arc lengths are always positive). Thus <m>\int_C f \, ds =  \int_{C_3} f \, ds \gt 0</m>. 
+      We have shown that <m>\int_C f \, ds =  \int_{C_3} f \, ds </m> and want to demonstrate why <m>\int_{C_3} f \, ds </m> will be positive. Because the output of <m>f</m> is positive for all of the points on the curve <m>C_3</m>, all elements of the associated Riemann sum in <xref ref="ScalarLineIntegral_def"/> will be positive (the length of the displacement vectors and corresponding arc lengths are always positive). Thus <m>\int_C f \, ds =  \int_{C_3} f \, ds \gt 0</m>. 
     </p>
   </task>
   <task>
@@ -287,7 +291,7 @@
   </task>
 </example>
 <p>
-  Before delving into the exact computation of line integrals of scalar-valued functions, here is an activity that allows you to practice arguments similar to <xref ref="sli_pm" />.
+  Before delving into the exact computation of line integrals of scalar-valued functions, here is an activity that allows you to practice arguments similar to <xref ref="sli_pm"/>.
 </p>
   <worksheet>
   <activity workspace="1.5in" xml:id="Act_ScalarLI1">
@@ -332,93 +336,63 @@
         <p>
           <ol marker="(i)">
            <li>
-            <interactive title="exercise-testing1"
-            platform="sage"
-            width="100%"
-            aspect="1:1">
+            <interactive title="exercise-testing1" platform="sage" width="100%" aspect="1:1">
             
-            <slate
-            surface="sage">
+            <slate surface="sage">
             
-<xi:include
-            href="./interacts/demo.sage1.txt"
-            parse="text"
-            />
+<xi:include href="./interacts/demo.sage1.txt" parse="text"/>
             
             </slate>
             
-            </interactive>
+            <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
             
             <program>
             
             <code>
             
-   <xi:include
-            href="./interacts/demo.sage1.txt"
-            parse="text"
-            />
+   <xi:include href="./interacts/demo.sage1.txt" parse="text"/>
             
             </code>
             
             </program>
            </li>
            <li>
-              <interactive title="exercise-testing2"
-              platform="sage"
-              width="100%"
-              aspect="1:1">
+              <interactive title="exercise-testing2" platform="sage" width="100%" aspect="1:1">
               
-              <slate
-              surface="sage">
+              <slate surface="sage">
               
-  <xi:include
-              href="./interacts/demo.sage2.txt"
-              parse="text"
-              />
+  <xi:include href="./interacts/demo.sage2.txt" parse="text"/>
               
               </slate>
               
-              </interactive>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
               
               <program>
               
               <code>
               
-     <xi:include
-              href="./interacts/demo.sage2.txt"
-              parse="text"
-              />
+     <xi:include href="./interacts/demo.sage2.txt" parse="text"/>
               
               </code>
               
               </program> 
            </li>
            <li>
-            <interactive title="exercise-testing3"
-              platform="sage"
-              width="100%"
-              aspect="1:1">
+            <interactive title="exercise-testing3" platform="sage" width="100%" aspect="1:1">
               
-              <slate
-              surface="sage">
+              <slate surface="sage">
               
-  <xi:include
-              href="./interacts/demo.sage3.txt"
-              parse="text"
-              />
+  <xi:include href="./interacts/demo.sage3.txt" parse="text"/>
               
               </slate>
               
-              </interactive>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
               
               <program>
               
               <code>
               
-     <xi:include
-              href="./interacts/demo.sage3.txt"
-              parse="text"
-              />
+     <xi:include href="./interacts/demo.sage3.txt" parse="text"/>
               
               </code>
               
@@ -440,31 +414,21 @@
         </p>
       </answer>
       <solution>
-        <interactive title="exercise-testing4"
-              platform="sage"
-              width="100%"
-              aspect="1:1">
+        <interactive title="exercise-testing4" platform="sage" width="100%" aspect="1:1">
               
-              <slate
-              surface="sage">
+              <slate surface="sage">
               
-  <xi:include
-              href="./interacts/demo.sage4.txt"
-              parse="text"
-              />
+  <xi:include href="./interacts/demo.sage4.txt" parse="text"/>
               
               </slate>
               
-              </interactive>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
               
               <program>
               
               <code>
               
-     <xi:include
-              href="./interacts/demo.sage4.txt"
-              parse="text"
-              />
+     <xi:include href="./interacts/demo.sage4.txt" parse="text"/>
               
               </code>
               
@@ -493,31 +457,21 @@
         </p>
       </answer>
       <solution>
-        <interactive title="exercise-testing5"
-              platform="sage"
-              width="100%"
-              aspect="1:1">
+        <interactive title="exercise-testing5" platform="sage" width="100%" aspect="1:1">
               
-              <slate
-              surface="sage">
+              <slate surface="sage">
               
-  <xi:include
-              href="./interacts/demo.sage5.txt"
-              parse="text"
-              />
+  <xi:include href="./interacts/demo.sage5.txt" parse="text"/>
               
               </slate>
               
-              </interactive>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
               
               <program>
               
               <code>
               
-     <xi:include
-              href="./interacts/demo.sage5.txt"
-              parse="text"
-              />
+     <xi:include href="./interacts/demo.sage5.txt" parse="text"/>
               
               </code>
               
@@ -526,31 +480,21 @@
         <p>
           The scalar line integal of <m>f_1</m> on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <m>f_1</m> will be opposite in sign on the blue and magenta. This means that <m>\int_{C_2} f_1 \, ds</m> will be the same as the line integral of <m>f_1(x,y,z)=y</m> on the green path. Since the output of <m>f_1</m> is positive on the green path, our result for the scalar line integral should be positive.
         </p>
-        <interactive title="exercise-testing6"
-              platform="sage"
-              width="100%"
-              aspect="1:1">
+        <interactive title="exercise-testing6" platform="sage" width="100%" aspect="1:1">
               
-              <slate
-              surface="sage">
+              <slate surface="sage">
               
-  <xi:include
-              href="./interacts/demo.sage6.txt"
-              parse="text"
-              />
+  <xi:include href="./interacts/demo.sage6.txt" parse="text"/>
               
               </slate>
               
-              </interactive>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
               
               <program>
               
               <code>
               
-     <xi:include
-              href="./interacts/demo.sage6.txt"
-              parse="text"
-              />
+     <xi:include href="./interacts/demo.sage6.txt" parse="text"/>
               
               </code>
               
@@ -606,18 +550,18 @@
         <p>
           An important idea to determining whether these line integrals will be positive/negative/zero, is understanding when the output of <m>f_4=x-y</m> will be positive/negative/zero. In the plot below. The points in red will correspond to the output of <m>f_4</m> being zero, the points in blue will correspond to the output of <m>f_4</m> being positive, and the points in green will correspond to the output of <m>f_4</m> being negative.
         </p>
-        <image width="80%" >
+        <image width="80%">
           <sageplot>
             plot1=line(((-2,-2),(2,2)),color='red',thickness=5,axes_labels=["$x$","$y$"])
             plot1 += polygon(((-2,-2),(2,-2),(2,2),(-2,-2)),color="blue",fill=true)
             plot1 += polygon(((-2,-2),(-2,2),(2,2),(-2,-2)),color="green",fill=true)
             plot1          
           </sageplot>
-        </image>
+        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
         <p>
           Now we will look at the individual line integrals.
         </p>
-        <image width="80%" >
+        <image width="80%">
           <sageplot>
             var('t')
             plot2 = parametric_plot((t,t),(t,-2,2),color='black',linestyle="--",axes_labels=["$x$","$y$"])
@@ -628,35 +572,25 @@
             plot2 += point((sqrt(2)/2,-sqrt(2)/2),color="black",size=30)
             plot2          
           </sageplot>
-        </image>
+        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
         <p>
           The scalar line integal on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <m>f_4</m> will be opposite in sign on the blue and magenta. Thus the line integral of <m>f_4</m> over <m>C_1</m> will be zero.
         </p>
-        <interactive title="exercise-testing7"
-              platform="sage"
-              width="100%"
-              aspect="1:1">
+        <interactive title="exercise-testing7" platform="sage" width="100%" aspect="1:1">
               
-              <slate
-              surface="sage">
+              <slate surface="sage">
               
-  <xi:include
-              href="./interacts/demo.sage7.txt"
-              parse="text"
-              />
+  <xi:include href="./interacts/demo.sage7.txt" parse="text"/>
               
               </slate>
               
-              </interactive>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
               
               <program>
               
               <code>
               
-     <xi:include
-              href="./interacts/demo.sage7.txt"
-              parse="text"
-              />
+     <xi:include href="./interacts/demo.sage7.txt" parse="text"/>
               
               </code>
               
@@ -665,31 +599,21 @@
           The scalar line integal on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <m>f_4</m> will be opposite in sign on the blue and magenta. Thus the line integral of <m>f_4</m> over <m>C_2</m> will be zero.
         </p>
         
-        <interactive title="exercise-testing8"
-              platform="sage"
-              width="100%"
-              aspect="1:1">
+        <interactive title="exercise-testing8" platform="sage" width="100%" aspect="1:1">
               
-              <slate
-              surface="sage">
+              <slate surface="sage">
               
-  <xi:include
-              href="./interacts/demo.sage8.txt"
-              parse="text"
-              />
+  <xi:include href="./interacts/demo.sage8.txt" parse="text"/>
               
               </slate>
               
-              </interactive>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
               
               <program>
               
               <code>
               
-     <xi:include
-              href="./interacts/demo.sage8.txt"
-              parse="text"
-              />
+     <xi:include href="./interacts/demo.sage8.txt" parse="text"/>
               
               </code>
               
@@ -705,15 +629,16 @@
 <subsection>
   <title>Using Parameterizations to Calculate Scalar Line Integrals</title>
   <p>
-    <xref ref="ScalarLineIntegral_def" /> defined <m>\int_C f \, ds</m> in terms of a limit of a Riemann sum which is often useful for understanding what is being measured and not very useful when it comes to efficiently calculating the value of a given integral. A scalar line integral is presented algebraically in terms of three variables because the curve is given in terms of points in three coordinates and the function to be integrated is dependent on those same coordinate values. Geometrically, the scalar line integral is a one dimensional problem because we only have one dimension to travel; namely, we can travel along the curve in steps of arc length. Remember that a parameterization of a curve in space is a description of how to travel through the points (given as three coordinates) of the curve in terms of a parameter (usually given as <m>t</m>.) Parameterizations are very useful converting the three-variable algebra of a scalar line integral problem into a one dimensional integral. Once we have done that, we can use all of the tools of single-variable calculus to evaluate the scalar line integral.
+    <xref ref="ScalarLineIntegral_def"/> defined <m>\int_C f \, ds</m> in terms of a limit of a Riemann sum which is often useful for understanding what is being measured and not very useful when it comes to efficiently calculating the value of a given integral. A scalar line integral is presented algebraically in terms of three variables because the curve is given in terms of points in three coordinates and the function to be integrated is dependent on those same coordinate values. Geometrically, the scalar line integral is a one dimensional problem because we only have one dimension to travel; namely, we can travel along the curve in steps of arc length. Remember that a parameterization of a curve in space is a description of how to travel through the points (given as three coordinates) of the curve in terms of a parameter (usually given as <m>t</m>.) Parameterizations are very useful converting the three-variable algebra of a scalar line integral problem into a one dimensional integral. Once we have done that, we can use all of the tools of single-variable calculus to evaluate the scalar line integral.
   </p>
   <p>
-    Let's look at applying a parameterization for <m>C</m> given by a vector-valued function of one variable <m>\vr(t)=\langle f(t), g(t), h(t)\rangle</m> for <m>t</m> in some interval <m>[a,b]</m> to <xref ref="ScalarLineIntegral_def" />. Instead of thinking in terms of pieces of the curve <m>C</m>, the parameterization allows us to break the interval <m>[a,b]</m> into pieces <m>a=t_0, t_1, \dots ,t_n=b</m> where <m>t_i=a+i(\Delta{t})</m> and <m>\Delta{t}=\frac{b-a}{n}</m>. While these pieces will be equally spaced in terms of the parameter <m>t</m>, the corresponding points on the curve <m>C</m> given by <m>r(t_i)</m> may not be equally spaced.
+    Let's look at applying a parameterization for <m>C</m> given by a vector-valued function of one variable <m>\vr(t)=\langle f(t), g(t), h(t)\rangle</m> for <m>t</m> in some interval <m>[a,b]</m> to <xref ref="ScalarLineIntegral_def"/>. Instead of thinking in terms of pieces of the curve <m>C</m>, the parameterization allows us to break the interval <m>[a,b]</m> into pieces <m>a=t_0, t_1, \dots ,t_n=b</m> where <m>t_i=a+i(\Delta{t})</m> and <m>\Delta{t}=\frac{b-a}{n}</m>. While these pieces will be equally spaced in terms of the parameter <m>t</m>, the corresponding points on the curve <m>C</m> given by <m>r(t_i)</m> may not be equally spaced.
   </p>
   <figure xml:id="scalar_int_param_seg">
       <caption>The curve <m>C</m> split into segments defined by equally spaced parameter values</caption>
       <image width="80%" xml:id="scalar_line_int_segments_param">
-        <sageplot>
+        <description><p>The curve <m>C</m> split into segments defined by equally spaced parameter values</p>
+      </description><sageplot>
           tpoints=[4,3.5,3,2.5,1.5,1,0.5]
           offsetx=[0.1,-0.3,-0.3,0.2,0,0.0,0.2]
           offsety=[-0.2,-0.1,0,0.2,0.2,0.2,-0.2]
@@ -739,7 +664,7 @@
       <me>f(\vr_i^{*})=f(\vr(t_i^{*}))=f(t_i^{*})</me>
     where <m>t_{i-1}\leq t_i^{*}\leq t_i </m>. Remember that the parameterization will allow us to write all parts of the scalar line integral as a function of <m>t</m>, so we will simplify <m>|\Delta \vr_i|</m> as
       <me>|{\vr_{i}-\vr_{i-1}}| =|{\vr(t_{i})-\vr(t_{i-1})}|= \frac{|{\vr(t_{i})-\vr(t_{i-1})}|}{\Delta{t}}\Delta{t}</me>
-    Applying our parameterization and corresponding points to <xref ref="ScalarLineIntegral_def" /> gives 
+    Applying our parameterization and corresponding points to <xref ref="ScalarLineIntegral_def"/> gives 
       <md>
         <mrow>\int_C f \, ds \amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(\vr_i^{*}) |{\vr_{i}-\vr_{i-1}}|</mrow>
         <mrow>\amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(t_i^{*}) \frac{|{r(t_{i-1}+\Delta t)-r(t_{i-1})}|}{\Delta{t}}\Delta{t} </mrow>
@@ -754,19 +679,20 @@
     </p>
   </theorem>
   <p>
-    With <xref ref="scalarlineint_param_thm"/> established, we now consider a couple of examples that allow us to find the exact value of line integrals of scalar functions considered in <xref ref="Act_ScalarLI1" />.
+    With <xref ref="scalarlineint_param_thm"/> established, we now consider a couple of examples that allow us to find the exact value of line integrals of scalar functions considered in <xref ref="Act_ScalarLI1"/>.
   </p>
   <example xml:id="ScalarLineInt_Example1">
-    <p> Let us return to some of the problems from <xref ref="Act_ScalarLI1" />. Specifically, let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_1(x,y,z)=y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4} \leq t\leq \frac{3\pi}{4}</m>. Note here that <m>|{\vr'(t)}| =|{\langle -\sin(t),\cos(t),0\rangle}|=1</m>. We can rewrite the value of <m>f_1</m> along <m>C_1</m> using the parameterization as <m>f_1(x(t),y(t),z(t))=f_1(\cos(t),\sin(t),0)=\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm" />, we have
+    <p> Let us return to some of the problems from <xref ref="Act_ScalarLI1"/>. Specifically, let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_1(x,y,z)=y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4} \leq t\leq \frac{3\pi}{4}</m>. Note here that <m>|{\vr'(t)}| =|{\langle -\sin(t),\cos(t),0\rangle}|=1</m>. We can rewrite the value of <m>f_1</m> along <m>C_1</m> using the parameterization as <m>f_1(x(t),y(t),z(t))=f_1(\cos(t),\sin(t),0)=\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm"/>, we have
       <me> \int_{C_1} f_1 \, ds = \int_{-\frac{\pi}{4}}^{\frac{3\pi}{4}} \sin(t) (1) \, dt = -\cos\left(\frac{3\pi}{4}\right) - \left(-\cos\left(-\frac{\pi}{4}\right))\right)=\sqrt{2}</me>.
     </p>
     <p>
-      This result should make sense from your earlier work in <xref ref="Act_ScalarLI1_part2" />. Specifically, we can break the line integral of <m>f_1</m> along <m>C_1</m> into three parts according to the plot shown in <xref ref="fig_Vector_ScalarLineIntegral_example1" />.
+      This result should make sense from your earlier work in <xref ref="Act_ScalarLI1_part2"/>. Specifically, we can break the line integral of <m>f_1</m> along <m>C_1</m> into three parts according to the plot shown in <xref ref="fig_Vector_ScalarLineIntegral_example1"/>.
     </p>
     <figure xml:id="fig_Vector_ScalarLineIntegral_example1">
       <caption> A subdivided plot of <m>C_1</m></caption>
       <image width="80%" xml:id="img_ScalarLinInt_Example1">
-        <sageplot>
+        <description><p> A subdivided plot of <m>C_1</m></p>
+      </description><sageplot>
           var('x,y,t')
           plot1 = parametric_plot((t,-t),(t,-2,2),color='black',linestyle="--")
           plot1 += parametric_plot((cos(t),sin(t)),(t,-pi/4,0),color='#1E88E5',thickness=2)
@@ -785,22 +711,23 @@
     </p>
   </example>
   <p>
-    When working through <xref ref="Act_ScalarLI1" />, you may have found the line integrals involving <m>f_3(x,y,z)=x-y</m> to be more challenging to reason through without computational tools. We next work through the details of evaluating the line integral of this function along the same curve as in the previous example.
+    When working through <xref ref="Act_ScalarLI1"/>, you may have found the line integrals involving <m>f_3(x,y,z)=x-y</m> to be more challenging to reason through without computational tools. We next work through the details of evaluating the line integral of this function along the same curve as in the previous example.
   </p>
   <example xml:id="ScalarLineInt_Example2">
-    <p> Let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_4(x,y,z)=x-y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4}\leq t\leq \frac{3\pi}{4}]</m>. Note here that <m>|{\vr'(t)}| =|{\langle -\sin(t),\cos(t),0\rangle}|=1</m>. We can write the value of <m>f_4</m> along <m>C_1</m> using the parameterization as <m>f_4(x(t),y(t),z(t)) = f_4(\cos(t),\sin(t),0) = \cos(t)-\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm" />, we have
+    <p> Let <m>C_1</m> be part of the unit circle on the <m>xy</m>-plane that is centered at the origin and is above the line given by <m>y=-x</m>. We will also consider <m>f_4(x,y,z)=x-y</m>. We can parameterize <m>C_1</m> by <m>\vr(t)=\langle \cos(t), \sin(t), 0 \rangle</m> with <m>-\frac{\pi}{4}\leq t\leq \frac{3\pi}{4}]</m>. Note here that <m>|{\vr'(t)}| =|{\langle -\sin(t),\cos(t),0\rangle}|=1</m>. We can write the value of <m>f_4</m> along <m>C_1</m> using the parameterization as <m>f_4(x(t),y(t),z(t)) = f_4(\cos(t),\sin(t),0) = \cos(t)-\sin(t)</m>. Applying <xref ref="scalarlineint_param_thm"/>, we have
       <md>
         <mrow>\int_{C_1} f_4 \, ds \amp = \int_{-\frac{\pi}{4}}^{\frac{3\pi}{4}}\left(\cos(t)-\sin(t)\right) (1) dt</mrow>
         <mrow>\amp = \sin(\frac{3\pi}{4})-\cos(\frac{3\pi}{4}) - \left(\sin(-\frac{\pi}{4})-\cos(-\frac{\pi}{4})\right)=0</mrow>
       </md>
     </p>
     <p>
-      This result should make sense from your earlier work in <xref ref="Act_ScalarLI1_part2">part</xref>. Specifically, we can break the line integral of <m>f_4</m> into two parts according to the plot in <xref ref="fig_Vector_ScalarLineInt_example2" />.
+      This result should make sense from your earlier work in <xref ref="Act_ScalarLI1_part2">part</xref>. Specifically, we can break the line integral of <m>f_4</m> into two parts according to the plot in <xref ref="fig_Vector_ScalarLineInt_example2"/>.
     </p>
     <figure xml:id="fig_Vector_ScalarLineInt_example2">
       <caption> A subdivided plot of <m>C_1</m></caption>
       <image width="80%" xml:id="img_ScalarLinInt_Example2">
-        <sageplot>
+        <description><p> A subdivided plot of <m>C_1</m></p>
+      </description><sageplot>
           var('t')
           plot2 = parametric_plot((t,t),(t,-2,2),color='black',linestyle="--",axes_labels=["$x$","$y$"])
           plot2 += parametric_plot((cos(t),sin(t)),(t,-pi/4,pi/4),color='#1E88E5')
@@ -821,12 +748,13 @@
   <activity workspace="1.5in" xml:id="act_Vector_ScalarLineIntegral_caution">
     <introduction>
       <p>
-        In this activity, we will examine why we must be careful when using symmetry to make arguments about scalar line integral. Let <m>C_1</m> and <m>C_2</m> be the paths shown in <xref ref="fig_sli_caution" />. We will consider the function <m>f(x,y)=x</m> for this activity.
+        In this activity, we will examine why we must be careful when using symmetry to make arguments about scalar line integral. Let <m>C_1</m> and <m>C_2</m> be the paths shown in <xref ref="fig_sli_caution"/>. We will consider the function <m>f(x,y)=x</m> for this activity.
       </p>  
       <figure xml:id="fig_sli_caution">
         <caption> A plot of paths <m>C_1</m> and <m>C_2</m></caption>
         <image width="65%" xml:id="img_sli_caution_plot">
-          <sageplot>
+          <description><p> A plot of paths <m>C_1</m> and <m>C_2</m></p>
+        </description><sageplot>
             var('t')
             plot4=parametric_plot((-1+t,2-2*t),(t,0,1),color='#1E88E5',thickness=2,aspect_ratio=1,axes_labels=["$x$","$y$"],xmin=-1.5,xmax=1.5,ymin=-0.5,ymax=2.5)
             plot4+=parametric_plot((t,t),(t,0,1),color='#D81B60',thickness=2)
@@ -857,7 +785,7 @@
     <task>
       <statement>
         <p>
-          Use <xref ref="scalarlineint_param_thm" /> to compute <m>\displaystyle\int_{C_1} f\, ds</m> and <m>\displaystyle\int_{C_2} f\, ds</m>.
+          Use <xref ref="scalarlineint_param_thm"/> to compute <m>\displaystyle\int_{C_1} f\, ds</m> and <m>\displaystyle\int_{C_2} f\, ds</m>.
         </p>
       </statement>
       <answer>
@@ -901,13 +829,13 @@
   </activity>
 </worksheet>
     <p>
-      In <xref ref="act_Vector_ScalarLineIntegral_caution" />, it may have been tempting to note that output of the function being integrated is simply the <m>x</m>-coordinate of the points on the curve to try to make an argument by symmetry. Since we are adding up the <m>x</m>-values of the points on <m>C_1</m> and <m>C_2</m> and the <m>x</m>-coordinates on <m>C_1</m> go from <m>-1</m> to <m>0</m> and the <m>x</m>-coordinates on <m>C_2</m> go from <m>0</m> to <m>1</m>, you may have wanted to argue that the values of <m>\int_{C_1} x \, ds </m> and <m>\int_{C_2} x \, ds </m> will cancel out to zero. However, as you found, this is not correct because the scalar line integrals are not just adding up the output of our scalar function. The Riemann sum used in the scalar line integral is adding up the product of the scalar function's output with the displacement of the segment used. Because the displacement used in <m>C_1</m> and <m>C_2</m> will not be symmetric, we cannot make the geometric cancelation argument as in <xref ref="task1_sli_pm">part</xref>.
+      In <xref ref="act_Vector_ScalarLineIntegral_caution"/>, it may have been tempting to note that output of the function being integrated is simply the <m>x</m>-coordinate of the points on the curve to try to make an argument by symmetry. Since we are adding up the <m>x</m>-values of the points on <m>C_1</m> and <m>C_2</m> and the <m>x</m>-coordinates on <m>C_1</m> go from <m>-1</m> to <m>0</m> and the <m>x</m>-coordinates on <m>C_2</m> go from <m>0</m> to <m>1</m>, you may have wanted to argue that the values of <m>\int_{C_1} x \, ds </m> and <m>\int_{C_2} x \, ds </m> will cancel out to zero. However, as you found, this is not correct because the scalar line integrals are not just adding up the output of our scalar function. The Riemann sum used in the scalar line integral is adding up the product of the scalar function's output with the displacement of the segment used. Because the displacement used in <m>C_1</m> and <m>C_2</m> will not be symmetric, we cannot make the geometric cancelation argument as in <xref ref="task1_sli_pm">part</xref>.
     </p>
 </subsection>
 <subsection>
   <title>Properties of Scalar Line Integrals</title>
   <p>
-     Before stating some useful properties of scalar line integrals, we will recall some convenient notation from <xref ref="asm_Vector_IdeaLineIntegral_Properties" text="title" />. If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m> from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented curve, <m>-C</m> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar in definite integrals.
+     Before stating some useful properties of scalar line integrals, we will recall some convenient notation from <xref ref="asm_Vector_IdeaLineIntegral_Properties" text="title"/>. If <m>C_1</m> and <m>C_2</m> are oriented curves, with <m>C_1</m> from a point <m>P</m> to a point <m>Q</m> and <m>C_2</m> from <m>Q</m> to a point <m>R</m>, we denote by <m>C_1+C_2</m> the oriented curve from <m>P</m> to <m>R</m> that follows <m>C_1</m> to <m>Q</m> and then continues along <m>C_2</m> to <m>R</m>.  Also, if <m>C</m> is an oriented curve, <m>-C</m> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar in definite integrals.
   </p>
     <assemblage xml:id="asm_ScalarLineInt_Properties">
       <title>Properties of Scalar Line Integrals</title>
@@ -938,7 +866,7 @@
         </p>
       </assemblage>
 <p>
-  The biggest difference bewteen <xref ref="asm_Vector_IdeaLineIntegral_Properties" text="title" /> and <xref ref="asm_ScalarLineInt_Properties" text="title" /> is <xref ref="li_asm_ScalarLineInt_Properties_opp">part</xref>. The orientation of the curve does not change the value of the scalar line integral. <xref ref="Explain_LineInt_Properties" /> will have you make sense of these properties for scalar line integrals.
+  The biggest difference bewteen <xref ref="asm_Vector_IdeaLineIntegral_Properties" text="title"/> and <xref ref="asm_ScalarLineInt_Properties" text="title"/> is <xref ref="li_asm_ScalarLineInt_Properties_opp">part</xref>. The orientation of the curve does not change the value of the scalar line integral. <xref ref="Explain_LineInt_Properties"/> will have you make sense of these properties for scalar line integrals.
 </p>
 
 <worksheet>
@@ -946,7 +874,7 @@
   <title>Explaining Properties of Scalar Line Integrals</title>
   <introduction>
     <p>
-      In this activity, we will be explaining each of the Properties from <xref ref="asm_ScalarLineInt_Properties" text="title" /> in the context of our copium mining analogy from <xref ref="PA_ScalarLI" />. Remember that the curve in our scalar line integral coresponds to the path the mining rig will take and the function in the scalar line integral measures the density of copium at that point on the surface.
+      In this activity, we will be explaining each of the Properties from <xref ref="asm_ScalarLineInt_Properties" text="title"/> in the context of our copium mining analogy from <xref ref="PA_ScalarLI"/>. Remember that the curve in our scalar line integral coresponds to the path the mining rig will take and the function in the scalar line integral measures the density of copium at that point on the surface.
     </p>
   </introduction>
   <task>
@@ -1040,24 +968,27 @@
 <subsection xml:id="SS_Vector_ScalarLineIntegral_Visualizations">
   <title>Visualizations of Scalar Line Integrals as Area Under a Curve</title>
 <p>
-  We will spend the last part of this section talking about a way to try to visualize the scalar line integral as an area under a curve, much as we visualized integrals when we first encountered them. Let's return to our copium analogy from <xref ref="PA_ScalarLI" />. In particular, we can look the left side of the mining area.
+  We will spend the last part of this section talking about a way to try to visualize the scalar line integral as an area under a curve, much as we visualized integrals when we first encountered them. Let's return to our copium analogy from <xref ref="PA_ScalarLI"/>. In particular, we can look the left side of the mining area.
 </p>
 <figure>
   <caption>A plot of land with density of copium deposits </caption>
   <image xml:id="CopiumMinePlot2">
-    <sageplot>
-<xi:include href="CopiumMinePlot.sage" parse="text" />
+    <description><p>A plot of land with density of copium deposits </p>
+  </description><sageplot>
+<xi:include href="CopiumMinePlot.sage" parse="text"/>
     </sageplot>
   </image>
 </figure>
 <p>
-  We could visualize the linear density of copium along the left side of the area using a plot like <xref ref="LeftSideofCopiumMine" />.
+  We could visualize the linear density of copium along the left side of the area using a plot like <xref ref="LeftSideofCopiumMine"/>.
 </p>
 <figure xml:id="LeftSideofCopiumMine">
   <caption> A plot of the copium density on the left side of the
   mine shown above </caption>
   <image xml:id="img_leftsideplot">
-    <sageplot>
+    <description><p> A plot of the copium density on the left side of the
+  mine shown above </p>
+  </description><sageplot>
       var('x')
       f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
       plot(f(x/sqrt(5),2*x/sqrt(5)),(x,0,sqrt(5)*212.5),plot_points=30,ymin=0,ymax=2.5,xmin=0,xmax=520)      
@@ -1065,12 +996,13 @@
   </image>
 </figure>
 <p>
-  In <xref ref="LeftSideofCopiumMine" />, the horizontal axis gives the distance traveled along the left side of <xref ref="CopiumPlot" />. Because this is a stright path, we could plot the density above the path of the copium mining plot. In fact, we could plot the density above the plot for all of the sides of the mining plot.
+  In <xref ref="LeftSideofCopiumMine"/>, the horizontal axis gives the distance traveled along the left side of <xref ref="CopiumPlot"/>. Because this is a stright path, we could plot the density above the path of the copium mining plot. In fact, we could plot the density above the plot for all of the sides of the mining plot.
 </p>
 <figure xml:id="CopiumMinewithSides">
   <caption>A three-dimensional plot of the copium Density plotted for the edges of the mining area</caption>
   <interactive title="sage_copium_mine_sides" platform="sage" width="100%" aspect="1:1">
-    <slate surface="sage">
+    <description><p>A three-dimensional plot of the copium Density plotted for the edges of the mining area</p>
+  </description><slate surface="sage">
       var('t,s,x,y')
       f=-x^2/2-3*y^3/3+0.5
       @interact
@@ -1086,15 +1018,16 @@
   </interactive>
 </figure>
 <p>
-  <xref ref="CopiumMinewithSides" /> shows the copium mine plot (in gray) and the paths that are the boundary of the plot in magenta. The curve in green shows the copium Density at each point on the boundary of the mine plot. The area in yellow would be the scalar line integral for the path that is the boundary of the mine plot. In particular, the area in yellow would give the total copium mined from driving our mining machine around the boundary of the mine plot.
+  <xref ref="CopiumMinewithSides"/> shows the copium mine plot (in gray) and the paths that are the boundary of the plot in magenta. The curve in green shows the copium Density at each point on the boundary of the mine plot. The area in yellow would be the scalar line integral for the path that is the boundary of the mine plot. In particular, the area in yellow would give the total copium mined from driving our mining machine around the boundary of the mine plot.
 </p>
 <p>
-  Because the curve we are looking at in <xref ref="CopiumMinewithSides" /> involves straight lines and simple heights, there is no confusion when looking at this plot and using an area under the curve analogy. However, what if we looked at the scalar line integral of a function like <m>f(x,y,z)=x-y</m> along the helix given below?
+  Because the curve we are looking at in <xref ref="CopiumMinewithSides"/> involves straight lines and simple heights, there is no confusion when looking at this plot and using an area under the curve analogy. However, what if we looked at the scalar line integral of a function like <m>f(x,y,z)=x-y</m> along the helix given below?
 </p>
 <figure xml:id="HelixPlot">
   <caption>A three-dimensional plot of a helix</caption>
   <interactive title="helixplot1" platform="sage" width="100%" aspect="1:1">
-    <slate surface="sage">
+    <description><p>A three-dimensional plot of a helix</p>
+  </description><slate surface="sage">
       var('t,s')
       @interact
       def _():
@@ -1104,12 +1037,13 @@
   </interactive>
 </figure>
 <p>
-  Suppose now that above the points of our green helix we try to plot a second blue curve where the position of the point on the blue curve is <m>f(x,y,z)=x-y</m> units above or below the position of the point on the helix. This would be the analogous idea to what we did in <xref ref="CopiumMinewithSides" />, but for a three-dimensional curve. Here we run into issues, however, as our area might intersect other parts of the curve. The plot below shows the confusing plot we would have if we looked at as the height above our curve in blue.
+  Suppose now that above the points of our green helix we try to plot a second blue curve where the position of the point on the blue curve is <m>f(x,y,z)=x-y</m> units above or below the position of the point on the helix. This would be the analogous idea to what we did in <xref ref="CopiumMinewithSides"/>, but for a three-dimensional curve. Here we run into issues, however, as our area might intersect other parts of the curve. The plot below shows the confusing plot we would have if we looked at as the height above our curve in blue.
 </p>
 <figure xml:id="HelixPlot2">
   <caption>A three-dimensional plot of a helix with height given by <m>f(x,y,z)=x-y</m></caption>
   <interactive title="helixplot2" platform="sage" width="100%" aspect="1:1">
-    <slate surface="sage">
+    <description><p>A three-dimensional plot of a helix with height given by <m>f(x,y,z)=x-y</m></p>
+  </description><slate surface="sage">
       var('t,s')
       @interact
       def _():
@@ -1144,4 +1078,3 @@
 </subsection>
 <xi:include href="exercises/ez-S_Vector_ScalarLineIntegral.ptx"/>
 </section>
-

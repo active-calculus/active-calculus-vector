@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!-- **********************************************************************-->
 <!-- Copyright 2013-2025                                                   -->
 <!-- Nicholas Long, Mitchel Keller, Steven Schlicker                       -->
@@ -13,7 +12,7 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-VVF-TNB" xmlns:xi="http://www.w3.org/2001/XInclude">
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S-VVF-TNB">
   <title>The TNB Frame</title>
   <objectives>
     <ul>
@@ -43,12 +42,13 @@
   <subsection>
     <title>Introduction</title>
     <p>
-      In <xref ref="S-VVF-Plotting" />, we saw how a vector-valued function of one variable will graphically correspond to a curve in space. While the application of derivatives, integrals, and limits apply to these functions componentwise, we will need to apply our calculus and vector tools <em>together</em> to measure  important properties of these curves. Conceptually, you should think about the parameterization of the curve in space as a description on how to travel through those points in space. Remember that parameterizations are not unique: there is more than one way to walk the same path!
+      In <xref ref="S-VVF-Plotting"/>, we saw how a vector-valued function of one variable will graphically correspond to a curve in space. While the application of derivatives, integrals, and limits apply to these functions componentwise, we will need to apply our calculus and vector tools <em>together</em> to measure  important properties of these curves. Conceptually, you should think about the parameterization of the curve in space as a description on how to travel through those points in space. Remember that parameterizations are not unique: there is more than one way to walk the same path!
     </p>
     <figure xml:id="rc-plot1">
       <caption> A plot of a racetrack</caption>
       <interactive label="interactive-rc-plot1" platform="sage" width="91%" aspect="1:1">
-        <slate surface="sage">
+        <description><p> A plot of a racetrack</p>
+      </description><slate surface="sage">
           var('t')
           r2(t)=((3 + 2*sin(t))*cos(t), (3 - ((t - 2)*sin(4*t)))*sin(t), 1/40*t^2 *sin(3*t))
           plot6=parametric_plot(150*r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=2)
@@ -57,19 +57,17 @@
       </interactive>
     </figure>
     <p>
-      For example, consider the curve in space that we are exploring to be a race track as shown in <xref ref="rc-plot1" />. Not every driver will travel along this racetrack in the same way, but every driver has to go through these same points in space, since we assume that everyone will stay on the track and not take shortcuts. In the vocabulary of this chapter, any parameterization of this curve has to contain the same points, but can possibly go through these <m>(x,y,z)</m>-coordinates at different parameter values. More generally, some properties we measure will depend on the particular way that a driver goes along the course and some properties will be the same for all drivers when measured at the same location on the track.
+      For example, consider the curve in space that we are exploring to be a race track as shown in <xref ref="rc-plot1"/>. Not every driver will travel along this racetrack in the same way, but every driver has to go through these same points in space, since we assume that everyone will stay on the track and not take shortcuts. In the vocabulary of this chapter, any parameterization of this curve has to contain the same points, but can possibly go through these <m>(x,y,z)</m>-coordinates at different parameter values. More generally, some properties we measure will depend on the particular way that a driver goes along the course and some properties will be the same for all drivers when measured at the same location on the track.
     </p>
     <worksheet>
-  <exploration workspace="1.5in"
- xml:id="PA-vvf-tnb">
+  <exploration workspace="1.5in" xml:id="PA-vvf-tnb">
       <introduction>
         <p>
-          As CEO and Head of Engineering at <em>Steer Clear</em>, you decide that you are almost ready to start testing your self-driving car out on the road. Your navigation and telemetry software will use the location tracking system (LTS) to determine all of the important information about how the car is moving and how adjustments need to be made. Before you start programming your software, you decide to drive on a quiet, country road and collect data from the LTS to use as test data for your programming. In other words, you will drive on a section of road you already have mapped out in order to check that your software is calculating the correct information. The map in <xref ref="fig-vvf-tnb-country-road" /> below shows the path you plan to take on the country road (with the direction given by the arrows on the plot). Notice that at points <m>B</m> and <m>F</m>, the road crosses itself to go in a different direction. 
+          As CEO and Head of Engineering at <em>Steer Clear</em>, you decide that you are almost ready to start testing your self-driving car out on the road. Your navigation and telemetry software will use the location tracking system (LTS) to determine all of the important information about how the car is moving and how adjustments need to be made. Before you start programming your software, you decide to drive on a quiet, country road and collect data from the LTS to use as test data for your programming. In other words, you will drive on a section of road you already have mapped out in order to check that your software is calculating the correct information. The map in <xref ref="fig-vvf-tnb-country-road"/> below shows the path you plan to take on the country road (with the direction given by the arrows on the plot). Notice that at points <m>B</m> and <m>F</m>, the road crosses itself to go in a different direction. 
         </p>
         <figure xml:id="fig-vvf-tnb-country-road">
           <caption>The path taken on a country road to collect data with your LTS</caption>
-          <image width="75%" >
-            <shortdescription>The path of a car ride with seven points labeled</shortdescription>
+          <image width="75%">
             <description><p>The path of a car ride with seven points labeled</p></description>
             <sageplot label="img-country-road">
               plot11=bezier_path([[(2.5,1),(1.5,2),(0,3),(1,4)],[(2,5),(4,3),(5,4)],[(6,5),(7,6),(6,8)],[(5,10),(4,8),(4,7)],[(4,6),(3,7),(3,6)],[(3,5),(4,5),(5,4)],[(6,3),(6,4),(7,2)],[(8,0),(6.5,0),(6,1)]],thickness=2)
@@ -113,7 +111,7 @@
   <subsection xml:id="subsec-unit-tangent">
     <title>Direction of travel</title>
     <p>
-      Based on our work in <xref ref="vvf-derivative" />, if <m>\vr(t)</m> is a parameterization of a curve in space, then the velocity vector, <m>\vv(t)=\vr\, '(t)</m>, is in the direction of travel. Since the speed, <m>\vecmag{\vv(t)}</m>, is not always 1 (the velocity is not always a unit vector), we define the <term>direction of travel</term> using a unit vector as follows.
+      Based on our work in <xref ref="vvf-derivative"/>, if <m>\vr(t)</m> is a parameterization of a curve in space, then the velocity vector, <m>\vv(t)=\vr\, '(t)</m>, is in the direction of travel. Since the speed, <m>\vecmag{\vv(t)}</m>, is not always 1 (the velocity is not always a unit vector), we define the <term>direction of travel</term> using a unit vector as follows.
     </p>
       <definition xml:id="def-unit-tangent">
         <statement>
@@ -137,7 +135,8 @@
       <figure xml:id="helix-plot1">
         <caption>A helix</caption>
         <interactive label="interactive-helix-plot1" platform="sage" width="91%" aspect="1:1">
-          <slate surface="sage">
+          <description><p>A helix</p>
+        </description><slate surface="sage">
             var('t')
             r2(t)=(sin(t),cos(t),t/pi)
             plot7=parametric_plot(r2(t),(t,-pi,3*pi),aspect_ratio=1,color="black",thickness=2)
@@ -148,18 +147,19 @@
       <p>
         Based on the parameterization <m>r(t)</m> for this helix, the velocity vector is <m>\vv(t)=\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </m>. Thus, the speed is
         <me>\text{speed}(t) = \vecmag{\vv(t)} = \sqrt{\left(-\sin(t)\right)^2+\left(\cos(t)\right)^2+\left(\frac{1}{\pi}\right)^2}= \sqrt{1+\frac{1}{\pi^2}}</me>.
-        One of the useful and interesting ideas of this example is that the speed is constant. That is, no matter what parameter value we consider, the speed is always <m> \sqrt{1+\frac{1}{\pi^2}} </m>. Using <xref ref="def-unit-tangent" />, we find
+        One of the useful and interesting ideas of this example is that the speed is constant. That is, no matter what parameter value we consider, the speed is always <m> \sqrt{1+\frac{1}{\pi^2}} </m>. Using <xref ref="def-unit-tangent"/>, we find
         <me> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </me>. To compute some specific examples, we have
         <md>
           <mrow>\vT\left(\frac{\pi}{2}\right)\amp=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -1,0,\frac{1}{\pi} \right\rangle</mrow>
           <mrow>\vT\left(\frac{5\pi}{4}\right) \amp=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle \frac{\sqrt{2}}{2},-\frac{\sqrt{2}}{2},\frac{1}{\pi} \right\rangle</mrow>
         </md>.
-        In <xref ref="helix-plot2" />, <m>\vT(\frac{\pi}{2})</m> is plotted in red and <m>\vT(\frac{5\pi}{4})</m> is plotted in blue. Both of these vectors are unit length and tangent to the curve in the direction of travel for that instant. 
+        In <xref ref="helix-plot2"/>, <m>\vT(\frac{\pi}{2})</m> is plotted in red and <m>\vT(\frac{5\pi}{4})</m> is plotted in blue. Both of these vectors are unit length and tangent to the curve in the direction of travel for that instant. 
       </p>
       <figure xml:id="helix-plot2">
         <caption>A helix with the unit tangent vector plotted at two locations</caption>
         <interactive label="interactive-helix-plot2" platform="sage" width="91%" aspect="1:1">
-          <slate surface="sage">
+          <description><p>A helix with the unit tangent vector plotted at two locations</p>
+        </description><slate surface="sage">
             var('t')
             r2(t)=(sin(t),cos(t),t/pi)
             plot8=parametric_plot(r2(t),(t,-pi,3*pi),aspect_ratio=1,color="black",thickness=2)
@@ -217,12 +217,13 @@
   <subsection xml:id="subsec-N">
     <title>The Direction of Turning</title>
     <p>
-      Recalling our analogy in which we think of a parameterization as describing how someone drives along a racetrack, we say that <m>\vT</m> measures the direction that the car is heading at any given instant. If we use the curve plotted in <xref ref="rc-plot2" /> as an example of the racetrack, then <m>\vT(2)\approx \langle -0.8813, -0.4691, 0.0568 \rangle</m>. The plot in <xref ref="rc-plot2" /> shows how the direction of travel corresponds to the curve at the point <m>\vr(2)</m>. What direction is the car turning at <m>t=2</m>? You can see by the plot that the car will be be turning left, but that is a direction relative to the car. We wish to measure the direction that the car is turning at this instant in terms of the locations given by the parameterization in an <m>xyz</m>-coordinate system?
+      Recalling our analogy in which we think of a parameterization as describing how someone drives along a racetrack, we say that <m>\vT</m> measures the direction that the car is heading at any given instant. If we use the curve plotted in <xref ref="rc-plot2"/> as an example of the racetrack, then <m>\vT(2)\approx \langle -0.8813, -0.4691, 0.0568 \rangle</m>. The plot in <xref ref="rc-plot2"/> shows how the direction of travel corresponds to the curve at the point <m>\vr(2)</m>. What direction is the car turning at <m>t=2</m>? You can see by the plot that the car will be be turning left, but that is a direction relative to the car. We wish to measure the direction that the car is turning at this instant in terms of the locations given by the parameterization in an <m>xyz</m>-coordinate system?
     </p>
     <figure xml:id="rc-plot2">
       <caption> A plot of a racetrack with <m>\vT(2)</m> plotted in red</caption>
       <interactive label="interactive-rc-plot2" platform="sage" width="91%" aspect="1:1">
-        <slate surface="sage">
+        <description><p> A plot of a racetrack with <m>\vT(2)</m> plotted in red</p>
+      </description><slate surface="sage">
           var('t')
           r2(t)=((3 + 2*sin(t))*cos(t), (3 - ((t - 2)*sin(4*t)))*sin(t), 1/40*t^2 *sin(3*t))
           tval=2
@@ -297,7 +298,7 @@
       In this example, we will calculate the unit normal vector for a helical path given by <m>\vr(t)=\langle \cos(t),\sin(t),\frac{t}{\pi}\rangle </m>. This is the same path as was used in <xref ref="helix-T"/> and was plotted in <xref ref="helix-plot1"/>.
     </p>
     <p>
-      From our work in <xref ref="helix-T" />, we calculated
+      From our work in <xref ref="helix-T"/>, we calculated
       <me> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </me>
       Using the definition of <m>\vN</m>, we need to compute the derivative of <m>\vT</m> with respect to <m>t</m>:
       <me> \vT\, '(t)=\frac{d\vT}{dt}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\cos(t),-\sin(t),0 \rangle </me>
@@ -309,12 +310,13 @@
       </md> 
     </p>
     <p>
-      We can calculate <m>\vN(\frac{\pi}{2})=\langle 0,-1,0 \rangle</m> and <m>\vN(\frac{5\pi}{4})=\langle \frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2},0 \rangle</m>. If we add these vectors to the plot of the helix with the unit tangent vectors, as in <xref ref="helix-plot2" />, we can see that the direction of turning (as measured by <m>\vN</m>) is pointing toward the center of the helix. It should make sense the the direction you are turning to stay on the helix is toward the inside of the circular trace. Note that the unit tangent vector has a vertical component which corresponds to going <q>up</q> the helix but there is no vertical component to <m>\vN</m>. This is because there is vertical motion, but there is no <em>turning</em> in the vertical direction. That is, the <m>z</m>-component of <m>\vT</m> is unchanging, which means that the vertical component of <m>\vT\, '</m> must be be zero. 
+      We can calculate <m>\vN(\frac{\pi}{2})=\langle 0,-1,0 \rangle</m> and <m>\vN(\frac{5\pi}{4})=\langle \frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2},0 \rangle</m>. If we add these vectors to the plot of the helix with the unit tangent vectors, as in <xref ref="helix-plot2"/>, we can see that the direction of turning (as measured by <m>\vN</m>) is pointing toward the center of the helix. It should make sense the the direction you are turning to stay on the helix is toward the inside of the circular trace. Note that the unit tangent vector has a vertical component which corresponds to going <q>up</q> the helix but there is no vertical component to <m>\vN</m>. This is because there is vertical motion, but there is no <em>turning</em> in the vertical direction. That is, the <m>z</m>-component of <m>\vT</m> is unchanging, which means that the vertical component of <m>\vT\, '</m> must be be zero. 
     </p>
     <figure xml:id="helix-plot3">
       <caption> A plot of the helix with <m>\vT</m> and <m>\vN</m> plotted for a couple points</caption>
       <interactive label="interactive-helix-plot3" platform="sage" width="91%" aspect="1:1">
-        <slate surface="sage">
+        <description><p> A plot of the helix with <m>\vT</m> and <m>\vN</m> plotted for a couple points</p>
+      </description><slate surface="sage">
           var('t')
           offset=0.2
           r2(t)=(sin(t),cos(t),t/pi)
@@ -446,7 +448,7 @@
 </activity>
 </worksheet>
 <p>
-  As talked about in <xref ref="subsec-unit-tangent" />, the unit tangent vector <m>\vT</m> measures the direction of <em>travel</em> along a parameterized curve. The unit normal vector <m>\vN</m> measures the direction that an object is <em>turning</em> in order to stay on the curve. In <xref ref="helix-plot3" />, we observed that the unit tangent and unit normal vectors as at each point along the curve were orthogonal to each other.
+  As talked about in <xref ref="subsec-unit-tangent"/>, the unit tangent vector <m>\vT</m> measures the direction of <em>travel</em> along a parameterized curve. The unit normal vector <m>\vN</m> measures the direction that an object is <em>turning</em> in order to stay on the curve. In <xref ref="helix-plot3"/>, we observed that the unit tangent and unit normal vectors as at each point along the curve were orthogonal to each other.
 </p>
 <question>
   <p>
@@ -454,7 +456,7 @@
   </p>
 </question>
 <p>
-  We first answer this question with a conceptual, geometric argument. By <xref ref="def-unit-normal" />, the unit normal vector is parallel to <m>\vT\, '=\frac{d\vT}{dt}</m>. The derivative of the unit tangent vector will measure the change in <m>\vT</m>, and since <m>\vT</m> is a vector, this includes change in both the magnitude and the direction of <m>\vT</m>. Since the length of <m>\vT</m> does not change, <em>all</em> of <m>\vT\, '</m> represents change in the direction of <m>\vT</m>. This is an intuitive argument for why <m>\vT</m> and <m>\vN</m> are orthogonal. We next state this formally for future reference and present a formal, algebraic argument.
+  We first answer this question with a conceptual, geometric argument. By <xref ref="def-unit-normal"/>, the unit normal vector is parallel to <m>\vT\, '=\frac{d\vT}{dt}</m>. The derivative of the unit tangent vector will measure the change in <m>\vT</m>, and since <m>\vT</m> is a vector, this includes change in both the magnitude and the direction of <m>\vT</m>. Since the length of <m>\vT</m> does not change, <em>all</em> of <m>\vT\, '</m> represents change in the direction of <m>\vT</m>. This is an intuitive argument for why <m>\vT</m> and <m>\vN</m> are orthogonal. We next state this formally for future reference and present a formal, algebraic argument.
 </p>
 <proposition xml:id="TdotNzero">
   <statement>
@@ -500,7 +502,7 @@
   </p>
   <example>
     <p>
-      In this example, we complete the  calculation of the TNB frame for the helix given by <m>\vr(t)=\langle \cos(t),\sin(t)\frac{t}{\pi}\rangle </m>. From <xref ref="helix-T" /> and <xref ref="helix-N" /> we have the following:
+      In this example, we complete the  calculation of the TNB frame for the helix given by <m>\vr(t)=\langle \cos(t),\sin(t)\frac{t}{\pi}\rangle </m>. From <xref ref="helix-T"/> and <xref ref="helix-N"/> we have the following:
         <md>
           <mrow> \vT(t) \amp= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </mrow>
           <mrow> \vN \amp= \langle -\cos(t),-\sin(t),0\rangle </mrow>
@@ -514,7 +516,8 @@
     <figure xml:id="helix-plot4">
       <caption> A plot of the helix with the TNB frame plotted</caption>
       <interactive label="interactive-helix-plot4" platform="sage" width="93%" aspect="1:1.11">
-        <slate surface="sage">
+        <description><p> A plot of the helix with the TNB frame plotted</p>
+      </description><slate surface="sage">
           var('t')
           r2(t)=(cos(t),sin(t),t/pi)
           rescale=1/3
@@ -553,7 +556,7 @@
 <subsection xml:id="subsec-driverroadTNB">
   <title>The Driver or the Road: TNB Frame</title>
   <p>
-    To conclude this section, we consider whether the measurements of <m>\vT</m>, <m>\vN</m>, and <m>\vB</m> are properties of the driver or the road. A parameterized curve  has a stated orientation (direction of travel). Remember that a measurement involving a parameterized curve is a property of the driver if two different parameterizations can have different measurements at the same location on the curve. It is important to remember that this does not mean that you look at the same parameter value on the curve, but rather the same <em>location</em> on the curve. A measurement on a parameterized curve is a property of the road if <em>every</em> parameterization of this curve must have the same measurement for a fixed location on the curve. These are the same ideas that were first discussed in <xref ref="driver_road_act" />. In the analogy of a parameterization being a description for how a particular racecar travels around a track as a function of time, a measurement is a property of the driver if that measurement can have different values for different drivers when measured at the same point on the racetrack. A measurement is a property of the road if that measurement <em>must</em> have the same value for <em>all</em> drivers when measured at the same point on the racetrack.
+    To conclude this section, we consider whether the measurements of <m>\vT</m>, <m>\vN</m>, and <m>\vB</m> are properties of the driver or the road. A parameterized curve  has a stated orientation (direction of travel). Remember that a measurement involving a parameterized curve is a property of the driver if two different parameterizations can have different measurements at the same location on the curve. It is important to remember that this does not mean that you look at the same parameter value on the curve, but rather the same <em>location</em> on the curve. A measurement on a parameterized curve is a property of the road if <em>every</em> parameterization of this curve must have the same measurement for a fixed location on the curve. These are the same ideas that were first discussed in <xref ref="driver_road_act"/>. In the analogy of a parameterization being a description for how a particular racecar travels around a track as a function of time, a measurement is a property of the driver if that measurement can have different values for different drivers when measured at the same point on the racetrack. A measurement is a property of the road if that measurement <em>must</em> have the same value for <em>all</em> drivers when measured at the same point on the racetrack.
   </p>
   
   <worksheet>
@@ -620,6 +623,6 @@
 
 </outcomes>
 
-    <xi:include href="exercises/ez-S_VVF_TNB.ptx" />
+    <xi:include href="exercises/ez-S_VVF_TNB.ptx"/>
     
 </section>
