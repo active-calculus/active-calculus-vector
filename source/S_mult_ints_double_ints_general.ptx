@@ -461,7 +461,7 @@
     <p>
       A vertically simple region is one that can be split into vertical slices of the form <m>x=\text{constant}</m> for <m>x</m> in the interval <m>[a,b]</m> where every vertical slice has the same upper and lower bound function: <m>g_1(x) \leq y \leq g_2(x)</m>. A horizontally simple region is one that can be split into horizontal slices of the form <m>y=\text{constant}</m> for <m>y</m> in the interval <m>[c,d]</m> where every horizontal slice has the same upper (right) and lower (left) bound functions: <m>h_1(x) \leq y \leq h_2(x)</m>.
     </p>
-    <example>
+    <example xml:id="examp-mult_ints-double_ints_general-triangular">
       <introduction>
         <p>
         Let <m>D</m> be the triangular region in the <m>xy</m>-plane with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m>, shown in <xref ref="triang-region"/>. We will determine if <m>D</m> is horizontally simple, vertically simple, or both. For simplicity, we refer to the three sides as follows:
@@ -570,7 +570,7 @@
           </p>
       </conclusion>
     </example>
-    <example>
+    <example xml:id="examp-mult_ints-general-not_simple">
       <introduction>
         <p>
           In this example, we will look at region that is neither horizontally or vertically simple. Let <m>D</m> be the parallelogram with vertices <m>(0,0)</m>, <m>(2,1)</m>, <m>(4,3)</m>, and <m>(2,2)</m> as shown in <xref ref="notsimple"/>. You should take a moment to verify each of the equations for the lines that bound <m>D</m>.
@@ -578,7 +578,7 @@
         <figure xml:id="notsimple">
           <caption>The region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,1)</m>, <m>(4,3)</m>, and <m>(2,2)</m></caption>
           <image width="60%" xml:id="img-notsimple">
-            <description><p>The region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,1)</m>, <m>(4,3)</m>, and <m>(2,2)</m></p>
+            <description><p>The region <m>D</m> in the <m>xy</m>-plane with vertices <m>(0,0)</m>, <m>(2,1)</m>, <m>(4,3)</m>, and <m>(2,2)</m>. The four sides of the region are labeled <m>y=x/2</m> (below the region on <m>0\leq x\leq 2</m>), <m>y=x</m> (above the region on <m>0\leq x\leq 2</m>), <m>y=x-1</m> (below the region on <m>2\leq x\leq 4</m>), and <m>y=x/2+1</m> (above the region on <m>2\leq x\leq 4</m>).</p>
           </description><sageplot>
               var('x,y')
               plot8=polygon([(0,0),(2,1),(4,3),(2,2)],color="lightblue",edgecolor="black",gridlines=True,xmin=0,xmax=4,ymin=0,ymax=3,zorder=2,ticks=[[0,1,2,3,4],[0,1,2,3]])
@@ -594,12 +594,12 @@
       </introduction>
       <task>
         <p>
-          If we try to look at <m>D</m> along vertical slices (of the form <m>x=k</m>), different values of <m>k</m> will have different upper and lower bounds. For instance, the default <m>k</m> value of 0.5 shown in <xref ref="notvsimple"/> is a vertical segment with lower bound of <m>\left(k,\frac{k}{2}\right)</m> and upper bound of <m>\left(k,k\right)</m>. You can use the slider at the top of <xref ref="notvsimple"/> to change the value of <m>k</m> to something greater than 2. For values of <m>k</m> greater than 2, the vertical slice of <m>D</m> along <m>x=k</m> will have lower bound of <m>\left(k,k-1\right)</m> and upper bound of <m>\left(k,\frac{k}{2}+1\right)</m>. Because there is not the same upper or lower bounds functions for <em>all</em> vertical slices of <m>D</m>, <m>D</m> is not vertically simple.
+          If we try to look at <m>D</m> along vertical slices of the form <m>x=k</m>, different values of <m>k</m> will have different upper and lower bounds. For instance, the default <m>k</m> value of 0.5 shown in <xref ref="notvsimple"/> is a vertical segment with lower bound <m>\left(k,\frac{k}{2}\right)</m> and upper bound <m>\left(k,k\right)</m>. Use the slider at the top of <xref ref="notvsimple"/> to change the value of <m>k</m> to a number greater than 2. For such values, the vertical slice of <m>D</m> along <m>x=k</m> will have lower bound <m>\left(k,k-1\right)</m> and upper bound <m>\left(k,\frac{k}{2}+1\right)</m>. Because the upper or lower bound <em>functions</em> depend on the location of a vertical slice, <m>D</m> is not vertically simple.
         </p>
         <figure xml:id="notvsimple">
           <caption>The region <m>D</m> with vertical slices that change upper and lower bounds depending on the value of <m>x=k</m></caption>
-          <interactive title="interactive-notvsimple" platform="sage" width="100%" aspect="1:1.15">
-            <description><p>The region <m>D</m> with vertical slices that change upper and lower bounds depending on the value of <m>x=k</m></p>
+          <interactive title="interactive-notvsimple" platform="sage" width="110%" aspect="1.1:1">
+            <description><p>The region <m>D</m> shown in <xref ref="notsimple"/> along with a vertical slice. The position of the vertical slice can be adjusted with a slider labeled <m>k</m>. The coordinates of the points at the bottom and top of the vertical slice are shown (in terms of <m>k</m>) and change as the slider is moved.</p>
           </description><slate surface="sage">
               var('x,y')
               @interact
@@ -628,12 +628,12 @@
     <task>
       <statement>
         <p>
-          If we try to look at <m>D</m> along horizontal slices (of the form <m>y=k</m>), different values of <m>k</m> will have different upper and lower bounds. For instance, the default <m>k</m> value of 0.5 shown in <xref ref="nothsimple"/> is a vertical segment with lower bound of <m>\left(k,k\right)</m> and upper bound of <m>\left(2k,k\right)</m>. You can use the slider at the top of <xref ref="nothsimple"/> to change the value of <m>k</m> to something greater than 1. You can see that for <m>k</m> values between 1 and 2, the upper bound on the horizontal segment becomes <m>\left(k-1,k\right)</m> and for <m>k</m> values above 2, the lower bound will also change to <m>\left(\frac{k}{2}+1,k\right)</m>. Because there is not the same upper or lower bounds functions for <em>all</em> vertical slices of <m>D</m>, <m>D</m> is not vertically simple.
+          If we try to look at <m>D</m> along horizontal slices of the form <m>y=k</m>, different values of <m>k</m> will have different upper and lower bounds. For instance, the default <m>k</m> value of 0.5 shown in <xref ref="nothsimple"/> is a vertical segment with lower bound <m>\left(k,k\right)</m> and upper bound <m>\left(2k,k\right)</m>. Use the slider at the top of <xref ref="nothsimple"/> to change the value of <m>k</m> to a number greater than 1. You can see that for <m>k</m> values between 1 and 2, the upper bound on the horizontal segment becomes <m>\left(k-1,k\right)</m> and for <m>k</m> values above 2, the lower bound also changes to <m>\left(\frac{k}{2}+1,k\right)</m>. Because the upper or lower bound <em>functions</em> depend on the location of the horizontal slice, <m>D</m> is not horizontally simple.
         </p>
         <figure xml:id="nothsimple">
         <caption>The region <m>D</m> with horizontal slices that change upper and lower bounds depending on the value of <m>y=k</m></caption>
-        <interactive title="interactive-nothsimple" platform="sage" width="100%" aspect="1:1.15">
-          <description><p>The region <m>D</m> with horizontal slices that change upper and lower bounds depending on the value of <m>y=k</m></p>
+        <interactive title="interactive-nothsimple" platform="sage" width="110%" aspect="1.1:1">
+          <description><p>The region <m>D</m> shown in <xref ref="notsimple"/> along with a vertical slice. The position of the vertical slice can be adjusted with a slider labeled <m>k</m>. The coordinates of the points at the bottom and top of the vertical slice are shown (in terms of <m>k</m>) and change as the slider is moved.</p>
         </description><slate surface="sage">
             var('x,y')
             @interact
@@ -670,18 +670,18 @@
   <activity workspace="1.5in" xml:id="trianglesimple">
     <introduction>
       <p>
-        In this activity, we will be breaking the region <m>D</m> from the previous example into parts which are horizontally or vertically simple.
+        In this activity, we will break the region <m>D</m> from <xref ref="examp-mult_ints-general-not_simple"/> into smaller regions which are horizontally or vertically simple.
       </p>
     </introduction>
     <task>
       <statement>
         <p>
-          In <xref ref="vsimple2"/>, we have broken our region <m>D</m> into two regions <m>V_1</m> and <m>V_2</m>. Give inequalities for each of <m>V_1</m> and <m>V_2</m> that shows that they are individually vertically simple.
+          In <xref ref="vsimple2"/>, the region <m>D</m> is broken into two regions, <m>V_1</m> and <m>V_2</m>. Give inequalities for each of <m>V_1</m> and <m>V_2</m> that shows each region is vertically simple.
         </p>
          <figure xml:id="vsimple2">
             <caption>The region <m>D</m> split into two regions, <m>V_1</m> and <m>V_2</m>, which are individually vertically simple</caption>
             <image width="60%" xml:id="img-vsimple2">
-              <description><p>The region <m>D</m> split into two regions, <m>V_1</m> and <m>V_2</m>, which are individually vertically simple</p>
+              <description><p>A shaded region in the <m>xy</m>-plane with vertices <m>(0,0)</m>, <m>(2,1)</m>, <m>(4,3)</m>, and <m>(2,2)</m>. There is a vertical line segment inside the region from <m>(2,1)</m> to <m>(2,2)</m>. The portion of the region left of the line segment is labeled <m>V_1</m>. The portion right of the line segment is labeled <m>V_2</m>.</p>
             </description><sageplot>
                 var('x,y')
                 plot10=polygon([(0,0),(2,1),(2,2)],color="lightblue",edgecolor="black",gridlines=True,xmin=0,xmax=4,ymin=0,ymax=3,zorder=2,ticks=[[0,1,2,3,4],[0,1,2,3]])
@@ -697,12 +697,12 @@
     <task>
       <statement>
         <p>
-          In <xref ref="hsimple3"/>, we have broken our region <m>D</m> into three regions <m>H_1</m>, <m>H_2</m>, and <m>H_3</m>. Give inequalities for each of <m>H_1</m>, <m>H_2</m>, and <m>H_3</m> that shows that they are individually horizontally simple.
+          In <xref ref="hsimple3"/>, the region <m>D</m> is broken into three regions <m>H_1</m>, <m>H_2</m>, and <m>H_3</m>. Give inequalities for each of <m>H_1</m>, <m>H_2</m>, and <m>H_3</m> that shows that each region is horizontally simple.
         </p>
          <figure xml:id="hsimple3">
             <caption>The region <m>D</m> split into three regions, <m>H_1</m>, <m>H_2</m>, and <m>H_3</m>, which are individually horizontally simple</caption>
             <image width="60%" xml:id="img-hsimple3">
-              <description><p>The region <m>D</m> split into three regions, <m>H_1</m>, <m>H_2</m>, and <m>H_3</m>, which are individually horizontally simple</p>
+              <description><p>A shaded region in the <m>xy</m>-plane with vertices <m>(0,0)</m>, <m>(2,1)</m>, <m>(4,3)</m>, and <m>(2,2)</m>. There are two horizontal line segments inside the region. The lower line segment is from <m>(1,1)</m> to <m>(2,1)</m>. The upper line segment is from <m>(2,2)</m> to <m>(3,2)</m>. The portion of the region below the lower line segment is labeled <m>H_1</m>. The portion between the horizontal line segments is labeled <m>H_2</m>. The portion above the upper line segment is labeled <m>H_3</m>.</p>
             </description><sageplot>
                 var('x,y')
                 plot11=polygon([(0,0),(2,1),(1,1)],color="lightblue",edgecolor="black",gridlines=True,xmin=0,xmax=4,ymin=0,ymax=3,zorder=2,ticks=[[0,1,2,3,4],[0,1,2,3]])
@@ -721,11 +721,11 @@
 </worksheet>
   <p>
     In single variable calculus, we were able to split integrals into multiple parts. The integral of <m>f(x)</m> over <m>[a,b]</m> could be split to subintervals separately:
-    <me>\int^b_a f(x) \, dx = \int_a^c f(x) \, dx + \int_c^b f(x) \, dx</me>
-    Similarly, we can split a region of integration for a double integral into subregions. If a region <m>R</m> can be split into two sets <m>R_1</m> and <m>R_2</m> (where <m>R_1</m> and <m>R_2</m> do not overlap), then 
-    <me>\iint_R f(x,y) \, dA = \iint_{R_1} f(x,y) \, dA+\iint_{R_2} f(x,y) \, dA</me>
-    This property is especially useful for a region like <xref ref="hsimple3"/> where <m>D</m> is split into parts <m>H_1</m>, <m>H_2</m>, and <m>H_3</m> because
-    <me>\iint_D f(x,y) \, dA = \iint_{H_1} f(x,y) \, dA+\iint_{H_2} f(x,y) \, dA+\iint_{H_3} f(x,y) \, dA</me>
+    <me>\int^b_a f(x) \, dx = \int_a^c f(x) \, dx + \int_c^b f(x) \, dx</me>.
+    Similarly, we can split a region of integration for a double integral into subregions. If a region <m>R</m> can be split into two nonoverlapping regions <m>R_1</m> and <m>R_2</m>, then 
+    <me>\iint_R f(x,y) \, dA = \iint_{R_1} f(x,y) \, dA+\iint_{R_2} f(x,y) \, dA</me>.
+    This property is useful for a region similar to <xref ref="hsimple3"/> where <m>D</m> is split into parts <m>H_1</m>, <m>H_2</m>, and <m>H_3</m> because
+    <me>\iint_D f(x,y) \, dA = \iint_{H_1} f(x,y) \, dA+\iint_{H_2} f(x,y) \, dA+\iint_{H_3} f(x,y) \, dA</me>,
     where each of the double integrals on the right can be written as an iterated integral using a horizontally simple description.
   </p>
   <worksheet>
@@ -733,54 +733,162 @@
     <task>
       <statement>
         <p>
-          For each region, state whether the region is vertically simple, horizontally simple, both, or neither. State the appropriate inequalities to justify when each region is vertically simple or horizontally simple.
+          For each region shown below, state whether the region is vertically simple, horizontally simple, both, or neither. State the appropriate inequalities to justify when a region is vertically simple or horizontally simple.
         </p>
         <figure>
           <caption>Four Regions of the <m>xy</m>-plane</caption>
-          <image width="60%" source="./images/regions.png"><description><p>Four Regions of the <m>xy</m>-plane</p>
-          </description></image>
+          <!-- <image width="60%" source="./images/regions.png"><description><p>Four Regions of the <m>xy</m>-plane</p>
+          </description></image> -->
+          <sbsgroup widths="47% 47%">
+            <sidebyside>
+              <figure xml:id="fig-act-mult_ints-general-four_regions-1">
+                <caption></caption>
+                <image>
+                  <description>
+                    <p>A region in the <m>xy</m>-plane consisting of the left half of the circle of radius <m>3</m> centered at the origin.
+                    </p>
+                  </description>
+                  <prefigure xmlns="https://prefigure.org" label="img-left-half-circle">
+                    <diagram dimensions="(330,330)" margins="5">
+                      <coordinates bbox="(-4,-4,4,4)">
+                        <define-shapes>
+                          <circle at="circle" center="(0,0)" radius="3" />
+                          <rectangle at="left-rect" lower-left="(-3,-3)" dimensions="(3,6)" />
+                          <shape at="left" shapes="circle, left-rect" operation="intersection"/>
+                        </define-shapes>
+                        <grid-axes hticks="(0,2,2)" hlabels="(0,2,2)" vticks="(0,2,2)" vlabels="(0,2,2)" />
+                        <shape shape="circle" stroke="blue"/>
+                        
+                        <shape shape="left" fill="blue" opacity="0.3"/>
+                      </coordinates>
+                    </diagram>
+                  </prefigure>
+                </image>
+              </figure>
+              <figure xml:id="fig-act-mult_ints-general-four_regions-2">
+                <caption></caption>
+                <image>
+                  <description>
+                    <p>A shaded region in the <m>xy</m>-plane. The shaded portion is in the first quadrant and bounded above by the downward-opening parabola <m>y=4-x^2</m>. 
+                    </p>
+                  </description>
+                  <prefigure xmlns="https://prefigure.org" label="img-inside-parabola">
+                    <diagram dimensions="(330, 330)" margins="5">
+                      <definition>f(x)=4-x^2</definition>
+                      <coordinates bbox="[-3,-1,3,4.5]">
+                        <grid-axes />
+                        <area-under-curve function="f" domain="(0,2)"
+                                          fill="blue" opacity="0.3" stroke="black"/>
+                        <graph function="f" domain="(-3,3)"/>
+                      </coordinates>
+                    </diagram>
+                  </prefigure>
+                </image>
+              </figure>
+            </sidebyside>
+            <sidebyside>
+              <figure xml:id="fig-act-mult_ints-general-four_regions-3">
+                <caption></caption>
+                <image>
+                  <description>
+                    <p>A region in the <m>xy</m>-plane. The region is a trapezoid with vertices <m>(1,2)</m>, <m>(4,2)</m>, <m>(2,0)</m>, and <m>(4,0)</m>.
+                    </p>
+                  </description>
+                  <prefigure xmlns="https://prefigure.org" label="img-trapezoid">
+                    <diagram dimensions="(300, 300)" margins="5">
+                      <coordinates bbox="[-3,-1,5,3]">
+                        <grid-axes />
+                        <polygon points="((1,2),(4,2),(4,0),(2,0))" closed="yes"
+                                stroke="blue" fill="blue" fill-opacity="0.3"/>
+                      </coordinates>
+                    </diagram>
+                  </prefigure>
+                </image>
+              </figure>
+              <figure xml:id="fig-act-mult_ints-general-four_regions-4">
+                <caption></caption>
+                <image>
+                  <description>
+                    <p>A shaded region in the <m>xy</m>-plane. The region is triangular and has vertices <m>(-1,3)</m>, <m>(3,3)</m>, and <m>(1,4)</m>. 
+                    </p>
+                  </description>
+                  <prefigure xmlns="https://prefigure.org" label="img-triangle">
+                    <diagram dimensions="(300, 300)" margins="5">
+                      <coordinates bbox="[-3,-2,4,5]">
+                        <grid-axes />
+                        <polygon points="((1,4),(3,3),(-1,3))" closed="yes"
+                                stroke="blue" fill="blue" fill-opacity="0.3"/>
+                      </coordinates>
+                    </diagram>
+                  </prefigure>
+                </image>
+              </figure>
+            </sidebyside>
+          </sbsgroup>
         </figure>
       </statement>
     </task>
     <task>
-      <statement>
+      <introduction>
         <p>
-          Which of the following expressions do not make sense as an iterated integral used to compute a double integral? If the iterated integral does not make sense, explain your reasoning in a couple of sentences. If the iterated integral does make sense, draw a plot of the region of integration. 
-          <ol>
-            <li> <me> \int_0^1 \int_1^x f(x,y) \; dy \; dx </me></li>
-            <li> <me> \int_0^1 \int_1^y f(x,y) \; dy \; dx </me></li>
-            <li> <me> \int_0^1 \int_x^y f(x,y) \; dy \; dx </me></li>
-            <li> <me> \int_0^1 \int_x^1 f(x,y) \; dy \; dx </me></li>
-          </ol>
+          Which of the following expressions do not make sense as an iterated integral used to compute a double integral? For any iterated integral that does not make sense, explain your reasoning in a couple of sentences. For any iterated integral that does make sense, sketch a plot of the region of integration. 
         </p>
-      </statement>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle \int_0^1 \int_1^x f(x,y) \; dy \; dx </m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle \int_0^1 \int_1^y f(x,y) \; dy \; dx</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle \int_0^1 \int_x^y f(x,y) \; dy \; dx</m>
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            <m>\displaystyle \int_0^1 \int_x^1 f(x,y) \; dy \; dx</m>
+          </p>
+        </statement>
+      </task>
     </task>
   </activity>
 </worksheet>
   <p>
-    The process for describing a 2D region as either horizontally or vertically simple is exactly the procedure needed to set up iterated integral that will allow us to evaluate a double integral. If the region <m>D</m> can be described by the inequalities <m>a \leq x \leq b</m> and <m>g_1(x) \leq y \leq g_2(x)</m> (vertically simple), where <m>g_1=g_1(x)</m> and <m>g_2=g_2(x)</m> are functions of only <m>x</m>, then
+    The process for describing a two-dimensional region as horizontally or vertically simple is exactly the procedure needed to set up iterated integral to evaluate a double integral. If a vertically simple region <m>D</m> can be described by the inequalities <m>a \leq x \leq b</m> and <m>g_1(x) \leq y \leq g_2(x)</m>, where <m>g_1(x)</m> and <m>g_2(x)</m> are functions of only <m>x</m>, then the double integral can be written as an iterated integral in the following way
     <me>
-      \iint_D f(x,y) \, dA = \int_{x=a}^{x=b} \int_{y=g_1(x)}^{y=g_2(x)} f(x,y) \, dy \, dx.
-    </me>
+      \iint_D f(x,y) \, dA = \int_{x=a}^{x=b} \int_{y=g_1(x)}^{y=g_2(x)} f(x,y) \, dy \, dx
+    </me>.
   </p>
   <p>
-    Alternatively, if the region <m>D</m> is described by the inequalities <m>c \leq y \leq d</m> and <m>h_1(y) \leq x \leq h_2(y)</m> (horizontally simple), where <m>h_1=h_1(y)</m> and <m>h_2=h_2(y)</m> are functions of only <m>y</m>, we have
+    Alternatively, if a horizontally simple region <m>D</m> is described by the inequalities <m>c \leq y \leq d</m> and <m>h_1(y) \leq x \leq h_2(y)</m>, where <m>h_1(y)</m> and <m>h_2(y)</m> are functions of only <m>y</m>, then the double integral can be written as an iterated integral in the following way
     <me>
-      \iint_D f(x,y) \, dA = \int_{y=c}^{y=d} \int_{x=h_1(y)}^{x=h_2(y)} f(x,y) \, dx \, dy.
-    </me>
+      \iint_D f(x,y) \, dA = \int_{y=c}^{y=d} \int_{x=h_1(y)}^{x=h_2(y)} f(x,y) \, dx \, dy
+    </me>.
   </p>
   
     <p>
-      The structure of an iterated integral that will be used to evaluate a double integral should satisfy the following:
+      The structure of an iterated integral that will be used to evaluate a double integral must satisfy the following:
       <ul>
         <li>
           <p>
-            the limits on the inner integral must be constants or in terms of outer variable <mdash/> that is, if the inner integral is with respect to <m>y</m>, then its limits may only involve <m>x</m> and constants, and vice versa.
+            The limits on the inner integral must be constants or expressed only in terms of the outer variable<mdash/>that is, if the inner integral is with respect to <m>y</m>, then its limits may only involve <m>x</m> and constants, and vice versa.
           </p>
         </li>
         <li>
           <p>
-            the limits on the outer integral must be constants
+            The limits on the outer integral must be constants.
           </p>
         </li>
       </ul>
@@ -789,12 +897,12 @@
     <example>
       <introduction>
         <p>
-          Let <m>f(x,y) = x^2y</m> be defined on the triangle <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m> as shown at left in <xref ref="F_11_3_DI_1">Figure</xref>. This is the same region we described in <xref ref="trianglesimple"/> and we will use the inequalities from that example to set up our iterated integrals. 
+          Let <m>f(x,y) = x^2y</m> be defined on the triangle <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m> as shown in <xref ref="fig-mult_ints-double_ints_general-iterated_triangle">Figure</xref>. This is the same region we described in <xref ref="examp-mult_ints-double_ints_general-triangular"/>. We will use the inequalities from that example to set up the iterated integrals. 
         </p>
-        <figure xml:id="F_11_3_DI_1">
+        <figure xml:id="fig-mult_ints-double_ints_general-iterated_triangle">
           <caption>The triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m></caption>
-          <image width="80%" xml:id="img-F_11_3_DI_1">
-            <description><p>The triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m></p>
+          <image width="60%" xml:id="img-fig-mult_ints-double_ints_general-iterated_triangle">
+            <description><p>A triangular region in the <m>xy</m>-plane. The region is labeled <m>D</m>. The triangle has vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(0,3)</m>.</p>
           </description><sageplot>
               plot6=polygon([(0,0),(2,0),(2,3)],color="lightblue",edgecolor="black",gridlines=True,xmin=0,xmax=3,ymin=0,ymax=3,zorder=5)
               plot6+=text("$D$",(1.8,2.2),color="black",fontsize=20,axes_labels=["$x$","$y$"],zorder=6)
@@ -802,77 +910,70 @@
             </sageplot>
           </image>
         </figure>
-      <!-- </figure>
-        <figure xml:id="F_11_3_DI_1">
-          <caption>A triangular domain and slices in the <m>y</m> and <m>x</m> directions. </caption>
-          <sidebyside widths="33% 33% 33%">
-            <image source="images/fig_11_3_triangular"/>
-            <image source="images/fig_11_3_triangular_v"/>
-            <image source="images/fig_11_3_triangular_h"/>
-            </sidebyside>
-        </figure> -->
+        <p>
+          To evaluate <m>\displaystyle{\iint_D f(x,y) \, dA}</m>, we must first describe the region <m>D</m> in terms of the variables <m>x</m> and <m>y</m>. We take two approaches corresponding to a vertically simple description, then a horizontally simple description. 
+        </p>
       </introduction>
       <task>
         <p>
-          To evaluate <m>\displaystyle{\iint_D f(x,y) \, dA}</m>, we must first describe the region <m>D</m> in terms of the variables <m>x</m> and <m>y</m>. We take two approaches corresponding to a vertically simple description, then a horizontally simple description. 
-          We will use the inequalities from <xref ref="trianglesimple"/> that correspond to our vertically simple description:
-          <me>\text{Along }x=k\text{, the }y\text{-coordinates go from }0\text{ to }\frac{3}{2}k</me>
+          We first use the inequalities from <xref ref="examp-mult_ints-double_ints_general-triangular"/> that correspond to our vertically simple description:
+          <me>\text{Along }x=k\text{, the }y\text{-coordinates go from }0\text{ to }\frac{3}{2}k</me>,
           which corresponds to the inequalities 
-          <me> 0\leq x \leq 2 \quad \quad 0 \leq y \leq \frac{3}{2} x</me>
-          Using these inequalities corresponds to integrating with respect to <m>y</m> first (the inner integral).   
+          <me> 0\leq x \leq 2 \quad \quad 0 \leq y \leq \frac{3}{2} x</me>.
+          Using these inequalities corresponds to integrating with respect to <m>y</m> first. That is, the variable in the inner integral is <m>y</m>.
         </p>
         <p>
           Therefore,
           <me>
-            \iint_D x^2y \, dA = \int_{x=0}^{x=2} \int_{y=0}^{y = \frac32 x} x^2y \, dy \, dx.
-          </me>
-          We evaluate the iterated integral by applying the Fundamental Theorem of Calculus first to the inner integral, and then to the outer one, and find that
+            \iint_D x^2y \, dA = \int_{x=0}^{x=2} \int_{y=0}^{y = \frac32 x} x^2y \, dy \, dx
+          </me>.
+          We evaluate the iterated integral by applying the Fundamental Theorem of Calculus first to the inner integral followed by the outer one. This gives
           <md>
             <mrow>\int_{x=0}^{x=2} \int_{y=0}^{y=\frac32 x} x^2y \, dy \, dx \amp = \int_{x=0}^{x=2} \left[x^2 \cdot \frac{y^2}{2}\right]\restrict{y=0}^{y=\frac32 x} \, dx</mrow>
             <mrow>\amp = \int_{x=0}^{x=2} \frac{9}{8}x^4\, dx</mrow>
             <mrow>\amp = \frac{9}{8}\frac{x^5}{5}\restrict{x=0}^{x=2}</mrow>
             <mrow>\amp = \left(\frac{9}{8}\right) \left(\frac{32}{5}\right)</mrow>
             <mrow>\amp = \frac{36}{5}</mrow>
-          </md>
+          </md>.
         </p>
         <p>
-          We can visualize both the double integral and the iterated integral in <xref ref="dblintproj"/>. The double integral of <m>f(x,y)=x^2y</m> over our region <m>D</m> can be seen as the volume of the region below the surface <m>z=f(x,y)</m> and above the <m>xy</m>-plane on the region <m>D</m>, shown as the pink volume in <xref ref="dblintproj"/>. 
+          We can visualize both the double integral and the iterated integral in <xref ref="dblintproj"/>. The double integral of <m>f(x,y)=x^2y</m> over the region <m>D</m> can be seen as the volume of the solid below the surface <m>z=f(x,y)</m> and above the <m>xy</m>-plane on the region <m>D</m>. This is shown as the pink volume in <xref ref="dblintproj"/>. 
         </p>
         <figure xml:id="dblintproj">
           <caption>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m> and the function that shows the area of the cross section for <m>x=k</m></caption>
-            <interactive title="interactive-dblintproj" platform="sage" width="100%" aspect="1:1.15">
-              <description><p>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m> and the function that shows the area of the cross section for <m>x=k</m></p>
+            <interactive title="interactive-dblintproj" platform="sage" width="100%" aspect="1:1.05">
+              <description><p>A three-dimensional plot of a solid in <m>xyz</m>-space. The solid is bounded below by the <m>xy</m>-plane, and its base is the triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m>. The upper surface of the solid is curved and determined by the graph of the function <m>f(x,y)=x^2y</m>. A slice of the solid parallel to the <m>yz</m>-plane is shown with a slider that can adjust the <m>x</m>-value at which the slice is located. The image also includes a two-dimensional graph of <m>y=\frac{9}{8}x^4</m> on a plane parallel to the <m>xz</m>-plane that also includes a vertical line segment identifying the location of the slice shown inside the solid.</p>
             </description><slate surface="sage">
                 <xi:include href="interacts/projdblint.txt" parse="text"/>
               </slate>
             </interactive>
         </figure>
         <p>
-          We can also use each of the iterated integrals to visualize our result. The inner integral corresponds to the area of a cross section along a slice with a fixed <m>x</m>-value, as shown by the blue cross section in <xref ref="dblintproj"/>. The result of the inner integral changes depending on which <m>x</m>-value is used. Algebraically, we see this from our work above that gave <m>\frac{9}{8}x^4</m> as the result of the inner integral. 
+          We can also use each of the iterated integrals to visualize the result. The inner integral corresponds to the area of a cross section along a slice with a fixed <m>x</m>-value, as shown by the blue cross section in <xref ref="dblintproj"/>. The result of the inner integral changes depending on which <m>x</m>-value is used. Algebraically, this is shown in the work above that gave <m>\frac{9}{8}x^4</m> as the result of the inner integral. 
         </p>
         <p>  
-          To understand this result geometrically, you should use the slider at the top of <xref ref="dblintproj"/> to change the <m>x</m>-value at which the slice of our region is taken and observe that the area of the cross section increases with <m>x</m>. The graph of <m>\frac{9}{8}x^4</m> is projected on a plane and you should notice that as you used the slider to change the <m>x</m>-value of the slice, the highlighted point on the 2D graph shows the area of slice. The red 2D graph is a plot of the result of the inner integral, which measures the area of cross section at that particular <m>x</m>-value, which is why the red graph goes higher than the surface <m>z</m>-values. In fact the peak of the red graph occurs at <m>\frac{128}{9}</m> where as the highest surface value is <m>12</m>. The scale of <xref ref="dblintproj"/> has been adjusted to make these features easier to see. 
+          To understand this result geometrically, use the slider at the top of <xref ref="dblintproj"/> to change the <m>x</m>-value at which the slice of the solid is taken and observe that the area of the cross section increases as <m>x</m> increases. The graph of <m>\frac{9}{8}x^4</m> is projected on a plane. Notice that as you move the slider to change the <m>x</m>-value of the slice, the highlighted point on the two-dimensional graph shows the area of slice. The red two-dimensional graph is a plot of the result of the inner integral, which measures the area of cross section at that particular <m>x</m>-value. This explains why the red graph goes higher than the surface <m>z</m>-values. In fact the peak of the red graph occurs at <m>\frac{128}{9}</m> where as the highest surface value is <m>12</m>. The scale of <xref ref="dblintproj"/> has been adjusted to make these features easier to see. 
         </p>
         <p>
-          The result of the inner iterated integral is shown by the red graph, so the outer integral will evaluate to be the area under the red graph, which is shown in orange on the 2D graph portion of <xref ref="dblintproj"/>. Again, remember that the outer integral evaluates the Riemann sum corresponding to the cross sectional volumes (like in <xref ref="fig-mult_ints-iterated-wavy_surface2"/>).
+          The result of the inner iterated integral is shown by the red graph, so evaluating the outer integral gives the area under the red graph, which is shown in orange on the two-dimensional graph portion of <xref ref="dblintproj"/>. Again, remember that the outer integral evaluates the Riemann sum corresponding to the cross sectional volumes, as in <xref ref="fig-mult_ints-iterated-wavy_surface2"/>.
         </p>
       </task>
       <task>
         <p>
-          In the previous task, we use a vertically simple description for the region of integration <m>D</m>, which allowed use an iterated integral where we integrated with respect to <m>y</m> first (while treating <m>x</m> as a constant) and then integrating across the interval of relevent <m>x</m>-values. In this task, we will use a horizontally simple description for our region of integration and as a consequence the order in which we integrate our variables will be switched.
+          In the previous part, we used a vertically simple description for the region of integration <m>D</m>, which allowed us to use an iterated integral where we integrated with respect to <m>y</m> first, while treating <m>x</m> as a constant, and then integrated across the interval of relevent <m>x</m>-values. In this task, we will use a horizontally simple description for the region of integration. As a consequence, the order in which we integrate will be switched.
         </p>
         <p>
-          We will use the inequalities from <xref ref="trianglesimple"/> that correspond to our horizontally simple description:
-          <me>\text{Along }y=k\text{, the }x\text{-coordinates go from }\frac{2}{3}k\text{ to }2</me>
+          We will use the inequalities from <xref ref="examp-mult_ints-double_ints_general-triangular"/> that correspond to the horizontally simple description
+          <me>\text{Along }y=k\text{, the }x\text{-coordinates go from }\frac{2}{3}k\text{ to }2</me>,
           which corresponds to the inequalities 
-          <me> 0\leq y \leq 3 \quad \quad \frac{2}{3}y \leq x \leq 2</me>
-          Using these inequalities corresponds to integrating with respect to <m>x</m> first (the inner integral).  
+          <me> 0\leq y \leq 3 \quad \quad \frac{2}{3}y \leq x \leq 2</me>.
+          Using these inequalities corresponds to integrating with respect to <m>x</m> first. That is, the variable in the inner integral is <m>x</m>.
         </p>
         <p>
           Therefore,
           <me>
-            \iint_D x^2y \, dA = \int_{y=0}^{y=3} \int_{x=(2/3)y}^{x=2} x^2y \, dx \, dy.
-          </me>
+            \iint_D x^2y \, dA = \int_{y=0}^{y=3} \int_{x=(2/3)y}^{x=2} x^2y \, dx \, dy
+          </me>.
           We evaluate the resulting iterated integral as before by twice applying the Fundamental Theorem of Calculus, and find that
           <md>
             <mrow>\int_{y=0}^{y=3} \int_{x=\frac{2}{3}y}^{2} x^2y \, dx \, dy \amp = \int_{y=0}^{y=3} \left[\frac{x^3}{3}\right]\restrict{x=\frac{2}{3}y}^{x=2}y \, dx</mrow>
@@ -881,74 +982,76 @@
             <mrow>\amp = \left(\frac{8}{3}\right) \left(\frac{9}{2}\right) - \left(\frac{8}{81}\right) \left(\frac{243}{5}\right)</mrow>
             <mrow>\amp = 12 - \frac{24}{5}</mrow>
             <mrow>\amp = \frac{36}{5}</mrow>
-          </md>
+          </md>.
         </p>
         <p>
-          Similar to our visualization description for the vertically simple case, we can look at our double integral from a different perspective to understand the different parts of our iterated integral. In <xref ref="dblintproj2"/>, you can see the same volume as before in pink which corresponds to the volume computed by the double integral. In this task, we used a horizontally simple description which means our slices correspond to constant values of <m>y</m>. The cross sectional area of this slice along a constant <m>y</m>-value is shown in blue on both the slice of our volume and on the 2D graph that shows the values of the inner integral (as a function of <m>y</m>). You can use the slider at the top of <xref ref="dblintproj2"/> to see how the area of cross section changes with respect to different values of <m>y</m>.
+          Similar to our visualization description for the vertically simple case, we can look at the double integral from a different perspective to understand the different parts of this iterated integral. In <xref ref="dblintproj2"/>, you can see the same volume as before in pink which corresponds to the volume computed by the double integral. In this task, we used a horizontally simple description which means the slices correspond to constant values of <m>y</m>. The cross sectional area of this slice along a constant <m>y</m>-value is shown in blue on both the slice of the solid and on the two-dimensional graph that shows the values of the inner integral as a function of <m>y</m>. Use the slider at the top of <xref ref="dblintproj2"/> to see how the area of cross section changes with respect to <m>y</m>.
         </p>
         <figure xml:id="dblintproj2">
           <caption>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m> and the function that shows the area of the cross section for <m>y=k</m></caption>
             <interactive title="interactive-dblintproj2" platform="sage" width="100%" aspect="1:1.15">
-              <description><p>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m> and the function that shows the area of the cross section for <m>y=k</m></p>
+              <description><p>A three-dimensional plot of a solid in <m>xyz</m>-space. The solid is bounded below by the <m>xy</m>-plane, and its base is the triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m>. The upper surface of the solid is curved and determined by the graph of the function <m>f(x,y)=x^2y</m>. A slice of the solid parallel to the <m>xz</m>-plane is shown with a slider that can adjust the <m>y</m>-value at which the slice is located. The image also includes a two-dimensional graph of <m>x=\frac{8}{3}y-\frac{8}{81}y^4</m> with <m>y</m> as the horizontal axis on a plane parallel to the <m>yz</m>-plane. The two-dimensional graph also includes a vertical line segment identifying the location of the slice shown inside the solid.</p>
             </description><slate surface="sage">
                 <xi:include href="interacts/projdblint2.txt" parse="text"/>
               </slate>
             </interactive>
         </figure>
         <p>
-          You can see that as <m>y</m> increases from 0, the value of cross sectional area increases for a while, then decreases. While the height of our surface is increasing with respect to <m>y</m> over <m>[0,3]</m>, the length of the slice is getting smaller as <m>y</m> increases. This is captured algebraically by our inner integral in that the function we are integrating (<m>x^2y</m>) is increasing but the length of the interval we are integrating over (<m>\frac{2}{3}y\leq x\leq2</m>) is decreasing as we increase <m>y</m>. This is why our 2D graph in ends up having a concave down shape. 
+          You can see that as <m>y</m> increases from 0, the value of cross sectional area increases for a while, then decreases. While the height of our surface is increasing with respect to <m>y</m> over <m>[0,3]</m>, the length of the slice is getting smaller as <m>y</m> increases. This is captured algebraically by the inner integral in that the function we are integrating, <m>x^2y</m>, is increasing but the length of the interval we are integrating over, <m>\frac{2}{3}y\leq x\leq2</m>, is decreasing as we increase <m>y</m>. This is why the two-dimensional graph is concave down.
         </p>
         <p>
-          Again, we can visualize the cross section areas as the height of red graph, which will allow us to consider the value the double integral to be the area under the red curve (in our 2D plot). While the orange area in <xref ref="dblintproj2"/> may look less than the orange area in <xref ref="dblintproj"/>, they are in fact the same. The width of the orange area in <xref ref="dblintproj2"/> is 3, whereas the width of the orange area in <xref ref="dblintproj"/> is two.
-        </p>
-        <p>
-          We see that in the situation where <m>D</m> can be described as horizontally simple or vertically simple, the order in which we choose to set up and evaluate the iterated integrals doesn't matter; the same value results in either case.
+          We can visualize the cross section areas as the height of red graph, which allows us to consider the value the double integral to be the area under the red curve in the two-dimensional plot. While the orange area in <xref ref="dblintproj2"/> may look less than the orange area in <xref ref="dblintproj"/>, they are in fact the same. The width of the orange area in <xref ref="dblintproj2"/> is 3, whereas the width of the orange area in <xref ref="dblintproj"/> is 2.
         </p>
       </task>
+      <conclusion>
+        <p>
+          This example has illustrated that in a situation where <m>D</m> can be described as horizontally simple or vertically simple, the order in which we choose to set up and evaluate the iterated integrals doesn't matter. The iterated integrals yield the same value in each case.
+        </p>
+      </conclusion>
     </example>
     <p>
       The process of switching between a vertically simple description and a horizontally simple description for the region of integration is often called <term>switching the order of integation</term> because the corresponding iterated integrals used to calculate a double integral will have the order in which you integrate these variables switched. 
     </p>
     <p>
-      The meaning of a double integral over a non-rectangular region, <m>D</m>, parallels the meaning over a rectangular region. In particular,
+      The meaning of a double integral over a non-rectangular region, <m>D</m>, parallels the meaning over a rectangular region:
       <ul>
         <li>
           <p>
             <m>\displaystyle{\iint_D f(x,y) \, dA}</m> tells us the volume of the solids the graph of <m>f</m> bounds above the <m>xy</m>-plane over the closed, bounded region <m>D</m> minus the volume of the solids the graph of <m>f</m> bounds below the <m>xy</m>-plane under the region <m>D</m>;
           </p>
         </li>
-
         <li>
           <p>
-            <m>\displaystyle{\frac{1}{A(D)} \iint_R f(x,y) \, dA}</m>, where <m>A(D)</m> is the area of <m>D</m> tells us the average value of the function <m>f</m> on <m>D</m>. If <m>f(x, y) \geq  0</m> on <m>D</m>, we can interpret this average value of <m>f</m> on <m>D</m> as the height of the solid with base <m>D</m> and constant cross-sectional area <m>D</m> that has the same volume as the volume of the surface defined by <m>f</m> over <m>D</m>.
+            If <m>f(x,y)</m> measure the density in amount per unit area of a material in the region <m>D</m>, then <m>\iint_D f(x,y) \, dA</m> will gives the mass of material in <m>D</m>. 
           </p>
         </li>
         <li>
           <p>
-            If <m>f(x,y)</m> measure the density (in amount per unit area) of a material in the region <m>D</m>, then <m>\iint_D f(x,y) \, dA</m> will give the total amount of material in <m>D</m>. 
+            Dividing the double integral by the area of <m>D</m> gives the average value of <m>f</m> over the region <m>D</m>.
           </p>
         </li>
+        
       </ul>
     </p>
     <p>
-      In the next activity, we will practice the process of understanding a region of integration, using horizontally simple and vertically simple descriptions of the region, setting up and evaluating the corresponding iterated integrals. 
+      The next activity asks you to practice understanding a region of integration, using horizontally simple and vertically simple descriptions of a region, and setting up and evaluating the corresponding iterated integrals. 
     </p>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_3_1">
+  <activity workspace="1.5in" xml:id="act-mult_ints-double_ints_general-iterated_triangle">
       <introduction>
         <p>
-          Consider the double integral <m>\displaystyle{\iint_D (4-x-2y) \, dA}</m>, where <m>D</m> is the triangular region with vertices (0,0), (4,0), and (0,2). 
+           Let <m>D</m> be the triangular region with vertices <m>(0,0)</m>, <m>(4,0)</m>, and <m>(0,2)</m>. Consider the double integral <m>\displaystyle{\iint_D (4-x-2y) \, dA}</m>.
         </p>
       </introduction>
       <task>
         <statement>
           <p>
-            Draw and label a plot of <m>D</m> with relevent cross sections for a vertically simple description. Give the inequalities that show <m>D</m> as vertically simple.
+            Draw and label a plot of <m>D</m> with relevant cross sections for a vertically simple description. Give the inequalities that show <m>D</m> is vertically simple.
           </p>
         </statement>
         <answer>
           <p>
-            <image source="images/A_11_3_1_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+            <image source="images/A_11_3_1_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE SOLUTION</p></description></image>
             <m>0 \leq x \leq 4 \quad \quad 0 \leq y \leq 2-0.5x</m>
           </p>
         </answer>
@@ -959,18 +1062,18 @@
               \iint_D \left(\frac{3}{4}\right)(4-x-2y) \, dy \, dx = \int_{0}^{4} \int_{0}^{2-(1/2)x} \left(\frac{3}{4}\right)(4-x-2y) \, dy \, dx
             </me>
           </p>
-          <image source="images/A_11_3_1_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+          <image source="images/A_11_3_1_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE SOLUTION</p></description></image>
         </solution>
       </task>
       <task>
         <statement>
           <p>
-            Draw and label a plot of <m>D</m> with relevent cross sections for a horizontally simple description. Give the inequalities that show <m>D</m> as horizontally simple.
+            Draw and label a plot of <m>D</m> with relevant cross sections for a horizontally simple description. Give the inequalities that show <m>D</m> is horizontally simple.
           </p>
         </statement>
         <answer>
           <p>
-            <image source="images/A_11_3_1_partb.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+            <image source="images/A_11_3_1_partb.png"><description><p>ADD ALT TEXT TO THIS IMAGE SOLUTION</p></description></image>
             <m>0 \leq y \leq 2 \quad \quad 0 \leq x \leq 4-2y</m>
           </p>
         </answer>
@@ -987,7 +1090,7 @@
       <task>
         <statement>
           <p>
-            Write the double integral as an iterated integral of the form <m>\iint_D (4-x-2y) \, dy \, dx</m> and include bounds on both of your iterated integrals.
+            Write the double integral as an iterated integral of the form <m>\displaystyle \iint_D (4-x-2y) \, dy \, dx</m>, including correct bounds on the integral.
           </p>
         </statement>
         <answer>
@@ -1008,7 +1111,7 @@
       <task>
         <statement>
           <p>
-            Write the double integral as an iterated integral of the form <m>\iint_D (4-x-2y) \, dx \, dy</m> and include bounds on both of your iterated integrals.
+            Write the double integral as an iterated integral of the form <m>\iint_D (4-x-2y) \, dx \, dy</m>, include correct bounds on the integral.
           </p>
         </statement>
         <answer>
@@ -1029,7 +1132,7 @@
       <task>
         <statement>
           <p>
-            Evaluate the two iterated integrals from the previous two parts, and verify that they produce the same value. Give at least one interpretation of the meaning of your result.
+            Evaluate the two iterated integrals from the previous two parts, and verify that they produce the same value. Give at least one interpretation of the meaning of the value of the double integral.
           </p>
         </statement>
         <answer>
@@ -1076,34 +1179,34 @@
     </activity>
 </worksheet>
     <p>
-      In the next activity, we will explore to understand a region of integration, with some non-linear sides, given as bounds in an iterated integral, then we will switch the order of integration, evaluate which ever order is most convinient and finally interpret the result using the average value approach.
+      The next activity explores a region of integration with non-linear sides, given as bounds in an iterated integral. You will also switch the order of integration, evaluate whichever order is most convinient, and finally interpret the result as the average value.
     </p>
     <worksheet>
   <activity workspace="1.5in" xml:id="A_11_3_2">
       <introduction>
         <p>
-          Consider the iterated integral <m>\int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx</m>.
+          Consider the iterated integral <m>\displaystyle\int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx</m>.
         </p>
       </introduction>
       <task>
         <statement>
           <p>
-            Sketch the region of integration, <m>D</m>, for which
+            Sketch the region of integration <m>D</m> for which
             <me>
-              \iint_D (4x + 10y) \, dA = \int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx.
-            </me>
+              \iint_D (4x + 10y) \, dA = \int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx
+            </me>.
           </p>
         </statement>
         <answer>
           <p>
             The region <m>D</m> of integration has <m>-x \leq y \leq x^2</m> and <m>3 \leq x \leq 5</m>. This region is as shown in the figure below.
-            <image width="73%" source="images/11_3_Act_2"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+            <image width="73%" source="images/11_3_Act_2"><description><p>ADD ALT TEXT TO THIS IMAGE SOLUTION</p></description></image>
           </p>
         </answer>
         <solution>
           <p>
             The region <m>D</m> of integration has <m>-x \leq y \leq x^2</m> and <m>3 \leq x \leq 5</m>. This region is as shown in the figure below.
-            <image width="73%" source="images/11_3_Act_2"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+            <image width="73%" source="images/11_3_Act_2"><description><p>ADD ALT TEXT TO THIS IMAGE SOLUTION</p></description></image>
             </p>
           
         </solution>
@@ -1111,10 +1214,10 @@
       <task>
         <statement>
           <p>
-            Determine the equivalent iterated integral that results from integrating in the opposite order (<m>dx \, dy</m>, instead of <m>dy \, dx</m>).  That is, determine the limits of integration for which
+            Determine the equivalent iterated integral that results from integrating in the opposite order (<m>dx \, dy</m>, instead of <m>dy \, dx</m>).  That is, determine limits of integration for which
             <me>
-              \iint_D (4x + 10y) \, dA = \int_{y=?}^{y=?}  \int_{x=?}^{x=?} (4x+10y) \, dx \, dy.
-            </me>
+              \iint_D (4x + 10y) \, dA = \int_{y=?}^{y=?}  \int_{x=?}^{x=?} (4x+10y) \, dx \, dy
+            </me>.
           </p>
         </statement>
         <answer>
@@ -1136,7 +1239,7 @@
       <task>
         <statement>
           <p>
-            Evaluate which ever one of the two iterated integrals above you think will be easiest to compute. Explain what the value you obtained tells you.
+            Evaluate whichever one of the two iterated integrals above you find easier to compute. Explain what the value means in at least one of the interpretations of <xref ref="keyidea-double-int-interp"/>.
           </p>
         </statement>
         <answer>
@@ -1162,7 +1265,7 @@
       <task>
         <statement>
           <p>
-            Set up and evaluate a single definite integral to determine the exact area of <m>D</m>, <m>A(D)</m>.
+            Set up and evaluate a single definite integral to determine the exact area <m>A(D)</m> of <m>D</m>.
           </p>
         </statement>
         <answer>
@@ -1212,19 +1315,19 @@
     </activity>
 </worksheet>
     <p>
-      In the following activity, we will explore how switching the order of integration can sometimes yield a much easier set of iterated integral to evaluate algebraically.
+      The following activity explores how switching the order of integration can sometimes yield a significantly easier iterated integral to evaluate algebraically.
     </p>
     <worksheet>
   <activity workspace="1.5in" xml:id="A_11_3_3">
       <introduction>
         <p>
-          Consider the iterated integral <m>\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx</m>.
+          Consider the iterated integral <m>\displaystyle\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx</m>.
         </p>
       </introduction>
       <task>
         <statement>
           <p>
-            Explain why we cannot find a simple antiderivative for <m>e^{y^2}</m> with respect to <m>y</m>, and thus are unable to evaluate <m>\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx</m> in the indicated order using the Fundamental Theorem of Calculus.
+            Explain why we cannot find a simple antiderivative for <m>e^{y^2}</m> with respect to <m>y</m>, and thus are unable to evaluate <m>\displaystyle\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx</m> in the indicated order using the Fundamental Theorem of Calculus.
           </p>
         </statement>
         <answer>
@@ -1241,28 +1344,33 @@
       <task>
         <statement>
           <p>
-            Given that <m>\iint_D e^{y^2} \, dA = \int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx</m>, sketch the region of integration, <m>D</m>.
+            Given that <m>\displaystyle\iint_D e^{y^2} \, dA = \int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx</m>, sketch the region of integration, <m>D</m>.
           </p>
         </statement>
         <answer>
           <p>
             The domain <m>D</m> of integration is shown below.
           </p>
-          <image source="images/A_11_3_3_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+          <image source="images/A_11_3_3_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE SOLUTION</p></description></image>
         </answer>
         <solution>
           <p>
             The domain <m>D</m> of integration is shown below.
           </p>
-          <image source="images/A_11_3_3_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+          <image source="images/A_11_3_3_parta.png"><description><p>ADD ALT TEXT TO THIS IMAGE SOLUTION</p></description></image>
         </solution>
       </task>
       <task>
         <statement>
           <p>
-            Rewrite the given iterated integral in the opposite order, using <m>dA = dx \, dy</m>. (Hint: You may need more than one integral.)
+            Rewrite the given iterated integral in the opposite order using <m>dA = dx \, dy</m>. 
           </p>
         </statement>
+        <hint>
+          <p>
+            You may need more than one integral.
+          </p>
+        </hint>
         <answer>
           <p>
             <me>
@@ -1282,7 +1390,7 @@
       <task>
         <statement>
           <p>
-            Use the Fundamental Theorem of Calculus to evaluate the iterated integral you developed in (c).  Write one sentence to explain the meaning of the value you found.
+            Use the Fundamental Theorem of Calculus to evaluate the iterated integral you wrote in the previous part.  Write one sentence to explain the meaning of the value you found in terms of an interpretation from <xref ref="keyidea-double-int-interp"/>.
           </p>
         </statement>
         <answer>
@@ -1307,7 +1415,7 @@
       <task>
         <statement>
           <p>
-            What is the important lesson this activity offers regarding the order in which we set up an iterated integral?
+            Write a sentence or two to describe what you have learned in this activity regarding the order in which you set up an iterated integral.
           </p>
         </statement>
         <answer>
