@@ -64,7 +64,10 @@
           <slate surface="sage">
             <xi:include href="./interacts/rangefn_traces.txt" parse="text"/>
           </slate>
-        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+          <description><p>An interactive three dimensional plot with three axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. A surface is shown in gray with a grid of lines along the surface. The surface is shown for a patch above the first quadrant and the surface increases vertically as either <m>x</m> or <m>y</m> decreases. A dropdown option at the top of the figure allows for three options. The <q>x-trace only </q> plots a plane in red that is parallel to the yz-plane, is labeled <m>y=0.6</m>, and highlights the curve along the surface and on the red plane in red. 
+          The <q>y-trace only </q> plots a plane in blue that is parallel to the xz-plane, is labeled <m>x=150</m>, and highlights the curve along the surface and on the blue plane in blue. 
+          The <q>both traces</q> option shows both of the plots described above.</p></description>
+        </interactive>
       <!-- </figure> -->
     </introduction>
     <task>
@@ -146,7 +149,8 @@
                 plot1+=parametric_plot((a+t,g(a,b)+t*gx(a,b)),(t,-10,10),color="black",thickness=2,aspect_ratio=0.2)
               plot1
             </sageplot>
-          <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+          <description><p>A two dimensional plot with the horizontal axis labeled <m>x</m> going from 0 to 200. The vertical axis is labeled <m>f(x,0.06)</m> and goes from 0 to 1200. An upward facing parabola is drawn in red from (0,0) to (200,1150).
+          Three points on the parabola are highlighted at (110,350), (150,650), and (190,1100) with tangent lines to the parabola drawn for a neighborhood around these points. The tangent lines are getting steeper when comparing across the points from left to right. </p></description></image>
         <!-- </figure> -->
       </statement>
       <answer>
@@ -213,7 +217,7 @@
                 plot2+=parametric_plot((b+t,g(a,b)+t*gyv),(t,-0.15,0.15),color="black",thickness=2,aspect_ratio=0.0015)
               plot2
             </sageplot>
-          <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+          <description><p>A two dimensional plot with the horizontal axis labeled <m>y</m> going from 0 to 1.6. The vertical axis is labeled <m>f(150,y)</m> and goes from 0 to 1200. An downward facing parabola is drawn in blue with vertex at <m>(\frac{\pi}{4},700)</m>. Three points on the parabola are highlighted at (0.2,275), (0.6,650), and (1.0,625). Tangent lines to the parabola are drawn at each point with the slope of the lines decreasing when considered from left to right. </p></description></image>
         <!-- </figure> -->
       </statement>
       <answer>
@@ -465,8 +469,8 @@
     <caption>Plots of three functions that are increasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</caption>
     <sidebyside widths="33% 33% 33%">
       <image>
-        <description><p>Plots of three functions that are increasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</p>
-    </description><sageplot label="img-increasing1">
+        <description><p>A plot of a upward sloping curve in the first quadrant shown in blue. Three points along the curve are highlighted and the tangent line to the curve at the highlighted point is shown in red. The slopes of the tangent lines are getting larger when viewed from left to right.</p></description>
+    <sageplot label="img-increasing1">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -482,8 +486,8 @@
         </sageplot>
       </image>
       <image>
-        <description><p>Plots of three functions that are increasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</p>
-    </description><sageplot label="img-increasing2">
+        <description><p>A plot of a line segment moving up and right in the first quadrant shown in blue. Three points along the line are highlighted and the tangent line to the blue line at the highlighted point is shown in red. The slopes of the tangent lines are all the same as the slope of the line.</p></description>
+    <sageplot label="img-increasing2">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -499,8 +503,8 @@
         </sageplot>
       </image>
       <image>
-        <description><p>Plots of three functions that are increasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</p>
-    </description><sageplot label="img-increasing3">
+        <description><p>A plot of a curve moving from the bottom left to the top right in the first quadrant is shown in blue. Three points along the curve are highlighted and the tangent line to the curve at the highlighted point is shown in red. The slopes of the tangent lines are getting smaller when viewed from left to right.</p></description>
+        <sageplot label="img-increasing3">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -527,8 +531,8 @@
     <caption>Plots of three functions that are decreasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</caption>
     <sidebyside widths="33% 33% 33%">
       <image width="100%">
-        <description><p>Plots of three functions that are decreasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</p>
-    </description><sageplot label="img-decreasing1">
+        <description><p>A plot of a downward sloping curve in the first quadrant shown in blue. Three points along the curve are highlighted and the tangent line to the curve at the highlighted point is shown in red. The slopes of the tangent lines are getting smaller when viewed from left to right.</p> </description>
+    <sageplot label="img-decreasing1">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -538,14 +542,14 @@
           plot31=point((0,0),size=0,gridlines=True,ymin=-1,ymax=3,xmin=-1,xmax=3,ticks=[tic,tic],axes=True,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
           plot31+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=2)
           for a in xv:
-              plot31+=point((a,f(a)),size=20,color="black")
-              plot31+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
+            plot31+=point((a,f(a)),size=20,color="black")
+            plot31+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
           plot31
         </sageplot>
       </image>
       <image width="100%">
-        <description><p>Plots of three functions that are decreasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</p>
-    </description><sageplot label="img-decreasing2">
+        <description><p>A plot of a line segment moving down and right in the first quadrant shown in blue. Three points along the line are highlighted and the tangent line to the blue line at the highlighted point is shown in red. The slopes of the tangent lines are all the same as the slope of the line.</p></description>
+    <sageplot label="img-decreasing2">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -561,8 +565,8 @@
         </sageplot>
       </image>
       <image width="100%">
-        <description><p>Plots of three functions that are decreasing, but doing so at an increasing rate, a constant rate, and a decreasing rate, respectively</p>
-    </description><sageplot label="img-decreasing3">
+        <description><p>A plot of a downward sloping curve in the first quadrant shown in blue. Three points along the curve are highlighted and the tangent line to the curve at the highlighted point is shown in red. The slopes of the tangent lines are getting smaller when viewed from left to right.</p></description>
+    <sageplot label="img-decreasing3">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -613,8 +617,8 @@
   <figure xml:id="fig-mv_deriv-second_order-fxx">
     <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>y=-1.5</m> and tangent line drawn </caption>
     <interactive label="interactive-fig-mv_deriv-second_order-fxx" platform="sage" width="95%" aspect="1:1.15">
-      <description><p>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>y=-1.5</m> and tangent line drawn </p>
-    </description><slate surface="sage">
+      <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue downward facing parabola is drawn along the surface at the constant y-coordinate -1.5. The slider at the top of the figure changes the location of a highlighted point on the blue parabola. The line tangent along the blue parabola at the highlighted point is drawn in black.  </p></description>
+    <slate surface="sage">
         var('x,y,z,t')
         @interact
         def expytrace(a=slider(1,2,0.1,default=1.2,label="x-coordinate")):
@@ -698,7 +702,8 @@
               plot12+=parametric_plot3d((1.75,a+t,fv+t*fyv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
               show(plot12,viewpoint=[[-0.4995,0.5074,0.7022],110.69],camera_position=[-4.3266,-0.9076,3.4276])
           </slate>
-        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive> 
+        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent along the blue parabola at the highlighted point is drawn in black. </p></description>
+      </interactive> 
       <!-- </figure> -->
       <!-- <figure xml:id="F_10_3_fyy">
         <caption>The tangent lines to a trace with increasing <m>y</m>.</caption>
@@ -787,7 +792,7 @@
               plot12+=parametric_plot3d((1.75+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
               show(plot12,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
           </slate>
-        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive> 
+        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent to the surface in the direction perpendicular to the blue curve at the highlighted point is drawn in black. </p></description></interactive> 
       <!-- </figure> -->
     </statement>
     <answer>
@@ -875,7 +880,7 @@
             #plot13+=parametric_plot3d((1.75+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="red",thickness=4,zorder=5)
             show(plot13,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
           </slate>
-        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive> 
+        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue downward facing parabola is drawn along the surface at the constant y-coordinate -1.5. The slider at the top of the figure changes the location of a highlighted point on the blue parabola. </p></description></interactive> 
       <!-- </figure> -->
     </statement>
     <answer>
@@ -895,8 +900,8 @@
   <figure xml:id="fig-mv_deriv-second_order-ruled">
     <caption>The surface given by <m>z=f(x,y) = xy</m> </caption>
     <interactive label="interactive-fig-mv_deriv-second_order-ruled" platform="sage" width="91%" aspect="1:1">
-      <description><p>The surface given by <m>z=f(x,y) = xy</m> </p>
-    </description><slate surface="sage">
+      <description><p>A three dimensional plot of axes labeled <m>x</m>, <m>y</m>, and <m>z</m> with a saddle surface shown going through the origin.  </p></description>
+    <slate surface="sage">
         from sage.plot.plot3d.plot3d import axes
         scale=1.25
         plot5=axes(scale,1,color="black",aspect_ratio=[1,1,1])
