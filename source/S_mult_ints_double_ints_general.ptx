@@ -780,6 +780,7 @@
                         <area-under-curve function="f" domain="(0,2)"
                                           fill="blue" opacity="0.3" stroke="black"/>
                         <graph function="f" domain="(-3,3)"/>
+                        <label anchor="(1,3.5)" alignment="e"><m>y=4-x^2</m></label>
                       </coordinates>
                     </diagram>
                   </prefigure>
@@ -914,7 +915,7 @@
           To evaluate <m>\displaystyle{\iint_D f(x,y) \, dA}</m>, we must first describe the region <m>D</m> in terms of the variables <m>x</m> and <m>y</m>. We take two approaches corresponding to a vertically simple description, then a horizontally simple description. 
         </p>
       </introduction>
-      <task>
+      <task xml:id="task-mult_ints-general-x_slice">
         <p>
           We first use the inequalities from <xref ref="examp-mult_ints-double_ints_general-triangular"/> that correspond to our vertically simple description:
           <me>\text{Along }x=k\text{, the }y\text{-coordinates go from }0\text{ to }\frac{3}{2}k</me>,
@@ -940,25 +941,20 @@
           We can visualize both the double integral and the iterated integral in <xref ref="dblintproj"/>. The double integral of <m>f(x,y)=x^2y</m> over the region <m>D</m> can be seen as the volume of the solid below the surface <m>z=f(x,y)</m> and above the <m>xy</m>-plane on the region <m>D</m>. This is shown as the pink volume in <xref ref="dblintproj"/>. 
         </p>
         <figure xml:id="dblintproj">
-          <caption>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m> and the function that shows the area of the cross section for <m>x=k</m></caption>
+          <caption>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m> with a highlighted cross section  for <m>x=k</m></caption>
             <interactive title="interactive-dblintproj" platform="sage" width="100%" aspect="1:1.05">
-              <description><p>A three-dimensional plot of a solid in <m>xyz</m>-space. The solid is bounded below by the <m>xy</m>-plane, and its base is the triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m>. The upper surface of the solid is curved and determined by the graph of the function <m>f(x,y)=x^2y</m>. A slice of the solid parallel to the <m>yz</m>-plane is shown with a slider that can adjust the <m>x</m>-value at which the slice is located. The image also includes a two-dimensional graph of <m>y=\frac{9}{8}x^4</m> on a plane parallel to the <m>xz</m>-plane that also includes a vertical line segment identifying the location of the slice shown inside the solid.</p>
+              <description><p>A three-dimensional plot of a solid in <m>xyz</m>-space. The solid is bounded below by the <m>xy</m>-plane, and its base is the triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m>. The upper surface of the solid rises from the origin in a curved manner and is determined by the graph of the function <m>f(x,y)=x^2y</m>. A cross section of the solid parallel to the <m>yz</m>-plane is highlighted with a slider that can adjust the <m>x</m>-value at which the cross section is located.</p>
             </description><slate surface="sage">
-                <xi:include href="interacts/projdblint.txt" parse="text"/>
+                <xi:include href="interacts/doubleint-x-slice.txt" parse="text"/>
               </slate>
             </interactive>
         </figure>
         <p>
-          We can also use each of the iterated integrals to visualize the result. The inner integral corresponds to the area of a cross section along a slice with a fixed <m>x</m>-value, as shown by the blue cross section in <xref ref="dblintproj"/>. The result of the inner integral changes depending on which <m>x</m>-value is used. Algebraically, this is shown in the work above that gave <m>\frac{9}{8}x^4</m> as the result of the inner integral. 
+          We can also use each of the iterated integrals to visualize the result. The inner integral corresponds to the area of a cross section along a slice with a fixed <m>x</m>-value, as shown by the blue cross section in <xref ref="dblintproj"/>. The result of the inner integral changes depending on which <m>x</m>-value is used. Algebraically, this is shown in the work above that gave <m>\frac{9}{8}x^4</m> as the result of the inner integral. Move the slider at the top of <xref ref="dblintproj"/> to change the <m>x</m>-value at which the slice of the solid is taken and observe that the area of the cross section increases as <m>x</m> increases.
         </p>
-        <p>  
-          To understand this result geometrically, use the slider at the top of <xref ref="dblintproj"/> to change the <m>x</m>-value at which the slice of the solid is taken and observe that the area of the cross section increases as <m>x</m> increases. The graph of <m>\frac{9}{8}x^4</m> is projected on a plane. Notice that as you move the slider to change the <m>x</m>-value of the slice, the highlighted point on the two-dimensional graph shows the area of slice. The red two-dimensional graph is a plot of the result of the inner integral, which measures the area of cross section at that particular <m>x</m>-value. This explains why the red graph goes higher than the surface <m>z</m>-values. In fact the peak of the red graph occurs at <m>\frac{128}{9}</m> where as the highest surface value is <m>12</m>. The scale of <xref ref="dblintproj"/> has been adjusted to make these features easier to see. 
-        </p>
-        <p>
-          The result of the inner iterated integral is shown by the red graph, so evaluating the outer integral gives the area under the red graph, which is shown in orange on the two-dimensional graph portion of <xref ref="dblintproj"/>. Again, remember that the outer integral evaluates the Riemann sum corresponding to the cross sectional volumes, as in <xref ref="fig-mult_ints-iterated-wavy_surface2"/>.
-        </p>
+
       </task>
-      <task>
+      <task xml:id="task-mult_ints-general-y_slice">
         <p>
           In the previous part, we used a vertically simple description for the region of integration <m>D</m>, which allowed us to use an iterated integral where we integrated with respect to <m>y</m> first, while treating <m>x</m> as a constant, and then integrated across the interval of relevent <m>x</m>-values. In this task, we will use a horizontally simple description for the region of integration. As a consequence, the order in which we integrate will be switched.
         </p>
@@ -985,27 +981,55 @@
           </md>.
         </p>
         <p>
-          Similar to our visualization description for the vertically simple case, we can look at the double integral from a different perspective to understand the different parts of this iterated integral. In <xref ref="dblintproj2"/>, you can see the same volume as before in pink which corresponds to the volume computed by the double integral. In this task, we used a horizontally simple description which means the slices correspond to constant values of <m>y</m>. The cross sectional area of this slice along a constant <m>y</m>-value is shown in blue on both the slice of the solid and on the two-dimensional graph that shows the values of the inner integral as a function of <m>y</m>. Use the slider at the top of <xref ref="dblintproj2"/> to see how the area of cross section changes with respect to <m>y</m>.
+           In <xref ref="dblintproj2"/>, you can see the same volume as before in pink which corresponds to the volume computed by the double integral. In this part, we used a horizontally simple description which means the slices correspond to constant values of <m>y</m>. The cross sectional area of this slice along a constant <m>y</m>-value is shown in blue. Use the slider at the top of <xref ref="dblintproj2"/> to see how the area of cross section changes with respect to <m>y</m>. You should notice how as <m>y</m> increases, the cross sectional area first increases and then decreases.
         </p>
         <figure xml:id="dblintproj2">
-          <caption>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m> and the function that shows the area of the cross section for <m>y=k</m></caption>
+          <caption>A plot of the volume below <m>f(x,y)</m> over the region <m>D</m></caption>
             <interactive title="interactive-dblintproj2" platform="sage" width="100%" aspect="1:1.15">
-              <description><p>A three-dimensional plot of a solid in <m>xyz</m>-space. The solid is bounded below by the <m>xy</m>-plane, and its base is the triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m>. The upper surface of the solid is curved and determined by the graph of the function <m>f(x,y)=x^2y</m>. A slice of the solid parallel to the <m>xz</m>-plane is shown with a slider that can adjust the <m>y</m>-value at which the slice is located. The image also includes a two-dimensional graph of <m>x=\frac{8}{3}y-\frac{8}{81}y^4</m> with <m>y</m> as the horizontal axis on a plane parallel to the <m>yz</m>-plane. The two-dimensional graph also includes a vertical line segment identifying the location of the slice shown inside the solid.</p>
+              <description><p>A three-dimensional plot of a solid in <m>xyz</m>-space. The solid is bounded below by the <m>xy</m>-plane, and its base is the triangular region <m>D</m> with vertices <m>(0,0)</m>, <m>(2,0)</m>, and <m>(2,3)</m>. The upper surface of the solid rises from the origin in a curved manner and is determined by the graph of the function <m>f(x,y)=x^2y</m>. A slice of the solid parallel to the <m>xz</m>-plane is shown with a slider that can adjust the <m>y</m>-value at which the slice is located.</p>
             </description><slate surface="sage">
-                <xi:include href="interacts/projdblint2.txt" parse="text"/>
+                <xi:include href="interacts/doubleint-y-slice.txt" parse="text"/>
               </slate>
             </interactive>
         </figure>
-        <p>
-          You can see that as <m>y</m> increases from 0, the value of cross sectional area increases for a while, then decreases. While the height of our surface is increasing with respect to <m>y</m> over <m>[0,3]</m>, the length of the slice is getting smaller as <m>y</m> increases. This is captured algebraically by the inner integral in that the function we are integrating, <m>x^2y</m>, is increasing but the length of the interval we are integrating over, <m>\frac{2}{3}y\leq x\leq2</m>, is decreasing as we increase <m>y</m>. This is why the two-dimensional graph is concave down.
-        </p>
-        <p>
-          We can visualize the cross section areas as the height of red graph, which allows us to consider the value the double integral to be the area under the red curve in the two-dimensional plot. While the orange area in <xref ref="dblintproj2"/> may look less than the orange area in <xref ref="dblintproj"/>, they are in fact the same. The width of the orange area in <xref ref="dblintproj2"/> is 3, whereas the width of the orange area in <xref ref="dblintproj"/> is 2.
-        </p>
+      </task>
+      <task>
+        <statement>
+          <p>
+            We conclude this example by discussing what the function obtained by evaluating the <em>inner</em> integral in the iterated integrals tells us geometrically. In <xref ref="task-mult_ints-general-y_slice" text="type-local"/>, the inner integral evaluated to <m>\frac{8}{3}y-\frac{8}{81}y^4</m>, and our region satisfied <m>0\leq y\leq 3</m>. In <xref ref="fig-mult_ints-general-cross_area_y"/>, we show a plot of this function on the interval <m>[0,3]</m> along with a slider. Adjusting the slider corresponds to changing the location of the slice in <xref ref="dblintproj2"/>, but in <xref ref="fig-mult_ints-general-cross_area_y"/>, it helps you see the value of the inner function at that value of <m>y</m>. The value of this function for a particular value of <m>y</m> is the <em>area</em> of the cross section of the solid at that <m>y</m>-position. Therefore, just as you visually observed by moving the slider in <xref ref="dblintproj2"/> that the cross section is very small for <m>y</m> near <m>0</m> or <m>3</m> and is largest when <m>y</m> is a bit larger than <m>2</m>, this figure demonstrates how the function obtained by evaluating the inner integral is the function giving the cross sectional area.
+          </p>
+          <figure xml:id="fig-mult_ints-general-cross_area_y">
+            <caption>A plot of <m>\frac{8}{3}y-\frac{8}{81}y^4</m> on the interval <m>[0,3]</m></caption>
+            <interactive title="interactive-cross_area_y" platform="sage" width="100%" aspect="1:1.15">
+              <description><p>A two-dimensional plot of a shaded region. The region is bounded below by the horizontal axis, which is labeled <m>y</m>. The vertical axis is labeled Area. The upper boundary of the region is a curve that contains the points <m>(0,0)</m> and <m>(3,0)</m>. Between these points, the curve is concave up until approximately <m>y=1.5</m> and then concave down. There is a slider that allows adjustment of the position of a vertical line segment inside the region.</p>
+              </description><slate surface="sage">
+                <xi:include href="interacts/area-y-slice.txt" parse="text"/>
+              </slate>
+            </interactive>
+          </figure>
+          <p>
+            Evaluating the <em>outer</em> integral in <xref ref="task-mult_ints-general-y_slice" text="type-local"/> is now finding the area of the shaded region in <xref ref="fig-mult_ints-general-cross_area_y"/>. Remembering that the values of the functions in that image are actually cross sectional areas, this means that we are accumulating area, which leads to the final value measuring the <em>volume</em> of the solid.
+          </p>
+          <p>
+            We now return to <xref ref="task-mult_ints-general-x_slice" text="type-local"/>, where evaluating the inner integral gave us the function <m>\frac{9}{8}x^4</m>. In <xref ref="fig-mult_ints-general-cross_area_x"/>, you can see a plot of this function on the interval <m>[0,2]</m>. You can move the slider to help see the value of this area function at different values of <m>x</m>. The value of this function for a specific value of <m>x</m> gives the <em>area</em> of the cross section of the original solid at that location. As you noticed when examining figure <xref ref="dblintproj" />, the cross sections with <m>x</m> close to zero are very small, and the areas of the cross sections increase as <m>x</m> increases.
+          </p>
+          <figure xml:id="fig-mult_ints-general-cross_area_x">
+            <caption>A plot of <m>\frac{9}{8}x^4</m> on the interval <m>[0,2]</m></caption>
+            <interactive title="interactive-cross_area_x" platform="sage" width="100%" aspect="1:1.15">
+              <description><p>A two-dimensional plot of a shaded region. The region is bounded below by the horizontal axis, which is labeled <m>x</m>. The vertical axis is labeled Area. The upper boundary of the region is a curve that contains the points <m>(0,0)</m> and <m>(2,18)</m>. Between these points, the curve is concave up. There is a slider that allows adjustment of the position of a vertical line segment inside the region.</p>
+              </description><slate surface="sage">
+                <xi:include href="interacts/area-x-slice.txt" parse="text"/>
+              </slate>
+            </interactive>
+          </figure>
+          <p>
+            Evaluating the outer integral gives the area under the graph in <xref ref="fig-mult_ints-general-cross_area_x"/>, which ultimately yields the volume of the solid, since the values of the function being integrated in the outer integral are cross sectional areas.
+          </p>
+        </statement>
       </task>
       <conclusion>
         <p>
-          This example has illustrated that in a situation where <m>D</m> can be described as horizontally simple or vertically simple, the order in which we choose to set up and evaluate the iterated integrals doesn't matter. The iterated integrals yield the same value in each case.
+          This example has illustrated that in a situation where <m>D</m> can be described as horizontally simple or vertically simple, the order in which we choose to set up and evaluate the iterated integrals doesn't matter. The iterated integrals yield the same value in each case. Evaluating only the inner integral in an iterated integral gives a function with values corresponding to the area of cross sections of the solid.
         </p>
       </conclusion>
     </example>

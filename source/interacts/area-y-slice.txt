@@ -1,0 +1,12 @@
+var('s,t,x,y,z')
+@interact
+def projdblint2D2(a=slider(0,3,0.1,default=1,label="Slice at y=")):
+    g(y)=8/3*y^2-8/(81)*y^5;
+    plot1=parametric_plot((s,g(s)),(s,0,3),color="red",thickness=2,gridlines=True,axes_labels=["$y$","Area"])
+    plot1+=point((a,g(a)),color="blue",size=40,zorder=5)
+    plot1+=line([(a,g(a)),(a,0)],color="blue",thickness=2)
+    xg=[3*i/100 for i in range(101)];
+    plotpoints=[(xgv,g(xgv)) for xgv in xg]
+    plotpoints.append((3,0));plotpoints.append((0,0));
+    plot1+=polygon(plotpoints,color="orange",zorder=-5)
+    show(plot1,aspect_ratio=3/10)
