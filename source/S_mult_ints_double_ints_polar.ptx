@@ -18,7 +18,7 @@
       <ul>
         <li>
           <p>
-            What is the area element in polar coordinates?
+            What is the area element <m>dA</m> in polar coordinates?
           </p>
         </li>
         <li>
@@ -31,33 +31,33 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      Because we choose to cover polar coordinates in our precalculus topics, we can jump right into how polar coordinates would work and be advantageous in double integrals. The preview activity in this section helps students recall important elements of points, graphs, and regions in polar coordinates before we apply the same slicing and iterated integral techniques as in <xref ref="S-mult_ints-general"/>.
+      Because we choose to cover polar coordinates in the chapter on the precalculus of multivariable functions, this section jumps right into how polar coordinates work in double integrals and provide some computational advantages. If you did not cover <xref ref="S-Precalc-OtherCoordSystems"/> when teaching <xref ref="C_MVPrecalc"/>, you will need to cover at least the subsection on polar coordinates before teaching this section. The preview activity in this section helps students recall important elements of points, graphs, and regions in polar coordinates before we apply the same slicing and iterated integral techniques as in <xref ref="S-mult_ints-general"/>.
     </p>
   </introduction>
   <subsection>
     <title>Introduction</title>
     <p>
-      While we have naturally defined double integrals in the rectangular coordinate system, starting with domains that are rectangular regions, there are many of these integrals that are difficult, if not impossible, to evaluate. For example, consider the domain <m>D</m> that is the unit circle (centered at the origin) and <m>f(x,y) = e^{-x^2 - y^2}</m>. To integrate <m>f</m> over <m>D</m>, we would use the iterated integral
+      While we have defined double integrals in the rectangular coordinate system, starting with domains that are rectangular regions, there are many of these integrals that are difficult, if not impossible, to evaluate. For example, if <m>D</m> is the unit disc centered at the origin and <m>f(x,y) = e^{-x^2 - y^2}</m>, then integrating <m>f</m> over <m>D</m> would use the iterated integral
       <me>
-        \iint_D f(x,y) \, dA = \int_{x = -1}^{x = 1} \int_{y = -\sqrt{1-x^2}}^{y = \sqrt{1-x^2}} e^{-x^2 - y^2} \, dy \, dx.
-      </me>
+        \iint_D f(x,y) \, dA = \int_{x = -1}^{x = 1} \int_{y = -\sqrt{1-x^2}}^{y = \sqrt{1-x^2}} e^{-x^2 - y^2} \, dy \, dx
+      </me>.
     </p>
 
     <p>
-      For this particular integral, regardless of the order of integration, we are unable to find an antiderivative of the integrand; in addition, even if we were able to find an antiderivative, the inner limits of integration involve relatively complicated functions.
+      For this particular integral, we are unable to find an antiderivative of the integrand. Changing the order of integration does not help, as the region and the integrand are symmetric in <m>x</m> and <m>y</m>. Furthermore, even if we could find an antiderivative, the inner limits of integration involve relatively complicated functions.
     </p>
 
     <p>
-      It is therefore useful to be able to translate to other coordinate systems where the limits of integration <em>and</em> the evaluation of the iterated integrals are simpler. In this section we provide a brief reminder of polar coordinates, then investigate their usage for double integrals. For a more thorough discussion of polar coordinates, look at <xref ref="S-Precalc-OtherCoordSystems"/>. 
+      This example shows that it can be useful to be able to translate to other coordinate systems where the limits of integration <em>and</em> the evaluation of the iterated integrals are simpler. In this section we provide a brief reminder of polar coordinates and then investigate their usage for double integrals. For a more thorough discussion of polar coordinates, refer to <xref ref="subsec-polar"/>. 
     </p>
     <p>
-      The rectangular coordinate system is best suited for graphs and regions that are naturally considered over a rectangular grid. The polar coordinate system is an alternative that offers good options for functions and domains that have more circular characteristics. A point <m>P</m> in rectangular coordinates that is described by an ordered pair <m>(x,y)</m>, where <m>x</m> is the displacement from <m>P</m> to the <m>y</m>-axis and <m>y</m> is the displacement from <m>P</m> to the <m>x</m>-axis can also be described with polar coordinates<idx><h>polar coordinates</h></idx> <m>(r,\theta)</m>, where <m>r</m> is the distance from <m>P</m> to the origin and <m>\theta</m> is the angle formed by the line segment <m>\overline{OP}</m> and the positive <m>x</m>-axis, as shown at left in <xref ref="F_11_5_Polar_coords">Figure</xref>.
+      The rectangular coordinate system is best suited for graphs and regions that are naturally considered over a rectangular grid. The polar coordinate system is an alternative that offers good options for functions and domains that have more circular characteristics. Recall that a point <m>P</m> in rectangular coordinates that is described by an ordered pair <m>(x,y)</m>, where <m>x</m> is the displacement from <m>P</m> to the <m>y</m>-axis and <m>y</m> is the displacement from <m>P</m> to the <m>x</m>-axis can also be described with polar coordinates<idx><h>polar coordinates</h></idx> <m>(r,\theta)</m>, where <m>r</m> is the distance from <m>P</m> to the origin and <m>\theta</m> is the angle formed by the line segment <m>\overline{OP}</m> and the positive <m>x</m>-axis, as shown in <xref ref="coord2d-3">Figure</xref>.
     </p>
     <figure xml:id="coord2d-3">
     <caption>A plot with polar coordinate measurements labeled</caption>
-      <image width="60%" label="img-coord2d-3">
-        <description><p>A plot with polar coordinate measurements labeled for a point in the first quadrant </p></description>
-        <sageplot>
+      <image width="60%">
+        <description><p>A two dimensional plot with the horizontal axis labeled <m>x</m>, the vertical axis labeled <m>y</m>, and a point in the first quadrant labeled <m>P=(r,\theta)</m>. There is a line segment going from the origin to <m>P</m>. The line segment is labeled <m>r</m>. An arc is shown going counterclockwise from the horizontal axis to the line segment and is labeled <m>\theta</m>. There is a dashed vertical line segment labeled <m>y</m> from the horizontal axis to <m>P</m>. There is a dashed horizontal line segment labeled <m>x</m> from the vertical axis to <m>P</m>.</p></description>
+        <sageplot label="img-coord2d-3">
           var('t') 
           plot4=point((4,2),color="black",size=50,zorder=5,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
           plot4+=line([(4,2),(0,0)],color="red",thickness=3)+text("$r$",(2,1.25),color="red",fontsize=25)
@@ -75,9 +75,8 @@
     </figure>
   
     <p>
-      Trigonometry and the Pythagorean Theorem allow for straightforward conversion from rectangular to polar, and vice versa.
+      Trigonometry and the Pythagorean Theorem allow for straightforward conversion from rectangular to polar, and vice versa. A reminder of these formulas, which were developed in <xref ref="subsec-polar"/>, is included below.
     </p>
-
 
     <assemblage xml:id="PolarCoordinates">
       <title>Converting between rectangular and polar coordinates</title>
@@ -106,29 +105,52 @@
       </p>
     </assemblage>
     <p>
-      Remember that you will need to interpret the results of <m>r</m> as being positive or negative along with interpreting the quadrant of <m>\theta</m>. You can look at <xref ref="polar-interpret"/> and later examples for different ways to interpret and make conversions between rectangular and polar coordinates. 
+      Recall that when considering polar coordinates, it is important to think about how the sign of <m>r</m> influences the position of a point. There are also multiple angle measurements in polar coordinates that can be used for a single point, so it will be helpful to think flexibly about ranges of <m>\theta</m> when describing regions in polar coordinates. Refer to <xref ref="polar-interpret"/> and later examples for different ways to interpret and make conversions between rectangular and polar coordinates. 
     </p>
 
     <p>
-      We can draw graphs of curves in polar coordinates in a similar way to how we do in rectangular coordinates. However, when plotting in polar coordinates, we use a grid that considers changes in angles and changes in distance from the origin. In particular, the angles <m>\theta</m> and distances <m>r</m> partition the plane into small wedges as shown in <xref ref="F_11_5_Polar_coords">Figure</xref>.
+      We can draw graphs of curves in polar coordinates in a similar way to how we do in rectangular coordinates. However, when plotting in polar coordinates, we use a grid that considers changes in angles and changes in distance from the origin. In particular, the angles <m>\theta</m> and distances <m>r</m> partition the plane into small wedges as shown in <xref ref="fig-mult_ints-polar-grid">Figure</xref>.
     </p>
-    <figure xml:id="F_11_5_Polar_coords">
+    <figure xml:id="fig-mult_ints-polar-grid">
       <caption>The polar coordinate grid</caption>      
-      <image width="60%" source="images/fig_11_5_polar_grid"><description><p>The polar coordinate grid</p>      
-      </description></image>
+      <image width="60%">
+        <description>
+          <p>A two-dimensional plot of the polar coordinate grid. Concentric circles centered at the origin are shown with radius increasing in half unit increments. Rays emanante from the origin between the horizontal and vertical axes. In each quadrant, there are three rays between the axes. The middle of each of these rays is marked <m>\pi/4</m>, <m>3\pi/4</m>, <m>5\pi/4</m>, and <m>7\pi/4</m>, working counterclockwise starting in the first quadrant. The positive horizontal axis is marked <m>0</m>, the positive vertical axis is marked <m>\pi/2</m>, the negative horizontal axis is marked <m>\pi</m>, and the negative vertical axis is marked <m>3\pi/2</m>.</p>      
+        </description>
+        <prefigure label="img-mult_ints-polar-grid" xmlns="https://prefigure.org">
+          <diagram dimensions="(300,300)" margins="5">
+            <coordinates bbox="(-5.1,-5.1,5.1,5.1)">
+              <grid-axes coordinates="polar"
+                    spacings="((0,0.5,4.5),(0,pi/8,2*pi))"
+                    stroke="lightgray" />
+              <grid coordinates="polar"
+                    spacings="((0,1,4),(0,pi/4,2*pi))"
+                    stroke="gray"/>
+              <label anchor="(4.5,0)"><m>0</m></label>
+              <label anchor="(3.5,3.5)"><m>\frac{\pi}{4}</m></label>
+              <label anchor="(0,4.5)"><m>\frac{\pi}{2}</m></label>
+              <label anchor="(-3.5,3.5)"><m>\frac{3\pi}{4}</m></label>
+              <label anchor="(-4.5,0)"><m>{\pi}</m></label>
+              <label anchor="(-3.5,-3.5)"><m>\frac{5\pi}{4}</m></label>
+              <label anchor="(0,-4.5)"><m>\frac{3\pi}{2}</m></label>
+              <label anchor="(3.5,-3.5)"><m>\frac{7\pi}{4}</m></label>
+            </coordinates>
+          </diagram>
+        </prefigure>
+      </image>
     </figure>
     <worksheet>
   <exploration workspace="1.5in">
       <introduction>
         <p>
-          In this Preview Activity, we will practice converting some equations and regions between rectangular and polar coordinates.
+          This Preview Activity asks you to practice converting some equations and regions between rectangular and polar coordinates.
         </p>
       </introduction>
       <task>
         <statement>
           <p>
-            Draw a plot of each of the curves in the plane described by each of the following polar equations and write a sentence for each graph to explain why the equation is satisfied.
-            <ol>
+            For each of the following polar equations, draw a plot in the plane of the curve. Write a sentence for each graph to explain why the equation is satisfied.
+            <ol marker="i." cols="5">
               <li> <m>r=1</m></li>
               <li> <m>r=3</m></li>
               <li> <m>r=0</m></li>
@@ -142,24 +164,24 @@
         <statement>
           <p>
             Draw a plot of the region given by the following inequalities:
-            <ol>
-              <li> <m>1 \leq r \leq 3</m></li>
-              <li> <m>1 \leq \theta \leq \frac{3\pi}{4}</m></li>
-            </ol>
+            <md>
+              <mrow>1 \amp\leq r \leq 3</mrow>
+              <mrow>1 \amp\leq \theta \leq \frac{3\pi}{4}</mrow>
+            </md>
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Convert the line given by <m>y=x</m> to polar coordinates and solve your equation in the form <m>\theta= \text{constant}</m>.
+            Convert the line given by <m>y=x</m> to polar coordinates. Write your equation in the form <m>\theta= \text{constant}</m>.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Convert the line given by <m>x=2</m> to polar coordinates and solve your equation in the form <m>r= f(\theta)</m>.
+            Convert the line given by <m>x=2</m> to polar coordinates. Write your equation in the form <m>r= f(\theta)</m>.
           </p>
         </statement>
       </task>
@@ -169,7 +191,7 @@
 
 
   <subsection>
-    <title>Integrating in Polar Coordinates</title>
+    <title>Integration in Polar Coordinates</title>
     <p>
       Consider the double integral
       <me>
@@ -183,114 +205,124 @@
       <me>
         \int_a^b \int_{g_1(x)}^{g_2(x)} f(x,y) \, dy \, dx
       </me>
-      in rectangular coordinates where <m>D</m> has a vertically simple description (<m>a\leq x \leq b, g_1(x) \leq y \leq g_2(x)</m>). Note that the area element <m>dA</m> became <m>dy\, dx </m> in this conversion of the double integral into an iterated integral. We will need to transform the three different elements of this double integral into polar coordinates: 
-      <ol>
-        <li>convert the area element to polar coordinates</li>
-        <li>describe the region of integration with inequalities that correspond to fixing one coordinate and bounding the other in a consistent way </li>
-        <li>convert the integrand, <m>f(x,y)</m>, to polar coordinates</li>    
-      </ol>
-    </p>
-    <p>  
-      To make the change to polar coordinates, we not only need to represent the variables <m>x</m> and <m>y</m> in polar coordinates, but we also must understand how to write the area element, <m>dA</m>, in polar coordinates. That is, we must determine how the area element <m>dA</m> can be written in terms of <m>dr</m> and <m>d\theta</m> in the context of polar coordinates. 
+      in rectangular coordinates where <m>D</m> has a vertically simple description with <m>a\leq x \leq b</m> and <m>g_1(x) \leq y \leq g_2(x)</m>. Note that the area element <m>dA</m> became <m>dy\, dx </m> in this conversion of the double integral into an iterated integral. We will need to complete three steps to transform this double integral into polar coordinates: 
+      <ol marker="1.">
+        <li>Convert the area element to polar coordinates.</li>
+        <li>Describe the region of integration with inequalities that correspond to fixing one coordinate and bounding the other in a consistent way.</li>
+        <li>Convert the integrand <m>f(x,y)</m> to polar coordinates.</li>
+      </ol>  
+      The second and third of these steps are already things we have discussed in the context of understanding polar coordinates. However, understanding how to write the area element <m>dA</m> in polar coordinates is a new topic. To do this, we focus on how the area element <m>dA</m> can be written in terms of <m>dr</m> and <m>d\theta</m> in the context of polar coordinates.
     </p>
     
     <p>
-      Remember that our classic calculus approach to defining the double integral involved breaking each coordinate into smaller pieces which created a collection of smaller areas that we used to create our Riemann sum. We can do the same procedure in terms of polar coordinates (instead of rectangular coordinates) and we could have our smaller pieces be in terms of some small changes in <m>r</m> and <m>\theta</m> (like the regions on the polar grid in <xref ref="F_11_5_Polar_coords"/>). We will now need to understand how to measure the area of a piece described by <m>R_0\leq r \leq R_1 \quad \theta_0 \leq \theta \leq \theta_1</m>, as shown in <xref ref="areapolar"/>. 
+      Remember that the classic calculus approach to defining the double integral involved breaking each coordinate into smaller pieces which created a collection of smaller (rectangular) regions that we used to create our Riemann sum. We can do the same procedure in terms of polar coordinates, and we could have our smaller pieces be in terms of some small changes in <m>r</m> and <m>\theta</m>, such as the regions on the polar grid in <xref ref="fig-mult_ints-polar-grid"/>. Notice how, in that image, even though the changes in <m>r</m> and <m>\theta</m> used to define the grid are all the same, a region farther from the origin has larger area than one closer to the origin. This suggests that understanding how to measure the area of a piece described by <m>R_0\leq r \leq R_1 \quad \theta_0 \leq \theta \leq \theta_1</m>, as shown in <xref ref="areapolar"/>, will be more complicated than in rectangular coordinates. 
     </p>
     <p>
-      We will first consider the area of the annulus between <m>r=R_0</m> and <m>r=R-1</m>, shown in <xref ref="annular-area"/>. The area of this region is the difference between the area of a disk of radius <m>R_1</m> and the area of a disk of radius <m>R_0</m>. 
+      We will first consider the area of the annulus between <m>r=R_0</m> and <m>r=R-1</m>, shown in <xref ref="annular-area"/>. The area of this region is the difference between the area of a disk of radius <m>R_1</m> and the area of a disk of radius <m>R_0</m>: 
       <me>A(r=R_1)-A(r=R_0)= \pi R_1^2-\pi R_0^2=\pi\left(R_1^2-R_0^2\right)</me>
     </p>
     <figure xml:id="annular-area">
-      <caption/>
-      <image width="60%" xml:id="img-annular-area">
-        <description><p>ADD ALT TEXT TO THIS IMAGE</p>
-      </description><sageplot>
-          var('x,y,t,s')
-          r1=1.2;r2=1.5;t1=0.6;t2=1;
-          plot2=parametric_plot((r1*cos(t),r1*sin(t)),(t,0,2*pi),color="black",thickness=3,axes=True,ticks=[[],[]])
-          plot2+=parametric_plot((r2*cos(t),r2*sin(t)),(t,0,2*pi),color="black",thickness=3)
-          dt=(2*pi)/200
-          p1=[(r1*cos(-i*dt),r1*sin(-i*dt)) for i in range(201)]
-          p2=[(r2*cos(i*dt),r2*sin(i*dt)) for i in range(201)]
-          pp=p1+p2
-          plot2+=polygon(pp,color="gray",zorder=0)
-          plot2+=text("$R_0$",(r1*cos(t1)+0.1,r1*sin(t1)+0.1),fontsize=20,color="black")
-          plot2+=text("$R_1$",(r2*cos(t2)+0.1,r2*sin(t2)+0.1),fontsize=20,color="black")
-          plot2+=line([(r2*cos(t2),r2*sin(t2)),(0,0),(r1*cos(t1),r1*sin(t1))],color="black",thickness=2)
-          plot2          
+      <caption>The annular region in the plane bounded by the circles of radius <m>R_0</m> and <m>R_1</m>.</caption>
+      <image width="60%">
+        <description>
+          <p>
+            A plot of two circles in the plane. Both circles are centered at the origin. The circles have radii marked as <m>R_0</m> and <m>R_1</m>, with <m>R_0 \lt R_1</m>. The region between the circles is shaded.
+          </p>
+        </description>
+        <sageplot label="img-annular-area">
+            var('x,y,t,s')
+            r1=1.2;r2=1.5;t1=0.6;t2=1;
+            plot2=parametric_plot((r1*cos(t),r1*sin(t)),(t,0,2*pi),color="black",thickness=3,axes=True,ticks=[[],[]])
+            plot2+=parametric_plot((r2*cos(t),r2*sin(t)),(t,0,2*pi),color="black",thickness=3)
+            dt=(2*pi)/200
+            p1=[(r1*cos(-i*dt),r1*sin(-i*dt)) for i in range(201)]
+            p2=[(r2*cos(i*dt),r2*sin(i*dt)) for i in range(201)]
+            pp=p1+p2
+            plot2+=polygon(pp,color="gray",zorder=0)
+            plot2+=text("$R_0$",(r1*cos(t1)+0.1,r1*sin(t1)+0.1),fontsize=20,color="black")
+            plot2+=text("$R_1$",(r2*cos(t2)+0.1,r2*sin(t2)+0.1),fontsize=20,color="black")
+            plot2+=line([(r2*cos(t2),r2*sin(t2)),(0,0),(r1*cos(t1),r1*sin(t1))],color="black",thickness=2)
+            plot2          
         </sageplot>
       </image>
     </figure>
     <p>
-      We want to measure the portion of the annulus that corresponds to <m>\theta_0 \leq \theta \leq \theta_1</m>. Let <m>\Delta \theta=\theta_1-\theta_0</m> be the change in the theta coordinate for the small piece we want to find the area of. Because we are using radian measures for our angles, the portion of the annulus we are using is <m>\frac{\Delta \theta}{2\pi}</m>. This means that the area of our small piece will be
-      <me>\Delta A = \frac{\Delta \theta}{2\pi} \left(\pi\left(R_1^2-R_0^2\right)\right)</me>
+      We want to measure the area of the portion of the annulus satisfying <m>\theta_0 \leq \theta \leq \theta_1</m>. Let <m>\Delta \theta=\theta_1-\theta_0</m> be the change in the theta coordinate for the small piece for which we want to find the area. Because we are using radian measures for angles, the portion of the annulus we are considering is <m>\frac{\Delta \theta}{2\pi}</m>. This means that the area of this small piece will be
+      <me>\Delta A = \frac{\Delta \theta}{2\pi} \left(\pi\left(R_1^2-R_0^2\right)\right)</me>.
     </p>
     <figure xml:id="areapolar">
-      <caption>An area described by <m>R_0\leq r \leq R_1 \quad \theta_0 \leq \theta \leq \theta_1</m> </caption>
-      <image width="60%" xml:id="img-areapolar">
-        <description><p>An area described by <m>R_0\leq r \leq R_1 \quad \theta_0 \leq \theta \leq \theta_1</m> </p>
-      </description><sageplot>
-          var('x,y,t,s')
-          r1=1;r2=1.5;t1=0.6;t2=1;
-          plot1=line([(r1*cos(t2),r1*sin(t2)),(0,0),(r1*cos(t1),r1*sin(t1))],color="gray",thickness=2,axes=True,ticks=[[],[]])
-          dt=(t2-t1)/25
-          p1=[(r1*cos(t2-i*dt),r1*sin(t2-i*dt)) for i in range(26)]
-          p2=[(r2*cos(t1+i*dt),r2*sin(t1+i*dt)) for i in range(26)]
-          pp=p1+p2
-          plot1+=polygon(pp,color="gray",edgecolor="black",thickness=3,zorder=2)
-          plot1+=parametric_plot((0.5*cos(t),0.5*sin(t)),(t,0,t1),color="gray",thickness=2)+arrow((0.5*cos(t1-0.1),0.5*sin(t1-0.1)),(0.5*cos(t1),0.5*sin(t1)),color="gray")
-          plot1+=text("$\\theta_0$",(0.55,0.1),color="gray",fontsize=20)
-          plot1+=parametric_plot((0.25*cos(t),0.25*sin(t)),(t,0,t2),color="gray",thickness=2)+arrow((0.25*cos(t2-0.1),0.25*sin(t2-0.1)),(0.25*cos(t2),0.25*sin(t2)),color="gray")
-          plot1+=text("$\\theta_1$",(0.3,0.1),color="gray",fontsize=20)
-          plot1+=parametric_plot((0.4*cos(t),0.4*sin(t)),(t,t1,t2),color="black",thickness=2)+text("$\\Delta \\theta$",(0.35,0.35),color="black",fontsize=20)
-          plot1+=parametric_plot((r1*cos(t),r1*sin(t)),(t,t1-0.5,t2+0.5),color="gray",thickness=3,linestyle="--",zorder=1)
-          plot1+=parametric_plot((r2*cos(t),r2*sin(t)),(t,t1-0.5,t2+0.5),color="gray",thickness=3,linestyle="--",zorder=1)
-          plot1+=text("$R_0$",(r1*cos(t1),r1*sin(t1)-0.1),fontsize=20,color="gray")
-          plot1+=text("$R_1$",(r2*cos(t1),r2*sin(t1)-0.1),fontsize=20,color="gray")
-          plot1+=text("$\\Delta r$",((r1+r2)/2*cos(t2)-0.1,(r1+r2)/2*sin(t2)+0.05),fontsize=20,color="black")
-          plot1+=text("$s_0$",(r1*cos((t1+t2)/2)-0.05,r1*sin((t1+t2)/2)-0.05),fontsize=20,color="black")
-          plot1+=text("$s_1$",(r2*cos((t1+t2)/2)+0.05,r2*sin((t1+t2)/2)+0.05),fontsize=20,color="black")
-          plot1+=text("$\\Delta A$",((r1+r2)/2*cos((t1+t2)/2)-0.05,(r1+r2)/2*sin((t1+t2)/2)-0.05),fontsize=25,color="black")
-          plot1                
-        </sageplot>
-      </image>
+      <caption>An area described by <m>R_0\leq r \leq R_1</m> and <m>\theta_0 \leq \theta \leq \theta_1</m> </caption>
+      <image width="60%">
+        <description>
+          <p>
+            A two-dimensional plot in the first quadrant of a region in polar coordinates. The diagram includes two dashed circular arcs with radii labeled as <m>R_0</m> and <m>R_1</m> and <m>R_0\lt R_1</m>. There are also two rays emanating from the origin. The measures of the angles formed by these rays and the horizontal axis are marked as <m>\theta_0</m> and <m>\theta_1</m> with <m>\theta_0 \lt \theta_1</m>. The angle between the rays is labled <m>\Delta \theta</m>. The region between the circular arcs and rays is shaded and labeled <m>\Delta A</m>. The side of the shaded region lying on the circular arc of radius <m>R_0</m> is labeled <m>s_0</m>. The side of the shaded region lying on the circular arc of radius <m>R_1</m> is labeled <m>s_1</m>. One side of the shaded region lying on a ray is labeled <m>\Delta r</m>.
+          </p>
+        </description>
+        <sageplot label="img-areapolar">
+            var('x,y,t,s')
+            r1=1;r2=1.5;t1=0.6;t2=1;
+            plot1=line([(r1*cos(t2),r1*sin(t2)),(0,0),(r1*cos(t1),r1*sin(t1))],color="gray",thickness=2,axes=True,ticks=[[],[]])
+            dt=(t2-t1)/25
+            p1=[(r1*cos(t2-i*dt),r1*sin(t2-i*dt)) for i in range(26)]
+            p2=[(r2*cos(t1+i*dt),r2*sin(t1+i*dt)) for i in range(26)]
+            pp=p1+p2
+            plot1+=polygon(pp,color="lightgray",edgecolor="black",thickness=3,zorder=2)
+            plot1+=parametric_plot((0.5*cos(t),0.5*sin(t)),(t,0,t1),color="gray",thickness=2)+arrow((0.5*cos(t1-0.1),0.5*sin(t1-0.1)),(0.5*cos(t1),0.5*sin(t1)),color="gray")
+            plot1+=text("$\\theta_0$",(0.55,0.1),color="gray",fontsize=20)
+            plot1+=parametric_plot((0.25*cos(t),0.25*sin(t)),(t,0,t2),color="gray",thickness=2)+arrow((0.25*cos(t2-0.1),0.25*sin(t2-0.1)),(0.25*cos(t2),0.25*sin(t2)),color="gray")
+            plot1+=text("$\\theta_1$",(0.3,0.1),color="gray",fontsize=20)
+            plot1+=parametric_plot((0.4*cos(t),0.4*sin(t)),(t,t1,t2),color="black",thickness=2)+text("$\\Delta \\theta$",(0.35,0.35),color="black",fontsize=20)
+            plot1+=parametric_plot((r1*cos(t),r1*sin(t)),(t,t1-0.5,t2+0.5),color="gray",thickness=3,linestyle="--",zorder=1)
+            plot1+=parametric_plot((r2*cos(t),r2*sin(t)),(t,t1-0.5,t2+0.5),color="gray",thickness=3,linestyle="--",zorder=1)
+            plot1+=text("$R_0$",(r1*cos(t1),r1*sin(t1)-0.1),fontsize=20,color="gray")
+            plot1+=text("$R_1$",(r2*cos(t1),r2*sin(t1)-0.1),fontsize=20,color="gray")
+            plot1+=text("$\\Delta r$",((r1+r2)/2*cos(t2)-0.1,(r1+r2)/2*sin(t2)+0.05),fontsize=20,color="black")
+            plot1+=text("$s_0$",(r1*cos((t1+t2)/2)-0.05,r1*sin((t1+t2)/2)-0.05),fontsize=20,color="black")
+            plot1+=text("$s_1$",(r2*cos((t1+t2)/2)+0.05,r2*sin((t1+t2)/2)+0.05),fontsize=20,color="black")
+            plot1+=text("$\\Delta A$",((r1+r2)/2*cos((t1+t2)/2)-0.05,(r1+r2)/2*sin((t1+t2)/2)-0.05),fontsize=25,color="black")
+            plot1                
+          </sageplot>
+        </image>
     </figure>
     <p>
-      We will reorganize our expression for <m>\Delta A</m> by writing <m>R_1^2-R_0^2</m> as the difference of two squares to get
+      Now we can reorganize our expression for <m>\Delta A</m> by writing <m>R_1^2-R_0^2</m> as the difference of two squares. This gives
       <md>
         <mrow>\Delta A \amp= \frac{\Delta \theta}{2\pi} \left(\pi(R_1+R_0)(R_1-R_0)\right)</mrow>
         <mrow> \amp= \Delta \theta \left(\frac{R_1+R_0}{2}\right) \Delta r</mrow>
-      </md>
-      where <m>\Delta r = R_1-R_0</m>. Note that as <m>\Delta r </m> gets smaller, <m>R_1</m> and <m>R_0</m> get closer to the same value and 
-      <me>\Delta A \approx R_1 \Delta r \, \Delta \theta</me>
-    </p>
-    <p>
-      Remember that we can easily convert our function <m>f(x,y)</m> to polar coordinates with <xref ref="PolarCoordinates" text="custom">our conversion equations</xref> to be <m>f(r\cos(\theta),r\sin(\theta))</m>. We can then approximate a double integral <m>\iint_D f(x,y) \, dA</m> with a Riemann sum of the form 
+      </md>,
+      where <m>\Delta r = R_1-R_0</m>. Note that as <m>\Delta r </m> gets smaller, <m>R_1</m> and <m>R_0</m> get closer to the same value, which means that
+      <me>\Delta A \approx R_1 \Delta r \, \Delta \theta</me>.
+      Since we can easily convert the function <m>f(x,y)</m> to polar coordinates with <xref ref="PolarCoordinates" text="custom">the conversion equations</xref> to be <m>f(r\cos(\theta),r\sin(\theta))</m>, we can then approximate a double integral <m>\iint_D f(x,y) \, dA</m> with a Riemann sum of the form 
       <md>
         <mrow>  \iint_D f(x,y) \, dA\amp= \sum_{j=1}^n \sum_{i=1}^m f(r_i^*\cos(\theta_j^*), r_i^* \sin(\theta_j^*)) \enspace \Delta A</mrow>
-        <mrow> \amp= \sum_{j=1}^n \sum_{i=1}^m f(r_i^*\cos(\theta_j^*), r_i^* \sin(\theta_j^*))  r_i^* \Delta r \, \Delta \theta</mrow>
-      </md>
+        <mrow> \amp= \sum_{j=1}^n \sum_{i=1}^m f(r_i^*\cos(\theta_j^*), r_i^* \sin(\theta_j^*)) \enspace r_i^*\, \Delta r \, \Delta \theta</mrow>
+      </md>.
+      Notice that here, instead of the <m>\Delta x\, \Delta y</m> that we had in a Riemann sum using rectangular coordinates, our integrand is multiplied by <m>r_i^*\, \Delta r\, \Delta \theta</m>. This leads us to the realization that we will need to use <m>dA = r\, dr\, d\theta</m> when writing a double integral as an iterated integral in polar coordinates.
     </p>
     
     <p>
-      We only have the second step of our conversion left above: convert the region of integration described by inequalities that correspond to fixing one coordinate and bounding the other in a consistent way. Similar to how we used vertically simple and horizontally simple descriptions for rectangular regions, we want to set up inequalities by hold one of our coordinates constant and setting boundary functions for the other coordinate.  
+      This leaves only the second conversion step: convert the region of integration described by inequalities that correspond to fixing one coordinate and bounding the other in a consistent way. Similar to how we used vertically simple and horizontally simple descriptions for rectangular regions, we want to set up inequalities by hold one of our coordinates constant and setting boundary functions for the other coordinate.  
     </p>
-    <proposition xml:id="prop-polarsimple">
+    <proposition xml:id="keyidea-polarsimple">
       <statement>
         <p>
-          A region is called radially-simple if it can be described by a set of inequalities of the form
+          A region is called <term>radially simple</term> if it can be described by a set of inequalities of the form
+          <idx><h>radially simple</h></idx><idx><h>simple</h><h>radially</h></idx>
           <md>
             <mrow> a \leq \theta \leq b</mrow>
             <mrow> g_1(\theta) \leq  r \leq g_2(\theta)</mrow>
-          </md>
-          which corresponds geometrically to the region in <xref ref="radiallysimple"/>
+          </md>,
+          corresponding geometrically to the region in <xref ref="radiallysimple"/>
         </p>
         <figure xml:id="radiallysimple">
           <caption>A radially simple region with slices along constant <m>\theta</m> values shown in gray</caption>
-          <image width="60%" xml:id="img-radiallysimple">
-            <description><p>A radially simple region with slices along constant <m>\theta</m> values shown in gray</p>
-          </description><sageplot>
+          <image width="50%">
+            <description>
+              <p>
+                A two-dimensional plot of a shaded region in the first quadrant. The region is bounded by two rays emanating from the origin as well as two wavy curves. The angles these rays make with the positive horizontal axis are labeled as <m>a</m> and <m>b</m> with <m>a\lt b</m>. The curve closer to the origin is labeled <m>r=g_1(\theta)</m>. The curver farther from the origin is labeled <m>r=g_2(\theta)</m>. There are dashed line segments drawn through the region in a manner that suggests they are the portion of rays emanating from the origin that lie inside the region.
+              </p>
+          </description>
+          <sageplot label="img-radiallysimple">
               var('x,y,t,s')
               f(x)=2+0.2*cos(12*x-1);g(x)=1-0.1*sin(10*x+1)
               a=0.5; b=1.2; dt=b-a; n=25;
@@ -305,23 +337,32 @@
               plot4+=parametric_plot((g(t)*cos(t),g(t)*sin(t)),(t,a,b),color="blue",thickness=3,zorder=4)
               plot4+=line([(f(a)*cos(a),f(a)*sin(a)),(0,0),(f(b)*cos(b),f(b)*sin(b))],color="gray",thickness=2)
               plot4+=text("$r=g_1(\\theta)$",(1.15,0.45),color="blue",fontsize=20)+text("$r=g_2(\\theta)$",(0.5,2),color="red",fontsize=20)
+              plot4+=parametric_plot((0.5*cos(t),0.5*sin(t)),(t,0,a),color="gray",thickness=2)+arrow((0.5*cos(a-0.1),0.5*sin(a-0.1)),(0.5*cos(a),0.5*sin(a)),color="gray")
+              plot4+=text("$\\theta=a$",(0.65,0.1),color="gray",fontsize=20)
+              plot4+=parametric_plot((0.25*cos(t),0.25*sin(t)),(t,0,b),color="gray",thickness=2)+arrow((0.25*cos(b-0.1),0.25*sin(b-0.1)),(0.25*cos(b),0.25*sin(b)),color="gray")
+              plot4+=text("$\\theta=b$",(0.27,0.3),color="gray",fontsize=20)
               plot4  
             </sageplot>
           </image>
         </figure>
         <p>
-          A region is called angularly simple if it can be described by a set of inequalities of the form
+          A region is called <term>angularly simple</term> if it can be described by a set of inequalities of the form
+          <idx><h>angularly simple</h></idx><idx><h>simple</h><h>angularly</h></idx>
           <md>
             <mrow> c \leq r \leq d</mrow>
             <mrow> h_1(r) \leq  \theta \leq h_2(r)</mrow>
-          </md>
-          which corresponds geometrically to the region in <xref ref="angsimple"/>
+          </md>,
+          corresponding geometrically to the region in <xref ref="angsimple"/>
         </p>
         <figure xml:id="angsimple">
           <caption>An angularly simple region with slices along constant <m>r</m> values shown in gray</caption>
-          <image width="60%" xml:id="img-angsimple">
-            <description><p>An angularly simple region with slices along constant <m>r</m> values shown in gray</p>
-          </description><sageplot>
+          <image width="50%">
+            <description>
+              <p>
+                A two-dimensional plot of a shaded region in the first quadrant. The region is bounded by two arcs of circles centered at the origin. The arc closer to the origin is labeled <m>r=c</m>. The arc farther from the origin is labeled <m>r=d</m>. The other boundaries of the region are wavy curves joining the circular arcs. The bounding curve with smaller <m>\theta</m> values is labeled <m>\theta=h_1(r)</m>. The other bounding curve is labeled <m>\theta=h_2(r)</m>. There are dashed circular arcs drawn through the region in a manner that suggests they are the portions of circles centered at the origin that lie inside the region.
+              </p>
+          </description>
+          <sageplot label="img-angsimple">
               var('x,y,t,s')
               f(x)=1.3-0.2*sin(2*x);g(x)=0.5+0.2*cos(4*x)
               a=0.7; b=1.5; dt=b-a; n=25;
@@ -348,10 +389,10 @@
       </statement>
     </proposition>
     <p>
-      Each of the types of regions above corresponds to exactly the necessary description to use a iterated integral. Let's look at the inequalities and plot for a radially simple region; For any fixed value of <m>\theta</m> in the interval <m>[a,b]</m>, we want to look at a slice along this constant <m>\theta</m> value. This corresponds to a ray from the origin in the cone between the grey lines in <xref ref="radiallysimple"/>. Along this <m>\theta=k</m> ray, the region of interest has an upper and lower bound on the <m>r</m>-coordinate. In fact, there is the function that describes the upper boundary, <m>r=g_2(\theta)</m>, for every value of <m>\theta</m> in <m>[a,b]</m>. Similarly, there is the function that describes the lower boundary, <m>r=g_1(\theta)</m>, for every value of <m>\theta</m> in <m>[a,b]</m>. Geometrically, this means that along every gray, dashed slice (where <m>\theta</m> is constant), there is the same upper and lower boundary curves, shown in red and blue, respectively.
+      Each of the types of regions above corresponds to exactly the necessary description to use a iterated integral. With a radially simple region, for any fixed value of <m>\theta</m> in the interval <m>[a,b]</m>, a slice along this constant <m>\theta</m> value corresponds to a ray from the origin in the sector between the grey lines in <xref ref="radiallysimple"/>. Along this ray with <m>\theta=k</m>, the region of interest has upper and lower bounds on the <m>r</m>-coordinate. In fact, <m>r=g_2(\theta)</m> describes the upper boundary for every value of <m>\theta</m> in <m>[a,b]</m>. Similarly, <m>r=g_1(\theta)</m> describes the lower boundary for every value of <m>\theta</m> in <m>[a,b]</m>. Geometrically, this means that along every gray dashed slice where <m>\theta</m> is constant, the region has the same upper and lower boundary curves, shown in red and blue, respectively.
     </p>
     <p>
-      While angularly simple regions are used much less often than radially simple regions, a parallel structure is used; Along every slice with a constant value of <m>r</m> in <m>[c,d]</m> (the gray, dashed curves in <xref ref="angsimple"/>), the upper bound on <m>\theta</m> is given by the function <m>\theta=h_2(r)</m> and the lower bound is given by <m>\theta=h_1(r)</m> (shown by the red and blue bounding curves in <xref ref="angsimple"/>).
+      While angularly simple regions are used less frequently than radially simple regions, a parallel structure is used. Along every slice with a constant value of <m>r</m> in <m>[c,d]</m>, represented bythe gray, dashed curves in <xref ref="angsimple"/>, the upper bound on <m>\theta</m> is given by the function <m>\theta=h_2(r)</m> and the lower bound is given by <m>\theta=h_1(r)</m>, shown by the red and blue bounding curves in <xref ref="angsimple"/>.
     </p>
     <p>
       Just as in the rectangular coordinate case, especially complicated regions may need to be split into several different regions that are radially or angularly simple.
@@ -362,39 +403,41 @@
         The double integral <m>\iint_D f(x,y) \, dA</m> in rectangular coordinates can be converted to a double integral in polar coordinates<idx><h>iterated integral</h><h>polar coordinates</h></idx> as <m>\iint_D f(r\cos(\theta), r\sin(\theta)) \, r \, dr \, d\theta</m>.
       </p>
       <p>
-        If the region <m>D</m> is radially simple (<m>a \leq \theta \leq b \quad g_1(\theta) \leq  r \leq g_2(\theta)</m>), then 
+        If the region <m>D</m> is radially simple with <m>a \leq \theta \leq b</m> and <m>g_1(\theta) \leq  r \leq g_2(\theta)</m>, then 
         <me>
           \iint_D f(x,y) \, dA = \int_a^b \int_{g_1(\theta)}^{g_2(\theta)} f(r\cos(\theta) , r\sin(\theta)) \, r \, dr \, d\theta
-        </me>
-      </p>
-      <p>
-        If the region <m>D</m> is angularly simple (<m>c \leq r \leq d \quad h_1(r) \leq \theta \leq h_2(r)</m>), then 
+        </me>.
+        If the region <m>D</m> is angularly simple with <m>c \leq r \leq d</m> and <m>h_1(r) \leq \theta \leq h_2(r)</m>, then 
         <me>
           \iint_D f(x,y) \, dA = \int_c^d \int_{h_1(r)}^{h_2(r)} f(r\cos(\theta) , r\sin(\theta)) \, r \, d\theta \, dr
-        </me>
+        </me>.
       </p>
     </assemblage>
     <p>
-      Note again that the order of integration corresponds to the manner in which we have sliced the region of integration, with the variable being held constant along a slice being the last variable to be integrated.
+      Note again that the order of integration corresponds to the manner in which we have sliced the region of integration. The variable being held constant along a slice is the last variable to be integrated, just as was the case with iterated integrals in rectangular coordinates.
     </p>
     <example>
       <statement>
         <p>
-          Let <m>f(x,y) = e^{x^2+y^2}</m> on the disk <m>D = \{(x,y) : x^2 + y^2 \leq 1\}</m>. We will evaluate <m>\iint_D f(x,y) \, dA</m>.
+          Let <m>f(x,y) = e^{x^2+y^2}</m> on the disk <m>D = \{(x,y) : x^2 + y^2 \leq 1\}</m>. Our goal in this example is to evaluate <m>\displaystyle \iint_D f(x,y) \, dA</m>.
         </p>
 
         <p>
           In rectangular coordinates the double integral <m>\iint_D f(x,y) \, dA</m> can be written as the iterated integral
           <me>
             \iint_D f(x,y) \, dA = \int_{x=-1}^{x=1} \int_{y=-\sqrt{1-x^2}}^{y=\sqrt{1-x^2}} e^{x^2+y^2} \, dy \, dx
-          </me>
+          </me>,
           where the vertically simple slicing is shown in <xref ref="diskvs"/>
         </p>
         <figure xml:id="diskvs">
           <caption>A unit disk centered at the origin with slices showing a vertically simple description</caption>
-          <image width="60%" xml:id="img-diskvs">
-            <description><p>A unit disk centered at the origin with slices showing a vertically simple description</p>
-          </description><sageplot>
+          <image width="50%">
+            <description>
+              <p>
+                A two-dimensional plot of a shaded region in the <m>xy</m>-plane. The region is a disc of radius <m>1</m> centered at the origin. The upper semicircle bounding the disc is labeled <m>y=\sqrt{1-x^2}</m>. The lower semicircle bounding the disc is labeled <m>y=-\sqrt{1-x^2}</m>. There are vertical dashed lines throughout the region.
+              </p>
+          </description>
+          <sageplot label="img-diskvs">
               var('x,y,t,s')
               n=100
               points=[(cos(i*2*pi/n),sin(i*2*pi/n)) for i in range(n+1)]
@@ -412,20 +455,24 @@
           </image>
         </figure>
         <p>
-          We cannot evaluate this iterated integral, because <m>e^{x^2 + y^2}</m> does not have an elementary antiderivative with respect to either <m>x</m> or <m>y</m>. However, since <m>r^2=x^2+y^2</m> and the region <m>D</m> is circular, it is natural to wonder whether converting to polar coordinates will allow us to evaluate the new integral. To do so, we replace <m>x</m> with <m>r \cos(\theta)</m>, <m>y</m> with <m>r \sin(\theta)</m>, and <m>dy \, dx</m> with <m>r \, dr \, d\theta</m> to obtain
+          We cannot evaluate this iterated integral because <m>e^{x^2 + y^2}</m> does not have an elementary antiderivative with respect to either <m>x</m> or <m>y</m>. However, since <m>r^2=x^2+y^2</m> and the region <m>D</m> is circular, it is natural to wonder whether converting to polar coordinates will allow us to evaluate the new integral. To do so, we replace <m>x</m> with <m>r \cos(\theta)</m>, <m>y</m> with <m>r \sin(\theta)</m>, and <m>dy \, dx</m> with <m>r \, dr \, d\theta</m> to obtain
           <me>
-            \iint_D f(x,y) \, dA = \iint_D e^{r^2} \, r \, dr \, d\theta.
-          </me>
+            \iint_D f(x,y) \, dA = \iint_D e^{r^2} \, r \, dr \, d\theta
+          </me>.
         </p>
 
         <p>
-          The disc <m>D</m> is described in polar coordinates by the inequalities <m>0 \leq r \leq 1</m> and <m>0 \leq \theta \leq 2\pi</m>. Note that our region <m>D</m> can be consider both radially simple and angularly simple, with all of the bounds of integration being constant. In <xref ref="diskrs"/>, we show how <m>D</m> can be considered radially simple.
+          The disc <m>D</m> is described in polar coordinates by the inequalities <m>0 \leq r \leq 1</m> and <m>0 \leq \theta \leq 2\pi</m>. Note that the region <m>D</m> can be considered both radially simple and angularly simple since all of the bounds of integration are constant. <xref ref="diskrs"/> shows how <m>D</m> can be considered radially simple.
         </p>
         <figure xml:id="diskrs">
           <caption>The unit disk centered at the origin with slices showing a radially simple description</caption>
-          <image width="60%" xml:id="img-diskrs">
-            <description><p>The unit disk centered at the origin with slices showing a radially simple description</p>
-          </description><sageplot>
+          <image width="50%">
+            <description>
+              <p>
+                A two-dimensional plot of a shaded region in the plane. The region is a disc of radius <m>1</m> centered at the origin. The circle bounding the disc is labeled <m>r=1</m>. The origin is labeled <m>r=0</m>. There are dashed rays emanating from the origin through the region.
+              </p>
+          </description>
+          <sageplot label="img-diskrs">
               var('x,y,t,s')
               n=100
               points=[(cos(i*2*pi/n),sin(i*2*pi/n)) for i in range(n+1)]
@@ -445,11 +492,8 @@
         <p>    
           Therefore, it follows that
           <me>
-            \iint_D e^{r^2} \, r \, dr \, d\theta = \int_{\theta=0}^{\theta = 2\pi} \int_{r=0}^{r=1} e^{r^2} \, r \, dr \, d\theta.
-          </me>
-        </p>
-
-        <p>
+            \iint_D e^{r^2} \, r \, dr \, d\theta = \int_{\theta=0}^{\theta = 2\pi} \int_{r=0}^{r=1} e^{r^2} \, r \, dr \, d\theta
+          </me>.
           We can evaluate the resulting iterated polar integral as follows:
           <md>
             <mrow>\int_{\theta=0}^{\theta = 2\pi} \int_{r=0}^{r=1} e^{r^2} \, r \, dr \, d\theta \amp = \int_{\theta=0}^{2\pi}  \left( \frac{1}{2}e^{r^2}\restrict{r=0}^{r=1} \right) \, d\theta</mrow>
@@ -463,11 +507,11 @@
     </example>
 
     <p>
-      While there is no firm rule for when polar coordinates can or should be used, they are a natural alternative anytime the domain of integration may be expressed simply in polar form, and/or when the integrand involves expressions such as <m>\sqrt{x^2 + y^2}</m>.
+      While there is no firm rule for when polar coordinates can or should be used, they are a natural alternative anytime the domain of integration may be expressed simply in polar form and/or when the integrand involves expressions such as <m>\sqrt{x^2 + y^2}</m>.
     </p>
 
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_5_4">
+  <activity workspace="1.5in" xml:id="act-mult_ints-polar-disc4">
       <introduction>
         <p>
           Let <m>f(x,y) = x+y</m> and <m>D = \{(x,y) : x^2 + y^2 \leq 4\}</m>.
@@ -524,7 +568,7 @@
       <task>
         <statement>
           <p>
-            Evaluate one of the iterated integrals. Write a couple sentences to explain your answer in the context of a double integral (as either a signed volume or an average value).
+            Evaluate one of the iterated integrals. Write a couple sentences to interpret your answer in the context of a double integral (e.g., as either a signed volume or an average value).
           </p>
         </statement>
         <answer>
@@ -550,19 +594,21 @@
     </activity>
 </worksheet>
     <p>
-      In the next activity, we will convert an equation from rectangular to polar coordinates and use this polar equation to give bounds of integration for two different integrals.
+      In the next activity, you will convert an equation from rectangular to polar coordinates and use this polar equation to give bounds of integration for two different integrals.
     </p>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_5_5">
+  <activity workspace="1.5in" xml:id="act-mult_ints-polar-circle_off_center">
       <introduction>
         <p>
-          Consider the circle given by <m>x^2 + (y-1)^2 = 1</m> as shown in <xref ref="F_11_5_Polar_exercise">Figure</xref>.
+          Consider the circle given by <m>x^2 + (y-1)^2 = 1</m> as shown in <xref ref="fig-mult_ints-polar-circle_off_center">Figure</xref>.
         </p>
-        <figure xml:id="circyp1">
-          <caption/>
-          <image width="60%" xml:id="img-circyp1">
-            <description><p>ADD ALT TEXT TO THIS IMAGE</p>
-          </description><sageplot>
+        <figure xml:id="fig-mult_ints-polar-circle_off_center">
+          <caption>The circle <m>x^2 + (y-1)^2 = 1</m></caption>
+          <image width="50%" >
+            <description>
+              <p>A circle in the <m>xy</m>-plane. The circle passes through the origin and the point <m>(0,2)</m>. The circle is also symmetric about the <m>y</m>-axis.</p>
+          </description>
+          <sageplot label="img-circyp1">
               var('x,y,t,s')
               plot8=parametric_plot((cos(t),1+sin(t)),(t,0,2*pi),color="black",thickness=3,ticks=[[-1,1],[0,1,2]],axes_labels=["$x$","$y$"])
               plot8                 
@@ -573,7 +619,7 @@
       <task>
         <statement>
           <p>
-            Determine a polar curve in the form <m>r = f(\theta)</m> that traces out the circle <m>x^2 + (y-1)^2 = 1</m>. You should substitute <m>x = r \cos(\theta)</m> and <m>y = r \sin(\theta)</m> into the rectangular coordinate equation and solve for <m>r</m>.
+            Determine a polar curve in the form <m>r = f(\theta)</m> that traces out the circle <m>x^2 + (y-1)^2 = 1</m>. To do this, you should substitute <m>x = r \cos(\theta)</m> and <m>y = r \sin(\theta)</m> into the rectangular coordinate equation and solve for <m>r</m>.
           </p>
         </statement>
         <hint>
@@ -624,12 +670,15 @@
       <task>
         <statement>
           <p>
-            Find the volume under the surface <m>h(x,y) = x</m> over the region <m>D</m>, where <m>D</m> is the region bounded above by the line <m>y=x</m> and below by the circle (this is the shaded region in <xref ref="F_11_5_Polar_exercise">Figure</xref>).
+            Find the volume under the surface <m>h(x,y) = x</m> over the region <m>D</m>, where <m>D</m> is the region bounded above by the line <m>y=x</m> and below by the circle. We have provided a sketch of this as the shaded region in <xref ref="fig-mult_ints-polar-circle_off_center_region">Figure</xref>.
           </p>
-          <figure xml:id="F_11_5_Polar_exercise">
-            <caption/>
+          <figure xml:id="fig-mult_ints-polar-circle_off_center_region">
+            <caption>The region between the circle <m>x^2 + (y-1)^2 = 1</m> and the line <m>y=x</m>.</caption>
             <image width="60%" xml:id="img-F_11_5_Polar_exercise">
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p>
+              <description>
+                <p>
+                  A shaded region in the <m>xy</m>-plane. The region is bounded by part of a circle and the portion of the line <m>y=x</m> inside the circle. The circle passes through the origin and the point <m>(0,2)</m>. The circle is also symmetric about the <m>y</m>-axis.
+                </p>
             </description><sageplot>
                 var('x,y,t,s')
                 plot9=parametric_plot((cos(t),1+sin(t)),(t,0,2*pi),color="black",thickness=2,ticks=[[-1,1],[0,1,2]],axes_labels=["$x$","$y$"])
@@ -662,7 +711,7 @@
       <task>
         <statement>
           <p>
-            Explain why in both parts (b) and (c) it is advantageous to use polar coordinates.
+            Explain why in both of the previous parts it is advantageous to use polar coordinates.
           </p>
         </statement>
         <answer>
@@ -695,7 +744,7 @@
 
       <li>
         <p>
-          To convert the double integral <m>{\iint_D f(x,y) \, dA}</m> to an iterated integral in polar coordinates, we substitute <m>r \cos(\theta)</m> for <m>x</m>, <m>r \sin(\theta)</m> for <m>y</m>, and <m>r \, dr \, d\theta</m> for <m>dA</m> to obtain the iterated integral (where the order of integration is determined by whether the region is described as radially or angularly simple)
+          To convert the double integral <m>{\displaystyle\iint_D f(x,y) \, dA}</m> to an iterated integral in polar coordinates, we substitute <m>r \cos(\theta)</m> for <m>x</m>, <m>r \sin(\theta)</m> for <m>y</m>, and <m>r \, dr \, d\theta</m> for <m>dA</m> to obtain the iterated integral (where the order of integration is determined by whether the region is described as radially or angularly simple)
           <me>
             {\iint_D f(r\cos(\theta), r\sin(\theta)) \, r \, dr \, d\theta}
           </me>
