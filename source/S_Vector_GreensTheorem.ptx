@@ -174,7 +174,7 @@
     <figure xml:id="fig_Vector_GreensTheorem_circ_cartoon">
       <caption>A region bounded by a curve</caption>
       <image xml:id="img_Vector_GreensTheorem_circ_cartoon" width="80%">
-				<description>A bean-shaped region in the plane that is bounded by a closed curve. The curve is oriented so that when walking along the curve, the region is always on the left. There is a square grid dividing the up the interior of the region.</description>
+				<description><p>A bean-shaped region in the plane that is bounded by a closed curve. The curve is oriented so that when walking along the curve, the region is always on the left. There is a square grid dividing the up the interior of the region.</p></description>
 				<latex-image>
 					\begin{tikzpicture}[grid/.style={pattern=MyGrid}]
 					\path[draw,use Hobby shortcut,closed=true,GridSize=9pt,pattern=MyGrid,fill opacity=0.5, orientation arrows]
@@ -505,10 +505,7 @@
     <figure xml:id="fig_Vector_GreensTheorem_Rectangle">
       <caption>A rectangular curve</caption>
       <image width="55%" xml:id="image_Vector_GreensTheorem_rectangle">
-				<description>
-					A rectangular curve in the <m>xy</m>-plane. The lower-left corner is labeled <m>(1,2)</m>. The upper-right corner is labeled <m>(4,4)</m>. The curve is oriented
-					counterclockwise.
-				</description>
+				<description><p>A rectangular curve in the <m>xy</m>-plane. The lower-left corner is labeled <m>(1,2)</m>. The upper-right corner is labeled <m>(4,4)</m>. The curve is oriented counterclockwise.</p></description>
 				<sageplot>
 					var('x','t');
 					d=1
@@ -618,41 +615,29 @@
     <worksheet>
   <activity workspace="1.5in" xml:id="act_Vector_GreensTheorem_not_smooth">
       <introduction>
-	<p>Consider the vector field <m>\vF =
-	\displaystyle\frac{-y}{{x^2+y^2}}\vi +
-	\frac{x}{{x^2+y^2}}\vj</m>. Notice that <m>\vF</m> is smooth
-	everywhere in the plane other than at the point
-	<m>(0,0)</m>. This vector field is plotted in <xref ref="fig_Vector_GreensTheorem_ccw_field"/>,
-	but we have not plotted the vectors close to the origin as
-	their magnitudes get so large that they make it hard to
-	interpret the figure. Here <xref ref="thm_Green" text="title"/> applies to any simple closed curve <m>C</m> that
-	    neither passes through <m>(0,0)</m> nor bounds a region
-	    containing <m>(0,0)</m>. </p>
-	<figure xml:id="fig_Vector_GreensTheorem_ccw_field">
-	  <caption>The vector field <m>\vF</m></caption>
-	  <image xml:id="img_Vector_GreensTheorem_ccw_field" width="65%">
-	    <description>
-				A vector field with vectors tangent to circles oriented counterclockwise and centered at the origin as well as the unit circle centered at the origin and oriented counterclockwise. The vectors are longer close to the origin and shorter farther from the origin.
-			</description>
-			<sageplot>
-				var('x,y,t')
-				F = (-y/((x^2+y^2)),x/((x^2+y^2)))
-				F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None,
-									 lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None]
-				plot1=plot_vector_field(F_control,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
-				plot2=parametric_plot((cos(t),sin(t)),(t,0,2*pi),color="red",thickness=1.5,axes_labels=["$x$","$y$"])+arrow((1/sqrt(2),1/sqrt(2)),(1/sqrt(2)-0.05,1/sqrt(2)+0.05),color="red")+text("$C$",(1.05,0.6),color='red',background_color='white',fontsize='x-large',clip=True)
-				final_plot1=plot1+plot2
-				final_plot1				
-			</sageplot>
-	  </image>
-	</figure>
+		<p>
+			Consider the vector field <m>\vF = \displaystyle\frac{-y}{{x^2+y^2}}\vi + \frac{x}{{x^2+y^2}}\vj</m>. Notice that <m>\vF</m> is smooth everywhere in the plane other than at the point <m>(0,0)</m>. This vector field is plotted in <xref ref="fig_Vector_GreensTheorem_ccw_field"/>, but we have not plotted the vectors close to the origin as their magnitudes get so large that they make it hard to interpret the figure. Here <xref ref="thm_Green" text="title"/> applies to any simple closed curve <m>C</m> that neither passes through <m>(0,0)</m> nor bounds a region containing <m>(0,0)</m>. </p>
+			<figure xml:id="fig_Vector_GreensTheorem_ccw_field">
+			<caption>The vector field <m>\vF</m></caption>
+			<image xml:id="img_Vector_GreensTheorem_ccw_field" width="65%">
+				<description><p>A vector field with vectors tangent to circles oriented counterclockwise and centered at the origin as well as the unit circle centered at the origin and oriented counterclockwise. The vectors are longer close to the origin and shorter farther from the origin.</p></description>
+				<sageplot>
+					var('x,y,t')
+					F = (-y/((x^2+y^2)),x/((x^2+y^2)))
+					F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None,
+										lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None]
+					plot1=plot_vector_field(F_control,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
+					plot2=parametric_plot((cos(t),sin(t)),(t,0,2*pi),color="red",thickness=1.5,axes_labels=["$x$","$y$"])+arrow((1/sqrt(2),1/sqrt(2)),(1/sqrt(2)-0.05,1/sqrt(2)+0.05),color="red")+text("$C$",(1.05,0.6),color='red',background_color='white',fontsize='x-large',clip=True)
+					final_plot1=plot1+plot2
+					final_plot1				
+				</sageplot>
+			</image>
+			</figure>
       </introduction>
       <task>
 	<statement>
 	  <p>
-	    Find the circulation density of
-	    <m>\vF</m> (i.e., the integrand of the double
-	    integral in <xref ref="thm_Green" text="title"/>).
+	    Find the circulation density of <m>\vF</m> (i.e., the integrand of the double integral in <xref ref="thm_Green" text="title"/>).
 	  </p>
 	</statement>
 	<hint>
@@ -738,18 +723,16 @@
 	      The vector field <m>\vG</m>
 	    </caption>
 	    <image xml:id="img_Vector_GreensTheorem_outward_field" width="65%">
-	      <description>
-					A vector field with vectors radiating from the origin and orthogonal to circles centered at the origin. Vectors are longest near the origin and get shorter farther from the origin.
-	      </description>
-				<sageplot>
-					var('x,y,t')
-					F = (x/((x^2+y^2)),y/((x^2+y^2)))
-					F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None,
-										 lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None]
-					plot3=plot_vector_field(F,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
-					final_plot2=plot3
-					final_plot2					
-				</sageplot>
+	      <description><p>A vector field with vectors radiating from the origin and orthogonal to circles centered at the origin. Vectors are longest near the origin and get shorter farther from the origin.</p> </description>
+			<sageplot>
+				var('x,y,t')
+				F = (x/((x^2+y^2)),y/((x^2+y^2)))
+				F_control = [lambda x,y: F[0].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None,
+										lambda x,y: F[1].subs(x=x,y=y) if x^2 + y^2 &gt; 0.1 else None]
+				plot3=plot_vector_field(F,(x,-1.5,1.5),(y,-1.5,1.5),color="blue",frame=False,xmin=-1.52,xmax=1.52,ymin=-1.52,ymax=1.52,aspect_ratio=1,axes_labels=["$x$","$y$"])
+				final_plot2=plot3
+				final_plot2					
+			</sageplot>
 	    </image>
 	  </figure>
 	</statement>
