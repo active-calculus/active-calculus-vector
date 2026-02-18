@@ -281,9 +281,9 @@
       </statement>
       <solution>
         <p>
-          In general, if <m>\vr(t) = \langle x(t), y(t) \rangle</m>, then <m>\vv(t) = \langle x'(t), y'(t) \rangle</m>, <m>\va(t) = \langle x''(t), y''(t) \rangle</m>, and the speed is <m>s(t) = \sqrt{(x'(t))^2 + (y'(t))^2}</m>. Recall that <m>\comp_{\vv} \va = \frac{\va \cdot \vv}{|\vv|}</m>, so
+          In general, if <m>\vr(t) = \langle x(t), y(t) \rangle</m>, then <m>\vv(t) = \langle x'(t), y'(t) \rangle</m>, <m>\va(t) = \langle x''(t), y''(t) \rangle</m>, and the speed is <m>s(t) = \sqrt{(x'(t))^2 + (y'(t))^2}</m>. Recall that <m>\comp_{\vv} \va = \frac{\va \cdot \vv}{\vecmag{\vv}}</m>, so
           <me>
-            \frac{d}{dt} s(t) = \frac{x'(t)x''(t) +y'(t)y''(t)}{|\vv|} = \comp_{\vv} \va
+            \frac{d}{dt} s(t) = \frac{x'(t)x''(t) +y'(t)y''(t)}{\vecmag{\vv}} = \comp_{\vv} \va
           </me>
         </p>
       </solution>
@@ -548,7 +548,7 @@
   <exercise xml:id="Ez_9_7_5">
     <statement>
       <p>
-        In this exercise, we develop the formula for the position function of a projectile that has been launched at an initial speed of <m>|\vv_0|</m> and a launch angle of <m>\theta.</m> Recall that <m>\va(t) = \langle 0, -g \rangle</m> is the constant acceleration of the projectile at any time <m>t</m>.
+        In this exercise, we develop the formula for the position function of a projectile that has been launched at an initial speed of <m>\vecmag{\vv_0}</m> and a launch angle of <m>\theta.</m> Recall that <m>\va(t) = \langle 0, -g \rangle</m> is the constant acceleration of the projectile at any time <m>t</m>.
         <ol marker="a.">
           <li>
             <p>
@@ -564,7 +564,7 @@
 
           <li>
             <p>
-              Next, find the specific velocity vector function <m>\vv</m> for the projectile. That is, combine your work in (a) and (b) in order to determine expressions in terms of <m>|\vv_0|</m> and <m>\theta</m> for the constants that arose when integrating.
+              Next, find the specific velocity vector function <m>\vv</m> for the projectile. That is, combine your work in (a) and (b) in order to determine expressions in terms of <m>\vecmag{\vv_0}</m> and <m>\theta</m> for the constants that arose when integrating.
             </p>
           </li>
 
@@ -578,7 +578,7 @@
             <p>
               Let <m>\vr(t)</m> denote the position vector function for the given projectile. Use the fact that the object is fired from the position <m>(x_0, y_0)</m> to show it follows that
               <me>
-                \vr(t) = \left\langle |\vv_0| \cos(\theta)t + x_0, -\frac{g}{2}t^2 + |\vv_0| \sin(\theta)t + y_0 \right\rangle.
+                \vr(t) = \left\langle \vecmag{\vv_0} \cos(\theta)t + x_0, -\frac{g}{2}t^2 + \vecmag{\vv_0} \sin(\theta)t + y_0 \right\rangle.
               </me>
             </p>
           </li>
@@ -598,22 +598,22 @@
         </li>
         <li>
           <p>
-            An application of trigonometry shows that <m>\vv_0 = \langle |\vv_0| \cos(\theta), |\vv_0| \sin(\theta) \rangle</m>.
+            An application of trigonometry shows that <m>\vv_0 = \langle \vecmag{\vv_0} \cos(\theta), \vecmag{\vv_0} \sin(\theta) \rangle</m>.
           </p>
         </li>
         <li>
           <p>
             Note that
             <me>
-              \langle |\vv_0| \cos(\theta), |\vv_0| \sin(\theta) \rangle = \vv_(0) = \langle 0, (-g)(0) \rangle + \vc
+              \langle \vecmag{\vv_0} \cos(\theta), \vecmag{\vv_0} \sin(\theta) \rangle = \vv_(0) = \langle 0, (-g)(0) \rangle + \vc
             </me>,
             so
             <me>
-              \vc = \langle |\vv_0| \cos(\theta), |\vv_0| \sin(\theta) \rangle
+              \vc = \langle \vecmag{\vv_0} \cos(\theta), \vecmag{\vv_0} \sin(\theta) \rangle
             </me>.
             Thus,
             <me>
-              \vv(t) =  \langle |\vv_0| \cos(\theta), -gt + |\vv_0| \sin(\theta) \rangle
+              \vv(t) =  \langle \vecmag{\vv_0} \cos(\theta), -gt + \vecmag{\vv_0} \sin(\theta) \rangle
             </me>.
           </p>
         </li>
@@ -621,7 +621,7 @@
           <p>
             If <m>\vr</m> is the vector-valued function that gives the position of the object at time <m>t</m>, then
             <me>
-              \vr(t) = \int \vv(t) \, dt = \left\langle |\vv_0| \cos(\theta)t, -g\frac{t^2}{2} + |\vv_0| \sin(\theta)t \right\rangle + \vk
+              \vr(t) = \int \vv(t) \, dt = \left\langle \vecmag{\vv_0} \cos(\theta)t, -g\frac{t^2}{2} + \vecmag{\vv_0} \sin(\theta)t \right\rangle + \vk
             </me>,
             where <m>\vk</m> is some constant vector.
           </p>
@@ -630,7 +630,7 @@
           <p>
             Now <m>\vr(0) = \langle x_0, y_0 \rangle</m>, so we have
             <me>
-              \langle x_0, y_0 \rangle =  \langle |\vv_0| \cos(\theta)(0), -g\frac{0^2}{2} + |\vv_0| \sin(\theta)(0) \rangle + \vk
+              \langle x_0, y_0 \rangle =  \langle \vecmag{\vv_0} \cos(\theta)(0), -g\frac{0^2}{2} + \vecmag{\vv_0} \sin(\theta)(0) \rangle + \vk
             </me>
             and
             <me>
@@ -638,7 +638,7 @@
             </me>.
             We conclude that
             <me>
-              \vr(t) = \langle |\vv_0| \cos(\theta)t + x_0, -g\frac{t^2}{2} + |\vv_0| \sin(\theta)t + y_0 \rangle
+              \vr(t) = \langle \vecmag{\vv_0} \cos(\theta)t + x_0, -g\frac{t^2}{2} + \vecmag{\vv_0} \sin(\theta)t + y_0 \rangle
             </me>.
           </p>
         </li>
