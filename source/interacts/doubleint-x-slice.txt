@@ -1,0 +1,29 @@
+var('s,t,x,y,z')
+@interact
+def projdblint(a=slider(0,2,0.1,default=1,label="Slice at x=")):
+    xscale=2.5;yscale=2.5;zscale=10
+    plot1=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=1)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
+    plot1+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5,width=1)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,width=1)
+    f(x,y)=x^2*y
+    param(s,t)=(s,t*3/2*s,f(s,t*3/2*s))
+    #set up grid      n is number of steps in s    m is number of steps in t  
+    #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+    n=7;m=7;a1=0;a2=2;b1=0;b2=1;
+    #c1 is surface color     o1 is surface opacity
+    #c2 and o2 are for constant t value traces
+    #c3 and o3 are for constant s value traces
+    c1="lightblue"; c2="black"; c3="black"; o1=0.5; o2=0.6; o3=0.6;
+    plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
+    for i in range(n+1):
+        sv=a1+i/n*(a2-a1)
+        plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+    for i in range(m+1):
+        tv=b1+i/m*(b2-b1)
+        plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+    plot1+=parametric_plot3d(param(s,t=0),(s,a1,a2),color="black",thickness=3)
+    plot1+=polygon([(0,0,0),(2,0,0),(2,3,0)],color="pink",opacity=0.8,edgecolor="black")
+    plot1+=parametric_plot3d((2,t,s*f(2,t)),(s,0,1),(t,0,3),color="pink",opacity=0.4)
+    plot1+=parametric_plot3d((2/3*t,t,s*f(2/3*t,t)),(s,0,1),(t,0,3),color="pink",opacity=0.4)
+    plot1+=parametric_plot3d((a,t,s*f(a,t)),(s,0,1),(t,0,1.5*a),color="blue",opacity=0.9)
+    h(x)=9/8*x^4;g(y)=4/3*y^2-8/(81*5)*y^5; d=4;
+    show(plot1,aspect_ratio=(1,1,0.3),viewpoint=[[-0.9624,0.1915,0.1925],91.89],camera_position=[-2.24,-6.9836,2.7426])
