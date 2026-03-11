@@ -260,37 +260,95 @@
   <subsection>
     <title>General Change of Coordinates</title>
     <p>
-      We first focus on double integrals. As with single integrals, we may be able to simplify a double integral of the form
+      Before addressing general changes of coordinates for multiple integrals, it will be helpful to think <em>geometrically</em> about the familiar substitution method for single-variable integrals. During your prior study of calculus, you likely focused on the algebra of integration by substitution. However, there are important geometric ideas at play, which the following example discusses before we proceed to look at double integrals.
+    </p>
+
+        <example>
+      <p>
+        If we look at the integral
+        <me>
+          \int_0^2 2x(x^2+1)^3\, dx,
+        </me>
+        and consider the substitution (or change of variable) <m>u = x^2+1</m> with <m>du = 2x \, dx</m>, then <m>x = 0</m> implies <m>u = 1</m> and <m>x = 2</m> implies <m>u = 5</m>. Thus, the original integral in <m>x</m> can be written as new integral in <m>u</m>. In particular,
+        <me>
+          \int_0^2 (x^2+1)^3 (2x\, dx) = \int_1^5 u^3 \, du
+        </me>,
+        which we can visualize with the following plots of area under curves.
+      </p>
+      <figure xml:id="fig-mult_ints-change_vars-int1D">
+      <sidebyside widths="45% 45%">
+        <figure xml:id="fig-mult_ints-change_vars-int1Dx">
+          <caption>Region in the <m>xy</m>-plane</caption>
+          <image width="60%" >
+            <description>
+              <p>A shaded region in the <m>xy</m>-plane. The region is bounded above by the polynomial <m>f(x)=2x(x^2+1)^3</m> whose only visible root is at the origin and that increases as <m>x</m> increases. The region is bounded below by the portion of the <m>x</m>-axis from <m>0</m> to <m>2</m>.</p>
+          </description><sageplot label="img-int1Dx">
+              var('t,s,x,y')
+              f(x)=2*x*(x^2+1)^3
+              n=100
+              points=[(i*2/n,f(i*2/n)) for i in range(n+1)]
+              points+=[(2,0)]
+              plot1=plot(f(x),(x,0,2),color="black",thickness=2,gridlines=True,axes_labels=["$x$","$f(x)=2x(x^2+1)^3$"])
+              plot1+=polygon(points, color="gray",edgecolor="black",aspect_ratio=3/500,xmin=-0.5,xmax=2.5)
+              plot1                  
+            </sageplot>
+          </image>
+        </figure>
+        <figure xml:id="fig-mult_ints-change_vars-int1Du">
+          <caption>Region in the <m>uy</m>-plane</caption>
+          <image width="60%" >
+            <description><p>A shaded region in the <m>uy</m>-plane. The region is bounded above by the polynomial <m>g(u)=u^3</m>, which increases as <m>u</m> increases. The region is bounded below by the portion of the <m>u</m>-axis from <m>1</m> to <m>5</m>.</p>
+          </description><sageplot label="img-int1Du">
+              var('t,s,x,y')
+              f(x)=x^3
+              n=100
+              points=[(i*4/n+1,f(i*4/n+1)) for i in range(n+1)]
+              points+=[(5,0),(1,0)]
+              plot2=plot(f(x),(x,1,5),color="black",thickness=2,gridlines=True,axes_labels=["$u$","$g(u)=u^3$"])
+              plot2+=polygon(points, color="gray",edgecolor="black",aspect_ratio=5.5/125,xmin=0,xmax=5.5)
+              plot2                  
+            </sageplot>
+          </image>
+        </figure>
+      </sidebyside>
+      </figure>
+      <p>
+        Notice that the scales on the vertical and horizontal axes in the two plots of <xref ref="fig-mult_ints-change_vars-int1D"/> are different. The vertical axis on each graph corresponds to the output of the function being integrated and the transformation comes from transforming the integrand. The bounds on the integral come from the conversion of the interval <m>[0,2]</m> in <m>x</m>-coordinates to the interval <m>[1,5]</m> in <m>u</m>-coordinates. What is critical here to the method of substitution is the two shaded regions have is <em>exactly the same area</em>. Thus, we can think of the process of integration by substitution as transforming a region in the <m>xy</m>-plane to a region in the <m>uy</m>-plane in such a way that the two regions have the same area. In making this change of variables, we had to write the limits of integration in terms of the new variable, write the integrand in terms of the new variable, and convert the differential from the original variable to the new variable.
+      </p>
+    </example>
+    <p>To understand general change of coordinates, we start with double integrals. As with single integrals, we may be able to simplify a double integral of the form
       <me>
         \iint_D f(x,y) \, dA
       </me>
-      by making a change of variables (that is, a substitution) of the form
+      by making a change of variables of the form
       <me>
         x = x(s, t) \quad \text{ and }  \quad  y = y(s, t)
       </me>
-      where <m>x</m> and <m>y</m> are functions of new variables <m>s</m> and <m>t</m>. This transformation introduces a correspondence between a problem in the <m>xy</m>-plane and one in the the <m>st</m>-plane. The equations <m>x=x(s,t)</m> and <m>y=y(s,t)</m> convert <m>s</m> and <m>t</m> to <m>x</m> and <m>y</m>; we call these formulas the <em>change of variable</em> formulas. 
+      where <m>x</m> and <m>y</m> are functions of new variables <m>s</m> and <m>t</m>. This is the two-variable analogue of using a substitution in a one-variable integral. This transformation introduces a correspondence between a problem in the <m>xy</m>-plane and one in the the <m>st</m>-plane, much like a substitution in a one-variable integral changes the interval of integration from being part of the <m>x</m>-axis to part of the <m>u</m>-axis. The equations <m>x=x(s,t)</m> and <m>y=y(s,t)</m> convert <m>s</m> and <m>t</m> to <m>x</m> and <m>y</m>; we call these formulas the <term>change of variable</term> formulas. 
     </p>
     <p>  
       To complete the change of our integral to the new <m>s,t</m> variables, we need to 
       <ol>
-        <li>understand the area element, <m>dA</m>, in terms of <m>s</m> and <m>t</m></li>
-        <li>transform the integrand (with the change of variable formulas)</li>
-        <li>write the new region (in the <m>st</m>-plane) with a vertically or horizontally simple description</li>
+        <li>write the new region (in the <m>st</m>-plane) with a vertically or horizontally simple description,</li>
+        <li>transform the integrand using the change of variable formulas, and</li>
+        <li>write the area element <m>dA</m> in terms of <m>s</m> and <m>t</m>.</li>
       </ol>
      The following activity helps to illustrate the idea behind describing the new region in the <m>st</m>-plane.
     </p>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_9_1">
+  <activity workspace="1.5in" xml:id="act-mult_ints-change_vars-convert_region">
       <introduction>
         <p>
-          In this activity, we will be looking at what happens to the region <m>D</m>, as shown in <xref ref="irreg-region"/>, under the change of coordinates given by 
+          Consider the region <m>D</m> in the first quadrant of the <m>xy</m>-plane bounded by the lines <m>y=2x</m> and <m>y=x/2</m> and the hyperbolas <m>y=2/x</m> and <m>y=1/(2x)</m>. A plot of the region is shown in <xref ref="irreg-region"/>. Notice how this region is neither vertically simple nor horizontally simple, so computing a double integral over <m>D</m> using the variables <m>x</m> and <m>y</m> would require at least two iterated double integrals. However, this activity will guide you through considering how the change of coordinates given by 
           <me>x=\sqrt{st} \quad \text{ and } \quad y =\sqrt{\frac{s}{t}}</me>
+          transforms <m>D</m>.
         </p>
         <figure xml:id="irreg-region">
-          <caption/>
+          <caption>A region bounded by two lines and two hyperbolas.</caption>
           <image width="60%" xml:id="img-irreg-region">
-            <description><p>ADD ALT TEXT TO THIS IMAGE</p>
-          </description><sageplot>
+            <description>
+              <p>A shaded region in the first quadrant of the <m>xy</m>-plane. The region is labeled <m>D</m> and it is bounded by the lines <m>y=x/2</m> and <m>y=2x</m> and the hyperbolas <m>y=2/x</m> and <m>y=1/(2x)</m>.</p>
+          </description><sageplot label="img-irreg-region">
               var('t,s,x,y')
               plot7=plot(2*x,(x,0,3),color="black",thickness=2)+text("$y=2x$",(1.5,2.4),color="black",fontsize=20)
               plot7+=plot(x/2,(x,0,3),color="black",thickness=2)+text("$y=\\frac{x}{2}$",(2.25,1.4),color="black",fontsize=20)
@@ -299,7 +357,7 @@
               points=[(1/2+i/25*(1/2),1/(2*(1/2+i/25*(1/2)))) for i in range(26)]
               points2=[(2-i/25,2/(2-i/25)) for i in range(26)]
               points=points+points2
-              plot7+=polygon(points,color="gray")+text("$D$",(1.1,1.1),color="black",fontsize=25,xmin=0,xmax=2.5,ymin=0,ymax=2.5)
+              plot7+=polygon(points,color="lightblue")+text("$D$",(1.1,1.1),color="black",fontsize=25,xmin=0,xmax=2.5,ymin=0,ymax=2.5)
               plot7                  
             </sageplot>
           </image>
@@ -313,27 +371,24 @@
         </statement>
         <solution>
           <p>
-            The corner points are <m>(x,y)= (\frac{1}{2},1) , (1,\frac{1}{2}), (2,1), (1,2)</m>
+            The corner points are <m>(\frac{1}{2},1)</m>, <m>(1,\frac{1}{2})</m>, <m>(2,1)</m>, and <m>(1,2)</m>.
           </p>
         </solution>
       </task>
-      <task>
+      <task xml:id="task-act-mult_ints-change_vars-convert_region-points">
         <statement>
           <p>
-            Given the form of the change of variable equations above, it is not obvious how to change <m>(x,y)</m> points into <m>(s,t)</m> points. Show that the following equations are satisfied by our change of variable equations:
+            Given the form of the change of variable equations above, it is not obvious how to change <m>(x,y)</m> points into <m>(s,t)</m> points. Verify that the following equations are satisfied by the change of variable equations:
             <me>yx=s \quad \text{and} \quad \frac{y}{x}=\frac{1}{t}</me>
-            Use these new relationships between our coordinates to convert each of these four corner points from <m>xy</m>-coordinates to <m>st</m>-coordinates and draw these points on <xref ref="st-plane1"/>.
+            Use these new relationships between the coordinates to convert each of these four corner points from <m>xy</m>-coordinates to <m>st</m>-coordinates. Then plot and label these points on the <m>st</m>-plane axes below.
           </p>
-          <figure xml:id="st-plane1">
-            <caption/>
-            <image width="60%" xml:id="img-st-plane1">
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p>
-            </description><sageplot>
+            <image width="60%" >
+              <description><p>The first quadrant in the <m>st</m>-plane. The axes are both marked with ranges from <m>0</m> to <m>2.5</m>.</p>
+            </description><sageplot label="img-st-plane1">
                 plot8=point((0,0),size=0,color="black",xmin=0,xmax=2.5,ymin=0,ymax=2.5,gridlines=True,axes_labels=["$s$","$t$"],aspect_ratio=1)
                 plot8                  
               </sageplot>
             </image>
-          </figure>
         </statement>
         <solution>
           <p>
@@ -349,10 +404,10 @@
       <task>
         <statement>
           <p>
-            We hope that the curved boundaries of the region <m>D</m> get transformed to horizontal and vertical lines in the <m>st</m>-plane, as is suggested by the result of the previous task. Let's look at how each of the boundary curves gets transformed by our change of variables formula.
+            The goal of a change of variables is for the curved boundaries of the region <m>D</m> to be transformed to horizontal and vertical lines in the <m>st</m>-plane. The locations of the points you plotted in the previous part should giv eyou hope that this will work. To confirm, we must examine how each of the boundary curves is transformed by the change of variables formula.
           </p>
           <p>
-            Use the change of variables equations to write <m> y=2x</m> in terms of <m>s</m> and <m>t</m> coordinates and solve for either <m>s</m> or <m>t</m> (as would make sense). Plot the resulting line on <xref ref="st-plane1"/>.
+            Use the change of variables equations to write <m> y=2x</m> in terms of <m>s</m> and <m>t</m>. Then solve for whichever of <m>s</m> or <m>t</m> is appropriate and plot the resulting line on the axes in <xref ref="task-act-mult_ints-change_vars-convert_region-points" text="type-local"/>.
           </p>
         </statement>
         <solution>
@@ -364,7 +419,7 @@
       <task>
         <statement>
           <p>
-            Write each of the other boundary curves of <m>D</m> (<m>y=\frac{2}{x}, y=\frac{1}{2x}, y=\frac{x}{2}</m>) in terms of <m>s</m> and <m>t</m> coordinates, solve for either <m>s</m> or <m>t</m> (as would make sense), and plot the resulting lines on <xref ref="st-plane1"/>. 
+            Write each of the other boundary curves of <m>D</m> (<m>y=\frac{2}{x}, y=\frac{1}{2x}, y=\frac{x}{2}</m>) in terms of <m>s</m> and <m>t</m> coordinates, solve for either <m>s</m> or <m>t</m> as appropriate, and plot the resulting lines on the axes in <xref ref="task-act-mult_ints-change_vars-convert_region-points" text="type-local"/>. 
           </p>
         </statement>
         <solution>
@@ -372,18 +427,19 @@
             Notice that because <m>\frac{y}{x}=\frac{\sqrt{\frac{s}{t}}}{\sqrt{st}} = \frac{1}{t}</m> and <m>yx = \sqrt{st} \sqrt{\frac{s}{t}}= s</m>, then <m>y=\frac{x}{2}</m> goes to <m>t=2</m>, <m>y=\frac{2}{x}</m> goes to <m>s=2</m>, and <m>y=\frac{1}{2x}</m> goes to <m>t=\frac{1}{2}</m>.
           </p>
           <image>
+            <description><p>ADD ALT TEXT TO THIS IMAGE</p></description>
             <sageplot>
               plot9=polygon([(1/2,1/2),(1/2,2),(2,2),(2,1/2)],color="gray",edgecolor="black",thickness=2,xmin=0,xmax=3,ymin=0,ymax=3,gridlines=True,axes_labels=["$s$","$t$"],aspect_ratio=1)
               plot9+=point([(1/2,1/2),(1/2,2),(2,2),(2,1/2)],color="black",size=30)
               plot9
             </sageplot>
-          <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+          </image>
         </solution>
       </task>
       <task>
         <statement>
           <p>
-            We have now confirmed that our irregular region <m>D</m> gets mapped to a rectangle in the <m>st</m>-plane by the change of variables formula given. Some areas of the region <m>D</m> needed to be stretched more than others in order to straighten out our sides into the nice rectangle you have drawn on <xref ref="st-plane1"/>. Write a few sentences to describe what part of <m>D</m> you think is stretched the most in the transformation from <m>xy</m>-coordinates to <m>st</m>-coordinates. 
+            The previous part verifies that the irregular region <m>D</m> in the <m>xy</m>-plane is transformed to a rectangle in the <m>st</m>-plane by the change of variables formula given. Some areas of the region <m>D</m> are stretched more than others in order to straighten the sides into the rectangle you have drawn. Write a couple of sentences to describe what part of <m>D</m> you think is stretched the most in the transformation from <m>xy</m>-coordinates to <m>st</m>-coordinates. 
           </p>
         </statement>
         <solution>
@@ -395,63 +451,14 @@
     </activity>
 </worksheet>
     <p>
-      In <xref ref="A_11_9_1">Activity</xref>, we used a clever relationship to convert our corner points from <m>xy</m>-coordinates to <m>st</m>-coordinates, but in general you would need to solve a system of equations to find the corresponding <m>(s,t)</m> points. For example, if we have change of coordinate equations given by <m>x=3s-2t</m> and <m> y =s+4t</m>, then the transformation of the point <m>(x,y)=(1,2)</m>, would come from solving the system of equations <m>1= 3s-2t</m> and <m> 2 =s+4t</m>.
+      In <xref ref="act-mult_ints-change_vars-convert_region">Activity</xref>, we used a clever relationship to convert our corner points from <m>xy</m>-coordinates to <m>st</m>-coordinates, but in general you would need to solve a system of equations to find the corresponding <m>(s,t)</m> points. For example, if we have change of coordinate equations given by <m>x=3s-2t</m> and <m> y =s+4t</m>, then the transformation of the point <m>(x,y)=(1,2)</m>, would come from solving the system of equations <m>1= 3s-2t</m> and <m> 2 =s+4t</m>.
     </p>
     <p>
       If we shift our attention to the area element associated with a change of variables, we will need to look at how the area is stretched by the transformation between <m>xy</m>-coordinates to <m>st</m>-coordinates. Conceptually, derivatives will allow us to measure how quickly coordinates are changing in the context of a change of variables. Let's look back at the single variable example stated in the introduction to this section. 
     </p>
-    <example>
-      <p>
-        If we look at the integral
-        <me>
-          \int_0^2 2x(x^2+1)^3\, dx,
-        </me>
-        and consider the change of variable <m>u = x^2+1</m> with <m>du = 2x \, dx</m>, then <m>x = 0</m> implies <m>u = 1</m> and <m>x = 2</m> implies <m>u = 5</m>. So we have transformed the original integral in <m>x</m> into a new integral in <m>u</m>. In particular,
-        <me>
-          \int_0^2 (x^2+1)^3 (2x\, dx) = \int_1^5 u^3 \, du
-        </me>
-        which we can visualize with the following plots of area under curves.
-      </p>
-      <sidebyside widths="45% 45%">
-        <figure xml:id="int1Dx">
-          <caption/>
-          <image width="60%" xml:id="img-int1Dx">
-            <description><p>ADD ALT TEXT TO THIS IMAGE</p>
-          </description><sageplot>
-              var('t,s,x,y')
-              f(x)=2*x*(x^2+1)^3
-              n=100
-              points=[(i*2/n,f(i*2/n)) for i in range(n+1)]
-              points+=[(2,0)]
-              plot1=plot(f(x),(x,0,2),color="black",thickness=2,gridlines=True,axes_labels=["$x$","$f(x)=2x(x^2+1)^3$"])
-              plot1+=polygon(points, color="gray",edgecolor="black",aspect_ratio=3/500,xmin=-0.5,xmax=2.5)
-              plot1                  
-            </sageplot>
-          </image>
-        </figure>
-        <figure xml:id="int1Du">
-          <caption/>
-          <image width="60%" xml:id="img-int1Du">
-            <description><p>ADD ALT TEXT TO THIS IMAGE</p>
-          </description><sageplot>
-              var('t,s,x,y')
-              f(x)=x^3
-              n=100
-              points=[(i*4/n+1,f(i*4/n+1)) for i in range(n+1)]
-              points+=[(5,0),(1,0)]
-              plot2=plot(f(x),(x,1,5),color="black",thickness=2,gridlines=True,axes_labels=["$u$","$g(u)=u^3$"])
-              plot2+=polygon(points, color="gray",edgecolor="black",aspect_ratio=5.5/125,xmin=0,xmax=5.5)
-              plot2                  
-            </sageplot>
-          </image>
-        </figure>
-      </sidebyside>
-      <p>
-        Both of these shaded regions have the same area but you can see that the scales on the vertical and horizontal axes changed. The vertical axis on each graph corresponds to the output of the function being integrated and the transformation comes from transforming the integrand. The bounds on the integral come from the conversion of the interval <m>[0,2]</m> in <m>x</m>-coordinates to the interval <m>[1,5]</m> in <m>u</m>-coordinates. The final part of this substitution/change of variable problem is converting the differential. 
-      </p>
-    </example>
+
     <p>
-      We have seen how in a two dimensional setting, we can convert the region of integration (<xref ref="A_11_9_1">Activity</xref>) and the integrand (the function being integrated) using our change of variable equations. As was suggested by the previous example, the partial derivatives of <m>x</m> and <m>y</m> with respect to <m>s</m> or <m>t</m> will measure how each variable (<m>x</m> or <m>y</m>) is stretched with respect to small a small change in the inputs (<m>s</m> or <m>t</m>). We will need to use vectors to quantify how these individual coordinate changes will amount to changes in the way we measure area. 
+      We have seen how in a two dimensional setting, we can convert the region of integration (<xref ref="act-mult_ints-change_vars-convert_region">Activity</xref>) and the integrand (the function being integrated) using our change of variable equations. As was suggested by the previous example, the partial derivatives of <m>x</m> and <m>y</m> with respect to <m>s</m> or <m>t</m> will measure how each variable (<m>x</m> or <m>y</m>) is stretched with respect to small a small change in the inputs (<m>s</m> or <m>t</m>). We will need to use vectors to quantify how these individual coordinate changes will amount to changes in the way we measure area. 
     </p>
     <p>
       The following result summarizes how to find the area element corresponding to a change of variables in general. We have included the details of the vector argument as a proof to this result. 
@@ -571,7 +578,7 @@
     </p>
     <example>
       <p>
-        We will look at the Jacobian for the change of variables in <xref ref="A_11_9_1"/>. Given 
+        We will look at the Jacobian for the change of variables in <xref ref="act-mult_ints-change_vars-convert_region"/>. Given 
         <me>x=\sqrt{st} \quad \text{ and } \quad y =\sqrt{\frac{s}{t}}</me>
         we will need to find the partial derivatives of these with respect to both <m>s</m> and <m>t</m>. 
         <md>
