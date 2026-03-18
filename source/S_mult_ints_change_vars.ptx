@@ -15,19 +15,19 @@
 <section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S-mult_int-change_vars">
   <title>Change of Variables</title>
   <objectives>
-      <ul>
-        <li>
-          <p>
-            What is a change of variables in a multivariable coordinate system?
-          </p>
-        </li>
-
-        <li>
-          <p>
-            How can we measure how area and volume are distorted for a change of variables in two or three dimensions?
-          </p>
-        </li>
-      </ul>
+    <ul>
+      <li>
+        <p>
+          What is a change of variables in a multivariable coordinate system?
+        </p>
+      </li>
+      
+      <li>
+        <p>
+          How can we measure how area and volume are distorted for a change of variables in two or three dimensions?
+        </p>
+      </li>
+    </ul>
   </objectives>
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
@@ -48,26 +48,26 @@
       </me>
       The latter integral requires fewer steps to evaluate.
     </p>
-
+    
     <p>
       Through our work with polar, cylindrical, and spherical coordinates, we have already seen some of the issues and advantages that arise from using a change of variables with two or three variables. The Preview Activity looks geometrically at a couple of examples of changes of coordinates involving polar coordinates. In particular, it explores exactly what properties an advantageous change of coordinates has. The section will then discuss the general ideas behind any change of variables in a multiple integral.
     </p>
-
+    
     <worksheet>
-  <exploration workspace="1.5in" xml:id="PA-mult_ints-change_vars">
-      <task>
-        <introduction>
-          <p>
-            Consider the double integral
-            <md number="yes" xml:id="eq-mult_ints-change_vars-PA"> 
-              I = \iint_D x^2+y^2 \, dA    
-            </md> 
-            where <m>D</m> is the upper half of the unit disk (<m>y \geq 0</m>). Remember the polar conversion equations:
-            <md number="yes" xml:id="eq-mult_ints-change_vars-pol_to_rect">
-              x = r \cos(\theta)  \quad \text{ and }  \quad y = r \sin(\theta)
-            </md>
-          </p>
-        </introduction>
+      <exploration workspace="1.5in" xml:id="PA-mult_ints-change_vars">
+        <task>
+          <introduction>
+            <p>
+              Consider the double integral
+              <md number="yes" xml:id="eq-mult_ints-change_vars-PA"> 
+                I = \iint_D x^2+y^2 \, dA    
+              </md> 
+              where <m>D</m> is the upper half of the unit disk (<m>y \geq 0</m>). Remember the polar conversion equations:
+              <md number="yes" xml:id="eq-mult_ints-change_vars-pol_to_rect">
+                x = r \cos(\theta)  \quad \text{ and }  \quad y = r \sin(\theta)
+              </md>
+            </p>
+          </introduction>
           <task>
             <statement>
               <p>
@@ -137,12 +137,12 @@
               </p>
             </solution>
           </task>
-      </task>
-      <task>
-        <introduction>
-          <p>
-            Suppose you are calibrating a new radar system for your self driving car. This radar system is mounted at the center of your front bumper and can detect objects up to 45 degrees to either side of the forward direction at distances from 1 meter to 3 meters.
-          </p>
+        </task>
+        <task>
+          <introduction>
+            <p>
+              Suppose you are calibrating a new radar system for your self driving car. This radar system is mounted at the center of your front bumper and can detect objects up to 45 degrees to either side of the forward direction at distances from 1 meter to 3 meters.
+            </p>
           </introduction>
           <task>
             <statement>
@@ -154,17 +154,17 @@
                   <p>A polar grid. The horizontal and vertical axes both have ranges from <m>-4</m> to <m>4</m>. There are three equally-spaced rays emanating from the origin into each of the four quadrants.</p>
                 </description>
                 <sageplot label="img-polarplane1">
-                    var('s,t,x,y')
-                    rvs=[i for i in range(1,6)]
-                    tvs=[i*pi/8 for i in range(1,16)]
-                    plot3=point((0,0),size=0,color="black",axes_labels=["$x$","$y$"],xmin=-4,xmax=4,ymin=-4,ymax=4)
-                    for r in rvs:
-                        plot3+=parametric_plot((r*cos(t),r*sin(t)),(t,0,2*pi),color="gray",linestyle="--")
-                    for tv in tvs:
-                        plot3+=line([(0,0),(6*cos(tv),6*sin(tv))],color="gray")
-                    plot3                  
-                  </sageplot>
-                </image>
+                  var('s,t,x,y')
+                  rvs=[i for i in range(1,6)]
+                  tvs=[i*pi/8 for i in range(1,16)]
+                  plot3=point((0,0),size=0,color="black",axes_labels=["$x$","$y$"],xmin=-4,xmax=4,ymin=-4,ymax=4)
+                  for r in rvs:
+                    plot3+=parametric_plot((r*cos(t),r*sin(t)),(t,0,2*pi),color="gray",linestyle="--")
+                  for tv in tvs:
+                    plot3+=line([(0,0),(6*cos(tv),6*sin(tv))],color="gray")
+                  plot3                  
+                </sageplot>
+              </image>
             </statement>
             <solution>
               <p>
@@ -199,15 +199,15 @@
               <p>
                 On the rectangular grid below, plot the rectangle in the <m>\theta r</m>-plane that corresponds to the bounds <m>a \leq r \leq b \quad c \leq \theta \leq d</m> for your radar system. Label the four corners of your figure with their <m>r</m> and <m>\theta</m> coordinates.
               </p>
-                <image width="60%" >
-                  <description><p>A grid on the <m>\theta r </m>-plane. The lower left corner of the grid is the point <m>(0,0)</m>.</p>
+              <image width="60%" >
+                <description><p>A grid on the <m>\theta r </m>-plane. The lower left corner of the grid is the point <m>(0,0)</m>.</p>
                 </description><sageplot label="img-planegrid">
-                    from matplotlib import ticker
-                    plot4=point((0,0),size=0,color="black",axes_labels=["$\\theta$","$r$"],xmin=0,xmax=6,ymin=0,ymax=6,gridlines=True,tick_formatter=(ticker.NullFormatter(),
-                    ticker.NullFormatter()))
-                    plot4                 
-                  </sageplot>
-                </image>
+                  from matplotlib import ticker
+                  plot4=point((0,0),size=0,color="black",axes_labels=["$\\theta$","$r$"],xmin=0,xmax=6,ymin=0,ymax=6,gridlines=True,tick_formatter=(ticker.NullFormatter(),
+                  ticker.NullFormatter()))
+                  plot4                 
+                </sageplot>
+              </image>
             </statement>
             <solution>
               <image>
@@ -230,22 +230,22 @@
               </image>   
             </solution>
           </task>
-      </task>
-    </exploration>
-</worksheet>
-  <p>
-    The Preview Activity has demonstrated how a change of variables from rectangular to polar coordinates creates a correspondence between a rectangular region in the <m>\theta r</m>-plane and an irregularly-shaped region in the <m>xy</m>-plane. We have already seen the specific process for a change of variables in <xref ref="S-mult_int-polar"/> and <xref ref="S-mult_int-cylsphere"/>. In this section, we will generalize this to other coordinate systems inspired more by algebra than the geometrically-inspired perspectives we had with polar, cylindrical, and spherical coordinates. 
-  </p>
+        </task>
+      </exploration>
+    </worksheet>
+    <p>
+      The Preview Activity has demonstrated how a change of variables from rectangular to polar coordinates creates a correspondence between a rectangular region in the <m>\theta r</m>-plane and an irregularly-shaped region in the <m>xy</m>-plane. We have already seen the specific process for a change of variables in <xref ref="S-mult_int-polar"/> and <xref ref="S-mult_int-cylsphere"/>. In this section, we will generalize this to other coordinate systems inspired more by algebra than the geometrically-inspired perspectives we had with polar, cylindrical, and spherical coordinates. 
+    </p>
   </subsection>
-
+  
   
   <subsection>
     <title>General Change of Coordinates</title>
     <p>
       Before addressing general changes of coordinates for multiple integrals, it will be helpful to think <em>geometrically</em> about the familiar substitution method for single-variable integrals. During your prior study of calculus, you likely focused on the algebra of integration by substitution. However, there are important geometric ideas at play, which the following example discusses before we proceed to look at double integrals.
     </p>
-
-        <example>
+    
+    <example>
       <p>
         If we look at the integral
         <me>
@@ -258,41 +258,41 @@
         which we can visualize with the following plots of area under curves.
       </p>
       <figure xml:id="fig-mult_ints-change_vars-int1D">
-      <sidebyside widths="45% 45%">
-        <figure xml:id="fig-mult_ints-change_vars-int1Dx">
-          <caption>Region in the <m>xy</m>-plane</caption>
-          <image width="60%" >
-            <description>
-              <p>A shaded region in the <m>xy</m>-plane. The region is bounded above by the polynomial <m>f(x)=2x(x^2+1)^3</m> whose only visible root is at the origin and that increases as <m>x</m> increases. The region is bounded below by the portion of the <m>x</m>-axis from <m>0</m> to <m>2</m>.</p>
-          </description><sageplot label="img-int1Dx">
-              var('t,s,x,y')
-              f(x)=2*x*(x^2+1)^3
-              n=100
-              points=[(i*2/n,f(i*2/n)) for i in range(n+1)]
-              points+=[(2,0)]
-              plot1=plot(f(x),(x,0,2),color="black",thickness=2,gridlines=True,axes_labels=["$x$","$f(x)=2x(x^2+1)^3$"])
-              plot1+=polygon(points, color="gray",edgecolor="black",aspect_ratio=3/500,xmin=-0.5,xmax=2.5)
-              plot1                  
-            </sageplot>
-          </image>
-        </figure>
-        <figure xml:id="fig-mult_ints-change_vars-int1Du">
-          <caption>Region in the <m>uy</m>-plane</caption>
-          <image width="60%" >
-            <description><p>A shaded region in the <m>uy</m>-plane. The region is bounded above by the polynomial <m>g(u)=u^3</m>, which increases as <m>u</m> increases. The region is bounded below by the portion of the <m>u</m>-axis from <m>1</m> to <m>5</m>.</p>
-          </description><sageplot label="img-int1Du">
-              var('t,s,x,y')
-              f(x)=x^3
-              n=100
-              points=[(i*4/n+1,f(i*4/n+1)) for i in range(n+1)]
-              points+=[(5,0),(1,0)]
-              plot2=plot(f(x),(x,1,5),color="black",thickness=2,gridlines=True,axes_labels=["$u$","$g(u)=u^3$"])
-              plot2+=polygon(points, color="gray",edgecolor="black",aspect_ratio=5.5/125,xmin=0,xmax=5.5)
-              plot2                  
-            </sageplot>
-          </image>
-        </figure>
-      </sidebyside>
+        <sidebyside widths="45% 45%">
+          <figure xml:id="fig-mult_ints-change_vars-int1Dx">
+            <caption>Region in the <m>xy</m>-plane</caption>
+            <image width="60%" >
+              <description>
+                <p>A shaded region in the <m>xy</m>-plane. The region is bounded above by the polynomial <m>f(x)=2x(x^2+1)^3</m> whose only visible root is at the origin and that increases as <m>x</m> increases. The region is bounded below by the portion of the <m>x</m>-axis from <m>0</m> to <m>2</m>.</p>
+              </description><sageplot label="img-int1Dx">
+                var('t,s,x,y')
+                f(x)=2*x*(x^2+1)^3
+                n=100
+                points=[(i*2/n,f(i*2/n)) for i in range(n+1)]
+                points+=[(2,0)]
+                plot1=plot(f(x),(x,0,2),color="black",thickness=2,gridlines=True,axes_labels=["$x$","$f(x)=2x(x^2+1)^3$"])
+                plot1+=polygon(points, color="gray",edgecolor="black",aspect_ratio=3/500,xmin=-0.5,xmax=2.5)
+                plot1                  
+              </sageplot>
+            </image>
+          </figure>
+          <figure xml:id="fig-mult_ints-change_vars-int1Du">
+            <caption>Region in the <m>uy</m>-plane</caption>
+            <image width="60%" >
+              <description><p>A shaded region in the <m>uy</m>-plane. The region is bounded above by the polynomial <m>g(u)=u^3</m>, which increases as <m>u</m> increases. The region is bounded below by the portion of the <m>u</m>-axis from <m>1</m> to <m>5</m>.</p>
+              </description><sageplot label="img-int1Du">
+                var('t,s,x,y')
+                f(x)=x^3
+                n=100
+                points=[(i*4/n+1,f(i*4/n+1)) for i in range(n+1)]
+                points+=[(5,0),(1,0)]
+                plot2=plot(f(x),(x,1,5),color="black",thickness=2,gridlines=True,axes_labels=["$u$","$g(u)=u^3$"])
+                plot2+=polygon(points, color="gray",edgecolor="black",aspect_ratio=5.5/125,xmin=0,xmax=5.5)
+                plot2                  
+              </sageplot>
+            </image>
+          </figure>
+        </sidebyside>
       </figure>
       <p>
         Notice that the scales on the vertical and horizontal axes in the two plots of <xref ref="fig-mult_ints-change_vars-int1D"/> are different. The vertical axis on each graph corresponds to the output of the function being integrated and the transformation comes from transforming the integrand. The bounds on the integral come from the conversion of the interval <m>[0,2]</m> in <m>x</m>-coordinates to the interval <m>[1,5]</m> in <m>u</m>-coordinates. What is critical here to the method of substitution is the two shaded regions have is <em>exactly the same area</em>. Thus, we can think of the process of integration by substitution as transforming a region in the <m>xy</m>-plane to a region in the <m>uy</m>-plane in such a way that the two regions have the same area. In making this change of variables, we had to write the limits of integration in terms of the new variable, write the integrand in terms of the new variable, and convert the differential from the original variable to the new variable.
@@ -315,123 +315,123 @@
         <li>transform the integrand using the change of variable formulas, and</li>
         <li>write the area element <m>dA</m> in terms of <m>s</m> and <m>t</m>.</li>
       </ol>
-     The following activity helps to illustrate the idea behind describing the new region in the <m>st</m>-plane.
+      The following activity helps to illustrate the idea behind describing the new region in the <m>st</m>-plane.
     </p>
     <worksheet>
-  <activity workspace="1.5in" xml:id="act-mult_ints-change_vars-convert_region">
-      <introduction>
-        <p>
-          Consider the region <m>D</m> in the first quadrant of the <m>xy</m>-plane bounded by the lines <m>y=2x</m> and <m>y=x/2</m> and the hyperbolas <m>y=2/x</m> and <m>y=1/(2x)</m>. A plot of the region is shown in <xref ref="irreg-region"/>. Notice how this region is neither vertically simple nor horizontally simple, so computing a double integral over <m>D</m> using the variables <m>x</m> and <m>y</m> would require at least two iterated double integrals. However, this activity will guide you through considering how the change of coordinates given by 
-          <me>x=\sqrt{st} \quad \text{ and } \quad y =\sqrt{\frac{s}{t}}</me>
-          transforms <m>D</m>.
-        </p>
-        <figure xml:id="irreg-region">
-          <caption>A region bounded by two lines and two hyperbolas.</caption>
-          <image width="60%" xml:id="img-irreg-region">
-            <description>
-              <p>A shaded region in the first quadrant of the <m>xy</m>-plane. The region is labeled <m>D</m> and it is bounded by the lines <m>y=x/2</m> and <m>y=2x</m> and the hyperbolas <m>y=2/x</m> and <m>y=1/(2x)</m>.</p>
-          </description><sageplot label="img-irreg-region">
-              var('t,s,x,y')
-              plot7=plot(2*x,(x,0,3),color="black",thickness=2)+text("$y=2x$",(1.5,2.4),color="black",fontsize=20)
-              plot7+=plot(x/2,(x,0,3),color="black",thickness=2)+text("$y=\\frac{x}{2}$",(2.25,1.4),color="black",fontsize=20)
-              plot7+=plot(2/x,(x,0,3),color="black",thickness=2)+text("$y=\\frac{2}{x}$",(2.2,0.7),color="black",fontsize=20)
-              plot7+=plot(1/(2*x),(x,0,3),color="black",thickness=2)+text("$y=\\frac{1}{2x}$",(1.5,0.5),color="black",fontsize=20)
-              points=[(1/2+i/25*(1/2),1/(2*(1/2+i/25*(1/2)))) for i in range(26)]
-              points2=[(2-i/25,2/(2-i/25)) for i in range(26)]
-              points=points+points2
-              plot7+=polygon(points,color="lightblue")+text("$D$",(1.1,1.1),color="black",fontsize=25,xmin=0,xmax=2.5,ymin=0,ymax=2.5)
-              plot7                  
-            </sageplot>
-          </image>
-        </figure>
-      </introduction>
-      <task>
-        <statement>
+      <activity workspace="1.5in" xml:id="act-mult_ints-change_vars-convert_region">
+        <introduction>
           <p>
-            Find the coordinates of the four corner points of the region <m>D</m>. 
+            Consider the region <m>D</m> in the first quadrant of the <m>xy</m>-plane bounded by the lines <m>y=2x</m> and <m>y=x/2</m> and the hyperbolas <m>y=2/x</m> and <m>y=1/(2x)</m>. A plot of the region is shown in <xref ref="irreg-region"/>. Notice how this region is neither vertically simple nor horizontally simple, so computing a double integral over <m>D</m> using the variables <m>x</m> and <m>y</m> would require at least two iterated double integrals. However, this activity will guide you through considering how the change of coordinates given by 
+            <me>x=\sqrt{st} \quad \text{ and } \quad y =\sqrt{\frac{s}{t}}</me>
+            transforms <m>D</m>.
           </p>
-        </statement>
-        <solution>
-          <p>
-            The corner points are <m>(\frac{1}{2},1)</m>, <m>(1,\frac{1}{2})</m>, <m>(2,1)</m>, and <m>(1,2)</m>.
-          </p>
-        </solution>
-      </task>
-      <task xml:id="task-act-mult_ints-change_vars-convert_region-points">
-        <statement>
-          <p>
-            Given the form of the change of variable equations above, it is not obvious how to change <m>(x,y)</m> points into <m>(s,t)</m> points. Verify that the following equations are satisfied by the change of variable equations:
-            <me>yx=s \quad \text{and} \quad \frac{y}{x}=\frac{1}{t}</me>
-            Use these new relationships between the coordinates to convert each of these four corner points from <m>xy</m>-coordinates to <m>st</m>-coordinates. Then plot and label these points on the <m>st</m>-plane axes below.
-          </p>
+          <figure xml:id="irreg-region">
+            <caption>A region bounded by two lines and two hyperbolas.</caption>
+            <image width="60%" xml:id="img-irreg-region">
+              <description>
+                <p>A shaded region in the first quadrant of the <m>xy</m>-plane. The region is labeled <m>D</m> and it is bounded by the lines <m>y=x/2</m> and <m>y=2x</m> and the hyperbolas <m>y=2/x</m> and <m>y=1/(2x)</m>.</p>
+              </description><sageplot label="img-irreg-region">
+                var('t,s,x,y')
+                plot7=plot(2*x,(x,0,3),color="black",thickness=2)+text("$y=2x$",(1.5,2.4),color="black",fontsize=20)
+                plot7+=plot(x/2,(x,0,3),color="black",thickness=2)+text("$y=\\frac{x}{2}$",(2.25,1.4),color="black",fontsize=20)
+                plot7+=plot(2/x,(x,0,3),color="black",thickness=2)+text("$y=\\frac{2}{x}$",(2.2,0.7),color="black",fontsize=20)
+                plot7+=plot(1/(2*x),(x,0,3),color="black",thickness=2)+text("$y=\\frac{1}{2x}$",(1.5,0.5),color="black",fontsize=20)
+                points=[(1/2+i/25*(1/2),1/(2*(1/2+i/25*(1/2)))) for i in range(26)]
+                points2=[(2-i/25,2/(2-i/25)) for i in range(26)]
+                points=points+points2
+                plot7+=polygon(points,color="lightblue")+text("$D$",(1.1,1.1),color="black",fontsize=25,xmin=0,xmax=2.5,ymin=0,ymax=2.5)
+                plot7                  
+              </sageplot>
+            </image>
+          </figure>
+        </introduction>
+        <task>
+          <statement>
+            <p>
+              Find the coordinates of the four corner points of the region <m>D</m>. 
+            </p>
+          </statement>
+          <solution>
+            <p>
+              The corner points are <m>(\frac{1}{2},1)</m>, <m>(1,\frac{1}{2})</m>, <m>(2,1)</m>, and <m>(1,2)</m>.
+            </p>
+          </solution>
+        </task>
+        <task xml:id="task-act-mult_ints-change_vars-convert_region-points">
+          <statement>
+            <p>
+              Given the form of the change of variable equations above, it is not obvious how to change <m>(x,y)</m> points into <m>(s,t)</m> points. Verify that the following equations are satisfied by the change of variable equations:
+              <me>yx=s \quad \text{and} \quad \frac{y}{x}=\frac{1}{t}</me>
+              Use these new relationships between the coordinates to convert each of these four corner points from <m>xy</m>-coordinates to <m>st</m>-coordinates. Then plot and label these points on the <m>st</m>-plane axes below.
+            </p>
             <image width="60%" >
               <description><p>The first quadrant in the <m>st</m>-plane. The axes are both marked with ranges from <m>0</m> to <m>2.5</m>.</p>
-            </description><sageplot label="img-st-plane1">
+              </description><sageplot label="img-st-plane1">
                 plot8=point((0,0),size=0,color="black",xmin=0,xmax=2.5,ymin=0,ymax=2.5,gridlines=True,axes_labels=["$s$","$t$"],aspect_ratio=1)
                 plot8                  
               </sageplot>
             </image>
-        </statement>
-        <solution>
-          <p>
-            Substituting in our change of variable equations into the the expressions <m>yx</m> and <m>\frac{y}{x}</m> gives the following:
-            <md>
-              <mrow>yx = \sqrt{st} \sqrt{\frac{s}{t}}= s </mrow>
-              <mrow>\frac{y}{x}=\frac{\sqrt{\frac{s}{t}}}{\sqrt{st}} = \frac{1}{t}</mrow>
-            </md>
-            By taking the appropriate product or ratio of <m>x</m> and <m>y</m> coordinates, we get the <m>(s,t)</m> coordinates of <m>(s,t)= (\frac{1}{2},\frac{1}{2}) , (2,\frac{1}{2}), (2,2), (\frac{1}{2},2)</m>
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            The goal of a change of variables is for the curved boundaries of the region <m>D</m> to be transformed to horizontal and vertical lines in the <m>st</m>-plane. The locations of the points you plotted in the previous part should giv eyou hope that this will work. To confirm, we must examine how each of the boundary curves is transformed by the change of variables formula.
-          </p>
-          <p>
-            Use the change of variables equations to write <m> y=2x</m> in terms of <m>s</m> and <m>t</m>. Then solve for whichever of <m>s</m> or <m>t</m> is appropriate and plot the resulting line on the axes in <xref ref="task-act-mult_ints-change_vars-convert_region-points" text="type-local"/>.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            Notice that because <m>\frac{y}{x}=\frac{\sqrt{\frac{s}{t}}}{\sqrt{st}} = \frac{1}{t}</m>, then <m>y=2x</m> goes to <m>t=\frac{1}{2}</m>
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Write each of the other boundary curves of <m>D</m> (<m>y=\frac{2}{x}, y=\frac{1}{2x}, y=\frac{x}{2}</m>) in terms of <m>s</m> and <m>t</m> coordinates, solve for either <m>s</m> or <m>t</m> as appropriate, and plot the resulting lines on the axes in <xref ref="task-act-mult_ints-change_vars-convert_region-points" text="type-local"/>. 
-          </p>
-        </statement>
-        <solution>
-          <p>
-            Notice that because <m>\frac{y}{x}=\frac{\sqrt{\frac{s}{t}}}{\sqrt{st}} = \frac{1}{t}</m> and <m>yx = \sqrt{st} \sqrt{\frac{s}{t}}= s</m>, then <m>y=\frac{x}{2}</m> goes to <m>t=2</m>, <m>y=\frac{2}{x}</m> goes to <m>s=2</m>, and <m>y=\frac{1}{2x}</m> goes to <m>t=\frac{1}{2}</m>.
-          </p>
-          <image>
-            <description><p>ADD ALT TEXT TO THIS IMAGE</p></description>
-            <sageplot>
-              plot9=polygon([(1/2,1/2),(1/2,2),(2,2),(2,1/2)],color="gray",edgecolor="black",thickness=2,xmin=0,xmax=3,ymin=0,ymax=3,gridlines=True,axes_labels=["$s$","$t$"],aspect_ratio=1)
-              plot9+=point([(1/2,1/2),(1/2,2),(2,2),(2,1/2)],color="black",size=30)
-              plot9
-            </sageplot>
-          </image>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            The previous part verifies that the irregular region <m>D</m> in the <m>xy</m>-plane is transformed to a rectangle in the <m>st</m>-plane by the change of variables formula given. Some areas of the region <m>D</m> are stretched more than others in order to straighten the sides into the rectangle you have drawn. Write a couple of sentences to describe what part of <m>D</m> you think is stretched the most in the transformation from <m>xy</m>-coordinates to <m>st</m>-coordinates. 
-          </p>
-        </statement>
-        <solution>
-          <p>
-            Each of the boundary curves gets transformed to a side of a square with length 1.5 but the boundary given by <m>y=\frac{1}{2x}</m> has the shortest length of the sides of <m>D</m>. So the lower left side of <m>D</m>, nearest the boundary given by <m>y=\frac{1}{2x}</m> must have been stretched the most in the transformation from <m>xy</m>-coordinates to <m>st</m>-coordinates. 
-          </p>
-        </solution>
-      </task>
-    </activity>
-</worksheet>
+          </statement>
+          <solution>
+            <p>
+              Substituting in our change of variable equations into the the expressions <m>yx</m> and <m>\frac{y}{x}</m> gives the following:
+              <md>
+                <mrow>yx = \sqrt{st} \sqrt{\frac{s}{t}}= s </mrow>
+                <mrow>\frac{y}{x}=\frac{\sqrt{\frac{s}{t}}}{\sqrt{st}} = \frac{1}{t}</mrow>
+              </md>
+              By taking the appropriate product or ratio of <m>x</m> and <m>y</m> coordinates, we get the <m>(s,t)</m> coordinates of <m>(s,t)= (\frac{1}{2},\frac{1}{2}) , (2,\frac{1}{2}), (2,2), (\frac{1}{2},2)</m>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              The goal of a change of variables is for the curved boundaries of the region <m>D</m> to be transformed to horizontal and vertical lines in the <m>st</m>-plane. The locations of the points you plotted in the previous part should giv eyou hope that this will work. To confirm, we must examine how each of the boundary curves is transformed by the change of variables formula.
+            </p>
+            <p>
+              Use the change of variables equations to write <m> y=2x</m> in terms of <m>s</m> and <m>t</m>. Then solve for whichever of <m>s</m> or <m>t</m> is appropriate and plot the resulting line on the axes in <xref ref="task-act-mult_ints-change_vars-convert_region-points" text="type-local"/>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Notice that because <m>\frac{y}{x}=\frac{\sqrt{\frac{s}{t}}}{\sqrt{st}} = \frac{1}{t}</m>, then <m>y=2x</m> goes to <m>t=\frac{1}{2}</m>
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Write each of the other boundary curves of <m>D</m> (<m>y=\frac{2}{x}, y=\frac{1}{2x}, y=\frac{x}{2}</m>) in terms of <m>s</m> and <m>t</m> coordinates, solve for either <m>s</m> or <m>t</m> as appropriate, and plot the resulting lines on the axes in <xref ref="task-act-mult_ints-change_vars-convert_region-points" text="type-local"/>. 
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Notice that because <m>\frac{y}{x}=\frac{\sqrt{\frac{s}{t}}}{\sqrt{st}} = \frac{1}{t}</m> and <m>yx = \sqrt{st} \sqrt{\frac{s}{t}}= s</m>, then <m>y=\frac{x}{2}</m> goes to <m>t=2</m>, <m>y=\frac{2}{x}</m> goes to <m>s=2</m>, and <m>y=\frac{1}{2x}</m> goes to <m>t=\frac{1}{2}</m>.
+            </p>
+            <image>
+              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description>
+              <sageplot>
+                plot9=polygon([(1/2,1/2),(1/2,2),(2,2),(2,1/2)],color="gray",edgecolor="black",thickness=2,xmin=0,xmax=3,ymin=0,ymax=3,gridlines=True,axes_labels=["$s$","$t$"],aspect_ratio=1)
+                plot9+=point([(1/2,1/2),(1/2,2),(2,2),(2,1/2)],color="black",size=30)
+                plot9
+              </sageplot>
+            </image>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              The previous part verifies that the irregular region <m>D</m> in the <m>xy</m>-plane is transformed to a rectangle in the <m>st</m>-plane by the change of variables formula given. Some areas of the region <m>D</m> are stretched more than others in order to straighten the sides into the rectangle you have drawn. Write a couple of sentences to describe what part of <m>D</m> you think is stretched the most in the transformation from <m>xy</m>-coordinates to <m>st</m>-coordinates. 
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Each of the boundary curves gets transformed to a side of a square with length 1.5 but the boundary given by <m>y=\frac{1}{2x}</m> has the shortest length of the sides of <m>D</m>. So the lower left side of <m>D</m>, nearest the boundary given by <m>y=\frac{1}{2x}</m> must have been stretched the most in the transformation from <m>xy</m>-coordinates to <m>st</m>-coordinates. 
+            </p>
+          </solution>
+        </task>
+      </activity>
+    </worksheet>
     <p>
       In <xref ref="act-mult_ints-change_vars-convert_region">Activity</xref>, we provided a clever relationship for you to use to convert the corner points of the region from <m>xy</m>-coordinates to <m>st</m>-coordinates. In general, however, this step involves solving a system of equations to find the corresponding <m>(s,t)</m> points. For example, if using <m>x=3s-2t</m> and <m> y =s+4t</m> as the change of variables formulas tells us that the transformation of the point <m>(x,y)=(1,2)</m> comes from solving the system of equations <m>1= 3s-2t</m> and <m> 2 =s+4t</m>.
     </p>
@@ -439,32 +439,32 @@
       The step of transforming the integrand is as straighforward as it has been with polar, cylindrical, and spherical coordinates, so now we focus on understanding how the change of variables impacts the area element <m>dA</m>. To do this requires considering how the area is stretched by the transformation from <m>xy</m>-coordinates to <m>st</m>-coordinates. Conceptually, derivatives allow us to measure how quickly coordinates are changing in the context of a change of variables. As with transforming the differential in a single-variable integration using substitution, the (partial) derivatives of <m>x</m> and <m>y</m> with respect to <m>s</m> or <m>t</m> will measure how <m>x</m> or <m>y</m> is stretched with respect to small a small change in <m>s</m> or <m>t</m>. We use vectors to quantify how these individual coordinate changes will amount to changes in area measurement. 
     </p>
     <p>
-      The following result summarizes how to find the area element corresponding to a change of variables in general. We have included the details of the vector argument as a proof to this result. 
+      The following result summarizes how to find the area element corresponding to a change of variables in general. We have included the details of the vector argument as a proof to this result for those who are interested in a deeper understanding of why this works.
     </p>
-    <proposition xml:id="prop-area-cov">
+    <proposition xml:id="keyidea-area-cov">
       <statement>
         <p>
-          Given a change of coordinates given by <m>x=x(s,t) </m> and <m>y=y(s,t)</m>, the associated area element is given by <m>dA = dy \, dx = \left| \frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| \, ds \, dt</m>.
+          Given a change of coordinates specified by <m>x=x(s,t) </m> and <m>y=y(s,t)</m>, the associated area element is <md>dA = dy \, dx = \left| \frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| \, ds \, dt</md>.
         </p>     
       </statement>
       <proof>
         <p>
-          We partition a rectangular domain in the <m>st</m> system into subrectangles. Let <m>T = [a, b] \times [a+\Delta s, b+\Delta t]</m> be one of these subrectangles. Then we transform this into a region <m>T'</m> in the standard <m>xy</m> Cartesian coordinate system. The region <m>T'</m> is called the <em>image</em> of <m>T</m>; the region <m>T</m> is the <em>pre-image</em> of <m>T'</m>. Although the sides of this <m>xy</m> region <m>T'</m> aren't necessarily straight (linear), we will approximate the element of area <m>dA</m> for this region with the area of the parallelogram whose sides are given by the vectors <m>\vv</m> and <m>\vw</m>, where <m>\vv</m> is the vector from <m>(x(a, b), y(a, b))</m> to <m>(x(a + \Delta s, b), y(a + \Delta s, b))</m>, and <m>\vw</m> is the vector from <m>(x(a, b), y(a, b))</m> to <m>(x(a, b + \Delta t), y(a, b + \Delta t))</m>.
+          We partition a rectangle in the <m>st</m>-coordinate system into subrectangles. Let <m>T = [a, b] \times [a+\Delta s, b+\Delta t]</m> be one of these subrectangles. Then we transform this into a region <m>T'</m> in the standard rectangular coordinate system. The region <m>T'</m> is called the <term>image</term> of <m>T</m>; the region <m>T</m> is the <term>pre-image</term> of <m>T'</m>. Although the sides of this <m>xy</m> region <m>T'</m> aren't necessarily described by linear functions, we will approximate the element of area <m>dA</m> for this region with the area of the parallelogram whose sides are given by the vectors <m>\vv</m> and <m>\vw</m>, where <m>\vv</m> is the vector from <m>(x(a, b), y(a, b))</m> to <m>(x(a + \Delta s, b), y(a + \Delta s, b))</m>, and <m>\vw</m> is the vector from <m>(x(a, b), y(a, b))</m> to <m>(x(a, b + \Delta t), y(a, b + \Delta t))</m>.
         </p>
-
+        
         <p>
           An example of an image <m>T'</m> in the <m>xy</m>-plane that results from a transformation of a rectangle <m>T</m> in the <m>st</m>-plane is shown in <xref ref="F_11_9_Change_vars_ex">Figure</xref>.
         </p>
-
+        
         
         <figure xml:id="F_11_9_Change_vars_ex">
           <caption>Approximating an area of an image resulting from a transformation</caption>
           <sidebyside widths="45% 45%">
             <image>
-              <description><p>Approximating an area of an image resulting from a transformation</p>
-          </description><sageplot>
+              <description><p>A rectangular region in the <m>st</m>-plane. The horizontal side of the region is labeled <m>\Delta s</m> and the vertical side of the region is labeled <m>\Delta t</m>.</p>
+              </description><sageplot label="img-mult_ints-change_vars-st_region">
                 from matplotlib import ticker
-                plot10=polygon([(.5,.5),(1,.5),(1,1),(.5,1)],color="gray",edgecolor="black",thickness=2,xmin=0,xmax=2,ymin=0,ymax=2,axes_labels=["$s$","$t$"],gridlines=True,tick_formatter=(ticker.NullFormatter(),
+                plot10=polygon([(.5,.5),(1,.5),(1,1),(.5,1)],color="lightblue",edgecolor="black",thickness=2,xmin=0,xmax=2,ymin=0,ymax=2,axes_labels=["$s$","$t$"],gridlines=True,tick_formatter=(ticker.NullFormatter(),
                 ticker.NullFormatter()))
                 plot10+=text("$\\Delta s$",(0.75,0.4),fontsize=20,color="black")
                 plot10+=text("$\\Delta t$",(0.4,0.75),fontsize=20,color="black")
@@ -472,8 +472,8 @@
               </sageplot>
             </image>
             <image>
-              <description><p>Approximating an area of an image resulting from a transformation</p>
-          </description><sageplot>
+              <description><p>A parallelogram in the <m>xy</m>-plane. Two adjacent sides of the parallelogram are marked with vectors with a common initial point. One vector is <m>\vw</m> and the other vector is <m>\vv</m>.</p>
+              </description><sageplot label="img-mult_ints-change_vars-xy_region">
                 from matplotlib import ticker
                 plot11=polygon([(.7,.6),(1.5,1.0),(1.1,1.5),(.3,1.1)],color="lightblue",edgecolor="black",thickness=2,xmin=0,xmax=2,ymin=0,ymax=2,axes_labels=["$x$","$y$"],gridlines=True,tick_formatter=(ticker.NullFormatter(),
                 ticker.NullFormatter()))
@@ -496,97 +496,95 @@
             <mrow>\vw \amp = \left\langle x(a, b+ \Delta t) - x(a,b), y(a, b+ \Delta s) - y(a,b), 0 \right\rangle.</mrow>
           </md>
         </p>
-
+        
         <p>
-          Slightly rewriting <m>\vv</m> and <m>\vw</m>, we have
+          Rewriting <m>\vv</m> and <m>\vw</m>, we have
           <md>
-            <mrow>\vv \amp = \left\langle \frac{x(a+ \Delta s, b) - x(a,b)}{\Delta s}, \frac{y(a+ \Delta s, b) - y(a,b)}{\Delta s}, 0 \right\rangle \Delta s, \ \mbox{and}</mrow>
-            <mrow>\vw \amp = \left\langle \frac{x(a, b+ \Delta t) - x(a,b)}{\Delta t}, \frac{y(a, b+ \Delta s) - y(a,b)}{\Delta t}, 0 \right\rangle \Delta t.</mrow>
-          </md>
+            <mrow>\vv \amp = \left\langle \frac{x(a+ \Delta s, b) - x(a,b)}{\Delta s}, \frac{y(a+ \Delta s, b) - y(a,b)}{\Delta s}, 0 \right\rangle \Delta s</mrow>
+            <intertext>and</intertext>
+            <mrow>\vw \amp = \left\langle \frac{x(a, b+ \Delta t) - x(a,b)}{\Delta t}, \frac{y(a, b+ \Delta s) - y(a,b)}{\Delta t}, 0 \right\rangle \Delta t</mrow>
+          </md>.
         </p>
-
+        
         <p>
           For small <m>\Delta s</m> and <m>\Delta t</m>, the definition of the partial derivative tells us that
           <me>
-            \vv \approx \left\langle \frac{\partial x}{\partial s}(a,b), \frac{\partial y}{\partial s}(a,b), 0 \right\rangle \Delta s \ \ \ \ \ \text{ and }  \ \ \ \ \  \vw \approx \left\langle \frac{\partial x}{\partial t}(a,b), \frac{\partial y}{\partial t}(a,b), 0 \right\rangle \Delta t.
-          </me>
+            \vv \approx \left\langle \frac{\partial x}{\partial s}(a,b), \frac{\partial y}{\partial s}(a,b), 0 \right\rangle \Delta s \ \ \ \ \ \text{ and }  \ \ \ \ \  \vw \approx \left\langle \frac{\partial x}{\partial t}(a,b), \frac{\partial y}{\partial t}(a,b), 0 \right\rangle \Delta t
+          </me>.
         </p>
-
+        
         <p>
-          Recall that the area of the parallelogram with sides <m>\vv</m> and <m>\vw</m> is the length of the cross product of the two vectors, <m>\vec\vv \times \vw|</m>. From this, we observe that
+          Recall that the area of the parallelogram with sides <m>\vv</m> and <m>\vw</m> is the length of the cross product of the two vectors, <m>\vecmag{\vv \times \vw}</m>. From this, we observe that
           <md>
             <mrow>\vv \times \vw \amp \approx \left\langle \frac{\partial x}{\partial s}(a,b), \frac{\partial y}{\partial s}(a,b), 0 \right\rangle \Delta s \times \left\langle \frac{\partial x}{\partial t}(a,b), \frac{\partial y}{\partial t}(a,b), 0 \right\rangle \Delta t</mrow>
-            <mrow>\amp = \left\langle 0, \ 0, \ \frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b) \right\rangle \Delta s \, \Delta t.</mrow>
-          </md>
-        </p>
-
-        <p>
+            <mrow>\amp = \left\langle 0, \ 0, \ \frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b) \right\rangle \Delta s \, \Delta t</mrow>
+          </md>.
           Finally, by computing the magnitude of the cross product, we see that
           <md>
-            <mrow>|\vv \times \vw| \amp \approx \left|\left\langle 0,0, \frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b) \right\rangle \Delta s \, \Delta t\right|</mrow>
-            <mrow>\amp = \left|\frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b)\right| \Delta s \, \Delta t.</mrow>
-          </md>
+            <mrow>\vecmag{\vv \times \vw} \amp \approx \vecmag{\left\langle 0,0, \frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b) \right\rangle \Delta s \, \Delta t}</mrow>
+            <mrow>\amp = \left|\frac{\partial x}{\partial s}(a,b) \frac{\partial y}{\partial t}(a,b) - \frac{\partial x}{\partial t}(a,b) \frac{\partial y}{\partial s}(a,b)\right| \Delta s \, \Delta t</mrow>
+          </md>.
         </p>
-
+        
         <p>
-          Therefore, as the number of subdivisions increases without bound in each direction, <m>\Delta s</m> and <m>\Delta t</m> both go to zero, and we have
-          <men xml:id="E_Area_Element">
-            dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s} \right| ds \, dt.
-          </men>
+          Therefore, as the number of subdivisions gets large in both directions, <m>\Delta s</m> and <m>\Delta t</m> both go to zero. This gives
+          <md>
+            dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s} \right| ds \, dt
+          </md>.
         </p>
       </proof>
     </proposition>
     <p>
-      <xref ref="prop-area-cov"/> determines the general change of variable formula in a double integral, and we can now convert all the parts of the double integral to <m>s</m> and <m>t</m> coordinates.
+      <xref ref="keyidea-area-cov"/> determines the general change of variable formula in a double integral, and we can now convert all the parts of the double integral to <m>st</m>-coordinates:
       <me>
         \iint_T f(x,y) \, dy \, dx = \iint_{T'} f(x(s,t),y(s,t)) \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| ds \, dt
       </me>
     </p>
-
+    
     <p>
       The quantity
       <me>
         \frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}
       </me>
-      is called the <em>Jacobian</em><idx><h>Jacobian</h></idx>, and we denote the Jacobian using the shorthand notation
+      is called the <term>Jacobian</term><idx><h>Jacobian</h></idx>, and we denote the Jacobian using the shorthand notation
       <me>
         \frac{\partial (x,y)}{\partial (s,t)}  =  \frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}.
       </me>
-      Recall from <xref ref="S-Precalc-CrossProduct">Section</xref> that we can also write this Jacobian as the determinant of the <m>2 \times 2</m> matrix <m>\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \end{array}  \right] </m>. Note that, as discussed in <xref ref="S-Precalc-CrossProduct">Section</xref>, the absolute value of the determinant of <m>\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \end{array}  \right]</m> is the area of the parallelogram determined by the vectors <m>\vv</m> and <m>\vw</m>, and so the area element <m>dA</m> in <m>xy</m>-coordinates is also represented by the area element <m>\left| \frac{\partial (x,y)}{\partial (s,t)} \right| \, ds \, dt</m> in <m>st</m>-coordinates, and <m>\left| \frac{\partial (x,y)}{\partial (s,t)} \right|</m> is the factor by which the transformation magnifies area. 
+      Recall from <xref ref="S-Precalc-CrossProduct">Section</xref> that we can also write this Jacobian as the determinant of the <m>2 \times 2</m> matrix <md>\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \end{array}  \right] </md>. Note that, as discussed in <xref ref="S-Precalc-CrossProduct">Section</xref>, the absolute value of the determinant of this matrix is the area of the parallelogram determined by the vectors <m>\vv</m> and <m>\vw</m>. Hence the area element <m>dA</m> in <m>xy</m>-coordinates is also represented by the area element <m>\left| \frac{\partial (x,y)}{\partial (s,t)} \right| \, ds \, dt</m> in <m>st</m>-coordinates, and <m>\left| \frac{\partial (x,y)}{\partial (s,t)} \right|</m> is the factor by which the transformation magnifies area. 
     </p>
     <example>
       <p>
-        We will look at the Jacobian for the change of variables in <xref ref="act-mult_ints-change_vars-convert_region"/>. Given 
+        This example computes the Jacobian for the change of variables explored in <xref ref="act-mult_ints-change_vars-convert_region"/>. We have 
         <me>x=\sqrt{st} \quad \text{ and } \quad y =\sqrt{\frac{s}{t}}</me>
-        we will need to find the partial derivatives of these with respect to both <m>s</m> and <m>t</m>. 
+        and must find the partial derivatives of these with respect to both <m>s</m> and <m>t</m>:
         <md>
-          <mrow>\frac{\partial x}{\partial s} \amp= \sqrt{t} \left(\frac{1}{2} \frac{1}{\sqrt{s}}\right) \amp= \frac{1}{2} \sqrt{\frac{t}{s}} </mrow>
-          <mrow>\frac{\partial x}{\partial t} \amp= \sqrt{s} \left(\frac{1}{2} \frac{1}{\sqrt{t}}\right) \amp= \frac{1}{2} \sqrt{\frac{s}{t}} </mrow>
-          <mrow>\frac{\partial y}{\partial s} \amp= \sqrt{\frac{1}{t}} \left(\frac{1}{2} \frac{1}{\sqrt{s}}\right) \amp= \frac{1}{2} \sqrt{\frac{1}{st}} </mrow>
-          <mrow>\frac{\partial y}{\partial t} \amp= \sqrt{s} \left(-\frac{1}{2} \frac{1}{\sqrt{t^3}}\right) \amp= -\frac{1}{2} \sqrt{\frac{s}{t^3}} </mrow>
+          <mrow>\frac{\partial x}{\partial s} \amp= \sqrt{t} \left(\frac{1}{2} \frac{1}{\sqrt{s}}\right) = \frac{1}{2} \sqrt{\frac{t}{s}} </mrow>
+          <mrow>\frac{\partial x}{\partial t} \amp= \sqrt{s} \left(\frac{1}{2} \frac{1}{\sqrt{t}}\right) = \frac{1}{2} \sqrt{\frac{s}{t}} </mrow>
+          <mrow>\frac{\partial y}{\partial s} \amp= \sqrt{\frac{1}{t}} \left(\frac{1}{2} \frac{1}{\sqrt{s}}\right) = \frac{1}{2} \sqrt{\frac{1}{st}} </mrow>
+          <mrow>\frac{\partial y}{\partial t} \amp= \sqrt{s} \left(-\frac{1}{2} \frac{1}{\sqrt{t^3}}\right) = -\frac{1}{2} \sqrt{\frac{s}{t^3}} </mrow>
         </md>
-        The Jacobian will then be
+        The Jacobian is now
         <me>
-          det \left(\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \end{array}  \right] \right)
-          = det \left(\left[ \begin{array}{cc} \frac{1}{2} \sqrt{\frac{t}{s}}  \amp  \frac{1}{2} \sqrt{\frac{s}{t}}  \\ \frac{1}{2} \sqrt{\frac{1}{st}} \amp  -\frac{1}{2} \sqrt{\frac{s}{t^3}} \end{array}  \right] \right)
-        </me>
-        which will evaluate to 
+          \det \left(\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \end{array}  \right] \right)
+          = \det \left(\left[ \begin{array}{cc} \frac{1}{2} \sqrt{\frac{t}{s}}  \amp  \frac{1}{2} \sqrt{\frac{s}{t}}  \\ \frac{1}{2} \sqrt{\frac{1}{st}} \amp  -\frac{1}{2} \sqrt{\frac{s}{t^3}} \end{array}  \right] \right)
+        </me>.
+        This evaluates to be
         <me>
           \left(\frac{1}{2} \sqrt{\frac{t}{s}} \right)\left(-\frac{1}{2} \sqrt{\frac{s}{t^3}} \right) - \left(\frac{1}{2} \sqrt{\frac{s}{t}} \right) \left(\frac{1}{2} \sqrt{\frac{1}{st}} \right) = -\frac{1}{2t}
-        </me>
+        </me>.
       </p>
       <p>
-        It is important to note a couple of interesting features of our Jacobian. First, the Jacobian is negative because in this example the region is flipped; Specifically the <q>lower</q> and <q>upper</q> bounds in <xref ref="irreg-region"/> given by <m>y=\frac{x}{2}</m> and <m>y=2x</m> are respectively transformed to <m>t=2</m> and <m>t=\frac{1}{2}</m>. In other words, the top and bottom edges get flipped by the transformation which results in this area transformation being negative. Notice that we take the absolute value of the Jacobian when considering the area element because we only care about how the area is deformed in the transformation given by the change of coordinates (and do not care about any flips that occur as part of the transformation).
+        Now that we have computed the Jacobian, we note a couple of aspects of interpreting this quantity. First, notice that the Jacobian is negative. Much like how a negative sign can be used to reverse the limits of integration in a one-variable integral, a negative Jacobian reflects a flip of the region. Specifically the <q>lower</q> and <q>upper</q> bounds in <xref ref="irreg-region"/>, which are given by <m>y=\frac{x}{2}</m> and <m>y=2x</m>, are  transformed respectively to <m>t=2</m> and <m>t=\frac{1}{2}</m>. In other words, the top and bottom edges get flipped by the transformation, which results in this area transformation being negative. We take the absolute value of the Jacobian when considering the area element because we only care about how the area is deformed in the transformation given by the change of coordinates and do not care about any flips that occur as part of the transformation.
       </p>
       <p>
-        The second feature is that the Jacobian is not constant, which means that the deformation of the area does not occur the same at every part of our region. In particular, for values where <m>t</m> is great than one, we are multiplying by a smaller factor, which means the region is expanded as part of the transformation from <m>xy</m> to <m>st</m> coordinates. For values where <m>t</m> is less than one, we are multiplying by a larger factor, which means the region is shrunk as part of the transformation from <m>xy</m> to <m>st</m> coordinates. 
+        The second notable feature is that the Jacobian is not constant. Thismeans that the amount by which the area is deformed varies based on the location of a point in the region. In particular, for values where <m>t</m> is great than one, the area is multiplied by a smaller factor, which means the region is expanded as part of the transformation from <m>xy</m>- to <m>st</m>-coordinates. On the other hand, for values where <m>t</m> is less than one, we multiply by a larger factor, which means the region is shrunk as part of the transformation. 
       </p>
     </example>  
-
+    
     <p>
-      To summarize our work on change of variables and double integrals, the preceding change of variable formula we have derived is stated here.
+      We summarize the change of variables formula for double integrals below.
     </p> 
-
+    
     <assemblage xml:id="Change-of-variable">
       <title>Change of Variables in a Double Integral<idx><h>change of variable</h><h>double integral</h></idx></title>
       <p>
@@ -596,315 +594,346 @@
         </me>
       </p>
     </assemblage>
-
-    <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_9_2">
-      <introduction>
-        <p>
-          In this activity, we will look at a few familiar Jacobians and their interpretations. 
-        </p>
-      </introduction>
-      <task>
-        <statement>
-          <p>
-            Find the Jacobian for the transformation given by <m>x=3s-1</m> and <m>y=\frac{t}{3}+2</m>. Write a couple of sentences about why the area of a region will not change with respect to this change of coordinates.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            The non-zero partial derivatives will be <m>\frac{\partial x}{\partial s}= 3</m> and <m>\frac{\partial y}{\partial t}= \frac{1}{3}</m> which gives a Jacobian of 1. The transformation from <m>xy</m> to <m>st</m> corresponds to a horizontal stretch by a factor of three and a vertical contraction (by a factor of <m>\frac{1}{3}</m>), so the area would not change. The shifts in the coordinates <m>xy</m> to <m>st</m> of -1 and +2 will not affect the area of the region.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Find the Jacobian when changing from rectangular to polar coordinates. Write a couple of sentences to connect to our work on double integrals in polar coordinates.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            In this case we have
-            <me>
-              x(r, \theta) = r \cos(\theta) \ \ \ \ \ \text{ and }  \ \ \ \ \ y(r, \theta) = r \sin(\theta)
-            </me>.
-          </p>
-          <p>
-            Since we can assume <m>r \geq 0</m> in polar coordinates,
-            the Jacobian is
-            <me>
-              \left|\frac{\partial x}{\partial r} \frac{\partial y}{\partial \theta} - \frac{\partial x}{\partial \theta} \frac{\partial y}{\partial r}\right| = \left|\cos(\theta)(r\cos(\theta)) - \sin(\theta)(r\sin(\theta))\right| = \left|r\cos^2(\theta) + r\sin^2(\theta)\right| = r
-            </me>
-            as expected.
-          </p>
-        </solution>
-      </task>
-    </activity>
-</worksheet>
-
-    <p>
-      Given a particular double integral, it is natural to ask, <q>how can we find a useful change of variables?</q> There are two general factors to consider: if the integrand is particularly difficult, we might choose a change of variables that would make the integrand easier; or, given a complicated region of integration, we might choose a change of variables that transforms the region of integration into one that has a simpler form. These ideas are illustrated in the next activities.
-    </p>
-    <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_9_3">
-      <introduction>
-        <p>
-          Consider the problem of finding the area of the region <m>D'</m> defined by the ellipse <m>x^2 + \frac{y^2}{4} = 1</m>. In this activity, we will look at what happens when we use a change of variables so that the pre-image of the domain is a circle.
-        </p>
-      </introduction>
-      <task>
-        <statement>
-          <p>
-            Let <m>x(s,t) = s</m> and <m>y(s,t) = 2t</m>. Explain why the pre-image of the original ellipse (which lies in the <m>xy</m> plane) is the circle <m>s^2 + t^2 = 1</m> in the <m>st</m>-plane.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            Substituting <m>s</m> for <m>x</m> and <m>2t</m> for <m>y</m> in our ellipse equation gives us
-            <me>
-              1 = x^2 + \frac{y^2}{4} = s^2 + \frac{(2t)^2}{4} = s^2 + t^2
-            </me>.
-            So the pre-image of the the ellipse in the <m>st</m>-plane is the circle <m>s^2 + t^2 = 1</m>.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Recall that the area of the ellipse <m>D'</m> is determined by the double integral <m> \iint_{D'} 1 \, dA</m>. Explain why
-            <me>
-              \iint_{D'} 1 \, dA = \iint_{D} 2 \, ds \, dt
-            </me>
-            where <m>D</m> is the disk bounded by the circle <m>s^2 + t^2 = 1</m>. In particular, explain the source of the <q>2</q> in the <m>st</m> integral.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            This is just asking us to find the Jacobian
-            <me>
-              \left|\frac{\partial(x,y)}{\partial(s,t)}\right| = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| = |(1)(2) - (0)(0)| = 2
-            </me>.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Without evaluating any of the integrals present, explain why the area of the original elliptical region <m>D'</m> is <m>2\pi</m>.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            We know that <m>D'</m> is a circle of radius 1 and so has area <m>\pi</m>.Therefore,
-            <me>
-            \iint_D 1 \, dA = \iint_{D'} 2 \, ds \, dt = 2\iint_{D'}  \, ds \, dt = 2\pi
-            </me>.
-          </p>
-        </solution>
-      </task>
-    </activity>
-</worksheet>
-
-    <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_9_4">
-      <introduction>
-        <p>
-          Let <m>D'</m> be the region in the <m>xy</m>-plane bounded by the lines <m>y=0</m>, <m>x=0</m>, and <m>x+y=1</m>. We will evaluate the double integral
-        <men xml:id="eq_11_9_COV_ex">
-          \iint_{D'} \sqrt{x+y}(x-y)^2 \, dA
-        </men>
-        with a change of variables.
-        </p>
-      </introduction>
-      <task>
-        <statement>
-          <p>
-            Sketch the region <m>D'</m> in the <m>xy</m>-plane.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            A sketch of the <m>xy</m> domain <m>D'</m> is shown below.
-          </p>
-          <image width="73%" source="images/11_9_Act_4"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            We would like to make a substitution that makes the integrand easier to antidifferentiate. Let <m>s = x+y</m> and <m>t = x-y</m>. Explain why this should make antidifferentiation easier by making the corresponding substitutions and writing the new integrand in terms of <m>s</m> and <m>t</m>.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            This change of variable would make the integrand look like <m>\sqrt{s}t^2</m>, which separates the variables and makes the integration easier.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Solve the equations <m>s = x+y</m> and <m>t = x-y</m> for <m>x</m> and <m>y</m>. (Doing so determines the standard form of the transformation, since we will have <m>x</m> as a function of <m>s</m> and <m>t</m>, and <m>y</m> as a function of <m>s</m> and <m>t</m>.)
-          </p>
-        </statement>
-        <solution>
-          <p>
-            A little algebra shows that <m>x = \frac{1}{2}(s+t)</m> and <m>y = \frac{1}{2}(s-t)</m>.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            To actually execute this change of variables, we need to know the <m>st</m>-region <m>D</m> that corresponds to the <m>xy</m>-region <m>D'</m>.
-            <ol marker="i.">
-              <li> What <m>st</m> equation corresponds to the <m>xy</m> equation <m>x+y=1</m>? </li>
-              <li>  What <m>st</m> equation corresponds to the <m>xy</m> equation <m>x=0</m>? </li>
-              <li>  What <m>st</m> equation corresponds to the <m>xy</m> equation <m>y=0</m>? </li>
-              <li> Sketch the <m>st</m> region <m>D</m> that corresponds to the <m>xy</m> domain <m>D'</m>. </li>
-            </ol>
-          </p>
-        </statement>
-        <solution>
-          <p>
-            To make this change of variables, we will need to know the <m>st</m>-region <m>S</m> that corresponds to the <m>xy</m>-region <m>D</m>.
-            <ol marker="i">
-              <li> Using our change of variables we have
-                  <me>
-                    1 = x+y = \frac{1}{2}((s+t)+(s-t)) = s
-                  </me> </li>
-              <li> Using our change of variables we have
-                  <me>
-                    0 = x = \frac{1}{2}(s+t)
-                  </me>
-                  or
-                  <me>
-                    s+t = 0
-                  </me>.
-              </li>
-              <li> Using our change of variables we have
-                  <me>
-                    0 = y = \frac{1}{2}(s-t)
-                  </me>
-                  or
-                  <me>
-                    s-t = 0
-                  </me>.
-              </li>
-              <li> The region <m>D</m> is shown below. </li>
-            </ol>
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Make the change of variables indicated by <m>s = x+y</m> and <m>t = x-y</m> in the double integral <xref ref="eq_11_9_COV_ex"/> and set up an iterated integral in <m>st</m> variables whose value is the original given double integral. Finally, evaluate the iterated integral.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            We need the Jacobian
-            <me>
-              \left|\frac{\partial(x,y)}{\partial(s,t)}\right| = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| = \left| \left(\frac{1}{2}\right)\left(-\frac{1}{2}\right) - \left(\frac{1}{2}\right)\left(\frac{1}{2}\right)\right| = \frac{1}{2}
-            </me>.
-            Then
-            <md>
-              <mrow>\iint_D \sqrt{x+y}(x-y)^2 \, dA \amp = \iint_S \sqrt{s}t^2 \left|\frac{\partial(x,y)}{\partial(s,t)}\right| \, ds \, dt</mrow>
-              <mrow>\amp = \int_0^1 \int_{-s}^{s} \sqrt{s}t^2 \frac{1}{2} \, dt \, ds</mrow>
-              <mrow>\amp = \frac{1}{2} \int_0^1 \sqrt{s} \frac{t^3}{3} \restrict{-s}^{s} \, ds</mrow>
-              <mrow>\amp = \frac{1}{3} \int_0^1 \sqrt{s}s^3 \, ds</mrow>
-              <mrow>\amp = \frac{1}{3} \int_0^1 s^{7/2} \, ds</mrow>
-              <mrow>\amp = \frac{2}{27} s^{9/2} \restrict{0}^1</mrow>
-              <mrow>\amp = \frac{2}{27}</mrow>
-            </md>
-          </p>
-        </solution>
-      </task>
-    </activity>
-</worksheet>
-  </subsection>
-
-
-  <subsection>
-    <title>Change of Variables in a Triple Integral</title>
-
-    <p>
-     The details of an argument for the change of variable formula for triple integrals are more complicated the two dimension case we have just discussed and we omit those here. The general process, though, is the same as the two-dimensional case; Namely, we will use partial derivatives and the determinant of a matrix of the partial derivatives to give the appropriate volume element for the new coordinate. 
-    </p>
-    <p>
-      Given a solid <m>S'</m> in the <m>xyz</m>-coordinate system in <m>\R^3</m>, a change of variables transformation <m>x=x(s,t,u)</m>, <m>y=y(s,t,u)</m>, and <m>z = z(s,t,u)</m> transforms <m>S'</m> into a region <m>S</m> in <m>stu</m>-coordinates. Any function <m>f = f(x,y,z)</m> defined on <m>S'</m> can be considered as a function <m>f = f(x(s,t,u), y(s,t,u), z(s,t,u))</m> in <m>stu</m>-coordinates defined on <m>S</m>. The volume element <m>dV</m> in <m>xyz</m>-coordinates cooresponds to a scaled volume element in <m>stu</m>-coordinates, where the scale factor is given by the absolute value of the Jacobian, <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m>, which is the determinant of the <m>3 \times 3</m> matrix
-      <me>
-        \left[ \begin{array}{ccc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t} \amp  \frac{\partial x}{\partial u} \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \amp  \frac{\partial y}{\partial u} \\ \frac{\partial z}{\partial s} \amp  \frac{\partial z}{\partial t} \amp  \frac{\partial z}{\partial u} \end{array}  \right]
-      </me>. 
-      (Recall that this determinant was introduced in <xref ref="S-Precalc-CrossProduct">Section</xref>.) That is, <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m> is given by  
-       <me>
-        \frac{\partial x}{\partial s}\left[\frac{\partial y}{\partial t}\frac{\partial z}{\partial u} - \frac{\partial y}{\partial u}\frac{\partial z}{\partial t}\right] - \frac{\partial x}{\partial t}\left[\frac{\partial y}{\partial s}\frac{\partial z}{\partial u} - \frac{\partial y}{\partial u}\frac{\partial z}{\partial s}\right] + \frac{\partial x}{\partial u}\left[\frac{\partial y}{\partial s}\frac{\partial z}{\partial t} - \frac{\partial y}{\partial t}\frac{\partial z}{\partial s}\right].
-      </me>
-    </p>
     
-    <assemblage xml:id="Change-of-variable-3D">
-      <title>Change of Variables in a Triple Integral<idx><h>change of variable</h><h>triple integral</h></idx></title>
-      <p>
-        Suppose a change of variables <m>x = x(s,t,u)</m>, <m>y = y(s,t,u)</m>, and <m>z = z(s,t,u)</m> transforms a closed and bounded region <m>S</m> in <m>stu</m>-coordinates into a closed and bounded region <m>S'</m> in <m>xyz</m>-coordinates. Under modest conditions (that are studied in advanced calculus), the triple integral <m>\iiint_{S'} f(x,y,z) \, dV </m> is equal to 
-        <me>
-          \iiint_{S} f(x(s,t,u),y(s,t,u),z(s,t,u)) \ \left| \frac{\partial(x,y,z)}{\partial(s,t,u)} \right| \, ds \, dt \, du.
-        </me>
-      </p>
-    </assemblage>
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_11_9_5">
-      <introduction>
-        <p>
-          Consider the solid <m>S'</m> defined by the inequalities <m>0 \leq x \leq 2</m>, <m>\frac{x}{2} \leq y \leq \frac{x}{2}+1</m>, and <m>0 \leq z \leq 6</m>. Consider the transformation defined by <m>s = \frac{x}{2}</m>, <m>t = \frac{x-2y}{2}</m>,  and <m>u = \frac{z}{3}</m>. Let <m>f(x,y,x) = x-2y+z</m>. 
-        </p>
-      </introduction>
-      <task>
-        <statement>
+      <activity workspace="1.5in" xml:id="A_11_9_2">
+        <introduction>
           <p>
-            The transformation turns the solid <m>S'</m> in <m>xyz</m>-coordinates into a box <m>S</m> in <m>stu</m>-coordinates. Apply the transformation to the boundries of the solid <m>S'</m> to find <m>stu</m>-coordinate descriptions of the box <m>S</m>.
+            In this activity, we will look at a few familiar Jacobians and their interpretations. 
           </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
+        </introduction>
+        <task>
+          <statement>
+            <p>
+              Find the Jacobian for the transformation given by <m>x=3s-1</m> and <m>y=\frac{t}{3}+2</m>. Write a couple of sentences to explain how the Jacobian tells you that the area of a region will not change with respect to this change of coordinates.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              The non-zero partial derivatives will be <m>\frac{\partial x}{\partial s}= 3</m> and <m>\frac{\partial y}{\partial t}= \frac{1}{3}</m> which gives a Jacobian of 1. The transformation from <m>xy</m> to <m>st</m> corresponds to a horizontal stretch by a factor of three and a vertical contraction (by a factor of <m>\frac{1}{3}</m>), so the area would not change. The shifts in the coordinates <m>xy</m> to <m>st</m> of -1 and +2 will not affect the area of the region.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Find the Jacobian for the transformation from rectangular to polar coordinates. Write a couple of sentences to connect this result to the work done previously on double integrals in polar coordinates.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              In this case we have
+              <me>
+                x(r, \theta) = r \cos(\theta) \ \ \ \ \ \text{ and }  \ \ \ \ \ y(r, \theta) = r \sin(\theta)
+              </me>.
+            </p>
+            <p>
+              Since we can assume <m>r \geq 0</m> in polar coordinates,
+              the Jacobian is
+              <me>
+                \left|\frac{\partial x}{\partial r} \frac{\partial y}{\partial \theta} - \frac{\partial x}{\partial \theta} \frac{\partial y}{\partial r}\right| = \left|\cos(\theta)(r\cos(\theta)) - \sin(\theta)(r\sin(\theta))\right| = \left|r\cos^2(\theta) + r\sin^2(\theta)\right| = r
+              </me>
+              as expected.
+            </p>
+          </solution>
+        </task>
+      </activity>
+    </worksheet>
+    
+    <p>
+      Given a particular double integral, it is natural to ask, <q>How can we find a useful change of variables?</q> There are two general factors to consider: if the integrand is particularly difficult, we might choose a change of variables that would make the integrand easier; or, given a complicated region of integration, we might choose a change of variables that transforms the region of integration into one that has a simpler form. These ideas are illustrated in the next activities.
+    </p>
+    <worksheet>
+      <activity workspace="1.5in" xml:id="act-mult_ints-change_vars-ellipse">
+        <introduction>
           <p>
-            Compute and simplify the Jacobian <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m>.
+            Consider the problem of finding the area of the region <m>D'</m> defined by the ellipse <m>x^2 + \frac{y^2}{4} = 1</m>. In this activity, we will look at what happens when we use a change of variables so that the pre-image of the domain is a circle.
           </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
+        </introduction>
+        <task>
+          <statement>
+            <p>
+              Let <m>x(s,t) = s</m> and <m>y(s,t) = 2t</m>. Explain why the pre-image of the original ellipse (which lies in the <m>xy</m> plane) is the circle <m>s^2 + t^2 = 1</m> in the <m>st</m>-plane.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Substituting <m>s</m> for <m>x</m> and <m>2t</m> for <m>y</m> in our ellipse equation gives us
+              <me>
+                1 = x^2 + \frac{y^2}{4} = s^2 + \frac{(2t)^2}{4} = s^2 + t^2
+              </me>.
+              So the pre-image of the the ellipse in the <m>st</m>-plane is the circle <m>s^2 + t^2 = 1</m>.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Recall that the area of the ellipse <m>D'</m> is determined by the double integral <m> \displaystyle\iint_{D'} 1 \, dA</m>. Explain why
+              <me>
+                \iint_{D'} 1 \, dA = \iint_{D} 2 \, ds \, dt
+              </me>
+              where <m>D</m> is the disk bounded by the circle <m>s^2 + t^2 = 1</m>. In particular, explain the source of the <q>2</q> in the <m>st</m> integral.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              This is just asking us to find the Jacobian
+              <me>
+                \left|\frac{\partial(x,y)}{\partial(s,t)}\right| = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| = |(1)(2) - (0)(0)| = 2
+              </me>.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Without using iterated integrals to compute any of the integrals above, explain why the area of the original elliptical region <m>D'</m> is <m>2\pi</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              We know that <m>D'</m> is a circle of radius 1 and so has area <m>\pi</m>.Therefore,
+              <me>
+                \iint_D 1 \, dA = \iint_{D'} 2 \, ds \, dt = 2\iint_{D'} 1 \, ds \, dt = 2\pi
+              </me>.
+            </p>
+          </solution>
+        </task>
+      </activity>
+    </worksheet>
+    
+    <worksheet>
+      <activity workspace="1.5in" xml:id="act-mult_ints-change_vars-integrand">
+        <introduction>
           <p>
-             Use the transformation to perform a change of variables and evaluate <m>\iiint_{S'} f(x,y,z) \, dV</m> by evaluating 
-            <me>\iiint_{S} f(x(s,t,u),y(s,t,u),z(s,t,u)) \ \left| \frac{\partial(x,y,z)}{\partial(s,t,u)} \right| \, ds \, dt \, du</me>
+            Let <m>D'</m> be the region in the <m>xy</m>-plane bounded by the lines <m>y=0</m>, <m>x=0</m>, and <m>x+y=1</m>. Although this region, which you will soon sketch, is both vertically simple and horizontally simple, consider evaluating the double integral
+            <men xml:id="eq-mult_ints-change_vars-act-integrand">
+              \iint_{D'} \sqrt{x+y}(x-y)^2 \, dA
+            </men>.
+            Given the form of the integrand, our standard techniques for finding antiderivatives do not help with evaluating this integral in <m>xy</m>-coordinates.
           </p>
-        </statement>
-      </task>
-    </activity>
-</worksheet>
-
-  </subsection>
-
-  
-
-  <subsection>
-    <title>Summary</title>
-    <ul>
-      <li>
-        <p>
-          If an integral is described in terms of one set of variables, we may write that set of variables in terms of another set of the same number of variables. If the new variables are chosen appropriately, the transformed integral may be easier to evaluate.
-        </p>
-      </li>
-
-      <li>
-        <p>
-          The Jacobian is a scalar function that relates the area or volume element in one coordinate system to the corresponding element in a new system determined by a change of variables.
-        </p>
-      </li>
-    </ul>
-
+        </introduction>
+        <task>
+          <statement>
+            <p>
+              Sketch the region <m>D'</m> in the <m>xy</m>-plane.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              A sketch of the <m>xy</m> domain <m>D'</m> is shown below.
+            </p>
+            <image width="73%" source="images/11_9_Act_4"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              We would like to make a substitution that makes the integrand easier to antidifferentiate. Let <m>s = x+y</m> and <m>t = x-y</m>. Solve these for <m>x</m> and <m>y</m>. Doing so determines the standard form of the transformation by expressing <m>x</m> as a function of <m>s</m> and <m>t</m> and <m>y</m> as a function of <m>s</m> and <m>t</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              A little algebra shows that <m>x = \frac{1}{2}(s+t)</m> and <m>y = \frac{1}{2}(s-t)</m>.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Use this substitution to rewrite the integrand of <xref ref="eq-mult_ints-change_vars-act-integrand"/> in terms of <m>s</m> and <m>t</m>.
+            </p>
+          </statement>
+          <solution>
+            <p>
+              This change of variable would make the integrand look like <m>\sqrt{s}t^2</m>, which separates the variables and makes the integration easier.
+            </p>
+          </solution>
+        </task>
+        
+        <task>
+          <introduction>
+            <p>
+              To actually carry out this change of variables, we need to know the <m>st</m>-region <m>D</m> that corresponds to the <m>xy</m>-region <m>D'</m>.
+            </p>
+          </introduction>
+          <task>
+            <statement>
+              <p>
+                What <m>st</m> equation corresponds to the <m>xy</m> equation <m>x+y=1</m>? 
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Using our change of variables we have
+                <me>
+                  1 = x+y = \frac{1}{2}((s+t)+(s-t)) = s
+                </me>.
+              </p>
+            </solution>
+          </task>
+          <task>
+            <statement>
+              <p>
+                What <m>st</m> equation corresponds to the <m>xy</m> equation <m>x=0</m>?
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Using our change of variables we have
+                <me>
+                  0 = x = \frac{1}{2}(s+t)
+                </me>
+                or
+                <me>
+                  s+t = 0
+                </me>.
+              </p>
+            </solution>
+          </task>
+          <task>
+            <statement>
+              <p>
+                What <m>st</m> equation corresponds to the <m>xy</m> equation <m>y=0</m>?
+              </p>
+            </statement>
+            <solution>
+              <p>
+                Using our change of variables we have
+                <me>
+                  0 = y = \frac{1}{2}(s-t)
+                </me>
+                or
+                <me>
+                  s-t = 0
+                </me>.
+              </p>
+            </solution>
+          </task>
+          <task>
+            <statement>
+              <p>
+                Sketch the <m>st</m>-region <m>D</m> that corresponds to the <m>xy</m>-region <m>D'</m>. 
+              </p>
+            </statement>
+            <solution>
+              <p>
+                
+              </p>
+            </solution>
+          </task>
+          </task>
+          <task>
+            <statement>
+              <p>
+                Make the change of variables indicated by <m>s = x+y</m> and <m>t = x-y</m> in the double integral <xref ref="eq-mult_ints-change_vars-act-integrand"/> and set up an iterated integral in <m>st</m> variables whose value is the original given double integral. Finally, evaluate the iterated integral.
+              </p>
+            </statement>
+            <solution>
+              <p>
+                We need the Jacobian
+                <me>
+                  \left|\frac{\partial(x,y)}{\partial(s,t)}\right| = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\partial x}{\partial t} \frac{\partial y}{\partial s}\right| = \left| \left(\frac{1}{2}\right)\left(-\frac{1}{2}\right) - \left(\frac{1}{2}\right)\left(\frac{1}{2}\right)\right| = \frac{1}{2}
+                </me>.
+                Then
+                <md>
+                  <mrow>\iint_D \sqrt{x+y}(x-y)^2 \, dA \amp = \iint_S \sqrt{s}t^2 \left|\frac{\partial(x,y)}{\partial(s,t)}\right| \, ds \, dt</mrow>
+                  <mrow>\amp = \int_0^1 \int_{-s}^{s} \sqrt{s}t^2 \frac{1}{2} \, dt \, ds</mrow>
+                  <mrow>\amp = \frac{1}{2} \int_0^1 \sqrt{s} \frac{t^3}{3} \restrict{-s}^{s} \, ds</mrow>
+                  <mrow>\amp = \frac{1}{3} \int_0^1 \sqrt{s}s^3 \, ds</mrow>
+                  <mrow>\amp = \frac{1}{3} \int_0^1 s^{7/2} \, ds</mrow>
+                  <mrow>\amp = \frac{2}{27} s^{9/2} \restrict{0}^1</mrow>
+                  <mrow>\amp = \frac{2}{27}</mrow>
+                </md>
+              </p>
+            </solution>
+          </task>
+        </activity>
+      </worksheet>
     </subsection>
-
+    
+    
+    <subsection>
+      <title>Change of Variables in a Triple Integral</title>
+      
+      <p>
+        The details of an argument for the change of variable formula for triple integrals are more complicated the two dimension case we have just discussed and we omit those here. The general process, though, is the same as the two-dimensional case; Namely, we will use partial derivatives and the determinant of a matrix of the partial derivatives to give the appropriate volume element for the new coordinate. 
+      </p>
+      <p>
+        Given a solid <m>S'</m> in the <m>xyz</m>-coordinate system in <m>\R^3</m>, a change of variables transformation <m>x=x(s,t,u)</m>, <m>y=y(s,t,u)</m>, and <m>z = z(s,t,u)</m> transforms <m>S'</m> into a region <m>S</m> in <m>stu</m>-coordinates. Any function <m>f = f(x,y,z)</m> defined on <m>S'</m> can be considered as a function <m>f = f(x(s,t,u), y(s,t,u), z(s,t,u))</m> in <m>stu</m>-coordinates defined on <m>S</m>. The volume element <m>dV</m> in <m>xyz</m>-coordinates cooresponds to a scaled volume element in <m>stu</m>-coordinates, where the scale factor is given by the absolute value of the Jacobian, <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m>, which is the determinant of the <m>3 \times 3</m> matrix
+        <me>
+          \left[ \begin{array}{ccc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t} \amp  \frac{\partial x}{\partial u} \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} \amp  \frac{\partial y}{\partial u} \\ \frac{\partial z}{\partial s} \amp  \frac{\partial z}{\partial t} \amp  \frac{\partial z}{\partial u} \end{array}  \right]
+        </me>. 
+        Recall that this determinant was introduced in <xref ref="S-Precalc-CrossProduct">Section</xref>. For easy reference, however, we compute here that  <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m> is given by  
+        <me>
+          \frac{\partial x}{\partial s}\left[\frac{\partial y}{\partial t}\frac{\partial z}{\partial u} - \frac{\partial y}{\partial u}\frac{\partial z}{\partial t}\right] - \frac{\partial x}{\partial t}\left[\frac{\partial y}{\partial s}\frac{\partial z}{\partial u} - \frac{\partial y}{\partial u}\frac{\partial z}{\partial s}\right] + \frac{\partial x}{\partial u}\left[\frac{\partial y}{\partial s}\frac{\partial z}{\partial t} - \frac{\partial y}{\partial t}\frac{\partial z}{\partial s}\right]
+        </me>.
+      </p>
+      <p>
+        We state the change of variables formula for triple integrals below. Note that there are some unstated but modest requirements here about the function and region being sufficiently nice. For the types of functions and regions you will see in practice, this formula holds, and examining the limitations is a topic reserved for courses in analysis.
+      </p>
+      <assemblage xml:id="Change-of-variable-3D">
+        <title>Change of Variables in a Triple Integral<idx><h>change of variable</h><h>triple integral</h></idx></title>
+        <p>
+          Suppose a change of variables <m>x = x(s,t,u)</m>, <m>y = y(s,t,u)</m>, and <m>z = z(s,t,u)</m> transforms a closed and bounded region <m>S</m> in <m>stu</m>-coordinates into a closed and bounded region <m>S'</m> in <m>xyz</m>-coordinates. The triple integral <m>\iiint_{S'} f(x,y,z) \, dV </m> is equal to 
+          <me>
+            \iiint_{S} f(x(s,t,u),y(s,t,u),z(s,t,u)) \ \left| \frac{\partial(x,y,z)}{\partial(s,t,u)} \right| \, ds \, dt \, du.
+          </me>
+        </p>
+      </assemblage>
+      <worksheet>
+        <activity workspace="1.5in" xml:id="act-mult_ints-change_vars-triple">
+          <introduction>
+            <p>
+              Let <m>S'</m> be the solid described by the inequalities <m>0 \leq x \leq 2</m>, <m>\frac{x}{2} \leq y \leq \frac{x}{2}+1</m>, and <m>0 \leq z \leq 6</m>. Consider the transformation given by <m>s = \frac{x}{2}</m>, <m>t = \frac{x-2y}{2}</m>,  and <m>u = \frac{z}{3}</m>. Let <m>f(x,y,x) = x-2y+z</m>. 
+            </p>
+          </introduction>
+          <task>
+            <statement>
+              <p>
+                The transformation turns the solid <m>S'</m> in <m>xyz</m>-coordinates into a box <m>S</m> in <m>stu</m>-coordinates. Apply the transformation to the boundries of the solid <m>S'</m> to find <m>stu</m>-coordinate descriptions of the box <m>S</m>.
+              </p>
+            </statement>
+          </task>
+          <task>
+            <statement>
+              <p>
+                Compute and simplify the Jacobian <m>\frac{\partial(x,y,z)}{\partial(s,t,u)}</m>.
+              </p>
+            </statement>
+          </task>
+          <task>
+            <statement>
+              <p>
+                Use the transformation to perform a change of variables and evaluate <m>\iiint_{S'} f(x,y,z) \, dV</m> by evaluating 
+                <me>\iiint_{S} f(x(s,t,u),y(s,t,u),z(s,t,u)) \ \left| \frac{\partial(x,y,z)}{\partial(s,t,u)} \right| \, ds \, dt \, du</me>.
+              </p>
+            </statement>
+          </task>
+        </activity>
+      </worksheet>
+      
+    </subsection>
+    
+    
+    
+    <outcomes>
+      <ul>
+        <li>
+          <p>
+            If an integral is described in terms of one set of variables, we may write that set of variables in terms of another set of the same number of variables. If the new variables are chosen appropriately, the transformed integral may be easier to evaluate.
+          </p>
+        </li>
+        
+        <li>
+          <p>
+            The Jacobian is a scalar function that relates the area or volume element in one coordinate system to the corresponding element in a new system determined by a change of variables.
+          </p>
+        </li>
+      </ul>
+      
+    </outcomes>
+    
     <xi:include href="exercises/ez-S_multi_ints_change_variables.ptx"/>
-</section>
+  </section>
