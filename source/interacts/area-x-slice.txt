@@ -1,0 +1,13 @@
+var('s,t,x,y,z')
+@interact
+def projdblint2D(a=slider(0,2,0.1,default=1,label="Slice at x=")):
+    f(x,y)=x^2*y
+    h(x)=9/8*x^4;
+    plot1=parametric_plot((s,h(s)),(s,0,2),color="red",thickness=2,gridlines=True,axes_labels=["$x$","Area"])
+    plot1+=point((a,h(a)),color="blue",size=40,zorder=5)
+    plot1+=line([(a,h(a)),(a,0)],color="blue",thickness=2)
+    xg=[i/50 for i in range(101)];
+    plotpoints=[(xgv,h(xgv)) for xgv in xg]
+    plotpoints.append((2,0));plotpoints.append((0,0));
+    plot1+=polygon(plotpoints,color="orange",zorder=-5)
+    show(plot1,aspect_ratio=0.1)
