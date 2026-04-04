@@ -120,9 +120,9 @@
       <statement>
         <p>
           We can think of a right circular cylinder surface centered on the z-axis, such as the one shown in , as being build of a stack of circles of the same radius centered at points along the z-axis. We want to give a parameterization of a right circular cylinder surface of radius 2, centered on the z-axis with heights from <m>b</m> to <m>c</m>. In other words, we want to express the <m>x</m>, <m>y</m>, and <m>z</m> coordinates of points on the right circular cylinder in terms of two variables. We will let the parameter <m>s</m> measure the height of the circle (in our stack) above or below the <m>xy</m>-plane and let the parameter <m>t</m> measure the location around the circle centered on the <m>z</m>-axis. Use your work for the previous part to write out each of the following:
-          <me>x(s,t) = \vfill y(s,t) = \vfill z(s,t)= </me>
+          <me>x(s,t) = \hfill y(s,t) = \hfill z(s,t)= </me>
           with the bounds on <m>s</m> and <m>t</m> given by 
-          <me>\vfill \leq s \leq \vfill \text{ and } \vfill \leq t \leq \vfill </me>
+          <me>\hfill \leq s \leq \hfill \text{ and } \hfill \leq t \leq \hfill </me>
         </p>
       </statement>
     </task>
@@ -160,9 +160,9 @@
       <statement>
         <p>
           Just as a right circular cylinder can be viewed as a <q>stack</q> of circles of constant radius, a cone can be viewed as a stack of circles with varying radius. In particular, the cone given by <m>z^2=x^2+y^2</m> will have contours given by circles centered on the z-axis with radius changing according to the rule <m>r=z</m>. We want to give a parameterization of the cone given by <m>z^2=x^2+y^2</m> with heights from <m>b</m> to <m>c</m>. In other words, we want to express the <m>x</m>, <m>y</m>, and <m>z</m> coordinates of points on the cone in terms of two variables. We will let the parameter <m>s</m> measure the height of the circle (in our stack) above or below the <m>xy</m>-plane and let the parameter <m>t</m> measure the location around the circle centered on the <m>z</m>-axis. Write out each of the following:
-          <me>x(s,t) = \vspace{1.5in} y(s,t) = \vspace{1.5in} z(s,t)= </me>
+          <me>x(s,t) = \hspace{1.5in} y(s,t) = \hspace{1.5in} z(s,t)= </me>
           with the bounds on <m>s</m> and <m>t</m> given by 
-          <me>\vspace{1.5in} \leq s \leq \vspace{1.5in} \text{ and } \vspace{1.5in} \leq t \leq \vspace{1.5in} </me>
+          <me>\hspace{1.5in} \leq s \leq \hspace{1.5in} \text{ and } \hspace{1.5in} \leq t \leq \hspace{1.5in} </me>
           <!-- Write a few sentences about why the component functions 
           <me>
             x(s,t) = s \cos(t), \ \ \ \ y(s,t) = s \sin(t), \ \ \ \ \text{ and }  \ \ \ \ z(s,t) = s,
@@ -392,14 +392,14 @@
         </p>
         <figure xml:id="param-plot3d">
           <caption>An interactive plot where users can input their parameterization and bounds</caption>
-          <interactive title="interactive-param-plot3d" platform="sage" width="100%" aspect="1:1">
+          <interactive title="interactive-param-plot3d" platform="sage" width="100%" aspect="1:1.5">
             <slate surface="sage">
+              var('s,t')
               @interact
               def paramplot3d2(param_array=input_grid(1,3, default=['(2.5+cos(s))*cos(t)','(2.5+cos(s))*sin(t)','sin(s)'],label='\\( \\langle x(s,t),y(s,t),z(s,t) \\rangle=\\)',width=20), svalues=input_grid(1,2,default=[0,pi],label='Lower and Upper bound on \\( s\\)'),  tvalues=input_grid(1,2,default=[0,pi],label='Lower and Upper bound on \\( t\\)')):
                 from sage.plot.plot3d.plot3d import axes
-                var('s,t')
                 scale=4.5
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                plot1=axes(scale,1,color="black")+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
                 param(s,t)=(param_array[0][0],param_array[0][1],param_array[0][2])
                 #set up grid      n is number of steps in s    m is number of steps in t  
                 #a1 is min s    a2 is max s   b1 is min t    b2 is max t
@@ -419,6 +419,44 @@
             </slate>
           </interactive>
         </figure>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          We now want to shift to using spherical coordinates in order to create a parameterization of the sphere of radius <m>R</m>. In particular, we want to express the rectangular coordinate equation <m> x^2+y^2+z^2=R^2</m> in spherical coordinates. State an equation in spherical coordinates that describes the same set of points as <m>x^2+y^2+z^2=R^2</m>.
+        </p>
+      </statement>
+      <hint>
+        <p>
+          This equation is of the form <m>\rho= \text{constant}</m>
+        </p>
+      </hint>
+    </task>
+    <task>
+      <statement>
+        <p>
+          For surfaces of the form <m>z=f(x,y)</m> were easily parameterized because we could write each of the <m>x</m>, <m>y</m>, and <m>z</m>-coordinates in terms of two variables, namely <m>x</m> and <m>y</m>. We can apply a similar idea here because in terms of spherical coordinates, our surface has one spherical coordinate is  fixed and the other two spherical coordiantes can be used as our parameters. Write a couple of sentences to describe which spherical coordinate you want <m>s</m> to act as and which you would like <m>t</m> to act as. You should include the bounds on these parameters as part of your descriptions.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Let's put the last couple of tasks together to come up with a spherical coordinate parameterization of <m>x^2+y^2+z^2=R^2</m>. Specifically, you will need to plug in the constant value for the appropriate spherical coordinate and <m>s</m> or <m>t</m> (as dictated by your choice in the previous task) for the other two spherical coordinates into the following transformation equations.
+          <me>x=\rho \cos(\theta) \sin(\phi) \quad \quad y=\rho \sin(\theta) \sin(\phi) \quad \quad z=\rho \cos(\phi)</me>
+          This should give you equations for <m>x</m>, <m>y</m>, and <m>z</m> in terms of the parameters <m>s</m> and <m>t</m>, as well as bounds on both <m>s</m> and <m>t</m>. 
+           <me>x(s,t) = \hspace{1.5in} y(s,t) = \hspace{1.5in} z(s,t)= </me>
+          with the bounds on <m>s</m> and <m>t</m> given by 
+          <me>\hspace{1.5in} \leq s \leq \hspace{1.5in} \text{ and } \hspace{1.5in} \leq t \leq \hspace{1.5in} </me>
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Use <xref ref="param-plot3d"/> to verify that your parameterization of the sphere of radius 3 does parameterize the correct surface. 
+        </p>
       </statement>
     </task>
         
@@ -450,11 +488,20 @@
       </solution> -->
     </activity>
 </worksheet>
+  <p>
+    As you can see in the previous activity, there are many ways to paramterize the same surface. The paramterizations you generated for the sphere depended on whether you viewed the sphere as a surface of revolution or whether you utilized spherical coordinates. There are many other ways to parameterize the surface, but these are likely the two most familiar and common ideas.
+  </p>
+  <p>
+    In the exercises of this section, you will be asked to generate and understand the parameterization of the quadric surfaces and cylinder surfaces described in <xref ref="S-Precalc-CommonGraphs"/>. Additionally, you will need to understand how shifts and streches can be easily applied to each rectangular coordinate separately. 
+  </p>
   </subsection>
 
 
   <subsection xml:id="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces">
     <title>The Surface Area of Parametrically Defined Surfaces</title>
+    <p>
+      In this subsection, we will use our new tool of parameterizing curved surfaces and a classic calculus approach to look at how to compute the surface area of a curved surface.  
+    </p>
     <p>
       Recall that a differentiable function is locally linear <mdash/> that is, if we zoom in on the surface around a point, the surface looks like its tangent plane. We now exploit this idea in order to determine the surface area generated by a parametrization <m>\langle x(s,t), y(s,t), z(s,t) \rangle</m>. The basic idea is a familiar one: we will subdivide the surface into small pieces, in the approximate shape of small parallelograms, and thus estimate the entire the surface area by adding the areas of these approximation parallelograms. Ultimately, we use an integral to sum these approximations and determine the exact surface area.
     </p>
