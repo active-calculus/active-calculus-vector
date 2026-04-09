@@ -38,13 +38,22 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section only expects students to have familiarity with measuring distance in two dimensions. This can likely be covered in around 50 minutes and should offer opportunities for users to get used to the 3D interactable plots and the structure of in class activities. 
+      This section only expects students to have familiarity with measuring distance in two dimensions. This can likely be covered in around 40 minutes and should offer opportunities for users to get used to the 3D interactable plots and the structure of in class activities. 
+    </p>
+    <p>
+      Some instructors may want to emphasize the idea of right and left handed coordinates more than others. In particular, many students in computer science have used left handed coordinate systems as used in many game engines. Similarly, many physics and engineering students will be expected to use an orientation similar to <xref ref="phy-coord"/>. 
+    </p>
+    <p>
+      While the discussion of how coordinates are measured in two dimensional rectangular coordinates is an idea that many students think they can skip past, we are using this idea to make sure everyone is on common ground with the particular geometric measurements that define coordinates. Many students struggle with later work on coordinates and coordinate systems because they do not understand the underlying geometric foundation. 
+    </p>
+    <p>
+      The discussion of octants is another place where some instructors may skip over this idea, but we have elected to use this as a way to generalize the very useful idea of quadrants from the Cartesian plane. Similarly, activities like <xref ref="rect3d_followup"/> ask student to attempt to draw in three dimensions. While this is usually very difficult, some instructors may use these kinds of activities as a step toward growing students ability to draw and communicate about figures in 3D, while other instructors may omit these tasks entirely. I personally (this is Nick talking) have found tremendous benefit to spending time and effort in getting students (and me) to work on drawing and understanding figures in three dimensions. Talking about surface and directional derivatives is significantly easier if everyone has some similar mental pictures and can represent those key ideas in their own hand. I think this argument applies to the descriptions of fundamental planes given in this section. The TL;DR version is that while you can save time by not doing most of this section, the cost is that many students will struggle with more difficult visualization and communication tasks.
     </p>
   </introduction>
   <subsection>
     <title>Introduction</title> 
     <p>
-      The functions you are most familiar with have the form <m>y=f(x)</m> where <m>x</m> is the input or domain variable and <m>y</m> is viewed as the output variable. The graphs of these functions are plotted on a coordinate plane with the input expressed in terms of the horizontal coordinate and the output as the vertical coordinate. The following preview activity asks you to recall some algebraic and geometric ideas from before your single variable calculus course. 
+      The functions you are most familiar with have the form <m>y=f(x)</m>, where <m>x</m> is the input or domain variable and <m>y</m> is viewed as the output variable. The graphs of these functions are plotted on a coordinate plane with the input expressed in terms of the horizontal coordinate and the output as the vertical coordinate. The following preview activity asks you to recall some algebraic and geometric ideas from before your single variable calculus course. 
     </p>
     <worksheet>
   <exploration workspace="1.5in" xml:id="PA-2D-coord">
@@ -75,6 +84,11 @@
             <m>(3,1)</m>
           </p>
         </answer>
+        <solution>
+          <p>
+            <m>(3,1)</m>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -92,6 +106,21 @@
             </image>
           </figure>
         </statement>
+        <solution>
+          <p>
+            <image width="60%">
+              <sageplot>
+                plot99=point((0,1),color="black",size=20,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"],xmin=-4,xmax=4,ymin=-4,ymax=4)+text("$P_1$",(0.25,1.25),fontsize=20,color="black")
+                plot99+=point((1,0),color="black",size=20)+text("$P_2$",(1.25,0.25),fontsize=20,color="black")
+                plot99+=point((2,-3),color="black",size=20)+text("$P_3$",(2.25,-3.25),fontsize=20,color="black")
+                plot99+=point((2,-3),color="black",size=20)+text("$P_3$",(2.25,-3.25),fontsize=20,color="black")
+                plot99+=point((3,-2),color="black",size=20)+text("$P_4$",(3.25,-2.25),fontsize=20,color="black")
+                plot99+=point((-3,2),color="black",size=20)+text("$P_5$",(-3.25,2.25),fontsize=20,color="black")
+                plot99                  
+              </sageplot>
+            </image>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -99,6 +128,11 @@
             Give the coordinates of four points on the horizontal axis. What aspect do all of the points on the horizontal axis have in common? Use this idea to write an equation for the horizontal axis.
           </p>
         </statement>
+        <solution>
+          <p>
+            All points on the horizontal axis have a second coordinate of <m>0</m>, so any points of the form <m>(a,0)</m> will work. Thus the equation for the horizontal axis is <m>y=0</m>.
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -116,6 +150,20 @@
             </image>
           </figure>
         </statement>
+        <solution>
+          <image width="60%">
+            <sageplot>
+              var('t')
+              plot9=parametric_plot((1,t),(t,-4,4),color="green",gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"],xmin=-4,xmax=4,ymin=-4,ymax=4)
+              plot9+=text("$x=1$",(1.75,1.75),color="green",fontsize=20)
+              plot9+=parametric_plot((t,-2),(t,-4,4),color="red")
+              plot9+=text("$y=-2$",(-1.75,-1.75),color="red",fontsize=20)
+              plot9+=parametric_plot((t,-t),(t,-4,4),color="blue")
+              plot9+=text("$-x=y$",(-2.75,1.75),color="blue",fontsize=20)
+              plot9                 
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task xml:id="PA-distance1">
         <statement>
@@ -123,6 +171,18 @@
             Draw a plot of the points <m>(-1,2)</m> and <m>(7,-4)</m>. On your plot, draw the line segment that measures the distance between the given points and the segments that measure the horizontal and vertical changes. Your plotted segments should make a right triangle. 
           </p>
         </statement>
+        <solution>
+          <image width="60%">
+            <sageplot>
+              var('t')
+              plot9=line([(-1,2),(7,-4)],color="black",gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
+              plot9+=parametric_plot((t,2),(t,-1,7),color="red")
+              plot9+=parametric_plot((7,t),(t,-4,2),color="blue")
+              plot9+=point([(-1,2),(7,-4)],color="black",size=20)
+              plot9                  
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task xml:id="PA-distance2">
         <statement>
@@ -130,6 +190,14 @@
             Find the length of each of line segments in the plot that is your answer to <xref ref="PA-distance1"/>. Explain how the right triangle idea you drew can be generalized to find the distance between two points <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m>.
           </p>
         </statement>
+        <solution>
+          <p>
+            The length of the vertical segment, shown in blue, is 6. The length of the horizontal segment, shown in red, is 8. The length of the diagonal segment, shown in black, is 10 and can be calculated with a pythagorean theorem like argument.
+          </p>
+          <p>
+            In general the length of the vertical segment between <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m> will be <m>\abs{y_2-y_1}</m>. The length of the horizontal segment between <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m> will be <m>\abs{x_2-x_1}</m>. The length of the diagonal segment between <m>(x_1,y_1)</m> and <m>(x_2,y_2)</m> will be <m>\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</m>.
+          </p>
+        </solution>
       </task>
     </exploration>
 </worksheet>
@@ -309,7 +377,7 @@
       <caption>A plot of the point <m>(1,-2,3)</m></caption>
       <interactive label="interactive-point-in3d" platform="sage" width="100%" aspect="1:1.25">
         <description><p>A plot with perpendicular arrows labeled x, y, and z. A point is labeled P with coordinates (1,-2,3) and a vertical green segment from the point to the xy-plane. A red segment from the intersection of the green segment with the xy-plane and at the y-axis is shown and labeled with 1. A blue segment from the intersection of the green segment with the xy-plane and the x-axis is shown and labeled with a -2.</p></description>
-      <slate surface="sage">
+        <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
           @interact
@@ -369,6 +437,11 @@
             <m>(6,-2,5)</m>
           </p>
         </answer>
+        <solution>
+          <p>
+            <m>(6,-2,5)</m>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -376,11 +449,25 @@
             Draw the point <m>A</m> (that is, your answer to (<xref ref="rect3dpart1" text="local"/>)) on a set of three-dimensional axes and include the line segments that show that coordinate's points as a set of directions from the origin (like in <xref ref="point-in3d"/> with the <q>Show Segments</q> option).            
           </p>
         </statement>
-        <answer>
-          <p>
-            
-          </p>
-        </answer>
+        <solution>
+          <interactive title="interactive-actsol1" platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+              from sage.plot.plot3d.plot3d import axes
+              var('t,s')
+              scale=7
+              plot14=axes(4,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot14+=line([(scale,0,0),(0,0,0),(0,-scale,0)],color="gray",thickness=2)
+              plot14+=point3d((6,-2,5),size=50,color="black")
+              plot14+=text3d("(6,-2,5)",(6.25,-3.25,3.25),color="black",fontsize=25)
+              plot14+=parametric_plot3d((t,-2,0),(t,0,6),thickness=3,color="red")+parametric_plot3d((6,-t,0),(t,0,2),color="blue",thickness=3)
+              plot14+=parametric_plot3d((6,-2,t),(t,0,5),color="green",thickness=3)
+              plot14+=text3d("-2",(6.5,-1,0),color="blue",fontsize=25)
+              plot14+=text3d("6",(3.5,-1.5,0),color="red",fontsize=25)
+              plot14+=text3d("5",(1.25,-2.25,2.5),color="green",fontsize=25)
+              show(plot14)              
+            </slate>
+          </interactive>
+        </solution>
       </task>
       <task xml:id="rect3dpart2">
         <statement>
@@ -393,11 +480,37 @@
             <m>(-1,0,-2)</m>
           </p>
         </answer>
+        <solution>
+          <p>
+            <m>(-1,0,-2)</m>
+          </p>
+        </solution>
       </task>
       <task>
-        <p>
-          Draw the point <m>B</m> (that is, your answer to (<xref ref="rect3dpart2" text="local"/>)) on a set of three-dimensional axes and include the line segments that show that coordinate's points as a set of directions from the origin (like in <xref ref="point-in3d"/> with the <q>Show Segments</q> option).
-        </p>
+        <statement>
+          <p>
+            Draw the point <m>B</m> (that is, your answer to (<xref ref="rect3dpart2" text="local"/>)) on a set of three-dimensional axes and include the line segments that show that coordinate's points as a set of directions from the origin (like in <xref ref="point-in3d"/> with the <q>Show Segments</q> option).
+          </p>
+        </statement>
+        <solution>
+          <interactive title="interactive-actsol2" platform="sage" width="100%" aspect="1:1">
+            <slate surface="sage">
+              from sage.plot.plot3d.plot3d import axes
+              var('t,s')
+              scale=3
+              plot14=axes(4,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot14+=line([(-scale,0,0),(0,0,0),(0,0,-scale)],color="gray",thickness=2)
+              plot14+=point3d((-1,0,-2),size=50,color="black")
+              plot14+=text3d("(-1,0,-2)",(-1.25,0.25,-2.25),color="black",fontsize=25)
+              plot14+=parametric_plot3d((-t,0,0),(t,0,1),thickness=3,color="red")
+              plot14+=parametric_plot3d((-1,0,-t),(t,0,2),color="green",thickness=3)
+              plot14+=text3d("0",(-1.5,-1,0),color="blue",fontsize=25)
+              plot14+=text3d("-1",(-1,-0.5,0),color="red",fontsize=25)
+              plot14+=text3d("-2",(-1.25,-0.25,-1.5),color="green",fontsize=25)
+              show(plot14)              
+            </slate>
+          </interactive>
+        </solution>
       </task>
     </activity>
 </worksheet>
@@ -429,8 +542,8 @@
       For instance, the graph of <m>x=2</m> in two dimensions will be a vertical line with <m>x</m>-intercept of 2, because the points of the form <m>(2,y)</m> satisfy the equation <m>x=2</m> (for any choice of <m>y \in \mathbb{R}</m>) as shown in <xref ref="x2plot"/>. In the next activity we consider the three-dimensional analogs of these kinds equations.
     </p>
 
-    <worksheet>
-  <activity workspace="1.5in" xml:id="A-9-1-3">
+  <worksheet>
+    <activity workspace="1.5in" xml:id="A-9-1-3">
       <task>
         <statement>
           <p>
@@ -482,17 +595,16 @@
           </p>
         </solution>
       </task>
-
     </activity>
-</worksheet>
+  </worksheet>
     <p>
       <xref ref="A-9-1-3"/> illustrates that equations where one of the rectangular coordinates is held constant lead to planes parallel to the coordinate planes. When we make the constant 0, we get the coordinate planes themselves <idx><h>coordinate plane</h></idx><idx><h>plane</h></idx><idx><h>coordinate</h></idx>. The <m>xy</m>-plane satisfies <m>z=0</m>, the <m>xz</m>-plane satisfies <m>y=0</m>, and the <m>yz</m>-plane satisfies <m>x=0</m> (see <xref ref="coor-planes"/>). Planes of the form <m>x=a</m>, <m>y=b</m>, <m>z=c</m> are called <term>fundamental planes</term><idx><h>fundamental plane</h></idx><idx><h>plane</h><h>fundamental</h></idx> are useful in understanding and building structures in three dimensions. You can see how the intersection of fundamental planes <m>x=1</m>, <m>y=-2</m>, and <m>z=3</m> corresponds to the point <m>(1,-2,3)</m> in <xref ref="fundamental-planes"/>. As always, you should rotate and change the viewpoint of the figure to make sure you understand how each fundamental plane and the point <m>P</m> are oriented relative to the axes.
     </p> 
     <figure xml:id="fundamental-planes">
       <caption>A grid of fundamental planes in three dimensions</caption>
       <interactive label="interactive-fundamental-planes" platform="sage" width="100%" aspect="1:1.25">
-        <description><p>An interactive plot in three dimensions that shows a plane in red one unit to the left of the y and z axes, a plane in blue that is two units behind the x and z axes, and a plane in green that is three units above the x and y axes. All three planes go through a point labels as P and with coordinates (1,-2,3). </p>
-      </description><slate surface="sage">
+        <description><p>An interactive plot in three dimensions that shows a plane in red one unit to the left of the y and z axes, a plane in blue that is two units behind the x and z axes, and a plane in green that is three units above the x and y axes. All three planes go through a point labels as P and with coordinates (1,-2,3). </p> </description>
+        <slate surface="sage">  
           <xi:include href="interacts/fundamentalplanes.txt" parse="text"/>
         </slate>
       </interactive>
@@ -503,8 +615,8 @@
     <figure xml:id="grid3d">
       <caption>A grid of fundamental planes in three dimensions</caption>
       <interactive label="interactive-grid3d" platform="sage" width="100%" aspect="1:1.15">
-        <description><p>A grid of planes that are parallel to the xy-plane in green, parallel to the xz-plane in blue, and parallel to the yz-plane in red.</p>
-      </description><slate surface="sage">
+        <description><p>A grid of planes that are parallel to the xy-plane in green, parallel to the xz-plane in blue, and parallel to the yz-plane in red.</p></description>
+      <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
           @interact
@@ -521,25 +633,15 @@
         </slate>
       </interactive>
     </figure>
+</subsection>
+<subsection xml:id="subsec-distanceformula">
+  <title>Distance in Three Dimensions</title>
+  <p>
+    We conclude this section by using our knowledge of how to measure straight-line distance in <m>\R^2</m> to find a formula for distance in three dimensions. On a related note, we define a circle in <m>\R^2</m> as the set of all points equidistant from a fixed point. In <m>\R^3</m>, we call the set of all points equidistant from a fixed point a <term>sphere</term><idx><h>sphere</h><h>definition</h></idx>. To find the equation of a sphere, we need to understand how to calculate the distance between two points in three-space, and we explore this idea in the next activity.
+  </p>
 
-    <!-- <figure xml:id="F-9-1-coordinate-planes">
-      <caption>The coordinate planes.</caption>
-      <sidebyside widths="33% 33% 33%" margins="0%">
-      <image source="images/fig_9_1_xy_plane"/>
-      <image source="images/fig_9_1_xz_plane"/>
-      <image source="images/fig_9_1_yz_plane"/>
-      </sidebyside>
-    </figure> -->
-    
-    </subsection>
-    <subsection xml:id="subsec-distanceformula">
-      <title>Distance in Three Dimensions</title>
-    <p>
-      We conclude this section by using our knowledge of how to measure straight-line distance in <m>\R^2</m> to find a formula for distance in three dimensions. On a related note, we define a circle in <m>\R^2</m> as the set of all points equidistant from a fixed point. In <m>\R^3</m>, we call the set of all points equidistant from a fixed point a <term>sphere</term><idx><h>sphere</h><h>definition</h></idx>. To find the equation of a sphere, we need to understand how to calculate the distance between two points in three-space, and we explore this idea in the next activity.
-    </p>
-
-    <worksheet>
-  <activity workspace="1.5in" xml:id="act-precalc-3dcoord-Distance">
+  <worksheet>
+    <activity workspace="1.5in" xml:id="act-precalc-3dcoord-Distance">
       <introduction>
         <p>
           Remember that in two dimensions, the distance between <m>P=(x_0, y_0)</m> and <m>Q=(x_1, y_1)</m> is 
@@ -570,10 +672,6 @@
             </slate>
           </interactive>
         </figure>
-          <!-- <figure xml:id="F-9-1-Distance-3D">
-            <caption>The distance formula in <m>\R^3</m>.</caption>
-            <image width="50%" source="images/fig_9_1_distance"/>
-          </figure> -->
       </introduction>
       <task>
         <statement>
@@ -652,45 +750,44 @@
         </solution>
       </task>
     </activity>
-</worksheet>
-    <p>
-      The method used in <xref ref="act-precalc-3dcoord-Distance"/> does not depend on anything but the coordinates between the two points, so we can use the last result to measure the distance between any two points in <m>\mathbb{R}^3</m>.
-    </p>
-
-    <assemblage xml:id="Distance-formula">
+  </worksheet>
+  <p>
+    The method used in <xref ref="act-precalc-3dcoord-Distance"/> does not depend on anything but the coordinates between the two points, so we can use the last result to measure the distance between any two points in <m>\mathbb{R}^3</m>.
+  </p>
+  <assemblage xml:id="Distance-formula">
     <title>The distance between points in three dimensions</title>
-      <p>
-        The distance between points <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> (denoted as <m>|PQ|</m>) in <m>\R^3</m> is given by the formula
+    <p>
+      The distance between points <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> (denoted as <m>|PQ|</m>) in <m>\R^3</m> is given by the formula
       <men xml:id="eq-9-1-Distance-3D">
         \vert{PQ}\vert = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}
       </men>
-      </p>
-    </assemblage>
-
-    <p>
-      As <xref ref="act-precalc-3dcoord-Distance"/> showed, the distance in two or three (or more!) dimensions depends on the change in each coordinate from one point to the other. Note that the distance does not depend on whether we consider <m>P</m> to <m>Q</m> or <m>Q</m> to <m>P</m>.
     </p>
+  </assemblage>
 
-    <p>
-      Equation <xref ref="eq-9-1-Distance-3D"/> can be used to derive the equation for a <term>sphere</term><idx><h>sphere</h><h>equation of</h></idx> centered at a point <m>(x_0,y_0,z_0)</m> with radius <m>R</m>. Since the distance from any point <m>(x,y,z)</m> on such a sphere to the center <m>(x_0,y_0,z_0)</m> is <m>R</m>, the point <m>(x,y,z)</m> must satisfy the equation
-      <me>
-        \sqrt{(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2} = R
-      </me>
-    </p>
+  <p>
+    As <xref ref="act-precalc-3dcoord-Distance"/> showed, the distance in two or three (or more!) dimensions depends on the change in each coordinate from one point to the other. Note that the distance does not depend on whether we consider <m>P</m> to <m>Q</m> or <m>Q</m> to <m>P</m>.
+  </p>
 
-    <p>
-      Squaring both sides, we come to the standard equation for a sphere.
-    </p>
+  <p>
+    Equation <xref ref="eq-9-1-Distance-3D"/> can be used to derive the equation for a <term>sphere</term><idx><h>sphere</h><h>equation of</h></idx> centered at a point <m>(x_0,y_0,z_0)</m> with radius <m>R</m>. Since the distance from any point <m>(x,y,z)</m> on such a sphere to the center <m>(x_0,y_0,z_0)</m> is <m>R</m>, the point <m>(x,y,z)</m> must satisfy the equation
+    <me>
+      \sqrt{(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2} = R
+    </me>
+  </p>
 
-    <assemblage xml:id="Sphere">
+  <p>
+    Squaring both sides, we come to the standard equation for a sphere.
+  </p>
+
+  <assemblage xml:id="Sphere">
     <title>The equation of a sphere</title>
-      <p>
-        The equation of a sphere with center <m>(x_0,y_0,z_0)</m> and radius <m>R</m> is
+    <p>
+      The equation of a sphere with center <m>(x_0,y_0,z_0)</m> and radius <m>R</m> is
       <me>
         (x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2 = R^2
       </me>
-      </p>
-    </assemblage>
+    </p>
+  </assemblage>
 
     <p>
       We see a strong similarity when we compare this equation to its two-dimensional analogue, the equation of a circle of radius <m>R</m> in the plane centered at <m>(x_0,y_0)</m>:
@@ -719,9 +816,7 @@
           </me>
         </p>
       </li>
-
     </ul>
-
   </outcomes>
   <xi:include href="exercises/ez-S_Precalc_3Dcoord.ptx"/>
 </section>
