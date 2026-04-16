@@ -45,13 +45,22 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section only expects students to have familiarity with measuring distance and coordinates in three dimensions. If your students are very familiar with vectors and their basic operations, then this section can be covered in one class day. Many instructors present the notation and definitions of vectors and associated operations without a lot of motivation. <xref ref="Act-Precalc-navigation"/> offers motivation for why you would want to add, subtract, and rescale vectors using a navigation/mapping motivation. 
+      This section only expects students to have familiarity with measuring distance and coordinates in three dimensions. If your students are very familiar with vectors and their basic operations, then this section can be covered in one class day. Some instructors present the notation and definitions of vectors and associated operations without a lot of motivation. While this algebraic oriented approach can save some time in coverage now, the tradeoff is that students often need more support with how to view vectors geometrically (often in the next several sections).
+    </p>
+    <p>
+      In this text, we have opted to use the overarrow notation for vectors since that most easily translates to the way that students can write a clear notation in handwriting. We do not put a precedence on using ijk notation versus component form but will often switch between notations to familiarize students with both forms, as they will likely encounter both of these notations in future courses and other sources.
+    </p>
+    <p>  
+      <xref ref="A-9-2-1"/> offers a basic way for students to familiarize themselves with position vectors as a tool to describe locations. <xref ref="Act-Precalc-navigation"/> offers motivation for why you would want to add, subtract, and rescale vectors using a navigation/mapping motivation. <xref ref="A-9-2-5"/> is a great preview of our development of lines in space and uses of vectors in standard position. The other activities in this section are calculation and algebriacally oriented. 
+    </p>
+    <p>
+      Most of the exercises in this section are also oriented toward calculations and algebraic forms used in vector problems. <xref ref="Ez-9-2-4"/> offers a basic form diagram problem that many students will see in physics courses. 
     </p>
   </introduction>
   <subsection>
     <title>Introduction</title>
     <p>
-      Quantities like length, speed, area, and mass are all measured using a single number (a <term>scalar</term>). Other quantities, like velocity, force, and displacement, have two attributes: magnitude (or length) and direction. These quantities are represented by <term>vectors</term> and are the focus of this section. For example, we will use vectors to calculate work done by a constant force, calculate torque, determine direction vectors for lines and normal vectors for planes, define curvature, and determine the direction of greatest increase on a surface. For most of these applications, we will be interested in using vectors to measure the direction of some aspect of the application while needing to also pay attention to the magnitude of this measurement. Vectors will be an essential tool for describing the behavior of functions of several variables. 
+      Quantities like length, speed, area, and mass are all measured using a single number (a <term>scalar</term>). Other quantities, like velocity, force, and displacement, have two attributes: magnitude (or length) and direction. These quantities are represented by <term>vectors</term> and are the focus of this section. For example, we will use vectors to calculate work done by a constant force, calculate torque, determine direction vectors for lines and normal vectors for planes, define curvature, and determine the direction of greatest increase on a surface. For most of these applications, we will be interested in using vectors to measure the direction of some aspect of the application while needing to also pay attention to the magnitude of this measurement. Vectors will be an essential tool for describing the behavior of functions of several variables in Chapters 11 through 13.
     </p>
 
     <!-- <p>
@@ -74,7 +83,7 @@
             <li>tell Postscript to start at the point <m>(0,0)</m>,</li>
             <li>draw a line from the point <m>(0,0)</m> to the point <m>(1,1)</m> (this is what the <c>line to</c> and <c>stroke</c> commands do),</li>
             <li>draw lines from <m>(1,1)</m> to <m>(1,-1)</m>, and</li>
-            <li><m>(1,-1)</m> back to the origin.</li>
+            <li>draw from <m>(1,-1)</m> back to the origin.</li>
           </ol>
           Each of these commands encodes two important pieces of information: a direction in which to move and a distance to move. Mathematically, we can capture this information succinctly in a vector. To do so, we record the movement on the map in a pair <m>\langle x, y \rangle</m>, where <m>x</m> is the horizontal displacement and <m>y</m> the vertical displacement from one point to another. This pair <m>\langle x, y \rangle</m> is a <term>vector</term>, and we call each number in the pair a <term>component</term>. As an example, the vector from the origin to the point <m>(1,1)</m> is represented by <m>\langle 1,1 \rangle</m> while the vector from the point <m>(1,1)</m> to the origin is represented by <m>\langle -1,-1 \rangle</m>.
         </p>
@@ -92,7 +101,7 @@
         </answer>
         <solution>
           <p>
-            <m>\vv_1 = \langle (1 - 1) , (1 - (-1)) \rangle = \langle 0 , 2 \rangle</m>.
+            <m>\vv_1 = \langle (1 - 1) , (-1 - 1) \rangle = \langle 0 , -2 \rangle</m>.
           </p>
         </solution>
       </task>
@@ -171,31 +180,33 @@
         </p>
       </statement>
     </definition>
-
+    <aside>
+      <p>
+        This definition is a common geometric idea but some students will have seen an introduction to linear algebra at this point. In linear algebra, a vector is any kind of object that satisfies the definition of an element of a vector space (see the <url src="https://en.wikipedia.org/wiki/Vector_space" text="custom">Wikipedia definition of a vector space</url>). The idea of a vector can include A LOT of objects that do not look like arrows in two or three dimensions, but the ideas, like linear combinations and measuring length of a vector, are central to why linear algebra is a hugely impactful branch of mathematics.
+      </p>
+    </aside>
     <p>
       We can represent a vector geometrically as a directed line segment, with the magnitude as the length of the segment and an arrowhead indicating direction, as shown at left in <xref ref="F-Precalc-vectors-single"/>.
     </p>
 
-    
-      <figure xml:id="F-Precalc-vectors-single">
-        <caption/>
-        <sidebyside widths="50% 50%">
-          <figure xml:id="F-Precalc-vectors-single-vector">
-            <caption>A vector</caption>
-            <image source="images/fig_9_2_single">
-              <description><p>A vector represented by an arrow pointing up and to the right.</p></description>
-            </image>
-          </figure>
-          <figure xml:id="F-Precalc-vectors-single-reps">
-            <caption>Representations of the same vector</caption>
-            <image source="images/fig_9_2_multiple">
-              <description><p>A collection of vectors that are represented by parallel arrows pointing up and to the right, each with the same length</p></description>
+    <figure xml:id="F-Precalc-vectors-single">
+      <caption/>
+      <sidebyside widths="50% 50%">
+        <figure xml:id="F-Precalc-vectors-single-vector">
+          <caption>A vector</caption>
+          <image source="images/fig_9_2_single">
+            <description><p>A vector represented by an arrow pointing up and to the right.</p></description>
           </image>
-          </figure>
-        </sidebyside>
-      </figure>
+        </figure>
+        <figure xml:id="F-Precalc-vectors-single-reps">
+          <caption>Five different representations of the same vector</caption>
+          <image source="images/fig_9_2_multiple">
+            <description><p>A collection of vectors that are represented by parallel arrows pointing up and to the right, each with the same length</p></description>
+        </image>
+        </figure>
+      </sidebyside>
+    </figure>
     
-
     <p>
       According to the definition, a vector possesses the attributes of magnitude (length) and direction; the vector's position, however, is not mentioned. Consequently, any two vectors having the same magnitude and direction are equal, as shown in <xref ref="F-Precalc-vectors-single-reps"/>. In other words, two vectors are <term>equal</term><idx><h>vector</h><h>equality</h></idx> provided they have the same magnitude and direction. This means that the same vector may be drawn in the plane in many different ways.
     </p>
@@ -205,7 +216,7 @@
     </p>
     <aside>
       <p>
-        The point at the tail of a vector is often called the initial point or starting point. The point at the end of the vector is often called the terminal point or final point. The entries of the vector measure the change in each coordinate separately. Remember that change is measured as <q>final minus initial</q>.
+        The point at the tail of a vector is often called the initial point or starting point. The point at the end of the vector is often called the terminal point or final point. The entries of the vector measure the change in each coordinate separately. Remember that change is measured as <q>final minus initial</q>, in general.
       </p>
     </aside>
 
@@ -216,7 +227,7 @@
           <caption>The vector <m>\langle 3,4\rangle</m> in standard position</caption>
           <image width="55%" label="img-vec-standard1">
             <description><p>The vector <m>\langle 3,4\rangle</m> plotted as an arrow moving three units right and 4 units up starting from the origin</p></description>
-          <sageplot>
+            <sageplot>
               plot1=arrow((0,0),(3,4),color="black",width=3,axes=True,axes_labels=["$x$","$y$"],ticks=[[3],[4]],xmin=-0.5,xmax=6,ymin=-0.5,ymax=6,aspect_ratio=1)
               plot1
             </sageplot>
@@ -284,7 +295,6 @@
   <activity workspace="1.5in" xml:id="A-9-2-1">
       <introduction>
         <p>
-          <!-- An article by C.Kenneth Tanner of the University of Georgia argues that, due to the concept of social distance, a secondary school classroom for 20 students should have 1344 square feet of floor space. Suppose a classroom is 32 feet by 42 feet by 8 feet. --> 
           After being bored in your previous calculus class (and definitely not in multivariable calculus) you count the floor tiles to see how large the room is. You now know that the room is 32 feet wide and 42 feet in length. Additionally, your tall friend Chuck can barely jump and touch the ceiling which means the ceiling is 10 feet high. Your calculus professor notices you doing these measurements and decides to create a classroom coordinate system. Your professor walks to the center of the room and notices that their head is five feet above the ground and sets their head as the origin of the classroom coordinate system. Your friend Alice is sitting at <m>A = (9, -6, -2.5)</m>, a projector is located at position <m>B = (0,1,3)</m>, and your friend Carlos is working while sitting on the floor at <m>C = (-2, 20, -5)</m>. All distances are measured in feet. 
         </p>
         <p>
@@ -383,7 +393,7 @@
   <subsection>
     <title>Operations on Vectors</title>
     <p>
-      Vectors are not numbers (scalars), but we can now represent them with components that are real numbers. As such, we naturally wonder if it is possible to add two vectors together, multiply two vectors, or combine vectors in any other ways. In this section, we will study two operations on vectors: vector addition and scalar multiplication. To begin, we investigate a natural way to think about combining vectors in the context of measuring the change of location.
+      Vectors are not numbers (scalars), but we can now represent vectors with components that are real numbers. As such, we naturally wonder if it is possible to add two vectors together, multiply two vectors, or combine vectors in any other ways. In this section, we will study two operations on vectors: vector addition and scalar multiplication. To begin, we investigate a natural way to think about combining vectors in the context of measuring the change of location.
     </p>
     <historical component="instructor">
       <xref ref="Act-Precalc-navigation"/> is a conceptual activity that motivates the addition, the subtraction, and the rescaling of vectors and we recommend that you do this with a graph or grid paper for students to label and plot the locations and associated vectors.
@@ -398,38 +408,121 @@
     <task>
       <statement>
         <p>
-          Your friend told you they would be staying 3 km east and 4 km north of the main parking lot. You drive to the parking lot and park next to your friend's car, then hike 3 km east and 4 km north. You get to the location you expected your friend to be at, but you don't find your friend and call the ranger station. The ranger station says they think your friend is 1 km west and 4 km north of your current location. 
+          Your friend told you they would be staying 3 km east and 4 km north of the main parking lot. You drive to the parking lot and park next to your friend's car, then hike 3 km east and 4 km north. You get to the location you expected your friend to be at, but you don't find your friend and call the ranger station. The ranger station says they think your friend is 2 km west and 1 km north of your current location. We will denote the location of the car with point <m>C</m>, your friend's originally anticipated location as point <m>A</m>, and the ranger's suggested location as point <m>S</m>. 
         </p>
         <p>
+          On the grid below, we have labeled point <m>C</m>. Draw the location of each of the other points <m>A</m> and <m>S</m>.
+        </p>
+        <figure xml:id="hikinggrid">
+          <caption>A grid for mapping locations needed to find your friend</caption>
+          <image width="60%" xml:id="img-hikinggrid">
+            <description><p>A grid of horizontal and vertical lines with a point lat</p></description>
+            <sageplot>
+              var('t')
+              plot12=point((0,0),size=30,color="black",axes=False)+text("C",(-1,1),color="black",fontsize=15)
+              for i in range(-4,17,1):
+                plot12+=parametric_plot((t,i),(t,-4,16),color="gray",linestyle="--")
+                plot12+=parametric_plot((i,t),(t,-4,16),color="gray",linestyle="--")
+              plot12
+            </sageplot>
+          </image>
+        </figure>
+        <!-- <p>
           Let <m>\vu</m> be the vector that represents your hike from your car to the expected location of your friend, <m>\vv</m> be the vector that represents the vector from your current location to the ranger's suggested location, and <m>\vw</m> be the vector from your car to the ranger's suggested location. Compute the components of <m>\vu</m>, <m>\vv</m>, and <m>\vw</m>.
-        </p>
+        </p> -->
       </statement>
+      <solution>
+        <p>
+          <image width="60%">
+            <description><p>A grid of horizontal and vertical lines with a point lat</p></description>
+            <sageplot>
+              var('t')
+              plot12=point((0,0),size=30,color="black",axes=False)+text("C",(-1,1),color="black",fontsize=15)
+              for i in range(-4,17,2):
+                plot12+=parametric_plot((t,i),(t,-4,16),color="gray",linestyle="--")
+                plot12+=parametric_plot((i,t),(t,-4,16),color="gray",linestyle="--")
+              plot12+=point((3,4),size=30,color="black",axes=False)+text("A",(4,3),color="black",fontsize=15)
+              plot12+=point((1,5),size=30,color="black",axes=False)+text("S",(0,4),color="black",fontsize=15)
+              plot12+=point((9,12),size=30,color="black",axes=False)+text("D",(8,13),color="black",fontsize=15)
+              plot12
+            </sageplot>
+          </image>
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
         <p>
-          Draw a picture that represents <m>\vu</m>, <m>\vv</m>, and <m>\vw</m> with the reference points <m>C</m> being the location of your car, <m>P</m> being your current position, and <m>S</m> being the ranger's suggested location. 
+          Using your picture from the previous task, give the components of the following vectors:
+          <ol>
+            <li><m>\overrightarrow{CA}</m></li>
+            <li><m>\overrightarrow{CS}</m></li>
+            <li><m>\overrightarrow{AS}</m></li>
+          </ol> 
         </p>
       </statement>
+      <solution>
+        <p>
+          <ol>
+            <li><m>\overrightarrow{CA}=\langle 3,4 \rangle</m></li>
+            <li><m>\overrightarrow{CS}=\langle 1,5 \rangle</m></li>
+            <li><m>\overrightarrow{AS}=\langle -2,1 \rangle</m></li>
+          </ol>
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
         <p>
-          In the context of this problem, explain why you can add the horizontal components of <m>\vu</m> and <m>\vv</m> to get the horizontal component of <m>\vw</m>. Write a sentence or two about why this argument should work for the vertical components as well. 
+          In the context of this problem, explain why you can add the horizontal components of <m>\overrightarrow{CA}</m> and <m>\overrightarrow{AS}</m> to get the horizontal component of <m>\overrightarrow{CS}</m>. Write a sentence or two about why this argument should work for the vertical components as well. 
         </p>
       </statement>
+      <solution>
+        <p>
+          When we look at the horizontal components of vectors in this problem, we are looking how we are traveling in the Eas/West direction only. So the amount we go in the East/West direction from <m>C</m> to <m>A</m> can be added to the amount we go in the East/West direction from <m>A</m> to <m>S</m> to find the amount we go in the East/West direction from <m>C</m> to <m>S</m>. We can separate our travel in two dimensions into a displacement argument in each direction (East/West or North/South). 
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
         <p>
-          After hiking to the location suggested by the ranger, you still don't see your friend and call the ranger station again. The regional manager of rangers answers this time. She says the first ranger made a mistake in their navigation. A drone spotted your friend along the same direction from your car to point <m>P</m>, but your friend is three times as far away from your car as you were when you were at point <m>P</m>. In order to avoid confusion or any other mistakes, you want to compute the vector from your car to the drone's suggested location, which we will call <m>D</m>. What are the components of <m>\overrightarrow{CD}</m>? How does that compare to <m>\vw</m>?
+          After hiking to the location suggested by the ranger, you still don't see your friend and call the ranger station again. The regional manager of rangers answers this time. She says the first ranger made a mistake in their navigation. They sent a drone to the location of your car and the drone spotted your friend along the same direction from your car to point <m>A</m>, but your friend is three times as far away from your car as you were when you were at point <m>A</m>. 
+        </p>
+        <p>
+          In order to avoid confusion or any other mistakes, you want to compute the vector from your car to the drone's suggested location, which we will call <m>D</m>.
+           What are the components of <m>\overrightarrow{CD}</m>? Write a sentence or two to compare this vector to <m>\overrightarrow{CA}</m>.
         </p>
       </statement>
+      <solution>
+        <p>
+          Because <m>D</m> is in the same direction from <m>C</m> toward <m>A</m>, but three times farther, we can go in the direction given by <m>\overrightarrow{CA}</m> three times. In other words, we can go three km east and four km north, then go three km east and 4 km north, then go three km east and 4 km north again. In other words, we want to do three times <m>\overrightarrow{CA}</m> to get <m>\overrightarrow{CD}=\langle 9,12 \rangle </m>.
+        </p>
+      </solution>
     </task>
     <task xml:id="Act-nav-sub">
-      <p>
-        After hiking to the drone's suggested location, you find your friend. Yay! On the walk back to your car with your friend, you decide to help make sure the first ranger understands vectors. In particular, you want to let them know what direction they should have told you to go from <m>P</m>. Use the components of <m>\overrightarrow{CD}</m> and <m>\vu</m> to figure out what the first ranger should have told you.
-      </p>
+      <statement>
+        <p>
+          So we need to get from point <m>S</m> to point <m>D</m>. Explain how to use the components of <m>\overrightarrow{CS}</m> and <m>\overrightarrow{CD}</m> to find the components of <m>\overrightarrow{SD}</m>.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Because <m>\overrightarrow{CS}</m> and <m>\overrightarrow{CD}</m> describe the displacement from the same location to <m>S</m> and <m>D</m>, we can look at the componentwise difference between these vectors to get the displacement from <m>S</m> to <m>D</m>. The displacement in the East/West direction from <m>S</m> to <m>D</m> will be the difference in the first components of the vectors <m>\overrightarrow{CS}</m> and <m>\overrightarrow{CD}</m> and similarly for the second components to be used to find the North/South displacement. So,  to find the components of 
+          <me>\overrightarrow{SD}= \overrightarrow{CD}-\overrightarrow{CS}=\langle 9,12 \rangle -\langle 1,5 \rangle = \langle 8,7 \rangle</me>
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          You find your friend at point <m>D</m> and want to take them back to your car to go home. Explain how you can use the components of <m>\overrightarrow{CD}</m> to give directions from point <m>D</m> back to your car. 
+        </p>
+      </statement>
+      <solution>
+        <p>
+          Since <m>\overrightarrow{CD}=langle 9,12\rangle</m>, this means we can travel the same components in reverse to get from point <m>D</m> back to our car. Algebraically, this means that <m>-\overrightarrow{CD}=langle -9,-12\rangle</m>, or we travel 9 km west and 12 km south to get back to our car. 
+        </p>
+      </solution>
     </task>
   </activity>
 </worksheet>
@@ -660,6 +753,11 @@
                 <m>\vu+2\vv+3\vw</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                <me>\vu+2\vv+3\vw=\langle 1,-2,3\rangle+\langle 4,-4,10 \rangle + \langle -9,0,9\rangle = \langle -4,-6,22\rangle</me>
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -667,6 +765,11 @@
                 <m>2\vw-3\vu</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                <me>2\vw-3\vu=\langle -6,0,6\rangle-\langle 3,-6,9 \rangle = \langle -9,6,-3\rangle</me>
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -674,6 +777,11 @@
                 <m>-4(\vv-\vw)</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                <me>-4(\vv-\vw)= -4(\langle 5,-2,2 \rangle) = \langle -20,8,-8 \rangle</me>
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -681,6 +789,11 @@
                 <m>-2(3\vu)</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                <me>-2(3\vu)= -6(\langle 1,-2,3 \rangle) = \langle -6,12,-18 \rangle</me>
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -688,6 +801,11 @@
                 Give the components of the vector that fills in the blank: <m>(2\vw-3\vu) - \underline{\hspace{2.5cm}} = \vzero</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                <m>(2\vw-3\vu) - \langle 9,-6,3 \rangle = \vzero</m>
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -695,6 +813,11 @@
                 Explain why the following expression does not make sense: <me> 2 \langle 2,4,-7 \rangle - 3 \langle -\pi, \sqrt{7} \rangle</me>
               </p>
             </statement>
+            <solution>
+              <p>
+                It is not clear how to combine a vector with three components and a vector with two components. You cannot simply work componentwise because there are not the same number of components in each vector.
+              </p>
+            </solution>
           </task>
         </activity>
     </worksheet>
@@ -715,7 +838,7 @@
           <caption>A vector sum</caption>
           <image xml:id="img-vecsum1">
             <description><p>A two dimensional plot with three arrow starting at the origin. The first arrow moves up and right and is labeled <m>\vu</m>. The second arrow goes more to the right and not as far up as the first. The second arrow is labeled <m>\vu +\vv </m>. The third arrow goes down and to the right and is labeled <m>\vv</m>.</p></description>
-          <sageplot>
+            <sageplot>
               plot4=arrow((0,0),(2,3),color="black",width=3,axes=True,ticks=[[],[]],xmin=-0.5,xmax=3.5,ymin=-1.5,ymax=3.5,aspect_ratio=1)
               plot4+=arrow((0,0),(1,-1),color="black",width=3)
               plot4+=text("$\\vec{u}$",(1,2),color="black",fontsize=20)
@@ -730,7 +853,7 @@
           <caption>Summing displacements</caption>
           <image xml:id="img-vecsum2">
             <description><p>A two dimensional plot with two arrow starting at the origin. The first arrow moves up and right and is labeled <m>\vu</m>. The second arrow goes more to the right and not as far up as the first. The second arrow is labeled <m>\vu +\vv </m>. A third arrow is draw from the end of the first arrow to the end of the second arrow. The third arrow goes down and right and is labeled <m>\vv</m>.</p></description>
-          <sageplot>
+            <sageplot>
               plot5=arrow((0,0),(2,3),color="black",width=3,axes=True,ticks=[[],[]],xmin=-0.5,xmax=3.5,ymin=-1.5,ymax=3.5,aspect_ratio=1)
               plot5+=arrow((2,3),(3,2),color="black",width=3)
               plot5+=text("$\\vec{u}$",(1,2),color="black",fontsize=20)
@@ -769,7 +892,7 @@
     </p>
 
     <p>
-      Vector addition is commutative. This means we obtain the same sum if we place the tail of <m>\vu</m> at the tip of <m>\vv</m>. We therefore see that <m>\vu+\vv</m> appears as the diagonal of the parallelogram<idx><h>vector</h><h>sum, parallelogram</h></idx> determined by <m>\vu</m> and <m>\vv</m>, as shown in <xref ref="fig_Precalc_Vectors_parallelogramLaw"/>.
+      Vector addition is commutative. This means we obtain the same sum if we place the tail of <m>\vu</m> at the tip of <m>\vv</m> as if we place the tail of <m>\vv</m> at the tip of <m>\vu</m>. We therefore see that <m>\vu+\vv</m> appears as the diagonal of the parallelogram<idx><h>vector</h><h>sum, parallelogram</h></idx> determined by <m>\vu</m> and <m>\vv</m>, as shown in <xref ref="fig_Precalc_Vectors_parallelogramLaw"/>.
     </p>
 
     <p>
@@ -833,7 +956,7 @@
       </image>
     </figure>
     <p>
-      <xref ref="F-9-2-vector-sum7"/> motivates the following definition of parallel vectors: vectors <m>\vv</m> and <m>\vw</m> in <m>\R^n</m> are <term>parallel</term> <idx><h>vector</h><h>parallel</h></idx> <idx><h>parallel</h><h>vectors</h></idx> provided that there exists a non-zero scalar <m>k\in\R</m> such that <m>\vv = k \vw</m>. In other words, parallel vectors are (non-zero) scalar multiples of each other. There are a couple of things to note that are important about parallel vectors. First, the zero vector <m>\vzero = \langle 0, \ldots, 0\rangle \in \R^n</m> is not parallel to any other vector. Geometrically, this should make sense because the zero vector is the only vector that has no change and that will not correspond to any direction. Second, parallel vectors do not have to be in the same direction; in fact, parallel vectors can be in exactly opposite directions, as shown by <m>\vv</m> and <m>-2\vv</m> in <xref ref="F-9-2-vector-sum7"/>. Parallel vectors are important when trying to classify the orientation of lines, planes, and changes on surfaces.
+      <xref ref="F-9-2-vector-sum7"/> motivates the following definition of parallel vectors: vectors <m>\vv</m> and <m>\vw</m> in <m>\R^n</m> are <term>parallel</term> <idx><h>vector</h><h>parallel</h></idx> <idx><h>parallel</h><h>vectors</h></idx> provided that there exists a non-zero scalar <m>k\in\R</m> such that <m>\vv = k \vw</m>. In other words, parallel vectors are (non-zero) scalar multiples of each other. There are a couple of things to note that are important about parallel vectors. First, the zero vector <m>\vzero = \langle 0, \ldots, 0\rangle \in \R^n</m> is <alert>not</alert> parallel to any other vector. Geometrically, this should make sense because the zero vector is the only vector that has no change and that will not correspond to any direction. Second, parallel vectors do not have to be in the same direction; in fact, parallel vectors can be in exactly opposite directions, as shown by <m>\vv</m> and <m>-2\vv</m> in <xref ref="F-9-2-vector-sum7"/>. Parallel vectors are important when trying to classify the orientation of lines, planes, and changes on surfaces.
     </p>
     <worksheet>
   <activity workspace="1.5in" xml:id="A-9-2-5">
@@ -881,6 +1004,22 @@
             On the axes in <xref ref="F-9-2-vector-activity1a-sums"/>, sketch the vectors <m>\vu + \vv</m>, <m>\vv - \vu</m>, <m>2\vu</m>, <m>-2\vu</m>, and <m>-3\vv</m>.
           </p>
         </statement>
+        <solution>
+          <image width="50%" >
+            <sageplot>
+              plot10=arrow((0,0),(1,3),color="black",width=3,axes=True,ticks=[[],[]],xmin=-6,xmax=6,ymin=-6,ymax=6,aspect_ratio=1)
+              plot10+=arrow((0,0),(2,1),color="black",width=3)
+              plot10+=text("$\\vec{u}$",(0.5,3.25),color="black",fontsize=20)
+              plot10+=text("$\\vec{v}$",(2.25,0.5),color="black",fontsize=20)
+              plot10+=arrow((0,0),(3,4),color="gray",width=2)+text("$\\vec{u}+\\vec{v}$",(3.5,4.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(1,-2),color="gray",width=2)+text("$\\vec{v}-\\vec{u}$",(1.5,-2.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(2,6),color="gray",width=2)+text("$2\\vec{u}$",(2.5,6.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(-2,-6),color="gray",width=2)+text("$-2\\vec{u}$",(-3.5,-5.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(-6,-3),color="gray",width=2)+text("$-3\\vec{v}$",(-5.5,-3.5),color="gray",fontsize=20)
+              plot10                  
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task>
         <statement>
@@ -905,6 +1044,22 @@
             On the in <xref ref="F-9-2-vector-activity1a-multiples"/>, sketch the vectors <m>-3\vv</m>, <m>-2\vv</m>, <m>-1\vv</m>, <m>2\vv</m>, and <m>3\vv</m>.
           </p>
         </statement>
+        <solution>
+          <image width="50%" >
+            <sageplot>
+              plot10=arrow((0,0),(1,3),color="black",width=3,axes=True,ticks=[[],[]],xmin=-6,xmax=6,ymin=-6,ymax=6,aspect_ratio=1)
+              plot10+=arrow((0,0),(2,1),color="black",width=3)
+              plot10+=text("$\\vec{u}$",(0.5,3.25),color="black",fontsize=20)
+              plot10+=text("$\\vec{v}$",(2.25,0.5),color="black",fontsize=20)
+              plot10+=arrow((0,0),(-6,-3),color="gray",width=2)+text("$-3\\vec{v}$",(-5.5,-3.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(-4,-2),color="gray",width=2)+text("$-2\\vec{v}$",(-3.5,-2.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(-2,-1),color="gray",width=2)+text("$-\\vec{v}$",(-1.5,-1.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(4,2),color="gray",width=2)+text("$2\\vec{v}$",(3.5,2.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(6,3),color="gray",width=2)+text("$3\\vec{v}$",(5.5,3.5),color="gray",fontsize=20)
+              plot10                  
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task>
         <statement>
@@ -919,7 +1074,7 @@
         </answer>
         <solution>
           <p>
-            On the set of axes in <xref ref="F-9-2-vector-activity1a-multiples"/>, sketch the vectors <m>\vu-3\vv</m>, <m>\vu-2\vv</m>, <m>\vu-\vv</m>, <m>\vu + \vv</m>, and <m>\vu + 2\vv</m>.
+            The set of terminal points of vectors <m>t\vv</m> is the line through the origin in the direction of <m>\\v</m>.
           </p>
         </solution>
       </task>     
@@ -929,6 +1084,22 @@
             On the set of axes in <xref ref="F-9-2-vector-activity1a-multiples"/>, sketch the vectors <m>\vu-3\vv</m>, <m>\vu-2\vv</m>, <m>\vu-\vv</m>, <m>\vu + \vv</m>, and <m>\vu + 2\vv</m>.
           </p>
         </statement>
+        <solution>
+          <image width="50%" >
+            <sageplot>
+              plot10=arrow((0,0),(1,3),color="black",width=3,axes=True,ticks=[[],[]],xmin=-6,xmax=6,ymin=-6,ymax=6,aspect_ratio=1)
+              plot10+=arrow((0,0),(2,1),color="black",width=3)
+              plot10+=text("$\\vec{u}$",(0.5,3.25),color="black",fontsize=20)
+              plot10+=text("$\\vec{v}$",(2.25,0.5),color="black",fontsize=20)
+              plot10+=arrow((0,0),(-5,-0),color="gray",width=2)+text("$\\vec{u}-3\\vec{v}$",(-5.5,-3.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(-3,1),color="gray",width=2)+text("$\\vec{u}-2\\vec{v}$",(-3.5,-2.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(-1,2),color="gray",width=2)+text("$\\vec{u}-\\vec{v}$",(-1.5,-1.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(3,4),color="gray",width=2)+text("$\\vec{u}+\\vec{v}$",(3.5,2.5),color="gray",fontsize=20)
+              plot10+=arrow((0,0),(5,5),color="gray",width=2)+text("$\\vec{u}+2\\vec{v}$",(5.5,5.5),color="gray",fontsize=20)
+              plot10                
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task>
         <statement>
@@ -938,19 +1109,19 @@
         </statement>
         <answer>
           <p>
-            <m>\vu + t\vv</m> is the line through the terminal point of <m>\vv</m> in the direction of <m>\vu</m>.
+            <m>\vu + t\vv</m> is the line through the terminal point of <m>\vu</m> in the direction of <m>\vv</m>.
           </p>
         </answer>
         <solution>
           <p>
-            <m>\vu + t\vv</m> is the line through the terminal point of <m>\vv</m> in the direction of <m>\vu</m>.
+            <m>\vu + t\vv</m> is the line through the terminal point of <m>\vu</m> in the direction of <m>\vv</m>.
           </p>
         </solution>
       </task>
     </activity>
 </worksheet>
     <p>
-      Before we move on to the magnitude of a vector, we will take a moment to point out a concept that permeates most the mathematics you will see for awhile. Our definitions of vector addition and scalar multiplication give us a way to take a few vectors and generate entire spaces with both familiar algebraic and geometric properties. We say that <m>a\vv + b\vw</m> is a <term>linear combination</term> of the vectors <m>\vv</m> and <m>\vw</m> (where <m>a</m> and <m>b</m> are scalars). Earlier in this section we mentioned how every vector in <m>\R^3</m> can be written as a linear combination of <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. Important questions in the next few math courses include <q>Can you write any vector in <m>\R^n</m> as a linear combination of <m>\vu</m>, <m>\vv</m>, and <m>\vw</m>?</q> For now, we will point out that much of what has been done in this section is setting up the algebraic and geometric properties of linear combinations as a function of the vectors used.
+      Before we move on to the magnitude of a vector, we will take a moment to point out a concept that permeates most the mathematics you will see for awhile. Our definitions of vector addition and scalar multiplication give us a way to take a few vectors and generate entire spaces with both familiar algebraic and geometric properties. We say that <m>a\vv + b\vw</m> is a <term>linear combination</term> of the vectors <m>\vv</m> and <m>\vw</m> (where <m>a</m> and <m>b</m> are scalars). Earlier in this section we mentioned how every vector in <m>\R^3</m> can be written as a linear combination of <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. An important question in the next several math courses will be <q>Can you write any vector in <m>\R^n</m> as a linear combination of <m>\vu</m>, <m>\vv</m>, and <m>\vw</m>?</q> For now, we will point out that much of what has been done in this section is setting up the algebraic and geometric properties of linear combinations as a function of the vectors used.
     </p>
   
   </subsection>
@@ -964,7 +1135,7 @@
 
     <example>
       <p>
-        The magnitude of a vector is measured as a the length of the directed line segments that represent the vector. For example, the directed line segment <m>\overrightarrow{AB}</m> in <xref ref="F-9-2-vector-magnitude-AB"/> will represent a vector with components of <m>2</m> and <m>4</m>, which represent the horizontal and vertical changes from <m>A</m> to <m>B</m>. Notice that when we apply the distance formula to find the length of the segment from <m>A</m> to <m>B</m>, we compute <m>(x_B-x_A)</m> and <m>(y_B-y_A)</m>, which are the components of the vector we are finding the magnitude of. 
+        The magnitude of a vector is measured as  the length of the directed line segments that represent the vector. For example, the directed line segment <m>\overrightarrow{AB}</m> in <xref ref="F-9-2-vector-magnitude-AB"/> will represent a vector with components of <m>2</m> and <m>4</m>, which represent the horizontal and vertical changes from <m>A</m> to <m>B</m>. Notice that when we apply the distance formula to find the length of the segment from <m>A</m> to <m>B</m>, we compute <m>(x_B-x_A)</m> and <m>(y_B-y_A)</m>, which are the components of the vector we are finding the magnitude of. 
         <md>
           <mrow>\vecmag{\overrightarrow{AB}} \amp= \sqrt{(x_B-x_A)^2+(y_B-y_A)^2} \amp \amp= \sqrt{(2)^2+(4)^2}</mrow>  
           <mrow>  \amp= \sqrt{(v_1)^2+(v_2)^2} \amp \amp= \sqrt{20}</mrow> 
@@ -1097,7 +1268,7 @@
         </answer>
         <solution>
           <p>
-            <m>\vu</m>, <m>\vv</m>, and <m>\vu + \vv</m> form the sides of a triangle. Put another way, <m>\vu + \vv</m> is the path from the tail of <m>\vu</m> to tip of <m>\vv</m>. The length of <m>\vu + \vv</m> should be shorter than the sum of the lengths of the other sides. The only case where <m>\vecmag{\vu + \vv} = \vecmag{\vu} + \vecmag{\vv}</m> is if the two vectors lie on the same ray and have the same direction. This would mean each vector is a scalar of the other vector.
+            <m>\vw_1</m>, <m>\vw_2</m>, and <m>\vW_1 + \vw_2</m> form the sides of a triangle. Put another way, <m>\vw_1 + \vw_2</m> is the path from the tail of <m>\vw_1</m> to tip of <m>\vw_2</m>. The length of <m>\vw_1 + \vw_2</m> should be shorter than the sum of the lengths of the other sides. The only case where <m>\vecmag{\vw_1 + \vw_2} = \vecmag{\vw_1} + \vecmag{\vw_2}</m> is if the two vectors lie on the same ray and have the same direction. This would mean each vector is a scalar of the other vector.
           </p>
         </solution>
       </task>      
@@ -1109,12 +1280,13 @@
         </statement>
         <answer>
           <p>
-            <m>2\vu = \langle 4 , 6 \rangle</m>, <m>3\vu = \langle 6 , 9 \rangle</m>, <m>-2\vu = \langle -4 , -6 \rangle</m>
+            <m>\vecmag{2\vu} = \sqrt{52}=2\sqrt{13}</m>, <m>\vecmag{3\vu} = 3\sqrt{13}</m>, <m>\vecmag{-2\vu} = 2\sqrt{13}</m>
           </p>
         </answer>
         <solution>
           <p>
-            <m>2\vu = \langle 4 , 6 \rangle</m>, <m>3\vu = \langle 6 , 9 \rangle</m>, <m>-2\vu = \langle -4 , -6 \rangle</m>
+            <m>2\vu = \langle 4 , 6 \rangle</m>, <m>3\vu = \langle 6 , 9 \rangle</m>, <m>-2\vu = \langle -4 , -6 \rangle</m>, 
+            <m>\vecmag{2\vu} = \sqrt{52}=2\sqrt{13}</m>, <m>\vecmag{3\vu} = 3\sqrt{13}</m>, <m>\vecmag{-2\vu} = 2\sqrt{13}</m>
           </p>
         </solution>
       </task>
@@ -1131,7 +1303,7 @@
         </answer>
         <solution>
           <p>
-            <m>\sqrt{(t\vu_1)^2 + (t\vu_2)^2} = \sqrt{t^2(\vu_1)^2 + t^2(\vu_2)^2} = \sqrt{t^2 * ((\vu_1)^2 + (\vu_2)^2)} = t * \sqrt{(\vu_1)^2 + (\vu_2)^2} = t \cdot \vecmag{\vu}</m>
+            <m>\sqrt{(t\vu_1)^2 + (t\vu_2)^2} = \sqrt{t^2(\vu_1)^2 + t^2(\vu_2)^2} = \sqrt{t^2  ((\vu_1)^2 + (\vu_2)^2)} = t  \sqrt{(\vu_1)^2 + (\vu_2)^2} = t \cdot \vecmag{\vu}</m>
           </p>
         </solution>
       </task>      
@@ -1154,7 +1326,7 @@
             <m>\vi</m> is the vector <m>\langle 0, 1 \rangle</m>. This has a magnitude of 1 in the <m>y</m>-direction.
           </p>
           <p>
-            <m>\vi + \vj</m> is the vector <m>\langle 1, 0 \rangle + \angle 0, 1 \rangle = \langle 1 ,1 \rangle</m>. This vector has a magnitude of <m>\sqrt{(1)^2 + (1)^2} = \sqrt{2} \neq 1</m>
+            <m>\vi + \vj</m> is the vector <m>\langle 1, 0 \rangle + \langle 0, 1 \rangle = \langle 1 ,1 \rangle</m>. This vector has a magnitude of <m>\sqrt{(1)^2 + (1)^2} = \sqrt{2} \neq 1</m>
           </p>
         </solution>
       </task>
@@ -1177,7 +1349,7 @@
             <m>\vecmag{\vu} = \sqrt{(-2)^2 + (3)^2} = \sqrt{13}</m>.
           </p>
           <p>
-            The unit vector <m>\vv</m> in the direction of <m>\vu</m> is <m> \sqrt{13} \cdot \langle -2 , 3 \rangle = \langle \frac{-2}{\sqrt{13}} , \frac{3}{\sqrt(13)} \rangle</m>.
+            The unit vector <m>\vv</m> in the direction of <m>\vu</m> is <m> \frac{1}{\sqrt{13}} \cdot \langle -2 , 3 \rangle = \langle \frac{-2}{\sqrt{13}} , \frac{3}{\sqrt{13}} \rangle</m>.
           </p>
         </solution>
       </task>
@@ -1200,7 +1372,7 @@
             <m>\vecmag{\vu} = \sqrt{(-2)^2 + (3)^2} = \sqrt{13}</m>.
           </p>
           <p>
-            The unit vector <m>\vv</m> in the direction of <m>\vu</m> is <m> \sqrt{13} \cdot \langle 2 , -3 \rangle = \langle \frac{2}{\sqrt{13}} , \frac{-3}{\sqrt(13)} \rangle</m>.
+            The unit vector <m>\vv</m> in the opposite direction of <m>\vu</m> is <m> \frac{1}{\sqrt{13}} \cdot \langle 2 , -3 \rangle = \langle \frac{2}{\sqrt{13}} , \frac{-3}{\sqrt{13}} \rangle</m>.
           </p>
         </solution>
       </task>
