@@ -34,16 +34,19 @@
    <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section expects students to have familiarity with the notation and operations of vectors from <xref ref="S-Precalc-Vectors"/>. This section will develop the parametric form of a line and describe its advantages and drawbacks (like non-uniqueness of equations). The idea of parametric equations and their vector presentations are motivated throughout this section, as well as a reminder of local linearity from single variable calculus. 
+      This section expects students to have familiarity with the notation and operations of vectors from <xref ref="S-Precalc-Vectors"/>. This section will develop the parametric form of a line and describe its advantages and drawbacks (like non-uniqueness of representations). The idea of parametric equations and their vector presentations are motivated throughout this section, as well as a reminder of local linearity from single variable calculus. <xref ref="A-9-2-5"/> is an activity that some instructors may have skipped over but offers a nice connection between the algebra of linear combinations and the construction of the vector equation of a line. 
     </p>
     <p>  
       This section can be covered in a longer class period alongside <xref ref="S-Precalc-Planes">Planes</xref>. Some faculty will omit the Preview Activity in this case and we would suggest that students can do this Preview Activity as a follow up exercise to verify the development of the <xref ref="Plane-scalar-equation" text="custom">equations of a plane</xref>.
+    </p>
+    <p>
+      This section includes extra randomized exercises to allow students to practice with a variety of ways that the direction and base point information can be given in both algebraic and geometric forms.
     </p>
   </introduction>
 <subsection>
   <title>Introduction</title>
     <p>
-      In single variable calculus, we learn that a differentiable function is <em>locally linear</em>. <idx><h>locally linear</h></idx> In other words, if we zoom in on the graph of a differentiable function around a point, the graph will look like the tangent line to the function at that point. In <xref ref="LLline"/> you can look at the graph of a curve and zoom in around a point on that curve to see that eventually the graph of the function will look linear. You can use the sliders at the top of change how zoomed in the plot is displayed or change the location on the curve that you are examining. You should visually verify at a several points that this function is differentiable because at any point shown, the graph is locally linear.
+      In single variable calculus, we learn that a differentiable function is <em>locally linear</em>. <idx><h>locally linear</h></idx> In other words, if we zoom in on the graph of a differentiable function around a point, the graph will look like the tangent line to the function at that point. In <xref ref="LLline"/> you can look at the graph of a curve and zoom in around a point on that curve to see that eventually the graph of the function will look linear. You can use the sliders at the top of change how zoomed in the plot is displayed or change the location on the curve that is being highlighted. You should visually verify at a several points that this function is differentiable because at any point shown, the graph is locally linear.
     </p>
     <figure xml:id="LLline">
       <caption>A plot with the ability to zoom in on a point of <m>y=f(x)</m>, where <m>f</m> is a nonlinear, differentiable function</caption>
@@ -62,7 +65,7 @@
       </interactive>
     </figure>
     <p>
-      Recall that linear functions have the form <m>f(x)=ax+b</m>. These functions play important roles in single variable calculus and are useful in approximating differentiable functions, in approximating roots of functions (Newton's Method), and approximating solutions to first-order differential equations (Euler's Method). In multivariable calculus, we will study curves in space and we will see that connection between local linearity and differentiability exists for curves in three (or more) dimensions. As we extend our study of functions to include those of two variables in <xref ref="C_MVF"/>, we will see that a function is locally linear at a point if the surface defined by the function looks like a plane (the tangent plane) as we zoom in on the graph.
+      Recall that linear functions have the form <m>f(x)=ax+b</m>. These functions play important roles in single variable calculus and are useful in approximating differentiable functions, in approximating roots of functions (Newton's Method), and approximating solutions to first-order differential equations (Euler's Method). In multivariable calculus, we will study curves in space and we will see that connection between local linearity and differentiability exists for curves in three (or more) dimensions. As we extend our study of functions to include those of two (or more!) variables in <xref ref="C_MVF"/>, we will see that a function is locally linear at a point if the surface defined by the function looks like a plane (the tangent plane) as we zoom in on the graph.
     </p>
 
     <p>
@@ -79,7 +82,7 @@
         </p>
         <figure xml:id="PA-Lineplot1">
           <caption>The line through <m>(2,-1)</m> with slope <m>\frac{2}{3}</m></caption>
-          <image width="75%" xml:id="img-PA-Lineplot1">
+          <image width="60%" xml:id="img-PA-Lineplot1">
             <description><p>A graph with axes showing the point <m>(2,-1)</m> and the line with slope <m>2/3</m> passing through that point.</p></description>
             <sageplot>
               plot2=line([(-4,-5),(8,3)],color="black",gridlines=True,aspect_ratio=1,xmin=-3,xmax=5,ymin=-5,ymax=3,axes_labels=["$x$","$y$"])
@@ -92,7 +95,7 @@
       <task>
         <statement>
           <p>
-            Suppose we increase <m>x</m> by 1 from the point <m>(2,-1)</m>. How does the <m>y</m>-value change? What is the point on the line with <m>x</m>-coordinate <m>3</m>?
+            Suppose we increase <m>x</m> by 1 from the point <m>(2,-1)</m>. How does the <m>y</m>-value of a point on the line change? What is the point on the line with <m>x</m>-coordinate <m>3</m>?
           </p>
         </statement>
         <answer>
@@ -160,12 +163,27 @@
         </statement>
         <answer>
           <p>
-            The terminal point of the vector <m>\langle 2, -1 \rangle</m> is the point <m>(2, -1)</m>. Any vector that is a scalar multiple of <m>\langle 3, 2 \rangle</m> has a slope of <m>\frac{2}{3}</m>. If we start at the terminal point of <m>\langle 2, -1</m>, which is the point <m>(2, -1)</m>, and add scalar multiples of the vector <m>\langle 3, 2 \rangle</m>, the terminal point of these scalar vectors will trace out the graph of the line through the point <m>(2, -1)</m> with a slope of <m>\frac{2}{3}</m>.
+            <ol>
+              <li><m>\vr(0)=\langle 2,-1 \rangle</m></li>
+              <li><m>\vr(1)=\langle 5,1 \rangle </m></li>
+              <li><m>\vr(2)=\langle 8,3 \rangle </m></li>
+              <li><m>\vr(-2)=\langle -4,-5 \rangle </m></li>
+              <li><m>\vr(-\frac{1}{2})=\langle 0.5,-2 \rangle </m></li>
+              <li><m>\vr(\frac{7}{3})=\langle 9,\frac{11}{3}\rangle </m></li>
+            </ol>
           </p>
         </answer>
         <solution>
           <p>
             The terminal point of the vector <m>\langle 2, -1 \rangle</m> is the point <m>(2, -1)</m>. Any vector that is a scalar multiple of <m>\langle 3, 2 \rangle</m> has a slope of <m>\frac{2}{3}</m>. If we start at the terminal point of <m>\langle 2, -1</m>, which is the point <m>(2, -1)</m>, and add scalar multiples of the vector <m>\langle 3, 2 \rangle</m>, the terminal point of these scalar vectors will trace out the graph of the line through the point <m>(2, -1)</m> with a slope of <m>\frac{2}{3}</m>.
+            <ol>
+              <li><m>\vr(0)=\langle 2,-1 \rangle</m></li>
+              <li><m>\vr(1)=\langle 5,1 \rangle </m></li>
+              <li><m>\vr(2)=\langle 8,3 \rangle </m></li>
+              <li><m>\vr(-2)=\langle -4,-5 \rangle </m></li>
+              <li><m>\vr(-\frac{1}{2})=\langle 0.5,-2 \rangle </m></li>
+              <li><m>\vr(\frac{7}{3})=\langle 9,\frac{11}{3}\rangle </m></li>
+            </ol>
           </p>
         </solution>
       </task>
@@ -185,6 +203,17 @@
             </image>
           </figure>
         </statement>
+        <solution>
+          <image width="60%" >
+            <sageplot>
+              plot10=arrow((0,0),(2,-1),color="gray",width=2,axes=True,aspect_ratio=1)
+              vl=[(5,1),(8,3),(-4,-5),(.5,-2),(9,11/3)]
+              for v in vl:
+                  plot10+=arrow((0,0),v,color="gray",width=2)
+              plot10                 
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task>
         <statement>
@@ -192,6 +221,11 @@
             Write a few sentences that compare the endpoints of your vectors from the previous task to the plot of the line through the point <m>(2, -1)</m> with a slope of <m>\frac{2}{3}</m> (<xref ref="PA-Lineplot1"/>). In particular you should address what aspects of the line are related to <m>\langle 2, -1 \rangle</m> or <m>\langle 3,2 \rangle</m>.
           </p>
         </statement>
+        <solution>
+          <p>
+            The vector <m>\langle 2,1\rangle</m> corresponds to a point on the line, which we can think of as a base point. This correspondence is seen through starting <m>\langle 2,1\rangle</m> at the origin (in standard position) and the terminal point will be the base point. The vector <m>\langle 3,2\rangle</m> corresponds to the direction the line moves (from the base point). 
+          </p>
+        </solution>
       </task>
       <!-- <task>
         <statement>
@@ -255,10 +289,10 @@
       <ol>
         <li>Found a point to start your plot (maybe the <m>y</m>-intercept).</li>
         <li>Found a second point on your plot (perhaps using the slope to find the second point).</li>
-        <li>Drew a line segment from the first point to the second, then extended the line past the second point to the end of you plot.</li>
+        <li>Drew a line segment from the first point to the second, then extended the line past the second point to the edge of the plot.</li>
         <li>Returned to the first point and extended the line in the direction opposite of the second point.</li>
       </ol>
-      In other words, you made a starting point, extended indefinitely far in a particular direction, then added the opposite direction. This is the essence of the general description for a line we will give below. 
+      In other words, you made a starting point, extended indefinitely far in a particular direction, then added the line in the opposite direction. This is the essence of the general description for a line we will give below. 
     </p>
     <p>
       In two-dimensional space, a non-vertical line is defined to be the set of points satisfying the equation
@@ -437,7 +471,7 @@
           </answer>
           <solution>
             <p>
-              The direction vector the for line <m>\mathcal{L}</m> is <m>\langle ((-2) - (1), (1) - (2), (-2) - (-1)) \rangle = \angle -3, -1, -1 \rangle</m>.
+              The direction vector the for line <m>\mathcal{L}</m> is <m>\langle ((-2) - (1), (1) - (2), (-2) - (-1)) \rangle = \langle -3, -1, -1 \rangle</m>.
             </p>
           </solution>
         </task>
@@ -475,7 +509,7 @@
             </p>
 
             <p>
-              This line is parallel to the line <m>\mathcal{L}</m> because the <m>\langle 6, 2, 2 \rangle = -2 * \langle -3, -1, -1 \rangle</m> meaning the direction vectors are scalar multiples of one another.
+              This line is parallel to the line <m>\mathcal{L}</m> because the <m>\langle 6, 2, 2 \rangle = -2  \langle -3, -1, -1 \rangle</m> meaning the direction vectors are scalar multiples of one another.
             </p>
           </solution>
         </task>
@@ -496,11 +530,11 @@
             </p>
 
             <p>
-              <m>\langle 1, 2, -1 \rangle = \langle -5, 0, 3 \rangle + t * \langle 6, 2, 2 \rangle</m>.
+              <m>\langle 1, 2, -1 \rangle = \langle -5, 0, 3 \rangle + t  \langle 6, 2, 2 \rangle</m>.
             </p>
 
             <p>
-            Subtract <m>\langle -5, 0, 3 \rangle</m> from both sides to get <m>\langle 6, 2, 2 \rangle = t * \langle 6, 2, 2 \rangle</m>. This equation is true when <m>t = 1</m>. Therefore, <m>\vr(t)</m> and <m>\vs(t)</m> are the same lines.
+            Subtract <m>\langle -5, 0, 3 \rangle</m> from both sides to get <m>\langle 6, 2, 2 \rangle = t   \langle 6, 2, 2 \rangle</m>. This equation is true when <m>t = 1</m>. Therefore, <m>\vr(t)</m> and <m>\vs(t)</m> are the same lines.
             </p>
           </solution>
         </task>
@@ -559,7 +593,7 @@
         </answer>
         <solution>
           <p>
-            The vector form of the line <m>\mathcal{L}</m> was <m>\vr(t) = \langle 1, 2, -1 \rangle + t * \langle -3, -1, -1 \rangle</m>. This corresponds to the parametric equations of <m>x(t) = 1 - 3t, y(t) = 2 - t, z(t) = -1 - t</m>.
+            The vector form of the line <m>\mathcal{L}</m> was <m>\vr(t) = \langle 1, 2, -1 \rangle + t   \langle -3, -1, -1 \rangle</m>. This corresponds to the parametric equations of <m>x(t) = 1 - 3t, y(t) = 2 - t, z(t) = -1 - t</m>.
           </p>
         </solution>
       </task>
