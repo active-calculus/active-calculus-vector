@@ -226,14 +226,16 @@
     <definition>
       <statement>
         <p>
-          Using the notation introduce for a triple Riemann sum, the <term>triple integral of <m>f</m> over <m>B</m></term><idx><h>triple integral</h></idx> is
+          Using the notation introduced for a triple Riemann sum, the <term>triple integral of <m>f</m> over <m>B</m></term><idx><h>triple integral</h></idx> is
           <md>
             \iiint_B f(x,y,z) \, dV = \lim_{m,n,\ell \to \infty} \sum_{i=1}^m \sum_{j=1}^n \sum_{k=1}^{\ell} f(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \cdot \Delta V
           </md>.
         </p>
       </statement>
     </definition>
-
+    <p>
+      In the above description, we used equally spaced division of each of the coordinates to separate the region of integration into pieces. As the number of pieces increases (<m>m</m>, <m>n</m>, and <m>\ell</m> go to infinity), the volume of each peice (<m>\Delta V</m>) will go to zero. A more general treatment of this process will show that the pieces do not need to be the same size, but the size of all of the pieces must approach zero in the limit used for the triple Riemann sum.
+    </p>
     <p>
       As described earlier, if <m>f(x, y, z)</m> represents the density of the solid <m>B</m> at each point <m>(x, y, z)</m>, then
       <me>
@@ -387,7 +389,7 @@
           <md>
             x + 2 y + 3 z = 6
           </md>.
-          Solving for <m>z</m> goves
+          Solving for <m>z</m> gives
           <md>
             z = \frac{1}{3}(6 - x - 2y)
           </md> as the upper bound for <m>z</m>. Thus, we can fully describe the solid <m>S</m> using the inequalities
@@ -396,15 +398,15 @@
         <p>
           With our description of <m>S</m> in terms of inequalities in hand, we can write an iterated triple integral to find the mass of the tetrahedron by integrating the density function <m>\delta(x,y,z)=x+y+z</m>:         
           <md number="yes" xml:id="eq-mult_ints-triple-tetrahedron_mass">
-            M = \int_{0}^{6} \int_{0}^{3-(1/2)x} \int_{0}^{(1/3)(6-x-2y)} x+y+z \, dz \, dy \, dx
+            M = \int_{0}^{6} \int_{0}^{3-(1/2)x} \int_{0}^{(1/3)(6-x-2y)} (x+y+z) \, dz \, dy \, dx
           </md>.
           Evaluating the iterated triple integral gives us
           <md>
-            <mrow>M \amp  = \int_{0}^{6} \int_{0}^{3-(1/2)x} \int_{0}^{(1/3)(6-x-2y)} x+y+z \, dz \, dy \, dx</mrow>
-            <mrow>\amp = \int_{0}^{6} \int_{0}^{3-(1/2)x} \left[xz+yz+\frac{z}{2}\right]\restrict{0}^{(1/3)(6-x-2y)} \, dy \, dx</mrow>
-            <mrow>\amp = \int_{0}^{6} \int_{0}^{3-(1/2)x} \frac{4}{3}x - \frac{5}{18}x^2 - \frac{}{9}xy + \frac{2}{3}y - \frac{4}{9}y^2 + 2 \, dy \, dx</mrow>
+            <mrow>M \amp  = \int_{0}^{6} \int_{0}^{3-(1/2)x} \int_{0}^{(1/3)(6-x-2y)} (x+y+z) \, dz \, dy \, dx</mrow>
+            <mrow>\amp = \int_{0}^{6} \int_{0}^{3-(1/2)x} \left[xz+yz+\frac{z^2}{2}\right]\restrict{0}^{(1/3)(6-x-2y)} \, dy \, dx</mrow>
+            <mrow>\amp = \int_{0}^{6} \int_{0}^{3-(1/2)x} (\frac{4}{3}x - \frac{5}{18}x^2 - \frac{7}{9}xy + \frac{2}{3}y - \frac{4}{9}y^2 + 2) \, dy \, dx</mrow>
             <mrow>\amp = \int_{0}^{6} \left[\frac{4}{3}xy - \frac{5}{18}x^2y - \frac{7}{18}xy^2 + \frac{1}{3}y^2 - \frac{4}{27}y^3 + 2y \right]\restrict{0}^{3-(1/2)x}  \, dx</mrow>
-            <mrow>\amp = \int_{0}^{6} 5 + \frac{1}{2}x - \frac{7}{12}x^2 + \frac{13}{216}x^3 \, dx</mrow>
+            <mrow>\amp = \int_{0}^{6} (5 + \frac{1}{2}x - \frac{7}{12}x^2 + \frac{13}{216}x^3) \, dx</mrow>
             <mrow>\amp =  \left[5x + \frac{1}{4}x^2 - \frac{7}{36}x^3 + \frac{13}{864}x^4 \right] \restrict{0}^{6}</mrow>
             <mrow>\amp = \frac{33}{2}.</mrow>
           </md>
@@ -606,7 +608,7 @@
       where <m>g_1</m>, <m>g_2</m>, <m>h_1</m>, <m>h_2</m>, <m>p_1</m>, <m>p_2</m>, <m>q_1</m>, and <m>q_2</m> are functions of the indicated variables. There are four other options beyond the two stated here, since the variables <m>x</m>, <m>y</m>, and <m>z</m> can, in theory, be arranged in any order. In many circumstances, an insightful choice of variable order will make it easier to set up an iterated integral, just as was the case when we worked with double integrals.
     </p>
     <p>
-      Setting up limits on iterated integrals often requires considerable geometric intuition. It is important to not only create carefully labeled figures, but also to think about how we wish to slice the solid. Further, note that when we say <q>we will integrate first with respect to <m>x</m>,</q> by <q>first</q> we are referring to the innermost integral in the iterated integral. The next activity explores several different ways we might set up the integral in the preceding example.
+      Setting up limits on iterated integrals often requires considerable geometric intuition. It is important to not only create carefully labeled figures, but also to think about how we wish to slice the solid. Further, note that when we say <q>we will integrate first with respect to <m>x</m>,</q> by <q>first</q> we are referring to the innermost integral in the iterated integral. The next activity explores several different ways we might set up the integral in <xref ref="ex-mult_ints-triple-tetrahedron_mass"/>.
     </p>
 
     <worksheet>
@@ -703,7 +705,7 @@
 </worksheet>
 
     <p>
-      The next activity asks you to engage in further practice with setting up triple integrals as iterated integrals, including thinking about the interpretations of <xref ref="keyidea-tripleint_interpretations"/>
+      The next activity asks you to engage in further practice with setting up triple integrals as iterated integrals, including thinking about the interpretations of <xref ref="keyidea-tripleint_interpretations"/>.
     </p>
 
     <worksheet>
@@ -717,7 +719,7 @@
           <interactive label="interactive-fig-mult_ints-triple-activity_apps" platform="sage" width="91%" aspect="1:1">
             <description>
               <p>
-                A three-dimensional plot of a solid region. The solid is bounded below by a surface that rises from the origin and has cicles as its horizontal cross-sections. It is bounded above by the top portion of the sphere <m>x^2+y^2+z^2=6</m>.
+                A three-dimensional plot of a solid region. The solid is bounded below by a surface that rises from the origin and has circles as its horizontal cross-sections. It is bounded above by the top portion of the sphere <m>x^2+y^2+z^2=6</m>.
               </p>
           </description>
           <slate surface="sage">
@@ -768,26 +770,26 @@
       <task>
         <statement>
           <p>
-            Set up an interated triple integral to find the volume of <m>S</m>. You do not need to evaluate the integral at this time.
+            Set up an iterated triple integral to find the volume of <m>S</m>. You do not need to evaluate the integral at this time.
           </p>
         </statement>
         <hint>
           <p>
-            You may find it helpful to recall the approach of <xref ref="act-mult_ints-triple-cone"/> and imagine a line segment through <m>S</m> as you find three compound inequalities that bound <m>x</m>, <m>y</m>, and <m>z</m> to get your limits of integration.
+            You may find it helpful to recall the approach of <xref ref="act-mult_ints-triple-cone"/> and imagine a line segment through <m>S</m> as you find three compound inequalities that bound <m>x</m>, <m>y</m>, and <m>z</m> to get your limits of integration. When finding the bounds on <m>x</m> and <m>y</m>, you will also likely find it helpful to set up your algebra in this problem in terms of <m>x^2+y^2</m>.
           </p>
         </hint>
       </task>
       <task>
         <statement>
           <p>
-            Suppose the density at point <m>(x,y,z)</m> is <m>\delta(x,y,z)=x^2+1</m>. Set up but do not evaluate iterated triple integral expressions find the center of mass of <m>S</m>.
+            Suppose the density at point <m>(x,y,z)</m> is <m>\delta(x,y,z)=x^2+1</m>. Set up but do not evaluate iterated triple integral expressions to find the center of mass of <m>S</m>.
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Let <m>f(x,y,z) = xy+z^2</m>. Set up but do not evaluate an iterated triple integral to find the average value of <m>f</m> on <m>S</m>
+            Let <m>f(x,y,z) = xy+z^2</m>. Set up but do not evaluate an iterated triple integral to find the average value of <m>f</m> on <m>S</m>.
           </p>
         </statement>
       </task>
