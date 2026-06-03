@@ -55,16 +55,26 @@
       <p>
         A more interesting limit is
         <me>\lim_{x \rightarrow 5} \frac{x^2-25}{x-5}</me>.
-        This limit is of an indeterminant form, which means that we will need to use other tools rather than just attempting to substitute the particular input into different parts of the function. This limit (and many of the limits you looked at in your definitions of calculus operations) is of the form
-        <m>\displaystyle\lim_{x \rightarrow a} f(x)g(x)</m> where <m>\displaystyle\lim_{x \rightarrow a} f(x) = 0</m> and <m>g(x) \rightarrow \infty</m> as <m>x\to a</m>. Note that although this limit cannot be evaluated by substitution, we cannot immediately conclude that  the limit does not exist. We will have to use other tools to find the limit value, if the limit value does exist. 
+        This limit is of an indeterminant form, which means that we will need to use other tools (rather than just attempting to substitute the particular input into the function). This limit and many of the limits you looked at in your definitions of calculus operations is of the form
+        <m>\displaystyle\lim_{x \rightarrow a} f(x) \, g(x)</m> where <m>\displaystyle\lim_{x \rightarrow a} f(x) = 0</m> and <m>g(x)</m> becomes unbounded as <m>x \to a</m>. Note that although this limit cannot be evaluated by substitution, we cannot immediately conclude that the limit does not exist. We will have to use other tools to find the limit value, if the limit value does exist. 
       </p>
     </paragraphs>
     <paragraphs>
       <title>Differentiation</title>
       <p>
-        The derivative of a function measures the rate of change of the value of a function at a particular input value. Geometrically, this is commonly visualized as the slope of a line tangent to the graph of the function at the point corresponding to the particular input value. The derivative is a local measurement because the rate of change or slope of the tangent line only models the behavior of the function for an arbitrarily small region around the input value. The derivative is approximated with the average rate of change over an interval, which corresponds to the slope of a secant line. As the points involved in the secant line become closer to the particular input value, the approximation becomes closer to the true rate of change at the particular input value. The slope of the secant line is the difference quotient: the change in the function value divided by the change in the inputs to the function. Thus, by looking at the limit of this difference quotient as the change in the inputs approaches zero, we can compute the true rate of change for the function.
+        The derivative of a function measures the rate of change of the value of a function at a particular input value. Geometrically, this is commonly visualized as the slope of a line tangent to the graph of the function at the point corresponding to the particular input value. The derivative is a local measurement because the rate of change or slope of the tangent line only models the behavior of the function for an arbitrarily small region around the input value. 
+      </p>
+      <p> 
+        The development of the definition of the derivative is an example of the <xref ref="CCA" text="title"/>. In order to understand how quickly the output of a function is changing at a particular input value, we approximate with the average rate of change over an interval, which corresponds to the slope of a secant line. This approximation is step 1 of the CCA.
+      </p>
+      <p>
+        As the points involved in the secant line become closer to the particular input value, the approximation becomes closer to the true rate of change at the particular input value. The slope of the secant line is the difference quotient: the change in the function value divided by the change in the inputs to the function. This quantification of how the slope of the secant line changes depending on the step size of the input is step 2 of the CCA.
+      </p>
+      <p>  
+        By looking at the limit of this difference quotient as the change in the inputs approaches zero, we can compute the true rate of change for the function.
       </p>
       <!-- TODO Fonts are way too small. Recode in PreFigure and decide if need to use two rows rather than three on one row. -->
+      <!-- TODO need to make the step correspond to the algebra in the text. The step should be to the right not the left -->
       <!-- <figure xml:id="secantlines">
         <caption>Three plots of secant lines with <m>h\rightarrow0</m> </caption> -->
         <sidebyside widths="33% 33% 33%">
@@ -136,11 +146,11 @@
           <mrow>\text{rate of change of }f \amp\approx \frac{f(a+h)-f(a)}{h} \amp \amp\text{(slope of secant line)}</mrow>
           <mrow>\text{rate of change of }f \amp=\lim_{h\rightarrow 0} \frac{f(a+h)-f(a)}{h}  \amp\amp \text{(slope of tangent line)}</mrow>
         </md>
-        Note that other derivative definitions correspond to different ways of thinking about how the two nearby points involved in the secant line approach the input of interest. The formula above approaches the point of interest from the left, but derivative formulas exist for the right difference or central difference methods. Using the limit, all of these formulas calculate the same value for the derivative since there is only one instantaneous rate of change for the function at the point <m>(a,f(a))</m>. 
+        Note that other derivative definitions correspond to different ways of thinking about how the two nearby points involved in the secant line approach the input of interest. The formula above approaches the point of interest from the right, but derivative formulas exist for the left difference or central difference methods. After evaluating the limit, all of these formulas calculate the same value for the derivative since there is only one instantaneous rate of change for the function at the particular input of interest. 
       </p>
       <p>
-        You may not have noticed but the limit formula for the derivative at a point is of the form of an <q>interesting</q> limit because 
-        <me>\lim_{h\rightarrow 0} (f(a+h)-f(a)) \frac{1}{h}</me> 
+        You may not have noticed, but the limit formula for the derivative at a point is of the form of an <q>interesting</q> limit because 
+        <me>\lim_{h\rightarrow 0} (f(a+h)-f(a)) \, \frac{1}{h}</me> 
         has 
         <me>\lim_{h \rightarrow 0} f(a+h)-f(a)=0 \quad \text{and} \quad \frac{1}{h} \rightarrow \infty\text{ as }h \rightarrow 0</me>.
         This means that we need other tools to evaluate the limit involved in derivatives.
@@ -148,17 +158,56 @@
       <p>
         Your first calculus course likely generalized the derivative at a point to <m>f'(x)=\frac{df}{dx}</m>, a function which outputs the rate of change of <m>f</m> for the input value <m>x</m>. This led to a collection of rules for efficiently calculating derivatives (e.g., power rule, sum/difference, product rule, chain rule, etc.) by thinking about the derivative <m>f'(x)</m> as a function related to the function <m>f</m>. This perspective also leads to taking derivatives of derivatives, which is often used to measure features of graphs such as concavity.
       </p>
+      <p xml:id="progression">
+        We will take moment here to note another progression of ideas that was common in single variable calculus that will be very prevalent in our work with multivariable calculus. Most calculus topics follow the progression:
+        <ol marker="1.">
+          <li>
+            <p>
+              motivation given by the measuring a geometric feature
+            </p>
+          </li>
+          <li>
+            <p>
+              definition developed by the <xref ref="CCA" text="title"/>
+            </p>
+          </li>
+          <li>
+            <p>
+              stated definition of quantity involving limit form (which is difficult to calculate with, but explains what is being measured)
+            </p>
+          </li>
+          <li>
+            <p>
+              introduction of algebraic rules to aid in calculation or theorem about how to efficiently calculate quantity
+            </p>
+          </li>
+        </ol>
+        The concept of derivatives in single variable calculus followed this progression of ideas and ended with learning many algebraic rules about how to calculate derivatives (sum/difference rule, coefficient rule, product rule, exponent rule, etc.)
+      </p>
     </paragraphs>
     <paragraphs>
       <title>Integration</title>
       <p>
-        The integral of a function on an interval measures the net signed area between the graph of the function and the horizontal axis. To approximate this area, we break the interval of interest into subintervals and use rectangles whose bases are the subintervals and whose heights are determined by the function's value at some point in the subinterval. Adding up the area of these rectangles leads to an approximation of the exact area under the curve. By using smaller and smaller subintervals, this rectangular approximation gets closer to the exact area under the curve. Thus, taking the limit of the sum of the areas of these rectangles as the width of all of the subintervals goes to zero gives the exact area under the curve. 
+        The (definite) integral of a function on an interval measures the net signed area between the graph of the function and the horizontal axis. To approximate this area, we break the interval of interest into subintervals and use rectangles whose bases are the subintervals and whose heights are determined by the function's value at some point in the subinterval. Adding the area of these rectangles leads to an approximation of the exact area under the curve, which completes step 1 of the CCA.
+      </p>
+      <p>
+        By using smaller and smaller subintervals, this rectangular approximation gets closer to the exact area under the curve. We can quantify this refinement and complete step 2 of the CCA with the following equation. 
+        <md>
+          <mrow>\text{area under the graph of }f \amp\approx \sum_{i=0}^n f(x_i^*) \Delta x_i </mrow>
+        </md>
+      This kind of sum is referred to as a Riemann sum for the function <m>f</m> over the interval from <m>a</m> to <m>b</m>.
+      </p>
+      <p>
+       Thus, taking the limit of the sum of the areas of these rectangles as the width of all of the subintervals goes to zero gives the exact area under the curve.
+       <md>
+          <mrow>\text{area under the graph of }f \amp=\lim_{\Delta x_i \rightarrow 0} \sum_{i=0}^n f(x_i^*) \Delta x_i </mrow>
+        </md>
       </p>
       <!-- TODO Recode this in PreFig -->
       <!-- <figure xml:id="Riemannsum1">
         <caption>At left and center, two left Riemann sums for a function <m>f</m> that is sometimes negative; at right, the exact areas bounded by <m>f</m> on the interval <m>[a,d]</m> (image from https://activecalculus.org/single/sec-4-3-definite-integral.html#F-4-3-IncreaseN) </caption> -->
         <image source="images/4_2_NegF">
-          <description><p>A sequence of three images shows different Riemann sum converging to the defintie integral. 
+          <description><p>A sequence of three images shows different Riemann sum converging to the definite integral. 
             The left image shows a sinusoidal graph in blue that goes above and below the the horizontal axis. From left to right, points with inputs a, b, c, and d are labeled on a horizontal segment. The blue graph is above the horizontal axis between inputs a nd b and between c and d. The blue graph is below the horizontal axis between b and c. Eleven green rectangles extend vertically from the horizontal axis to the blue graph on the region of inputs from a to d. 
             The center image shows a sinusoidal graph in blue that goes above and below the the horizontal axis. From left to right, points with inputs a, b, c, and d are labeled on a horizontal segment. The blue graph is above the horizontal axis between inputs a nd b and between c and d. The blue graph is below the horizontal axis between b and c. Twenty two green rectangles extend vertically from the horizontal axis to the blue graph on the region of inputs from a to d. These green rectangles better approximate the area under the blue graph, as compared to the left image.
             The right image shows a sinusoidal graph in blue that goes above and below the the horizontal axis. From left to right, points with inputs a, b, c, and d are labeled on a horizontal segment. The blue graph is above the horizontal axis between inputs a nd b and between c and d. The blue graph is below the horizontal axis between b and c. The area below the blue curve and above the horizontal axis for inputs from a to b is shaded in blue and labeled <m>A_1</m>. The area above the blue curve and below the horizontal axis for inputs from b to c is shaded in red and labeled <m>A_2</m>. The area below the blue curve and above the horizontal axis for inputs from c to d is shaded in blue and labeled <m>A_3</m>.
@@ -166,19 +215,17 @@
       <!-- </figure> -->
     
       <p>
-        Your introduction to integrals likely investigated multiple rules for selecting which point you use to find the height of the rectangles in your approximation (e.g., right endpoint, left endpoint, midpoint, etc.). However, the key idea is that the actual value of the integral does not depend on this choice. We can view the classic calculus approach for finding the net signed area between a curve and the horizontal axis as
-        <md>
-          <mrow>\text{area under the graph of }f \amp\approx \sum_{i=0}^n f(x_i^*) \Delta x_i </mrow>
-          <mrow>\text{area under the graph of }f \amp=\lim_{\Delta x_i \rightarrow 0} \sum_{i=0}^n f(x_i^*) \Delta x_i </mrow>
-        </md>
+        Your introduction to integrals likely investigated multiple rules for selecting which point you use to find the height of the rectangles in your approximation (e.g., right endpoint, left endpoint, midpoint, trapezoid etc.). However, a key idea is that the actual value of the integral does not depend on this choice. 
+      </p>
+      <p>
         If we use equally-sized subintervals in our approximation, then the Riemann sum argument above fits the form of our <q>interesting</q> limits. Specifically, 
-        <me>\lim_{\Delta x \rightarrow 0} \sum_{i=0}^n f(x_i^*) \Delta x</me> 
+        <me>\lim_{\Delta x \rightarrow 0} \sum_{i=0}^n f(x_i^*) \, \Delta x</me> 
         with 
-        <me>\lim_{\Delta x \rightarrow 0} \Delta x =0 \quad \text{and} \quad \sum_{i=0}^n f(x_i^*) \rightarrow \infty\text{ as }n \rightarrow \infty </me>
+        <me>\lim_{\Delta x \rightarrow 0} \Delta x = \lim_{n \rightarrow \infty} \frac{b-a}{n} = 0 \quad \text{and} \quad \sum_{i=0}^n f(x_i^*) \rightarrow \infty\text{ as }n \rightarrow \infty </me>
         Note that increasing the number of subintervals corresponds exactly with decreasing the width of these equally-sized subintervals to zero. 
       </p>
       <p>
-        You may have generalized the idea of the definite integral by looking at the accumulation of a function. <xref ref="accumulation" text="title"/> reminds you how position can be thought of as the accumulation of change in velocity. The idea of accumulation of change (not limited to velocity leading to change in position) will be important in our future study.
+        You may have generalized the idea of the definite integral by looking at the accumulation of a function. <xref ref="accumulation" text="title"/> recalls how position can be thought of as the accumulation of change in velocity. The idea of accumulation of change (not limited to velocity leading to change in position) will be important in our future study.
       </p>
       <assemblage xml:id="accumulation">
         <title>Recovering Position from Velocity</title>
@@ -191,10 +238,10 @@
       </assemblage>
       <proof>
         <p>
-          In many physical problems it is easier to monitor velocity rather than position because velocity is a local measurement, while position is <em>not</em> a local measurement. This may seem surprising at first, so we will consider our example of piloting a car. Tracking the position of a car for all times on a trip requires a coordinate system and constant measurement of distance between the car and reference objects such as axes or coordinate planes. This requires measurement beyond the car and an external view of the car. This is why systems like GPS satellites and receivers are necessary for accurate global navigation. In contrast, note that the car does <em>not</em> need something outside of itself to measure its speed because the speed is a measurement of change in position relative to a small step around the current location.
+          In many physical problems, it is easier to monitor velocity rather than position because velocity is a local measurement, while position is <em>not</em> a local measurement. This may seem surprising at first, so we will consider our example of piloting a car. Tracking the position of a car for all times on a trip requires a coordinate system and constant measurement of distance between the car and reference objects such as axes or coordinate planes. This requires measurement beyond the car and an external view of the car. This is why systems like GPS satellites and receivers are necessary for accurate global navigation. In contrast, note that the car does <em>not</em> need something outside of itself to measure its speed because the speed is a measurement of change in position relative to a small step around the current location.
         </p>
         <p>
-          Because velocity is the change in position over time, <m>\text{velocity}=\frac{\Delta \text{position}}{\Delta \text{time}}</m>, we can measure a <em>change</em> in position by multipliying velocity by the change in time (<m>\Delta \text{position}=\text{velocity} \Delta \text{time}</m>) if velocity is constant. Over a small time interval, velocity changes very little, or is close to constant. Therefore, we can apply this relation and use a classic calculus approach to approximate, refine, and precisely state the position as a function of time. 
+          Because velocity is the change in position over time, <m>\text{velocity}=\frac{\Delta \text{position}}{\Delta \text{time}}</m>, we can measure a <em>change</em> in position by multiplying velocity by the change in time (<m>\Delta \text{position}=\text{velocity} \Delta \text{time}</m>) if velocity is constant. Over a small time interval, velocity changes very little, or is close to constant. Therefore, we can apply this relation and use a classic calculus approach to approximate, refine, and precisely state the position as a function of time. 
         </p>
         <p>
           We know the position of the object at time <m>0</m> because <m>x(0)=x_0</m>. Thus, we want to use the velocity to measure the change in position (on the number line) between <m>t=0</m> and time <m>t=a</m>. We approximate this change in position as <m>\Delta \text{position}=(\text{velocity})(\Delta \text{time})</m>. To do this, we divide the interval <m>[0,a]</m> into <m>n</m> equally-sized pieces of size <m>\Delta t= \frac{a}{n}</m>. The endpoints of these intervals are where <m>t_0=0, t_1=\Delta t, \ldots, t_{n-1}=(n-1)\Delta t, t_n =a</m>. The position at <m>t=a</m> is given by
@@ -209,13 +256,16 @@
           This approximation is step one of the classic calculus approach.
         </p>
         <p>
-          Step 2 of the classic calculus approach requires an understanding of how this approximation works on a finer scale. A <q>finer scale</q> in this case means a larger number <m>n</m> of subintervals. Increasing <m/> means that <m>\Delta t</m> decreases. In other words, a finer scale means more terms in the sum but a smaller step size multiplier (<m>\Delta t</m>). The estimate is now a Riemann sum where the function being evaluated in the Riemann sum is the velocity <m>v(t)</m>. Recognizing this leads to translating the Riemann sum into a definite integral as step three of the classic calculus approach. As <m>n\rightarrow \infty</m> or <m>\Delta t \rightarrow 0</m>,
+          Step 2 of the classic calculus approach requires an understanding of how this approximation works on a finer scale. A <q>finer scale</q> in this case means a larger number <m>n</m> of subintervals. Increasing <m>n</m> means that <m>\Delta t</m> decreases. In other words, a finer scale means more terms in the sum but a smaller step size multiplier (<m>\Delta t</m>). 
+        </p>
+        <p>  
+          The estimate is now a Riemann sum where the function being evaluated in the Riemann sum is the velocity <m>v(t)</m>. Recognizing this leads to translating the Riemann sum into a definite integral as step three of the classic calculus approach. As <m>n\rightarrow \infty</m> or <m>\Delta t \rightarrow 0</m>,
           <me>
             x_0+\sum_{i=1}^n v(t_i^*) \Delta t \rightarrow x(a)=x_0+\int_0^{a} v(t) \, dt
           </me>.
         </p>
         <p>
-          In practice, this approximation is what GPS systems do at very fine level: use hyper-accurate timing and changes in distances to satellites to give current position. 
+          In practice, this approximation is what GPS systems do at very fine level: use hyper-accurate timing and changes in relative velocities to satellites to give current position. 
         </p>
       </proof>
       <p>
