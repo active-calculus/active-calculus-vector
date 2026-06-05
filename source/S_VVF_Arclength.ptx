@@ -31,7 +31,7 @@
 </objectives>
 <introduction component="instructor">
   <p>
-    
+    he material in this section requires students to understand the graph of a vector-valued function of one variable (from <xref ref="S-VVF-Plotting"/>) and tools from <xref ref="S-VVF-Calculus"/>.
   </p>
 </introduction>
 <subsection>
@@ -64,7 +64,7 @@
     <md>
       \vert{PQ}\vert = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}
     </md>.
-    However, if this curve is a portion of a road on which we drive a car, the distance traveled as measured by the change in the car's odometer value from point <m>P</m> to point <m>Q</m> will be different than the straight-line distance <m>\vert PQ\vert</m> calculated by the distance formula. You likely saw how to calculate the length of a portion of a curve <m>y=f(x)</m> in your <url href="https://activecalculus.org/single/sec-6-1-area.html" visual="activecalculus.org/single/sec-6-1-area.html">single-variable calculus class</url>. In this section, we will use the idea of vector-valued functions to find the lengths of a larger family of curves.
+    However, if this curve is a portion of a road on which we drive a car, the distance traveled as measured by the change in the car's odometer value from point <m>P</m> to point <m>Q</m> will be different than the straight-line distance <m>\vert PQ\vert</m> calculated by the distance formula. You likely saw how to calculate the length of a portion of a curve <m>y=f(x)</m> in your <url href="https://activecalculus.org/single/sec-6-1-area.html" visual="activecalculus.org/single/sec-6-1-area.html">single-variable calculus class</url>. In this section, we will use vector-valued functions of one variable to find the lengths of a larger family of curves.
   </p>
 <worksheet>
   <exploration workspace="1.5in" xml:id="PA-arclength">
@@ -76,9 +76,15 @@
   <task xml:id="PA-arclength1">
     <statement>
       <p>
-        In your testing center (an abandoned parking garage), you drive your car up a ramp and note that the LTS recorded that the car had coordinates of <m>\langle 10,-5,0\rangle</m> at <m>t=0</m> and <m>\langle -8,10,12\rangle</m> at <m>t=30</m> seconds. The units on each component of the coordinate vectors are meters. What is the distance between initial (<m>t=0</m>) and final (<m>t=30</m>) positions of the car? This is the <em>displacement</em> of your total trip.
+        In your testing center (an abandoned parking garage), you drive your car around different levels of your testing center and note that the LTS recorded that the car had coordinates of <m>\langle 10,-5,0\rangle</m> at <m>t=0</m> and <m>\langle -8,10,12\rangle</m> at <m>t=30</m> seconds. The units on each component of the coordinate vectors are meters. What is the distance between initial (<m>t=0</m>) and final (<m>t=30</m>) positions of the car? This distance is the length of the <em>displacement</em> vector of your total trip.
       </p>
     </statement>
+    <solution>
+      <p>
+        We use the distance formula to compute this the difference between these locations:
+        <md>\vecmag{\langle -8,10,12\rangle -\langle 10,-5,0\rangle }= \sqrt{18^2+15^2+12^2}=sqrt{693}\approx 26.32</md>
+      </p>
+    </solution>
   </task> 
   <task>
     <statement>
@@ -86,6 +92,11 @@
         Do you think the distance the car actually traveled is greater than, less than, or exactly the same as your answer to <xref ref="PA-arclength1" text="type-local"/>? Write a couple of sentences to explain your reasoning.
       </p>
     </statement>
+    <solution>
+      <p>
+        The actual distance traveled is likely larger than the distance between the final and initial locations. Distance is measured using a straight line, which is the shortest distance between two points.
+      </p>
+    </solution>
   </task>
   <task xml:id="PA-arclength3">
     <statement>
@@ -100,6 +111,12 @@
         Calculate the distance between successive times and estimate how far your car went on the drive up the parking ramp. 
       </p>
     </statement>
+    <solution>
+      <p>
+        We can calculate the distances between each point and sum them to get an estimate for the distance traveled. 
+        <md>\sqrt{4^2+5^2+6^2}+\sqrt{16^2+2^2+4^2}+\sqrt{2^2+8^2+2^2}=\sqrt{77}+\sqrt{276}+\sqrt{72}\approx 33.87</md>
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
@@ -107,6 +124,11 @@
         Do you think your estimate from <xref ref="PA-arclength3" text="type-local"/> is greater than, less than, or equal to the actual distance traveled? Write a couple of sentences to explain your reasoning. 
       </p>
     </statement>
+    <solution>
+      <p>
+        The result here is less than the actual distance traveled. Distance is measured using a straight line, which is the shortest distance between two points. If we considered the intermediate points, the same argument as before applies to each segment and thus the sum of the segments. 
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
@@ -114,36 +136,19 @@
         You look into the documentation on your location tracking system and see that you can specify how often the software will output location data. You decide that getting the location every half second seems like a good idea. How many data points will that correspond to for your drive up the ramp? Write a couple of sentences to describe what steps you would take with this new location data to calculate a better estimate on the distance traveled by your car. How might you go about finding the <em>exact</em> distance traveled by your car?
       </p>
     </statement>
+    <solution>
+      <p>
+        There will be 61 data points in the output of the LTS, which will give us 60 segments that we can calculate the linear distance between the initial and final points. We will sum the distances of these intermediate segments to get a better estimate of the distance traveled by the vehicle. We can continue to look at smaller and smaller time scales, but we should see that our measurements will be converging to the actual distance traveled along the path taken in the test drive. These smaller time steps will involve more segments but each segment will be a smaller distance. 
+      </p>
+    </solution>
   </task>
 </exploration>
 </worksheet>
-<!-- If we restore any of this, it needs edits based on notes from David and Kathy. -->
-<!-- <p>
-  The last part of the Preview Activity is an example of algorithmic thinking, a vital skill in mathematical, scientific, and engineering fields. Algorithmic thinking involves breaking larger problems into different tasks where a precise set of rules or operations can be stated for each task. We have referred to the <xref ref="C_VVF_classic-calc-approach" text="custom">classic calculus approach</xref> in a few scenarios and will again this section. However, now we take a moment to mention how the classic calculus approach has the structure of this algorithmic thinking. Specifically, the tasks for the classic calculus approach can be summarized as
-  <ol marker="1.">
-    <li>
-      <p>
-        approximate a measurement,
-      </p>
-    </li>
-    <li>
-      <p>
-        quantify how the approximation changes with a finer scale or refinement, and
-      </p>
-    </li>
-    <li>
-      <p>
-        apply a limit to describe how our approximation converges to the measurement of interest
-      </p>
-    </li>
-  </ol>
-  Each of these steps requires precise statements of how the approximation is made and how it changes when looking at a finer scale. The details of how each of these tasks is done will change depending on the measurement, which is why so much time will be spent talking about steps 1 and 2 when introducing new concepts. 
-</p> -->
 </subsection>
 <subsection>
   <title>Arc Length</title>
   <p>
-    The central question we want to answer in this section is <q>Given a curve <m>C</m> from <m>P</m> to <m>Q</m>, what is the length of <m>C</m>?</q> We will be able to answer this question for well-behaved curves by applying the classic calculus approach to the ideas you investigated in the Preview Activity. To do this, we approximate the length of the curve <m>C</m> by computing the length of line segments between points on <m>C</m>. We will call these intermediate points <m>\vr_0,\vr_1,...,\vr_n</m>. Remember that we are specifying location using vectors graphed in standard position. Using vectors to specify position means that the corresponding line segments between successive positions can be represented by the vector difference <m>\Delta\vr_i = \vr_{i}-\vr_{i-1}</m>.
+    The central question we want to answer in this section is <q>Given a curve <m>C</m> from <m>P</m> to <m>Q</m>, what is the length of <m>C</m>?</q> We will answer this question for well-behaved curves by applying the <xref ref="CCA" text="custom">classic calculus approach</xref> to the ideas you investigated in the Preview Activity. For step 1 of the CCA, we approximate the length of the curve <m>C</m> by computing the length of line segments between points on <m>C</m>. We will call these intermediate points <m>\vr_0,\vr_1,...,\vr_n</m>. Remember that we are specifying location using vectors graphed in standard position. Using vectors to specify position means that the corresponding line segments between successive positions can be represented by the vector difference <m>\Delta\vr_i = \vr_{i}-\vr_{i-1}</m>.
   </p>
   <figure xml:id="arclength2">
     <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> split into <m>6</m> parts with endpoints <m>\vr_0,\vr_1,...,\vr_6</m></caption>
@@ -172,7 +177,8 @@
     </image>
   </figure>
   <p>
-    This leads to an approximation for the length of <m>C</m> given by the sum of the lengths of the vectors <m>\Delta\vr_i = \vr_i-\vr_{i-1}</m>. Using <m>\Delta x_i</m>, <m>\Delta y_i</m>, and <m>\Delta z_i</m> to denote the change in each component, the magnitude of <m>\Delta \vr_i</m> is determined by the distance formula as we saw in the previous chapter:
+    This leads to an approximation for the length of <m>C</m> given by the sum of the lengths of the vectors <m>\Delta\vr_i = \vr_i-\vr_{i-1}</m>. 
+    Using <m>\Delta x_i</m>, <m>\Delta y_i</m>, and <m>\Delta z_i</m> to denote the change in each component, the magnitude of <m>\Delta \vr_i</m> is determined by the distance formula as we saw in the previous chapter:
     <md>
       \vecmag{\Delta\vr_i} = \sqrt{\Delta x_i^2 + \Delta y_i^2 + \Delta z_i^2}
     </md>.
@@ -189,7 +195,7 @@
     <caption>A plot of curve in space</caption>
     <interactive label="interactive-arclength1" platform="sage" width="110%" aspect="1:0.75">
       <description><p>An interactive two dimensional plot with an oriented curve from a point <m>P</m> to a point <m>Q</m>. The curve moves up and left from the point <m>P</m>, then turns up and to the right before moving down and right to the point <m>Q</m>. The slider above the plot changes the number of line segments drawn between intermediate points on the oriented curve. Line segments are drawn in blue between intermediate points on the curve. The length of the blue line segments is displayed as an approximation to the true arc length of the oriented curve. </p></description>
-    <slate surface="sage">
+      <slate surface="sage">
         @interact
         def arclengthdemo(n=slider(1,25,1,default=1,label="Number of Segments")):
             tpoints=[4-3.5*i/n for i in range(n+1)]
@@ -211,14 +217,13 @@
     </interactive>
   </figure>
   <p>
-    Notice that the approximation above does not involve a parameterization of <m>C</m>. In general, it is easiest to generate the positions <m>\vr_i</m> by evaluating a parameterization at different <m>t</m>-values. We will use <m>\vr(t)=\langle x(t),y(t),z(t)\rangle</m> as a parameterization of <m>C</m> to specify points between <m>P</m> and <m>Q</m>.
+    Conceptually, you can use <xref ref="arclengthinteract"/> to see how more intermediate points will give rise to a better estimate for the true length of the curve, but we have not quantified how the approximation changes on a finer scale (step 2 of the CCA). In order to complete step 2 of the CCA, we will need to incorporate steps in our parameter <m>t</m> into this calculation.
+  </p> 
+  <p>  
+    In general, it is easiest to generate the positions <m>\vr_i</m> by evaluating a parameterization at different <m>t</m>-values. We will use <m>\vr(t)=\langle x(t),y(t),z(t)\rangle</m> as a parameterization of <m>C</m> to specify points between <m>P</m> and <m>Q</m>. Specifically, if <m>\vr(t)</m> is a parameterization of <m>C</m> with <m>P=\vr(a)</m> and <m>Q=\vr(b)</m>, we can divide <m>C</m> into <m>n</m> parts given by <m>\vr_i=\vr(t_i)</m> where <m>t_i=a+ i \Delta t</m> with <m>\Delta t= \frac{b-a}{n}</m>. This divides <m>C</m> into parts that correspond to equal steps in the parameter <m>t</m>. (Note that these parts will, in general, <em>not</em> correspond to parts with equal length.)
   </p>
   <p>
-    Specifically, if <m>\vr(t)</m> is a parameterization of <m>C</m> with <m>P=\vr(a)</m> and <m>Q=\vr(b)</m>, we can divide <m>C</m> into <m>n</m> parts given by <m>\vr_i=\vr(t_i)</m> where <m>t_i=a+ i \Delta t</m> with <m>\Delta t= \frac{b-a}{n}</m>. This divides <m>C</m> into parts that correspond to equal steps in the parameter <m>t</m>. (Note that these parts will, in general, <em>not</em> correspond to parts with equal length.)
-  </p>
-  
-  <p>
-    This process leads to an approximation used in the first step of the classic calculus approach. Since this approximation approaches the actual length as we use smaller and smaller steps, we define the arc length as follows:
+    This process leads to a specific approximation used in the classic calculus approach. Since this approximation approaches the actual length as we use smaller and smaller steps in the parameter, we define the arc length as follows:
   </p>
   <definition xml:id="def-arclength">
     <statement>
@@ -227,19 +232,21 @@
         <md>
           L=\lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2}
         </md>
-        
+        where <m>\Delta\vr_i= \vr_i-\vr_{i-1} = \langle \Delta x_i ,\Delta y_i , \Delta z_i \rangle </m> such that <m>\vr_i=\vr(t_i)</m> where <m>t_i=a+ i \Delta t</m> with <m>\Delta t= \frac{b-a}{n}</m>.
       </p>
     </statement>
   </definition>
-  
   <p>
-    Since we want to shrink the step size <m>\Delta t</m> to get better approximations, we now rewrite the approximation to allow us to see how the approximation changes as we consider smaller values of <m>\Delta t</m>. To do this, note that assuming <m>x(t)</m> is differentiable, since <m>x'(t_i)\approx \Delta x_i/\Delta t</m>, we can write that <m>\Delta x_i\approx x'(t_i)\Delta t</m>. This applies equally well for both <m>y</m> and <m>z</m>, so this leads us to
+    We now write out the second step of the CCA described above more explicitly in order to understand how to efficiently calculate the arc length. Since we want to shrink the step size <m>\Delta t</m> to get better approximations, we now rewrite the approximation to allow us to see how the approximation changes as we consider smaller values of <m>\Delta t</m>. To do this, note that assuming <m>x(t)</m> is differentiable, since <m>x'(t_i)\approx \Delta x_i/\Delta t</m>, we can write that <m>\Delta x_i\approx x'(t_i)\Delta t</m>. This applies equally well for both <m>y</m> and <m>z</m>, so this leads us to
     <md>
       <mrow> L \approx\amp \sum_{i=1}^{n} \sqrt{\left(\Delta x_i\right)^2 + \left(\Delta y_i\right)^2 + \left(\Delta z_i\right)^2} </mrow>
       <mrow>   \approx\amp \sum_{i=1}^{n} \sqrt{\left(x'(t_i)\Delta t\right)^2 + \left(y'(t_i)\Delta t\right)^2 + \left(z'(t_i)\Delta t\right)^2}</mrow>
       <mrow>\approx\amp  \sum_{i=1}^{n} \sqrt{\left(x'(t_i)\right)^2 + \left(y'(t_i)\right)^2 + \left(z'(t_i)\right)^2} \ \Delta t</mrow>.
     </md>.
-    This refines the approximation and completes the second step in the classic calculus approach. Now we have set up the approximation as a Riemann sum. In particular, this approximation is a Riemann sum of the function <m>\sqrt{\left(x'(t_i)\right)^2 + \left(y'(t_i)\right)^2 + \left(z'(t_i)\right)^2}</m> which will simplify as <m>\Delta t</m> goes to 0. Thus the limit of the Riemann sum from <xref ref="def-arclength" text="custom">the definition of arc length</xref> gives a definite integral
+    This refines the approximation and gives an explicit statment that completes the second step in the classic calculus approach.
+  </p> 
+  <p>  
+    Note that we have set up the approximation as a Riemann sum. In particular, this approximation is a Riemann sum of the function <m>\sqrt{\left(x'(t_i)\right)^2 + \left(y'(t_i)\right)^2 + \left(z'(t_i)\right)^2}</m> which will simplify as <m>\Delta t</m> goes to 0. Thus the limit of the Riemann sum from <xref ref="def-arclength" text="custom">the definition of arc length</xref> gives a definite integral
     <md>
       <mrow> L\amp = \lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{\left(\Delta x_i\right)^2 + \left(\Delta y_i\right)^2 + \left(\Delta z_i\right)^2}</mrow>
       <mrow> \amp= \lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{\left(x'(t_i)\right)^2 + \left(y'(t_i)\right)^2 + \left(z'(t_i)\right)^2} \ \Delta t</mrow>
@@ -249,17 +256,26 @@
   </p>
   <theorem xml:id="Length-of-a-curve">
     <title>The length of a curve</title>
-  <p>
-    If <m>\vr(t)</m> parameterizes a curve <m>C</m> on an interval <m>[a,b]</m> for which <m>\vr\, '(t)</m> exists at each point, then the <em>length</em><idx><h>arc length</h></idx> <m>L</m> of <m>C</m>, is given by
-    <men xml:id="eq_arclength">
-      L = \int_a^b \vecmag{\vr\, '(t)} \, dt.
-    </men>
-  </p>
-</theorem>
+    <p>
+      If <m>\vr(t)</m> parameterizes a curve <m>C</m> on an interval <m>[a,b]</m> for which <m>\vr\, '(t)</m> exists at each point, then the <em>length</em><idx><h>arc length</h></idx> <m>L</m> of <m>C</m>, is given by
+      <men xml:id="eq_arclength">
+        L = \int_a^b \vecmag{\vr\, '(t)} \, dt.
+      </men>
+    </p>
+  </theorem>
 <p>
   Note that formula <xref ref="eq_arclength"/> applies to curves in any dimensional space. Moreover, this formula has a natural interpretation: If <m>\vr(t)</m> records the position of a moving object, then <m>\vr\, '(t)=\vv(t)</m> is the object's velocity and <m>\vecmag{\vr\, '(t)}</m> its speed. Formula <xref ref="eq_arclength"/> says that we can integrate the speed of an object traveling over the curve to find the distance traveled by the object. Thinking in terms of units, if we are measuring distance in meters and time in seconds, the units on <m>\vecmag{\vr\, '(t)}</m> will be meters per second and the units on <m>dt</m> will be seconds. Thus, the units on the integral will be meters, which is exactly what we expect when finding the <em>length</em> of a curve or distance traveled by an object along a curve. This formula is analogous to the formula for <url href="https://activecalculus.org/single/sec-6-1-area.html#sec-6-1-area-6-9">finding the arc length of a graph</url> from single-variable calculus.
 </p>
-
+<example xml:id="line-arclength" >
+  <p>
+    In this example, we will use a parameterization of a line to compute the arc length of the line between <m>(1,2,3)</m> and <m>(2,0,5)</m>. An easy-to-find parameterization will have the base point <m>(1,2,3)</m> and direction vector given by the difference between our points, <m>\langle 2-1, 0-2, 5-3\rangle = \langle 1,-2,2 \rangle</m>. This leads to a parameterization of the line as <m>\vr(t)=\langle 1,2,3\rangle + t \langle 1,-2,2 \rangle</m>. Notice that with this parameterization, restricting to <m>0\leq t\leq 1</m> gives a domain for <m>\vr(t)</m> for the line segment from <m>(1,2,3)</m> when <m>t=0</m> to <m>(2,0,5)</m> when <m>t=1</m>. Note that the speed of this parameterization is constant, <m>\vecmag{\vr \, '(t)}=\sqrt{1^2+(-2)^2+2^2}=3</m>.
+  </p>
+  <p>
+    We can use <xref ref="Length-of-a-curve"/> to calculate the length of this path.
+    <md> L = \int_a^b \vecmag{\vr\, '(t)} \, dt. =  \int_0^1 3 \, dt= 3</md>. 
+    This example was simple enough that we didn't actually need to use <xref ref="Length-of-a-curve"/> because we had a straight line path which we could have calculated the length of using the distance formula. This example will be revisited in <xref ref="linearclength"/>.
+  </p>
+</example>
 <worksheet>
   <activity workspace="1.5in" xml:id="act-VVF-arclength-circle-helix">
   <introduction>
@@ -287,7 +303,7 @@
     </statement>
     <solution>
       <p>
-        The circumference of this circle is the length of curve defined by <m>\\vr_1(t)</m>, or
+        The circumference of this circle is the length of curve defined by <m>\vr_1(t)</m>, or
         <md>
           \int_0^{2\pi} \vecmag{\vr_1\, '(t) } \, dt = \int_0^{2\pi} \sqrt{(-3\sin(t))^2 + (3\cos(t))^2} \, dt = \int_0^{2\pi} 3 \, dt = 2 \pi \cdot 3= 6\pi
         </md>
@@ -357,13 +373,10 @@
 
   <example xml:id="linearclength">
     <p>
-      In this example, we look at a linear path and explore how to write a parameterization that moves with unit speed. We will look at the parameterization of the line through <m>(1,2,3)</m> and <m>(2,0,5)</m>. We are using these values to make the calculations less abstract but there is nothing special about these values and the methods will work for any linear parameterization.
+      In this example, we look at a linear path and explore how to write a parameterization that moves with unit speed. We will look at the parameterization of the line through <m>(1,2,3)</m> and <m>(2,0,5)</m>. We are using these values to make the calculations less abstract but there is nothing special about these values and the methods will work for any linear parameterization. In <xref ref="line-arclength"/>, we calculate that the length of the path of the parameterization in this case is 3.
     </p>
     <p>
-      An easy-to-find parameterization will have the base point <m>(1,2,3)</m> and direction vector given by the difference between our points, <m>\langle 2-1, 0-2, 5-3\rangle = \langle 1,-2,2 \rangle</m>. This leads to an initial parameterization of the line as <m>\vr(t)=\langle 1,2,3\rangle + t \langle 1,-2,2 \rangle</m>. Notice that with this parameterization, restricting to <m>0\leq t\leq 1</m> gives a domain for <m>\vr(t)</m> for the line segment from <m>(1,2,3)</m> when <m>t=0</m> to <m>(2,0,5)</m> when <m>t=1</m>. The arc length of this segment can be computed using the distance formula, so it is <m>3</m>.
-    </p>
-    <p>
-      We want to convert this to a parameterization with unit speed. To think of this another way, we are aiming to have the parameter value when we reach the point <m>(2,0,5)</m> be equal to the distance from the base point <m>(1,2,3)</m>. This will mean we seek a parameterization <m>\vr_1(s)</m> where the domain <m>0\leq s\leq 3</m> corresponds to the line segment from <m>(1,2,3)</m> to <m>(2,0,5)</m>. The speed of this parameterization is
+      We want to convert this to a parameterization with unit speed. To think of this another way, we are aiming to have the parameter value when we reach the point <m>(2,0,5)</m> be equal to the distance from the base point <m>(1,2,3)</m>. This will mean we seek a parameterization <m>\vr_1(s)</m> where the domain <m>0\leq s\leq 3</m> corresponds to the line segment from <m>(1,2,3)</m> to <m>(2,0,5)</m>. The speed of our original parameterization is
       <md>\vecmag{\vr\, '(t)}=\vecmag{\frac{d\vr}{dt}}=\vecmag{\langle 1,-2,2\rangle}=\sqrt{9}=3</md>.
       This means that we need to adjust our parameterization to travel <m>3</m> times slower, which can be accomplished by replacing <m>t</m> in our parameterization with <m>s=t/3</m>. In other words, we adjusted the parameter used to make sure the speed with respect to the new parameter will be one. This adjustment was easy to do because the amount we needed to change the parameter did not change at different times.
     </p> 
@@ -428,18 +441,18 @@
   <example xml:id="ex-VVF-find-arclength-fn">
     <p>
       In this example, we will consider the curve <m>C</m> parameterized by
-        <md>
-          \vr(t) = \left\langle t^2, \frac{8}{3}t^{3/2}, 4t \right\rangle
-        </md>
-        for <m>t \geq 0</m>. Our goal is to find a unit speed parameterization of <m>C</m>. The first step is to find the speed of our current parameterization:
-        <md>
-          <mrow>\vecmag{\vr\, '(t)} \amp =  \sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 +\left(z'(t)\right)^2} </mrow>
-          <mrow>\amp =  \sqrt{\left(2t\right)^2 + \left(4t^{1/2}\right)^2 + \left(4\right)^2} </mrow>
-          <mrow>\amp =  \sqrt{4t^2 + 16t + 16} </mrow>
-          <mrow>\amp =  \sqrt{(2t+4)^2} </mrow>
-          <mrow>\amp = 2t+4 </mrow>
-        </md>.
-        An important element of this example is that our speed is not constant but still algebraically easy enough to work with for later calculations. Note that because we have stated that <m>t \geq 0</m> we only need to consider the positive square root calculation. 
+      <md>
+        \vr(t) = \left\langle t^2, \frac{8}{3}t^{3/2}, 4t \right\rangle
+      </md>
+      for <m>t \geq 0</m>. Our goal is to find a unit speed parameterization of <m>C</m>. The first step is to find the speed of our current parameterization:
+      <md>
+        <mrow>\vecmag{\vr\, '(t)} \amp =  \sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 +\left(z'(t)\right)^2} </mrow>
+        <mrow>\amp =  \sqrt{\left(2t\right)^2 + \left(4t^{1/2}\right)^2 + \left(4\right)^2} </mrow>
+        <mrow>\amp =  \sqrt{4t^2 + 16t + 16} </mrow>
+        <mrow>\amp =  \sqrt{(2t+4)^2} </mrow>
+        <mrow>\amp = 2t+4 </mrow>
+      </md>.
+      An important element of this example is that our speed is not constant but still algebraically easy enough to work with for later calculations. Note that because we have stated that <m>t \geq 0</m> we only need to consider the positive square root calculation. 
     </p>
     <p>
       Next, we will calculate <m>s(a)</m>, the arc length traveled from <m>t=0</m> to <m>t=a</m> along the curve <m>C</m> in order to help us figure out how to transform our parameterization into one with unit speed. We use <xref ref="Length-of-a-curve"/> to compute the arc length of <m>C</m> as <m>t</m> goes from <m>0</m> to <m>a</m>. 
@@ -563,6 +576,11 @@
       <hint>
         <p>Remember that we are <em>not</em> asking if the driver or road can control time. We are asking if the elapsed time is the same for all drivers at a fixed point on the racetrack or if drivers can have a different elapsed time to a particular location on the racetrack.</p>
       </hint>
+      <solution>
+        <p>
+          The time elapsed is a property of the driver because different drivers can take different amounts of time to get to a particular location on the track.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -575,6 +593,11 @@
           You should make sure you understand that the measurements for different drivers must be made at the same location on the track, as stated above. Your explanation sentence may sound a little silly.
         </p>
       </hint>
+      <solution>
+        <p>
+          Position is a property of the road. Remember that we are considering different possible drivers but we are comparing all of these at the same location. 
+        </p>
+      </solution>
     </task>
     <task>
       <title>Speedometer Reading</title>
@@ -583,6 +606,11 @@
         Now that we are warmed up, let's look at some more interesting measurements. The car's speedometer reading measures how fast (as a scalar) the car is moving. Is the car's speedometer reading a property of the driver or the road? Be sure to explain your answer.
       </p>
       </statement>
+      <solution>
+        <p>
+          The car's speedometer is a property of the driver. Different drivers can have different speeds when measured at the same location on the track.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -593,6 +621,11 @@
       <hint>
         <p>The vector calculus quantities we have covered are time, position, velocity, acceleration, speed, and arc length.</p>
       </hint>
+      <solution>
+        <p>
+          The speedometer measures the speed of the car.
+        </p>
+      </solution>
     </task>
     <task>
       <title>Odometer Reading</title>
@@ -601,6 +634,11 @@
           The racecar's odometer measures the distance traveled by the car. Every car's odometer is set to be zero at the start of the race. Is the car's odometer reading a property of the driver or the road? Be sure to explain your answer.
         </p>
       </statement>
+      <solution>
+        <p>
+          The car's odometer reading is a property of the road. For every driver to reach a specific location on the track, they had to drive the same path (remember our simplifying assumption above), thus every driver would have the same odometer reading at the specified location. 
+        </p>
+      </solution>
     </task>
   </activity>
 </worksheet>
