@@ -18,7 +18,7 @@
       <ul>
         <li>
           <p>
-            How can we split the acceleration vector  into parts in the direction of travel and the direction of turning? 
+            How can we split the acceleration vector into parts in the direction of travel and the direction of turning? 
           </p>
         </li>
       </ul>
@@ -44,7 +44,7 @@
     <task>
       <statement>
         <p>
-          The image below shows the path you drove on a test drive along with points <m>P</m> and <m>Q</m> and the direction of travel. At the points <m>P</m> and <m>Q</m>, we have draw three vectors. The acceleration vector <m>\va</m> provided by your new gyroscopic accelerometer is shown in magenta. The two blue vectors are the unit tangent vector <m>\vT</m> and unit normal vector <m>\vN</m> at that point. Label each of the blue vectors as being <m>\vT</m> or <m>\vN</m>.
+          The image below shows the path you drove on a test drive along with points <m>P</m> and <m>Q</m> and the direction of travel. At the points <m>P</m> and <m>Q</m>, we have drawn three vectors. The acceleration vector <m>\va</m> provided by your new gyroscopic accelerometer is shown in magenta. The two blue vectors are the unit tangent vector <m>\vT</m> and unit normal vector <m>\vN</m> at that point. Label each of the blue vectors as being <m>\vT</m> or <m>\vN</m>.
         </p>
         <image width="65%">
           <description><p>A plot of a curve that moves from the top right to the bottom left. The curve starts moving up and left before turning to go down and left, then turning down and finally down and right. A point near the start of the curve is drawn and labeled <m>P</m>. Three arrows are drawn starting at the point <m>P</m>, with a blue arrow going up and left tangent to the curve at <m>P</m>, a second blue arrow of the same length that is pointing down and left perpendicular to the first blue arrow, and a magenta arrow that is between the two blue arrows and is longer than the blue arrows. A point near the end of the curve is drawn and labeled <m>Q</m>. Three arrows are drawn starting at the point <m>Q</m>, with a blue arrow going down and left tangent to the curve at <m>Q</m>, a second blue arrow of the same length that is pointing down and right perpendicular to the first blue arrow, and a magenta arrow that is moving right and is longer than the blue arrows.</p></description>
@@ -68,6 +68,11 @@
           </prefigure>
         </image>
       </statement>
+      <solution>
+        <p>
+          At each point on the figure, the vector in the direction of travel is <m>\vT</m>, the vector pointing perpendicular to <m>\vT</m> and in the direction of the turning is <m>\vN</m>, and the other vector is <m>\va</m>.
+        </p>
+      </solution>
     </task>
     <task xml:id="PA-splita-part2">
       <statement>
@@ -75,13 +80,47 @@
           Draw the projection of <m>\va</m> on <m>\vT</m> and the projection of <m>\va</m> on <m>\vN</m> at point <m>P</m> and at point <m>Q</m> in the graph above.
         </p>
       </statement>
+      <solution>
+        <image width="65%">
+          <prefigure xmlns="https://prefigure.org">
+            <diagram xmlns="https://prefigure.org" dimensions="(377,192)" margins="5">
+              <definition>s(t) = ((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))</definition>
+              <coordinates bbox="(-3.1,-0.9,1.8,1.6)">
+                <parametric-curve function="s" domain="(0.5,4)" stroke="black" arrows="1"/>
+                <definition>ds(t)=deriv(s,t)</definition>
+                <definition>a(t)=deriv(ds,t)</definition>
+                <definition>T(t)=1/length(ds(t))*ds(t)</definition>
+                <definition>dT(t)=deriv(T,t)</definition>
+                <definition>N(t)=1/length(dT(t))*dT(t)</definition>
+                <definition>aT(t)=dot(a(t),T(t))*T(t)</definition>
+                <definition>aN(t)=a(t)-aT(t)</definition>
+                <vector-field function="T" curve="s" domain="(1,3)" N="2" stroke="#1E88E5"/>
+                <vector-field function="N" curve="s" domain="(1,3)" N="2" stroke="#1E88E5"/>
+                <vector-field function="a" curve="s" domain="(1,3)" N="2" stroke="#D81B60"/>
+                <vector-field function="aT" curve="s" domain="(1,3)" N="2" stroke="#60d81b"/>
+                <vector-field function="aN" curve="s" domain="(1,3)" N="2" stroke="#931bd8"/>
+                <point p="s(1)" fill="black"><m>P</m></point>
+                <point p="s(3)" fill="black" alignment="nw"><m>Q</m></point>              
+              </coordinates>
+            </diagram>
+          </prefigure>
+        </image>
+        <p>
+          In the plot above, the green vectors are the projections of <m>\va</m> onto the <m>\vT</m> direction and the purple vectors are the projection of <m>\va</m> onto the <m>N</m> direction.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
         <p>
-          Is <m> \va \cdot \vT</m> is positive, negative, or zero at <m>P</m>? What about at <m>Q</m>? Write a sentence or two to justify your answers.
+          Is <m> \va \cdot \vT</m> positive, negative, or zero at <m>P</m>? What about at <m>Q</m>? Write a sentence or two to justify your answers.
         </p>
       </statement>
+      <solution>
+        <p>
+          The dot product <m> \va \cdot \vT</m> is positive at P because the angle between <m>\va</m> and <m>\vT</m> is acute. The dot product <m> \va \cdot \vT</m> is negative at Q because the angle between <m>\va</m> and <m>\vT</m> is obtuse. 
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -89,6 +128,11 @@
           Is <m> \va \cdot \vN</m> is positive, negative, or zero at <m>P</m>? What about at <m>Q</m>? Write a sentence or two to justify your answers.
         </p>
       </statement>
+      <solution>
+        <p>
+          The dot product <m> \va \cdot \vN</m> is positive at P because the angle between <m>\va</m> and <m>\vN</m> is acute. The dot product <m> \va \cdot \vN</m> is positive at Q because the angle between <m>\va</m> and <m>\vN</m> is acute. 
+        </p>
+      </solution>
     </task>
   </exploration>
 </worksheet>
@@ -127,7 +171,7 @@
     </statement>
   </definition>
   <p>
-    Our use of the word <q>component</q> in <xref ref="def-aTaN"/> is consistent with our use in <xref ref="S-Precalc-DotProduct"/>  because <m>\vT</m> and <m>\vN</m> are both unit vectors. Furthermore, because the unit tangent and unit normal vectors are also orthogonal to each other, <m>a_{\vT}</m> and  <m>a_{\vN}</m> give the amount of acceleration in the direction of travel and the direction of turning, respectively. You may notice that we only gave names for acceleration in the tangential and normal directions above. The acceleration vector for motion along a curve can <em>only</em> have components in the tangential and normal directions to the curve. It is not possible for the acceleration vector of parameterized curve to have any component in a direction, such as that of <m>\vB</m>, that does not lie in the plane defined by <m>\vT</m> and <m>\vN</m>, which we state formally and justify below.
+    Our use of the word <q>component</q> in <xref ref="def-aTaN"/> is consistent with our use in <xref ref="S-Precalc-DotProduct"/>  because <m>\vT</m> and <m>\vN</m> are both unit vectors. Furthermore, because the unit tangent and unit normal vectors are also orthogonal to each other, <m>a_{\vT}</m> and  <m>a_{\vN}</m> give the amount of acceleration in the direction of travel and the direction of turning, respectively. You may notice that we only gave names for acceleration in the tangential and normal directions above. The acceleration vector for motion along a curve can <em>only</em> have components in the tangential and normal directions to the curve. It is not possible for the acceleration vector of parameterized curve to have any component in a direction, such as <m>\vB</m>, that does not lie in the plane defined by <m>\vT</m> and <m>\vN</m>, which we state formally and justify below.
   </p>
   
   <proposition xml:id="prop-aTaN">
@@ -152,7 +196,7 @@
         This algebraic splitting of acceleration gives a nice way to interpret <m>a_{\vT}</m>. Specifically, <m>a_{\vT}</m> is the rate of change of speed!
       </p>
       <p>
-        The scalar <m>a_{\vN}</m> is harder to interpret right now because our algebraic splitting shows that <m>a_{\vN} = (\text{speed}) \vecmag{\frac{d\vT}{dt}}</m>. Since <m> \frac{d\vT}{dt}</m> and <m> \vecmag{\frac{d\vT}{dt}}</m> are as hard to calculate directly as <m>\vN</m> is, we do not have an intuitive interpretation for the meaning of <m>a_{\vN}</m>. We will return to the meaning of <m>a_{\vN}</m> later in this section, but for now you should think of <m>a_{\vN}</m> as the acceleration due to a change in the direction of the velocity vector. In other words, <m>a_{\vN}</m> is the amount of acceleration due to turning. 
+        The scalar <m>a_{\vN}</m> is harder to interpret right now because our algebraic splitting shows that <m>a_{\vN} = (\text{speed}) \vecmag{\frac{d\vT}{dt}}</m>. Since <m> \frac{d\vT}{dt}</m> and <m> \vecmag{\frac{d\vT}{dt}}</m> are as hard to calculate directly as <m>\vN</m> is, we do not yet have an intuitive interpretation for the meaning of <m>a_{\vN}</m>. We will return to the meaning of <m>a_{\vN}</m> later in this section, but for now you should think of <m>a_{\vN}</m> as the acceleration due to a change in the direction of the velocity vector. In other words, <m>a_{\vN}</m> is the amount of acceleration due to turning. 
       </p>
     </proof>
   </proposition>
@@ -221,6 +265,11 @@
           The tangential component of acceleration is defined as <m>a_{\vT} = \va \cdot \vT </m>, while equation <xref ref="algsplita"/> establishes that <m>a_{\vT} = \frac{d\text{(speed)}}{dt}</m> is also true. Use these formulas to determine whether <m>a_{\vT}</m> can be zero. Either explain why <m>a_{\vT}</m> is always nonzero or describe scenarios in which <m>a_{\vT}=0</m>.
         </p>
       </statement>
+      <solution>
+        <p>
+          The scalar <m>a_{\vT}</m> can be zero if the speed is not changing.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -228,6 +277,11 @@
           Determine whether <m>a_{\vT}</m> can be negative. Either explain <m>a_{\vT}</m> is never negative or describe scenarios in which <m>a_{\vT}\lt 0</m>
         </p>
       </statement>
+      <solution>
+        <p>
+          The scalar <m>a_{\vT}</m> can be negative and would correspond to when the speed of the parameterization is decreasing.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -235,6 +289,11 @@
           The normal component of acceleration is defined as <m>a_{\vN} = \va \cdot \vN </m>, while equation <xref ref="algsplita"/> establishes that <m>a_{\vN} = (\text{speed}) \vecmag{\frac{d\vT}{dt}}</m> is also true. Use these formulas to determine whether <m>a_{\vN}</m> can be negative. Either explain why <m>a_{\vN}</m> is negative or describe scenarios in which <m>a_{\vN}\lt 0</m>.
         </p>
       </statement>
+      <solution>
+        <p>
+          The scalar <m>a_{\vN}</m> cannot be negative. Algebraically from the equation <m>a_{\vN} = (\text{speed}) \vecmag{\frac{d\vT}{dt}}</m>, we see that <m>a_{\vN}</m> is the product of two quantities that cannot be negative (because they are both magnitudes of vector quantities). Conceptually, a negative value of <m>a_{\vN}</m> would mean that the acceleration due to turning was in the opposite direction of turning, but that can't happen because that would mean you were actually turning the opposite direction (which contradicts the direction of <m>\vN</m>). 
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -242,12 +301,20 @@
           Determine whether <m>a_{\vN}</m> can be zero. Either explain why <m>a_{\vN}</m> is always nonzero or describe scenarios in which <m>a_{\vN}=0</m>.
         </p>
       </statement>
+      <solution>
+        <p>
+          The scalar <m>a_{\vN}</m> can be zero and corresponds to instants where there is no turning. This could happen with straight line travel or for instants where a vehicle is transitioning from turning left to turning right, for examples.
+        </p>
+      </solution>
     </task>
   </activity>
 </worksheet>
   <p>
     <xref ref="splita-howtochange" text="type-local"/> and <xref ref="splita-travelmeanings" text="type-local"/> relate the scalar and vector measurements involved in the splitting of acceleration to different modes of transportation and looks at how different actions when riding a bike or driving a car change these vector calculus quantities. <xref ref="splita-visual" text="type-local"/> considers how to visually identify the different measurements involved the splitting of the acceleration vector.
   </p>  
+  </subsection>
+  <subsection xml:id="subsec-effcalcofN">
+    <title>Efficient Calculations for the Splitting of <m>\va</m></title>
 
   <p>
     You saw in <xref ref="difficult-calcN"/> that calculating <m>\vN</m> for even a curve with a very <q>nice</q> parameterization algebraically using the definition requires extensive algebraic manipulation. Before going into an exampmle of the computations involved in splitting the acceleration vector, we will identify a relationship of the vectors involved in splitting the acceleration vector that yields another way of approaching <m>\vN</m>. To do this, we consider the right triangle of vectors in <xref ref="RTsplita"/>. If we apply the Pythagorean Theorem to this right triangle, we can then use that the unit tangent vector and unit normal vector both have length one to conclude that <m> \vecmag{ \va }^2 =(a_{\vT})^2+(a_{\vN})^2</m>.
@@ -472,6 +539,11 @@
           The vector calculus quantities related to the motion along a curve we have covered are time, position, velocity, acceleration, speed, arc length, unit tangent vector, unit normal vector, binormal vector, tangential acceleration component, normal acceleration component, curvature, and osculating circle.
         </p>
       </hint>
+      <solution>
+        <p>
+          The pedal usage gives the sign of <m>a_{\vt}</m>. A + for pedal usage would correspond to an increase in speed and would be controlled by the gas pedal. A - for pedal usage would correspond to a decrease in speed an would be controlled by the brake pedal.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -479,6 +551,11 @@
           Describe how the value of <m>a_{\vec{N}}</m> would be felt by the driver in our analogy.
         </p>
       </statement>
+      <solution>
+        <p>
+          The scalar <m>a_{\vN}</m> would be felt by the driver getting pushed left or right by the car seat (depending on the direction of turning). 
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -486,6 +563,11 @@
           In terms of the race car analogy, explain why <m>a_{\vec{N}}</m> can't be negative.
         </p>
       </statement>
+      <solution>
+        <p>
+          As was discussed earlier, <m>a_{\vN}</m> cannot be negative because that would mean the acceleration due to turning was in the opposite direction of <m>\nV</m>. Since <m>\vN</m> is the direction of turning, the associated acceleration must be in the same direction to turn the car and driver to stay on the path.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -498,6 +580,11 @@
           <m>a_{\vT}=\frac{d}{dt}(\text{speed})</m>
         </p>
       </hint>
+      <solution>
+        <p>
+          Because different drivers can be going at different speeds (when measured at the same location on the track), then the rate of change of the speed can be different for different drivers as well. Thus, <m>a_\vT</m> is a property of the driver.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -510,6 +597,11 @@
           <m>a_{\vN}=\kappa (\text{speed})^2</m>
         </p>
       </hint>
+      <solution>
+        <p>
+          Because different drivers can be going at different speeds (when measured at the same location on the track), then the product of the speed squared and the curvature can be different for different drivers as well. Thus, <m>a_\vN</m> is a property of the driver. As stated eariler, the curvature is a property of the road but the variability of the speed will make it possible for different drivers to have different <m>a_{\vN}</m> when measured at a fixed location on the track.
+        </p>
+      </solution>
     </task>
     </activity>
 </worksheet>
