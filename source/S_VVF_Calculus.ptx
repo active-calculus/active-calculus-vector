@@ -40,44 +40,19 @@
   </objectives>
   <introduction component="instructor">
     <p>
-      We again remind you to read through the <xref ref="C_VVF">introduction to this chapter</xref>, which introduces the Classic Calculus Approach and reviews the high points of single variable calculus. You may want to have students read this review of single variable calculus so they can recall the various uses of limits, derivatives, and integrals before we start working with these concepts in more general settings. 
+      The material in this section requires students to understand the graph of a vector-valued function of one variable (from <xref ref="S-VVF-Plotting"/>) and vector operations, like addition and scalar multiplication, from <xref ref="S-Precalc-Vectors"/>.
     </p>
     <p>
-      The material in this section requires students to understand the graph of a vector-valued function of one variable (from <xref ref="S-VVF-Plotting"/>) and our vector operations, like addition and scalar multiplication, from <xref ref="S-Precalc-Vectors"/>.
+      We again remind you to read through the <xref ref="C_VVF">introduction to this chapter</xref>, which introduces the Classic Calculus Approach and reviews important concepts from single variable calculus. You may want to have students read this review of single variable calculus so they can recall the various uses of limits, derivatives, and integrals before we start working with these concepts in more general settings. 
+    </p>
+    <p>
+      For the calculus concepts in this section, we will not utilize the <xref ref="CCA" text="title"/>; we will generalize our intuition and ideas from earlier calculus courses to see how to apply limits, derivatives, and integrals to vector valued functions of one variable. This section continues the use of our self driving car company <em>Steer Clear</em> in our motivation and Preview Activities. 
     </p>
   </introduction>
   <subsection>
     <title>Introduction</title>
-    <!-- <p>
-      A vector-valued function <m>\vr</m> determines a curve in space as the
-      collection of terminal points of the vectors <m>\vr(t)</m>. If the curve is
-      smooth, it is natural to ask whether <m>\vr(t)</m> has a derivative. In
-      the same way, our experiences with integrals in single-variable
-      calculus prompt us to wonder what the integral of a vector-valued
-      function might be and what it might tell us. We
-      explore both of these questions in detail in this section.
-    </p>
-
     <p>
-      For now, let's recall some important ideas from calculus I. Given a
-      function <m>s</m> that measures the position of an object moving along
-      an axis, its derivative, <m>s'</m>, is defined by
-      <md>
-        s'(t) = \lim_{h \to 0} \frac{s(t+h) - s(t)}{h},
-      </md>
-      and measures the instantaneous rate of change of <m>s</m> with respect to
-      time. In particular, for a fixed value <m>t = a</m>, <m>s'(a)</m> measures the
-      velocity of the moving object, as well as the slope of the tangent
-      line to the curve <m>y = s(t)</m> at the point <m>(a,s(a))</m>.
-    </p>
-
-    <p>
-      As we work with vector-valued functions, we will strive to update
-      these ideas and perspectives into the context of curves in space and
-      outputs that are vectors.
-    </p> -->
-    <p>
-      In this book, we will use the structure of the <xref ref="C_VVF_classic-calc-approach" text="custom">classic calculus approach</xref> to investigate properties of new kinds of functions, equations, and graphs. Later in this section, we will investigate the meaning of limits, derivatives, and integrals of vector-valued functions of one variable. Additionally, we will connect these measurements to properties of curves in space as the graphs of these vector-valued functions. 
+      In this book, we will use the structure of the <xref ref="C_VVF_classic-calc-approach" text="title"/> to investigate properties of new kinds of functions, equations, and graphs. In this section, we will investigate the meaning of limits, derivatives, and integrals of vector-valued functions of one variable by generalizing the intuition and concepts from single variable calculus. Additionally, we will connect these measurements to properties of curves in space as the graphs of these vector-valued functions. 
     </p>
     <worksheet>
     <exploration workspace="1.5in" xml:id="PA-VVF-Calculus">
@@ -112,6 +87,20 @@
             The tips of these vectors correspond to the locations that would be sampled if you wanted to know the location of your car at <m>\vr_8(\pi)</m> but collected data every second, every tenth of a second, and every hundredth of a second, respectively. 
           </p>
         </statement>
+        <solution>
+          <image>
+            <sageplot>
+              var('t,x')
+              r(t)=(cos(t),sin(2*t))
+              plot1=parametric_plot(r(t), (t,0,2*pi),aspect_ratio=1,gridlines=True,color="black",thickness=2,xmin=-1,xmax=1,ymin=-1,ymax=1)
+              vals=[3,3.1,3.14]
+              for v in vals:
+                plot1+=arrow((0,0),r(v),color="blue")
+                plot1+=text(f'{v:.2f}',r(v)*1.1)
+              plot1
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task xml:id="vvf-limitPA">
         <statement>
@@ -119,6 +108,11 @@
             Write a couple of sentences to describe both geometrically and algebraically what happens to the output of <m>\vr_8(t)</m> as <m>t\rightarrow\pi</m>.
           </p>
         </statement>
+        <solution>
+          <p>
+            As the input <m>t</m> gets closer to <m>\pi</m>, the output of <m>\vr_8(t)</m> will approach the vector <m>\langle -1,0 \rangle</m> where the y-component approaches from below (less than 0) and the x component approaches from above (greater than -1). 
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -131,6 +125,24 @@
             Remember that <m>\vr_8(\pi)</m>, <m>\vr_8(3)</m>, and <m>\vr_8(\pi)-\vr_8(3)</m> will form a triangle as in <xref ref="F-9-2-vector-addition"/>.
           </p>
         </hint>
+        <solution>
+          <p>
+            <m>\vr(\pi)-\vr(3)= \langle -0.01000075, 0.279415498 \rangle</m>
+          </p>
+          <image>
+            <sageplot>
+            var('t,x')
+            r(t)=(cos(t),sin(2*t))
+            plot1=arrow((0,0),r(pi),color="black",aspect_ratio=1)
+            plot1+=arrow((0,0),r(3),color="black")
+            plot1+=arrow(r(3),r(pi),color="black")
+            plot1+=text("$\\vec{r}(3)$",(-0.7,-0.25),fontsize=20,color="black")
+            plot1+=text("$\\vec{r}(\\pi)$",(-0.7,0.1),fontsize=20,color="black")
+            plot1+=text("$\\vec{r}(\\pi)-\\vec{r}(3)$",(-1.2,-0.15),fontsize=20,color="black")
+            plot1
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task>
         <statement>
@@ -138,6 +150,11 @@
             Compute <m>\frac{\vr_8(\pi)-\vr_8(3)}{\pi-3}</m> and explain how this calculation is different than the result of the previous step.
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>\vr(\pi)-\vr(3)\approx \langle -0.0707, 1.9747 \rangle</m> which is parallel to the difference vector form the previous part, but about seven times longer.
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -145,66 +162,19 @@
             How would you expect <m>\frac{\vr_8(\pi)-\vr_8(3.1)}{\pi-3.1}</m> to be different than <m>\frac{\vr_8(\pi)-\vr_8(3)}{\pi-3}</m>? Use this idea write about what is measured by <m>\frac{\vr_8(\pi)-\vr_8(\pi-h)}{h}</m> if we look at smaller and smaller values of <m>h</m>. Remember to be specific about what aspects of our curve or drive are being measured.
           </p>
         </statement>
+        <solution>
+          <p>
+            We would expect <m>\frac{\vr_8(\pi)-\vr_8(3.1)}{\pi-3.1}</m> to be slightly more vertical and slightly longer. 
+          </p>
+          <p>
+            With an input of 3.1 rather than 3, we would expect the difference between the position vectors to be smaller, but the denominator of the given expression will also be much smaller, so  the result will appear about the same length but slightly more vertical (because of the smaller different in the first components)
+          </p>
+        </solution>
       </task>
-<!--
-      <statement>
-       <p>
-        Let <m>\vr(t) = \cos(t) \vi + \sin(2t) \vj</m> describe the path traveled by an object at time <m>t</m>.
-        <ol marker="a.">
-          <li>
-            <p>
-              Use appropriate technology to help you sketch the graph of the vector-valued function <m>\vr</m>, and then locate and label the point on the graph when <m>t=\pi</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Recall that for functions of a single variable, the derivative of a sum is the sum of the derivatives; that is, <m>\frac{d}{dx}[f(x) + g(x)] = f'(x) + g'(x)</m>. With this idea in mind and viewing <m>\vi</m> and <m>\vj</m> as constant vectors, what do you expect the derivative of <m>\vr</m> to be?  Write a proposed formula for <m>\vr\, '(t)</m>.
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Use your result from part (b) to compute <m>\vr\, '(\pi)</m>. Sketch this vector <m>\vr\, '(\pi)</m> as emanating from the point on the graph of <m>\vr</m> when <m>t=\pi</m> , and explain what you think <m>\vr\, '(\pi)</m> tells us about the object's motion.
-            </p>
-          </li>
-        </ol>
-      </p>
-      </statement>
-      <solution>
-        <ol marker="a.">
-          <li>
-            <p>
-              The graph of <m>\vr(t)</m> is shown below,
-              with the point <m>(-1,0)</m> at <m>t=pi</m> indicated as the solid point on the graph.
-              <image width="73%" source="images/fig_9_7_PA_a"/>
-            </p>
-          </li>
-          <li>
-            <p>
-              If the derivative of a sum is the sum of the derivatives,
-              then we should expect that
-              <md>
-                \vr\, '(t) = \frac{d}{dt} \cos(t) \vi + \frac{d}{dt} \sin(2t) \vj = -\sin(t) \vi + 2\cos(2t) \vj
-              </md>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Using our rule for <m>\vr\, '(t)</m> we have <m>\vr\, '(\pi) = 2 \vj</m>.
-              A sketch of this vector <m>\vr\, '(\pi)</m> as emanating from the point on the graph of <m>\vr</m> when <m>t=\pi</m> is shown below.
-              This looks like a direction vector for the line tangent to the graph of <m>\vr</m> at the point where <m>t = \pi</m>.
-              In other words,
-              this vector <m>\vr\, '(t)</m> is the velocity vector of the object at time <m>t = \pi</m>.
-              <image width="73%" source="images/fig_9_7_PA_b"/>
-            </p>
-          </li>
-        </ol>
-      </solution> -->
   </exploration>
   </worksheet>
     <p>
-      In <xref ref="vvf-limitPA" text="type-local"/> of the Preview Activity, we examined what the limit of a vector-valued function will look like. Specifically, the limit of a vector-valued function of one variable has the same meaning as in your first calculus course. The limit of a function is a measure of what the output approaches as the input gets closer to a particular value. We will not state the formal version of limits of vector-valued functions of one variable, but rather will appeal to the important idea that limits can be defined and calculated componentwise. If <m>\vr(t)=\langle x_1(t),\ldots,x_n(t)\rangle</m>, then the limit of <m>\vr</m> as <m>t\rightarrow a</m> exists if all of the limits of <m>x_i(t)</m> exist as <m>t\rightarrow a</m>. In other words, the limit of a vector-valued function of one variable is the same as the limits of the <m>n</m> component functions organized as a vector. In <m>\mathbb{R}^3</m>, we can express this algebraically as
+      In <xref ref="vvf-limitPA" text="type-local"/> of the Preview Activity, we examined what the limit of a vector-valued function will look like. Specifically, the limit of a vector-valued function of one variable has the same meaning as in your first calculus course. The limit of a function is a measure of what the <em>output</em> approaches as the inputs get closer to a particular value. We will not state the formal version of limits of vector-valued functions of one variable, but rather will appeal to the important idea that limits can be defined and calculated componentwise. If <m>\vr(t)=\langle x_1(t),\ldots,x_n(t)\rangle</m>, then the limit of <m>\vr</m> as <m>t\rightarrow a</m> exists if all of the limits of <m>x_i(t)</m> exist as <m>t\rightarrow a</m>. In other words, the limit of a vector-valued function of one variable is the same as the limits of the <m>n</m> component functions organized as a vector. In <m>\mathbb{R}^3</m>, we can express this algebraically as
       <md>
         \lim_{t\rightarrow a} \langle f(t),g(t),h(t) \rangle = \left\langle \lim_{t\rightarrow a} f(t) , \lim_{t\rightarrow a} g(t) , \lim_{t\rightarrow a} h(t) \right\rangle.
       </md>
@@ -238,99 +208,6 @@
       We will take a moment here to note that both the single variable calculus definition of derivative and <xref ref="vvf-derivative-defn"/> have the form of the classic calculus approach described above. In particular, both definitions are of the form
       <md>\text{derivative}=\lim_{\text{stepsize}\rightarrow 0} \frac{\text{change in output of function}}{\text{change in input of function}}</md>
     </p>
-    <!-- <worksheet>
-  <activity workspace="1.5in" xml:id="A_9_7_1">
-      <statement>
-      <p>
-        Let's investigate how we can interpret the derivative <m>\vr\, '(t)</m>. Let <m>\vr</m> be the vector-valued function whose graph is shown in <xref ref="F_9_7_VVF_tan_vector">Figure</xref>, and let <m>h</m> be a scalar that represents a small change in time. The vector <m>\vr(t)</m> is the blue vector in <xref ref="F_9_7_VVF_tan_vector">Figure</xref> and <m>\vr(t+h)</m> is the green vector.
-      </p>
-
-      <figure xml:id="F_9_7_VVF_tan_vector">
-        <caption>A single difference quotient.</caption>
-        <image width="50%" source="images/fig_9_7_curve_1"/>
-      </figure>
-
-      <ol marker="a.">
-        <li>
-          <p>
-            Is the quantity <m>\vr(t+h)-\vr(t)</m> a vector or a scalar? Identify this object in <xref ref="F_9_7_VVF_tan_vector">Figure</xref>.
-          </p>
-        </li>
-
-        <li>
-          <p>
-            Is <m>\frac{\vr(t+h)-\vr(t)}{h}</m> a vector or a scalar? Sketch a representative vector <m>\frac{\vr(t+h)-\vr(t)}{h}</m> with <m>h \lt  1</m> in <xref ref="F_9_7_VVF_tan_vector">Figure</xref>.
-          </p>
-        </li>
-
-        <li>
-          <p>
-            Think of <m>\vr(t)</m> as providing the position of an object moving along the curve these vectors trace out.  What do you think that the vector <m>\frac{\vr(t+h)-\vr(t)}{h}</m> measures? Why?  (Hint: You might think analogously about difference quotients such as <m>\frac{f(x+h) - f(x)}{h}</m> or <m>\frac{s(t+h) - s(t)}{h}</m> from calculus I.)
-          </p>
-        </li>
-
-        <li>
-          <p>
-            <xref ref="F_9_7_VVF_tan_vector_quotients">Figure</xref> presents three snapshots of the vectors <m>\frac{\vr(t+h)-\vr(t)}{h}</m> as we let <m>h \to 0</m>. Write 2-3 sentences to describe key attributes of the vector
-            <md>
-              \lim_{h \to 0} \frac{\vr(t+h)-\vr(t)}{h}.
-            </md>
-            (Hint: Compare to limits such as <m>\lim_{h \to 0} \frac{f(x+h) - f(x)}{h}</m> or <m>\lim_{h \to 0} \frac{s(t+h) - s(t)}{h}</m> from calculus I, keeping in mind that in three dimensions there is no general concept of slope.)
-          </p>
-        </li>
-      </ol>
-
-      <figure xml:id="F_9_7_VVF_tan_vector_quotients">
-        <caption>Snapshots of several difference quotients.</caption>
-        <sidebyside widths="33% 33% 33%" margins="0%">
-        <image source="images/fig_9_7_animate_02"/>
-        <image source="images/fig_9_7_animate_04"/>
-        <image source="images/fig_9_7_animate_06"/>
-        </sidebyside>
-      </figure>
-    </statement>
-    <solution>
-      <ol marker="a.">
-        <li>
-          <p>
-            The quantity <m>\vr(t+h)-\vr(t)</m> is a vector quantity,
-            the vector from the terminal point of <m>\vr(t)</m> to the terminal point of <m>\vr(t+h)</m>.
-          </p>
-        </li>
-        <li>
-          <p>
-            The quantity <m>\frac{\vr(t+h)-\vr(t)}{h}</m> is a vector quantity,
-            it is a vector in the direction of
-            <m>\vr(t+h)-\vr(t)</m> that is <m>\frac{1}{h}</m> times as long.
-          </p>
-        </li>
-        <li>
-          <p>
-            The vector <m>\vr(t+h)-\vr(t)</m> represents a change in position of the object on the time interval <m>[t, t+h]</m>.
-            When we multiply by <m>\frac{1}{h}</m>,
-            we can consider this vector
-            <m>\frac{\vr(t+h)-\vr(t)}{h}</m> as an average change of position,
-            or the average velocity vector of the object on the interval <m>[t,t+h]</m>.
-          </p>
-        </li>
-        <li>
-          <p>
-            As <m>h \to 0</m>, the average velocity vectors
-            <m>\frac{\vr(t+h)-\vr(t)}{h}</m> approach the instantaneous velocity vector.
-            The average velocity vector
-            <m>\frac{\vr(t+h)-\vr(t)}{h}</m> is a direction vector for the secant line to the curve that passes through the terminal points of <m>\vr(t)</m> and <m>\vr(t+h)</m>.
-            As we let <m>h \to 0</m>,
-            these direction vectors approach a direction vector
-            <md>
-              \lim_{h \to 0} \frac{\vr(t+h)-\vr(t)}{h}
-            </md>
-            of the tangent line to the curve at the terminal point of <m>\vr(t)</m>.
-          </p>
-        </li>
-      </ol>
-    </solution>
-    </activity>
-</worksheet> -->
     <p>
       Let <m>\vr</m> be the vector-valued function whose graph is shown in <xref ref="F_9_7_VVF_tan_vector">Figure</xref>, and let <m>h</m> be a scalar that represents a small change in time. The vector <m>\vr(t)</m> is the blue vector in <xref ref="F_9_7_VVF_tan_vector">Figure</xref> and <m>\vr(t+h)</m> is the green vector.
     </p>
@@ -433,7 +310,7 @@
         <li>scalar multiplication (multiply by <m>\frac{1}{h}</m>), </li>
         <li>evaluate limit as <m>h\rightarrow 0</m>, and </li>
       </ol>
-      each of these is all evaluated componentwise on a vector-valued function. Therefore, familiar differentiation rules from single-variable calculus can be applied one ach component of <m>\vr(t)</m> to compute the derivative <m>\vr\, '</m>.
+      each of these is all evaluated <em>componentwise</em> on a vector-valued function. Therefore, familiar differentiation rules from single-variable calculus can be applied to each component of <m>\vr(t)</m> to compute the derivative <m>\vr\, '</m>.
     </p>
     <proposition xml:id="Vector-valued-function-derivative">
       <title>Efficient calculation of the derivative of a vector-valued function</title>
@@ -742,7 +619,10 @@
     <md>
       \int_a^b f(x)  \  dx= \lim_{\Delta x_i \rightarrow 0} \sum_{i=0}^n f(x^*_i) \Delta x_i
     </md>,
-    where <m>\Delta x_i</m> is the width of the interval from <m>[x_{i-1},x_i]</m> and <m>x^*_i</m> is a point in <m>[x_{i-1},x_i]</m>. The definite integral measures the net signed area between the graph of <m>f(x)</m> and the <m>x</m>-axis on the interval from <m>x=a</m> to <m>x=b</m>. The definite integral uses our classic calculus approach to measure the accumulation of the output of <m>f</m> over the interval <m>[a,b]</m>. In practice, you probably did not use this Riemann sum definition to calculate any definite integrals, since the Fundamental Theorem of Calculus allowed you to use associated antiderivatives to efficiently calculate the value of a definite integral. <url href="https://activecalculus.org/single/sec-4-4-FTC.html#FTC" text="custom">The Fundamental Theorem of Integral Calculus</url> states that if <m>f</m> is a continuous function on <m>[a,b]</m> and <m>F(x)</m> is an antiderivative of <m>f</m> (that is, <m>\frac{dF}{dx}=f(x)</m>), then 
+    where <m>\Delta x_i</m> is the width of the interval from <m>[x_{i-1},x_i]</m> and <m>x^*_i</m> is a point in <m>[x_{i-1},x_i]</m>. The definite integral measures the net signed area between the graph of <m>f(x)</m> and the <m>x</m>-axis on the interval from <m>x=a</m> to <m>x=b</m>. The definite integral uses our <xref ref="CCA" text="custom">classic calculus approach</xref> to measure the accumulation of the output of <m>f</m> over the interval <m>[a,b]</m>. 
+  </p>
+  <p>
+    In practice, you probably did not use this Riemann sum definition to calculate any definite integrals, since the Fundamental Theorem of Calculus allowed you to use associated antiderivatives to efficiently calculate the value of a definite integral. <url href="https://activecalculus.org/single/sec-4-4-FTC.html#FTC" text="custom">The Fundamental Theorem of Integral Calculus</url> states that if <m>f</m> is a continuous function on <m>[a,b]</m> and <m>F(x)</m> is an antiderivative of <m>f</m> (that is, <m>\frac{dF}{dx}=f(x)</m>), then 
     <md> \int_a^b f(x)  \  dx = F(b)-F(a)</md>.
     The family of functions that are antiderivatives of <m>f(x)</m> is also called the <term>indefinite integral</term> of <m>f(x)</m> and is denoted <m>\int f(x)  \  dx</m>. 
   </p>
@@ -791,7 +671,10 @@
       </image>
     </figure>
     <p>
-      We can simplify <m>m \va(t) = -mg \vj</m> to find <m>\va(t)=\langle 0,-g\rangle</m>. Next, we integrate the acceleration to find the velocity as a function of <m>t</m>. The indefinite integral of <m>\va(t)=\langle 0,-g\rangle</m> with respect to <m>t</m> will be <m>\langle 0,-gt\rangle +\vec{C}</m>, where <m>\vec{C}</m> is a constant vector. We need to pick the constant such that the initial velocity is <m>\vv(0)=\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m>. This will ensure that the initial speed is <m>v_0</m> and that the initial velocity has an angle of <m>\theta</m> above the horizontal. Because <m>\vv(0)=\langle 0,-g(0)\rangle +\vec{C}=\vec{C}=\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m>, we find the following for the velocity as a function of time:
+      We can simplify <m>m \va(t) = -mg \vj</m> to find <m>\va(t)=\langle 0,-g\rangle</m>. 
+    </p>
+    <p>  
+      Next, we integrate the acceleration to find the velocity as a function of <m>t</m>. The indefinite integral of <m>\va(t)=\langle 0,-g\rangle</m> with respect to <m>t</m> will be <m>\langle 0,-gt\rangle +\vec{C}</m>, where <m>\vec{C}</m> is a constant vector. We need to pick the constant such that the initial velocity is <m>\vv(0)=\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m>. This will ensure that the initial speed is <m>v_0</m> and that the initial velocity has an angle of <m>\theta</m> above the horizontal. Because <m>\vv(0)=\langle 0,-g(0)\rangle +\vec{C}=\vec{C}=\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle</m>, we find the following for the velocity as a function of time:
       <md>
         \vv(t)=\langle 0,-gt\rangle+\langle v_0 \cos(\theta),v_0 \sin(\theta) \rangle=\langle v_0 \cos(\theta),v_0 \sin(\theta)-gt \rangle
       </md>
