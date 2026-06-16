@@ -1,0 +1,133 @@
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S_Parametric_Surfaces_Surface_Area">
+  <title>Surfaces Defined Parametrically and Surface Area</title>
+  <objectives>
+      <ul>
+        <li>
+          <p>
+            What is a parameterization of a surface?
+          </p>
+        </li>
+        <li>
+          <p>
+            How do we find the surface area of a parametrically defined surface?
+          </p>
+        </li>
+      </ul>
+  </objectives>
+  <introduction component="instructor">
+    <title>Notes to the Instructor and Dependencies</title>
+    <p>
+      
+    </p>
+  </introduction>
+  <subsection>
+    <title>Introduction</title>
+    <proposition xml:id="prop-">
+        <statement>
+            <p>
+                If a vertically simple region <m>D</m> can be described by the inequalities <m>a \leq x \leq b</m> and <m>g_1(x) \leq y \leq g_2(x)</m>, where <m>g_1(x)</m> and <m>g_2(x)</m> are functions of only <m>x</m>, then the double integral can be written as an iterated integral in the following way
+                <md>
+                \iint_D f(x,y) \, dA = \int_{x=a}^{x=b} \int_{y=g_1(x)}^{y=g_2(x)} f(x,y) \, dy \, dx
+                </md>.
+            </p>
+            <p>
+                Alternatively, if a horizontally simple region <m>D</m> is described by the inequalities <m>c \leq y \leq d</m> and <m>h_1(y) \leq x \leq h_2(y)</m>, where <m>h_1(y)</m> and <m>h_2(y)</m> are functions of only <m>y</m>, then the double integral can be written as an iterated integral in the following way
+                <md>
+                \iint_D f(x,y) \, dA = \int_{y=c}^{y=d} \int_{x=h_1(y)}^{x=h_2(y)} f(x,y) \, dx \, dy
+                </md>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                We will make a brief argument using the classic calculus approach to give an outline for a proof of this result. We will visualize the double integral with a region similar to the one used in the Preview Activity, as shown in <xref ref="proof-DI"/>. Remember that we will have a region of integration given by the inequalities <m>a \leq x \leq b</m> and <m>g_1(x) \leq y \leq g_2(x)</m>, where <m>g_1(x)</m> and <m>g_2(x)</m> are functions of only <m>x</m>
+            </p>
+            <figure xml:id="proof-DI">
+            <caption>The double integral <m>\iint_R f(x,y) dA</m> visualized as the volume between the <m>xy</m>-plane and the surface given by <m>z=f(x,y)</m>, shown in pink, over the region <M>R</m>, shown in blue</caption>
+              <interactive label="interactive-proof-DI" platform="sage" width="91%" aspect="1:1">
+                <description>
+                  <p>Coordinate axes for <m>xyz</m>-space showing a solid region over the triangle with  vertices <m>(0,0,0)</m>, <m>(1,0,0)</m>, and <m>(0,1,0)</m>.
+                  </p>
+                </description>
+                <slate surface="sage">
+                    var('t,s,x,y,z')
+                    from sage.plot.plot3d.plot3d import axes
+                    scale=1.5; ao=0.5;aoff=0.25;
+                    plot1=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=ao)+text3d("x",(scale+aoff,0,0),fontsize=30)+text3d("y",(0,scale+aoff,0),fontsize=30)+text3d("z",(0,0,scale+aoff),fontsize=30)
+                    f(x,y)=1-x^2-y^2
+                    plot1+=parametric_plot3d((s,0,t*f(s,0)),(s,0,1),(t,0,1),color="gray",opacity=0.2)
+                    plot1+=parametric_plot3d((0,s,t*f(0,s)),(s,0,1),(t,0,1),color="gray",opacity=0.2)
+                    plot1+=parametric_plot3d((s,1-s,t*f(s,1-s)),(s,0,1),(t,0,1),color="gray",opacity=0.2)
+                    plot1+=parametric_plot3d((s,t*(1-s),0),(s,0,1),(t,0,1),color="blue",opacity=0.6)
+                    param(s,t)=(s,t*(1-s),f(s,t*(1-s)))
+                    #set up grid      n is number of steps in s    m is number of steps in t  
+                    #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                    n=4;m=5;a1=0;a2=1;b1=0;b2=1; 
+                    #c1 is surface color     o1 is surface opacity
+                    #c2 and o2 are for constant t value traces
+                    #c3 and o3 are for constant s value traces
+                    c1="pink"; c2="black"; c3="black"; o1=0.6; o2=0.4; o3=0.4;
+                    plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                    for i in range(n+1):
+                        sv=a1+i/n*(a2-a1)
+                        plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                    for i in range(m+1):
+                        tv=b1+i/m*(b2-b1)
+                        plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    show(plot1,viewpoint=[[-0.3349,-0.5276,-0.7807],127.28],camera_position=[4.2763,2.4643,2.3687])
+                </slate>
+              </interactive>
+          </figure>
+          <p>
+            For Step 1 of the classic calculus approach, we will approximate this double integral with <m>n</m> prisms of equal width along constant values of <m>x</m> as shown in <xref ref="proof-approx"/>. The width of these <m>n</m> equal width prisms will be <m>\Delta x=\frac{b-a}{n}</m>. These prisms will involve the cross sectional area of our volume at the following values of <m>x</m>: <m>x_0=a,x_1=a+\Delta x, \ldots , x_i = a+i \Delta x, \ldots, x_{n-1}=a+(i-1)\Delta x</m>.
+          </p>
+          <figure xml:id="proof-approx">
+            <caption>The double integral <m>\iint_R f(x,y) dA</m> approximation with prisms along constant values of <m>x</m></caption>
+              <interactive label="interactive-proof-approx" platform="sage" width="91%" aspect="1:1">
+                <description>
+                  <p>Coordinate axes for <m>xyz</m>-space showing a solid region over the triangle with  vertices <m>(0,0,0)</m>, <m>(1,0,0)</m>, and <m>(0,1,0)</m>.
+                  </p>
+                </description>
+                <slate surface="sage">
+                    var('t,s,x,y,z')
+                    from sage.plot.plot3d.plot3d import axes
+                    scale=1.5; ao=0.5;aoff=0.25;
+                    plot1=axes(scale,1,color="black",aspect_ratio=1,frame=False,opacity=ao)+text3d("x",(scale+aoff,0,0),fontsize=30)+text3d("y",(0,scale+aoff,0),fontsize=30)+text3d("z",(0,0,scale+aoff),fontsize=30)
+                    plot1+=polygon([(0,0,0),(0,1,0),(1,0,0)],color="blue",opacity=0.7)
+                    f(x,y)=1-x^2-y^2
+                    n=5
+                    av=[i/n for i in range(n)]
+                    da=1/n
+                    for a in av:
+                        plot1+=parametric_plot3d((a,t,s*f(a,t)),(s,0,1),(t,0,1-a),color="pink",opacity=0.4)
+                        plot1+=parametric_plot3d((a+da,t,s*f(a,t)),(s,0,1),(t,0,1-a),color="pink",opacity=0.4)
+                        plot1+=parametric_plot3d((a+s*da,t,0),(s,0,1),(t,0,1-a),color="pink",opacity=0.4)
+                        plot1+=parametric_plot3d((a+s*da,0,t*f(a,0)),(s,0,1),(t,0,1),color="pink",opacity=0.4)
+                        plot1+=parametric_plot3d((a+s*da,t,f(a,t)),(s,0,1),(t,0,1-a),color="pink",opacity=0.4)
+                    show(plot1,viewpoint=[[-0.3349,-0.5276,-0.7807],127.28],camera_position=[4.2763,2.4643,2.3687])
+                </slate>
+              </interactive>
+          </figure>
+          <p>
+            The cross sectional area of the volume at <m>x=a</m> will be given by 
+            <md>CSA(a)=\int_{y=g_1(a)}^{y=g_2(a)} f(a,y) dy</md>. 
+            Note that this takes the height of the surface on this slice and integrates over only the relevant range of <m>y</m>-values. Our approximation for Step 1 of the CCA will be given by
+            <md>\iint_R f(x,y) dA \approx \Sum_{n=0}^{n-1} CSA(a) \Delta x</md> 
+            Note that this approximation already accomplishes Step 2 of the CCA since a smaller scale means that we have an increase in <m>n</m> which decreases <m>\Delta x</m>. 
+          </p>
+          <p>
+            Applying a limit in Step 3 of our approximation will yield
+            <md> \iint_R f(x,y) dA =lim_{n\to \infty} \Sum_{n=0}^{n-1} CSA(x_i) \Delta x</md> 
+            which you may recognize as a definite integral. In particular, 
+            <md> \iint_R f(x,y) dA =\int_{x=a}^{x=b} CSA(x) dx</md> 
+            which we can substitute in our expression for <m>CSA(x)</m> to get
+            <md> \iint_R f(x,y) dA =\int_{x=a}^{x=b} \left[ \int_{y=g_1(x)}^{y=g_2(x)} f(x,y) dy \right] dx</md>.
+          </p>
+          <p>
+            Note that when we substituted in our expression for the cross sectional area integral, we used the variable <m>x</m> since that corresponds to the value/variable used in the larger expression. The other result with prisms along constant values of <m>y</m> has a very analogous argument but does not offer any additional illumination, so we omit this discussion. 
+          </p>
+        </proof>    
+    </proposition>
+    
+    </subsection>
+</section>
+
