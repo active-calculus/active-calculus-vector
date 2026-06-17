@@ -42,10 +42,16 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section only expects students to have familiarity with the notation and operations of vectors from <xref ref="S-Precalc-Vectors"/>. This section emphasizes the dot product as a tool in measuring the angle between vectors and in various forms of projection of vectors. 
+      This section only expects students to have familiarity with the notation and operations of vectors from <xref ref="S-Precalc-Vectors"/>. This section emphasizes the dot product as a tool in measuring the angle between vectors and in various forms of projections of vectors. 
     </p>
     <p>
       As fundamentally important as vectors are to most topics in multivariable calculus and great breadth of experience with vectors that students come into this course with, we suggest at least a week on the combined topics in <xref ref="S-Precalc-Vectors"/>, <xref ref="S-Precalc-DotProduct"/>, and <xref ref="S-Precalc-CrossProduct"/>. 
+    </p>
+    <p>
+      There are likely more activities in this section than any one instructor would do for this material, but we have erred on the side of including a larger set of activities in order to allow instructors to personalize how they would like to introduce topics or have students practice calculations. For example, some instructors might view the dot product as only a step on the way to using projections of vectors or some others might skip the orthogonal projection idea altogether. Students familiar with linear algebra may spend more effort on the geometric elements of measuring angles and projections or ensuring they understand how to draw the projection and orthogonal complements. 
+    </p>
+    <p>
+      The idea of angle between vectors is emphasized in <xref ref="PA-dotproduct"/> and <xref ref="act-precalc-dotproduct-orthogonal"/> and will be used in later sections about the directional derivative. There are several activities, like <xref ref="Act-dotprod-calc"/> or <xref ref="A_9_3_2_a"/>, that are fairly generic activity focused on calculations involving dot products. 
     </p>
   </introduction>
   <subsection>
@@ -55,9 +61,9 @@
     </p>
     <p>
       Consider the two-dimensional vectors <m>\vu = \langle u_1,u_2\rangle</m> and <m>\vv = \langle v_1,v_2\rangle</m>. The <term>dot product</term> of <m>\vu</m> and <m>\vv</m> is denoted <m>\vu\cdot\vv</m> and defined to be
-      <me>
+      <md>
         \vu\cdot \vv = u_1v_1 + u_2v_2
-      </me>.
+      </md>.
       For instance, we have <m>\langle 2,-1\rangle\cdot \langle 1,4\rangle = 2\cdot 1 +(-1)\cdot 4 = -2</m>. At first glance, this may feel like we've <em>lost</em> information, as we have taken two objects with both magnitude and direction, multiplied them, and obtained a scalar. However, this scalar allows us to draw many useful conclusions, as you will now begin exploring.
     </p>
     <worksheet>
@@ -65,7 +71,7 @@
       <introduction>
         <p> 
           In this activity, we will use the following vectors:
-            <me> \vu_1=\langle 1,2 \rangle , \vu_2=\langle -1,1 \rangle , \vu_3=\langle 2,-1 \rangle , \vu_4=\langle 1,-2 \rangle </me>
+            <md> \vu_1=\langle 1,2 \rangle , \vu_2=\langle -1,1 \rangle , \vu_3=\langle 2,-1 \rangle , \vu_4=\langle 1,-2 \rangle </md>
         </p>
       </introduction>
       <task>
@@ -84,6 +90,19 @@
             </image>
           </figure>
         </statement>
+        <solution>
+          <image width="60%">
+            <sageplot>
+              var('t')
+              plot3=point((0,0),color="black",size=0,xmin=-3,xmax=3,ymin=-3,ymax=3,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
+              plot3+=arrow((0,0),(2,1),color="black")+text("$\\vec{u}_1$",(2.3,1.3),color="black",fontsize=20)
+              plot3+=arrow((0,0),(-1,1),color="black")+text("$\\vec{u}_2$",(-1.3,1.3),color="black",fontsize=20)
+              plot3+=arrow((0,0),(2,-1),color="black")+text("$\\vec{u}_3$",(2.3,-1.3),color="black",fontsize=20)
+              plot3+=arrow((0,0),(1,-2),color="black")+text("$\\vec{u}_4$",(1.3,-2.3),color="black",fontsize=20)
+              plot3                    
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task xml:id="PA-dotproduct-compute">
         <statement>
@@ -235,9 +254,9 @@
       <statement>
         <p>
           The <term>dot product</term><idx><h>dot product</h></idx> of vectors <m>\vu=\langle u_1, u_2,\ldots,u_n \rangle</m> and <m>\vv=\langle v_1, v_2,\ldots,v_n \rangle</m> in <m>\R^n</m> is the scalar 
-          <me>
+          <md>
             \vu\cdot\vv = u_1v_1+u_2v_2 + \ldots + u_nv_n.
-          </me>
+          </md>
         </p>
       </statement>
     </definition>
@@ -301,9 +320,9 @@
       <proof>
         <p>
           We can do this computation directly and find
-          <me>
+          <md>
         \vu\cdot\vu = \langle u_1,u_2,\ldots,u_n \rangle \cdot \langle u_1,u_2,\ldots,u_n \rangle =  u_1^2 + u_2^2 + \ldots + u_n^2 = \vecmag{\vu}^2
-      </me>.
+      </md>.
         </p>
       </proof>
     </proposition>
@@ -333,7 +352,7 @@
           </answer>
           <solution>
             <p>
-              <m>\langle 1, 2, -3 \rangle \cdot \langle 4, -2, 0 \rangle = (1)(2) + (2)(-2) + (-3)(0) = 0</m>
+              <m>\langle 1, 2, -3 \rangle \cdot \langle 4, -2, 0 \rangle = (1)(2) + (2)(-2) + (-3)(0) = -14</m>
             </p>
           </solution>
         </task>
@@ -369,9 +388,9 @@
         <solution>
           <p>
             Using the distributive property and the given information, we have 
-            <me>
+            <md>
               (\vu+\vv)\cdot \vw = \vu\cdot \vw+\vv\cdot \vw = 10 + (-3) = 7
-            </me>.
+            </md>.
           </p>
         </solution>
       </task>
@@ -388,11 +407,11 @@
         </answer>
         <solution>
           <p>
-            We first use the distributive property (twice), which tells us that <me>(\vu+\vv)\cdot (\vu+\vv) = \vu\cdot\vu + \vu\cdot \vv + \vv\cdot \vu + \vv\cdot \vv </me>.
+            We first use the distributive property (twice), which tells us that <md>(\vu+\vv)\cdot (\vu+\vv) = \vu\cdot\vu + \vu\cdot \vv + \vv\cdot \vu + \vv\cdot \vv </md>.
             Using the commutative property, this becomes
-            <me>(\vu+\vv)\cdot (\vu+\vv) = \vu\cdot\vu + 2\vu\cdot \vv  + \vv\cdot \vv </me>.
+            <md>(\vu+\vv)\cdot (\vu+\vv) = \vu\cdot\vu + 2\vu\cdot \vv  + \vv\cdot \vv </md>.
             Since <m>\vu\cdot \vu = \vecmag{\vu}^2</m> and <m>\vv\cdot \vv = \vecmag{\vv}^2</m>, we can now substitute and have
-            <me>(\vu+\vv)\cdot (\vu+\vv) = 16 + 2\cdot 3  + 49 = 71 </me>.
+            <md>(\vu+\vv)\cdot (\vu+\vv) = 16 + 2\cdot 3  + 49 = 71 </md>.
           </p>
         </solution>
       </task>
@@ -409,7 +428,7 @@
         </answer>
         <solution>
           <p>
-            Using the distributive property, we have <m>t\vu\cdot \vv + \vv\cdot \vv = 0</m>. We can rearrange this to be <m>t\vu\cdot \vv = -\vv\cdot \vv</m>, or <m>t(\vu\cdot \vv) = -\vv\cdot \vv</m>. Since <m>\vu\cdot \vv</m> is a scalar, we can divide by it (so long as it is nonzero) and have <m>t=-(\vv\cdot \vv)/(\vu\cdot \vv)</m>. If <m>\vu\cdot \vv = 0</m>, then any value of <m>t</m> makes the expression <m>0</m> if <m>\vv = \vec{0}</m> and if <m>\vv\neq \vec{0}</m>, then there is no value of <m>t</m> that works.
+            Using the distributive property, we have <m>t\vu\cdot \vv + \vv\cdot \vv = 0</m>. We can rearrange this to be <m>t\vu\cdot \vv = -(\vv\cdot \vv)</m>, or <m>t(\vu\cdot \vv) = -(\vv\cdot \vv)</m>. Since <m>\vu\cdot \vv</m> is a scalar, we can divide by it (so long as it is nonzero) and have <m>t=-\frac{\vv\cdot \vv}{\vu\cdot \vv}</m>. If <m>\vu\cdot \vv = 0</m>, then any value of <m>t</m> makes the expression <m>0</m> if <m>\vv = \vec{0}</m> and if <m>\vv\neq \vec{0}</m>, then there is no value of <m>t</m> that works.
           </p>
         </solution>
       </task>
@@ -470,13 +489,13 @@
       <statement>
         <p>
           Given vectors <m>\vu</m> and <m>\vv</m>, let <m>\theta</m> be the smallest angle between <m>\vu</m> and <m>\vv</m>. We have the following relationship:
-          <men xml:id="eq-precalc-dot-angle">
+          <md number="yes" xml:id="eq-precalc-dot-angle">
             \vu\cdot\vv = u_1v_1+u_2v_2 + \ldots + u_nv_n = \vecmag{\vu}\vecmag{\vv}\cos(\theta)
-          </men>
+          </md>
           Solving for the angle <m>\theta</m>, we have:
-          <men xml:id="anglebtwvec">
+          <md number="yes" xml:id="anglebtwvec">
             \theta = \arccos\left(\frac{\vu\cdot\vv}{\vecmag{\vu} \vecmag{\vv}}\right)
-          </men>
+          </md>
         </p>
       </statement>
       <proof>
@@ -539,6 +558,14 @@
             <m>\vecmag{\vu} = \sqrt{14}</m>
           </p>
         </answer>
+        <solution>
+          <p>
+            <m>\vecmag{\vu}^2 = \vu\cdot\vu</m>
+          </p> 
+          <p>
+            So <m>\vecmag{\vu} = \sqrt{\vu\cdot\vu} = \sqrt{\langle 1, 2, -3 \rangle\cdot\langle 1, 2, -3 \rangle} = \sqrt{(1)(2) + (2)(2) + (-3)(-3)} = \sqrt{14}</m>.
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -553,10 +580,13 @@
         </answer>
         <solution>
           <p>
-            <m>\vecmag{\vu}^2 = \vu\cdot\vu</m>
-          </p> 
+            <m>\vu\cdot\vv = \langle 1,2 \rangle\cdot\langle 4,-1 \rangle = 4-2=2</m>.
+          </p>
           <p>
-            So <m>\vecmag{\vu} = \sqrt{\vu\cdot\vu} = \sqrt{\langle 1, 2, -3 \rangle\cdot\langle 1, 2, -3 \rangle} = \sqrt{(1)(2) + (2)(2) + (-3)(-3)} = \sqrt{14}</m>.
+            <m>\vecmag{\vu} = \sqrt{(1)^2 + (2)^2 } = \sqrt{5}</m> and <m>\vecmag{\vv} = \sqrt{(4)^2 + (-1)^2 } = \sqrt{17}</m>.
+          </p>
+          <p>
+            Then <m>2 = \sqrt{5} * \sqrt{14} * \cos(\theta)</m>. So <m>\theta = \cos^{-1}\left(\frac{2}{\sqrt{5}   \sqrt{17}}\right) = 77.471^{\circ}</m>.
           </p>
         </solution>
       </task>  
@@ -636,21 +666,17 @@
       </task>
     </activity>
 </worksheet>
-    <p>
-      The last three parts of <xref ref="A_9_3_2_a"/> allow us to succinctly state the observations you arrived at in the Preview Activity. The next subsection will state these conclusions explicitly.
-    </p>
-  <!-- </subsection>
+  <p>
+    The last three parts of <xref ref="A_9_3_2_a"/> allow us to succinctly state the observations you arrived at in the Preview Activity. The next subsection will state these conclusions explicitly.
+  </p>
 
+  <p>
+    Many important relationships between vectors arise when the angle between two vectors is a right angle. In this case, we say the vectors are <term>orthogonal</term>. <idx><h>orthogonal</h></idx> For instance, orthogonality often plays a role in optimization problems: to determine the shortest path from a point in <m>\R^3</m> to a given plane, we move along a line orthogonal to the plane. From your prior mathematical experience, you are likely familiar with saying that two objects that form a right angle are <em>perpendicular</em>. When vectors are involved, we prefer to use the term <em>orthogonal</em> because it allows for one (or both) of the vectors to be <m>\vzero</m>, which is a case where we would not say the vectors are perpendicular.
+  </p>
 
-  <subsection>
-    <title>The Dot Product and Orthogonality</title> -->
-    <p>
-      Many important relationships between vectors arise when the angle between two vectors is a right angle. In this case, we say the vectors are <term>orthogonal</term>. <idx><h>orthogonal</h></idx> For instance, orthogonality often plays a role in optimization problems: to determine the shortest path from a point in <m>\R^3</m> to a given plane, we move along a line orthogonal to the plane. From your prior mathematical experience, you are likely familiar with saying that two objects that form a right angle are <em>perpendicular</em>. When vectors are involved, we prefer to use the term <em>orthogonal</em> because it allows for one (or both) of the vectors to be <m>\vzero</m>, which is a case where we would not say the vectors are perpendicular.
-    </p>
-
-    <p>
-      As <xref ref="A_9_3_2_a">Activity</xref> indicates, the dot product provides a simple means to determine whether two vectors are orthogonal to one another. In this case,<m>\vu\cdot\vv=\vecmag{\vu}\vecmag{\vv}\cos(\pi/2) = 0</m>, so we make the following important observation.
-    </p>
+  <p>
+    As <xref ref="A_9_3_2_a">Activity</xref> indicates, the dot product provides a simple means to determine whether two vectors are orthogonal to one another. In this case, <m>\vu\cdot\vv=\vecmag{\vu}\vecmag{\vv}\cos(\pi/2) = 0</m>, so we make the following important observation.
+  </p>
 
     <assemblage xml:id="Dot-product-orthogonality">
       <title>The dot product and orthogonality</title>
@@ -694,12 +720,32 @@
           Return to <xref ref="PA-dotproduct"/> and use the results of this subsection to determine which pairs of vectors are orthogonal. Also classify the angles between non-orthogonal pairs of vectors as acute or obtuse.
         </p>
       </statement>
+      <solution>
+        <p>
+          The angle between the following pairs is acute: 
+          <ul>
+            <li><m>\vu_1</m> and <m>\vu_2</m></li>
+            <li><m>\vu_3</m> and <m>\vu_4</m></li>
+          </ul>
+        </p>
+        <p>
+          The angle between the following pairs is obtuse: 
+          <ul>
+            <li><m>\vu_1</m> and <m>\vu_4</m></li>
+            <li><m>\vu_2</m> and <m>\vu_3</m></li>
+            <li><m>\vu_2</m> and <m>\vu_4</m></li>
+          </ul>
+        </p>
+        <p>
+          The angle between the following pairs is a right angle: 
+          <ul>
+            <li><m>\vu_1</m> and <m>\vu_3</m></li>
+          </ul>
+        </p>
+      </solution>
     </activity>
 </worksheet>
   </subsection>
-
-
-  
 
   <subsection>
     <title>Projections</title>
@@ -746,7 +792,7 @@
       </sidebyside>
     </figure>
     <p>
-      Notice that if the angle between <m>\vu</m> and <m>\vv</m> is obtuse, then the amount of <m>\vu</m> that is parallel to <m>\vv</m> will be in the direction opposite <m>\vv</m>. Before we look at how to calculate the vectors <m>\vw_1</m> and <m>\vw_2</m>, we will do an activity about drawing the graphical representation of this splitting of a vector into parts that are parallel to and orthogonal to another vector.
+      Notice that if the angle between <m>\vu</m> and <m>\vv</m> is obtuse, then the amount of <m>\vu</m> that is parallel to <m>\vv</m> will be in the direction <emph>opposite</emph> <m>\vv</m>. Before we look at how to calculate the vectors <m>\vw_1</m> and <m>\vw_2</m>, we will do an activity about drawing the graphical representation of this splitting of a vector into parts that are parallel to and orthogonal to another vector.
     </p>
     <worksheet>
   <activity workspace="1.5in" xml:id="act-Precalc-DotProject-DrawProj">
@@ -761,6 +807,11 @@
             We know from the previous subsection that there is a third configuration of vectors, which occurs when <m>\vu</m> and <m>\vv</m> are orthogonal. Suppose that <m>\vu</m> and <m>\vv</m> are nonzero orthogonal vectors. What would <m>\vw_1</m> and <m>\vw_2</m> be in this case?
           </p>
         </statement>
+        <solution>
+          <p>
+            If <m>\vu</m> and <m>\vv</m> are nonzero orthogonal vectors and <m>\vu=\vw_1+\vw_2</m> where <m>\vw_1=k \vv</m> and <m>\vw_2 \cdot \vv =0</m>, then <m>\vw_1 = \vv</m> and <m>\vw_2=\vzero</m>.
+          </p>
+        </solution>
       </task>
       <!-- <task>
         <statement>
@@ -910,9 +961,44 @@
           </p>
         </hint>
         <solution>
-          <p>
-            Need to make the figure!
-          </p>
+          <sidebyside widths="50% 50%" valign="bottom">  
+            <image width="45%" >
+              <description><p>Vector <m>\vv</m> points horizontally with <m>\vu</m> above it making an acute angle <m>\theta</m>.</p></description>
+              <sageplot>
+                var('t')
+                plot8=arrow((0,0),(3,0),color="black",width=2,axes=False,aspect_ratio=1)
+                plot8+=text("$\\vec{u}$",(1.4,2.4),color="black",fontsize=25)
+                plot8+=arrow((0,0),(1.6,2.4),color="black",width=2)
+                plot8+=text("$\\vec{v}$",(3.1,0),color="black",fontsize=25)
+                plot8+=parametric_plot((0.5*cos(t),0.5*sin(t)),(t,0,arctan(1.5)),color="black",linestyle="--")
+                plot8+=text("$\\theta$",(0.6,0.3),color="black",fontsize=25)
+                a=sqrt(1.6^2+2.4^2)/(3*1.6)
+                plot8+=arrow((0,0),(a*1.6,a*2.4),color="red",width=3)
+                plot8+=text("$\\vec{z}_1$",(.5,1),color="red",fontsize=20)
+                plot8+=arrow((a*1.6,a*2.4),(3,0),color="blue",width=3)
+                plot8+=text("$\\vec{z}_2$",(1.75,1),color="blue",fontsize=20)
+                plot8
+              </sageplot>
+            </image>
+            <image width="45%" >
+              <description><p>Vector <m>\vv</m> points horizontally with <m>\vu</m> above it making an obtuse angle <m>\theta</m>.</p></description>
+              <sageplot>
+                var('t')
+                plot9=arrow((0,0),(2,0),color="black",width=3,axes=False,aspect_ratio=1)
+                plot9+=text("$\\vec{v}$",(2.1,0),color="black",fontsize=25)
+                plot9+=arrow((0,0),(-1,2),color="black",width=3)
+                plot9+=text("$\\vec{u}$",(-0.75,1.9),color="black",fontsize=25)
+                plot9+=parametric_plot((0.5*cos(t),0.5*sin(t)),(t,0,pi+arctan(-2)),color="black",linestyle="--")
+                plot9+=text("$\\theta$",(0.2,0.6),color="black",fontsize=25)
+                a=-2/5
+                plot9+=arrow((0,0),(a*-1,a*2),color="red",width=3)
+                plot9+=text("$\\vec{z}_1$",(0,-.5),color="red",fontsize=20)
+                plot9+=arrow((a*-1,a*2),(2,0),color="blue",width=3)
+                plot9+=text("$\\vec{z}_2$",(1.5,-0.5),color="blue",fontsize=20)
+                plot9
+              </sageplot>
+            </image>
+          </sidebyside>
           <!-- <image width="65%" label="img-projplot3-soln">
             <sageplot>
               u=vector([5,-1])
@@ -1108,8 +1194,8 @@
           <p>
             <md>
               <mrow>\vu \cdot \vv= \amp  (\vw_1+\vw_2)\cdot\vv</mrow>
-              <mrow>= \amp  (\vw_1)\cdot\vv + (\vw_2)\cdot\vv</mrow>
-              <mrow>= \amp  (\vw_1)\cdot\vv </mrow>
+              <mrow>= \amp  (\vw_1\cdot\vv) + (\vw_2\cdot\vv)</mrow>
+              <mrow>= \amp  \vw_1\cdot\vv </mrow>
             </md>
           </p>
         </solution>
@@ -1162,28 +1248,28 @@
       <statement>
         <p><idx><h>vector</h><h>component in the direction of</h></idx>
           Let <m>\vu</m> and <m>\vv</m> be vectors in <m>\R^n</m>. The <term>projection of <m>\vu</m> onto <m>\vv</m></term> is the vector
-          <mdn>
+          <md number="yes">
             <mrow>\proj_{\vv} \vu \amp = \frac{\vu \cdot \vv}{\vv\cdot\vv} \vv</mrow>
             <mrow> \amp = \left(\frac{\vu \cdot \vv}{\vecmag{\vv}}\right) \frac{\vv}{\vecmag{\vv}}</mrow>
-          </mdn>.
+          </md>.
         </p>
       </statement>
     </definition>
     <p><idx><h>vector</h><h>component in the direction of</h></idx>
       Using the property that the dot prodcut of a vector with itself is the square of the vector's magnitude, we can write <m>\proj_{\vv} \vu = \left(\frac{\vu \cdot \vv}{\vecmag{\vv}}\right) \frac{\vv}{\vecmag{\vv}}</m>. Since <m>\vv/\vecmag{\vv}</m> is a unit vector, we can see from this form that the magnitude of <m>\proj_{\vv}\vu</m> is <m>(\vu\cdot \vv)/\vecmag{\vv}</m>. We call this scalar the <term>component of <m>\vu</m> in the direction of <m>\vv</m></term> and denote it by
-      <me>
+      <md>
         \comp_{\vv} \vu = \frac{\vu \cdot \vv}{\vecmag{\vv}}
-      </me>.
-      Recalling from earlier in the section that <m>\vu\cdot \vv = \vecmag{\vu}\vecmag{\vv}\cos(\theta)</m>, where <m>\theta</m> is the angle between <m>\vu</m> and <m>\vv</m>, we can also write
-      <me>
+      </md>.
+      Recall from earlier in the section that <m>\vu\cdot \vv = \vecmag{\vu}\vecmag{\vv}\cos(\theta)</m>, where <m>\theta</m> is the angle between <m>\vu</m> and <m>\vv</m>, we can also write
+      <md>
         \comp_{\vv}\vu = \frac{\vecmag{\vu}\vecmag{\vv}\cos(\theta)}{\vecmag{\vv}} = \vecmag{\vu}\cos(\theta)
-      </me>.
+      </md>.
     </p>
     <p>
       Vector subtraction also gives us a way to solve for the piece <m>\vw_2</m> of <m>\vu</m> that is orthogonal to <m>\vv</m>. We find <m>\vw_2=\vu-\vw_1= \vu-\frac{\vu \cdot \vv}{\vv \cdot \vv} \vv</m>. The <term>orthogonal projection of <m>\vu</m> onto <m>\vv</m></term> is 
-      <me>
+      <md>
         \proj_{\perp \vv} \vu = \vu - \proj_{\vv} \vu = \vu - \frac{\vu \cdot \vv}{\vv\cdot\vv} \vv
-      </me>.
+      </md>.
       These relationships (for one configuration of <m>\vu</m> and <m>\vv</m>) are shown in <xref ref="fig-dotproduct-proj-labeled"/>. <em>Remember that the length of <m>\proj_{\vv}\vu</m> is <m>\comp_{\vv}\vu</m>.</em> Also notice how the arrangement of the vectors provides an illustration of the fact that <m>\vu = \proj_{\vv}\vu + \proj_{\perp \vv}{\vu}</m>.
     </p>
     <figure xml:id="fig-dotproduct-proj-labeled">
@@ -1207,13 +1293,15 @@
     </figure>
     <p>
       Notice in <xref ref="fig-dotproduct-proj-labeled"/> that you can also see 
-      <me>
+      <md>
         \cos(\theta) = \frac{\vecmag{\proj_{\vv}\vu}}{\vecmag{\vu}} = \frac{\comp_{\vv}\vu}{\vecmag{\vu}},
-      </me>
+      </md>
       which aligns with our earlier formula <m>\comp_{\vv}\vu = \vecmag{\vu}\cos(\theta)</m>.
     </p>
     <p>
-      The component of <m>\vu</m> in the direction of <m>\vv</m> will be a scalar measure of how much of <m>\vu</m> is parallel to <m>\vv</m>. In fact, this shows up in the second formula for <m>\proj_{\vv} \vu</m>. Specifically, we can write <m>\proj_{\vv} \vu = (\comp_{\vv} \vu) \frac{\vv}{\vecmag{\vv}}</m>, which separates the projection of <m>\vu</m> onto <m>\vv</m> into   how much of <m>\vu</m> is parallel to <m>\vv</m> (a scalar) times the unit vector in the direction of <m>\vv</m>. This useful idea of separating the magnitude of a vector and the direction of a vector (as described by a unit vector) will be used in the analysis of many vector calculations. The first expression for <m>\proj_{\vv} \vu = \frac{\vu \cdot \vv}{\vv\cdot\vv} \vv</m> can be interpreted conceptually as saying the projection of <m>\vu</m> onto <m>\vv</m> must be parallel to <m>\vv</m> and <m>\frac{\vu \cdot \vv}{\vv\cdot\vv}</m> is closely related to the length of <m>\proj_{\vv} \vu</m>.
+      The component of <m>\vu</m> in the direction of <m>\vv</m> will be a scalar measure of how much of <m>\vu</m> is parallel to <m>\vv</m>. In fact, this shows up in the second formula for <m>\proj_{\vv} \vu</m>. Specifically, we can write 
+      <md>\proj_{\vv} \vu = (\comp_{\vv} \vu) \frac{\vv}{\vecmag{\vv}}</md>,
+      which separates the projection of <m>\vu</m> onto <m>\vv</m> into how much of <m>\vu</m> is parallel to <m>\vv</m> (a scalar) times the unit vector in the direction of <m>\vv</m>. This useful idea of separating the magnitude of a vector and the direction of a vector (as described by a unit vector) will be used in the analysis of many vector calculations. The first expression for <m>\proj_{\vv} \vu = \frac{\vu \cdot \vv}{\vv\cdot\vv} \vv</m> can be interpreted conceptually as saying the projection of <m>\vu</m> onto <m>\vv</m> must be parallel to <m>\vv</m> and <m>\frac{\vu \cdot \vv}{\vv\cdot\vv}</m> is closely related to the length of <m>\proj_{\vv} \vu</m>.
     </p>
 
     <example xml:id="vecprojex">
@@ -1251,9 +1339,9 @@
       </figure>
       <p>
         We can now compute the orthogonal projection of <m>\vu</m> onto <m>\vv</m> using <m>\proj_\vv \vu</m>.
-        <me>
-          \proj_{\perp \vv} \vu = \vu - \proj_\vv \vu = \langle 4,3 \rangle - \langle 0,3\rangle =\langle 4,0\rangle
-        </me>.
+        <md>
+          \proj_{\perp \vv} \vu = \vu - \proj_{\vv} \vu = \langle 4,3 \rangle - \langle 0,3\rangle =\langle 4,0\rangle
+        </md>.
         We can summarize these calculations as follows:
         <ul>
           <li>
@@ -1316,7 +1404,7 @@
           <p>
             <m>\langle 2, 6 \rangle = \langle -2, 4 \rangle + \langle a, b \rangle</m>. Solve for <m>\proj_{\perp \vv} \vu</m> to get <m>\langle 4, 2 \rangle</m>.
           </p>
-          <image width="75%" label="img-projection-activity">
+          <image width="35%" label="img-projection-activity">
             <description><p>A two dimensional plot with a vector starting at the origin moving four units right and eight units down, labeled <m>\vv</m>. Another vector starting at the origin and moving two units to the right and six units up is labeled <m>\vu</m>. A vector drawn in red starting at the origin and moving in the direction opposite of the first vector is labeled <m>\mathrm{proj}_{\vec{v}} \vec{u}</m>. The last vector is plotted in blue and starts at the end of the red vector and ends at the final point of the second vector. The last vector is labeled <m>\mathrm{proj}_{\perp \vec{v}} \vec{u}</m></p></description>
             <sageplot>
               u=vector([2,6])
@@ -1404,9 +1492,9 @@
 
     <p>
       The work required to move the refrigerator is
-      <me>
+      <md>
         W = \vF\cdot\overrightarrow{AB} = \vecmag{\vF} \vecmag{\overrightarrow{AB}} \cos(\theta)
-      </me>.
+      </md>.
     </p>
 
     <p>
@@ -1467,9 +1555,9 @@
           The dot product of two vectors in <m>\R^n</m>, <m>\vu = \langle u_1,
             u_2, \ldots, u_n \rangle</m> and <m>\vv = \langle v_1, v_2, \ldots, v_n
             \rangle</m>, is the scalar
-          <me>
+          <md>
             \vu \cdot \vv = u_1v_1 + u_2v_2 + \cdots + u_nv_n
-          </me>.
+          </md>.
           The dot product is related to the length of a vector since
             <m>\vu\cdot\vu = \vecmag{\vu}^2</m>.
         </p>
@@ -1479,9 +1567,9 @@
         <p>
           The dot product provides us with information about the angle
             between two vectors since
-          <me>
+          <md>
             \vu\cdot\vv = \vecmag{\vu} \vecmag{\vv}\cos(\theta),
-          </me>
+          </md>
           where <m>\theta</m> is the angle
             between <m>\vu</m> and <m>\vv</m>.
         </p>
@@ -1499,9 +1587,9 @@
         <p>
           The projection of a vector <m>\vu</m> in <m>\R^n</m> onto a vector <m>\vv</m>
             in <m>\R^n</m> is the vector
-          <me>
+          <md>
             \proj_{\vv} \vu = \frac{\vu \cdot \vv}{\vv\cdot\vv} \vv.
-          </me>
+          </md>
         </p>
       </li>
     </ul>

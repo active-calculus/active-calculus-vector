@@ -38,6 +38,9 @@
     <p>
       This section helps reinforce why having a unit speed parameterization, as was found in the previous section, is useful. The binormal vector is treated minimally, and instructors who wish to omit it can do so. We still recommend doing <xref ref="act-S-VVF-TNB-driver-road"/>, three parts of which can be answered without consideration for <m>\vB</m>.
     </p>
+    <p>
+      This section can likely be done during a short class period and may be combined with an introduction to curvature. <xref ref="difficult-calcN"/> is a good place to see how the direct calculation of <m>\vN</m> is usually quite difficult and <xref ref="N-DNE"/> is a short conceptual activity that is focused on when the unit normal and unit tangent vectors do not exist. <xref ref="difficult-calcN"/> is a good activity to show why it is not typical to use the definition to calculate the unit normal. This motivates our later work on efficient calculation of <m>/vN</m> using the vector tools and splitting acceleration in <xref ref="S-VVF-Splitting-Acceleration"/>. For this reason, we do not have many exercises that involve <m>\vN</m>, but instead look at using calculus tools to find <m>\vT</m> and other vector calculus quantities. 
+    </p>
   </introduction>
   <subsection>
     <title>Introduction</title>
@@ -93,6 +96,32 @@
             At each of the labeled points on the curve, draw a vector in the direction of travel. Write a sentence about how you are determining this vector at the various points. 
           </p>
         </statement>
+        <solution>
+          <image>
+            <sageplot>
+              plot11=bezier_path([[(2.5,1),(1.5,2),(0,3),(1,4)],[(2,5),(4,3),(5,4)],[(6,5),(7,6),(6,8)],[(5,10),(4,8),(4,7)],[(4,6),(3,7),(3,6)],[(3,5),(4,5),(5,4)],[(6,3),(6,4),(7,2)],[(8,0),(6.5,0),(6,1)]],thickness=2)
+              plot11+=point([(1,4),(5,4),(6,8),(4,7),(3,6),(5,4),(7,2)],size=35,color="black")
+              plot11+=text("$A$",(0.8,4.2),color="black",fontsize=15)
+              plot11+=arrow((1,4),(1.6,4.6),color="blue")
+              plot11+=text("$B$",(5,4.8),color="black",fontsize=15)
+              plot11+=arrow((5,4),(5.6,4.6),color="blue")
+              plot11+=text("$C$",(6.2,8),color="black",fontsize=15)
+              plot11+=arrow((6,8),(5.6,8.8),color="blue")
+              plot11+=text("$D$",(4.2,7),color="black",fontsize=15)
+              plot11+=arrow((4,7),(4,6),color="blue")
+              plot11+=text("$E$",(2.7,6),color="black",fontsize=15)
+              plot11+=arrow((3,6),(3,5),color="blue")
+              plot11+=text("$F$",(5,3.2),color="black",fontsize=15)
+              plot11+=arrow((5,4),(5.6,3.4),color="blue")
+              plot11+=text("$G$",(7.2,2.2),color="black",fontsize=15)
+              plot11+=arrow((7,2),(7.4,1.2),color="blue")
+              plot11+=arrow((3,4),(3.1,3.95),color="black")
+              plot11+=arrow((6,5.1),(6.1,5.3),color="black")
+              plot11+=arrow((6,3.4),(6.1,3.35),color="black",axes=False)
+              plot11
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task>
         <statement>
@@ -100,6 +129,11 @@
             At each point, decide whether the car is turning left or right. Write a sentence about how you are determining this turning based on the plot given. 
           </p>
         </statement>
+        <solution>
+          <p>
+            At each point, you need to look at whether the curve is to the right or left of the direction of travel at each point. For points A through G, in order, the curve is turning right, (slightly) left, left, right, left, left, and right. At point D, you may identify that this location is the instant where we are transitioning from a left turn into a right, so the steering wheel would be straight ahead at this point.
+          </p>
+        </solution>
       </task>
     </exploration>
 </worksheet>
@@ -113,15 +147,18 @@
     <p>
       Based on our work in <xref ref="vvf-derivative"/>, if <m>\vr(t)</m> is a parameterization of a curve in space, then the velocity vector, <m>\vv(t)=\vr\, '(t)</m>, is in the direction of travel. Since the speed, <m>\vecmag{\vv(t)}</m>, is not always 1 (the velocity is not always a unit vector), we define the <term>direction of travel</term> using a unit vector as follows.
     </p>
-      <definition xml:id="def-unit-tangent">
-        <statement>
-          <p>
-            The <term>unit tangent vector</term> to a curve, denoted <m>\vT(t)</m>, is defined as 
-            <me> \vT(t)=\frac{\vv(t)}{\vecmag{\vv(t)}}</me>
-            and measures the direction of travel along a parameterized curve.
-          </p>
-        </statement>
-      </definition>
+    <aside>
+      We do not need to use the classic calculus approach here because of our earlier work in <xref ref="vvf-derivative"/> to understand what the velocity vector measures. We use our vector tools to adapt this concept achieve our goal of measuring the direction of travel.
+    </aside>
+    <definition xml:id="def-unit-tangent">
+      <statement>
+        <p>
+          The <term>unit tangent vector</term> to a curve, denoted <m>\vT(t)</m>, is defined as 
+          <md> \vT(t)=\frac{\vv(t)}{\vecmag{\vv(t)}}</md>
+          and measures the direction of travel along a parameterized curve.
+        </p>
+      </statement>
+    </definition>
     <p>
       By definition, the unit tangent vector exists as long as the velocity exists and is not the zero vector. If the velocity vector is <m>\vec{0}</m>, then the object is not moving, thus the direction of travel would not make sense at that instant. If there is a jump or discontinuity in the derivative of <m>\vr</m> so that <m>\vv</m> does not exist, the direction of travel at that instant does not make sense because there is not a consistent way to define how the object is moving.
     </p>
@@ -146,9 +183,9 @@
       </figure>
       <p>
         Based on the parameterization <m>r(t)</m> for this helix, the velocity vector is <m>\vv(t)=\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </m>. Thus, the speed is
-        <me>\text{speed}(t) = \vecmag{\vv(t)} = \sqrt{\left(-\sin(t)\right)^2+\left(\cos(t)\right)^2+\left(\frac{1}{\pi}\right)^2}= \sqrt{1+\frac{1}{\pi^2}}</me>.
+        <md>\text{speed}(t) = \vecmag{\vv(t)} = \sqrt{\left(-\sin(t)\right)^2+\left(\cos(t)\right)^2+\left(\frac{1}{\pi}\right)^2}= \sqrt{1+\frac{1}{\pi^2}}</md>.
         One of the useful and interesting ideas of this example is that the speed is constant. That is, no matter what parameter value we consider, the speed is always <m> \sqrt{1+\frac{1}{\pi^2}} </m>. Using <xref ref="def-unit-tangent"/>, we find
-        <me> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </me>. To compute some specific examples, we have
+        <md> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </md>. To compute some specific examples, we have
         <md>
           <mrow>\vT\left(\frac{\pi}{2}\right)\amp=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -1,0,\frac{1}{\pi} \right\rangle</mrow>
           <mrow>\vT\left(\frac{5\pi}{4}\right) \amp=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle \frac{\sqrt{2}}{2},-\frac{\sqrt{2}}{2},\frac{1}{\pi} \right\rangle</mrow>
@@ -248,17 +285,22 @@
       </interactive>
     </figure>
     <p>
-      We first consider <m>\vT\, '=\frac{d\vT}{dt}</m>, which measures how quickly <m>\vT</m> is changing in terms of the parameter. The vector <m>\vT\, '=\frac{d\vT}{dt}</m> will measure the rate of change of the direction of travel. Since vectors have magnitude and direction, the derivative of a vector-valued function measures both the change in the magnitude <em>and</em> the change in the direction. Since <m>\vT</m> will always have length 1 (when <m>\vT</m> exists), <em>all</em> of the change in <m>\vT</m> corresponds to a change in direction. Thus, the direction of <m>\vT'=\frac{d\vT}{dt}</m> will be exactly what we are looking for: <m>\vT\, '</m> will point in the direction of turning. For now, we don't care about how fast the car is turning; we want to find the direction of the turning. This leads us to define the unit normal vector, denoted <m>\vN</m>, as the unit vector in the direction of <m>\vT\, '</m>.
+      We first consider <m>\vT\, '=\frac{d\vT}{dt}</m>, which measures how quickly <m>\vT</m> is changing in terms of the parameter. The vector <m>\vT\, '=\frac{d\vT}{dt}</m> will measure the rate of change of the direction of travel. Since vectors have magnitude and direction, the derivative of a vector-valued function measures both the change in the magnitude of <m>\vT</m> <em>and</em> the change in the direction of <m>\vT</m>. Since <m>\vT</m> will always have length 1 (when <m>\vT</m> exists), <em>all</em> of the change in <m>\vT</m> corresponds to a change in direction. Thus, the direction of <m>\vT'=\frac{d\vT}{dt}</m> will be exactly what we are looking for: <m>\vT\, '</m> will point in the direction of turning. For now, we don't care about how fast the car is turning; we want to find the direction of the turning. This leads us to define the unit normal vector, denoted <m>\vN</m>, as the unit vector in the direction of <m>\vT\, '</m>.
     </p>
     <definition xml:id="def-unit-normal">
       <statement>
         <p>
           The <term>unit normal vector</term> to a curve is denoted by <m>\vec{N}(t)</m>. This vector is computed as
-          <me> \vec{N}(t)=\frac{\vT\, '(t)}{\vecmag{{\vT\, '(t)}}}</me>.
+          <md> \vec{N}(t)=\frac{\vT\, '(t)}{\vecmag{{\vT\, '(t)}}}</md>.
           The unit normal vector measures the direction of turning along a parameterized curve.
         </p>
       </statement>
     </definition>
+    <aside>
+      <p>
+        We are able to define the unit normal without the classic calculus approach because our vector tools allowed us to make sense of this measurement rather than requiring a new tool. 
+      </p>
+    </aside>
     <p>
       Based on the definition of the unit normal vector, there are a few different characteristics a curve can have that would cause <m>\vN</m> to not exist. The next activity leads you to consider three different cases:
       <ol>
@@ -267,21 +309,38 @@
         <li><m>\vN</m> will not exist if <m>\vT\, '=\vec{0}</m> </li>
       </ol>
     </p>
-    <worksheet>
-  <activity workspace="1.5in">
+  <worksheet>
+    <activity workspace="1.5in" xml:id="N-DNE">
       <task>
         <statement>
           <p>
             Draw an example of a curve such that <m>\vT</m> does not exist at a point on your curve. Identify the point where <m>\vT</m> fails to exist. Explain both why the direction of travel does not exist at that point based on your plot and why the direction of turning will not exist at the same point.
           </p>
         </statement>
-      </task>
-      <task>
-        <statement>
+        <solution>
           <p>
-            Draw an example of a curve such that <m>\vT\, '</m> does not exist at a point on your curve but <m>\vT</m> <em>does</em> exist at that point. Identify the point at which <m>\vT\, '</m> fails to exist. Explain both why <m>\vT\, '</m> does not exist at that point based on your plot and why <m>\vN</m> does not exist at the same point.
+            You accomplish this in several ways. First, you could have a zero speed. Think of driving on the curve below and coming to a stop at the highlighted point. This would give a zero speed and a zero (as a vector) for the velocity. This would make the definition of the unit tangent undefined because of the division by zero.
           </p>
-        </statement>
+          <image>
+            <sageplot>
+              var('t')
+              plot1=parametric_plot((cos(t),sin(t)),(t,pi/2,pi),color="black",axes=False)
+              plot1+=point((0,1),color="black",size=30)
+              plot1
+            </sageplot>
+          </image>
+          <p>
+            You could also accomplish this by traveling on a curve that has a cusp point like the one below. At the cusp point it is not clear what the direction of travel will be. The derivative of the parameterization would not exist at this point, thus the velocity vector and <m>\vT</m> are undefined as well. 
+          </p>
+          <image>
+            <sageplot>
+              var('t')
+              plot2=parametric_plot((t,1-sqrt(abs(t))),(t,-1/2,1/2),color="black",plot_points=400,axes=False)
+              plot2+=point((0,.99),color="black",size=30)
+              plot2  
+            </sageplot>
+          </image>
+        </solution>
       </task>
       <task>
         <statement>
@@ -289,7 +348,28 @@
             Draw an example of a curve such that <m>\vT\, '=\vec{0}</m> at a point on your curve. Explain why <m>\vT\, '=\vec{0}</m> based on your plot and explain why <m>\vN</m> does not exist at the same point.
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>\vT' = \vzero</m> at the point below because <m>\vT</m> is defined but is not changing. This can occur at points where you are changing from a right to left turn as well. 
+          </p>
+          <image>
+            <sageplot>
+              var('t')
+              plot3=parametric_plot((2*t,t),(t,-0.1,0.1),color="black",axes=False)
+              plot3+=point((0,0),color="black",size=30)
+              plot3+=arrow((0,0),(0.05,0.025),color="blue")
+              plot3
+            </sageplot>
+          </image>
+        </solution>
       </task>
+      <!-- <task>
+        <statement>
+          <p>
+            Draw an example of a curve such that <m>\vT\, '</m> does not exist at a point on your curve but <m>\vT</m> <em>does</em> exist at that point. Identify the point at which <m>\vT\, '</m> fails to exist. Explain both why <m>\vT\, '</m> does not exist at that point based on your plot and why <m>\vN</m> does not exist at the same point.
+          </p>
+        </statement>
+      </task> -->
     </activity>
 </worksheet>
 
@@ -299,9 +379,9 @@
     </p>
     <p>
       From our work in <xref ref="helix-T"/>, we calculated
-      <me> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </me>
+      <md> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </md>
       Using the definition of <m>\vN</m>, we need to compute the derivative of <m>\vT</m> with respect to <m>t</m>:
-      <me> \vT\, '(t)=\frac{d\vT}{dt}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\cos(t),-\sin(t),0 \rangle </me>
+      <md> \vT\, '(t)=\frac{d\vT}{dt}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\cos(t),-\sin(t),0 \rangle </md>
       Note that in this example, the derivative of <m>\vT</m> is easily calculated for all time values but this will rarely be the case. Further, making a unit vector in the direction of <m>\vT(t)'=\frac{d\vT}{dt}</m> is routine and gives us the following calculation:
       <md>
         <mrow> \vec{N}(t) \amp= \frac{\vT\, '(t)}{\vecmag{{\vT'(t)}}} </mrow>
@@ -357,7 +437,7 @@
     </figure>
   </example>
   <p>
-    <xref ref="helix-N"/> is the exceptional case where <m>\vN</m> is easily calculated directly from the definition and the calculations are fairly clean. In the next activity, we will look at a curve with a  polynomial parameterization that will demonstrate how easily the calculation of <m>\vN</m> can go off the rails.
+    <xref ref="helix-N"/> is the exceptional case where <m>\vN</m> is easily calculated directly from the definition and the calculations are fairly clean. In the next activity, we will look at a curve with a simple polynomial parameterization that will demonstrate how easily the calculation of <m>\vN</m> can go off the rails.
   </p>
 <worksheet>
   <activity workspace="1.5in" xml:id="difficult-calcN">
@@ -374,9 +454,14 @@
     </statement>
     <answer>
       <p>
-        <m> \vv(t)= \langle 1,2t,3t^2\rangle </m> and <m>\text{speed}(t)=\sqrt{1+4t^2+9t^4}</m>
+        
       </p>
     </answer>
+    <solution>
+      <p>
+        <m> \vv(t)= \langle 1,2t,3t^2\rangle </m> and <m>\text{speed}(t)=\sqrt{1+4t^2+9t^4}</m>
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
@@ -386,9 +471,14 @@
     </statement>
     <answer>
       <p>
-        <m>\vT= \frac{1}{\sqrt{1+4t^2+9t^4}} \langle 1,2t,3t^2\rangle </m>
+        
       </p>
     </answer>
+    <solution>
+      <p>
+        <m>\vT= \frac{1}{\sqrt{1+4t^2+9t^4}} \langle 1,2t,3t^2\rangle </m>
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
@@ -403,9 +493,14 @@
     </hint>
     <answer>
       <p>
-        The first component of <m>\vT\, '</m> is <m>-\frac{1}{2}\left(1+4t^2+9t^4\right)^{-3/2} (8t+36t^3)</m>
+        
       </p>
     </answer>
+    <solution>
+      <p>
+        The first component of <m>\vT\, '</m> is <m>-\frac{1}{2}\left(1+4t^2+9t^4\right)^{-3/2} (8t+36t^3)</m>
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
@@ -418,6 +513,11 @@
         The second component of <m>\vT\, '</m> is <m>(2)(1+4t^2+9t^4)^{-1/2}+(2t)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right)</m>
       </p>
     </answer>
+    <solution>
+      <p>
+        The second component of <m>\vT\, '</m> is <m>(2)(1+4t^2+9t^4)^{-1/2}+(2t)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right)</m>
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
@@ -430,20 +530,35 @@
         The third component of <m>\vT\, '</m> is <m>(6t)(1+4t^2+9t^4)^{-1/2}+(3t^2)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right)</m>
       </p>
     </answer>
+    <solution>
+      <p>
+        The third component of <m>\vT\, '</m> is <m>(6t)(1+4t^2+9t^4)^{-1/2}+(3t^2)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right)</m>
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
       <p>
-        Put together your work for the three components of <m>\vT\, '</m> and compute <m>\vecmag{\frac{d\vT}{dt}}</m>.
+        Put together your work for the three components of <m>\vT\, '</m>. 
       </p>
     </statement>
+    <solution>
+      <p>
+        <m>\vT\, ' = \left\langle -\frac{1}{2}\left(1+4t^2+9t^4\right)^{-3/2} (8t+36t^3), (2)(1+4t^2+9t^4)^{-1/2}+(2t)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right), (6t)(1+4t^2+9t^4)^{-1/2}+(3t^2)\left(-\frac{1}{2}(1+4t^2+9t^4)^{-3/2} (8t+36t^3)\right) \right\rangle</m>
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
       <p>
-        In the previous part, you likely decided that trying to simplify your formulas for <m>\frac{d\vT}{dt}</m> and <m>\vecmag{\frac{d\vT}{dt}}</m> was more complicated than you had space for on your paper. Instead of doing more intricate algebraic computations, describe how you would calculate <m>\vN</m> if you had nice formulas for <m>\frac{d\vT}{dt}</m> and <m>\vecmag{\frac{d\vT}{dt}}</m>.
+        In the previous part, you likely decided that trying to simplify your formulas for <m>\frac{d\vT}{dt}</m> was more complicated than you had space for on your paper, and note that we still would need to calculate <m>\vecmag{\frac{d\vT}{dt}}</m>. Instead of doing more intricate algebraic computations, describe how you would calculate <m>\vN</m> if you had nice formulas for <m>\frac{d\vT}{dt}</m> and <m>\vecmag{\frac{d\vT}{dt}}</m>.
       </p>
     </statement>
+    <solution>
+      <p>
+        We would need to make the derivative of <m>\vT</m> with respect to <m>t</m> a unit vector by dividing by the length. 
+      </p>
+    </solution>
   </task>
 </activity>
 </worksheet>
@@ -462,9 +577,9 @@
   <statement>
     <p>
       The unit tangent vector <m>\vT</m> and the unit normal vector <m>\vN</m> are orthogonal so that 
-      <me>
+      <md>
         \vT\cdot \vN = 0
-      </me>.
+      </md>.
       
     </p>
   </statement>
@@ -490,7 +605,7 @@
   <definition xml:id="def-binormal">
     <statement>
       <p>
-        The <term>binormal vector</term>, denoted <m>\vec{B}</m>, for a parameterized curve is defined as <me> \vec{B}=\vT \times \vec{N}</me>.
+        The <term>binormal vector</term>, denoted <m>\vec{B}</m>, for a parameterized curve is defined as <md> \vec{B}=\vT \times \vec{N}</md>.
       </p>
     </statement>
   </definition>
@@ -498,7 +613,7 @@
     This definition of <m>\vB</m> creates a three-dimensional right-handed coordinate system that is relative to the motion along the curve. Notice that while we had to divide by magnitude to ensure that <m>\vT</m> and <m>\vN</m> were unit vectors, the binormal vector is a unit vector because <m>\vecmag{\vT \times \vN } = \vecmag{\vT} \vecmag{\vN} \sin(\theta)</m> where <m>\theta</m> is the angle between <m>\vT</m> and <m>\vN</m>. Since <m>\vT</m> and <m>\vN</m> are unit vectors and orthogonal to each other, we see that <m>\vecmag{\vT}\vecmag{\vN} \sin(\theta)= 1</m>. The binormal vector <m>\vB</m> gives the axis of rotation for the motion along the curve. This measure of rotation follows our right-handed measure of rotation. If you put the fingers of your right hand in the direction of travel (<m>\vT</m>) and curl your fingers in the direction of turning (<m>\vN</m>), then your thumb will correspond to the axis of rotation based on how you are moving along the curve.
   </p>
   <p>
-    The <term>TNB frame</term> is also called the <term>Frenet frame</term><idx><h>frame</h><h>TNB</h></idx><idx><h>frame</h><h>Frenet</h></idx><idx><h>TNB frame</h></idx><idx><h>Frenet frame</h></idx> and is frequently used in fields such as aviation and space travel because much of the important flight information is expressed in terms of relative measurements to the craft and its motion.
+    The <term>TNB frame</term> is also called the <term>Frenet frame</term><idx><h>frame</h><h>TNB</h></idx><idx><h>frame</h><h>Frenet</h></idx><idx><h>TNB frame</h></idx><idx><h>Frenet frame</h></idx> and is frequently used in fields such as aviation and space travel because much of the important flight information is expressed in terms of relative measurements to the craft and its motion. The plane determined by the vectors <m>\vN(t)</m> and <m>\vB(t)</m> is called the <em>normal plane</em> to the curve at <m>t</m> and consists of all lines that are orthogonal to the tangent line to the curve at <m>t</m>. The plane determined by <m>\vT(t)</m> and <m>\vN(t)</m> is called the <em>osculating plane</em> and is the plane the comes closest to containing the curve for inputs near <m>t</m>. In the remaining sections of this chapter, we will return to these ideas of what is happening on the osculating plane. 
   </p>
   <example>
     <p>
@@ -508,9 +623,9 @@
           <mrow> \vN \amp= \langle -\cos(t),-\sin(t),0\rangle </mrow>
         </md> 
       Using the definition for <m>\vB</m>, we have
-      <me> \vB = \vT \times \vN = \frac{1}{\sqrt{1+\frac{1}{\pi^2}}} \left\langle \frac{1}{\pi}\sin(t), -\frac{1}{\pi}\cos(t), \sin(t)^2+\cos(t)^2 \right\rangle </me>
+      <md> \vB = \vT \times \vN = \frac{1}{\sqrt{1+\frac{1}{\pi^2}}} \left\langle \frac{1}{\pi}\sin(t), -\frac{1}{\pi}\cos(t), \sin(t)^2+\cos(t)^2 \right\rangle </md>
       Factoring out <m>\frac{1}{\pi}</m> from each component and simplifying the coefficient gives
-      <me> \vB = \frac{1}{\sqrt{\pi^2+1}} \langle \sin(t), -\cos(t), \pi \rangle  </me>.
+      <md> \vB = \frac{1}{\sqrt{\pi^2+1}} \langle \sin(t), -\cos(t), \pi \rangle  </md>.
       <xref ref="helix-plot4"/> shows the helix with the TNB frame depicted at a single point. You can adjust the location of the TNB frame by moving the slider.
     </p>
     <figure xml:id="helix-plot4">
@@ -556,7 +671,7 @@
 <subsection xml:id="subsec-driverroadTNB">
   <title>The Driver or the Road: TNB Frame</title>
   <p>
-    To conclude this section, we consider whether the measurements of <m>\vT</m>, <m>\vN</m>, and <m>\vB</m> are properties of the driver or the road. A parameterized curve  has a stated orientation (direction of travel). Remember that a measurement involving a parameterized curve is a property of the driver if two different parameterizations can have different measurements at the same location on the curve. It is important to remember that this does not mean that you look at the same parameter value on the curve, but rather the same <em>location</em> on the curve. A measurement on a parameterized curve is a property of the road if <em>every</em> parameterization of this curve must have the same measurement for a fixed location on the curve. These are the same ideas that were first discussed in <xref ref="driver_road_act"/>. In the analogy of a parameterization being a description for how a particular racecar travels around a track as a function of time, a measurement is a property of the driver if that measurement can have different values for different drivers when measured at the same point on the racetrack. A measurement is a property of the road if that measurement <em>must</em> have the same value for <em>all</em> drivers when measured at the same point on the racetrack.
+    To conclude this section, we consider whether the measurements of <m>\vT</m>, <m>\vN</m>, and <m>\vB</m> are properties of the driver or the road. A parameterized curve  has a stated orientation (direction of travel). Remember that a measurement involving a parameterized curve is a property of the driver if two different parameterizations can have different measurements at the same location on the curve. It is important to remember that this does not mean that you look at the same parameter value on the curve, but rather the same <em>location</em> on the curve. A measurement on a parameterized curve is a property of the road if <em>every</em> parameterization of this curve must have the same measurement for a fixed location on the curve. These are the same ideas that were first discussed in <xref ref="driver_road_act"/>. In the analogy of a parameterization being a description for how a particular race car travels around a track as a function of time, a measurement is a property of the driver if that measurement can have different values for different drivers when measured at the same point on the racetrack. A measurement is a property of the road if that measurement <em>must</em> have the same value for <em>all</em> drivers when measured at the same point on the racetrack.
   </p>
   
   <worksheet>
@@ -568,6 +683,11 @@
           Each race car has a 1 meter arrow attached to the hood of the car which points straight ahead. This arrow will measure the three dimensional vector that is the direction of travel. Is the direction of travel a property of the driver or the road? Be sure to explain your answer.
         </p>
       </statement>
+      <solution>
+        <p>
+          The direction of travel is a property of the road. If we look at a particular point on the track, every driver will have the same direction of travel at that point (regardless of how they are driving). Remember that all of the drivers will need to stay on the track. 
+        </p>
+      </solution>
     </task>
     <task>
       <title>Turn Signal</title>
@@ -576,6 +696,11 @@
           The turn signal is measured by checking to see if the steering wheel is turned left or right. We are not measuring how much the steering wheel is turned in either direction, just whether the wheel is turned left or right. If the steering wheel is not turned either way at the instant we measure , then we say there is no turn signal because the car isn't turning at that instant. Is the turn signal a property of the driver or the road? Be sure to explain your answer.
         </p>
       </statement>
+      <solution>
+        <p>
+          The turn signal is a property of the road. If we look at a particular point on the track, every driver will have to be turning the same direction at that point. How much <q>turning</q> the driver feels will change with the way the driver is driving but every driver will have to turn the same way to stay on the track. Not every driver will need to turn the steering wheel the same amount but all drivers will need to have the wheel turned to the right (or left) based on the track at that location. 
+        </p>
+      </solution>
     </task>
     <task xml:id="task-S-VVF-TNB-direction-turning">
       <title>Direction of Turning</title>
@@ -584,6 +709,11 @@
           The direction of turning is measured by using a 1 meter arrow that sticks perpendicularly out of the left side of the car when the steering wheel is turned left and out of the right side of the car when the steering wheel is turned right. We are not measuring how much the wheel is turned in either direction, just whether the wheel is turned left or right. If the steering wheel is not turned either way at the instant we measure the direction of turning, then we say there is no direction of turning because the car isn't turning at that instant. Is the direction of turning as a vector in <m>\mathbb{R}^3</m> a property of the driver or the road? Be sure to explain your answer.
         </p>
       </statement>
+      <solution>
+        <p>
+          The direction of turning is a property of the road. The turn signal measures whether the steering wheel is turned left or right, but that direction is manifested in three dimensions as the vector measuring the direction of turning.
+        </p>
+      </solution>
     </task>
     <task>
       <statement>
@@ -596,6 +726,11 @@
           Use the definition of <m>\vB</m> and your answers to <xref ref="task-S-VVF-TNB-direction-travel" text="type-local"/> and <xref ref="task-S-VVF-TNB-direction-turning" text="type-local"/>.
         </p>
       </hint>
+      <solution>
+        <p>
+          As we discussed above, every driver would have to have the same unit normal and unit tangent vectors at each location on the track, thus all drivers would have to have the result for the cross product of <m>\vT</m> and <m>\vN</m>.
+        </p>
+      </solution>
     </task>
   </activity>
 </worksheet>

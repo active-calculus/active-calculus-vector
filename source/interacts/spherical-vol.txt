@@ -7,7 +7,7 @@ x1=-1;x2=3;y1=-1;y2=3;
 param(s,t)=(s,t,0)
 #set up grid      n is number of steps in s    m is number of steps in t  
 #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-n=8;m=8;a1=x1;a2=x2;b1=y1;b2=y2; 
+n=6;m=6;a1=x1;a2=x2;b1=y1;b2=y2; 
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
@@ -21,9 +21,9 @@ for i in range(m+1):
     plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 
 t1=0.5;t2=1.2;p1=2.2;p2=3;h1=0.5;h2=0.9;
-plot4+=parametric_plot3d((r*cos(t),r*sin(t),0),(r,p1*sin(h1),p2*sin(h2)),(t,t1,t2),color="gray")
+plot4+=parametric_plot3d((r*cos(t),r*sin(t),0),(r,p1*sin(h1),p2*sin(h2)),(t,t1,t2),color="gray",opacity=0.7)
 plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),0),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),0)],color="gray",thickness=2,linestyle="--")
-plot4+=text3d("\u0394\u03B8",(p1/3*cos(t2/2+t1/2),p1/3*sin(t2/2+t1/2),0),color="black",fontsize=25)
+plot4+=text3d("\u0394\u03B8",(p1/3*cos(t2/2+t1/2),p1/3*sin(t2/2+t1/2),0),color="black",fontsize=25,zorder=5)
 
 plot4+=parametric_plot3d((p1*sin(h)*cos(t),p1*sin(h)*sin(t),p1*cos(h)),(h,h1,h2),(t,t1,t2),color="gray")
 plot4+=parametric_plot3d((p2*sin(h)*cos(t),p2*sin(h)*sin(t),p2*cos(h)),(h,h1,h2),(t,t1,t2),color="gray")
@@ -34,16 +34,17 @@ plot4+=parametric_plot3d((p*sin(h)*cos(t2),p*sin(h)*sin(t2),p*cos(h)),(p,p1,p2),
                          
 
 plot4+=parametric_plot3d((p*sin(h1)*cos(t1),p*sin(h1)*sin(t1),p*cos(h1)),(p,p1,p2),color="red",thickness=4)
-plot4+=text3d("\u0394\u03C1",((p2+p1)/2*sin(h1)*cos(t1)-0.3,(p2+p1)/2*sin(h1)*sin(t1)-0.3,(p2+p1)/2*cos(h1)),color="red",fontsize=25)
+plot4+=text3d("\u0394\u03C1",((p2+p1)/2*sin(h1)*cos(t1)-0.3,(p2+p1)/2*sin(h1)*sin(t1)-0.3,(p2+p1)/2*cos(h1)),color="red",fontsize=25,zorder=5)
 
 plot4+=parametric_plot3d((p2*sin(h1)*cos(t),p2*sin(h1)*sin(t),p2*cos(h1)),(t,t1,t2),color="blue",thickness=4)
 
 plot4+=parametric_plot3d((p2*sin(h)*cos(t1),p2*sin(h)*sin(t1),p2*cos(h)),(h,h1,h2),color="green",thickness=4)
+plot4+=text3d("\u0394\u03C6",(1.5*sin(h2/2+h1/2)*cos(t1),1.5*sin(h2/2+h1/2)*sin(t1),1.5*cos(h2/2+h1/2)),color="black",fontsize=25,zorder=5)
 
-plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),p2*cos(h2)),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),p2*cos(h2))],color="gray",thickness=1)
-plot4+=line([(p2*sin(h1)*cos(t1),p2*sin(h1)*sin(t1),p2*cos(h1)),(0,0,0),(p2*sin(h1)*cos(t2),p2*sin(h1)*sin(t2),p2*cos(h1))],color="gray",thickness=1)
+plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),p2*cos(h2)),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),p2*cos(h2))],color="gray",thickness=2)
+plot4+=line([(p2*sin(h1)*cos(t1),p2*sin(h1)*sin(t1),p2*cos(h1)),(0,0,0),(p2*sin(h1)*cos(t2),p2*sin(h1)*sin(t2),p2*cos(h1))],color="gray",thickness=2)
 
 plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),0),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),0)],color="gray",thickness=2,linestyle="--")
 
 
-show(plot4,viewpoint=[[-0.6077,-0.4034,-0.6841],88.27],camera_position=[8.2389,-1.9081,5.8545])
+show(plot4,viewpoint=[[-0.694,-0.4224,-0.583],92.46],camera_position=[8.5103,-2.8816,4.3276])
