@@ -34,7 +34,7 @@
       This section relies on many of the tools we have developed throughout <xref ref="C_MVF"/>, most importantly we will use the linearization from <xref ref="S-mv_deriv-linearization"/>. The chain rule introduced in <xref ref="S_mv_deriv-chain_rule"/> is used to define an efficient calculation of the directional derivative but is not critical for this section.
     </p>
     <p>
-      You will likely want to cover this section over several classes since these ideas are important to many other partner fields. The gradient is defined after the development of the directional derivative because the interpretations of the gradient are dependent on the directional derivative. 
+      You will likely want to cover this section over several classes since these ideas are important to many other partner fields. The gradient is defined after the development of the directional derivative because the interpretations of the gradient are dependent on the directional derivative. This presentation emphasizes the geometric measurement of the directional derivative more than the algebraic form of the gradient. 
     </p>
   </introduction>
   <subsection>
@@ -52,7 +52,7 @@
       </image>
     </figure>
     <worksheet>
-  <exploration workspace="1.5in" xml:id="PA-DD">
+    <exploration workspace="1.5in" xml:id="PA-DD">
       <introduction>
         <p>
           Below is a contour plot showing the elevations for a region of a nearby park. <!-- The elevations are given in meters above sea level and the horizontal and vertical grid lines are 1 km apart. Several locations are labeled on <xref ref="PA-DDcontour1"/> with capital letters. --> We will be referring to <m>h(x,y)</m> as the function of two variables that gives the elevation as a function of <m>x</m>-coordinate (location in the east-west or horizontal direction) and <m>y</m>-coordinates (location in the north-south or vertical direction).
@@ -97,6 +97,18 @@
             </ol>  
           </p>
         </statement>
+        <solution>
+          <p>
+            <ol marker="i.">
+              <li><m>h_x(A)</m> is positive</li>
+              <li><m>h_y(A)</m> is negative</li>
+              <li><m>h_x(B)</m> is zero (or very close to it)</li>
+              <li><m>h_y(B)</m> is positive</li>
+              <li><m>h_x(C)</m> is positive</li>
+              <li><m>h_y(C)</m> is positive</li>
+            </ol> 
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -104,6 +116,11 @@
             Suppose you are standing at point <m>B</m>. Do you expect the elevation to increase, decrease, or remain constant if you take a step in the northeast direction? Write a sentence to explain your reasoning.
           </p>
         </statement>
+        <solution>
+          <p>
+            We expect the elevation to increase because the contours in that direction have larger values than at <m>B</m>. 
+          </p>
+        </solution>
       </task>
        <task>
         <statement>
@@ -111,6 +128,11 @@
             Suppose you are standing at point <m>B</m>. Do you expect the elevation to increase, decrease, or remain constant if you take a step in the southeast direction? Write a sentence to explain your reasoning.
           </p>
         </statement>
+        <solution>
+          <p>
+            We expect the elevation to decrease because the contours in that direction have smaller values than at <m>B</m>.
+          </p>
+        </solution>
       </task>
        <task>
         <statement>
@@ -118,6 +140,11 @@
             Suppose you are standing at point <m>A</m>. Do you expect the elevation to increase, decrease, or remain constant if you take a step in the southwest direction? Write a sentence to explain your reasoning.
           </p>
         </statement>
+        <solution>
+          <p>
+            We expect the elevation to decrease slightly in the southwest direction from <m>A</m> because the contours in that direction are slightly less than at <m>A</m>.
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -125,6 +152,11 @@
             Suppose you are standing at point <m>C</m>. In what direction would you take a step to move in the steepest downhill direction? Write a sentence to explain your reasoning.
           </p>
         </statement>
+        <solution>
+          <p>
+            We would expect the steepest downhill direction at <m>C</m> to be in the southwest (or more specifically, south-southwest).
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -132,6 +164,11 @@
             Suppose you are standing at point <m>A</m>. In what direction would you take a step to move in the steepest uphill direction? Write a sentence to explain your reasoning.
           </p>
         </statement>
+        <solution>
+          <p>
+            We would expect the steepest uphill direction at <m>A</m> to be south-southeast.
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -139,6 +176,11 @@
             Suppose you are standing at point <m>B</m>. Rank the following directions in order of steepness (from most steep and uphill to level to most steep downhill): northeast, north, east, west, south
           </p>
         </statement>
+        <solution>
+          <p>
+            The ranking from steepest uphill to steepest downhill will be northeast, north, east, west, south. 
+          </p>
+        </solution>
       </task>
     </exploration>
 </worksheet>
@@ -151,7 +193,7 @@
   <subsection>
     <title>Directional Derivatives</title>
     <p>
-      We begin by determining how to measure the rate of change for a function of two variables in a direction that is not parallel to one of the coordinate directions. We use the classic calculus approach to set up this measurement: approximate the measurement, quantify how the approximation changes on a smaller scale, and finally use a limit to find the value. To measure the rate of change in the output of a function, we use a difference quotient:
+      We begin by determining how to measure the rate of change for a function of two variables in a direction that is not parallel to one of the coordinate directions. We use the <xref ref="CCA" text="custom">classic calculus approach</xref> to set up this measurement: approximate the measurement, quantify how the approximation changes on a smaller scale, and finally use a limit to find the value. To measure the rate of change in the output of a function, we use a difference quotient:
       <md>
         \text{rate of change} = \frac{\text{change in output}}{\text{change in input}}
       </md>.
@@ -171,12 +213,12 @@
       </interactive>
     </figure>
     <p>
-      The difference quotient above is the first step in the classic calculus approach and provides a good start to approximating the rate of change for the output of <m>f</m> in the direction <m>\langle a,b\rangle</m>. However, it is not clear how this approximation changes when we look at smaller scales. Specifically, we need to look at what happens to this approximation as we shrink the step size <m>\sqrt{a^2+b^2}</m> to <m>0</m> while maintaining the same direction of change. In order to maintain our direction <em>and</em> look at smaller step sizes, we must separate the length of the vector <m>\langle a,b \rangle </m> from its direction. To do this, we use the unit vector in the direction of <m>\langle a,b \rangle</m>.
+      The difference quotient completes is the first step in the classic calculus approach and provides a good start to approximating the rate of change for the output of <m>f</m> in the direction <m>\langle a,b\rangle</m>. However, it is not clear how this approximation changes when we look at smaller scales. Specifically, we need to look at what happens to this approximation as we shrink the step size <m>\sqrt{a^2+b^2}</m> to <m>0</m> while maintaining the same direction of change. In order to maintain our direction <em>and</em> look at smaller step sizes, we must separate the length of the vector <m>\langle a,b \rangle </m> from its direction. To do this, we use the unit vector in the direction of <m>\langle a,b \rangle</m>.
     </p>
     <p>
-      Let <m>\vu=\langle u_1,u_2\rangle </m> be the unit vector in the same direction as <m>\langle a,b \rangle</m>. Vectors in the same direction as <m>\langle a,b \rangle</m> can be written in the form <m> t \langle u_1,u_2\rangle</m>, where <m>t</m> is the step size and <m>\vu=\langle u_1,u_2\rangle </m> is the unit vector. Taking a step of length <m>t</m> in the direction <m>\langle u_1,u_2 \rangle</m>, the difference quotient can be written as
+      Let <m>\vu=\langle u_1,u_2\rangle </m> be the unit vector in the same direction as <m>\langle a,b \rangle</m>. Vectors in the same direction as <m>\langle a,b \rangle</m> can be written in the form <m> t \langle u_1,u_2\rangle</m>, where <m>t \gt 0</m> is the step size and <m>\vu=\langle u_1,u_2\rangle </m> is the unit vector. Taking a step of length <m>t</m> in the direction <m>\langle u_1,u_2 \rangle</m>, the difference quotient can be written as
       <md>\frac{f(x_0+t (u_1),y_0+t(u_2))-f(x_0,y_0)}{t}</md>.
-      We will look at how this difference quotient changes at smaller scales, i.e., when the step size <m>t</m> gets smaller. This accomplishes the second step of the classic calculus approach because it quantifyies how the approximation works on smaller scales. We can now take the limit as <m>t \to 0</m> to define the directional derivative.
+      We will look at how this difference quotient changes at smaller scales, i.e., when the step size <m>t</m> gets smaller. This accomplishes the second step of the classic calculus approach because it quantifies how the approximation works on smaller scales. We can now take the limit as <m>t \to 0</m> to define the directional derivative.
     </p>
     <definition xml:id="defn-DD">
       <statement>
@@ -234,7 +276,7 @@
   <subsection>
     <title>Efficiently Computing the Directional Derivative</title>
     <p>
-      We want to find a way to evaluate directional derivatives without resorting to evaluating the limit definition in <xref ref="E_DirDerDef">equation</xref> every time. We will look at this algebraic approach from two perspectives. First, we will use the chain rule from <xref ref="S_mv_deriv-chain_rule"/> to define a simple algebraic rule which will allow us to efficiently calculate directional derivatives. Second, we will use the linearization of a locally linear function to compute directional derivatives.
+      We want to find a way to evaluate directional derivatives without resorting to evaluating the limit definition in <xref ref="E_DirDerDef">Equation</xref> every time. We will look at this algebraic approach from two perspectives. First, we will use the chain rule from <xref ref="S_mv_deriv-chain_rule"/> to define a simple algebraic rule which will allow us to efficiently calculate directional derivatives. Second, we will use the linearization of a locally linear/differentiable function to compute directional derivatives.
     </p>
     <p>
       We are interested in the instantaneous rate of change of <m>f</m> at a point <m>(x_0,y_0)</m> in the direction of a unit vector <m>\vu = \langle u_1, u_2 \rangle</m>. In particular, the input variables <m>x</m> and <m>y</m> are changing according to
@@ -263,7 +305,7 @@
       </p>
     </theorem>
     <p>
-      To use <xref ref="eq_mv_deriv-directional-DD">equation</xref>, we must have a <em>unit</em> vector <m>\vu = \langle u_1, u_2 \rangle</m> in the direction of motion. In the event that we have a direction prescribed by a non-unit vector, we must first scale the vector to have length 1. 
+      To use <xref ref="eq_mv_deriv-directional-DD">equation</xref>, we must have a <em>unit</em> vector <m>\vu = \langle u_1, u_2 \rangle</m> in the direction of motion. In the event that we have a direction prescribed by a non-unit vector, we must first rescale the vector to have length 1. 
     </p>
     <example>
       <p>
@@ -490,13 +532,13 @@
       <md>
         z = f(x_0,y_0) + f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)
       </md>.
-      If <m>f</m> is a locally linear function, then the directional derivative <m>D_{\vu}f(x_0,y_0)</m> is the same as the rate of change along the tangent plane in the direction of <m>\vu</m>. This is convenient because on the tangent plane, the rate of change is the same regardless of step size, a fact that is <em>not</em> true on the original surface <m>z=f(x,y)</m>. We now consider the quotient
+      If <m>f</m> is a locally linear function, then the directional derivative <m>D_{\vu}f(x_0,y_0)</m> is the same as the rate of change along the tangent plane in the direction of <m>\vu</m>. This is convenient because on the tangent plane, the rate of change is the same regardless of step size, a fact that is <em>not</em> true on the original surface <m>z=f(x,y)</m>. We now consider the difference quotient along the tangent plane. We use the notation of the linearization below because the linearization, <m>L(x,y)</m> is the functional form of the tangent plane at <m>(x_0,y_0)</m>. 
       <md>
         <mrow>\amp\frac{z(x_0+u_1,y_0+u_2)-z(x_0,y_0)}{\sqrt{u_1^2+u_2^2}}</mrow>
         <mrow>\amp=\frac{\left(f(x_0,y_0) + f_x(x_0,y_0)(x_0+u_1-x_0) + f_y(x_0,y_0)(y_0+u_2-y_0)\right)-f(x_0,y_0)}{1}</mrow>
         <mrow>\amp= f_x(x_0,y_0) (u_1) + f_y(x_0,y_0)(u_2)</mrow>
       </md>,
-      which is exactly the result in <xref ref="eq_mv_deriv-directional-DD">equation</xref>. 
+      which is exactly the result in <xref ref="eq_mv_deriv-directional-DD">Equation</xref>. 
     </p>
   </subsection>
   <subsection xml:id="gradient_ss">
@@ -509,7 +551,7 @@
       You may recognize the form of <xref ref="E_DDrevisited"/> as being similar to a dot product. We can also view this equation as stating that the rate of change along the linearization in a given direction can be expressed as a linear combination of the rates of change in the coordinate directions by using partial derivatives with the weight of each partial derivative specified by the components of the unit vector <m>\vu</m>. 
     </p>
     <p>
-      We can think about <nbsp/><xref ref="E_DDrevisited">equation</xref> in a way that will have geometric meaning related to the dot product. The directional derivative <m>D_{\vu}f(x_0,y_0)</m> is the dot product of <m>\left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle</m> and <m>\vu=\langle u_1,u_2\rangle</m>. Notice that the vector <m>\left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle</m> comes from simple calculations that tell us how the function <m>f</m> is changing near the input <m>(x_0,y_0)</m>.
+      We can think about <nbsp/><xref ref="E_DDrevisited">Equation</xref> in a way that will have geometric meaning related to the dot product. The directional derivative <m>D_{\vu}f(x_0,y_0)</m> is the dot product of <m>\left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle</m> and <m>\vu=\langle u_1,u_2\rangle</m>. Notice that the vector <m>\left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle</m> comes from simple calculations that tell us how the function <m>f</m> is changing near the input <m>(x_0,y_0)</m>.
     </p>
     <definition xml:id="def-gradient">
       <statement>
@@ -750,6 +792,11 @@
             Write a few sentences about why the gradient at <m>P</m> goes in the southeast direction and not the northwest (which is also perpendicular to the thermocline/ level curve at <m>P</m>).
           </p>
         </statement>
+        <solution>
+          <p>
+            The gradient should point in the direction of increase since we want the dot product with the direction vector to be positive. Moving from <m>P</m> in the direction south and east will increase the temperature into the 70s. 
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -757,7 +804,7 @@
             Draw a vector in each of the following directions starting at <m>P</m> and state whether the directional derivative will be positive/negative/0 in each of these directions. You should write a couple of sentences for each direction vector about how the sign of the directional derivative is related to the angle between the direction and the gradient vectors.
           </p>
           <p>
-            <ol>
+            <ol marker="i.">
               <li>
                 <p>
                   West
@@ -776,6 +823,27 @@
             </ol>
           </p>
         </statement>
+        <solution>
+          <p>
+            <ol marker="i.">
+              <li>
+                <p>
+                  West will point to the left and the directional derivative will be negative in that direction. 
+                </p>
+              </li>
+              <li>
+                <p>
+                  South will point down on the map and the directional derivative will be positive in that direction. 
+                </p>
+              </li>
+              <li>
+                <p>
+                  Northeast will point to the right and up. The directional derivative in that direction will be zero. 
+                </p>
+              </li>
+            </ol>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -783,6 +851,11 @@
             Write a few sentences about why any direction moving up and left will have negative rate of change for the temperature in the direction given.
           </p>
         </statement>
+        <solution>
+          <p>
+            Going up and to the left will correspond to moving from a temperature of 70 to temperatures in the 60s, thus the rate of change in temperature will be negative. 
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -790,6 +863,11 @@
             Explain what direction you would need to move in to have the greatest positive rate of change for the temperature. Write a couple of sentences to relate your answer to the gradient using <xref ref="DD-vecprop">Equation</xref>.
           </p>
         </statement>
+        <solution>
+          <p>
+            The direction vector that is in the same direction as the gradient will give the greatest rate of change for the directional derivative. A direction going down or to the right will correspond to an increase from 70 into the 70s, but the greatest possible change would move perpendicularly away from the contour (constant temperature) at <m>P</m>. <xref ref="DD-vecprop">Equation</xref> shows that the directional derivative will be greatest when the angle <m>\theta</m> is zero. 
+          </p>
+        </solution>
       </task>
       </activity>
     </worksheet>
@@ -828,7 +906,9 @@
       </p>
     </assemblage>
     <worksheet>
-
+    <p>
+      Note that the third and fifth bullets above are algebraic statements of the second and fourth bullets, respectively.
+    </p>
     <activity workspace="1.5in">
       <introduction>
         <p>
@@ -841,6 +921,11 @@
             Calculate the gradient of <m>f</m>
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>\nabla f =\langle 2x-1,-3y+2\rangle</m>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -848,18 +933,32 @@
             Calculate <m>\nabla f (1,1)</m>.
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>\nabla f (1,1)=\langle  1,-1 \rangle</m>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
           <p>
             Calculate <m>D_\vec{u} f (1,1)</m> for each of the following vectors:
-            <ol>
+            <ol marker="i.">
               <li><m>\vec{u}=\langle -1,0\rangle </m> </li>
               <li><m>\vec{u}=\langle \frac{3}{5},-\frac{4}{5} \rangle </m> </li>
               <li><m>\vec{u}=\langle -\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}} \rangle </m> </li>
             </ol>
           </p>
         </statement>
+        <solution>
+          <p>
+             <ol marker="i.">
+              <li><m>D_{\vu} f (1,1) = -1 </m> </li>
+              <li><m>D_{\vu} f (1,1) = \frac{7}{5}</m> </li>
+              <li><m>D_{\vu} f (1,1) = -\sqrt{2} </m> </li>
+            </ol>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -867,12 +966,15 @@
             What direction will correspond to the greatest rate of increase for <m>f</m> at the input <m>(1,1)</m>? Find the value of the directional derivative in this direction. 
           </p>
         </statement>
+        <solution>
+          <p>
+            
+          </p>
+        </solution>
       </task>
     </activity>
     </worksheet>
-    <p>
-      Note that the third and fifth bullets above are algebraic statements of the second and fourth bullets, respectively.
-    </p>
+    
     <!-- TODO Resume editing here -->
     <p>
       <xref first="ez-mv_deriv-directional_deriv-sign" last="ez-mv_deriv-directional_deriv-relationship" text="local">Exercises</xref> look at how the directional derivative changes as a function of the direction used or of the point where the directional derivative is being evaluated.
@@ -904,6 +1006,11 @@
             Use this information to find <m>\nabla h (P_1)</m>.
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>\nabla h (P_1) =\langle \frac{1}{50}, \frac{2.5}{50}</m>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -911,6 +1018,11 @@
             Use your answer to the previous part to say what direction is <q>uphill</q> at <m>P_1</m> and state the rate of elevation increase in this direction. 
           </p>
         </statement>
+        <solution>
+          <p>
+            The uphill direction corresponds to the direction that moves 5 units north for every 2 units moved east. 
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -921,6 +1033,11 @@
             Use this new information to calculate <m>\nabla h (P_2)</m>, find the uphill direction, and find how steep the mountain is in the uphill direction at <m>P_2</m>.
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>\nabla h (P_2) =\langle \frac{1.5}{75}, -\frac{0.5}{100}</m> which is the same as <m>\langle \frac{2}{100}, -\frac{0.5}{100}</m>. The uphill direction at <m>P_2</m> corresponds to the direction moving 4 units east for each unit south. 
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -928,6 +1045,11 @@
             Suppose you continue this method of walking in the uphill direction for a while, finding the new uphill direction, and walking in the new uphill direction. Do you think you must eventually find the top of the mountain? How you will know that you have reached the top of the mountain? Remember that you can't see very far in front of you. Write a few sentences to explain your reasoning. 
           </p>
         </statement>
+        <solution>
+          <p>
+            We should be able to find the top of a hill if we continue to move in the uphill direction. You will need to be careful that you do not travel too far before reevaluating the uphill direction. In particular, you should reevaluate uphill before stepping in with a decrease in elevation. You will know you are at the top of a the hill when every direction corresponds to a step down in elevation. It is exceedingly unlikely to end up at a saddle like point with the ground being locally flat. at any point around this saddle point the direction with greatest increase in elevation is NOT in the direction of the saddle point. 
+          </p>
+        </solution>
       </task>
     </activity>
 </worksheet>
