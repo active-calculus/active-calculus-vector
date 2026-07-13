@@ -38,6 +38,14 @@
     </li> -->
   </ul>
 </objectives>
+<introduction component="instructor">
+	<p>
+		This section relies heavily on the idea of line integrals developed in <xref ref="S_Vector_IdeaLineIntegral"/>, understanding curves in space (from <xref ref="S-VVF-Plotting"/>), and the work interpretation of the dot product from <xref ref="S-Precalc-DotProduct"/>.
+	</p>
+	<p>
+		<xref ref="PA_Vector_FTCLI"/> compares its result with the first two parts of <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>, so prioritize getting those done in class.
+	</p>
+</introduction>
 <subsection>
   <title>Introduction</title>
   <p>
@@ -53,7 +61,7 @@
       <caption>A vector field <m>\vF</m> and three oriented curves</caption>
       <image width="60%" xml:id="fig_12_3_preview_field_segments_rev">
 				<description>
-					The vector field <m>\vF=\langle xy,y^2\rangle</m> plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq 4</m>. This vector field radiates from the origin with vector length increasing as distance from the origin increases. The graph includes the line segment <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>, and the line segment <m>C_3</m> from <m>(1,1)</m> to <m>(4,3)</m>.
+					<p>The vector field <m>\vF=\langle xy,y^2\rangle</m> plotted for <m>0\leq x\leq 5</m> and <m>0\leq y\leq 4</m>. This vector field radiates from the origin with vector length increasing as distance from the origin increases. The graph includes the line segment <m>C_1</m> from <m>(1,1)</m> to <m>(4,1)</m>, the line segment <m>C_2</m> from <m>(4,1)</m> to <m>(4,3)</m>, and the line segment <m>C_3</m> from <m>(1,1)</m> to <m>(4,3)</m>.</p>
 				</description>
 				<sageplot>
 					var('x,y,t')
@@ -197,10 +205,10 @@
 	</activity>
 </worksheet>
 	
-	<p>
+<p>
     <xref ref="PA_Vector_ParamLineIntegrals"/> and <xref ref="ex_Vector_ParamLineIntegrals_oblique_segment"/> have shown us that it is possible to evaluate line integrals without needing to work with Riemann sums directly. However, the approaches taken there seem rather cumbersome to use for oriented curves that are not line segments. It was not critical that the paths in <xref ref="fig_Vector_ParamLineIntegrals_FieldSegments"/> were straight lines, but rather that the paths had a description where both <m>x</m> and <m>y</m> could be expressed in terms of one variable. Fortunately, parameterizing the oriented curve along which a line integral is calculated provides exactly the tool we are looking for. Namely a parameterization gives a way to express the points <m>(x,y,z)</m> of the oriented curve in terms of a single variable (the parameter). Note that given a parameterization, we can also translate the vector field component equations into functions of the parameter as well.
-  </p>
-  <example xml:id="equal_space_param">
+</p>
+<example xml:id="equal_space_param">
   	<p>
   		In this example, we will look at the particulars of applying a parameterization of <m>C</m> (given by <m>\vr(t) =\langle f(t),g(t)\rangle</m> with <m>t \in [a,b]</m>) to <xref ref="def_Vector_IdeaLineIntegral_LineIntegral"/>. In particular, we will use this parameterization and a set of points along <m>C</m> that are equally spaced in terms of parameter values. To make this discussion a bit easier to read, we will work with a curve in two dimensions. However, all the ideas here generalize directly to curves in <m>\R^3</m>.
   	</p>
@@ -210,21 +218,27 @@
     <figure xml:id="fig_param_line_int">
       <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the parameter <m>t</m></caption>
       <image width="80%" xml:id="param_line_int1">
-        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}(t_0)</m>,<m>\vec{r}(t_1)</m>, and <m>P=\vec{r}(t_2)</m>. The last three points are labeled <m>P=\vec{r}(t_{n-2})</m>,<m>\vec{r}(t_{n-1})</m>, and <m>Q=\vec{r}(t_n)</m>.</description>
+        <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}(t_0)</m>,<m>\vec{r}(t_1)</m>, and <m>P=\vec{r}(t_2)</m>. The last three points are labeled <m>P=\vec{r}(t_{n-2})</m>,<m>\vec{r}(t_{n-1})</m>, and <m>Q=\vec{r}(t_n)</m>.</p></description>
 				<sageplot>
 					tpoints=[4,3.5,3,2.5,1.5,1,0.5]
-					offsetx=[0.1,-0.2,0.3,0.3,0,-0.1,0.2]
-					offsety=[-0.2,-0.1,0,-0.2,0.2,0.2,-0.2]
-					labels=['$P=\\mathbf{r}(t_0)$','$\\mathbf{r}(t_1)$','$\\mathbf{r}(t_2)$','$\\cdots$','$\\mathbf{r}(t_{n-2})$','$\\mathbf{r}(t_{n-1})$','$Q=\\mathbf{r}(t_{n})$']
+					offsetx=[0.1,0.3,0.3,0.2,0,0.2,0.42]
+					offsety=[-0.2,.1,0,0.2,0.3,0.3,0.22]
+					labels=['$P=\\vec{r}_0$','$\\vec{r}_1$','$\\vec{r}_2$','','$\\vec{r}_{n-2}$','$\\vec{r}_{n-1}$','$Q=\\vec{r}_{n}$']
 					var('t');
 					r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
 					plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
 					for i in range(len(tpoints)):
 						position=r1(tpoints[i])
+						rx,ry=position
+						plot99+=arrow((rx,ry),(rx+rx/3,ry-ry/3),color='blue')
 						withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
-						plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=20,color='black')
-					plot99+=arrow(r1(t=2),r1(t=1.99),color='black')	
-					plot99				
+						if(i!=len(tpoints)-1 and i!=3):
+							plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+						if(i==3):
+							plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+						plot99+=point([position],color='black',size=50,zorder=5)+text(labels[i],withoffset,fontsize=25,color='black',axes=False)
+					plot99+=text('$\\Delta \\vec{r}_i=\\vec{r}_{i}-\\vec{r}_{i-1}$',(-0.8,0.6),color='red',fontsize=25)
+					plot99		
 				</sageplot>
       </image>
     </figure>
@@ -234,27 +248,27 @@
 	  <figure xml:id="fig_param_line_int2">
 	      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the parameter <m>t</m> with displacement vectors <m>\Delta r_i</m></caption>
 	      <image width="80%" xml:id="param_line_int2">
-	        <description>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}(t_0)</m>,<m>\vec{r}(t_1)</m>, and <m>P=\vec{r}(t_2)</m>. The last three points are labeled <m>\vec{r}(t_{n-2})</m>,<m>\vec{r}(t_{n-1})</m>, and <m>Q=\vec{r}(t)_n</m>. Blue vectors are drawn between consecutive points except for between the fourth and fifth points. A red vector is drawn from the fourth point to the fifth point and is labeled <m>\Delta \vec{r}_i=\vec{r}(t_{i+1})-\vec{r}(t_i)</m>. </description>
-					<sageplot>
-						tpoints=[4,3.5,3,2.5,1.5,1,0.5]
-						offsetx=[0.1,-0.25,0.3,1.0,0,0,0.2]
-						offsety=[-0.2,-0.1,0,0.1,0.2,0.25,-0.2]
-						labels=['$P=\\mathbf{r}(t_0)$','$\\mathbf{r}(t_1)$','$\\mathbf{r}(t_2)$','','$\\mathbf{r}(t_{n-2})$','$\\mathbf{r}(t_{n-1})$','$Q=\\mathbf{r}(t_{n})$']
-						var('t');
-						r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
-						plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
-						for i in range(len(tpoints)):
-							position=r1(tpoints[i])
-							withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
-							if(i!=len(tpoints)-1 and i!=3):
-								plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='blue')
-							if(i==3):
-								plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
-							plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=20,color='black')
-						plot99+=text('$\\Delta \\mathbf{r}_i=\\mathbf{r}(t_{i})-\\mathbf{r}(t_{i-1})$',(-0.5,0.8),color='red',fontsize=20)
-						plot99
-					</sageplot>
-	      </image>
+	        <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}(t_0)</m>,<m>\vec{r}(t_1)</m>, and <m>P=\vec{r}(t_2)</m>. The last three points are labeled <m>\vec{r}(t_{n-2})</m>,<m>\vec{r}(t_{n-1})</m>, and <m>Q=\vec{r}(t)_n</m>. Blue vectors are drawn between consecutive points except for between the fourth and fifth points. A red vector is drawn from the fourth point to the fifth point and is labeled <m>\Delta \vec{r}_i=\vec{r}(t_{i+1})-\vec{r}(t_i)</m>. </p></description>
+				<sageplot>
+					tpoints=[4,3.5,3,2.5,1.5,1,0.5]
+					offsetx=[0.1,-0.3,-0.3,1.0,0,0,0.2]
+					offsety=[-0.2,-0.1,0,0.1,0.2,0.25,-0.2]
+					labels=['$P=\\vec{r}(t_0)$','$\\vec{r}(t_1)$','$\\vec{r}(t_2)$','','$\\vec{r}(t_{n-2})$','$\\vec{r}(t_{n-1})$','$Q=\\vec{r}(t_{n})$']
+					var('t');
+					r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+					plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+					for i in range(len(tpoints)):
+						position=r1(tpoints[i])
+						withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+						if(i!=len(tpoints)-1 and i!=3):
+							plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='blue')
+						if(i==3):
+							plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+						plot99+=point([position],color='black',size=50,zorder=5)+text(labels[i],withoffset,fontsize=20,color='black')
+					plot99+=text('$\\Delta \\vec{r}_i=\\vec{r}(t_{i})-\\vec{r}(t_{i-1})$',(-0.5,0.75),color='red',fontsize=20)
+					plot99
+				</sageplot>
+	      	</image>
 	    </figure>
 	  <p>
 	    Our vector field for <m>\int_C \vF \cdot d\vr</m> can also be transformed into a function of <m>t</m> by substituting the <m>x</m> and <m>y</m> inputs with the corresponding components of the parameterization. If <m>\vF= \langle F_1(x,y),F_2(x,y)\rangle</m>, then the parameterization given by <m>\vr(t) =\langle f(t),g(t)\rangle</m> means we can rewrite <m>\vF</m> as a function of <m>t</m>:
@@ -272,7 +286,7 @@
       		\amp = \lim_{\Delta t \to 0} \sum_{i=1}^{n} \vF(\vr(t_i)) \cdot	\left(\frac{\vr(t_{i}) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t 
       	</mrow>
     	</md>
-    When evaluating the limit as <m>\Delta t\to 0</m>, the expression in the parentheses will be <m>\vr'(t_i)</m>. We then have a Riemann sum that changes the evaluation of a line integral of a vector field along an oriented curve to a definite integral of a function of one variable. In particular,
+    When evaluating the limit as <m>\Delta t\to 0</m>, the expression in the parentheses will be <m>\vr '(t_i)</m>. We then have a Riemann sum that changes the evaluation of a line integral of a vector field along an oriented curve to a definite integral of a function of one variable. In particular,
     <md>
     	\int_C \vF \cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \vr'(t)\, dt
   	</md>
@@ -304,11 +318,11 @@
 		  <caption>The vector field <m>\vF = x\vi + y^2\vj</m> and an oriented curve <m>C</m> </caption>
 		  <image width="50%" xml:id="fig_12_3_vf_quarter_circle">
 		    <description>
-		      The region in the <m>xy</m>-plane with <m>0\leq x\leq 4</m> and <m>0\leq y\leq 4</m>. The quarter circle of
+		      <p>The region in the <m>xy</m>-plane with <m>0\leq x\leq 4</m> and <m>0\leq y\leq 4</m>. The quarter circle of
 		      radius <m>3</m> centered at the origin and oriented clockwise is shown along with the vector field <m>x\vi +
 		      y^2\vj</m>, which contains vectors whose magnitudes increase more as <m>y</m> increases than as <m>x</m>
 		      increases. Also vectors farther from the <m>x</m>-axis have steeper positive slope than those close to the
-		      <m>x</m>-axis, which are close to horizontal.
+		      <m>x</m>-axis, which are close to horizontal.</p>
 		    </description>
 				<sageplot>
 					var('x,y,t')
@@ -340,7 +354,7 @@
   </statement>
 </example>
   <p>
-  	As <xref ref="ex_Vector_ParamLineIntegrals_QuarterCircle"/> shows, <xref ref="thm_LineIntParam"/> allows us to reduce the problem of calculating a line integral of a vector-valued function along an oriented curve to one of finding a suitable parametrization for the curve. Once we have such a parametrization, evaluating the line integral becomes evaluating a single-variable integral, which is something you have done many times before. The example also illustrates that using the properties of line integrals can allow us to use a more <q>natural</q> parametrization. You may find it interesting to use the parametrization <m>\langle 3\sin(t),3\cos(t)\rangle</m> for <m>0\leq t\leq \pi/2</m> to evaluate the line integral. Do you get the same result?
+  	As <xref ref="ex_Vector_ParamLineIntegrals_QuarterCircle"/> shows, <xref ref="thm_LineIntParam"/> allows us to reduce the problem of calculating a line integral of a vector-valued function along an oriented curve to one of finding a suitable parametrization for the curve. Once we have such a parametrization, evaluating the line integral becomes evaluating a single-variable integral, which is something you have done many times before. This example also illustrates that using the properties of line integrals can allow us to use a more <q>natural</q> parametrization. You may find it interesting to use the parametrization <m>\langle 3\sin(t),3\cos(t)\rangle</m> for <m>0\leq t\leq \pi/2</m> to evaluate the line integral. Do you get the same result?
   </p>
 <worksheet>
   <activity workspace="1.5in" xml:id="act_Vector_ParamLineIntegrals_CalculateTwoFields">
@@ -479,7 +493,7 @@
 			<caption>The vector field <m>\vF = x\vi</m> and some oriented curves.</caption>
 			<image width="65%" xml:id="fig_12_3_field_triangle_rev">
 			 	<description>
-					The vector field <m>x\vi</m>, which consists of horizontal vectors that increase in length as distance from the <m>y</m>-axis increases. Three oriented line segments are also depicted. The line segment <m>C_1</m> is from <m>(0,1)</m> to <m>(3,1)</m>. The line segment <m>C_2</m> is from <m>(3,1)</m> to <m>(3,3)</m>. The line segment <m>C_3</m> is from <m>(0,1)</m> to <m>(3,3)</m>.
+					<p>The vector field <m>x\vi</m>, which consists of horizontal vectors that increase in length as distance from the <m>y</m>-axis increases. Three oriented line segments are also depicted. The line segment <m>C_1</m> is from <m>(0,1)</m> to <m>(3,1)</m>. The line segment <m>C_2</m> is from <m>(3,1)</m> to <m>(3,3)</m>. The line segment <m>C_3</m> is from <m>(0,1)</m> to <m>(3,3)</m>. </p>
 				</description>
 				<sageplot>
 					var('x,y,t')
@@ -594,8 +608,7 @@
 			<!-- We will take this for granted in the remainder of the chapter. The next section will engage in a serious exploration of when a vector field has the property that the line integral from a point <m>P</m> to a point <m>Q</m> does not depend on the choice of oriented path. -->
   </p>
 </subsection>
-<subsection>
-  <title>Summary</title>
+<outcomes>
   <p>
     <ul>
 			<li>
@@ -620,15 +633,7 @@
 			  -->
     </ul>
   </p>
-</subsection>
+</outcomes>
 <xi:include href="exercises/ez-S_Vector_ParamLineIntegrals.ptx"/>
-<subsection component="instructor">
- <title>Notes to Instructors and Dependencies</title>
-  <p>
-    This section relies heavily on the idea of line integrals developed in <xref ref="S_Vector_IdeaLineIntegral"/>, understanding curves in space (from <xref ref="S-VVF-Plotting"/>), and the work interpretation of the dot product from <xref ref="S-Precalc-DotProduct"/>.
-  </p>
-	<p>
-		<xref ref="PA_Vector_FTCLI"/> compares its result with the first two parts of <xref ref="act_Vector_ParamLineIntegrals_DifferentPaths"/>, so prioritize getting those done in class.
-	</p>
-</subsection>
+
 </section>
