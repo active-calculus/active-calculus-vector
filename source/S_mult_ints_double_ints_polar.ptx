@@ -505,32 +505,35 @@
 
     <p>
       Note that the unit disc <m>D</m> we have considered throughout this section can be considered both radially simple and angularly simple since all of the bounds of integration are constant. <xref ref="diskrs"/> shows how <m>D</m> can be considered radially simple.
-        </p>
-        <figure xml:id="diskrs">
-          <caption>The unit disk centered at the origin with slices showing a radially simple description</caption>
-          <image width="50%">
-            <description>
-              <p>
-                A two-dimensional plot of a shaded region in the plane. The region is a disc of radius <m>1</m> centered at the origin. The circle bounding the disc is labeled <m>r=1</m>. The origin is labeled <m>r=0</m>. There are dashed rays emanating from the origin through the region.
-              </p>
-          </description>
-          <sageplot label="img-diskrs">
-              var('x,y,t,s')
-              n=100
-              points=[(cos(i*2*pi/n),sin(i*2*pi/n)) for i in range(n+1)]
-              plot7=polygon(points,color="lightblue",edgecolor="black",thickness=2,xmin=-1.5,xmax=1.5,ymin=-1.5,ymax=1.5)
-              m=11;
-              for i in range(m):
-                xv=2*pi*i/m
-                plot7+=line([(0,0),(cos(xv),sin(xv))],color="gray",linestyle="--",thickness=2)
-              plot7+=parametric_plot((cos(t),sin(t)),(t,0,2*pi),color="red",thickness=2,zorder=3)
-              plot7+=text("$r=1$",(.8,0.9),color="red",fontsize=15)
-              plot7+=point((0,0),color="blue",size=30,zorder=3)
-              plot7+=text("$r=0$",(0.25,0.1),color="blue",fontsize=15)
-              plot7                  
-            </sageplot>
-          </image>
-        </figure>
+    </p>
+    <figure xml:id="diskrs">
+      <caption>The unit disk centered at the origin with slices showing a radially simple description</caption>
+      <image width="50%">
+        <description>
+          <p>
+            A two-dimensional plot of a shaded region in the plane. The region is a disc of radius <m>1</m> centered at the origin. The circle bounding the disc is labeled <m>r=1</m>. The origin is labeled <m>r=0</m>. There are dashed rays emanating from the origin through the region.
+          </p>
+      </description>
+      <sageplot label="img-diskrs">
+          var('x,y,t,s')
+          n=100
+          points=[(cos(i*2*pi/n),sin(i*2*pi/n)) for i in range(n+1)]
+          plot7=polygon(points,color="lightblue",edgecolor="black",thickness=2,xmin=-1.5,xmax=1.5,ymin=-1.5,ymax=1.5)
+          m=11;
+          for i in range(m):
+            xv=2*pi*i/m
+            plot7+=line([(0,0),(cos(xv),sin(xv))],color="gray",linestyle="--",thickness=2)
+          plot7+=parametric_plot((cos(t),sin(t)),(t,0,2*pi),color="red",thickness=2,zorder=3)
+          plot7+=text("$r=1$",(.8,0.9),color="red",fontsize=15)
+          plot7+=point((0,0),color="blue",size=30,zorder=3)
+          plot7+=text("$r=0$",(0.25,0.1),color="blue",fontsize=15)
+          plot7                  
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      Regions that are angularly simple but <em>not</em> radially simple do not arise with much frequency. Thus, while we have defined both types of simple regions for completeness, we will not spend time on an example of a region that is angularly simple but not radially simple.
+    </p>
     <p>
       Each of the types of regions above corresponds to exactly the necessary description to use an iterated integral. With a radially simple region, for any fixed value of <m>\theta</m> in the interval <m>[a,b]</m>, a slice along this constant <m>\theta</m> value corresponds to a ray from the origin in the sector between the grey lines in <xref ref="radiallysimple"/>. Along this ray with <m>\theta=k</m>, the region of interest has upper and lower bounds on the <m>r</m>-coordinate. In fact, <m>r=g_2(\theta)</m> describes the upper boundary for every value of <m>\theta</m> in <m>[a,b]</m>. Similarly, <m>r=g_1(\theta)</m> describes the lower boundary for every value of <m>\theta</m> in <m>[a,b]</m>. Geometrically, this means that along every gray dashed slice where <m>\theta</m> is constant, the region has the same upper and lower boundary curves, shown in red and blue, respectively.
     </p>
@@ -559,228 +562,152 @@
     <p>
       Note again that the order of integration corresponds to the manner in which we have sliced the region of integration. The variable being held constant along a slice is the last variable to be integrated, just as was the case with iterated integrals in rectangular coordinates.
     </p>
-    
+
+    <example>
+      <p>
+        Suppose that we have a piece of metal in the shape of a quarter annulus <m>R</m>, as shown in <xref ref="fig-mult_ints-polar-quarter_annulus"/>. The circular arcs bounding the region have radius <m>2</m> and <m>3</m>, and the region lies in the first quadrant. The metal is heated so that the temperature in degrees Celsius at the point <m>(x,y)</m> is given by <m>T(x,y) = \sqrt{x^2+y^2}</m>. That is, the temperature is 12 times the distance between the origin and the point. In this example, we will find the <em>average value</em> of <m>T</m> over the region <m>R</m>.
+      </p>
+      <figure xml:id="fig-mult_ints-polar-quarter_annulus">
+        <caption>A planar region representing a metal plate in the shape of one quarter of the annulus between circles of radius 2 and 3</caption>
+        <image width="50%">
+          <description>
+            <p>
+              A region in the first quadrant of the <m>xy</m>-plane. The region is labeled <m>R</m> and is bounded by the circles of radius <m>2</m> and <m>3</m>, both centered at the origin, as well as the positive <m>x</m>- and <m>y</m>-axes.
+            </p>
+          </description>
+          <prefigure xmlns="https://prefigure.org" label="img-fig-mult_ints-polar-quarter_annulus">
+            <diagram dimensions="(300,300)" margins="5">
+              <coordinates bbox="(-0.25,-0.25,3.25,3.25)">
+                <grid-axes xlabel="x" ylabel="y"/>
+                <definition>f(t) = 2</definition>
+                <definition>g(t) = 3</definition>
+                <area-between-curves functions="(f,g)" coordinates="polar"
+                            domain="(0,90)" domain-degrees="yes"
+                            fill="lightblue" stroke="blue" fill-opacity="0.5"/>
+                <label anchor="(1.75,1.75)"><m>R</m></label>
+              </coordinates>
+            </diagram>
+          </prefigure>
+        </image>
+      </figure>
+      <p>
+        To find the average value of <m>T</m> on <m>R</m>, we must compute 
+        <md>
+          \frac{1}{\text{Area}(R)}\iint_R T\, dA
+        </md>.
+        We can compute the area of <m>R</m> using geometry, as its area is one quarter the area of the annulus between the circles of radius <m>2</m> and <m>3</m> centered at the origin. That annulus has area <m>\pi\cdot 3^2 - \pi\cdot 2^2 = 5\pi</m>, so <m>R</m> has area <m>5\pi/4</m>. To compute the double integral, we will use an iterated integral. This will require finding inequalities that allow us to describe <m>R</m>. Notice first that <m>R</m> is neither horizontally simple nor vertically simple, so evaluating <m>\iint_R T\, dA</m> rectangular coordinates would require that we set up multiple iterated integrals. However, in polar coordinates, we see that <m>R</m> is both radially simple and angularly simple. That is, <m>R</m> is a polar rectangle, which we can describe as
+        <md>
+          2\leq r\leq 3\qquad 0\leq \theta\leq \frac{\pi}{2}
+        </md>.
+        Using this description of <m>R</m> in polar coordinates along with the facts that <m>r^2 = x^2+y^2</m> and <m>dA = r\, dr, d\theta</m>, we can evaluate the double integral:
+        <md>
+          <mrow>\iint_R T(x,y)\, dA \amp = \iint_R 12\sqrt{x^2+y^2}\, dA</mrow>
+          <mrow> \amp = \int_0^{\pi/2} \int_2^3 12r\cdot r\, dr\, d\theta</mrow>
+          <mrow> \amp = \int_0^{\pi/2} 4r^3\restrict{2}^3\, d\theta</mrow>
+          <mrow> \amp = \int_0^{pi/2} 76\, d\theta = 76\theta\restrict{0}^{\pi/2} = 38\pi</mrow>
+        </md>.
+        Therefore, the average temperature of the metal plate is 
+        <md>
+          \frac{1}{\frac{5\pi}{4}} 38\pi = \frac{4}{5\pi}\cdot 38\pi = \frac{152}{5} = 30.4^\circ\text{ C}
+        </md>.
+      </p>
+    </example>    
     <p>
       While there is no firm rule for when polar coordinates can or should be used, they are a natural alternative anytime the domain of integration may be expressed simply in polar form and/or when the integrand involves expressions such as <m>\sqrt{x^2 + y^2}</m>.
     </p>
 
     <worksheet>
-  <activity workspace="1.5in" xml:id="act-mult_ints-polar-disc4">
-      <introduction>
-        <p>
-          Let <m>f(x,y) = x+y</m> and <m>D = \{(x,y) : x^2 + y^2 \leq 4\}</m>.
-        </p>
-      </introduction>
-      <task>
-        <statement>
+      <activity workspace="1.5in" xml:id="act-mult_ints-polar-paraboloid">
+        <introduction>
           <p>
-            Sketch the region <m>D</m> and then write the double integral of <m>f</m> over <m>D</m> as an iterated integral in rectangular coordinates. 
+            In this activity, we will find the volume of the solid region <m>V</m> above the <m>xy</m>-plane, below the paraboloid <m>z=25-x^2-y^2</m>, and outside the cylinder <m>x^2+y^2 = 1</m>. 
           </p>
-        </statement>
-        <answer>
-          <p>
-            <md>
-              \int_{x=-2}^{2} \int_{y=-\sqrt{4-x^2}}^{\sqrt{4-x^2}} x+y \, dy \, dx
-            </md>
-          </p>
-        </answer>
-        <solution>
-          <p>
-            The integral <m> \int \int_D f(x,y) \, dA</m> can be written as the iterated integral
-            <md>
-              \int_{x=-2}^{2} \int_{y=-\sqrt{4-x^2}}^{\sqrt{4-x^2}} x+y \, dy \, dx
-            </md>
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Write the double integral of <m>f</m> over <m>D</m> as an iterated integral in polar coordinates.
-          </p>
-        </statement>
-        <answer>
-          <p>
-            <md>
-              \int_{\theta=0}^{2\pi} \int_{r=0}^2 \left[r\cos(\theta) + r \sin(\theta)\right] \ r \, dr \, d\theta
-            </md>
-          </p>
-        </answer>
-        <solution>
-          <p>
-            To convert to polar coordinates, we replace <m>x</m> with <m>r \cos(\theta)</m>, <m>y</m> with <m>r \sin(\theta)</m> and <m>dy \ dx</m> with <m>r \, dr \, d\theta</m> to obtain
-            <md>
-              \int \int_D \left[ r \cos(\theta) + r \sin(\theta) \right] \ r \, dr \, d\theta
-            </md>.
-            The disc <m>D</m> is described in polar coordinates by the constraints <m>0 \leq r \leq 2</m> and <m>0 \leq \theta \leq 2\pi</m>. So we have
-            <md>
-              \int \int_D r\cos(\theta) + r \sin(\theta) \ r \, dr \, d\theta = \int_{\theta=0}^{2\pi} \int_{r=0}^2 \left[r\cos(\theta) + r \sin(\theta)\right] \ r \, dr \, d\theta
-            </md>
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Evaluate one of the iterated integrals. Write a couple sentences to interpret your answer in the context of a double integral (e.g., as either a signed volume or an average value).
-          </p>
-        </statement>
-        <answer>
-          <p>
-            Evaluating the integral yields <m>0</m>. The graph of the plane <m>z=x+y</m> crosses the <m>xy</m>-plane along the line <m>y=-x</m>, and bounds the same amount of volume below the <m>xy</m>-plane as above on the disk <m>D</m>. So we should have expected the value of the integral to be <m>0</m>.
-          </p>
-        </answer>
-        <solution>
-          <p>
-            We evaluate the integral in polar coordinates as follows:
-            <md>
-              <mrow>\int_{\theta=0}^{2\pi} \int_{r=0}^2 \left[r\cos(\theta) + r \sin(\theta)\right] \ r \, dr \, d\theta \amp = \int_{\theta=0}^{2\pi} \int_{r=0}^2 r^2\left[\cos(\theta) + \sin(\theta)\right] \, dr \, d\theta</mrow>
-              <mrow>\amp = \int_{\theta=0}^{\theta=2\pi} \left( \left[\cos(\theta) + \sin(\theta)\right]\frac{r^3}{3}\mid_{r=0}^2 \right) \, d\theta</mrow>
-              <mrow>\amp = \int_{\theta=0}^{2\pi} \frac{8}{3} \left[ \cos(\theta) + \sin(\theta) \right] \, d\theta</mrow>
-              <mrow>\amp = \frac{8}{3}\left[\sin(\theta) - \cos(\theta)\right]\mid_{\theta=0}^{2\pi}</mrow>
-              <mrow>\amp = \frac{8}{3}[(-1)-(-1)]</mrow>
-              <mrow>\amp = 0</mrow>
-            </md>
-            The graph of the plane <m>z=x+y</m> crosses the <m>xy</m>-plane along the line <m>y=-x</m>, and bounds the same amount of volume below the <m>xy</m>-plane as above on the disk <m>D</m>. So we should have expected the value of the integral to be <m>0</m>.
-          </p>
-        </solution>
-      </task>
-    </activity>
-</worksheet>
+        </introduction>
+        <task>
+          <statement>
+            <p>
+              We will find the volume by computing a double integral <m>\iint_R f(x,y)\, dA</m> where <m>f(x,y)=25-x^2-y^2</m> and <m>R</m> is an appropriate region in the <m>xy</m>-plane. Sketch the region <m>R</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              The annulus between the circles of radius <m>1</m> and <m>5</m>, both centered at the origin.
+            </p>
+          </answer>
+          <solution>
+            <p>
+              The paraboloid intersects the <m>xy</m>-plane in the circle <m>x^2+y^2 = 25</m>, so the region over which we want to integrate is the region <em>inside</em> this circle and <em>outside</em> the circle <m>x^2+y^2=1</m>, which is the intersection of the cylinder with the <m>xy</m>-plane.
+            </p>
+            <image width="50%">
+              <description>
+                <p>
+                  A shaded region <m>R</m> in the <m>xy</m>-plane. The region is between the circles of radius <m>1</m> and <m>5</m>, both centered at the origin.
+                </p>
+              </description>
+              <prefigure xmlns="https://prefigure.org" label="img-mult_ints-polar-paraboloid-annulus">
+                <diagram dimensions="(300,300)" margins="5">
+                  <coordinates bbox="(-5.25,-5.25,5.25,5.25)">
+                    <grid-axes xlabel="x" ylabel="y"/>
+                    <definition>f(t) = 1</definition>
+                    <definition>g(t) = 5</definition>
+                    <area-between-curves functions="(f,g)" coordinates="polar"
+                                domain="(0,360)" domain-degrees="yes"
+                                fill="lightblue" stroke="blue" fill-opacity="0.5"/>
+                    <label anchor="(1.75,1.75)"><m>R</m></label>
+                  </coordinates>
+                </diagram>
+              </prefigure>
+            </image>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Write inequalities to describe <m>R</m> in polar coordinates. Write a couple of sentences explaining why it would be very difficult to describe <m>R</m> using rectangular coordinates.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>1\leq r\leq 5</m>, <m>0\leq \theta\leq 2\pi</m>
+            </p>
+          </answer>
+          <solution>
+            <p>
+              Because we have a full annulus, the bounds on <m>\theta</m> are <m>0\leq \theta\leq 2\pi</m>. The inner circle has radius <m>1</m> and the outer circle has radius <m>5</m>, so we have <m>1\leq r\leq 5</m>. This region is neither vertically simple nor horizontally simple, so it could not be set up as a single iterated integral in rectangular coordinates. To describe the region in rectangular coordinates (without relying on symmetry) would require four regions. One would have <m>-5\leq x\leq -1</m>, one would have <m>1\leq x\leq 5</m>, and the other two would have <m>-1\leq x\leq 1</m> with one having <m>1\leq y\leq 4</m> and the other having <m>-5\leq y\leq -1</m>. The boundary functions on these regions would be part of the circles, expressing <m>y</m> as a function of <m>x</m> for the appropriate portion of the circle.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              Use an interated integral in polar coordinates to find the volume of <m>V</m>.
+            </p>
+          </statement>
+          <answer>
+            <p>
+              <m>288\pi</m>
+            </p>
+          </answer>
+          <solution>
+            <p>
+              We evaluate the integral in polar coordinates as follows:
+              <md>
+                <mrow>\iint_R (25-x^2-y^2)\, dA \amp \int_0^{2\pi}\int_1^5 (25-r^2)r\, dr\, d\theta </mrow>
+                <mrow> \amp = \int_0^{2\pi} \left(\frac{25}{2}r^2 - \frac{1}{4}r^4\right)\restrict{1}^5\, d\theta</mrow>
+                <mrow> \amp = \int_0^{2\pi} \left(\frac{625}{2} -\frac{625}{4} - \frac{25}{2} + \frac{1}{4}\right)\, d\theta</mrow>
+                <mrow> \amp = 144\cdot 2\pi = 288\pi</mrow>
+              </md>
+            </p>
+          </solution>
+        </task>
+      </activity>
+    </worksheet>
+
     <p>
       In the next activity, you will convert an equation from rectangular to polar coordinates and use this polar equation to give bounds of integration for two different integrals.
     </p>
-    <worksheet>
-  <activity workspace="1.5in" xml:id="act-mult_ints-polar-circle_off_center">
-      <introduction>
-        <p>
-          Consider the circle given by <m>x^2 + (y-1)^2 = 1</m> as shown in <xref ref="fig-mult_ints-polar-circle_off_center">Figure</xref>.
-        </p>
-        <figure xml:id="fig-mult_ints-polar-circle_off_center">
-          <caption>The circle <m>x^2 + (y-1)^2 = 1</m></caption>
-          <image width="50%" >
-            <description>
-              <p>A circle in the <m>xy</m>-plane. The circle passes through the origin and the point <m>(0,2)</m>. The circle is also symmetric about the <m>y</m>-axis.</p>
-          </description>
-          <sageplot label="img-circyp1">
-              var('x,y,t,s')
-              plot8=parametric_plot((cos(t),1+sin(t)),(t,0,2*pi),color="black",thickness=3,ticks=[[-1,1],[0,1,2]],axes_labels=["$x$","$y$"])
-              plot8                 
-            </sageplot>
-          </image>
-        </figure>
-      </introduction>
-      <task>
-        <statement>
-          <p>
-            Determine a polar curve in the form <m>r = f(\theta)</m> that traces out the circle <m>x^2 + (y-1)^2 = 1</m>. To do this, you should substitute <m>x = r \cos(\theta)</m> and <m>y = r \sin(\theta)</m> into the rectangular coordinate equation and solve for <m>r</m>.
-          </p>
-        </statement>
-        <hint>
-          <p>After you substitute, you should expand and combine like terms. You will also want to factor your expression and disregard the <m>r=0</m> solution. </p>
-        </hint>
-        <answer>
-          <p>
-            The circle <m>C</m> can be described as <m>0 \leq r \leq \ 2\sin(\theta)</m> with <m>0 \leq \theta \leq \pi</m>.
-          </p>
-        </answer>
-        <solution>
-          <p>
-            When expanded, the equation of the circle is <m>x^2+y^2 - 2y = 0</m>. We can write this in polar coordinates as <m>r^2 - 2r \sin(\theta) = 0</m>, or <m>r = 2\sin(\theta)</m>. Thus, the circle <m>C</m> can be described as <m>0 \leq r \leq \ 2\sin(\theta)</m> with <m>0 \leq \theta \leq \pi</m>.
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Find the exact average value of <m>g(x,y) = \sqrt{x^2 + y^2}</m> over the interior of the circle <m>x^2 + (y-1)^2 = 1</m>.
-          </p>
-        </statement>
-        <hint>
-          <p>
-            Use a radially simple description of your region with your result from part a as the upper bound.
-          </p>
-        </hint>
-        <answer>
-          <p>
-            <m> \frac{32}{9\pi}</m>
-          </p>
-        </answer>
-        <solution>
-          <p>
-            The circle <m>C</m> has radius 1, so <m>A(C) = \pi</m>. Note that <m>g(x,y) = \sqrt{x^2 + y^2}</m> can be written in polar form as <m>g(r,\theta) = r</m>. Thus, the average value of <m>g</m> over <m>C</m> is
-            <md>
-              <mrow>\frac{1}{\pi}\int \int_C g(x,y) \, dA \amp = \int_{0}^{\pi} \int_{0}^{2\sin(\theta)} r r \, dr \, d \theta</mrow>
-              <mrow>\amp = \frac{1}{\pi}\int_{0}^{\pi} \frac{r^3}{3} \mid_{0}^{2\sin(\theta)} \, d \theta</mrow>
-              <mrow>\amp = \frac{8}{3\pi} \int_{0}^{\pi} \sin^3(\theta) \, d \theta</mrow>
-              <mrow>\amp = \frac{8}{3\pi} \int_{0}^{\pi} \sin(\theta)(1-\cos^2(\theta)) \, d \theta</mrow>
-              <mrow>\amp = \frac{8}{3\pi} \left(-\cos(\theta)+\frac{\cos^3(\theta)}{3}\right)\mid_{0}^{\pi}</mrow>
-              <mrow>\amp = \frac{8}{3\pi}\left(2-\frac{2}{3}\right)</mrow>
-              <mrow>\amp = \frac{32}{9\pi}</mrow>
-            </md>
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Find the volume under the surface <m>h(x,y) = x</m> over the region <m>D</m>, where <m>D</m> is the region bounded above by the line <m>y=x</m> and below by the circle. We have provided a sketch of this as the shaded region in <xref ref="fig-mult_ints-polar-circle_off_center_region">Figure</xref>.
-          </p>
-          <figure xml:id="fig-mult_ints-polar-circle_off_center_region">
-            <caption>The region between the circle <m>x^2 + (y-1)^2 = 1</m> and the line <m>y=x</m>.</caption>
-            <image width="60%" xml:id="img-F_11_5_Polar_exercise">
-              <description>
-                <p>
-                  A shaded region in the <m>xy</m>-plane. The region is bounded by part of a circle and the portion of the line <m>y=x</m> inside the circle. The circle passes through the origin and the point <m>(0,2)</m>. The circle is also symmetric about the <m>y</m>-axis.
-                </p>
-            </description><sageplot>
-                var('x,y,t,s')
-                plot9=parametric_plot((cos(t),1+sin(t)),(t,0,2*pi),color="black",thickness=2,ticks=[[-1,1],[0,1,2]],axes_labels=["$x$","$y$"])
-                points=[(2*sin(pi/4*i/25 )*cos(pi/4*i/25), 2*sin(pi/4*i/25)^2) for i in range(26)]
-                plot9+=polygon(points,color="lightblue",edgecolor="black",thickness=3)
-                plot9                  
-              </sageplot>
-            </image>
-          </figure>
-        </statement>
-        <answer>
-          <p>
-            <m>\frac{1}{6}</m>
-          </p>
-        </answer>
-        <solution>
-          <p>
-            In polar coordinates, the line <m>y=x</m> is represented as <m>r \sin(\theta) = r \cos(\theta)</m>, or <m>\tan(\theta) = 1</m>, or <m>\theta = \frac{\pi}{4}</m>. Therefore, the region <m>D</m> is described by <m>0 \leq r \leq \ 2\sin(\theta)</m> with <m>0 \leq \theta \leq \pi/4</m>. So the under the surface <m>h(x,y) = x</m> over the region <m>D</m> is given by
-            <md>
-              <mrow>\int \int_D x \, dA \amp = \int_{0}^{\pi/4} \int_{0}^{2\sin(\theta)} r\cos(\theta) r \, dr \, d \theta</mrow>
-              <mrow>\amp = \int_{0}^{\pi/4} \cos(\theta) \frac{r^3}{3} \mid_{0}^{2\sin(\theta)} \, d \theta</mrow>
-              <mrow>\amp = \frac{8}{3} \int_{0}^{\pi/4} \cos(\theta) \sin^3(\theta) \, d \theta</mrow>
-              <mrow>\amp = \frac{8}{12} \sin^4(\theta) \mid_{0}^{\pi/4}</mrow>
-              <mrow>\amp = \frac{2}{3} \left(\frac{\sqrt{2}}{2}\right)^4</mrow>
-              <mrow>\amp = \frac{1}{6}</mrow>
-            </md>
-          </p>
-        </solution>
-      </task>  
-      <task>
-        <statement>
-          <p>
-            Explain why in both of the previous parts it is advantageous to use polar coordinates.
-          </p>
-        </statement>
-        <answer>
-          <p>
-            In (b), it is very difficult to integrate <m>\sqrt{x^2+y^2}</m> in rectangular coordinates, and in (c) the region <m>D</m> is much more easily described in polar coordinates.
-          </p>
-        </answer>
-        <solution>
-          <p>
-            In (b), it is very difficult to integrate <m>\sqrt{x^2+y^2}</m> in rectangular coordinates, and in (c) the region <m>D</m> is much more easily described in polar coordinates.
-          </p>
-        </solution>
-      </task>
-    </activity>
-</worksheet>
+
+    
   </subsection>
 
 
