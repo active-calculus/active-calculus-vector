@@ -620,13 +620,13 @@
       <activity workspace="1.5in" xml:id="act-mult_ints-polar-paraboloid">
         <introduction>
           <p>
-            In this activity, we will find the volume of the solid region <m>V</m> above the <m>xy</m>-plane, below the paraboloid <m>z=25-x^2-y^2</m>, and outside the cylinder <m>x^2+y^2 = 1</m>. 
+            In this activity, we will find the volume of the solid region <m>V</m> above the <m>xy</m>-plane, below the paraboloid <m>z=f(x,y) = 25-x^2-y^2</m>, and outside the cylinder <m>x^2+y^2 = 1</m>. 
           </p>
         </introduction>
         <task>
           <statement>
             <p>
-              We will find the volume by computing a double integral <m>\iint_R f(x,y)\, dA</m> where <m>f(x,y)=25-x^2-y^2</m> and <m>R</m> is an appropriate region in the <m>xy</m>-plane. Sketch the region <m>R</m>.
+              We will find the volume by computing a double integral <m>\iint_R f(x,y)\, dA</m> where <m>R</m> is an appropriate region in the <m>xy</m>-plane. Sketch the region <m>R</m>.
             </p>
           </statement>
           <answer>
@@ -704,10 +704,43 @@
     </worksheet>
 
     <p>
-      In the next activity, you will convert an equation from rectangular to polar coordinates and use this polar equation to give bounds of integration for two different integrals.
+      The next activity asks you to find the volume between two surfaces in three-dimensional space. To do this, you will find it useful to think of the functions involved in polar coordinates from the very beginning.
     </p>
 
-    
+    <worksheet label="ws-act-mult_ints-polar-cone_paraboloid">
+      <activity xml:id="act-mult_ints-polar-cone_paraboloid" workspace="1.5in">
+        <statement>
+          <p>
+            Use polar coordinates to find the volume of the solid between the cone <m>z=f(x,y)=\sqrt{x^2+y^2}</m> and the paraboloid <m>z=g(x,y)=\frac{1}{8}\left(x^2+y^2\right) + 2</m>.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            <m>\frac{276}{3}\pi</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            In polar coordinates, we have <m>f(r,\theta) = r</m> and <m>g(r,\theta) = \frac{r^2}{8} + 2</m>. To see where the cone and the paraboloid intersect, we set the equations equal to one another:
+            <md>
+              <mrow>r \amp = \frac{r^2}{8} + 2</mrow>
+              <mrow>8r \amp = r^2 + 16 </mrow>
+              <mrow>0 \amp = r^2 -8r + 16</mrow>
+              <mrow>r \amp = \frac{8\pm \sqrt{8^2-4\cdot 16}}{2} = \frac{8}{2} = 4</mrow>
+            </md>
+            Thus, the solid lies entirely above the disc <m>D</m> with <m>0\leq r\leq 4</m> (and <m>0\leq \theta\leq 2\pi</m>). We have that <m>g</m> is the upper surface of the solid and <m>f</m> is the lower surface. The volume is thus found by
+            <md>
+              <mrow>\iint_D (g-f)\, dA \amp = \int_0^{2\pi}\int_0^4 \left(\frac{r^2}{8}+2 + r\right) r\, dr\, d\theta</mrow>
+              <mrow> \amp = \int_0^{2\pi} \left(\frac{r^4}{32} + r^2 + \frac{r^3}{3}\right)\restrict{0}^4\, d\theta</mrow>
+              <mrow> \amp = \int_0^{2\pi} \frac{138}{3}\, d\theta = \frac{276}{3}\pi</mrow>
+            </md>.
+          </p>
+        </solution>
+      </activity>
+    </worksheet>
+    <p>
+      Perhaps the surfaces in <xref ref="act-mult_ints-polar-cone_paraboloid"/> brought thoughts of cylindrical coordinates to your mind. The next section will generalize the idea of a double integral to a triple integral, and after that, we will consider integration using cylindrical and spherical coordinates as well.
+    </p>
   </subsection>
 
 
