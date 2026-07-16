@@ -118,7 +118,8 @@
         </statement>
 
         <answer>
-          <ol marker="a.">
+          <p>
+            <ol marker="a.">
             <li>
               <p>
                 The region <m>R</m> defined by <m>-\sqrt{9-y^2} \leq x \leq 0</m> and
@@ -144,10 +145,12 @@
               </p>
             </li>
           </ol>
+        </p>
         </answer>
 
         <solution>
-          <ol marker="a.">
+          <p>
+            <ol marker="a.">
             <li>
               <p>
                 The region <m>R</m> defined by <m>-\sqrt{9-y^2} \leq x \leq 0</m> and
@@ -185,6 +188,7 @@
               </p>
             </li>
           </ol>
+        </p>
         </solution>
 
         
@@ -222,7 +226,8 @@
         </statement>
 
         <answer>
-          <ol marker="a.">
+          <p>
+            <ol marker="a.">
             <li>
               <p>
                 <md>
@@ -248,10 +253,12 @@
               </p>
             </li>
           </ol>
+        </p>
         </answer>
 
         <solution>
-          <ol marker="a.">
+          <p>
+            <ol marker="a.">
             <li>
               <p>
                 The unit disk <m>D</m> is described in polar coordinates as
@@ -314,6 +321,7 @@
               </p>
             </li>
           </ol>
+        </p>
         </solution>
 
         
@@ -370,7 +378,8 @@
         </statement>
 
         <answer>
-          <ol marker="a.">
+          <p>
+            <ol marker="a.">
             <li>
               <p>
                 The region is the third quadrant portion of the disk centered at the origin of radius 3.
@@ -465,10 +474,12 @@
               </p>
             </li>
           </ol>
+        </p>
         </answer>
 
         <solution>
-          <ol marker="a.">
+          <p>
+            <ol marker="a.">
             <li>
               <p>
                 The region is the third quadrant portion of the disk centered at the origin of radius 3.
@@ -563,8 +574,138 @@
               </p>
             </li>
           </ol>
+        </p>
         </solution>
 
         
       </exercise>  
+  <exercise xml:id="ez-mult_ints-polar-circle_off_center">
+      <introduction>
+        <p>
+          Consider the circle given by <m>x^2 + (y-1)^2 = 1</m> as shown in <xref ref="fig-mult_ints-polar-circle_off_center">Figure</xref>.
+        </p>
+        <figure xml:id="fig-mult_ints-polar-circle_off_center">
+          <caption>The circle <m>x^2 + (y-1)^2 = 1</m></caption>
+          <image width="50%" >
+            <description>
+              <p>A circle in the <m>xy</m>-plane. The circle passes through the origin and the point <m>(0,2)</m>. The circle is also symmetric about the <m>y</m>-axis.</p>
+          </description>
+          <sageplot label="img-circyp1">
+              var('x,y,t,s')
+              plot8=parametric_plot((cos(t),1+sin(t)),(t,0,2*pi),color="black",thickness=3,ticks=[[-1,1],[0,1,2]],axes_labels=["$x$","$y$"])
+              plot8                 
+            </sageplot>
+          </image>
+        </figure>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Determine a polar curve in the form <m>r = f(\theta)</m> that traces out the circle <m>x^2 + (y-1)^2 = 1</m>. To do this, you should substitute <m>x = r \cos(\theta)</m> and <m>y = r \sin(\theta)</m> into the rectangular coordinate equation and solve for <m>r</m>.
+          </p>
+        </statement>
+        <hint>
+          <p>After you substitute, you should expand and combine like terms. You will also want to factor your expression and disregard the <m>r=0</m> solution. </p>
+        </hint>
+        <answer>
+          <p>
+            The circle <m>C</m> can be described as <m>0 \leq r \leq \ 2\sin(\theta)</m> with <m>0 \leq \theta \leq \pi</m>.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            When expanded, the equation of the circle is <m>x^2+y^2 - 2y = 0</m>. We can write this in polar coordinates as <m>r^2 - 2r \sin(\theta) = 0</m>, or <m>r = 2\sin(\theta)</m>. Thus, the circle <m>C</m> can be described as <m>0 \leq r \leq \ 2\sin(\theta)</m> with <m>0 \leq \theta \leq \pi</m>.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Find the exact average value of <m>g(x,y) = \sqrt{x^2 + y^2}</m> over the interior of the circle <m>x^2 + (y-1)^2 = 1</m>.
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Use a radially simple description of your region with your result from part a as the upper bound.
+          </p>
+        </hint>
+        <answer>
+          <p>
+            <m> \frac{32}{9\pi}</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            The circle <m>C</m> has radius 1, so <m>A(C) = \pi</m>. Note that <m>g(x,y) = \sqrt{x^2 + y^2}</m> can be written in polar form as <m>g(r,\theta) = r</m>. Thus, the average value of <m>g</m> over <m>C</m> is
+            <md>
+              <mrow>\frac{1}{\pi}\int \int_C g(x,y) \, dA \amp = \int_{0}^{\pi} \int_{0}^{2\sin(\theta)} r r \, dr \, d \theta</mrow>
+              <mrow>\amp = \frac{1}{\pi}\int_{0}^{\pi} \frac{r^3}{3} \mid_{0}^{2\sin(\theta)} \, d \theta</mrow>
+              <mrow>\amp = \frac{8}{3\pi} \int_{0}^{\pi} \sin^3(\theta) \, d \theta</mrow>
+              <mrow>\amp = \frac{8}{3\pi} \int_{0}^{\pi} \sin(\theta)(1-\cos^2(\theta)) \, d \theta</mrow>
+              <mrow>\amp = \frac{8}{3\pi} \left(-\cos(\theta)+\frac{\cos^3(\theta)}{3}\right)\mid_{0}^{\pi}</mrow>
+              <mrow>\amp = \frac{8}{3\pi}\left(2-\frac{2}{3}\right)</mrow>
+              <mrow>\amp = \frac{32}{9\pi}</mrow>
+            </md>
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Find the volume under the surface <m>h(x,y) = x</m> over the region <m>D</m>, where <m>D</m> is the region bounded above by the line <m>y=x</m> and below by the circle. We have provided a sketch of this as the shaded region in <xref ref="fig-mult_ints-polar-circle_off_center_region">Figure</xref>.
+          </p>
+          <figure xml:id="fig-mult_ints-polar-circle_off_center_region">
+            <caption>The region between the circle <m>x^2 + (y-1)^2 = 1</m> and the line <m>y=x</m>.</caption>
+            <image width="60%" xml:id="img-F_11_5_Polar_exercise">
+              <description>
+                <p>
+                  A shaded region in the <m>xy</m>-plane. The region is bounded by part of a circle and the portion of the line <m>y=x</m> inside the circle. The circle passes through the origin and the point <m>(0,2)</m>. The circle is also symmetric about the <m>y</m>-axis.
+                </p>
+            </description><sageplot>
+                var('x,y,t,s')
+                plot9=parametric_plot((cos(t),1+sin(t)),(t,0,2*pi),color="black",thickness=2,ticks=[[-1,1],[0,1,2]],axes_labels=["$x$","$y$"])
+                points=[(2*sin(pi/4*i/25 )*cos(pi/4*i/25), 2*sin(pi/4*i/25)^2) for i in range(26)]
+                plot9+=polygon(points,color="lightblue",edgecolor="black",thickness=3)
+                plot9                  
+              </sageplot>
+            </image>
+          </figure>
+        </statement>
+        <answer>
+          <p>
+            <m>\frac{1}{6}</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            In polar coordinates, the line <m>y=x</m> is represented as <m>r \sin(\theta) = r \cos(\theta)</m>, or <m>\tan(\theta) = 1</m>, or <m>\theta = \frac{\pi}{4}</m>. Therefore, the region <m>D</m> is described by <m>0 \leq r \leq \ 2\sin(\theta)</m> with <m>0 \leq \theta \leq \pi/4</m>. So the under the surface <m>h(x,y) = x</m> over the region <m>D</m> is given by
+            <md>
+              <mrow>\int \int_D x \, dA \amp = \int_{0}^{\pi/4} \int_{0}^{2\sin(\theta)} r\cos(\theta) r \, dr \, d \theta</mrow>
+              <mrow>\amp = \int_{0}^{\pi/4} \cos(\theta) \frac{r^3}{3} \mid_{0}^{2\sin(\theta)} \, d \theta</mrow>
+              <mrow>\amp = \frac{8}{3} \int_{0}^{\pi/4} \cos(\theta) \sin^3(\theta) \, d \theta</mrow>
+              <mrow>\amp = \frac{8}{12} \sin^4(\theta) \mid_{0}^{\pi/4}</mrow>
+              <mrow>\amp = \frac{2}{3} \left(\frac{\sqrt{2}}{2}\right)^4</mrow>
+              <mrow>\amp = \frac{1}{6}</mrow>
+            </md>
+          </p>
+        </solution>
+      </task>  
+      <task>
+        <statement>
+          <p>
+            Explain why in both of the previous parts it is advantageous to use polar coordinates.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            In (b), it is very difficult to integrate <m>\sqrt{x^2+y^2}</m> in rectangular coordinates, and in (c) the region <m>D</m> is much more easily described in polar coordinates.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            In (b), it is very difficult to integrate <m>\sqrt{x^2+y^2}</m> in rectangular coordinates, and in (c) the region <m>D</m> is much more easily described in polar coordinates.
+          </p>
+        </solution>
+      </task>
+    </exercise>
 </exercises>
