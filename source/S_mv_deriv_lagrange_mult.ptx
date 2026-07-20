@@ -12,7 +12,7 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-10-8-Lagrange-Multipliers">
+<section xml:id="S-mv_deriv-lagrange">
   <title>Constrained Optimization: Lagrange Multipliers</title>
   <objectives>
       <ul>
@@ -38,7 +38,7 @@
   <subsection>
     <title>Introduction</title>
     <p>
-      We previously considered how to find the extreme values of functions on both unrestricted domains and on closed, bounded domains. Other types of optimization problems involve maximizing or minimizing a quantity subject to an external constraint. In these cases the extreme values frequently won't occur at the points where the gradient is zero, but rather at other points that satisfy an important geometric condition. These problems are often called <em>constrained optimization</em> problems and can be solved with the method of Lagrange Multipliers, which we study in this section.
+      We previously considered how to find the extreme values of functions on both unrestricted domains and on closed, bounded domains. Other types of optimization problems involve maximizing or minimizing a quantity subject to an external constraint. In these cases the extreme values frequently won't occur at the points where the gradient is zero, but rather at other points that satisfy an important geometric condition. These problems are called <term>constrained optimization</term> problems and can be solved with the method of Lagrange Multipliers, which we study in this section. This method also provides an alternative approach to looking for maxima or minima on the boundary of a closed, bounded domain and can be useful in cases where parameterizing the boundary is more difficult than the situation we saw in <xref ref="ex-mv_deriv-optimization-heated_plate"/>.
     </p>
 
 <image width="50%">
@@ -53,10 +53,10 @@
       <definition>f(x)=12-4*x</definition>
       <coordinates bbox="(-2,-2,18,18)">
         <grid-axes xlabel="x" ylabel="y"/>
-        <vector v="(16,4)" tail="(2,4)" stroke="blue"/>
-        <vector v="(4,1)" tail="(2,4)" stroke="red" thickness="1"/>
-        <graph at="graph" function="h" domain="(0,18)" />
-        <graph at="line" function="f" stroke="red" thickness="1"/>
+        <vector v="(16,4)" tail="(2,4)" stroke="#005AB5" thickness="4"/>
+        <vector v="(4,1)" tail="(2,4)" stroke="#DC3220" thickness="2"/>
+        <graph at="graph" function="h" domain="(0,18)" stroke="#005AB5"/>
+        <graph at="line" function="f" stroke="#DC3220" thickness="2"/>
         <point at="point" p="(2,4)" alignment="se">
           <m>(2,4)</m>
         </point>
@@ -65,12 +65,60 @@
   </prefigure>
 </image>
     <worksheet>
-  <exploration workspace="1.5in" xml:id="PA_10_8">
-      <statement>
+  <exploration workspace="1.5in" xml:id="PA_mv_deriv-lagrange">
+      <introduction>
         <p>
-          According to U.S.<nbsp/>postal regulations, the girth plus the length of a parcel sent by mail may not exceed 108 inches, where by <q>girth</q> we mean the perimeter of the smallest end. Our goal is to find the largest possible volume of a rectangular parcel with a square end that can be sent by mail. (We solved this applied optimization problem in single variable <em>Active Calculus</em>, so it may look familiar. We take a different approach in this section, and this approach allows us to view most applied optimization problems from single variable calculus as constrained optimization problems, as well as provide us tools to solve a greater variety of optimization problems.) If we let <m>x</m> be the length of the side of one square end of the package and <m>y</m> the length of the package, then we want to maximize the volume <m>f(x,y) = x^2y</m> of the box subject to the constraint that the girth (<m>4x</m>) plus the length (<m>y</m>) is as large as possible, or <m>4x+y = 108</m>. The equation <m>4x + y = 108</m> is thus an external constraint on the variables.
+          A shipping company places a restriction on packages so that the sum of the package's length and girth must be at most 12 feet. (The girth is the perimeter of the smallest end of the package.)
+          Our goal is to find the largest possible volume of a rectangular package with a <em>square</em> end that can be sent by this shipping company. 
         </p>
-        <ol marker="a.">
+        <p>  
+          Let <m>x</m> be the length in feet of the side of one square end of the package and <m>y</m> be the length in feet of the package. This allows us to define a function that gives the volume of the package as <m>f(x,y) = x^2y</m> cubic feet. The girth of the package is <m>4x</m>, so we can define <m>g(x,y)=4x+y</m> to be the sum of the girth and length. The domain on which we wish to maximize <m>f</m> is all points for which <m>x\geq 0</m>, <m>y\geq 0</m>, and <m>g(x,y)\leq 12</m>. A moment of reflection should confirm that any package with <m>g(x,y)\lt 12</m> cannot maximize the volume, as increasing either <m>x</m> or <m>y</m> so that <m>g(x,y)</m> remains at most 12 will only lead to a larger volume. Thus, we say that we wish to maximize <m>f(x,y) = x^2y</m> subject to the constraint <m>g(x,y) = 4x+y = 12</m>.
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Compute <m>\nabla f</m> and evaluate the gradient at the points <m>(1,8)</m>, <m>(1.5,6)</m>, <m>(2,4)</m>, and <m>(2.5,2)</m>. 
+          </p>
+        </statement>
+      </task>
+      <task>
+        <statement>
+          <p>
+            The plot below shows the graph of <m>g(x) = 12</m> as well as the four points for which you evaluated <m>\nabla f</m> in the previous part. Sketch <m>\nabla f</m> at each of the four points. (You may not have enough space to get the magnitude of each gradient vector correct, but you should accurately depict the direction of each of the four vectors.)
+          </p>
+        </statement>
+        <solution>
+          <image width="60%">
+            <description>
+              <p>
+                Coordinate axes for the <m>xy</m>-plane along with a line passing through the points <m>(12,0)</m> and <m>(3,0)</m>. On the line, four points are marked. These points are <m>(1,8)</m>, <m>(1.5,6)</m>, <m>(2,4)</m>, and <m>(2.5,2)</m>. A vector emanates from each point. The vectors emanating from <m>(1,8)</m> and <m>(1.5,6)</m> both point 
+              </p>
+            </description>
+            <prefigure xmlns="https://prefigure.org" label="img-mv_deriv-lagrange-PA-gradients-soln">
+              <diagram dimensions="(300,300)" margins="5">
+                <definition>g(x)=12-4*x</definition>
+                <coordinates bbox="(-1.2,-1.2,13,13)">
+                  <grid-axes xlabel="x" ylabel="y"/>
+                  <vector v="(8,1)" tail="(1,8)" stroke="#DC3220" scale-length="0.5"/>
+                  <vector v="(18,2.25)" tail="(1.5,6)" stroke="#DC3220" scale-length="0.5"/>
+                  <vector v="(16,4)" tail="(2,4)" stroke="#DC3220" scale-length="0.5"/>
+                  <vector v="(10,6.25)" tail="(2.5,2)" stroke="#DC3220" scale-length="0.5"/>
+                  <graph at="line" function="g" stroke="#005AB5" domain="(0,3)"/>
+                  <point at="point" p="(1,8)"/>
+                  <point at="point" p="(1.5,6)"/>
+                  <point at="point" p="(2,4)"/>
+                  <point at="point" p="(2.5,2)"/>
+                </coordinates>
+              </diagram>              
+            </prefigure>
+          </image>
+        </solution>
+      </task>
+      <task>
+      <statement>
+          <p>
+            <ol marker="a.">
         <li>
           <p>
             The constraint equation involves the function <m>g</m> that is given by
@@ -79,7 +127,7 @@
             </md>
             Explain why the constraint is a contour of <m>g</m>, and is therefore a two-dimensional curve.
 
-            <figure xml:id="F_10_8_preview">
+            <figure xml:id="F_mv_deriv-lagrange_preview">
               <caption>Contours of <m>f</m> and the constraint equation <m>g(x,y) = 108</m>.</caption>
               <image width="50%" source="images/fig_10_8_postal">
                 <description><p>A contour plot with horizontal coordinate labeled <m>x</m> going from 0 to 40 and vertical coordinate labeled <m>y</m> going from 0 to 120. Four contours are shown in blue with hyperbolic shape and asymptotes of the horizontal and vertical axes. These contours are labeled 1000, 5000, 10000, and 20000 as the contours step away from the origin. A red line is drawn from (0,110) to (27,0) with four points that intersect the middle two contours highlighted in red. The two intersections of the red line and the contour labeled 5000 are labeled A and B. The two intersections of the red line and the contour labeled 10000 are labeled C and D. </p></description>
@@ -91,18 +139,18 @@
 
         <li>
           <p>
-            <xref ref="F_10_8_preview">Figure</xref> shows the graph of the constraint equation <m>g(x,y) = 108</m> along with a few contours of the volume function <m>f</m>.  Since our goal is to find the maximum value of <m>f</m> subject to the constraint <m>g(x,y) = 108</m>, we want to find the point on our constraint curve that intersects the contours of <m>f</m> at which <m>f</m> has its largest value.
+            <xref ref="F_mv_deriv-lagrange_preview">Figure</xref> shows the graph of the constraint equation <m>g(x,y) = 108</m> along with a few contours of the volume function <m>f</m>.  Since our goal is to find the maximum value of <m>f</m> subject to the constraint <m>g(x,y) = 108</m>, we want to find the point on our constraint curve that intersects the contours of <m>f</m> at which <m>f</m> has its largest value.
           </p>
           <ol marker="i.">
             <li>
               <p>
-                Points <m>A</m> and <m>B</m> in <xref ref="F_10_8_preview">Figure</xref> lie on a contour of <m>f</m> and on the constraint equation <m>g(x,y) = 108</m>. Explain why neither <m>A</m> nor <m>B</m> provides a maximum value of <m>f</m> that satisfies the constraint.
+                Points <m>A</m> and <m>B</m> in <xref ref="F_mv_deriv-lagrange_preview">Figure</xref> lie on a contour of <m>f</m> and on the constraint equation <m>g(x,y) = 108</m>. Explain why neither <m>A</m> nor <m>B</m> provides a maximum value of <m>f</m> that satisfies the constraint.
               </p>
             </li>
 
             <li>
               <p>
-                Points <m>C</m> and <m>D</m> in <xref ref="F_10_8_preview">Figure</xref> lie on a contour of <m>f</m> and on the constraint equation <m>g(x,y) = 108</m>. Explain why neither <m>C</m> nor <m>D</m> provides a maximum value of <m>f</m> that satisfies the constraint.
+                Points <m>C</m> and <m>D</m> in <xref ref="F_mv_deriv-lagrange_preview">Figure</xref> lie on a contour of <m>f</m> and on the constraint equation <m>g(x,y) = 108</m>. Explain why neither <m>C</m> nor <m>D</m> provides a maximum value of <m>f</m> that satisfies the constraint.
               </p>
             </li>
 
@@ -120,7 +168,10 @@
           </p>
         </li>
         </ol>
-      </statement>
+          </p>
+        </statement>
+      
+        
 
       <answer>
         <p>
@@ -179,7 +230,9 @@
         </ol>
       </p>
       </solution>
+      
 
+</task>
     </exploration>
 </worksheet>
   </subsection>
@@ -187,10 +240,10 @@
   <subsection>
     <title>Constrained Optimization and Lagrange Multipliers</title>
     <p>
-      In <xref ref="PA_10_8">Preview Activity</xref>, we considered an optimization problem where there is an external constraint on the variables, namely that the girth plus the length of the package cannot exceed 108 inches. We saw that we can create a function <m>g</m> from the constraint, specifically <m>g(x,y) = 4x+y</m>. The constraint equation is then just a contour of <m>g</m>, <m>g(x, y) = c</m>, where <m>c</m> is a constant (in our case 108). <xref ref="F_10_8_Lagrange1">Figure</xref> illustrates that the volume function <m>f</m> is maximized, subject to the constraint <m>g(x, y) = c</m>, when the graph of <m>g(x, y) = c</m> is tangent to a contour of <m>f</m>. Moreover, the value of <m>f</m> on this contour is the sought maximum value.
+      In <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref>, we considered an optimization problem where there is an external constraint on the variables, namely that the girth plus the length of the package cannot exceed 108 inches. We saw that we can create a function <m>g</m> from the constraint, specifically <m>g(x,y) = 4x+y</m>. The constraint equation is then just a contour of <m>g</m>, <m>g(x, y) = c</m>, where <m>c</m> is a constant (in our case 108). <xref ref="F_mv_deriv-lagrange_Lagrange1">Figure</xref> illustrates that the volume function <m>f</m> is maximized, subject to the constraint <m>g(x, y) = c</m>, when the graph of <m>g(x, y) = c</m> is tangent to a contour of <m>f</m>. Moreover, the value of <m>f</m> on this contour is the sought maximum value.
     </p>
 
-    <figure xml:id="F_10_8_Lagrange1">
+    <figure xml:id="F_mv_deriv-lagrange_Lagrange1">
       <caption>Contours of <m>f</m> and the constraint contour.</caption>
       <image width="50%" source="images/fig_10_8_postal_solution">
         <description><p>A contour plot with horizontal coordinate labeled <m>x</m> going from 0 to 40 and vertical coordinate labeled <m>y</m> going from 0 to 120. Seven contours are shown in blue with hyperbolic shape and asymptotes of the horizontal and vertical axes. A red line is drawn from (0,110) to (27,0) with a tangential intersection between the red line and the middle contour highlighted with a point in red. </p></description>
@@ -199,7 +252,7 @@
 
     <p>
       To find this point where the graph of the constraint is tangent to a contour of <m>f</m>, recall that <m>\nabla f</m> is perpendicular to the contours of <m>f</m> and <m>\nabla g</m> is perpendicular to the contour of <m>g</m>. At such a point, the vectors <m>\nabla g</m> and <m>\nabla f</m> are parallel, and thus we need to determine the points where this occurs. Recall that two vectors are parallel if one is a nonzero scalar multiple of the other, so we therefore look for values of a parameter <m>\lambda</m> that make
-      <md number="yes" xml:id="eq_10_8_Lagrange_ex1">
+      <md number="yes" xml:id="eq_mv_deriv-lagrange_Lagrange_ex1">
         \nabla f = \lambda \nabla g.
       </md>
     </p>
@@ -209,7 +262,7 @@
     </p>
 
     <p>
-      To find the values of <m>\lambda</m> that satisfy <xref ref="eq_10_8_Lagrange_ex1"/> for the volume function in <xref ref="PA_10_8">Preview Activity</xref>, we calculate both <m>\nabla f</m> and <m>\nabla g</m>. Observe that
+      To find the values of <m>\lambda</m> that satisfy <xref ref="eq_mv_deriv-lagrange_Lagrange_ex1"/> for the volume function in <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref>, we calculate both <m>\nabla f</m> and <m>\nabla g</m>. Observe that
       <md>
         \nabla f = 2xy \vi + x^2 \vj \ \ \ \ \text{ and }  \ \ \ \ \nabla g = 4\vi + \vj,
       </md>
@@ -222,17 +275,17 @@
     <p>
       Equating components in the most recent equation and incorporating the original constraint, we have three equations
       <md number="yes">
-      <mrow xml:id="eq_10_8_lag_ex1">
+      <mrow xml:id="eq_mv_deriv-lagrange_lag_ex1">
          2xy \amp = \lambda (4) 
       </mrow>
-      <mrow xml:id="eq_10_8_lag_ex2">
+      <mrow xml:id="eq_mv_deriv-lagrange_lag_ex2">
          x^2 \amp = \lambda (1) 
       </mrow>
-      <mrow xml:id="eq_10_8_lag_ex3">
+      <mrow xml:id="eq_mv_deriv-lagrange_lag_ex3">
          4x+y \amp = 108 
       </mrow>
       </md>
-      in the three unknowns <m>x</m>, <m>y</m>, and <m>\lambda</m>. First, note that if <m>\lambda = 0</m>, then equation <xref ref="eq_10_8_lag_ex2"/> shows that <m>x=0</m>. From this, Equation<nbsp/><xref ref="eq_10_8_lag_ex3"/> tells us that <m>y = 108</m>. So the point <m>(0,108)</m> is a point we need to consider. Next, provided that <m>\lambda \neq 0</m> (from which it follows that <m>x \neq 0</m> by Equation <xref ref="eq_10_8_lag_ex2"/>), we may divide both sides of Equation<nbsp/><xref ref="eq_10_8_lag_ex1"/> by the corresponding sides of <xref ref="eq_10_8_lag_ex2"/> to eliminate <m>\lambda</m>, and thus find that
+      in the three unknowns <m>x</m>, <m>y</m>, and <m>\lambda</m>. First, note that if <m>\lambda = 0</m>, then equation <xref ref="eq_mv_deriv-lagrange_lag_ex2"/> shows that <m>x=0</m>. From this, Equation<nbsp/><xref ref="eq_mv_deriv-lagrange_lag_ex3"/> tells us that <m>y = 108</m>. So the point <m>(0,108)</m> is a point we need to consider. Next, provided that <m>\lambda \neq 0</m> (from which it follows that <m>x \neq 0</m> by Equation <xref ref="eq_mv_deriv-lagrange_lag_ex2"/>), we may divide both sides of Equation<nbsp/><xref ref="eq_mv_deriv-lagrange_lag_ex1"/> by the corresponding sides of <xref ref="eq_mv_deriv-lagrange_lag_ex2"/> to eliminate <m>\lambda</m>, and thus find that
       <md>
         <mrow>\frac{2y}{x} \amp = 4, \ \mbox{so}</mrow>
         <mrow>y \amp = 2x.</mrow>
@@ -240,7 +293,7 @@
     </p>
 
     <p>
-      Substituting into Equation<nbsp/><xref ref="eq_10_8_lag_ex3"/> gives us
+      Substituting into Equation<nbsp/><xref ref="eq_mv_deriv-lagrange_lag_ex3"/> gives us
       <md>
         4x+2x = 108
       </md>
@@ -268,7 +321,7 @@
     
 
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_10_8_1">
+  <activity workspace="1.5in" xml:id="A_mv_deriv-lagrange_1">
       <statement>
         <p>
           A cylindrical soda can holds about 355 cc of liquid. In this activity, we want to find the dimensions of such a can that will minimize the surface area. For the sake of simplicity, assume the can is a perfect cylinder. 
@@ -287,7 +340,7 @@
 
             <li>
               <p>
-                Find <m>\lambda</m> and the values of your variables that satisfy Equation <xref ref="eq_10_8_Lagrange_ex1"/> in the context of this problem.
+                Find <m>\lambda</m> and the values of your variables that satisfy Equation <xref ref="eq_mv_deriv-lagrange_Lagrange_ex1"/> in the context of this problem.
               </p>
             </li>
 
@@ -443,7 +496,7 @@
     </p>
 
     <worksheet>
-  <activity workspace="1.5in" xml:id="A_10_8_2">
+  <activity workspace="1.5in" xml:id="A_mv_deriv-lagrange_2">
       <statement>
         <p>
           Use the method of Lagrange
@@ -562,7 +615,7 @@
 </worksheet>
 
     <p> 
-      The method of Lagrange multipliers also works for functions of three variables. That is, if we have a function <m>f = f(x,y,z)</m> that we want to optimize subject to a constraint <m>g(x,y,z) = k</m>, the optimal point <m>(x,y,z)</m> lies on the level surface <m>S</m> defined by the constraint <m>g(x,y,z) = k</m>. As we did in <xref ref="PA_10_8">Preview Activity</xref>, we can argue that the optimal value occurs at the level surface <m>f(x,y,z) = c</m> that is tangent to <m>S</m>. Thus, the gradients of <m>f</m> and <m>g</m> are parallel at this optimal point. So, just as in the two variable case, we can optimize <m>f = f(x,y,z)</m> subject to the constraint <m>g(x,y,z) = k</m> by finding all points <m>(x,y,z)</m> that satisfy <m>\nabla f = \lambda \nabla g</m> and <m>g(x,y,z) = k</m>. 
+      The method of Lagrange multipliers also works for functions of three variables. That is, if we have a function <m>f = f(x,y,z)</m> that we want to optimize subject to a constraint <m>g(x,y,z) = k</m>, the optimal point <m>(x,y,z)</m> lies on the level surface <m>S</m> defined by the constraint <m>g(x,y,z) = k</m>. As we did in <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref>, we can argue that the optimal value occurs at the level surface <m>f(x,y,z) = c</m> that is tangent to <m>S</m>. Thus, the gradients of <m>f</m> and <m>g</m> are parallel at this optimal point. So, just as in the two variable case, we can optimize <m>f = f(x,y,z)</m> subject to the constraint <m>g(x,y,z) = k</m> by finding all points <m>(x,y,z)</m> that satisfy <m>\nabla f = \lambda \nabla g</m> and <m>g(x,y,z) = k</m>. 
     </p>
 
   </subsection>
@@ -692,20 +745,20 @@
           <p>
             Equating components and the original constraint give us the three equations
             <md>
-              <mrow xml:id="eqn_10_8_lag_ex1" number="yes">20y^{0.6} \amp = \lambda x^{0.6}</mrow>
-              <mrow xml:id="eqn_10_8_lag_ex2" number="yes">30x^{0.4} \amp = \lambda y^{0.4}</mrow>
-              <mrow xml:id="eqn_10_8_lag_ex3" number="yes">x+y \amp = 1.5</mrow>
+              <mrow xml:id="eqn_mv_deriv-lagrange_lag_ex1" number="yes">20y^{0.6} \amp = \lambda x^{0.6}</mrow>
+              <mrow xml:id="eqn_mv_deriv-lagrange_lag_ex2" number="yes">30x^{0.4} \amp = \lambda y^{0.4}</mrow>
+              <mrow xml:id="eqn_mv_deriv-lagrange_lag_ex3" number="yes">x+y \amp = 1.5</mrow>
             </md>
             in the three unknowns <m>x</m>,
             <m>y</m>, and <m>\lambda</m>.
-            Dividing both sides of <xref ref="eqn_10_8_lag_ex1"/> by the corresponding sides of <xref ref="eqn_10_8_lag_ex2"/> yields
+            Dividing both sides of <xref ref="eqn_mv_deriv-lagrange_lag_ex1"/> by the corresponding sides of <xref ref="eqn_mv_deriv-lagrange_lag_ex2"/> yields
             <md>
               <mrow>\frac{2}{3} \frac{y^{0.6}}{x^{0.4}} \amp = \frac{x^{0.6}}{y^{0.4}}</mrow>
-              <mrow xml:id="eq_10_8_lag_ex4" number="yes">\frac{2}{3} y \amp = x</mrow>
+              <mrow xml:id="eq_mv_deriv-lagrange_lag_ex4" number="yes">\frac{2}{3} y \amp = x</mrow>
             </md>
           </p>
           <p>
-            Substituting into <xref ref="eqn_10_8_lag_ex3"/> gives us
+            Substituting into <xref ref="eqn_mv_deriv-lagrange_lag_ex3"/> gives us
             <md>
               \frac{2}{3}y + y = 1.5
             </md>
@@ -1235,7 +1288,7 @@
 
               <li>
                 <p>
-                  Suppose that <m>\lambda = 324</m> at the point where the package described in <xref ref="PA_10_8">Preview Activity</xref> has its maximum volume. Explain in context what the value <m>324</m> tells us about the package.
+                  Suppose that <m>\lambda = 324</m> at the point where the package described in <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref> has its maximum volume. Explain in context what the value <m>324</m> tells us about the package.
                 </p>
               </li>
 
