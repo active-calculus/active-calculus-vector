@@ -28,6 +28,11 @@
         </li>
       </ul>
     </objectives>
+  <introduction component="instructor">
+    <p>
+      Need to fill this in
+    </p>
+  </introduction>
   <subsection>
     <title>Introduction</title>
   <p>
@@ -60,7 +65,7 @@
         <image xml:id="CopiumMinePlot">
           <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. A yellow parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100). </p></description>
         <sageplot>
-<xi:include href="CopiumMinePlot.sage" parse="text"/>
+<xi:include href="./interacts/CopiumMinePlot.txt" parse="text"/>
         </sageplot>
         </image>
       </figure>
@@ -75,7 +80,7 @@
             <p>Answers will vary but would likely be around 1200</p>
         </answer>
         <solution>
-            <p>Answers will vary but the calculation should be done by multiplying the density at some point(s) along the side by the length of the side. For instance, you might estimate the density to be about 2.5 on the left side of the plot and length to be about 500, so this would give an estimated 1250 in Copium mined along the left side of the plot.</p>
+            <p>Answers will vary but the calculation should be done by multiplying the density at some point(s) along the side by the length of the side. For instance, you might estimate the density to be about 2.5 on the left side of the plot and length to be about 500, so this would give an estimated 1250 units of Copium mined along the left side of the plot.</p>
         </solution>
     </task>
     <task xml:id="task_PA_ScalarLI_2">
@@ -94,13 +99,13 @@
     <task xml:id="task_PA_ScalarLI_3">
       <statement>
         <p>
-          Estimate the amount of copium that would be mined from the scraping the curved path shown below. You should use at least 3 segments in your estimate. You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
+          Estimate the amount of copium that would be mined from the scraping the curved path shown in <xref ref="CopiumPlotwithPath"/>. You should use at least 3 segments in your estimate. You should write a few sentences about how you got your estimate based on the copium density and length of the paths.
         </p>
-        <figure>
+        <figure xml:id="CopiumPlotwithPath">
           <caption>A plot of land with copium Density and a path plotted in blue</caption>
-          <image xml:id="CopiumPlotwithPath">
-            <description>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. A yellow parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100). </description>
-            <sageplot>
+          <image>
+            <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. A yellow parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100).</p> </description>
+            <sageplot label="img-CopiumPlotwithPath">
               var('x,y,t')
               f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
               cp=contour_plot(f,(x,0,550),(y,0,550),colorbar=True)
@@ -123,9 +128,9 @@
         <p>
           Estimate the amount of copium that would be mined from the scraping the curved path shown below. You should use at least 3 segments in your estimate. You should also explain how and why your answer to this question is different or similar to the previous task.
         </p>
-        <figure>
+        <figure xml:id="CopiumPlotwithPath2">
           <caption>A plot of land with copium density and a path plotted in blue</caption>
-          <image xml:id="CopiumPlotwithPath2">
+          <image xml:id="img-CopiumPlotwithPath2">
             <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. An orange parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100). A blue elliptic arc is drawn inside of the parallelogram with an arrow showing the curve is traveled in the counterclockwise direction. </p>
           </description><sageplot>
               var('x,y,t')
@@ -151,7 +156,7 @@
 <subsection>
   <title>Defining line integrals of scalar functions</title>
 <p>
-  In <xref ref="PA_ScalarLI"/>, you approximated the distance traveled for various paths and multiplied by the density of the copium on each piece of the path. In contrast to the line integral of a vector field, the calculations of the ore mined does not depend on what direction the path was traveled. We will now use these same ideas to give precise meaning to the measurement of the accumulation of a scalar function's output over a path in space.
+  In <xref ref="PA_ScalarLI"/>, you approximated the distance traveled for various paths and multiplied by the density of the copium on each piece of the path. In contrast to the line integral of a vector field, the calculations of the ore mined does not depend on what direction the path was traveled. We will now use these same ideas to give precise meaning to the measurement of the accumulation of a scalar function's output over a path in space. As you might guess, we will use a <xref ref="CCA" text="custom">classic calculus approach</xref> of 1) making an approximation, 2) describe how this approximation changes under smaller scales, and 3) use a limit to find the exact value. In the preceeding discussion, we will briefly cover this CCA and return to the details of step 2 later in this section. 
 </p>
 <p>
   Let <m>f</m> be a continuous function of <m>x</m>, <m>y</m>, and <m>z</m> for some open set around <m>C</m>, a curve from a point <m>P</m> to a point <m>Q</m>. We will begin to approximate the accumulation of the output of <m>f</m> over <m>C</m> by breaking <m>C</m> into pieces with boundary points <m>P=\vr_0, \vr_1, \dots, \vr_n-1, \vr_n=Q</m>. The curve <m>C_i</m> is the part of <m>C</m> that goes from <m>\vr_{i-1}</m> to <m>\vr_i</m> and <m>\Delta \vr_i</m> is the displacement vector from <m>\vr_{i-1}</m> to <m>\vr_i</m>
@@ -162,10 +167,9 @@
     <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}_0</m>,<m>\vec{r}_1</m>, and <m>P=\vec{r}_2</m>. The last three points are labeled <m>\vec{r}_{n-2}</m>,<m>\vec{r}_{n-1}</m>, and <m>Q=\vec{r}_n</m>. Blue vectors are drawn between consecutive points except for between the fourth and fifth points. A red vector is drawn from the fourth point to the fifth point and is labeled <m>\Delta \vec{r}_i=\vec{r}_{i+1}-\vec{r}_i</m>.</p>
   </description><sageplot>
       tpoints=[4,3.5,3,2.5,1.5,1,0.5]
-      offsetx=[0.1,-0.2,0.2,0.2,0,0,0.2]
-      offsety=[-0.2,-0.1,0,0.2,-0.2,-0.2,-0.2]
-      labels=['$P=\\mathbf{r}_0$','$\\mathbf{r}_1$','$\\mathbf{r}_2$','','$\\mathbf{r}_{n-2}$','$\\mathbf{r}_{n-1}$','$Q=\\mathbf{r}_{n}$']
-      
+      offsetx=[0.1,-0.2,0.3,0.2,0,0,0.2]
+      offsety=[-0.2,-0.1,0,0.2,-0.3,-0.2,-0.2]
+      labels=['$P=\\vec{r}_0$','$\\vec{r}_1$','$\\vec{r}_2$','','$\\vec{r}_{n-2}$','$\\vec{r}_{n-1}$','$Q=\\vec{r}_{n}$']
       var('t');
       r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
       plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
@@ -176,16 +180,16 @@
           plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='#1E88E5')
         if(i==3):
           plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='#D81B60')
-        plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=25,color='black')
-      plot99+=text('$\\Delta \\mathbf{r}_i=\\mathbf{r}_{i+1}-\\mathbf{r}_i$',(-1,0.7),color='#D81B60',fontsize=25)
-      plot99      
+        plot99+=point([position],color='black',size=50,zorder=5)+text(labels[i],withoffset,fontsize=25,color='black')
+      plot99+=text('$\\Delta \\vec{r}_i=\\vec{r}_{i+1}-\\vec{r}_i$',(-0.9,0.6),color='#D81B60',fontsize=25)
+      plot99  
     </sageplot>
   </image>
 </figure>
 <p>
-  We can approximate the accumulation of <m>f</m> over <m>C</m> with the following sum
-  <md> \sum_{i=1}^{n} f(\vr_i^*) \vecmag{\vr_{i}-\vr_{i-1}}</md>,
-  where <m>f(r_i^{*})</m> is the output of <m>f</m> for some <m>\vr_i^{*} \in C_i</m>. As this sum uses more pieces and all of the lengths of the pieces goes to zero (i.e. <m>\vecmag{\Delta \vr_i} \rightarrow 0</m>), we would expect that the sum will approach the actual accumulation of <m>f</m> over <m>C</m>. Notice that it won't matter how we select the point <m>\vr_i^*</m> that is used in each piece to evaluate the output of <m>f</m> since evaluating the limit as the length of <m>C_i</m> gets smaller will ensure that the output value chosen will be within a shrinking error from the average value on each piece. Evaluating the limit of the sum above as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <m>f</m> over <m>C</m>.
+  For Step 1 of the CCA, we can approximate the accumulation of <m>f</m> over <m>C</m> with the following sum
+  <md> \sum_{i=1}^{n} f(\vr_i ^*) \vecmag{\vr_{i}-\vr_{i-1}}</md>,
+  where <m>f(r_i^{*})</m> is the output of <m>f</m> for some <m>\vr_i^{*} \in C_i</m>. Similar to our work on line integrals of a vector field, as this sum uses more pieces and all of the lengths of the pieces goes to zero (i.e. <m>\vecmag{\Delta \vr_i} \rightarrow 0</m>), we would expect that the sum will approach the actual accumulation of <m>f</m> over <m>C</m>. Notice that it won't matter how we select the point <m>\vr_i^*</m> that is used in each piece to evaluate the output of <m>f</m> since evaluating the limit as the length of <m>C_i</m> gets smaller will ensure that the output value chosen will be within a shrinking error from the average value on each piece. Evaluating the limit of the sum above as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <m>f</m> over <m>C</m>.
 </p>
 <definition xml:id="ScalarLineIntegral_def">
 
@@ -215,7 +219,7 @@
         <li><m>h(x,y)=y-x^2</m></li>
       </ul>
     </p>
-    <figure xml:id="fig_sli_pm1">
+    <figure xml:id="fig_sli_pm1" width="50%">
       <caption>The curve <m>C</m> used in the line integral for <xref ref="sli_pm"/></caption>
       <image width="75%" xml:id="fig_scalarlineint_pmexample1">
         <description><p>A two dimensional plot with horizontal coordinate going from -1 to 2 labeled <m>x</m> and vertical coordinate going from 0 to 4 labeled <m>y</m>. A parabola with vertex at the origin and going through the points (1,1) and (-1,1) is drawn in blue. This curve is labeled <m>C</m>. </p></description>
@@ -232,7 +236,7 @@
     <p>
       For our first case, we will consider the line integral <md> \int_C f \, ds </md>. Remember that the line integral of <m>f</m> over <m>C</m> will measure the accumulation of the output of <m>f</m> over the points on the curve <m>C</m>. <xref ref="fig_sli_pm3"/> shows that the blue branch of the curve <m>C</m> (for <m>0\leq x\leq 2</m>) will yield positive output values for <m>f</m>, while the magenta part, which has <m>-1\leq x\leq 0</m>, will produce negative output values for <m>f</m>. Intuitively, there is more of the curve with positive <m>f</m> outputs than negative <m>f</m> outputs, so we would expect <m>\int_C f \, ds</m> to be positive. However, the magnitude of the <m>f</m>-values produced must also be accounted for.
     </p>
-    <figure xml:id="fig_sli_pm3">
+    <figure xml:id="fig_sli_pm3" width="50%">
       <caption>The curve <m>C</m> split into regions with positive (blue) and negative (magenta) outputs of <m>f</m></caption>
       <image width="75%" xml:id="fig_scalarlineint_pmexample3">
         <description><p>A two dimensional plot with horizontal coordinate going from -1 to 2 labeled <m>x</m> and vertical coordinate going from 0 to 4 labeled <m>y</m>. A parabola with vertex at the origin and going through the points (1,1) and (-1,1) is drawn. The portion of the parabola with negative horizontal coordinates is drawn in magenta and the rest of the parabola is drawn in blue. The endpoints of this plot at (-1,1) and (2,4) are highlighted with black points. <m>C</m> </p></description>
@@ -259,7 +263,8 @@
       <caption>The curve <m>C</m> split into three regions with positive (blue and green) and negative (magenta) outputs of <m>f</m></caption>
       <image width="75%" xml:id="fig_scalarlineint_pmexample2">
         <description><p>A two dimensional plot with horizontal coordinate going from -1 to 2 labeled <m>x</m> and vertical coordinate going from 0 to 4 labeled <m>y</m>. A parabola with vertex at the origin and going through the points (1,1) and (-1,1) is drawn. The portion of the parabola with negative horizontal coordinates is drawn in magenta, the portion of the parabola from (0,0) to (1,1) is drawn in green, and the rest is drawn in blue. The points (0,0), (1,1), (-1,1), and (2,4) are highlighted with black points.</p>
-      </description><sageplot>
+      </description>
+        <sageplot>
           var('x')
           plot12=plot(x^2,(x,1,2),color='#1E88E5',axes_labels=["$x$","$y$"],thickness=2)
           plot12+=plot(x^2,(x,0,1),color='#004D40',thickness=2)
@@ -336,36 +341,36 @@
         <p>
           <ol marker="(i)">
            <li>
-            <interactive title="exercise-testing1" platform="sage" width="100%" aspect="1:1">
+            <interactive title="exercise-testing1" platform="sage" width="60%" aspect="1:1">
             
             <slate surface="sage">
             
-<xi:include href="./interacts/demo.sage1.txt" parse="text"/>
+              <xi:include href="./interacts/demo.sage1.txt" parse="text"/>
             
             </slate>
             
-            <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+            <description><p>A plot of a diagonal line from top left to bottom right with half of the unit circle plotted above this diagonal line.</p></description></interactive>
             
             <program>
             
             <code>
             
-   <xi:include href="./interacts/demo.sage1.txt" parse="text"/>
+              <xi:include href="./interacts/demo.sage1.txt" parse="text"/>
             
             </code>
             
             </program>
            </li>
            <li>
-              <interactive title="exercise-testing2" platform="sage" width="100%" aspect="1:1">
+              <interactive title="exercise-testing2" platform="sage" width="60%" aspect="1:1">
               
               <slate surface="sage">
               
-  <xi:include href="./interacts/demo.sage2.txt" parse="text"/>
+                <xi:include href="./interacts/demo.sage2.txt" parse="text"/>
               
               </slate>
               
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+              <description><p>A plot of a diagonal line from top left to bottom right with half of the unit circle plotted above this diagonal line.</p></description></interactive>
               
               <program>
               
@@ -378,7 +383,7 @@
               </program> 
            </li>
            <li>
-            <interactive title="exercise-testing3" platform="sage" width="100%" aspect="1:1">
+            <interactive title="exercise-testing3" platform="sage" width="60%" aspect="1:1">
               
               <slate surface="sage">
               
@@ -386,7 +391,7 @@
               
               </slate>
               
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+              <description><p>A plot of a diagonal line from top left to bottom right with half of the unit circle plotted above this diagonal line.</p></description></interactive>
               
               <program>
               
@@ -414,7 +419,7 @@
         </p>
       </answer>
       <solution>
-        <interactive title="exercise-testing4" platform="sage" width="100%" aspect="1:1">
+        <interactive title="exercise-testing4" platform="sage" width="60%" aspect="1:1">
               
               <slate surface="sage">
               
@@ -465,7 +470,7 @@
               
               </slate>
               
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+              <description><p>A plot of a diagonal line from top left to bottom right with half of the unit circle plotted above this diagonal line.</p></description></interactive>
               
               <program>
               
@@ -488,7 +493,7 @@
               
               </slate>
               
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+              <description><p>A plot of a diagonal line from top left to bottom right with half of the unit circle plotted above this diagonal line.</p></description></interactive>
               
               <program>
               
@@ -550,18 +555,18 @@
         <p>
           An important idea to determining whether these line integrals will be positive/negative/zero, is understanding when the output of <m>f_4=x-y</m> will be positive/negative/zero. In the plot below. The points in red will correspond to the output of <m>f_4</m> being zero, the points in blue will correspond to the output of <m>f_4</m> being positive, and the points in green will correspond to the output of <m>f_4</m> being negative.
         </p>
-        <image width="80%">
+        <image width="60%">
           <sageplot>
             plot1=line(((-2,-2),(2,2)),color='red',thickness=5,axes_labels=["$x$","$y$"])
             plot1 += polygon(((-2,-2),(2,-2),(2,2),(-2,-2)),color="blue",fill=true)
             plot1 += polygon(((-2,-2),(-2,2),(2,2),(-2,-2)),color="green",fill=true)
             plot1          
           </sageplot>
-        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+        <description><p>A plot of the plane split into two region, with the top left half in green and the bottom right to the blue.</p></description></image>
         <p>
           Now we will look at the individual line integrals.
         </p>
-        <image width="80%">
+        <image width="50%">
           <sageplot>
             var('t')
             plot2 = parametric_plot((t,t),(t,-2,2),color='black',linestyle="--",axes_labels=["$x$","$y$"])
@@ -572,7 +577,7 @@
             plot2 += point((sqrt(2)/2,-sqrt(2)/2),color="black",size=30)
             plot2          
           </sageplot>
-        <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+        <description><p>A semicircle from (-1,1) to (1,-1) with a diagonal dotted line drawn from the bottom left to the top right.</p></description></image>
         <p>
           The scalar line integal on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <m>f_4</m> will be opposite in sign on the blue and magenta. Thus the line integral of <m>f_4</m> over <m>C_1</m> will be zero.
         </p>
@@ -584,7 +589,7 @@
               
               </slate>
               
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+              <description><p>A plot of a diagonal line from top left to bottom right with half of the unit circle plotted above this diagonal line.</p></description></interactive>
               
               <program>
               
@@ -607,7 +612,7 @@
               
               </slate>
               
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
+              <description><p>A plot of a diagonal line from top left to bottom right with half of the unit circle plotted above this diagonal line.</p></description></interactive>
               
               <program>
               
@@ -629,7 +634,7 @@
 <subsection>
   <title>Using Parameterizations to Calculate Scalar Line Integrals</title>
   <p>
-    <xref ref="ScalarLineIntegral_def"/> defined <m>\int_C f \, ds</m> in terms of a limit of a Riemann sum which is often useful for understanding what is being measured and not very useful when it comes to efficiently calculating the value of a given integral. A scalar line integral is presented algebraically in terms of three variables because the curve is given in terms of points in three coordinates and the function to be integrated is dependent on those same coordinate values. Geometrically, the scalar line integral is a one dimensional problem because we only have one dimension to travel; namely, we can travel along the curve in steps of arc length. Remember that a parameterization of a curve in space is a description of how to travel through the points (given as three coordinates) of the curve in terms of a parameter (usually given as <m>t</m>.) Parameterizations are very useful converting the three-variable algebra of a scalar line integral problem into a one dimensional integral. Once we have done that, we can use all of the tools of single-variable calculus to evaluate the scalar line integral.
+    <xref ref="ScalarLineIntegral_def"/> defined <m>\int_C f \, ds</m> in terms of a limit of a Riemann sum which is often useful for understanding what is being measured and not very useful when it comes to efficiently calculating the value of a given integral. A scalar line integral is presented algebraically in terms of three variables because the curve is given in terms of points in three coordinates and the function to be integrated is dependent on those same coordinate values. Geometrically, the scalar line integral is a one dimensional problem because we only have one dimension to travel; namely, we can travel along the curve in steps of arc length. Remember that a parameterization of a curve in space is a description of how to travel through the points (given as three coordinates) of the curve in terms of a parameter (usually given as <m>t</m>.) Parameterizations are very useful converting the three-variable (<m>x,y,z</m>) algebra of a scalar line integral problem into a one dimensional integral. Once we have done that, we can use all of the tools of single-variable calculus to evaluate the scalar line integral. To understand this conversion, we will look at the details of the CCA using a parameterization. 
   </p>
   <p>
     Let's look at applying a parameterization for <m>C</m> given by a vector-valued function of one variable <m>\vr(t)=\langle f(t), g(t), h(t)\rangle</m> for <m>t</m> in some interval <m>[a,b]</m> to <xref ref="ScalarLineIntegral_def"/>. Instead of thinking in terms of pieces of the curve <m>C</m>, the parameterization allows us to break the interval <m>[a,b]</m> into pieces <m>a=t_0, t_1, \dots ,t_n=b</m> where <m>t_i=a+i(\Delta{t})</m> and <m>\Delta{t}=\frac{b-a}{n}</m>. While these pieces will be equally spaced in terms of the parameter <m>t</m>, the corresponding points on the curve <m>C</m> given by <m>r(t_i)</m> may not be equally spaced.
@@ -641,8 +646,8 @@
         <sageplot>
           tpoints=[4,3.5,3,2.5,1.5,1,0.5]
           offsetx=[0.1,-0.3,-0.3,0.2,0,0.0,0.2]
-          offsety=[-0.2,-0.1,0,0.2,0.2,0.2,-0.2]
-          labels=['$P=\\mathbf{r}(t_0)$','$\\mathbf{r}(t_1)$','$\\mathbf{r}(t_2)$','','$\\mathbf{r}(t_{n-2})$','$\\mathbf{r}(t_{n-1})$','$Q=\\mathbf{r}(t_{n})$']
+          offsety=[-0.2,-0.1,0,0.2,0.2,0.3,-0.2]
+          labels=['$P=\\vec{r}(t_0)$','$\\vec{r}(t_1)$','$\\vec{r}(t_2)$','','$\\vec{r}(t_{n-2})$','$\\vec{r}(t_{n-1})$','$Q=\\vec{r}(t_{n})$']
           var('t')
           r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
           plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
@@ -654,8 +659,8 @@
             if(i==3):
               plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='#D81B60')
             plot99+=point([position],color='black',size=50)+text(labels[i],withoffset,fontsize=20,color='black')
-          plot99+=text('$\\Delta \\mathbf{r}_i=\\mathbf{r}(t_{i})-\\mathbf{r}(t_{i-1})$',(-0.8,0.6),color='#D81B60',fontsize=20)
-          plot99          
+          plot99+=text('$\\Delta \\vec{r}_i=\\vec{r}(t_{i})-\\vec{r}(t_{i-1})$',(-0.8,0.6),color='#D81B60',fontsize=20)
+          plot99              
         </sageplot>
       </image>
     </figure>
@@ -669,7 +674,7 @@
         <mrow>\int_C f \, ds \amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(\vr_i^{*}) \vecmag{\vr_{i}-\vr_{i-1}}</mrow>
         <mrow>\amp =\lim_{n\rightarrow \infty} \sum_{i=1}^{n} f(t_i^{*}) \frac{\vecmag{r(t_{i-1}+\Delta t)-r(t_{i-1})}}{\Delta{t}}\Delta{t} </mrow>
       </md>.
-    This Riemann sum corresponds to the definite integral of a scalar function of <m>t</m>, specifically <m>f(t) v(t)</m> where <m>v(t)=\vecmag{\vr'(t)}</m>. We may think of <m>v(t)</m> is the speed of the parameterization <m>\vr</m>.
+    This Riemann sum corresponds to the definite integral of a scalar function of <m>t</m>, specifically <m>f(t) v(t)</m> where <m>v(t)=\vecmag{\vr'(t)}</m>. We may think of <m>v(t)</m> as the speed of the parameterization <m>\vr</m>.
   </p>
   <theorem xml:id="scalarlineint_param_thm">
     <title>Calculating Scalar Line Integrals with Parameterizations</title>
@@ -690,9 +695,9 @@
     </p>
     <figure xml:id="fig_Vector_ScalarLineIntegral_example1">
       <caption> A subdivided plot of <m>C_1</m></caption>
-      <image width="80%" xml:id="img_ScalarLinInt_Example1">
+      <image width="60%" xml:id="img_ScalarLinInt_Example1">
         <description><p>A dashed line from (2,-2) to (-2,2) is drawn in black. A semicircle centered at the origin of radius one that sits above the dashed line is drawn in three segments. The arc from <m>(\frac{\sqrt{2}}{2},-\frac{\sqrt{2}}{2})</m> to (1,0) is drawn in blue, the arc from (1,0) to <m>(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2})</m> is drawn in magenta, and the arc from <m>(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2})</m> to <m>(-\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2})</m> is drawn in green.</p></description>
-      <sageplot>
+        <sageplot>
           var('x,y,t')
           plot1 = parametric_plot((t,-t),(t,-2,2),color='black',linestyle="--")
           plot1 += parametric_plot((cos(t),sin(t)),(t,-pi/4,0),color='#1E88E5',thickness=2)
@@ -725,7 +730,7 @@
     </p>
     <figure xml:id="fig_Vector_ScalarLineInt_example2">
       <caption> A subdivided plot of <m>C_1</m></caption>
-      <image width="80%" xml:id="img_ScalarLinInt_Example2">
+      <image width="60%" xml:id="img_ScalarLinInt_Example2">
         <description><p> A dashed line is drawn from (-2,-2) to (2,2). A semicircle with center at the origin with radius 1 is drawn in two sections. The arc from <m>(\frac{\sqrt{2}}{2},-\frac{\sqrt{2}}{2})</m> to <m>(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2})</m> is drawn in blue and the arc from <m>(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2})</m> to <m>(-\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2})</m> is drawn in magenta. </p></description>
       <sageplot>
           var('t')
@@ -914,7 +919,7 @@
   <task>
     <statement>
       <p>
-        Explain in your own words what <m>\displaystyle\int_C (f+g) \, ds = \int_C f \, ds + \int_C g \, ds</m> means in the copium analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.
+        Explain in your own words what <m>\displaystyle\int_C (f+g) \, ds = \int_C f \, ds + \int_C g \, ds</m> means in the copium analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy. You may also find it helpful to consider <m>f</m> and <m>g</m> to measure density of different materials. 
       </p>
     </statement>
     <answer>
@@ -972,10 +977,10 @@
 </p>
 <figure>
   <caption>A plot of land with density of copium deposits </caption>
-  <image xml:id="CopiumMinePlot2">
+  <image xml:id="CopiumMinePlot2" width="60%">
     <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. A yellow parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100). </p></description>
   <sageplot>
-<xi:include href="CopiumMinePlot.sage" parse="text"/>
+<xi:include href="./interacts/CopiumMinePlot.txt" parse="text"/>
   </sageplot>
   </image>
 </figure>
@@ -985,7 +990,7 @@
 <figure xml:id="LeftSideofCopiumMine">
   <caption> A plot of the copium density on the left side of the
   mine shown above </caption>
-  <image xml:id="img_leftsideplot">
+  <image xml:id="img_leftsideplot" width="60%">
     <description><p>A two dimensional plot with horizontal coordinate from 0 to 500 and vertical coordinate from 0 to 2.5. A blue curve is drawn from (0,2.5) sloping down to (500,1.5). </p></description>
   <sageplot>
       var('x')
@@ -1053,8 +1058,7 @@
   </interactive>
 </figure>
 </subsection>
-<subsection>
-  <title>Summary</title>
+<outcomes>
   <p>
     <ul>
       <li>
@@ -1074,6 +1078,6 @@
       </li>
     </ul>
   </p>
-</subsection>
+</outcomes>
 <xi:include href="exercises/ez-S_Vector_ScalarLineIntegral.ptx"/>
 </section>

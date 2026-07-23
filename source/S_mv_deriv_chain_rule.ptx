@@ -32,7 +32,7 @@
   <introduction component="instructor">
     <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section use the ideas of partial derivatives and provides an algebraic description for the chain rule (which is used in <xref ref="S-mv_deriv-directional"/>). Some instructors will do a cursory coverage this material, but we relate the concept and development of the chain rule to our tools of linearization from <xref ref="S-mv_deriv-linearization"/>. 
+      This section use the ideas of partial derivatives and provides an algebraic description for the chain rule (which is used in <xref ref="S-mv_deriv-directional"/>). Some instructors will do a cursory coverage this material, but we relate the concept and development of the chain rule to our tools of linearization from <xref ref="S-mv_deriv-linearization"/>. We have relegated the use of tree diagrams to a couple of exercises. Most motivation and execution of the chain rule comes from our description of change as a linear combination of the change through each independent variable. 
     </p>
   </introduction>
   <subsection>
@@ -80,7 +80,7 @@
       As we look at functions of two (or more) variables in this text, we will encounter a situation where <m>z = f(x,y)</m> and both <m>x</m> and <m>y</m> depend on another variable <m>t</m>. A change in <m>t</m> then produces changes in <em>both</em> <m>x</m> and <m>y</m>, which then causes <m>z</m> to change. In this section, we will see how to describe the change in <m>z</m> that is caused by a change in <m>t</m>, leading us to multivariable versions of the chain rule involving both regular and partial derivatives.
     </p>
     <worksheet>
-  <exploration workspace="1.5in" xml:id="PA-chain">
+    <exploration workspace="1.5in" xml:id="PA-chain">
       <introduction>
         <p>
           Your self-driving car company, <em>Steer Clear</em>, is doing well and almost ready to launch its first car. Some of your engineers have reported that the car has problems when the air intake encounters a large quantity of large particulate matter (sand, dust, large pollen, smog, etc.) in the air. To fix this issue, you have created a new type of filter that uses a sophisticated mesh and gravity to filter out large particulate matter. However, this new type of filter gets clogged if exposed to too much large particulate matter too quickly. To determine the viability of this filter, you must measure the rate at which your car's intake will be exposed to large particulate matter per unit time. 
@@ -102,6 +102,11 @@
             Substitute the path component functions <m>x(t)</m> and <m>y(t)</m> into the expression for <m>P(x,y)</m> but <alert>do not simplify</alert> the resulting expression for <m>P(t)</m>. This gives a one-variable function that describes the amount of large particulate matter encountered at each location on your test course as a function of <em>time</em>. 
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>P(t) = 10-\frac{1}{2} (2-t^2)^2-\frac{1}{5} (t^3+1)^2</m>
+          </p>
+        </solution>
       </task>
       <task xml:id="PA-chain-t2">
         <statement>
@@ -109,6 +114,11 @@
             Use derivative rules from single-variable calculus to find <m>P'(t)=\frac{dP}{dt}</m>. <alert>Do not simplify this expression.</alert> Note that this is <em>not</em> a partial derivative because <m>P(t)</m> only has <em>one</em> dependent variable. 
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>\frac{dP}{dt}= 0-\frac{1}{2} (2(2-t^2)(-2t))-\frac{1}{5} (2(t^3+1)(3t^2))</m>
+          </p>
+        </solution>
       </task>
       <task xml:id="PA-chain-t3">
         <statement>
@@ -126,14 +136,25 @@
             and how <m>P_x(a,b) \frac{dx}{dt}</m> and <m>P_y(a,b) \frac{dy}{dt}</m> measure the rates of change in pollution coming from tree pollen and industrial pollution, respectively. 
           </p>
         </statement>
+        <solution>
+          <p>
+            Since <m>L</m> approximates <m>P</m> near the input <m>(a,b)</m>, <m>\frac{dP}{dt}\approx\frac{dL}{dt}</m> and applying the chain rule to <m>L(x(t),y(t))</m> will give <m>0 + P_x(a,b) \frac{dx}{dt}+P_y(a,b) \frac{dy}{dt}</m>. This is similar to a related rates problem or implicit differentiation from single variable calculus. 
+          </p>
+        </solution>
       </task>
       <task xml:id="PA-chain-t4">
         <statement>
           <p>
             Use the formulas provided at the beginning of the Preview Activity for <m>P(x,y)</m>, <m>x(t)</m>, and <m>y(t)</m> to compute each of the following. Then substitute your expressions into Alex's approximation given in equation <xref ref="dLinear"/>. <alert>Do not simplify this expression.</alert>
-            <md>P_x(a,b)\qquad \qquad P_y(a,b) \qquad \qquad \frac{dx}{dt}\ qquad \qquad \frac{dy}{dt}  </md>
+            <md>P_x(a,b)\qquad \qquad P_y(a,b) \qquad \qquad \frac{dx}{dt} \qquad \qquad \frac{dy}{dt}  </md>
           </p>
         </statement>
+        <solution>
+          <p>
+            <m>P_x(a,b)= -\frac{1}{2}(2 x),  P_y(a,b)= -\frac{1}{5} (2y), \frac{dx}{dt}=-2t, \frac{dy}{dt}=3t^2</m> which will give 
+            <md> -\frac{1}{2}(2 x) ( -\frac{1}{5} (2y))+ (-2t)(3t^2)</md>
+          </p>
+        </solution>
       </task>
       <task>
         <statement>
@@ -141,9 +162,14 @@
             Compare your results for <xref ref="PA-chain-t2" text="type-local"/> and <xref ref="PA-chain-t4" text="type-local"/> and write a couple of sentences that describe how each part of your answer for <xref ref="PA-chain-t4" text="type-local"/> corresponds to different parts of <xref ref="PA-chain-t2" text="type-local"/>. Remember your work for <xref ref="PA-chain-t2" text="type-local"/> is completely in terms of <m>t</m> so you will need to translate some terms from <m>t</m> into its meaning in other quantities.
           </p>
         </statement>
+        <solution>
+          <p>
+            Parts b and d give the same expression after substituting in <m>x=2-t^2</m> and <m>y=t^3+1</m>.
+          </p>
+        </solution>
       </task>
     </exploration>
-</worksheet>
+  </worksheet>
   </subsection>
   <subsection>
     <title>The Chain Rule</title>
@@ -571,7 +597,8 @@
       </statement>
 
       <answer>
-        <ol marker="a.">
+        <p>
+          <ol marker="a.">
           <li>
             <ol marker="i">
               <li>
@@ -622,10 +649,12 @@
             </ol>
           </li>
         </ol>
+      </p>
       </answer>
 
       <solution>
-        <ol marker="a.">
+        <p>
+          <ol marker="a.">
           <li>
             <ol marker="i">
               <li>
@@ -676,6 +705,7 @@
             </ol>
           </li>
         </ol>
+      </p>
       </solution>  
       
     </activity>

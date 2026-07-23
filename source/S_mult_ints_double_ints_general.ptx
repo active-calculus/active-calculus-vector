@@ -280,7 +280,7 @@
             <p>
               
               
-              <image>
+              <image width="50%">
                 <description>
                   <p>A shaded triangular region in the <m>yz</m>-plane. The vertices of the triangle are <m>(0,0)</m>, <m>(0,1-a)</m>, and <m>(1-a,0)</m>. The hypotenuse is labeled <m>z=1-(a+y)</m>.
                   </p>
@@ -309,7 +309,7 @@
             </p>
           </answer>
           <solution>
-            <image>
+            <image width="50%">
               <description>
                 <p>A shaded triangular region in the <m>yz</m>-plane. The vertices of the triangle are <m>(0,0)</m>, <m>(0,1-a)</m>, and <m>(1-a,0)</m>. The hypotenuse is labeled <m>z=1-(a+y)</m>.
                 </p>
@@ -345,7 +345,7 @@
             
           </statement>
           <answer>
-            
+      
             <p>
               <md>
                 \int_{0}^{1-a} 1-(a+y)\, dy
@@ -483,12 +483,17 @@
               On three separate plots, graph and label the regions <m>D</m>, <m>R</m>, and <m>B</m>. 
             </p>
           </statement>
+          <solution>
+            <p>
+              As stated, the plot of D should be the interior of the unit circle centered at the origin, R should the the half of D that to the right of the vertical axis, and B should be the half of D that is below the horizontal axis.
+            </p>
+          </solution>
         </task>
         <task>
           <statement>
             <p>
               For each double integral below, decide <em>without calculation</em> whether the double integral is positive, negative, or zero. Write a sentence or two to explain your answer for each part.
-              <ol cols="3" marker="i">
+              <ol cols="3" marker="i.">
                 <li> <m>\iint_D \; 1\; dA</m></li>
                 <li> <m>\iint_D \; x \; dA</m></li>
                 <li> <m>\iint_B \; x \; dA</m></li>
@@ -503,7 +508,7 @@
           </statement>
           <solution>
             <p>
-              <ol>
+              <ol marker="i.">
                 <li> <m>\iint_D \; dA</m> is positive because this double integral would measure the area of the unit disk (which is <m>\pi</m>).</li>
                 <li> <m>\iint_D \; x \; dA</m> is zero, because there will be exactly as much volume over the <m>xy</m>-plane as under. The function <m>f(x,y)=x</m> will be symmetric over the left and right halves of the region with the left half being negative.</li>
                 <li> <m>\iint_B \; x \; dA</m> is zero, because there will be exactly as much volume over the <m>xy</m>-plane as under. The function <m>f(x,y)=x</m> will be symmetric over the left and right halves of the region with the left half being negative. You can think of the point/region around <m>(a,b)</m> in the fourth quadrant being cancelled out by the point <m>(-a,b)</m> in the third quadrant.</li>
@@ -582,26 +587,26 @@
         </p>
         <figure xml:id="vertsimple">
           <caption>A vertically simple region</caption>
-          <image width="60%">
+          <image width="50%">
             <description>
               <p>A shaded region in the <m>xy</m>-plane. The region is bounded below by a curve labeled <m>g_1(x)</m> and bounded above by a curve labeled <m>g_2(x)</m>. The left boundary of the region is marked by the vertical line <m>x=a</m> while the right boundary is marked by the vertical line <m>x=b</m>. Dashed vertical lines from the lower curve to the upper curve are drawn at several locations in the region.
               </p>
             </description>
             <sageplot label="img-vertsimple">
               var('x,y,t,s')
-              f(x)=(x-2)^2/5+0.5-0.25*sin(4*x); g(x)= 0.25*cos(7*x)+0.2*x+1.5;
+              f(x)=(x-2)^2/5+0.5-0.25*sin(4*x)-.5; g(x)= 0.25*cos(7*x)+0.2*x+1.5-0.5;
               a=0.5; b=1.5; dx=b-a; n=25;
               bottom=[(a+i*dx/n,f(a+i*dx/n)) for i in range(n+1)]
               top=[(b-i*dx/n,g(b-i*dx/n)) for i in range(n+1)]
               points=bottom+top
-              plot4=polygon(points,color="lightblue",edgecolor="black",xmin=0,xmax=1.75,ymin=0,ymax=2,axes_labels=["$x$","$y$"])
+              plot4=polygon(points,color="lightblue",edgecolor="black",xmin=0,xmax=1.75,ymin=0,ymax=1.5,axes_labels=["$x$","$y$"])
               m=6;xv=[0.5+i/m for i in range(1,m)]
               for xval in xv:
                 plot4+=line([(xval,f(xval)),(xval,g(xval))],color="gray",thickness=2,linestyle="--")
-                plot4+=plot(f(x),(x,a,b),color="red",thickness=3,ticks=[[a,b],[]],tick_formatter=[["$x=a$","$x=b$"],[]],fontsize=15)
-                plot4+=plot(g(x),(x,a,b),color="blue",thickness=3)
-                plot4+=line([(a,g(a)),(a,0)],color="gray",thickness=1)+line([(b,g(b)),(b,0)],color="gray",thickness=1)
-                plot4+=text("$g_1(x)$",(1,0.7),color="red",fontsize=20)+text("$g_2(x)$",(1,2.1),color="blue",fontsize=20)
+              plot4+=plot(f(x),(x,a,b),color="red",thickness=3,ticks=[[a,b],[]],tick_formatter=[["$x=a$","$x=b$"],[]],fontsize=15)
+              plot4+=plot(g(x),(x,a,b),color="blue",thickness=3)
+              plot4+=line([(a,g(a)),(a,0)],color="gray",thickness=1)+line([(b,g(b)),(b,0)],color="gray",thickness=1)
+              plot4+=text("$g_1(x)$",(1,0.2),color="red",fontsize=20)+text("$g_2(x)$",(1,1.6),color="blue",fontsize=20)
               plot4 
             </sageplot>
           </image>
@@ -617,7 +622,7 @@
         </p>
         <figure xml:id="horzsimple">
           <caption>A horizontally simple region</caption>
-          <image width="60%">
+          <image width="50%">
             <description>
               <p>A shaded region in the <m>xy</m>-plane. The region is bounded on the left by a curve labeled <m>x=h_1(y)</m> and bounded on the right by a curve labeled <m>x=h_2(y)</m>. The lower boundary of the region is marked by the horizontal line <m>y=c</m> while the upper boundary is marked by the horizontal line <m>y=d</m>. Dashed horizontal lines from the left curve to the right curve are drawn at several locations in the region.
               </p>
@@ -717,7 +722,7 @@
       <task>
         <statement>
           <p>
-            A horizontal line has equation <m>y=\text{constant}</m>. We must determine if every horizontal slice in the region <m>D</m> has the same upper and lower bounds, which may depend on the value of <m>y</m>. Geometrically, this corresponds to having the same functions of <m>y</m> as the right and left boundaries of the region.
+            A horizontal line has equation <m>y=k</m> where <m>k</m> is a constant. We must determine if every horizontal slice in the region <m>D</m> has the same upper and lower bounds, which may depend on the value of <m>y</m>. Geometrically, this corresponds to having the same functions of <m>y</m> as the right and left boundaries of the region.
           </p>
           <p>  
             Several horizontal slices in the region <m>D</m> are shown in <xref ref="horzsimple-tri"/> where you can see that the lower bound of the <m>x</m>-value for every horizontal slice is given by <m>x=\frac{2}{3} y</m>. The upper bound of the <m>x</m>-value for every horizontal slice is given by <m>x=2</m>. Algebraically, for any constant value <m>k</m> in the interval <m>[0,3]</m>, the following statement describes the horizontal slices of the region <m>D</m>:
@@ -996,7 +1001,7 @@
             For Step 1 of the Classic Calculus Approach, we approximate this double integral with <m>n</m> prisms of equal width along constant values of <m>x</m> as shown in <xref ref="proof-approx"/>. The width of these <m>n</m> equal width prisms will be <m>\Delta x=\frac{b-a}{n}</m>. These prisms will involve the cross sectional area of our volume at the following values of <m>x</m>: <m>x_0=a,x_1=a+\Delta x, \ldots , x_i = a+i \Delta x, \ldots, x_{n-1}=a+(i-1)\Delta x</m>.
           </p>
           <figure xml:id="proof-approx">
-            <caption>The double integral <m>\iint_R f(x,y) dA</m> approximation with prisms along constant values of <m>x</m></caption>
+            <caption>The double integral <m>\iint_R f(x,y) dA</m> approximated by prisms along constant values of <m>x</m></caption>
               <interactive label="interactive-proof-approx" platform="sage" width="100%" aspect="1:1">
                 <description>
                   <p>Coordinate axes for <m>xyz</m>-space showing a solid region over the triangle with  vertices <m>(0,0,0)</m>, <m>(1,0,0)</m>, and <m>(0,1,0)</m>.
@@ -1027,7 +1032,7 @@
             <md>CSA(a)=\int_{y=g_1(a)}^{y=g_2(a)} f(a,y) dy</md>.
             Note that this takes the height of the surface on this slice and integrates over only the relevant range of <m>y</m>-values. Our approximation for Step 1 of the Classic Calculus Approach is given by
             <md>\iint_R f(x,y) dA \approx \sum_{n=0}^{n-1} \text{CSA}(a) \Delta x</md>
-            Note that this approximation already accomplishes Step 2 of the Classic Calculus Approach since a smaller scale means that we have an increase in <m>n</m> which decreases <m>\Delta x</m>.
+            Note that this approximation already accomplishes Step 2 of the Classic Calculus Approach since a smaller scale means that we have an increase in <m>n</m>, the number of cross section prisms, which decreases <m>\Delta x</m>, the width of the prisms.
           </p>
           <p>
             Applying a limit in Step 3 of our approximation yields
@@ -1163,6 +1168,20 @@
               </sbsgroup>
             </figure>
           </statement>
+          <solution>
+            <p>
+              For the region given in the top left plot, the region can be described as either vertically and horizontally simple. A horizontally simple description would be <m> -3 \leq y \leq 3, \quad -\sqrt{9-y^2} \leq x \leq 0</m>. A vertically simple description would be <m>-3 \leq x \leq 0, \quad -\sqrt{9-x^2} \leq y \leq \sqrt{9-x^2}</m>.
+            </p>
+            <p>
+              For the region given in the top right plot, the region can be described as either vertically and horizontally simple. A horizontally simple description would be <m> 0 \leq y \leq 4, \quad 0 \leq x \leq \sqrt{4-x}</m>. A vertically simple description would be <m>0 \leq x \leq 2, \quad 0 \leq y \leq 4-x^2 </m>.
+            </p>
+            <p>
+              For the region given in the bottom left plot, the region can be described as horizontally simple, but not vertically simple. A horizontally simple description would be <m> 0 \leq y \leq 2, \quad -\frac{1}{2}y +\frac{3}{2}  \leq x \leq 4 </m>. 
+            </p>
+            <p>
+              For the region given in the bottom right plot, the region can be described as horizontally simple but not vertically simple. A horizontally simple description would be <m> 3 \leq y \leq 4, \quad 2y-7 \leq x \leq 9-2y</m>. 
+            </p>
+          </solution>
         </task>
         <task>
           <introduction>
@@ -1176,6 +1195,11 @@
                 <m>\displaystyle \int_0^1 \int_1^x f(x,y) \; dy \; dx </m>
               </p>
             </statement>
+            <solution>
+              <p>
+                These bounds of integration do not make sense as the bounds for a region to give a double integral over. For values of <m>x</m> between 0 and 1, <m>y=x</m> will be less than 1, which contradicts the inner integrals' bounds as given by <m>1 \leq y \leq x</m>.
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -1183,6 +1207,11 @@
                 <m>\displaystyle \int_0^1 \int_1^y f(x,y) \; dy \; dx</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                The bound on the inner integral where <m>y=y</m> does not make sense as a geometric bound on the <m>y</m> coordinate (for any choice of <m>x</m>).
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -1190,6 +1219,11 @@
                 <m>\displaystyle \int_0^1 \int_x^y f(x,y) \; dy \; dx</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                The bound on the inner integral where <m>y=y</m> does not make sense as a geometric bound on the <m>y</m> coordinate (for any choice of <m>x</m>).
+              </p>
+            </solution>
           </task>
           <task>
             <statement>
@@ -1197,6 +1231,11 @@
                 <m>\displaystyle \int_0^1 \int_x^1 f(x,y) \; dy \; dx</m>
               </p>
             </statement>
+            <solution>
+              <p>
+                These bounds do make sense and correspond to the region inscribed by a triangle with vertices (0,0), (0,1), and (1,1).
+              </p>
+            </solution>
           </task>
         </task>
       </activity>
@@ -1583,6 +1622,17 @@
               </md>.
             </p>
           </statement>
+          <solution>
+            <image>
+              <sageplot>
+                pts=[(i/100,sqrt(i/100)) for i in range(101)];
+                plot1=polygon(pts,fill=True,color="lightblue")
+                plot1+=plot(sqrt(x),(x,0,1.25),color="blue")
+                plot1+=plot(x,(x,-0.25,1.25),color="red")
+                plot1
+              </sageplot>
+            </image>
+          </solution>
           
         </task>
         <task>
@@ -1594,6 +1644,13 @@
               </md>.
             </p>
           </statement>
+          <solution>
+            <p>
+              <md>
+                \iint_D (4x + 10y) \, dA = \int_{y=0}^{y=1}  \int_{x=y^2}^{x=y} (4x+10y) \, dx \, dy
+              </md>
+            </p>
+          </solution>
           
         </task>
         <task>
@@ -1602,6 +1659,11 @@
               Evaluate whichever one of the two iterated integrals above you find easier to compute. Explain what the value means in at least one of the interpretations of <xref ref="keyidea-double-int-interp"/>.
             </p>
           </statement>
+          <solution>
+            <p>
+              The indefinite integral with respect to x of <m>4x+10y</m> is <m>2x^2+10xy</m> and evaluating this from <m>y^2</m> to <m>y</m> gives <m>12y^2-2y^4-10y^3</m>. Integrating this expression from 0 to 1 gives <m>\frac{11}{10}=1.1</m>.
+            </p>
+          </solution>
           
         </task> 
         <task>
@@ -1610,7 +1672,11 @@
               Set up and evaluate a <em>single</em> definite integral to determine the exact area <m>A(D)</m> of <m>D</m>.
             </p>
           </statement>
-          
+          <solution>
+            <p>
+              <md>\int_0^1 \sqrt{x}-x dx = \frac{1}{6}</md>
+            </p>
+          </solution>
         </task>
         <task>
           <statement>
@@ -1618,7 +1684,11 @@
               Determine the exact average value of <m>f(x,y) = 4x  + 10y</m> over <m>D</m>.
             </p>
           </statement>
-          
+          <solution>
+            <p>
+              The average value of <m>f</m> over <m>D</m> is computed by the double integral of <m>f</m> over <m>D</m> divided by the area of <m>D</m>, so the average value is <m>\frac{1.1}{\frac{1}{6}}=6.6 s</m>
+            </p>
+          </solution>
         </task>
       </activity>
     </worksheet>
