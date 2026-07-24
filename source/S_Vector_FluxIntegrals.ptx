@@ -28,6 +28,11 @@
     </li>
   </ul>
 </objectives>
+<introduction component="instructor">
+  <p>
+    This section relies on parameterized surfaces, which was first introduced in <xref ref="S_Parametric_Surfaces_Surface_Area"/>. While some of the activities in this section may be too much for a single student to do in a class setting, we suggest that different cases of the vector fields and surfaces can be split for small group work. Students can then present answers to the larger group. 
+  </p>
+</introduction>
 <subsection>
   <title>Introduction</title>
   <p>
@@ -452,82 +457,11 @@
 </worksheet>
 </subsection>
 <subsection>
-  <title>The Details of Measuring the Flux of a Vector Field through a Surface</title>
+  <title>Computing the Flux of a Vector Field through a Surface</title>
   <p>
-    Now that we have developed a conceptual understanding of what we are trying to measure, we can set up the corresponding Riemann sum to measure the flux of a vector field through a section of a surface. Let <m>Q</m> be the section of our surface and suppose that <m>Q</m> is parameterized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. The domain of <m>\vr</m> is a region of the <m>st</m>-plane, which we call <m>D</m>, and the range of <m>\vr</m> is <m>Q</m>.
-  </p>
-  <p>
-    As with most problems in integral calculus, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_0,s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_0,t_1,\ldots,t_n</m>. This divides <m>D</m> into <m>nm</m>
-    rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as
-    <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>Q</m> into <m>nm</m> corresponding pieces which we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S_Parametric_Surfaces_Surface_Area"/> (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>S_{i,j}=\Vert{(\vr_s \times \vr_t)(s_i,t_j)\Vert}\Delta{s}\Delta{t}</m>.
-  </p>
-  <figure xml:id="fig_Vector_FluxInt_SurfaceSections">
-    <caption>Pieces of the tangent planes that approximate a surface</caption>
-    <interactive label="int_Vector_FluxInt_SurfaceSections" platform="sage" width="100%" aspect="1:1.12">
-      <description><p>An interactive plot of a curved surface shown in blue. A slider at the top of the figure allows the user to change the number of sections for the grid shown on the surface. At the top right of each grid piece along the surface a green vector is drawn in the direction perpendicular to the surface at that location. A yellow parallelogram is drawn over each grid piece such that the parallelogram is tangent to the surface on the grid piece. The more curved the surface is on a grid piece, the larger the parallelogram and the longer the green vector is drawn.</p></description>
-    <slate surface="sage">
-        var('t,s,u,v,z,y,z')
-        f=-x^2/2-3*y^3/3
-        @interact
-        def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
-          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
-          stepsize=2/(n)
-          for i in range(0,n):
-            a=-1+i*stepsize
-            plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
-            plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
-            for j in range(0,n):
-              b=-1+j*stepsize
-              f_val=f(x=a,y=b)
-              pos=(a,b,f_val)
-              fx=diff(f,x)(x=a,y=b)
-              fy=diff(f,y)(x=a,y=b)
-              vt=(stepsize+a,b,stepsize*fx+f_val)
-              vs=(a,b+stepsize,stepsize*fy+f_val)
-              cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
-              plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-              plot1+=arrow3d(pos,cr,color="#004D40")
-          show(plot1)
-      </slate>
-    </interactive>
-  </figure>
-  <p>
-    We want to measure the total flow of the vector field <m>\vF</m> through <m>Q</m>, which we will approximate on each <m>Q_{i,j}</m> and then sum to obtain the total flow. In other words, the flux of <m>\vF</m> through <m>Q</m> is
-    <md>
-      \text{Flux}=\sum_{i=1}^n\sum_{j=1}^m\vecmag{\vF_{\perp Q_{i,j}}}\cdot S_{i,j}
-    </md>,
-    where <m>\vecmag{\vF_{\perp Q_{i,j}}}</m> is the length of the component of <m>\vF</m> orthogonal to <m>Q_{i,j}</m>.
-  </p>
-  <p>
-    For each <m>Q_{i,j}</m>, we approximate the surface <m>Q</m> by the tangent plane to <m>Q</m> at a corner of that partition element. This corresponds to using the planar elements in <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, which have surface area <m>S_{i,j}</m>. The vector <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m> can be used to measure the orthogonal direction (and thus define which direction we mean by positive flow through <m>Q</m>) on the <m>i,j</m> partition element. This means that
-    <md>
-      \vF_{\perp Q_{i,j}} =\vecmag{\proj_{\vw_{i,j}}\vF(s_i,t_j)}
-      = \frac{\vF(s_i,t_j)\cdot \vw_{i,j}}{\vecmag{\vw_{i,j}}}
-    </md>
-  </p>
-  <p>
-    Combining these pieces, we find that the flux through <m>Q_{i,j}</m> is approximated by
-    <md>
-      <mrow>\text{Flux through&#160;} Q_{i,j} \amp= \vecmag{\vF_{\perp
-      Q_{i,j}}}\cdot S_{i,j} 
-      = \left(\frac{\vF_{i,j}\cdot \vw_{i,j}}{\vecmag{\vw_{i,j}}} \right)
-      \left(\vecmag{\vw_{i,j}}\Delta{s}\Delta{t}\right)
-      </mrow>
-      <mrow>
-       \amp = \left(\vF_{i,j} \cdot (\vr_s \times \vr_t)\right)
-       \left(\Delta{s}\Delta{t}\right)
-      </mrow>
-    </md>, where <m>\vF_{i,j} = \vF(s_i,t_j)</m>.
-    Therefore we may approximate the total flux by
-    <md>
-      \text{Total Flux}=\sum_{i=1}^n\sum_{j=1}^m \left(\vF_{i,j}\cdot \vw_{i,j}\right) \left(\Delta{s}\Delta{t}\right)
-    </md>.
-    Taking the limit as <m>n,m\rightarrow\infty</m> gives the following result.
-  </p>
-  <p>
-    Conceptually, the above limit shows how the argument in <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> generalizes when measuring the flux of a vector field through a surface rather than just the surface area. The key difference between the Riemann sum above and Riemann sum used to set up <xref ref="Surface-area" text="title"/> is that we are using the dot product of the vector field with the normal vector to the surface (given by <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m>) as the scalar value in our sum. This realization gives the following theorem, which states that the flux through a curved surface in space can be computed using a parameterization of the surface and a double integral over a flat region in the plane of parameter values. 
-  </p>
-  <theorem xml:id="thm_flux_int_calc">
+    Now that we have developed a conceptual understanding of what we are trying to measure, we can set up a corresponding Riemann sum to measure the flux of a vector field through a section of a surface. In the following theorem, we utilize a parameterization to calculate both the normal vector to the surface at a location as well an measure of how the surface area is chaninging at that point. You can look at the proof that follows this theorem to see precisely how the elements discussed give rise to this method of calculation.
+  </p>  
+    <theorem xml:id="thm_flux_int_calc">
     <statement>
       <p>
         Let a smooth surface <m>Q</m> be parametrized by <m>\vr(s,t)</m> over a domain <m>D</m>. The total flux of a smooth vector field <m>\vF</m> through <m>Q</m> is given by
@@ -536,9 +470,86 @@
         </md>.
       </p>
     </statement>
+    <proof>
+      <p>  
+        Let <m>Q</m> be the section of our surface and suppose that <m>Q</m> is parameterized by <m>\vr(s,t)</m> with <m>a\leq s\leq b</m> and <m>c \leq t \leq d</m>. The domain of <m>\vr</m> is a region of the <m>st</m>-plane, which we call <m>D</m>, and the range of <m>\vr</m> is <m>Q</m>.
+      </p>
+      <p>
+        As with most problems in integral calculus, we slice our region of interest into smaller pieces. Specifically, we slice <m>a\leq s\leq b</m> into <m>n</m> equally-sized subintervals with endpoints <m>s_0,s_1,\ldots,s_n</m> and <m>c \leq t \leq d</m> into <m>m</m> equally-sized subintervals with endpoints <m>t_0,t_1,\ldots,t_n</m>. This divides <m>D</m> into <m>nm</m> rectangles of size <m>\Delta{s}=\frac{b-a}{n}</m> by <m>\Delta{t}=\frac{d-c}{m}</m>. We index these rectangles as <m>D_{i,j}</m>. Every <m>D_{i,j}</m> has area (in the <m>st</m>-plane) <m>\Delta{s}\Delta{t}</m>. The partition of <m>D</m> into the rectangles <m>D_{i,j}</m> also partitions <m>Q</m> into <m>nm</m> corresponding pieces which we call <m>Q_{i,j}=\vr(D_{i,j})</m>. From <xref ref="S_Parametric_Surfaces_Surface_Area"/> (specifically <xref ref="eq_11_6_parallelogram_area"/>) the surface area of <m>Q_{i,j}</m> is approximated by <m>S_{i,j}=\Vert{(\vr_s \times \vr_t)(s_i,t_j)\Vert}\Delta{s}\Delta{t}</m>.
+      </p>
+      <figure xml:id="fig_Vector_FluxInt_SurfaceSections">
+        <caption>Pieces of the tangent planes that approximate a surface</caption>
+        <interactive label="int_Vector_FluxInt_SurfaceSections" platform="sage" width="100%" aspect="1:1.12">
+          <description><p>An interactive plot of a curved surface shown in blue. A slider at the top of the figure allows the user to change the number of sections for the grid shown on the surface. At the top right of each grid piece along the surface a green vector is drawn in the direction perpendicular to the surface at that location. A yellow parallelogram is drawn over each grid piece such that the parallelogram is tangent to the surface on the grid piece. The more curved the surface is on a grid piece, the larger the parallelogram and the longer the green vector is drawn.</p></description>
+        <slate surface="sage">
+            var('t,s,u,v,z,y,z')
+            f=-x^2/2-3*y^3/3
+            @interact
+            def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
+              plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
+              stepsize=2/(n)
+              for i in range(0,n):
+                a=-1+i*stepsize
+                plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
+                plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
+                for j in range(0,n):
+                  b=-1+j*stepsize
+                  f_val=f(x=a,y=b)
+                  pos=(a,b,f_val)
+                  fx=diff(f,x)(x=a,y=b)
+                  fy=diff(f,y)(x=a,y=b)
+                  vt=(stepsize+a,b,stepsize*fx+f_val)
+                  vs=(a,b+stepsize,stepsize*fy+f_val)
+                  cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
+                  plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
+                  plot1+=arrow3d(pos,cr,color="#004D40")
+              show(plot1)
+          </slate>
+        </interactive>
+      </figure>
+      <p>
+        We want to measure the total flow of the vector field <m>\vF</m> through <m>Q</m>, which we will approximate on each <m>Q_{i,j}</m> and then sum to obtain the total flow. In other words, the flux of <m>\vF</m> through <m>Q</m> is
+        <md>
+          \text{Flux}=\sum_{i=1}^n\sum_{j=1}^m\vecmag{\vF_{\perp Q_{i,j}}}\cdot S_{i,j}
+        </md>,
+        where <m>\vecmag{\vF_{\perp Q_{i,j}}}</m> is the length of the component of <m>\vF</m> orthogonal to <m>Q_{i,j}</m>.
+      </p>
+      <p>
+        For each <m>Q_{i,j}</m>, we approximate the surface <m>Q</m> by the tangent plane to <m>Q</m> at a corner of that partition element. This corresponds to using the planar elements in <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, which have surface area <m>S_{i,j}</m>. The vector <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m> can be used to measure the orthogonal direction (and thus define which direction we mean by positive flow through <m>Q</m>) on the <m>i,j</m> partition element. This means that
+        <md>
+          \vF_{\perp Q_{i,j}} =\vecmag{\proj_{\vw_{i,j}}\vF(s_i,t_j)}
+          = \frac{\vF(s_i,t_j)\cdot \vw_{i,j}}{\vecmag{\vw_{i,j}}}
+        </md>
+      </p>
+      <p>
+        Combining these pieces, we find that the flux through <m>Q_{i,j}</m> is approximated by
+        <md>
+          <mrow>\text{Flux through&#160;} Q_{i,j} \amp= \vecmag{\vF_{\perp
+          Q_{i,j}}}\cdot S_{i,j} 
+          = \left(\frac{\vF_{i,j}\cdot \vw_{i,j}}{\vecmag{\vw_{i,j}}} \right)
+          \left(\vecmag{\vw_{i,j}}\Delta{s}\Delta{t}\right)
+          </mrow>
+          <mrow>
+          \amp = \left(\vF_{i,j} \cdot (\vr_s \times \vr_t)\right)
+          \left(\Delta{s}\Delta{t}\right)
+          </mrow>
+        </md>, where <m>\vF_{i,j} = \vF(s_i,t_j)</m>.
+        Therefore we may approximate the total flux by
+        <md>
+          \text{Total Flux}=\sum_{i=1}^n\sum_{j=1}^m \left(\vF_{i,j}\cdot \vw_{i,j}\right) \left(\Delta{s}\Delta{t}\right)
+        </md>.
+        In <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, you can change the number of sections in the partition and see the geometric result of refining the partition. Taking the limit as <m>n,m\rightarrow\infty</m> gives the following double integral.
+        <md>
+          \iint_D \vF \cdot (\vr_s \times \vr_t)\, dA
+        </md>
+      </p>
+      <p>
+        Conceptually, the above limit shows how the argument in <xref ref="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"/> generalizes when measuring the flux of a vector field through a surface rather than just the surface area. The key difference between the Riemann sum above and Riemann sum used to set up <xref ref="Surface-area" text="title"/> is that we are using the dot product of the vector field with the normal vector to the surface (given by <m>\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)</m>) as the scalar value in our sum. This realization gives the following theorem, which states that the flux through a curved surface in space can be computed using a parameterization of the surface and a double integral over a flat region in the plane of parameter values. 
+      </p>
+    </proof>
   </theorem>
   <p>
-    In <xref ref="fig_Vector_FluxInt_SurfaceSections"/>, you can change the number of sections in the partition and see the geometric result of refining the partition. In the next example, we will look at how <xref ref="thm_flux_int_calc"/> is used on a part of a cone and make sense of the vector <m>\vw(t,s)=\vr_s \times \vr_t</m> and the scalar <m>\vF \cdot (\vr_s \times \vr_t)</m>.
+     In the next example, we will look at how <xref ref="thm_flux_int_calc"/> is used on a part of a cone and make sense of the vector <m>\vw(t,s)=\vr_s \times \vr_t</m> and the scalar <m>\vF \cdot (\vr_s \times \vr_t)</m>.
   </p>
   <remark>
     <p>
@@ -546,7 +557,7 @@
       <md>
         \iint_{S_1} \vF \cdot (\vr_s \times \vr_t)\, dA = \iint_{S_1} \vF \cdot  d\vec{A} = \iint_{S_1} \vF \cdot  d\vec{S}
       </md>
-      While we will use the notation specified in <xref ref="thm_flux_int_calc"/> primarily, the other notations come from combining the normal vector (calculated from the parameterization of the surface) and the area element into a single vector-valued area element. In other words, <m>(\vr_s \times \vr_t)\, dA =  d\vec{A} =  d\vec{s}</m>.
+      While we will use the notation specified in <xref ref="thm_flux_int_calc"/> primarily, the other notations come from combining the normal vector (calculated from the parameterization of the surface) and the area element into a single vector-valued area element. In other words, <m>(\vr_s \times \vr_t)\, dA =  d\vec{A} =  d\vec{S}</m>.
     </p>
   </remark>
   <example xml:id="flux_int_example1">
@@ -554,7 +565,7 @@
       In this example we will compute the flux of the vector field <m>\vF= \langle xz-2, y+x, 1 \rangle </m> through the surface of the cone given by <m>x^2+y^2=z^2</m> with <m>1\leq z \leq 3</m>. So that we can use <xref ref="thm_flux_int_calc"/>, we first parameterize our surface and calculate <m>\vw(t,s)=\vr_s \times \vr_t</m> based on that parameterization. 
     </p>
     <p>
-      In cylindrical coordinates, our cone is described by <m>r=z</m> which suggests that we can use <m>r</m> and <m>\theta</m> as <m>s</m> and <m>t</m>. Consider the parameterization <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with bounds <m>1\leq s \leq 3</m> and <m>0 \leq t \lt 2 \pi</m>. Notice that <m>s</m> is acting as both <m>r</m> and <m>z</m>. Calculating the partial derivatives of <m>\vr</m> gives the following:
+      In cylindrical coordinates, our cone is described by <m>r=z</m> which suggests that we can use <m>r</m> and <m>\theta</m> as <m>s</m> and <m>t</m>, respectively. Consider the parameterization <m>\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle </m> with bounds <m>1\leq s \leq 3</m> and <m>0 \leq t \lt 2 \pi</m>. Notice that <m>s</m> is acting as both <m>r</m> and <m>z</m>. Calculating the partial derivatives of <m>\vr</m> gives the following:
       <md>
         <mrow>\vr_s \amp = \langle \cos(t), \sin(t), 1 \rangle </mrow>
         <mrow>\vr_t \amp = \langle -s \sin(t), s \cos(t), 0 \rangle </mrow>
@@ -820,14 +831,14 @@
       </answer>
       <solution>
         <p>
-          The flux of this new vector field will still be zero because the only change to the components of the vector field are in the last component. With the right circular cylinder surface, the last component of the vector field will NOT contribute anything to the flux. In other words, changing the z-component of the vector field does not change the flux because the z-component will correspond to flow along this surface (and not through this surface).
+          The flux of this new vector field will still be zero because the only change to the components of the vector field are in the last component. With the right circular cylinder surface, the last component of the vector field will NOT contribute anything to the flux. In other words, changing the z-component of the vector field does not change the flux because the z-component will correspond to flow <em>along</em> this surface (and not through this surface).
         </p>
       </solution>
     </task>
     <task>
       <statement>
       <p>
-        write a couple of sentences to explain how the results of the flux calculations would be different if we used the vector field <m>\vF=\langle{y,-x,3}\rangle</m> and the same right circular cylinder.
+        Write a couple of sentences to explain how the results of the flux calculations would be different if we used the vector field <m>\vF=\langle{y,-x,3}\rangle</m> and the same right circular cylinder.
       </p>
       </statement>
       <answer>
@@ -856,8 +867,7 @@
     </p>
   </remark>
 </subsection>
-<subsection>
-  <title>Summary</title>
+<outcomes>
   <p>
     <ul>
       <li>
@@ -888,12 +898,7 @@
 
     </ul>
   </p>
-</subsection>
+</outcomes>
 <xi:include href="exercises/ez-S_Vector_FluxIntegrals.ptx"/>
-<subsection component="instructor">
-  <title>Notes to Instructors and Dependencies</title>
-  <p>
-    This section relies on parameterized surfaces, which was first introduced in <xref ref="S_Parametric_Surfaces_Surface_Area"/>. While some of the activities in this section may be too much for a single student to do in a class setting, we suggest that different cases of the vector fields and surfaces can be split for small group work. Students can then present answers to the larger group. 
-  </p>
-</subsection>
+
 </section>

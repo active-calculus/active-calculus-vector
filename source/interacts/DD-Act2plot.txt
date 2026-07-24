@@ -1,0 +1,28 @@
+from sage.plot.plot3d.plot3d import axes
+var('x,y,z,t,s')
+
+scale=2;
+f(x,y)= 2*x^2/(x^2+y^2) 
+param(s,t)=(s,t,f(s,t))
+#set up grid      n is number of steps in s    m is number of steps in t  
+#a1 is min s    a2 is max s   b1 is min t    b2 is max t
+n=20;m=20;a1=-2;a2=2;b1=-2;b2=2; 
+#c1 is surface color     o1 is surface opacity
+#c2 and o2 are for constant t value traces
+#c3 and o3 are for constant s value traces
+c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.8; o3=0.8;
+plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
+plot99+=parametric_plot3d(param,(s,-0.1,0.1),(t,-0.1,0.1),color=c1,opacity=o1,plot_points=200)
+for i in range(n+1):
+    sv=a1+i/n*(a2-a1)
+    plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+for i in range(m+1):
+    tv=b1+i/m*(b2-b1)
+    plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+plot6=plot99
+plot6+=point3d((1,-1,f(1,-1)),color="blue",size=40)
+for i in range(21):
+    val=-2+i/5
+    plot6+=parametric_plot((val,t,0),(t,-2,2),opacity=0.3,color="gray")
+    plot6+=parametric_plot((t,val,0),(t,-2,2),opacity=0.3,color="gray")
+show(plot6,aspect_ratio=(1,1,1),viewpoint=[[-0.8832,-0.2372,-0.4047],67.15],camera_position=[3.9973,-6.9044,5.4669])
