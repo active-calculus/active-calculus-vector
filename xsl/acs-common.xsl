@@ -54,8 +54,8 @@
     <xsl:text>\newpagestyle{chapopen}{&#xa;</xsl:text>
     <xsl:text>\sethead[][][] % even&#xa;</xsl:text>
     <xsl:text>{}{}{} % odd&#xa;</xsl:text>
-    <xsl:text>\setfoot[\includegraphics[height=1pc]{external/images/CC-BY-SA-license.pdf}][][]&#xa;</xsl:text>
-<xsl:text>{}{}{\includegraphics[height=1pc]{external/images/CC-BY-SA-license.pdf}}}&#xa;</xsl:text>
+    <xsl:text>\setfoot[\includegraphics[height=1pc]{external/images/CC-BY-NC-SA-license.pdf}][][]&#xa;</xsl:text>
+<xsl:text>{}{}{\includegraphics[height=1pc]{external/images/CC-BY-NC-SA-license.pdf}}}&#xa;</xsl:text>
     <xsl:text>\assignpagestyle{\chapter}{chapopen}&#xa;</xsl:text>
 
     <xsl:text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&#xa;</xsl:text>

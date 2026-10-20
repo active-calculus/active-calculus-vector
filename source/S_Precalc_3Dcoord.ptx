@@ -64,7 +64,7 @@
           In this Preview Activity, we will recall some ideas about measurements and important ideas in two dimensional space. 
         </p>
       </introduction>
-      <task>
+      <task workspace="0.25in">
         <statement>
           <p>
             What are the coordinates of the point drawn in <xref ref="coord2d-PA"/>? Draw segments from the point <m>P</m> to the vertical and horizontal axes to demonstrate the measurements of the coordinates. 
@@ -92,7 +92,7 @@
           </p>
         </solution>
       </task>
-      <task>
+      <task workspace="0.0in">
         <statement>
           <p>
             On the plot below, graph and label the following points: <m>P_1=(0,1)</m>, <m>P_2=(1,0)</m>, <m>P_3=(2,-3)</m>, <m>P_4=(3,-2)</m>, <m>P_5=(-3,2)</m>.
@@ -124,7 +124,7 @@
           </p>
         </solution>
       </task>
-      <task>
+      <task workspace="0.0in">
         <statement>
           <p>
             Give the coordinates of four points on the horizontal axis. What aspect do all of the points on the horizontal axis have in common? Use this idea to write an equation for the horizontal axis.
@@ -222,7 +222,7 @@
     <sidebyside widths="50% 50%">
       <figure xml:id="fig-coord-sys-left-hand">
         <caption>A left hand system</caption>
-        <image source="images/fig_9_1_left_hand">
+        <image source="fig_9_1_left_hand">
           <description>
             <p>Three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m>. They are arranged so that the segment labeled <m>z</m> points up, the segment labeled <m>x</m> points to the right, and the segment labeled <m>y</m> is coming out of the page.
             </p>
@@ -231,7 +231,7 @@
       </figure>
       <figure xml:id="fig-coord-sys-right-hand">
         <caption>A right hand system</caption>
-        <image source="images/fig_9_1_right_hand">
+        <image source="fig_9_1_right_hand">
           <description>
             <p>Three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m>. They are arranged so that the segment labeled <m>z</m> points up, the segment labeled <m>y</m> points to the right, and the segment labeled <m>x</m> is coming out of the page.
             </p>
@@ -255,7 +255,7 @@
     </p>
     <figure xml:id="phy-coord">
       <caption>An alternate orientation of a right handed coordinate system for <m>\mathbb{R}^3</m></caption>
-      <image width="55%" source="./images/fig_9_1_right_hand_other.png">
+      <image width="55%" source="fig_9_1_right_hand_other.png">
         <description>
           <p>Three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m>. They are arranged so that the segment labeled <m>y</m> points up, the segment labeled <m>x</m> points to the right, and the segment labeled <m>z</m> is coming out of the page.
           </p>
@@ -303,9 +303,34 @@
     </p>
     <figure xml:id="coor-planes">
       <caption>The coordinate planes in three dimensions</caption>
-      <interactive label="interactive-coor-plane" platform="sage" width="100%" aspect="1:1.25">
+      <!-- 
+      <image>
+        <description><p>An interactive plot that shows planes that contain the x and y axes for the first option, the x and z axes for the second option, and the y and z axes for the third option.</p> </description>
+        <sageplot variant="3d" label="interactive-coor-plane">
+          from sage.plot.plot3d.plot3d import axes
+          var('t,s')
+          d=4
+          @interact
+          def coordplanes(xyp=checkbox(False,'Show xy-plane'),xzp=checkbox(True,'Show xz-plane'),yzp=checkbox(False,'Show yz-plane')):
+            plot12=axes(3.5,2,color="black")+text3d("x",(4,0,0),fontsize=30)+text3d("y",(0,4,0),fontsize=30)+text3d("z",(0,0,4),fontsize=30)
+            if(xyp):
+              plot12+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
+              plot12+=text3d("xy-plane",(d,-d,0.5),fontsize=25,color="green")
+            if(xzp):
+              plot12+=parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
+              plot12+=text3d("xz-plane",(-d,0,d),fontsize=25,color="blue")
+            if(yzp):
+              plot12+=parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
+              plot12+=text3d("yz-plane",(0,-d,d),fontsize=25,color="red")
+            show(plot12,aspect_ratio=1,viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[12.3011,13.494,5.4476])
+            plot12
+        </sageplot>
+        
+      </image> -->
+      <!-- <interactive label="interactive-coor-plane" platform="sage" width="100%" aspect="1:1.25">
         <description><p>An interactive plot that shows planes that contain the x and y axes for the first option, the x and z axes for the second option, and the y and z axes for the third option.</p>
-      </description><slate surface="sage">
+      </description>
+      <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
           d=4
@@ -323,7 +348,7 @@
               plot12+=text3d("yz-plane",(0,-d,d),fontsize=25,color="red")
             show(plot12,aspect_ratio=1,viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[12.3011,13.494,5.4476])
         </slate>
-      </interactive>
+      </interactive> -->
     </figure>
     <p>  
       In many ways the coordinate planes in three dimensions are analogous to the axes in two dimensions. We will split up three-dimensional space based on whether a location is above or below different coordinate planes and we will measure coordinates in three dimensions as distances from the coordinate planes.
@@ -351,7 +376,7 @@
        <caption>A plot of the eight octants </caption>
        <interactive label="interactive-octants" platform="sage" width="100%" aspect="1:1.15">
          <description><p>A plot with the plane through the x and y axes shown in green, the plane through the x and z axes in blue, and the plane through the y and z axes shown in red. Additionally, in the direction of points with positive x, y, and z coordinates, the first octant is labeled. An option to show labels for the second through eight octants shown moving counterclockwise around the z-axis. </p></description>
-       <slate surface="sage">
+        <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
           @interact
@@ -428,7 +453,7 @@
           In this problem to move <q>forward</q> or <q>backwards</q> is to move in the direction of positive <m>x</m> (the <m>x</m>-coordinate increases, the <m>y</m> and <m>z</m> remain the same) or negative <m>x</m> (the <m>x</m>-coordinate decreases, the <m>y</m> and <m>z</m> remain the same), respectively; <q>to the right</q> or <q>to the left</q> is moving in the positive or negative <m>y</m> direction, respectively; <q>up</q> or <q>down</q> is moving in the positive or negative <m>z</m> direction, respectively:
         </p>
       </introduction>
-      <task xml:id="rect3dpart1">
+      <task workspace="0.5in" xml:id="rect3dpart1">
         <statement>
           <p>
           Find the coordinates of the point <m>A</m> where one ends if one starts at point <m>(1,2,3)</m> and moves 5 units forward, 4 units to the left, and 2 units up.
@@ -452,7 +477,24 @@
           </p>
         </statement>
         <solution>
-          <interactive label="interactive-actsol1" platform="sage" width="100%" aspect="1:1">
+          <image>
+            <sageplot variant="3d" label="soln-act-9-4">
+              from sage.plot.plot3d.plot3d import axes
+              var('t,s')
+              scale=7
+              plot14=axes(4,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot14+=line([(scale,0,0),(0,0,0),(0,-scale,0)],color="gray",thickness=2)
+              plot14+=point3d((6,-2,5),size=50,color="black")
+              plot14+=text3d("(6,-2,5)",(6.25,-3.25,3.25),color="black",fontsize=25)
+              plot14+=parametric_plot3d((t,-2,0),(t,0,6),thickness=3,color="red")+parametric_plot3d((6,-t,0),(t,0,2),color="blue",thickness=3)
+              plot14+=parametric_plot3d((6,-2,t),(t,0,5),color="green",thickness=3)
+              plot14+=text3d("-2",(6.5,-1,0),color="blue",fontsize=25)
+              plot14+=text3d("6",(3.5,-1.5,0),color="red",fontsize=25)
+              plot14+=text3d("5",(1.25,-2.25,2.5),color="green",fontsize=25)
+              plot14 
+            </sageplot>
+          </image>
+          <!-- <interactive label="interactive-actsol1" platform="sage" width="100%" aspect="1:1">
             <slate surface="sage">
               from sage.plot.plot3d.plot3d import axes
               var('t,s')
@@ -468,10 +510,10 @@
               plot14+=text3d("5",(1.25,-2.25,2.5),color="green",fontsize=25)
               show(plot14)              
             </slate>
-          </interactive>
+          </interactive> -->
         </solution>
       </task>
-      <task xml:id="rect3dpart2">
+      <task workspace="0.5in" xml:id="rect3dpart2">
         <statement>
           <p>
           Find the coordinates of the point <m>B</m> where one ends if one starts at point <m>(3,-4,2)</m> and moves 4 units backwards, 4 units to the right, and 4 units down.
@@ -495,7 +537,24 @@
           </p>
         </statement>
         <solution>
-          <interactive label="interactive-actsol2" platform="sage" width="100%" aspect="1:1">
+          <image>
+            <sageplot variant="3d" label="interactive-actsol2">
+              from sage.plot.plot3d.plot3d import axes
+              var('t,s')
+              scale=3
+              plot14=axes(4,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot14+=line([(-scale,0,0),(0,0,0),(0,0,-scale)],color="gray",thickness=2)
+              plot14+=point3d((-1,0,-2),size=50,color="black")
+              plot14+=text3d("(-1,0,-2)",(-1.25,0.25,-2.25),color="black",fontsize=25)
+              plot14+=parametric_plot3d((-t,0,0),(t,0,1),thickness=3,color="red")
+              plot14+=parametric_plot3d((-1,0,-t),(t,0,2),color="green",thickness=3)
+              plot14+=text3d("0",(-1.5,-1,0),color="blue",fontsize=25)
+              plot14+=text3d("-1",(-1,-0.5,0),color="red",fontsize=25)
+              plot14+=text3d("-2",(-1.25,-0.25,-1.5),color="green",fontsize=25)
+              plot14
+            </sageplot>
+          </image>
+          <!-- <interactive label="interactive-actsol2" platform="sage" width="100%" aspect="1:1">
             <slate surface="sage">
               from sage.plot.plot3d.plot3d import axes
               var('t,s')
@@ -511,13 +570,11 @@
               plot14+=text3d("-2",(-1.25,-0.25,-1.5),color="green",fontsize=25)
               show(plot14)              
             </slate>
-          </interactive>
+          </interactive> -->
         </solution>
       </task>
     </activity>
- 
   </subsection>
-
   <subsection>
     <title>Fundamental Planes</title>
     <p>
@@ -545,7 +602,7 @@
     </p>
 
    
-    <activity workspace="1.5in" xml:id="A-9-1-3">
+    <activity workspace="0.75in" xml:id="A-9-1-3">
       <task>
         <statement>
           <p>
@@ -603,7 +660,7 @@
       <xref ref="A-9-1-3"/> illustrates that equations where one of the rectangular coordinates is held constant lead to planes parallel to the coordinate planes. When we make the constant 0, we get the coordinate planes themselves <idx><h>coordinate plane</h></idx><idx><h>plane</h></idx><idx><h>coordinate</h></idx>. The <m>xy</m>-plane satisfies <m>z=0</m>, the <m>xz</m>-plane satisfies <m>y=0</m>, and the <m>yz</m>-plane satisfies <m>x=0</m> (see <xref ref="coor-planes"/>). Planes of the form <m>x=a</m>, <m>y=b</m>, <m>z=c</m> are called <term>fundamental planes</term><idx><h>fundamental plane</h></idx><idx><h>plane</h><h>fundamental</h></idx> are useful in understanding and building structures in three dimensions. You can see how the intersection of fundamental planes <m>x=1</m>, <m>y=-2</m>, and <m>z=3</m> corresponds to the point <m>(1,-2,3)</m> in <xref ref="fundamental-planes"/>. As always, you should rotate and change the viewpoint of the figure to make sure you understand how each fundamental plane and the point <m>P</m> are oriented relative to the axes.
     </p> 
     <figure xml:id="fundamental-planes">
-      <caption>A grid of fundamental planes in three dimensions</caption>
+      <caption>A set of fundamental planes in three dimensions</caption>
       <interactive label="interactive-fundamental-planes" platform="sage" width="100%" aspect="1:1.25">
         <description><p>An interactive plot in three dimensions that shows a plane in red one unit to the left of the y and z axes, a plane in blue that is two units behind the x and z axes, and a plane in green that is three units above the x and y axes. All three planes go through a point labels as P and with coordinates (1,-2,3). </p> </description>
         <slate surface="sage">  
@@ -643,7 +700,7 @@
   </p>
 
    
-    <activity workspace="1.5in" xml:id="act-precalc-3dcoord-Distance">
+    <activity workspace="1.0in" xml:id="act-precalc-3dcoord-Distance">
       <introduction>
         <p>
           Remember that in two dimensions, the distance between <m>P=(x_0, y_0)</m> and <m>Q=(x_1, y_1)</m> is 
@@ -657,7 +714,24 @@
         </p>
         <figure xml:id="distance-box">
           <caption>A plot of <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> with connecting segments</caption>
-          <interactive label="interactive-distance" platform="sage" width="91%" aspect="1:1">
+          <image width="75%">
+            <description><p>A plot in three dimensions that includes points labeled <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> a segment connecting these in blue.Additionally, there is a box of connecting segments each coordinate direction. The point on the box with a change only in the x-coordinate from P is labeled S. The vertex of the box that is below Q and connected to point S is connected by a segment that only changes in the y coordinate. </p></description>
+            <sageplot variant="3d" label="interactive-distance">
+              var('t')
+              plot18=sphere((0,0,0),size=0.05,color="black",frame=False)+sphere((1.5,2,1),size=0.05,color="black")
+              plot18+=text3d("P=(x\u2080,y\u2080,z\u2080)",(0,0,-0.3),color="black",fontsize=25)+text3d("Q=(x\u2081,y\u2081,z\u2081)",(1.5,2,1.3),color="black",fontsize=25)
+              plot18+=line3d([(0,0,0),(1.5,0,0),(1.5,0,1),(1.5,0,0),(1.5,2,0),(1.5,2,1),(1.5,2,0),(0,2,0),(0,2,1),(0,2,0),(0,0,0),(0,0,1),(1.5,0,1),(1.5,2,1),(0,2,1),(0,0,1)],thickness=2,color="black")
+              plot18+=line3d([(0,0,0),(1.5,2,0)],thickness=2,color="red")+text3d("R",(1.7,2.2,-0.1),color="black",fontsize=25)+sphere((1.5,2,0),color="black",size=0.05)
+              plot18+=sphere((1.5,0,0),size=0.05,color="black")+text3d("S",(1.7,0,-.1),color="black",fontsize=25)
+              plot18+=line3d([(0,0,0),(1.5,2,1)],thickness=2,color="blue")
+              plot18+=arrow3d((-1,-1,-1),(1,-1,-1),color="black")+text3d("x",(1.15,-1,-1),color="black",fontsize=30)
+              plot18+=arrow3d((-1,-1,-1),(-1,1,-1),color="black")+text3d("y",(-1,1.15,-1),color="black",fontsize=30)
+              plot18+=arrow3d((-1,-1,-1),(-1,-1,1),color="black")+text3d("z",(-1,-1,1.15),color="black",fontsize=30)
+              show(plot18,aspect_ratio=1,viewpoint=[[-0.8966,-0.2842,-0.3397],86.02],camera_position=[3.9294,-4.5445,1.2451])
+              plot18
+            </sageplot>
+          </image>
+          <!-- <interactive label="interactive-distance" platform="sage" width="91%" aspect="1:1">
             <description><p>A plot in three dimensions that includes points labeled <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> a segment connecting these in blue.Additionally, there is a box of connecting segments each coordinate direction. The point on the box with a change only in the x-coordinate from P is labeled S. The vertex of the box that is below Q and connected to point S is connected by a segment that only changes in the y coordinate. </p>
           </description><slate surface="sage">
               var('t')
@@ -672,10 +746,10 @@
               plot18+=arrow3d((-1,-1,-1),(-1,-1,1),color="black")+text3d("z",(-1,-1,1.15),color="black",fontsize=30)
               show(plot18,aspect_ratio=1,viewpoint=[[-0.8966,-0.2842,-0.3397],86.02],camera_position=[3.9294,-4.5445,1.2451])
             </slate>
-          </interactive>
+          </interactive> -->
         </figure>
       </introduction>
-      <task>
+      <task  workspace="0.5in">
         <statement>
           <p>
             Consider the right triangle <m>PRS</m> in the base of the box whose hypotenuse is shown as the red line in <xref ref="distance-box"/>. What are the coordinates of <m>R</m> and <m>S</m>? 
@@ -692,7 +766,7 @@
           </p>
         </solution>
       </task>
-      <task>
+      <task  workspace="0.5in">
         <statement>
           <p>
             Give the equation of the fundamental plane that contains the right triangle <m>PRS</m>. 

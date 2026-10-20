@@ -162,9 +162,46 @@
     </p>
     <figure xml:id="basedblint">
       <caption>A plot of the volume under a surface <m>z=f(x,y)</m> over a region <m>R</m>, in red</caption>
-        <interactive label="interactive-basedblint" platform="sage" width="91%" aspect="1:1">
-          <description><p>A plot of the volume under as surface <m>z=f(x,y)</m> over a region <m>R</m>, in red</p>
-        </description><slate surface="sage">
+      <description><p>A plot of the volume under as surface <m>z=f(x,y)</m> over a region <m>R</m>, in red</p> </description>
+      <image>
+        <sageplot variant="3d" label="img-basedblint">
+          var('t,s,x,y,z')
+          from sage.plot.plot3d.plot3d import axes
+          scale=3
+          plot1=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,viewpoint=[[-0.9428,-0.1952,-0.2702],74.93],camera_position=[4.9761,-5.7972,4.0654])
+          f(x,y)=3-(0.5+x)^2/2-(1-y)^2/1.5
+          x0=1.75;y0=2;
+          x1(t)=(cos(t)^3+1)*sin(t)/1.5
+          y1(t)=(sin(t)+1.5)*cos(t)/2
+          plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,0),(t,0,2*pi),thickness=3,color="red")
+          plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,f(x1(t),y1(t))*s) ,(t,0,2*pi),(s,0,1),color="gray",opacity=0.6)
+          plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,f(s*x1(t),s*y1(t))),(t,0,2*pi),(s,0,1),color="lightblue",opacity=0.9)
+          plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,0),(t,0,2*pi),(s,0,1),color="red",opacity=0.8)
+          step=1
+          #plot1+=plot3d(f(x-x0,y-y0),(x,x0-step,x0+step),(y,y0-step,y0+step),color="blue",opacity=0.15,mesh=True,plot_points=13)
+          param(s,t)=(s,t,f(s-x0,t-y0))
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=7;m=7;a1=x0-step;a2=x0+step;b1=y0-step;b2=y0+step; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.6; o3=0.6;
+          plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot1+=plot99
+          #show(plot1,viewpoint=[[-0.9428,-0.1952,-0.2702],74.93],camera_position=[4.9761,-5.7972,4.0654])
+          plot1
+        </sageplot>
+      </image>
+        <!-- <interactive label="interactive-basedblint" platform="sage" width="91%" aspect="1:1">
+          <description><p>A plot of the volume under as surface <m>z=f(x,y)</m> over a region <m>R</m>, in red</p> </description>
+        <slate surface="sage">
             var('t,s,x,y,z')
             from sage.plot.plot3d.plot3d import axes
             scale=3
@@ -197,7 +234,7 @@
             plot1+=plot99
             show(plot1,viewpoint=[[-0.9428,-0.1952,-0.2702],74.93],camera_position=[4.9761,-5.7972,4.0654])     
           </slate>
-        </interactive>
+        </interactive> -->
     </figure>
     <p>
       The region shaded red in <xref ref="basedblint"/> is irregular in the coordinates (<m>x</m> and <m>y</m>). We will explore this kind of problem in <xref ref="S-mult_ints-general"/> once we have some intuition and tools from examining rectangular regions of integration. To discuss how to approach rectangular regions, we apply the classic calculus approach to the region shown in <xref ref="rectdblint"/>. In particular, for this rectangular region of input points, we want to 
@@ -327,13 +364,13 @@
           <p>
             The points <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> are labeled in the picture below and have values of 0, 2, 4, 6, and 8 respectively.
           </p>
-          <image source="images/fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
+          <image source="fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
         </answer>
         <solution>
           <p>
             The points <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> are labeled in the picture below and have values of 0, 2, 4, 6, and 8 respectively.
           </p>
-          <image source="images/fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
+          <image source="fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
         </solution>
       </task>
       <task>
@@ -346,13 +383,13 @@
           <p>
             The points <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m> are labeled in the picture below and have values of 2, 10/3, 14/3, and 6 respectively.
           </p>
-          <image source="images/fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
+          <image source="fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
         </answer>
         <solution>
           <p>
             The points <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m> are labeled in the picture below and have values of 2, 10/3, 14/3, and 6 respectively.
           </p>
-          <image source="images/fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
+          <image source="fig_11_1_rect_general_xy.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m></p></description></image>
         </solution>
       </task>
       <task>
@@ -371,7 +408,7 @@
           <p>
             As examples, the subrectangle <m>[x_0,x_1] \times [y_0, y_1]</m> is <m>R_{11}</m>, the lower left subrectangle and the subrectangle <m>[x_1,x_2] \times [y_0, y_1]</m> is <m>R_{21}</m>, the subrectangle to the right of subrectangle <m>R_{11}</m>. The 12 subrectangles are labeled in the figure below.
           </p>
-          <image source="images/fig_11_1_rect_general_labels.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m>. The rectangles in the grid are labeled the leftmost column being <m>R_{13}, R_{12}, R_{11}</m> from top to bottom, the next column to the right is labeled <m>R_{23}, R_{22}, R_{21}</m> from top to bottom. The next column to the right is labeled <m>R_{33}, R_{32}, R_{31}</m> from top to bottom and the column all the way to the right is labeled <m>R_{43}, R_{42}, R_{41}</m> from top to bottom</p></description></image>   
+          <image source="fig_11_1_rect_general_labels.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m>. The rectangles in the grid are labeled the leftmost column being <m>R_{13}, R_{12}, R_{11}</m> from top to bottom, the next column to the right is labeled <m>R_{23}, R_{22}, R_{21}</m> from top to bottom. The next column to the right is labeled <m>R_{33}, R_{32}, R_{31}</m> from top to bottom and the column all the way to the right is labeled <m>R_{43}, R_{42}, R_{41}</m> from top to bottom</p></description></image>   
           <p>
             <m>\Delta A = \left(\frac{b-a}{4}\right) \left(\frac{d-c}{3}\right)</m>
           </p>
@@ -380,7 +417,7 @@
           <p>
             As examples, the subrectangle <m>[x_0,x_1] \times [y_0, y_1]</m> is <m>R_{11}</m>, the lower left subrectangle and the subrectangle <m>[x_1,x_2] \times [y_0, y_1]</m> is <m>R_{21}</m>, the subrectangle to the right of subrectangle <m>R_{11}</m>. The 12 subrectangles are labeled in the figure below.
           </p>
-          <image source="images/fig_11_1_rect_general_labels.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m>. The rectangles in the grid are labeled the leftmost column being <m>R_{13}, R_{12}, R_{11}</m> from top to bottom, the next column to the right is labeled <m>R_{23}, R_{22}, R_{21}</m> from top to bottom. The next column to the right is labeled <m>R_{33}, R_{32}, R_{31}</m> from top to bottom and the column all the way to the right is labeled <m>R_{43}, R_{42}, R_{41}</m> from top to bottom</p></description></image>
+          <image source="fig_11_1_rect_general_labels.png"><description><p>A rectagular grid divided into four horizontally and three vertically with vertical divisiions labeled as <m>x_0</m>, <m>x_1</m>, <m>x_2</m>, <m>x_3</m>, and <m>x_4</m> and horizontal divisions labeled as <m>y_0</m>, <m>y_1</m>, <m>y_2</m>, and <m>y_3</m>. The rectangles in the grid are labeled the leftmost column being <m>R_{13}, R_{12}, R_{11}</m> from top to bottom, the next column to the right is labeled <m>R_{23}, R_{22}, R_{21}</m> from top to bottom. The next column to the right is labeled <m>R_{33}, R_{32}, R_{31}</m> from top to bottom and the column all the way to the right is labeled <m>R_{43}, R_{42}, R_{41}</m> from top to bottom</p></description></image>
           <p>
             <m>\Delta A = \left(\frac{b-a}{4}\right) \left(\frac{d-c}{3}\right)</m>
           </p>
@@ -404,7 +441,7 @@
             </md>
             This result represents the volume of a box with height <m>f(x_{11}^*,y_{11}^*)</m> and base given by the rectangle <m>[x_0, x_1] \times [y_0, y_1]</m>.
           </p>
-          <image source="images/xyz_vol1.png" width="50%"><description><p>A 3 dimensional box is labed with <m>x_0</m> to <m>x_1</m> going left to right, <m>y_0</m> to <m>y_1</m> from front to back, and <m>z_0</m> to <m>z_1</m> from bottom to top.</p></description></image>
+          <image source="xyz_vol1.png" width="50%"><description><p>A 3 dimensional box is labed with <m>x_0</m> to <m>x_1</m> going left to right, <m>y_0</m> to <m>y_1</m> from front to back, and <m>z_0</m> to <m>z_1</m> from bottom to top.</p></description></image>
         </answer>
         <solution>
           <p>
@@ -414,7 +451,7 @@
             </md>
             This result represents the volume of a box with height <m>f(x_{11}^*,y_{11}^*)</m> and base given by the rectangle <m>[x_0, x_1] \times [y_0, y_1]</m>.
           </p>
-          <image source="images/xyz_vol1.png" width="50%"><description><p>A 3 dimensional box is labed with <m>x_0</m> to <m>x_1</m> going left to right, <m>y_0</m> to <m>y_1</m> from front to back, and <m>z_0</m> to <m>z_1</m> from bottom to top.</p></description></image>
+          <image source="xyz_vol1.png" width="50%"><description><p>A 3 dimensional box is labed with <m>x_0</m> to <m>x_1</m> going left to right, <m>y_0</m> to <m>y_1</m> from front to back, and <m>z_0</m> to <m>z_1</m> from bottom to top.</p></description></image>
         </solution>
       </task>
       <task>
@@ -432,7 +469,7 @@
             </md>
             represents the volume of a box with height <m>f(x_{ij}^*,y_{ij}^*)</m> and base given by one of the subrectangles.
           </p>
-          <image source="images/xyz_vol2.png" width="50%"><description><p>A 3 dimensional box is labed with <m>x_{i-1}</m> to <m>x_{i}</m> going left to right, <m>y_{i-1}</m> to <m>y_{i}</m> from front to back, and <m>z_{i-1}</m> to <m>z_{i}</m> from bottom to top.</p></description></image>
+          <image source="xyz_vol2.png" width="50%"><description><p>A 3 dimensional box is labed with <m>x_{i-1}</m> to <m>x_{i}</m> going left to right, <m>y_{i-1}</m> to <m>y_{i}</m> from front to back, and <m>z_{i-1}</m> to <m>z_{i}</m> from bottom to top.</p></description></image>
           <p>
             If we add all the values <m>f(x_{ij}^*,y_{ij}^*) \Delta A</m> for each <m>i</m> and <m>j</m>, the resulting number approximates the volume of the solid bounded above by the surface defined by <m>f</m> and below by the rectangle <m>R</m>.
             <md>
@@ -447,7 +484,7 @@
             </md>
             represents the volume of a box with height <m>f(x_{ij}^*,y_{ij}^*)</m> and base given by one of the subrectangles.
           </p>
-          <image source="images/xyz_vol2.png"><description><p>A 3 dimensional box is labed with <m>x_{i-1}</m> to <m>x_{i}</m> going left to right, <m>y_{i-1}</m> to <m>y_{i}</m> from front to back, and <m>z_{i-1}</m> to <m>z_{i}</m> from bottom to top.</p></description></image>
+          <image source="xyz_vol2.png"><description><p>A 3 dimensional box is labed with <m>x_{i-1}</m> to <m>x_{i}</m> going left to right, <m>y_{i-1}</m> to <m>y_{i}</m> from front to back, and <m>z_{i-1}</m> to <m>z_{i}</m> from bottom to top.</p></description></image>
           <p>
             If we add all the values <m>f(x_{ij}^*,y_{ij}^*) \Delta A</m> for each <m>i</m> and <m>j</m>, the resulting number approximates the volume of the solid bounded above by the surface defined by <m>f</m> and below by the rectangle <m>R</m>.
             <md>
@@ -867,7 +904,7 @@
             <m>R_{32} = [5,7] \times [0,2]</m>.
             These subrectangles are outlined in the table below.
           </p>
-          <image source="images/A_11_1_3_parta.png" width="50%"><description><p>A grid of rectangles that is three wide and two high. The rectangles on top have vertical coordinate from 0 to 2 and are labeled <m>R_{12},R_{22},R_{32}</m> from left to right. The rectangles on bottom have vertical coordinate from -2 to 0 and are labeled <m>R_{11},R_{21},R_{31}</m> from left to right.</p></description></image>
+          <image source="A_11_1_3_parta.png" width="50%"><description><p>A grid of rectangles that is three wide and two high. The rectangles on top have vertical coordinate from 0 to 2 and are labeled <m>R_{12},R_{22},R_{32}</m> from left to right. The rectangles on bottom have vertical coordinate from -2 to 0 and are labeled <m>R_{11},R_{21},R_{31}</m> from left to right.</p></description></image>
         </answer>
         <solution>
           <p>
@@ -879,7 +916,7 @@
             <m>R_{32} = [5,7] \times [0,2]</m>.
             These subrectangles are outlined in the table below.
           </p>
-          <image source="images/A_11_1_3_parta.png" width="50%"><description><p>A grid of rectangles that is three wide and two high. The rectangles on top have vertical coordinate from 0 to 2 and are labeled <m>R_{12},R_{22},R_{32}</m> from left to right. The rectangles on bottom have vertical coordinate from -2 to 0 and are labeled <m>R_{11},R_{21},R_{31}</m> from left to right.</p></description></image>
+          <image source="A_11_1_3_parta.png" width="50%"><description><p>A grid of rectangles that is three wide and two high. The rectangles on top have vertical coordinate from 0 to 2 and are labeled <m>R_{12},R_{22},R_{32}</m> from left to right. The rectangles on bottom have vertical coordinate from -2 to 0 and are labeled <m>R_{11},R_{21},R_{31}</m> from left to right.</p></description></image>
         </solution>
       </task>
       <task>
@@ -988,7 +1025,7 @@
             and <m>3</m>.
             The partitions of the intervals divide the rectangle <m>R</m> into <m>4</m> subrectangles of area 1 as shown in the figure below.
           </p>
-          <image source="images/xygrid1.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically.</p></description></image>
+          <image source="xygrid1.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically.</p></description></image>
         </answer>
         <solution>
           <p>
@@ -998,7 +1035,7 @@
             and <m>3</m>.
             The partitions of the intervals divide the rectangle <m>R</m> into <m>4</m> subrectangles of area 1 as shown in the figure below.
           </p>
-          <image source="images/xygrid1.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically.</p></description></image>
+          <image source="xygrid1.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically.</p></description></image>
         </solution>
       </task>
       <task>
@@ -1011,13 +1048,13 @@
           <p>
             The point <m>(x_{11}^*, y_{11}^*)</m> is the midpoint of the rectangle <m>[0,1] \times [1,2]</m>, and so <m>(x_{11}^*, y_{11}^*) = (0.5, 1.5)</m>. Similarly, we have <m>(x_{21}^*, y_{21}^*) = (1.5, 1.5)</m>, <m>(x_{12}^*, y_{12}^*) = (0.5, 2.5)</m>, and <m>(x_{22}^*, y_{22}^*) = (1.5, 2.5)</m>. These points are shown in the figure below.
           </p>
-          <image source="images/xygrid2.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically. The centers of the rectangles are labeled with points <m>(\frac{3}{2},\frac{3}{2})</m> and <m>(\frac{1}{2},\frac{3}{2})</m> on the left and points <m>(\frac{3}{2},\frac{5}{2})</m> and <m>(\frac{1}{2},\frac{5}{2})</m> on the right.</p></description></image>
+          <image source="xygrid2.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically. The centers of the rectangles are labeled with points <m>(\frac{3}{2},\frac{3}{2})</m> and <m>(\frac{1}{2},\frac{3}{2})</m> on the left and points <m>(\frac{3}{2},\frac{5}{2})</m> and <m>(\frac{1}{2},\frac{5}{2})</m> on the right.</p></description></image>
         </answer>
         <solution>
           <p>
             The point <m>(x_{11}^*, y_{11}^*)</m> is the midpoint of the rectangle <m>[0,1] \times [1,2]</m>, and so <m>(x_{11}^*, y_{11}^*) = (0.5, 1.5)</m>. Similarly, we have <m>(x_{21}^*, y_{21}^*) = (1.5, 1.5)</m>, <m>(x_{12}^*, y_{12}^*) = (0.5, 2.5)</m>, and <m>(x_{22}^*, y_{22}^*) = (1.5, 2.5)</m>. These points are shown in the figure below.
           </p>
-          <image source="images/xygrid2.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically. The centers of the rectangles are labeled with points <m>(\frac{3}{2},\frac{3}{2})</m> and <m>(\frac{1}{2},\frac{3}{2})</m> on the left and points <m>(\frac{3}{2},\frac{5}{2})</m> and <m>(\frac{1}{2},\frac{5}{2})</m> on the right.</p></description></image>
+          <image source="xygrid2.png" width="50%"><description><p>A two by two rectangular grid with division labeled <m>x_0,x_1,x_2</m> horizontally and <m>y_0,y_1,y_2</m> vertically. The centers of the rectangles are labeled with points <m>(\frac{3}{2},\frac{3}{2})</m> and <m>(\frac{1}{2},\frac{3}{2})</m> on the left and points <m>(\frac{3}{2},\frac{5}{2})</m> and <m>(\frac{1}{2},\frac{5}{2})</m> on the right.</p></description></image>
         </solution>
       </task>
       <task>
