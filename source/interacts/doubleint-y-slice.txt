@@ -1,6 +1,5 @@
 var('s,t,x,y,z')
-@interact
-def projdblint2(a=slider(0,3,0.1,default=1,label="Slice at y=")):
+def projdblint2(a):
     xscale=2.5;yscale=2.5;zscale=10
     plot2=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=1)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
     plot2+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5,width=1)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,width=1)
@@ -24,5 +23,29 @@ def projdblint2(a=slider(0,3,0.1,default=1,label="Slice at y=")):
     plot2+=polygon([(0,0,0),(2,0,0),(2,3,0)],color="pink",opacity=0.8,edgecolor="black")
     plot2+=parametric_plot3d((2,t,s*f(2,t)),(s,0,1),(t,0,3),color="pink",opacity=0.4)
     plot2+=parametric_plot3d((2/3*t,t,s*f(2/3*t,t)),(s,0,1),(t,0,3),color="pink",opacity=0.4)
-    plot2+=parametric_plot3d((t,a,s*f(t,a)),(s,0,1),(t,2/3*a,2),color="blue",opacity=0.9)
-    show(plot2,aspect_ratio=(1,1,0.3),viewpoint=[[-0.9313,0.2548,0.2602],92.87],camera_position=[-3.1671,-6.8964,2.9945])
+    plot2+=parametric_plot3d((t,a,s*f(t,a)),(s,0,1),(t,2/3*a,2),color="blue",opacity=0.9,aspect_ratio=(1,1,0.3),viewpoint=[[-0.9313,0.2548,0.2602],92.87],camera_position=[-3.1671,-6.8964,2.9945])
+    h(x)=9/8*x^4;g(y)=8/3*y-8/81*y^4; d=4;
+    
+    #plot1+=parametric_plot3d((s,d,t),(s,0,xscale),(t,0,zscale),opacity=0.1,color="gray",mesh=True,plot_points=6)
+    n=7;m=7;a1=0;a2=3.5;b1=0;b2=zscale;
+    param2(s,t)=(d,s,t);
+    #c1 is surface color     o1 is surface opacity
+    #c2 and o2 are for constant t value traces
+    #c3 and o3 are for constant s value traces
+    c1="gray"; c2="black"; c3="black"; o1=0.1; o2=0.5; o3=0.5;
+    plot2+=parametric_plot3d(param2(s,t),(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
+    for i in range(n+1):
+        sv=a1+i/n*(a2-a1)
+        plot2+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c2,opacity=o2)
+    for i in range(m+1):
+        tv=b1+i/m*(b2-b1)
+        plot2+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
+        
+    plot2+=parametric_plot3d((d,s,g(s)),(s,0,3),color="red",thickness=2,opacity=0.9)
+    plot2+=parametric_plot3d((d,s,g(s)*t),(s,0,3),(t,0,1),color="orange",opacity=0.7)
+    plot2+=point((d,a,g(a)),color="blue",size=40,zorder=5)
+    plot2+=line([(d,a,g(a)),(d,a,0)],color="blue",thickness=2)
+    return plot2
+frames=[projdblint2(a/10) for a in range(1,30)]
+plot123=animate(frames).interactive(auto_play=False,pause=30)
+plot123
