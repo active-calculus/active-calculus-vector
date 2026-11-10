@@ -52,7 +52,7 @@
         </p>
         <figure xml:id="CopiumPlot3">
           <caption>A plot of land with density of copium deposits and the edges of the plot drawn in yellow </caption>
-          <image label="CopiumMinePlot3">
+          <image label="CopiumMinePlot3" width="50%">
             <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. A yellow parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100). </p> </description>
           <sageplot>
 <xi:include href="./interacts/CopiumMinePlot.txt" parse="text"/>
@@ -142,29 +142,40 @@
           </p>
           <figure xml:id="fig_3D_CopiumMining">
             <caption>A 3D plot of the region including our mining area (shown with boundary in red) </caption>
-            <interactive label="int_3D_CopiumMining" platform="sage" width="100%" aspect="1:1">
-              <description><p>A three dimensional plot of domed surface shown in blue over a square region with a peak in the middle of the region. Four segments along this surface make a parallelogram shaped path. </p></description>
-            <slate surface="sage">
-                @interact
-                def abcd():
-                  a=100000
-                  b=75000
-                  var('s,t,x,y,z')
-                  g(x,y)=200*exp(-1/a*(x-250)^2-1/b*(y-300)^2)
-                  plot10=parametric_plot3d((s,t,g(s,t)),(s,0,550),(t,0,550),color='blue',opacity=.5)
-                  xylist=[[0,0],[212.5,425],[512.5,525],[300,100],[0,0]]
-                  xstart=0
-                  ystart=0
-                  for c in xylist:
-                    m=c[0]-xstart
-                    n=c[1]-ystart
-                    plot10+=parametric_plot3d([xstart+t*m,ystart+t*n,g(xstart+t*m,ystart+t*n)],(t,0,1),color='red',thickness=5)
-                    xstart=c[0]
-                    ystart=c[1]
-                  show(plot10,aspect_ratio=1)
-                  
-              </slate>
-            </interactive>
+            <image width="60%">
+              <description><p>A three dimensional plot of domed surface shown in blue over a square region with a peak in the middle of the region. Four segments along this surface make a parallelogram shaped path.  </p></description>
+              <sageplot variant="3d" label="int_3D_CopiumMining">
+                a=100000
+                b=75000
+                var('s,t,x,y,z')
+                g(x,y)=200*exp(-1/a*(x-250)^2-1/b*(y-300)^2)
+                param(s,t)=(s,t,g(s,t))
+                #set up grid      n is number of steps in s    m is number of steps in t  
+                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                n=10;m=12;a1=0;a2=550;b1=0;b2=550; 
+                #c1 is surface color     o1 is surface opacity
+                #c2 and o2 are for constant t value traces
+                #c3 and o3 are for constant s value traces
+                c1="lightblue"; c2="gray"; c3="gray"; o1=0.7; o2=0.5; o3=0.5;
+                plot1=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                xylist=[[0,0],[212.5,425],[512.5,525],[300,100],[0,0]]
+                xstart=0
+                ystart=0
+                for c in xylist:
+                  m=c[0]-xstart
+                  n=c[1]-ystart
+                  plot1+=parametric_plot3d([xstart+t*m,ystart+t*n,g(xstart+t*m,ystart+t*n)],(t,0,1),color='red',thickness=5)
+                  xstart=c[0]
+                  ystart=c[1]
+                plot1
+              </sageplot>
+            </image>
           </figure>
         </statement>
         <answer>
@@ -219,8 +230,7 @@
         <slate surface="sage">
           var('t,s,u,v,z,y,z')
           f=-x^2/2-3*y^3/3
-          @interact
-          def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
+          def parpieces(n):
             plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
             stepsize=2/(n)
             for i in range(0,n):
@@ -237,7 +247,10 @@
                 vs=(a,b+stepsize,stepsize*fy+f_val)
                 cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
                 plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-            show(plot1)
+            return plot1
+          frames=[parpieces(n) for n in range(3,13)]
+          plot123=animate(frames).interactive(delay=50,auto_play=false)
+          plot123
         </slate>
       </interactive>
     </figure>
@@ -269,17 +282,35 @@
         </p>
         <figure xml:id="fig_Scalar_Surface_Int_Example1">
           <caption>The surface <m>S_1</m> divided into regions <m>S_2</m> with positive <m>x</m>-coordinate in green and <m>S_3</m> with negative <m>x</m>-coordinate in red</caption>
-          <interactive label="int_Scalar_Surface_Int_Example1" platform="sage" width="100%" aspect="1:1">
-            <description><p>A three dimension plot of an annular region of a cone shown with green on one half of the circular region and magenta on the other half. </p></description>
-          <slate surface="sage">
-              @interact
-              def asdf():
-                var('s,t')
-                plot1=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,-pi/2,pi/2),color='#004D40', opacity=.50)
-                plot1+=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,pi/2,3*pi/2),color='#D81B60', opacity=.50)
-                show(plot1,aspect_ratio=1)
-            </slate>
-          </interactive>
+          <image width="60%">
+            <description><p>A three dimension plot of an annular region of a cone shown with green on one half of the circular region and magenta on the other half.  </p></description>
+            <sageplot variant="3d" label="int_Scalar_Surface_Int_Example1">
+              var('x,y,z,s,t')
+              from sage.plot.plot3d.plot3d import axes
+              scale=3.5
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              param(s,t)=(s*cos(t),s*sin(t),s)
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=6;m=9;a1=1;a2=3;b1=0;b2=2*pi; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.7; o3=0.7;
+              #plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3357,-0.5577,-0.7591],130.87])
+              plot1+=parametric_plot3d(param,(s,1,3),(t,-pi/2,pi/2),color='#004D40', opacity=.50)
+              plot1+=parametric_plot3d(param,(s,1,3),(t,pi/2,3*pi/2),color='#D81B60', opacity=.50)
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              for i in range(-3,4):
+                plot1+=parametric_plot3d((t,i,0),(t,-3,3),color="gray")+parametric_plot3d((i,t,0),(t,-3,3),color="gray")
+              plot1
+            </sageplot>
+          </image>
         </figure>
         <p>
           Therefore, 
@@ -336,17 +367,54 @@
     </p>
     <figure xml:id="fig_Scalar_Surface_Int_Example2">
       <caption>The surface <m>S_1</m> is plotted with the surface given by <m>z-x^2=0</m></caption>
-      <interactive label="int_Scalar_Surface_Int_Example2" platform="sage" width="100%" aspect="1:1">
-        <description><p>A three dimensional plot with an annular region of a cone shown in blue and a parabolic cylinder surface shown in yellow. The parabolic generating curve opens in the direction of the central axis of the cone. </p> </description>
-      <slate surface="sage">
-          @interact
-          def asdf():
-            var('s,t')
-            plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0,2*pi),color='#1E88E5', opacity=.75)
-            plot2+=parametric_plot3d((s,t,s^2),(s,-3,3),(t,-3,3),color='#FFC107', opacity=.50)
-            show(plot2,aspect_ratio=1) 
-        </slate>
-      </interactive>
+      <image width="60%">
+        <description><p>A three dimensional plot with an annular region of a cone shown in blue and a parabolic cylinder surface shown in yellow. The parabolic generating curve opens in the direction of the central axis of the cone.  </p></description>
+        <sageplot variant="3d" label="int_Scalar_Surface_Int_Example2">
+          var('x,y,z,s,t')
+          from sage.plot.plot3d.plot3d import axes
+          scale=3.5
+          plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+          param(s,t)=(s*cos(t),s*sin(t),s)
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=6;m=9;a1=1;a2=3;b1=0;b2=2*pi; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="#1E88E5"; c2="gray"; c3="gray"; o1=0.4; o2=0.5; o3=0.5;
+          plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3357,-0.5577,-0.7591],130.87])
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          #for i in range(-3,4):
+            #plot1+=parametric_plot3d((t,i,0),(t,-3,3),color="gray")+parametric_plot3d((i,t,0),(t,-3,3),color="gray")
+          param(s,t)=(s,t,s^2)
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=6;m=9;a1=-2;a2=2;b1=-3;b2=3; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="#FFC107"; c2="gray"; c3="gray"; o1=0.4; o2=0.5; o3=0.5;
+          plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3357,-0.5577,-0.7591],130.87])
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          #for i in range(-3,4):
+            #plot1+=parametric_plot3d((t,i,0),(t,-3,3),color="gray")+parametric_plot3d((i,t,0),(t,-3,3),color="gray")
+          plot1+=parametric_plot3d((t,sqrt(t^4-t^2),t^2),(t,-sqrt(3),-1),color="green",thickness=3)
+          plot1+=parametric_plot3d((t,-sqrt(t^4-t^2),t^2),(t,-sqrt(3),-1),color="green",thickness=3)
+          plot1+=parametric_plot3d((-t,sqrt(t^4-t^2),t^2),(t,-sqrt(3),-1),color="green",thickness=3)
+          plot1+=parametric_plot3d((-t,-sqrt(t^4-t^2),t^2),(t,-sqrt(3),-1),color="green",thickness=3,viewpoint=[[-0.0051,-0.6534,-0.757],179.32])
+          plot1
+        </sageplot>
+      </image>
     </figure>
     <p>
       In our case, there is more surface area of <m>S_1</m> inside the parabolic cylinder than outside. For points that are far away from the yellow surface, the magnitude of the value of <m>g</m> for that point will be large. For points that are close to the yellow surface, the <m>z</m>-coordinates are close to <m>x^2</m>, and thus values of <m>g</m> are close to zero. This means that in order to properly estimate the scalar surface integral, we must assess whether there is a greater weighted surface area inside the parabolic cylinder than outside, where the weight of each surface area piece is given by how far the piece is from the yellow parabolic cylinder. This is not an easy argument to make, and is not easy to verify visually for this example. For some examples, you may be able to make a nice geometric argument about the size of scalar surface integrals, but the algebraic calculation given by <xref ref="ScalarSurfaceIntDef"/> gives an exact value. 
