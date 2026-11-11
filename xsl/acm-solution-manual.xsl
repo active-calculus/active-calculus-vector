@@ -13,7 +13,7 @@
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pi="http://pretextbook.org/2020/pretext/internal" version="1.0">
 
 <xsl:import href="./core/pretext-solution-manual-latex.xsl" />
 <xsl:import href="acmv-common.xsl" />
@@ -26,7 +26,7 @@
 <xsl:template match="*" mode="half-title" />
 <xsl:template match="*" mode="ad-card" />
 
-<xsl:template match="exercise[@exercise-interactive='webwork-reps']" mode="solutions"> </xsl:template>
+<xsl:template match="exercise[@pi:exercise-interactive='static']" mode="solutions"> </xsl:template>
 
 <xsl:param name="latex.preamble.late">
   <xsl:text>% These override what PreTeXt supplies by default. The only addition&#xa;</xsl:text>
