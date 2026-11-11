@@ -46,16 +46,12 @@
     </p>
     <figure xml:id="fig-mult_ints-iteration-solid_rot">
       <caption>A plot of a volume of revolution with circular disk used in estimating the enclosed volume</caption>
-        <interactive label="interactive-fig-mult_ints-iteration-solid_rot" platform="sage" width="91%" aspect="1:1">
-          <description>
-            <p>
-              A solid in three-dimensional space formed by revolving a parabola-like curve in the part of the <m>xy</m>-plane with <m>y\geq 0</m> about the <m>x</m>-axis. There is also a slice of the solid perpendicular to the <m>x</m>-axis shown. This slice is a right circular cylinder with a small thickness.
-            </p>
-          </description>
-          <slate surface="sage">
-            <xi:include href="interacts/surfrot.txt" parse="text"/>     
-          </slate>
-        </interactive>
+      <image width="60%">
+        <description><p>A solid in three-dimensional space formed by revolving a parabola-like curve in the part of the <m>xy</m>-plane with <m>y\geq 0</m> about the <m>x</m>-axis. There is also a slice of the solid perpendicular to the <m>x</m>-axis shown. This slice is a right circular cylinder with a small thickness.</p></description>
+        <sageplot variant="3d" label="interactive-fig-mult_ints-iteration-solid_rot">
+<xi:include href="interacts/surfrot.txt" parse="text"/> 
+        </sageplot>
+      </image>
     </figure>
     <p>  
       We will consider an example of this approach in the following Preview Activity. Specifically, you examine how to how use single-variable integrals along traces in a similar way to the rotation volume described above. We will generalize this approach in this section for double integrals over rectangular regions. In <xref ref="S-mult_ints-general"/>, we will look at using this technique on non-rectangular regions of integration. 
@@ -97,33 +93,33 @@
           </p> 
           <figure xml:id="fig-mult_ints-iteration-surftrace">
             <caption>A plot of the surface <m>z= 25-x^2-y^2</m> with a cross section shown at <m>x=a</m></caption>
-              <interactive label="interactive-fig-mult_ints-iteration-surftrace" platform="sage" width="91%" aspect="1:1">
-                <description><p>A plot of the surface <m>z= 25-x^2-y^2</m> with a cross section shown at <m>x=a</m></p>
-              </description><slate surface="sage">
-                  var('s,t,x,y,z')
-                  f(x,y)=25-x^2-y^2
-                  x1=-3;x2=3;y1=-4;y2=4;
-                  param(s,t)=(s,t,f(s,t))
-                  #set up grid      n is number of steps in s    m is number of steps in t  
-                  #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-                  n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
-                  #c1 is surface color     o1 is surface opacity
-                  #c2 and o2 are for constant t value traces
-                  #c3 and o3 are for constant s value traces
-                  c1="lightblue"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
-                  plot1=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-                  for i in range(n+1):
-                    sv=a1+i/n*(a2-a1)
-                    plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-                  for i in range(m+1):
-                    tv=b1+i/m*(b2-b1)
-                    plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                  a=0.75;
-                  plot1+=parametric_plot3d((a,t,s*f(a,t)),(t,b1,b2),(s,0,1),color="blue",opacity=0.6)
-                  plot1+=text3d("x=a",(a,y1,20),color="blue",fontsize=25)
-                  show(plot1,viewpoint=[[-0.2151,-0.5915,-0.7771],148.44],camera_position=[9.0426,10.7901,6.3889],aspect_ratio=(1,1,.2))
-                </slate>
-              </interactive>
+            <image width="60%">
+              <description><p>A plot of the surface <m>z= 25-x^2-y^2</m> with a cross section shown at <m>x=a</m> </p></description>
+              <sageplot variant="3d" label="interactive-fig-mult_ints-iteration-surftrace">
+                var('s,t,x,y,z')
+                f(x,y)=25-x^2-y^2
+                x1=-3;x2=3;y1=-4;y2=4;
+                param(s,t)=(s,t,f(s,t))
+                #set up grid      n is number of steps in s    m is number of steps in t  
+                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+                #c1 is surface color     o1 is surface opacity
+                #c2 and o2 are for constant t value traces
+                #c3 and o3 are for constant s value traces
+                c1="lightblue"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
+                plot1=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                a=0.75;
+                plot1+=parametric_plot3d((a,t,s*f(a,t)),(t,b1,b2),(s,0,1),color="blue",opacity=0.6)
+                plot1+=text3d("x=a",(a,y1,20),color="blue",fontsize=25,viewpoint=[[-0.2151,-0.5915,-0.7771],148.44],camera_position=[9.0426,10.7901,6.3889],aspect_ratio=(1,1,.2))
+                plot1
+              </sageplot>
+            </image>
           </figure>
         </statement>
         <answer>
@@ -143,13 +139,13 @@
             Write a couple of sentences explaining the geometric meaning of <m>A(x_i^*) \ \Delta x</m>, where <m>x_i^*</m> is a fixed value of <m>x</m>. Your explanation should refer to the parts of  <xref ref="fig-mult_ints-iterated-PA_cross_y">Figure</xref>.
           </p>
           <figure xml:id="fig-mult_ints-iterated-PA_cross_y">
-            <caption> </caption>
-              <interactive label="interactive-fig-mult_ints-iterated-PA_cross_y" platform="sage" width="91%" aspect="1:1">
-                <description><p>ADD ALT TEXT TO THIS IMAGE</p></description>
-                <slate surface="sage">
-                  <xi:include href="interacts/surftrace2.txt" parse="text"/>     
-                </slate>
-              </interactive>
+            <caption>A plot of the surface <m>z= 25-x^2-y^2</m> with a cross section area with width shown in pink</caption>
+            <image width="60%">
+              <description><p>A plot of the surface <m>z= 25-x^2-y^2</m> with a cross section area with width shown in pink</p></description>
+              <sageplot variant="3d" label="interact-fig-mult_ints-iterated-PA_cross_y">
+<xi:include href="interacts/surftrace2.txt" parse="text"/>  
+              </sageplot>
+            </image>
           </figure>
         </statement>
         <answer>
@@ -223,12 +219,12 @@
     </p>
     <figure xml:id="fig-mult_ints-iterated-wavy_surface">
       <caption>A surface and the region below it</caption>
-      <interactive label="interactive-mult_ints-iterated-wavy_surface" platform="sage" width="91%" aspect="1:1"> 
-        <description><p>A surface and the region below it</p>
-      </description><slate surface="sage">
-          <xi:include href="interacts/iteratedintdemo1.txt" parse="text"/>
-        </slate>
-      </interactive>
+      <image width="60%">
+        <description><p>A curvy surface is shown in blue and the rectangular region below it is shown in red with edges labeled <m>x=b</m>, <m>x=a</m>, <m>y=c</m>, and <m>y=d</m>. </p></description>
+        <sageplot variant="3d" label="interactive-mult_ints-iterated-wavy_surface">
+<xi:include href="interacts/iteratedintdemo1.txt" parse="text"/>
+        </sageplot>
+      </image>
     </figure>
     <p>
       To avoid technical issues, we assume that <m>f</m> is continuous. As in the Preview Activity, we define a function
@@ -239,9 +235,9 @@
     </p>
     <figure xml:id="fig-mult_ints-iterated-wavy_surface2">
       <caption>A slab with variable position underneath a surface </caption>
-      <interactive label="interactive-mult_ints-iterated-wavy_surface2" platform="sage" width="95%" aspect="1:1.1"> 
-        <description><p>A slab with variable position underneath a surface </p>
-      </description><slate surface="sage">
+      <interactive label="interactive-mult_ints-iterated-wavy_surface2" platform="sage"> 
+        <description><p>A slab with variable position underneath a surface </p></description>
+        <slate surface="sage">
           <xi:include href="interacts/iteratedintdemo2.txt" parse="text"/>
         </slate>
       </interactive>
@@ -364,18 +360,70 @@
       </md>.
       <xref ref="fig-mult_ints-iterated-wavy_surface3"/> allows you to change the direction of slicing and provides a visualization of the slabs whose volumes are integrated by the outer integral in this iterated integral.
     </p>
-     <figure xml:id="fig-mult_ints-iterated-wavy_surface3">
-      <caption>Decomposition of the solid below a surface into slices along constant <m>x</m>-values or <m>y</m>-values</caption>
-      <interactive label="interactive-mult_ints-iterated-wavy_surface3" platform="sage" width="95%" aspect="1:1.1"> 
-        <description><p>Decomposition of the solid below a surface into slices along constant <m>x</m>-values or <m>y</m>-values</p>
-      </description><slate surface="sage">
-          <xi:include href="interacts/iteratedintdemo3.txt" parse="text"/>
-        </slate>
-      </interactive>
-    </figure>
-    <p>
-      The fact that integrating in either order results in the same value is known as Fubini's Theorem.
-    </p>
+
+    <figure xml:id="fig-mult_ints-iterated-wavy_surface3">
+    <caption>Decomposition of the solid below a surface into slices along constant <m>x</m>-values (left) or <m>y</m>-values (right)</caption>
+    <sidebyside widths="50% 50%">
+      <image>
+        <description><p>Decomposition of the solid below a surface into slices along constant <m>x</m>-values</p></description>
+        <sageplot variant="3d" label="interactive-mult_ints-iterated-wavy_surface3x">
+          var('s,t,x,y,z')
+          f(x,y)=(3-(-1.5+x)^2/2-(1-y)^2/1.5)*(3+sin(1.6*x*y))/4-.5
+          x1=0.5;x2=2.5; y1=0.75;y2=2;
+          param(s,t)=(s,t,f(s,t))
+          ns=4
+          a1=x1;a2=x2;b1=y1;b2=y2; 
+          xscale=3;yscale=3;zscale=3
+          plot1=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=2)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
+          plot1+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,viewpoint=[[-0.099,-0.6027,-0.7918],165.17],camera_position=[4.2065,9.5131,4.0273],frame=False)
+          dx=(x2-x1)/ns;sc="gray";o4=.7;
+          for i in range(ns):
+              a=x1+i*dx
+              plot1+=parametric_plot3d((a+s,t,f(a,t)),(t,b1,b2),(s,0,dx),color="purple",opacity=0.9)
+              plot1+=parametric_plot3d((a,t,s*f(a,t)),(t,b1,b2),(s,0,1),color=sc,opacity=o4)
+              plot1+=parametric_plot3d((a+dx,t,s*f(a,t)),(t,b1,b2),(s,0,1),color=sc,opacity=o4)
+              plot1+=parametric_plot3d((a+s,y2,t*f(a,y2)),(t,0,1),(s,0,dx),color=sc,opacity=o4)
+              plot1+=parametric_plot3d((a+s,y1,t*f(a,y1)),(t,0,1),(s,0,dx),color=sc,opacity=o4)
+          plot1+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color="red",opacity=0.5)
+          plot1+=line([(x1,y2,0),(x1,0,0)],color="black",thickness=2)+text3d("x=a",(x1,-0.5,0),color="black",fontsize=20)
+          plot1+=line([(x2,y2,0),(x2,0,0)],color="black",thickness=2)+text3d("x=b",(x2,-0.5,0),color="black",fontsize=20)
+          plot1+=line([(x2,y1,0),(0,y1,0)],color="black",thickness=2)+text3d("y=c",(-0.5,y1,0),color="black",fontsize=20)
+          plot1+=line([(x2,y2,0),(0,y2,0)],color="black",thickness=2)+text3d("y=d",(-0.5,y2,0),color="black",fontsize=20)
+          plot1
+        </sageplot>
+      </image>
+      <image>
+        <description><p>Decomposition of the solid below a surface into slices along constant <m>y</m>-values</p></description>
+        <sageplot variant="3d" label="interactive-mult_ints-iterated-wavy_surface3y">
+          var('s,t,x,y,z')
+          f(x,y)=(3-(-1.5+x)^2/2-(1-y)^2/1.5)*(3+sin(1.6*x*y))/4-.5
+          x1=0.5;x2=2.5; y1=0.75;y2=2;
+          param(s,t)=(s,t,f(s,t))
+          ns=4
+          xscale=3;yscale=3;zscale=3
+          plot1=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=2)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
+          plot1+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,viewpoint=[[-0.099,-0.6027,-0.7918],165.17],camera_position=[4.2065,9.5131,4.0273],frame=False)
+          dy=(y2-y1)/ns;sc="gray";o4=.7;
+          for i in range(ns):
+            a=y1+i*dy
+            plot1+=parametric_plot3d((t,a+s,f(t,a)),(t,x1,x2),(s,0,dy),color="purple",opacity=0.9)
+            plot1+=parametric_plot3d((t,a,s*f(t,a)),(t,x1,x2),(s,0,1),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((t,a+dy,s*f(t,a)),(t,x1,x2),(s,0,1),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((x1,a+s,t*f(x1,a)),(t,0,1),(s,0,dy),color=sc,opacity=o4)
+            plot1+=parametric_plot3d((x2,a+s,t*f(x2,a)),(t,0,1),(s,0,dy),color=sc,opacity=o4)
+          plot1+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color="red",opacity=0.5)
+          plot1+=line([(x1,y2,0),(x1,0,0)],color="black",thickness=2)+text3d("x=a",(x1,-0.5,0),color="black",fontsize=20)
+          plot1+=line([(x2,y2,0),(x2,0,0)],color="black",thickness=2)+text3d("x=b",(x2,-0.5,0),color="black",fontsize=20)
+          plot1+=line([(x2,y1,0),(0,y1,0)],color="black",thickness=2)+text3d("y=c",(-0.5,y1,0),color="black",fontsize=20)
+          plot1+=line([(x2,y2,0),(0,y2,0)],color="black",thickness=2)+text3d("y=d",(-0.5,y2,0),color="black",fontsize=20)
+          plot1
+        </sageplot>
+      </image>
+    </sidebyside>
+  </figure> 
+  <p>
+    The fact that integrating in either order results in the same value is known as Fubini's Theorem.
+  </p>
 
     <assemblage xml:id="Fubini-theorem">
       <title>Fubini's Theorem</title>

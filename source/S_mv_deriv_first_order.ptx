@@ -292,11 +292,11 @@
     </p>
     <figure xml:id="zfnxy2">
       <caption>The projectile distance surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m></caption>
-      <interactive label="interactive-zfnxy2" platform="sage" width="91%" aspect="1:1">
+      <image width="60%">
         <description><p>A three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. On the lower corner of this curved surface are drawn three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m> signifying origin. 
         In the direction of the segment labeled y from the origin, there is a two dimensional flat grid labeled <m>x</m> horizontally and <m>z</m> vertically. A branch of a parabola is shown in red from the bottom left of this grid to the top right. This red curve is copied along the curved surface along a direction that is parallel to the segment labeled x (from the origin). 
-        In the direction of the segment labeled x from the origin, there is a two dimensional flat grid labeled <m>y</m> horizontally and <m>z</m> vertically. A parabola is shown in blue pointing downward on this grid with a vertex about half way up the grid. This blue curve is copied along the curved surface along a direction that is parallel to the segment labeled y (from the origin).</p></description>
-        <slate surface="sage">
+        In the direction of the segment labeled x from the origin, there is a two dimensional flat grid labeled <m>y</m> horizontally and <m>z</m> vertically. A parabola is shown in blue pointing downward on this grid with a vertex about half way up the grid. This blue curve is copied along the curved surface along a direction that is parallel to the segment labeled y (from the origin). </p></description>
+        <sageplot variant="3d" label="interactive-zfnxy2">
           var('x,y,z,t,s')
           f(x,y)=x^2*sin(2*y)/32
           param(s,t)=(s,t,f(s,t))
@@ -307,16 +307,16 @@
           #c2 and o2 are for constant t value traces
           #c3 and o3 are for constant s value traces
           c1="lightblue"; c2="black"; c3="black"; o1=0.6; o2=0.5; o3=0.5;
-          plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+          plot11=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
           for i in range(n+1):
-              sv=a1+i/n*(a2-a1)
-              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            sv=a1+i/n*(a2-a1)
+            plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
           for i in range(m+1):
-              tv=b1+i/m*(b2-b1)
-              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            tv=b1+i/m*(b2-b1)
+            plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
           d1=150
           d2=1.5
-          plot11=plot99+parametric_plot3d((x,0.6,f(x,0.6)),(x,0,200),color="red",thickness=3)
+          plot11+=parametric_plot3d((x,0.6,f(x,0.6)),(x,0,200),color="red",thickness=3,aspect_ratio=[1,100,0.2],viewpoint=[[-0.8798,0.3246,0.3474],93.44],camera_position=[-347.7358,-471.7864,193.733],frame=False)
           plot11+=parametric_plot3d((150,y,f(150,y)),(y,0,pi/2),color="blue",thickness=3)
           plot11+=parametric_plot3d((x,pi/2+d2,f(x,0.6)),(x,0,200),color="red",thickness=3)
           plot11+=parametric_plot3d((200+d1,y,f(150,y)),(y,0,pi/2),color="blue",thickness=3)
@@ -328,9 +328,9 @@
           plot11+=line([(200+d1,0,0),(200+d1,0,1500)],thickness=3,color="black")+text3d("z",(200+d1,-0.5,750),fontsize=30)
           plot11+=line([(0,0,0),(100,0,0)],thickness=2,color="black")+line([(0,0,0),(0,1,0)],thickness=2,color="black")+line([(0,0,0),(0,0,500)],thickness=2,color="black")
           plot11+=text3d("x",(100,0,-100),color="black",fontsize=20)+text3d("y",(0,1,-100),color="black",fontsize=20)+text3d("z",(0,0,600),color="black",fontsize=20)
-          show(plot11,aspect_ratio=[1,100,0.2],viewpoint=[[-0.8798,0.3246,0.3474],93.44],camera_position=[-347.7358,-471.7864,193.733],frame=False)
-        </slate>
-      </interactive>
+          plot11
+        </sageplot>
+      </image>
     </figure>
     <p>
       If we fix the angle <m>y = 0.6</m>, we can view the trace <m>f(x,0.6)</m> as a function of <m>x</m> alone, as seen in <xref ref="fig-mv_deriv-first_order-trace_y">Figure</xref>.
@@ -752,15 +752,48 @@
   </p>
   <figure xml:id="fig-mv_deriv-first_order-trace_tangent">
     <caption>A surface given by <m>z=f(x,y)</m> with traces <m>y=b</m> (in red) and <m>x=a</m> (in blue)</caption>
-    <interactive label="interactive-fig-mv_deriv-first_order-trace_tangent" platform="sage" width="93%" aspect="1:1.15">
+    <image width="60%">
       <description><p>An interactive three dimensional plot with three axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. A surface is shown in gray with a grid of lines along the surface. The surface is shown for a patch above the first quadrant and the surface increases vertically as either <m>x</m> or <m>y</m> decreases. A dropdown option at the top of the figure allows for three options. The <q>x-trace only </q> plots a plane in red that is parallel to the yz-plane, is labeled <m>y=b</m>, and highlights the curve along the surface and on the red plane in red. 
       The <q>y-trace only </q> plots a plane in blue that is parallel to the xz-plane, is labeled <m>x=a</m>, and highlights the curve along the surface and on the blue plane in blue. 
-      The <q>both traces</q> option shows both of the plots described above.
-      </p>
-    </description><slate surface="sage">
-        <xi:include href="./interacts/trace_tangent_code.txt" parse="text"/>
-      </slate>
-    </interactive>
+      The <q>both traces</q> option shows both of the plots described above. </p></description>
+      <sageplot variant="3d" label="interactive-fig-mv_deriv-first_order-trace_tangent">
+        var('x,y,z,s,t')
+        from sage.plot.plot3d.plot3d import axes
+        g(x,y)=3-x^2/4-y^2/6
+        a=1.5;b=1.5;a1=0.5;a2=2.5;b1=0.5;b2=2.5;
+        gx=diff(g,x)
+        gy=diff(g,y)
+        gv=g(a,b)
+        gxv=gx(a,b)
+        gyv=gy(a,b)
+        scale=3
+        plot11=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=20)+text3d("y",(0,scale+0.5,0),fontsize=20)+text3d("z",(0,0,scale+0.5),fontsize=20)
+        plot11+=parametric_plot3d((x,b,g(x,b)),(x,a1,a2),color="red",thickness=2)
+        plot11+=parametric_plot3d((t+a,b,gv+t*gxv),(t,-0.5,0.5),color="black",thickness=3,zorder=5)
+        plot11+=parametric_plot3d((x,b,z),(x,a1,a2),(z,0,3),color="red",plot_points=2,opacity=0.1,mesh=True)
+        plot11+=text3d("y=b",(a2,b,3.25),color="red",fontsize=20)
+        plot11+=parametric_plot3d((a,y,g(a,y)),(y,b1,b2),color="blue",thickness=2)
+        plot11+=parametric_plot3d((a,b+t,gv+t*gyv),(t,-0.5,0.5),color="black",thickness=3,zorder=5)
+        plot11+=parametric_plot3d((a,y,z),(y,b1,b2),(z,0,3),color="blue",plot_points=2,opacity=0.1,mesh=True)
+        plot11+=text3d("x=a",(a,b2,3.25),color="blue",fontsize=20,aspect_ratio=[1,1,1],viewpoint=[[-0.2659,-0.5888,-0.7633],141.97],camera_position=[8.3993,7.6133,4.1169])
+        param(s,t)=(s,t,g(x=s,y=t))
+        #set up grid      n is number of steps in s    m is number of steps in t  
+        #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+        n=7;m=7;
+        #c1 is surface color     o1 is surface opacity
+        #c2 and o2 are for constant t value traces
+        #c3 and o3 are for constant s value traces
+        c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.5; o3=0.5;
+        plot11+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+        for i in range(n+1):
+          sv=a1+i/n*(a2-a1)
+          plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+        for i in range(m+1):
+          tv=b1+i/m*(b2-b1)
+          plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+        plot11
+      </sageplot>
+    </image>
   </figure>
     <!-- <figure xml:id="fig-mv_deriv-first_order-trace_tangent">
       <caption>Tangent lines to two traces of the distance function.</caption>
@@ -871,134 +904,7 @@
       <p>
         The wind chill, as frequently reported, is a measure of how cold it feels outside when the wind is blowing. In the table below, the wind chill <m>w</m> is a function of the wind speed <m>v</m> and the ambient air temperature <m>T</m>. Both <m>w</m> and <m>T</m> are measured in degrees Fahrenheit, while <m>v</m> is measured in miles per hour. This means that <m>w</m> can be expressed in the form <m>w = w(v, T)</m>.
       </p>
-          <tabular halign="center">
-            <row>
-              <cell><m>v \backslash T</m></cell>
-              <!-- <cell bottom="medium"><m>-30</m></cell>
-              <cell bottom="medium"><m>-25</m></cell> -->
-              <cell bottom="medium"><m>-20</m></cell>
-              <cell bottom="medium"><m>-15</m></cell>
-              <cell bottom="medium"><m>-10</m></cell>
-              <cell bottom="medium"><m>-5</m></cell>
-              <cell bottom="medium"><m>0</m></cell>
-              <cell bottom="medium"><m>5</m></cell>
-              <cell bottom="medium"><m>10</m></cell>
-             <!--  <cell bottom="medium"><m>15</m></cell>
-              <cell bottom="medium"><m>20</m></cell> -->
-            </row>
-            <!-- <row>
-              <cell right="medium"><m>5</m></cell>
-              <cell><m>-46</m></cell>
-              <cell><m>-40</m></cell>
-              <cell><m>-34</m></cell>
-              <cell><m>-28</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-16</m></cell>
-              <cell><m>-11</m></cell>
-              <cell><m>-5</m></cell>
-              <cell><m>1</m></cell>
-              <cell><m>7</m></cell>
-              <cell><m>13</m></cell>
-            </row> -->
-            <row>
-              <cell right="medium"><m>10</m></cell>
-              <!-- <cell><m>-53</m></cell>
-              <cell><m>-47</m></cell> -->
-              <cell><m>-41</m></cell>
-              <cell><m>-35</m></cell>
-              <cell><m>-28</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-16</m></cell>
-              <cell><m>-10</m></cell>
-              <cell><m>-4</m></cell>
-              <!-- <cell><m>3</m></cell>
-              <cell><m>9</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>15</m></cell>
-              <!-- <cell><m>-58</m></cell>
-              <cell><m>-51</m></cell> -->
-              <cell><m>-45</m></cell>
-              <cell><m>-39</m></cell>
-              <cell><m>-32</m></cell>
-              <cell><m>-26</m></cell>
-              <cell><m>-19</m></cell>
-              <cell><m>-13</m></cell>
-              <cell><m>-7</m></cell>
-              <!-- <cell><m>0</m></cell>
-              <cell><m>6</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>20</m></cell>
-              <!-- <cell><m>-61</m></cell>
-              <cell><m>-55</m></cell> -->
-              <cell><m>-48</m></cell>
-              <cell><m>-42</m></cell>
-              <cell><m>-35</m></cell>
-              <cell><m>-29</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-15</m></cell>
-              <cell><m>-9</m></cell>
-              <!-- <cell><m>-2</m></cell>
-              <cell><m>4</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>25</m></cell>
-              <!-- <cell><m>-64</m></cell>
-              <cell><m>-58</m></cell> -->
-              <cell><m>-51</m></cell>
-              <cell><m>-44</m></cell>
-              <cell><m>-37</m></cell>
-              <cell><m>-31</m></cell>
-              <cell><m>-24</m></cell>
-              <cell><m>-17</m></cell>
-              <cell><m>-11</m></cell>
-              <!-- <cell><m>-4</m></cell>
-              <cell><m>3</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>30</m></cell>
-              <!-- <cell><m>-67</m></cell>
-              <cell><m>-60</m></cell> -->
-              <cell><m>-53</m></cell>
-              <cell><m>-46</m></cell>
-              <cell><m>-39</m></cell>
-              <cell><m>-33</m></cell>
-              <cell><m>-26</m></cell>
-              <cell><m>-19</m></cell>
-              <cell><m>-12</m></cell>
-             <!--  <cell><m>-5</m></cell>
-              <cell><m>1</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>35</m></cell>
-              <!-- <cell><m>-69</m></cell>
-              <cell><m>-62</m></cell> -->
-              <cell><m>-55</m></cell>
-              <cell><m>-48</m></cell>
-              <cell><m>-41</m></cell>
-              <cell><m>-34</m></cell>
-              <cell><m>-27</m></cell>
-              <cell><m>-21</m></cell>
-              <cell><m>-14</m></cell>
-              <!-- <cell><m>-7</m></cell>
-              <cell><m>0</m></cell> -->
-            </row>
-            <!-- <row>
-              <cell right="medium"><m>40</m></cell>
-              <cell><m>-71</m></cell>
-              <cell><m>-64</m></cell>
-              <cell><m>-57</m></cell>
-              <cell><m>-50</m></cell>
-              <cell><m>-43</m></cell>
-              <cell><m>-36</m></cell>
-              <cell><m>-29</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-15</m></cell>
-              <cell><m>-8</m></cell>
-              <cell><m>-1</m></cell>
-            </row> -->
-          </tabular>
+      <xi:include href="./tables/windchill1.txt"/>
     </introduction>
     <task>
       <statement>

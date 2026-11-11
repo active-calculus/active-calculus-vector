@@ -118,12 +118,38 @@
         <!-- <image width ="80%" source="ddimage1.png" /> -->
         <figure xml:id="DD-Act1">
           <caption>A plot of <m>f(x,y)</m> with the measurements of change in input and output labeled for a change of inputs given by <m>\langle a,b\rangle</m></caption>
-          <interactive label="interactive-DD-Act1" platform="sage" width="100%" aspect="1:1">
-            <description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. The point on the surface above the input <m>(-2,1)</m> is highlighted in blue.</p>
-          </description><slate surface="sage">
-              <xi:include href="../interacts/DD-Act1plot.txt" parse="text"/>
-            </slate>
-          </interactive>
+          <image width="60%">
+            <description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. The point on the surface above the input <m>(-2,1)</m> is highlighted in blue. </p></description>
+            <sageplot variant="3d" label="interactive-DD-Act1">
+              from sage.plot.plot3d.plot3d import axes
+              var('x,y,z,t,s')
+              scale=2;
+              f(x,y)= 2*x^2/(x^2+y^2) 
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=20;m=20;a1=-2;a2=2;b1=-2;b2=2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.8; o3=0.8;
+              plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
+              plot99+=parametric_plot3d(param,(s,-0.1,0.1),(t,-0.1,0.1),color=c1,opacity=o1,plot_points=200)
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              plot6=plot99
+              plot6+=point3d((2,-1,f(-2,1)),color="blue",size=30,aspect_ratio=(1,1,1),viewpoint=[[-0.8546,-0.2702,-0.4435],70.97],camera_position=[4.0052,-5.7001,4.5949])
+              for i in range(21):
+                val=-2+i/5
+                plot6+=parametric_plot((val,t,0),(t,-2,2),opacity=0.3,color="gray")
+                plot6+=parametric_plot((t,val,0),(t,-2,2),opacity=0.3,color="gray")
+              plot6
+            </sageplot>
+          </image>
         </figure>
       </introduction>
       <task>
@@ -136,7 +162,7 @@
           <interactive label="interactive-DD-Act1-parta" platform="sage" width="100%" aspect="1:1">
             <description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. The point on the surface above the input <m>(-2,1)</m> is highlighted in blue.</p>
           </description><slate surface="sage">
-              <xi:include href="../interacts/DD-Act1plot-parta.txt" parse="text"/>
+<xi:include href="../interacts/DD-Act1plot-parta.txt" parse="text"/>
             </slate>
           </interactive>
         </solution>
@@ -212,13 +238,38 @@
           </p>
           <figure xml:id="DD-Act2">
           <caption>A plot of <m>f(x,y)</m> with the measurements of change in input and output labeled for a change of inputs given by <m>\langle a,b\rangle</m></caption>
-            <interactive label="interactive-DD-exercise" platform="sage" width="100%" aspect="1:1">
-            <description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. The point on the surface above the input <m>(-2,1)</m> is highlighted in blue.</p>
-            </description>
-            <slate surface="sage">
-              <xi:include href="../interacts/DD-Act2plot.txt" parse="text"/>
-            </slate>
-          </interactive>
+            <image width="60%">
+              <description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. The point on the surface above the input <m>(-2,1)</m> is highlighted in blue. </p></description>
+              <sageplot variant="3d" label="interactive-DD-exercise">
+                from sage.plot.plot3d.plot3d import axes
+                var('x,y,z,t,s')
+                scale=2;
+                f(x,y)= 2*x^2/(x^2+y^2) 
+                param(s,t)=(s,t,f(s,t))
+                #set up grid      n is number of steps in s    m is number of steps in t  
+                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                n=20;m=20;a1=-2;a2=2;b1=-2;b2=2; 
+                #c1 is surface color     o1 is surface opacity
+                #c2 and o2 are for constant t value traces
+                #c3 and o3 are for constant s value traces
+                c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.8; o3=0.8;
+                plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
+                plot99+=parametric_plot3d(param,(s,-0.1,0.1),(t,-0.1,0.1),color=c1,opacity=o1,plot_points=200)
+                for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+                for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                plot6=plot99
+                plot6+=point3d((1,-1,f(1,-1)),color="blue",size=40,aspect_ratio=(1,1,1),viewpoint=[[-0.8832,-0.2372,-0.4047],67.15],camera_position=[3.9973,-6.9044,5.4669])
+                for i in range(21):
+                  val=-2+i/5
+                  plot6+=parametric_plot((val,t,0),(t,-2,2),opacity=0.3,color="gray")
+                  plot6+=parametric_plot((t,val,0),(t,-2,2),opacity=0.3,color="gray")
+                plot6             
+              </sageplot>
+            </image>
           <!-- <image witdh="80%" source="ddimage1.png"><description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. </p></description></image> -->
         </figure>
         </introduction>
@@ -359,7 +410,7 @@
         <p>
           The graph of <m>z=f(x,y)</m> is as given below. In this problem, use geometric arguments to justify your answers.
         </p>
-        <image witdh="80%" source="ddimage1.png"><description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. </p></description></image>
+        <image width="80%" source="ddimage1.png"><description><p>A plot of a surface of the form <m>z=f(x,y)</m> is shown in light blue where the surface has a constant height of 2 above the y-axis and is decreasing as the y-coordinate moves away from 0. Additionally, the surface decreases as the x-coordinate gets closer to 0. </p></description></image>
       </introduction>
       <task>
         <statement>

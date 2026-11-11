@@ -216,10 +216,30 @@
     </p>
 
     <figure xml:id="F_9_7_VVF_tan_vector">
-      <caption>A single difference quotient of a vector-valued function</caption>
-      <image width="50%" source="fig_9_7_curve_1">
+      <caption>The difference of a vector-valued function output</caption>
+      <image width="60%">
         <description><p>A three dimensional plot with three perpendicular axes shown. A helical path is shown in black that moves up as the curve rotates around the vertical axis. A blue arrow is shown from the origin to a point on the curve and is labeled <m>\vr(t)</m>. A green arrow is shown from the origin to a point further along the black curve and is labeled <m>\vr(t+h)</m>. A red arrow is drawn from the end of the blue arrow to the end of the green arrow. </p></description>
+        <sageplot variant="3d" label="fig_9_7_curve_1">
+          from sage.plot.plot3d.plot3d import axes
+          r(t)=(cos(t),sin(t),t/(pi))
+          scale=2
+          a=01.5;h=1;
+          plot5=axes(scale,1,color="black",opacity=0.5)+text3d("x",(scale+0.2,0,0),fontsize=30)
+          plot5+=text3d("y",(0,scale+0.2,0),fontsize=30)+text3d("z",(0,0,scale+0.2),fontsize=30,frame=False)
+          plot5+=parametric_plot3d(r(t),(t,0,1.5*pi),color="black",thickness=2)
+          plot5+=point(r(a),color="black",size=20)
+          plot5+=arrow3d((0,0,0),r(a),color="blue",opacity=0.9)
+          plot5+=text3d("r(t)",1.5*r(a),color="blue",fontsize=20)
+          plot5+=arrow3d((0,0,0),r(a+h),color="green",opacity=0.9)
+          plot5+=text3d("r(t+h)",1.5*r(a+h),color="green",fontsize=20)
+          plot5+=arrow3d(r(a),r(a+h),color="red",opacity=0.9)
+          plot5+=text3d("r(t+h)-r(t)",1.5*(r(a+h/2)),color="red",fontsize=20,viewpoint=[[-0.5094,-0.5256,-0.6814],113.13],camera_position=[3.6816,0.7685,1.3301])
+          plot5
+        </sageplot>
       </image>
+      <!-- <image width="50%" source="fig_9_7_curve_1">
+        <description><p>A three dimensional plot with three perpendicular axes shown. A helical path is shown in black that moves up as the curve rotates around the vertical axis. A blue arrow is shown from the origin to a point on the curve and is labeled <m>\vr(t)</m>. A green arrow is shown from the origin to a point further along the black curve and is labeled <m>\vr(t+h)</m>. A red arrow is drawn from the end of the blue arrow to the end of the green arrow. </p></description>
+      </image> -->
     </figure>
     <!-- <figure xml:id="vvf-secvec1">
       <caption>A plot of a curve in space with a difference in position vectors shown</caption>
@@ -270,13 +290,11 @@
       <interactive label="interactive-vvf-example2" platform="sage" width="100%" aspect="1:1">
         <description><p>An interactive three dimensional plot with three perpendicular axes shown. A helical path is shown in black that moves up as the curve rotates around the vertical axis. A blue arrow is shown from the origin to a point on the curve and is labeled <m>\vr(t)</m>. A green arrow is shown from the origin to a point further along the black curve and is labeled <m>\vr(t+h)</m>. The slider at the top of the plot changes the distance along the curve between the blue and the green arrows. A red arrow is drawn from the end of the blue arrow to the end of the green arrow. The red arrow is labeled <m>\vr(t+h) -\vr(t)</m>.  </p> </description>
       <slate surface="sage">
-          var('t,x')
-          @interact
-          def secline3d(h=slider(0.1,1.6,0.1,default=1.5,label="Step Size",display_value=False)):
+          def secline3d(h):
             from sage.plot.plot3d.plot3d import axes
             r(t)=(cos(t),sin(t),t/(2*pi))
             scale=1.5
-            a=1.5
+            a=1
             plot5=axes(scale,1,color="black",opacity=0.15)+text3d("x",(scale+0.5,0,0),fontsize=30)
             plot5+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,frame=False)
             plot5+=parametric_plot3d(r(t),(t,0,2*pi),color="black",thickness=2)
@@ -286,8 +304,11 @@
             plot5+=arrow3d((0,0,0),r(a+h),color="green",opacity=0.5)
             plot5+=text3d("r(t+h)",1.5*r(a+h),color="green",fontsize=20)
             plot5+=arrow3d(r(a),2*(r(a+h)-r(a))/h+r(a),color="red",opacity=0.5)
-            plot5+=text3d("(r(t+h)-r(t))/h",2*(r(a+h/2)),color="red",fontsize=20)
-            show(plot5,viewpoint=[[-0.4807,-0.5193,-0.7066],113.63],camera_position=[3.6816,0.7685,1.3301])
+            plot5+=text3d("(r(t+h)-r(t))/h",2*(r(a+h/2)),color="red",fontsize=20,viewpoint=[[-0.4453,-0.5469,-0.7089],120.02])
+            return plot5
+          frames1=[secline3d(2-hval/25) for hval in range(0,50)]
+          plot123 = animate(frames1).interactive(delay=20,auto_play=False,animation_controls=True)
+          plot123
         </slate>
       </interactive>
     </figure>
@@ -488,32 +509,29 @@
     <md>
       x(t) = x_0 + at, \ \ y(t) = y_0 + bt, \ \ z(t) = z_0 + ct
     </md>.
-    <xref ref="vvf-tanline1"/> shows a plot of a curve, a point on that curve, and the line tangent to the curve at that point. You can change the point at which the tangent line is shown by moving the <q>Location</q> slider. By moving the <q>Zoom</q> slider to the right, you can show smaller and smaller regions around the highlighted point to see that the tangent line approximates the curve very well on sufficiently small neighborhoods of the point. If you move the zoom slider all the way to the left, the whole curve and axes will be shown. 
+    <xref ref="vvf-tanline1"/> shows a plot of a curve, a point on that curve, and the line tangent to the curve at that point. You can change the point at which the tangent line is shown by using the slider or animation controls at the top of the figure. You can zoom in around the highlighted point to see that the tangent line approximates the curve very well on sufficiently small neighborhoods of the point, regardless of the location along the curve.
   </p>
   <figure xml:id="vvf-tanline1">
     <caption>A plot of a curve in space with the tangent line at a point drawn in red</caption>
     <interactive label="interactive-tanline1" platform="sage" width="100%" aspect="1:1">
-      <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, and <m>y</m>, and <m>z</m>. A black curve is plotted that is centered and the origin, moves around the z-axis, and has two maximums and two minimums as the curve completes one rotation around the z-axis. The slider at the top of the figure changes the location of a highlighted point on the black curve. at the highlighted point on the black curve, a red line is drawn that is tangent to the curve at the highlighted point. The second slider controls how small of a neighborhood is plotted around the highlighted point.</p></description>
-    <slate surface="sage">
+      <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, and <m>y</m>, and <m>z</m>. A black curve is plotted that is centered and the origin, moves around the z-axis, and has two maximums and two minimums as the curve completes one rotation around the z-axis. The slider at the top of the figure changes the location of a highlighted point on the black curve. At the highlighted point on the black curve, a red line is drawn that is tangent to the curve at the highlighted point.</p></description>
+      <slate surface="sage">
         var('t,x')
-        @interact
         def tanline3d(a=slider(0.1,6.2,0.1,default=1,label="Location",display_value=False),zoom=slider(0,5,1,default=0,label="Zoom",display_value=False)):
           from sage.plot.plot3d.plot3d import axes
           r(t)=(cos(t),sin(t),cos(2*t))
           v(t)=(-sin(t),cos(t),-2*sin(2*t))
           scale=1.5
           l(t)=r(a)+t*v(a)
-          if(zoom==0):
-            plot6=axes(scale,1,color="black",opacity=0.15)+text3d("x",(scale+0.5,0,0),fontsize=30)
-            plot6+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,frame=False)
-            plot6+=point(r(a),color="black",size=20)
-            plot6+=parametric_plot3d(r(t),(t,0,2*pi),color="black",thickness=2)
-            plot6+=parametric_plot(l(t),(t,-1,1),color="red",thickness=2)
-          else:
-            plot6=point(r(a),color="black",size=20/zoom,frame=False,zorder=5)
-            plot6+=parametric_plot3d(r(t),(t,a-2^(-zoom),a+2^(-zoom)),color="black",thickness=2)
-            plot6+=parametric_plot(l(t),(t,-2^(-zoom),2^(-zoom)),color="red",thickness=2)
-          show(plot6,viewpoint=[[-0.2005,-0.5864,-0.7848],149.95],camera_position=[4.9299,6.4869,2.3259],aspect_ratio=1)
+          plot6=axes(scale,1,color="black",opacity=0.15)+text3d("x",(scale+0.5,0,0),fontsize=30)
+          plot6+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,frame=False)
+          plot6+=point(r(a),color="black",size=20)
+          plot6+=parametric_plot3d(r(t),(t,0,2*pi),color="black",thickness=2)
+          plot6+=parametric_plot(l(t),(t,-0.5,0.5),color="red",thickness=2,viewpoint=[[-0.2005,-0.5864,-0.7848],149.95],camera_position=[4.9299,6.4869,2.3259],aspect_ratio=1)
+          return plot6
+        frames1=[tanline3d(tval*pi/25) for tval in range(0,50)]
+        plot123 = animate(frames1).interactive(delay=20,auto_play=False,animation_controls=True)
+        plot123
       </slate>
     </interactive>
   </figure>

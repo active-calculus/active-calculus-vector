@@ -283,14 +283,14 @@
           r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
           v1(t)=diff(r1,t)
           T(t)=v1(t)/norm(v1(t))
-          plot3=text("$\\vec{T}(s_0+\\Delta s)-\\vec{T}(s_0)$",((T(3.1)[0]-4+T(3.4)[0]-4)/2,(T(3.1)[1]+T(3.4)[1])/2-0.1),color="red",fontsize=15,aspect_ratio=1,axes=False)
+          plot3=text("$\\vec{T}(s_0+\\Delta s)-\\vec{T}(s_0)$",((T(3.1)[0]-4+T(3.4)[0]-4)/2,(T(3.1)[1]+T(3.4)[1])/2-0.1),color="red",fontsize=20,aspect_ratio=1,axes=False)
           for i in range(len(tpoints)):
               position=r1(tpoints[i])
               withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
               voffset=(position[0]+(T(tpoints[i])[0])/1.2-0.15-0.15*i,position[1]+(T(tpoints[i])[1])/1.2)
               vvoffset=(-4+(T(tpoints[i])[0])/2-0.15+0.45*i,(T(tpoints[i])[1])/2)
               plot3+=arrow((-4,0),(T(tpoints[i])[0]-4,T(tpoints[i])[1]),color="blue")
-              plot3+=text(vlabels[i],vvoffset,color="blue",fontsize=15)
+              plot3+=text(vlabels[i],vvoffset,color="blue",fontsize=20)
           plot3+=arrow((T(3.1)[0]-4,T(3.1)[1]),(T(3.4)[0]-4,T(3.4)[1]),color="red")
           dT=T(3.4)-T(3.1)
           plot3
@@ -361,89 +361,89 @@
 
      
   <activity workspace="1.5in" xml:id="act-VVF-curvature-line-circle">
-      <introduction>
+    <introduction>
+      <p>
+        In this activity we will use our previous work in finding unit speed parameterizations of lines and circles to make sense of the definition of curvature.
+      </p>
+    </introduction>
+    <task>
+      <statement>
         <p>
-          In this activity we will use our previous work in finding unit speed parameterizations of lines and circles to make sense of the definition of curvature.
+          Recall that in <xref ref="linearclength"/> we found that the unit speed parameterization of a line through the points <m>(1,2,3)</m> and <m>(2,0,5)</m> to be <m>\vr_1(s)= \langle 1,2,3\rangle + \frac{s}{3} \langle 1,-2,2 \rangle</m>. 
+          Calculate <m>\vT(s)</m>, <m>\frac{d\vT}{ds}</m>, and <m>\vecmag{ \frac{d\vT}{ds} }</m> for the unit speed parameterization of this line. Note that because we are using the unit speed parameterization, our parameter <m>t</m> is the same as the arc length traveled <m>s</m>. In other words, <m>t=s</m> for this parameterization.
         </p>
-      </introduction>
-      <task>
-        <statement>
-          <p>
-            Recall that in <xref ref="linearclength"/> we found that the unit speed parameterization of a line through the points <m>(1,2,3)</m> and <m>(2,0,5)</m> to be <m>\vr_1(s)= \langle 1,2,3\rangle + \frac{s}{3} \langle 1,-2,2 \rangle</m>. 
-            Calculate <m>\vT(s)</m>, <m>\frac{d\vT}{ds}</m>, and <m>\vecmag{ \frac{d\vT}{ds} }</m> for the unit speed parameterization of this line. Note that because we are using the unit speed parameterization, our parameter <m>t</m> is the same as the arc length traveled <m>s</m>. In other words, <m>t=s</m> for this parameterization.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            We calculate <m>\vT(s) = \langle \frac{1}{3}, -\frac{2}{3}, \frac{2}{3} \rangle</m> which means that <m>\frac{d \vT}{ds}=\vzero</m> and <m>\vecmag{\frac{d \vT}{ds}}=0</m>. 
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Write a few sentences to explain why your result for the calculation of the curvature <m>\kappa=\vecmag{ \frac{d\vT}{ds} }</m> for this line makes sense. <xref ref="ez-VVF-curvature-line" text="type-local"/> asks you to do the calculations to confirm this property of an arbitrary line.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            There is zero curvature because along a line there is not turning and no change in the direction of travel. 
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Recall from <xref ref="act-VVF-arclength-circle-helix"/> have a parameterization of a circle in 2-space of radius <m>R</m> centered at the origin as <m>\langle R\cos(t),R\sin(t)\rangle</m>. A quick calculation will verify that this parameterization has constant speed and that speed is <m>R</m>.
-          </p>
-          <p>
-            Modifying this parameterization by multiplying the parameter by <m>\frac{1}{\text{speed}}=\frac{1}{R}</m> gives the following parameterization:
-            <md>
-              \vr(s) = \left\langle R \cos\left(\frac{s}{R}\right), R \sin\left(\frac{s}{R}\right)\right\rangle
-            </md>
-            Compute the speed of this parameterization to verify that this has unit speed. This will also show that <m>\vr\, '(s)=\vv(s)=\vT(s)</m>. (Recall that this fact is not true in general!)
-          </p>
-        </statement>
-        <solution>
-          <p>
-            We can calculate the velocity as <m>\vr' = \frac{1}{R} \langle R \sin(s), R \cos(s) \rangle</m> which give the speed as <m>\vecmag{\vr'} = \frac{1}{R} \sqrt{R^2\sin^2(s)+R^2\cos^2(s)}= \frac{1}{R} R = 1</m>.  Thus, <m>\vT = \frac{\vr'}{\vecmag{\vr'}}= \frac{\vr'}{1}</m>. 
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Calculate <m>\vT(s)</m>, <m>\frac{d\vT}{ds}</m>, and <m>\vecmag{ \frac{d\vT}{ds} }</m> for the unit speed parameterization of a circle of radius <m>R</m> centered at the origin.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            We have
-            <md>
-              \vT(s) = \left\langle -\sin\left(\frac{s}{R}\right), \cos\left(\frac{s}{R}\right) \right\rangle
-            </md>.
-            Thus, the curvature of a circle of radius <m>R</m> is
-            <md>
-              <mrow>\kappa \amp = \left\lvert \frac{d \vT}{ds} \right\rvert</mrow>
-              <mrow>\amp = \left\lvert \left\langle -\frac{1}{R}\cos\left(\frac{s}{R}\right), -\frac{1}{R}\sin\left(\frac{s}{R}\right) \right\rangle \right\rvert</mrow>
-              <mrow>\amp = \frac{1}{R}</mrow>
-            </md>. 
-          </p>
-        </solution>
-      </task>
-      <task>
-        <statement>
-          <p>
-            Write a few sentences to explain why your result for the calculation of <m>\kappa=\vecmag{ \frac{d\vT}{ds} }</m> of circle will be constant. You should also address why circles with larger radii will have have smaller curvature.
-          </p>
-        </statement>
-        <solution>
-          <p>
-            The curvature of a circle is one over the radius. If the circle has a larger radius, then the rate of turning (per unit along the curve) is much smaller than if the radius of the circle is smaller. 
-          </p>
-        </solution>
-      </task>
-    </activity>
+      </statement>
+      <solution>
+        <p>
+          We calculate <m>\vT(s) = \langle \frac{1}{3}, -\frac{2}{3}, \frac{2}{3} \rangle</m> which means that <m>\frac{d \vT}{ds}=\vzero</m> and <m>\vecmag{\frac{d \vT}{ds}}=0</m>. 
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Write a few sentences to explain why your result for the calculation of the curvature <m>\kappa=\vecmag{ \frac{d\vT}{ds} }</m> for this line makes sense. <xref ref="ez-VVF-curvature-line" text="type-local"/> asks you to do the calculations to confirm this property of an arbitrary line.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          There is zero curvature because along a line there is not turning and no change in the direction of travel. 
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Recall from <xref ref="act-VVF-arclength-circle-helix"/> have a parameterization of a circle in 2-space of radius <m>R</m> centered at the origin as <m>\langle R\cos(t),R\sin(t)\rangle</m>. A quick calculation will verify that this parameterization has constant speed and that speed is <m>R</m>.
+        </p>
+        <p>
+          Modifying this parameterization by multiplying the parameter by <m>\frac{1}{\text{speed}}=\frac{1}{R}</m> gives the following parameterization:
+          <md>
+            \vr(s) = \left\langle R \cos\left(\frac{s}{R}\right), R \sin\left(\frac{s}{R}\right)\right\rangle
+          </md>
+          Compute the speed of this parameterization to verify that this has unit speed. This will also show that <m>\vr\, '(s)=\vv(s)=\vT(s)</m>. (Recall that this fact is not true in general!)
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We can calculate the velocity as <m>\vr' = \frac{1}{R} \langle R \sin(s), R \cos(s) \rangle</m> which give the speed as <m>\vecmag{\vr'} = \frac{1}{R} \sqrt{R^2\sin^2(s)+R^2\cos^2(s)}= \frac{1}{R} R = 1</m>.  Thus, <m>\vT = \frac{\vr'}{\vecmag{\vr'}}= \frac{\vr'}{1}</m>. 
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Calculate <m>\vT(s)</m>, <m>\frac{d\vT}{ds}</m>, and <m>\vecmag{ \frac{d\vT}{ds} }</m> for the unit speed parameterization of a circle of radius <m>R</m> centered at the origin.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          We have
+          <md>
+            \vT(s) = \left\langle -\sin\left(\frac{s}{R}\right), \cos\left(\frac{s}{R}\right) \right\rangle
+          </md>.
+          Thus, the curvature of a circle of radius <m>R</m> is
+          <md>
+            <mrow>\kappa \amp = \left\lvert \frac{d \vT}{ds} \right\rvert</mrow>
+            <mrow>\amp = \left\lvert \left\langle -\frac{1}{R}\cos\left(\frac{s}{R}\right), -\frac{1}{R}\sin\left(\frac{s}{R}\right) \right\rangle \right\rvert</mrow>
+            <mrow>\amp = \frac{1}{R}</mrow>
+          </md>. 
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          Write a few sentences to explain why your result for the calculation of <m>\kappa=\vecmag{ \frac{d\vT}{ds} }</m> of circle will be constant. You should also address why circles with larger radii will have have smaller curvature.
+        </p>
+      </statement>
+      <solution>
+        <p>
+          The curvature of a circle is one over the radius. If the circle has a larger radius, then the rate of turning (per unit along the curve) is much smaller than if the radius of the circle is smaller. 
+        </p>
+      </solution>
+    </task>
+  </activity>
  
     <p>
       Notice that a unit speed parameterization will have the property that <m>\vr_1\, '(s)=\vv(s)=\vT(s)</m>. While this fact is not true in general, it does make the calculation and interpretation of <m>\vT</m> as simple as possible. It is also helpful to observe that a unit speed parameterization has the property that <m>\vT'(s) = \va(s)</m>, the acceleration vector of the curve. Thus, when we have a unit speed parameterization for a path, we can think of the curvature of the path at a point as being the magnitude of the acceleration vector.
@@ -570,7 +570,23 @@
       </p>
       <figure xml:id="paracurv2">
         <caption>A plot of <m>y=x^2</m> with the osculating circle drawn tangent to the curve</caption>
-        <interactive label="interactive-paracurv2" platform="sage" width="100%" aspect="1:1">
+        <image source="./paracurv.gif" width="60%">
+          <description><p>An animated two dimensional plot with horizontal coordinate shown from negative two to two and vertical coordiante from zero to four. A parabola is drawn in black with vertex at the origin and going through the points <m>(1,1)</m> and <m>(-1,1)</m>. The animation changes the location of a point highlighted on the parabola. At the highlighted point, a blue circle is drawn such that the circle is curved in the same way as the parabola at the highlighted point and intersects the parabola at only the highlighted point. </p>
+          </description>
+          <!-- <sageplot>
+            var('s,t,x')
+            def paracurv(a):
+              plot6=plot(x^2, (x,-2,2),gridlines=True,color="black",thickness=2)
+              plot6+=point((a,a^2),size=30,color="black",xmin=-2,xmax=2,ymin=-0.5,ymax=4)
+              k(s)=2/(1+4*s^2)^(3/2)
+              plot6+=parametric_plot((cos(t)/k(a)-2*a/k(a)/(1+4*a^2)^(1/2)+a,sin(t)/k(a)+1/(1+4*a^2)^(1/2)/k(a)+a^2),(t,0,2*pi),color="blue",thickness=2,zorder=3,aspect_ratio=1)
+              return plot6
+            frames1=[paracurv(a/10) for a in range(-20,20)]
+            a1=animate(frames1)
+            a1
+          </sageplot> -->
+        </image>
+        <!-- <interactive label="interactive-paracurv2" platform="sage" width="100%" aspect="1:1">
           <description><p>An interactive two dimensional plot with horizontal coordinate shown from negative two to two and vertical coordiante from zero to four. A parabola is drawn in black with vertex at the origin and going through the points <m>(1,1)</m> and <m>(-1,1)</m>. The slider at the top of the figure changes the location of a point highlighted on the parabola. At the highlighted point, a blue circle is drawn such that the circle is curved in the same way as the parabola at the highlighted point and intersects the parabola at only the highlighted point. </p>
         </description><slate surface="sage">
             var('s,t,x')
@@ -582,7 +598,7 @@
               plot6+=parametric_plot((cos(t)/k(a)-2*a/k(a)/(1+4*a^2)^(1/2)+a,sin(t)/k(a)+1/(1+4*a^2)^(1/2)/k(a)+a^2),(t,0,2*pi),color="blue",thickness=2,zorder=3)
               show(plot6)
           </slate>
-        </interactive>
+        </interactive> -->
       </figure>
     
      

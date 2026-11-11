@@ -73,9 +73,35 @@
       </p>
       <!-- TODO Fonts are way too small. Recode in PreFigure and decide if need to use two rows rather than three on one row. -->
       <!-- TODO need to make the step correspond to the algebra in the text. The step should be to the right not the left -->
+      <figure xml:id="secantlines">
+        <caption>A plot of a secant line at the points <m>(a,f(a))</m> and <m>(a+h,f(a+h))</m> </caption>
+        <image width="60%" xml:id="img-secline1">
+          <description><p>A plot of a downward facing parabola with a blue line going between two points on the parabola. The blue line corresponds to more horizontal change than vertical change. The right point on the parabola is labeled <m>P:(a,f(a))</m>. The change in the vertical coordinates between these two points is represented with a vertical segment in yellow and is labeled <m>f(a)-f(a-h)</m>. The change in the horizontal coordinates between two points is represented by a green line segment that is labeled <m>h</m>. </p></description>
+          <sageplot>
+            var('t,x')
+            f(x)=2*(x-1/2)^3-2*(x-1/2)^2-x+1
+            a=0.05
+            f0=f(a)
+            plot2=plot(f(x),(x,0,0.75),color="black",ticks=[[],[]],thickness=3,axes_labels=["$x$","$y$"])
+            plot2+=point((a,f0),color="black",size=50,zorder=5)
+            plot2+=text("$(a,f(a))$",(0.1,0.25),color="black",fontsize=20)
+            h=0.25
+            f1=f(a+h)
+            plot2+=point((a+h,f1),color="blue",size=50,zorder=5)
+            plot2+=plot((f1-f0)/h*(x-a)+f0,(x,0,0.75),color="blue",thickness=2)
+            plot2+=line([(a,f0),(a+h,f0)],color="green",thickness=2)
+            plot2+=line([(a+h,f0),(a+h,f1)],color="red",thickness=2)
+            plot2+=text("$h$",(a+h/1.5,f0+0.05),color="green",fontsize=20)
+            plot2+=text("$f(a+h)-f(a)$",(0.425,0.4),color="red",fontsize=20,ymin=-0.1)
+            plot2
+          </sageplot>
+        </image>
+      </figure>
+
+
       <!-- <figure xml:id="secantlines">
         <caption>Three plots of secant lines with <m>h\rightarrow0</m> </caption> -->
-        <sidebyside widths="33% 33% 33%">
+        <!-- <sidebyside widths="33% 33% 33%">
           <image width="100%" xml:id="img-secline1">
               <sageplot>
                 var('t,x')
@@ -136,7 +162,8 @@
                 plot2
               </sageplot>
             <description><p>A plot of a downward facing parabola with a blue line going between two points on the parabola. The blue line in this plot is slightly steeper than in the previous plot and the two points are close together on the parabola. The right point on the parabola is labeled <m>P:(a,f(a))</m>. The change in the vertical coordinates between these two points is represented with a vertical segment in yellow and is labeled <m>f(a)-f(a-h)</m>. The change in the horizontal coordinates between two points is represented by a green line segment that is labeled <m>h</m>.</p></description></image>
-          </sidebyside>
+          </sidebyside> -->
+
       <!-- </figure> -->
       <p>
         Algebraically, we can view this classic calculus approach as:
@@ -161,7 +188,7 @@
         <ol marker="1.">
           <li>
             <p>
-              motivation given by the measuring a geometric feature
+              motivation given by the measurement of a geometric feature
             </p>
           </li>
           <li>
@@ -202,15 +229,15 @@
         </md>
       </p>
       <!-- TODO Recode this in PreFig -->
-      <!-- <figure xml:id="Riemannsum1">
-        <caption>At left and center, two left Riemann sums for a function <m>f</m> that is sometimes negative; at right, the exact areas bounded by <m>f</m> on the interval <m>[a,d]</m> (image from https://activecalculus.org/single/sec-4-3-definite-integral.html#F-4-3-IncreaseN) </caption> -->
+      <figure xml:id="Riemannsum1">
+        <caption>At left and center, two left Riemann sums for a function <m>f</m> that is sometimes negative; at right, the exact areas bounded by <m>f</m> on the interval <m>[a,d]</m> (image from https://activecalculus.org/single/sec-4-3-definite-integral.html#F-4-3-IncreaseN) </caption>
         <image source="4_2_NegF">
           <description><p>A sequence of three images shows different Riemann sum converging to the definite integral. 
             The left image shows a sinusoidal graph in blue that goes above and below the horizontal axis. From left to right, points with inputs a, b, c, and d are labeled on a horizontal segment. The blue graph is above the horizontal axis between inputs a nd b and between c and d. The blue graph is below the horizontal axis between b and c. Eleven green rectangles extend vertically from the horizontal axis to the blue graph on the region of inputs from a to d. 
             The center image shows a sinusoidal graph in blue that goes above and below the horizontal axis. From left to right, points with inputs a, b, c, and d are labeled on a horizontal segment. The blue graph is above the horizontal axis between inputs a nd b and between c and d. The blue graph is below the horizontal axis between b and c. Twenty two green rectangles extend vertically from the horizontal axis to the blue graph on the region of inputs from a to d. These green rectangles better approximate the area under the blue graph, as compared to the left image.
             The right image shows a sinusoidal graph in blue that goes above and below the horizontal axis. From left to right, points with inputs a, b, c, and d are labeled on a horizontal segment. The blue graph is above the horizontal axis between inputs a nd b and between c and d. The blue graph is below the horizontal axis between b and c. The area below the blue curve and above the horizontal axis for inputs from a to b is shaded in blue and labeled <m>A_1</m>. The area above the blue curve and below the horizontal axis for inputs from b to c is shaded in red and labeled <m>A_2</m>. The area below the blue curve and above the horizontal axis for inputs from c to d is shaded in blue and labeled <m>A_3</m>.
           </p></description></image>
-      <!-- </figure> -->
+      </figure>
     
       <p>
         Your introduction to integrals likely investigated multiple rules for selecting which point you use to find the height of the rectangles in your approximation (e.g., right endpoint, left endpoint, midpoint, trapezoid etc.). However, a key idea is that the actual value of the integral does not depend on this choice. 

@@ -684,13 +684,13 @@
   </p>
   <figure xml:id="LR2">
     <caption>Seven different ways to approach a point in two dimensions</caption>
-    <image width="65%">
+    <image width="50%">
       <description><p>The point <m>(a,b)</m> is indicated in the first quadrant. Seven paths are illustrated approaching the point. Four approaches are parallel to the coordinate axes, approaching <m>(a,b)</m> from the left, right, above, and below. One other path is a straight line, coming in diagonally from the upper left. The other two paths are curved. One is approximately parabolic and approaches from the upper right. There is also a path approaching from the lower left that bends several times as it approaches the point.</p></description>
       <sageplot label="img-LR2">
         var('t')
         paths=[(t+1,1),(1,t+1),(1,1-t),(1-t,1),(1-t,1+t),(1+t,1+2*t^2),(1-t,1-t-0.1*sin(20*t))]
         plot4=point((1,1),size=40,color="black",ticks=[[],[]],zorder=5,ymin=-0.1,ymax=2,xmin=-0.1,xmax=2,axes_labels=["$x$","$y$"],aspect_ratio=1)
-        plot4+=text("$(a,b)$",(1.15,0.9),color="black",fontsize=15)
+        plot4+=text("$(a,b)$",(1.15,0.9),color="black",fontsize=20)
         for p in paths:
           r(t)=p
           plot4+=parametric_plot(r,(t,0,0.75),color="gray",thickness=2)
@@ -705,56 +705,7 @@
     </p>
     <table xml:id="tableE1">
       <title>Values of <m>f(x,y) = 3 - x - 2y</m></title>
-      <tabular halign="center">
-        <row>
-          <cell><m>x \backslash y</m></cell>
-          <cell bottom="medium"><nbsp/><nbsp/><nbsp/><m>-1.0</m><nbsp/><nbsp/><nbsp/></cell>
-          <cell bottom="medium"><nbsp/><nbsp/><nbsp/><m>-0.1</m><nbsp/><nbsp/><nbsp/></cell>
-          <cell bottom="medium"><nbsp/><nbsp/><nbsp/><nbsp/><m>0.0</m><nbsp/><nbsp/><nbsp/></cell>
-          <cell bottom="medium"><nbsp/><nbsp/><nbsp/><nbsp/><m>0.1</m><nbsp/><nbsp/><nbsp/></cell>
-          <cell bottom="medium"><nbsp/><nbsp/><nbsp/><nbsp/><m>1.0</m><nbsp/><nbsp/><nbsp/></cell>
-        </row>
-        <row>
-          <cell right="medium"><m>-1.0</m>  </cell>
-          <cell halign="center"><nbsp/><nbsp/><m>6</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>4.2</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>4</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>3.8</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>2</m></cell>
-        </row>
-        <row>
-          <cell right="medium"> <m>-0.1</m> </cell>
-          <cell halign="center"><nbsp/><m>5.1</m></cell>
-          <cell halign="center"><nbsp/><m>3.3</m></cell>
-          <cell halign="center"><nbsp/><m>3.1</m></cell>
-          <cell halign="center"><nbsp/><m>2.9</m></cell>
-          <cell halign="center"><nbsp/><m>1.1</m></cell>
-        </row>
-        <row>
-          <cell right="medium"><m>0.0</m>  </cell>
-          <cell halign="center"><m>5</m></cell>
-          <cell halign="center"><m>3.2</m></cell>
-          <cell halign="center"><m> </m></cell>
-          <cell halign="center"><m>2.8</m></cell>
-          <cell halign="center"><m>1</m></cell>
-        </row>
-        <row>
-          <cell right="medium"><m>0.1</m> </cell>
-          <cell halign="center"><nbsp/><nbsp/><m>4.9</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>3.1</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>2.9</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>2.7</m></cell>
-          <cell halign="center"><nbsp/><nbsp/><m>0.9</m></cell>
-        </row>
-        <row>
-          <cell right="medium"><m>1.0</m> </cell>
-          <cell halign="center"><nbsp/><m>4</m></cell>
-          <cell halign="center"><nbsp/><m>2.2</m></cell>
-          <cell halign="center"><nbsp/><m>2.0</m></cell>
-          <cell halign="center"><nbsp/><m>1.8</m></cell>
-          <cell halign="center"><nbsp/><m>0</m></cell>
-        </row>
-      </tabular>
+      <xi:include href="./tables/planevalues.txt"/>
     </table>
     <p>
       <xref ref="tableE1"/> shows that as the inputs <m>(x,y)</m> get closer to <m>(0,0)</m>, the output of <m>f(x,y)</m> gets closer to 3. We can look at some aspect of directionality using a table, like how the row corresponding to <m>x=0</m> shows values of <m>f</m> for inputs on the <m>y</m>-axis and the values on the diagonal (from top left to bottom right) shows values of <m>f</m> for inputs with equal <m>x</m>- and <m>y</m>-coordinates. 
@@ -783,35 +734,30 @@
     </p>
     <figure xml:id="Limitplot1">
       <caption>A plot of <m>z=f(x,y) = 3-x-2y</m> with several paths approaching the input <m>(0,0)</m></caption>
-      <interactive label="interactive-Limitplot1" platform="sage" width="100%" aspect="1:1.05">
+      <image width="60%">
         <description><p>An interactive three dimensional plot with axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. A titled plane is shown in gray with a central point labeled <m>(0,0,3)</m>. Seven paths are shown in red moving along the surface toward the central point. The same shape paths are drawn in blue on the <m>xy</m>-plane moving toward the origin. </p></description>
-      <slate surface="sage">
+        <sageplot variant="3d" label="interactive-Limitplot1">
           from sage.plot.plot3d.plot3d import axes
-          @interact
-          def limitplot(s1=checkbox(True,label="Show Surface")):
-            var('t')
-            xscale=.75;yscale=.75;zscale=4
-            plot2=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=0.5)+text3d("x",(1.2*xscale,0,0),fontsize=30)+text3d("y",(0,1.2*yscale,0),fontsize=30)+text3d("z",(0,0,1.2*zscale),fontsize=30)
-            plot2+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5,width=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,width=0.5)
-            scale=0.5
-            #plot2=axes(scale,0.5,color="black",aspect_ratio=[1,1,0.25])
-            #plot2+=text3d("x",(scale+0.1,0,0),fontsize=30)+text3d("y",(0,scale+0.1,0),fontsize=30)+text3d("z",(0,0,scale+0.25),fontsize=30)
-            var('x,y')
-            f(x,y)=3-x-2*y
-            if(s1):
-              plot2+=plot3d(f,(x,-.5,0.5),(y,-0.5,0.5),color="gray",mesh=True,opacity=0.25,plot_points=5)
-            plot2+=point3d((0,0,3),size=15,color="black")+text3d("(0,0,3)",(0.3,-0.1,3.5),color="black",fontsize=25,zorder=10,frame=False)
-            paths=[(t,0),(0,t+0),(0,0-t),(0-t,0),(0-t,0+t),(0+t,0+2*t^2),(0-t,0-t-0.1*sin(20*t))]
-            for p in paths:
-              r1(t)=(p[0],p[1],0)
-              r2(t)=(p[0],p[1],f(p[0],p[1]))
-              plot2+=parametric_plot3d(r1,(t,0,0.5),color="blue",thickness=2,zorder=5)
-              plot2+=arrow(r1(t=0.25),r1(t=0.2),color="blue",arrowsize=3,zorder=5)
-              plot2+=parametric_plot3d(r2,(t,0,0.5),color="red",thickness=2)
-              plot2+=arrow(r2(t=0.25),r2(t=0.2),color="red",arrowsize=2)
-            show(plot2,viewpoint=[[-0.124,-0.7108,-0.6924],166.22],camera_position=[1.0437,2.363,0.5013],aspect_ratio=[1,1,0.25]) 
-        </slate>
-      </interactive>  
+          var('t')
+          xscale=.75;yscale=.75;zscale=4
+          plot2=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=0.5)+text3d("x",(1.2*xscale,0,0),fontsize=30)+text3d("y",(0,1.2*yscale,0),fontsize=30)+text3d("z",(0,0,1.2*zscale),fontsize=30)
+          plot2+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5,width=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,width=0.5)
+          scale=0.5
+          var('x,y')
+          f(x,y)=3-x-2*y
+          plot2+=plot3d(f,(x,-.5,0.5),(y,-0.5,0.5),color="gray",mesh=True,opacity=0.25,plot_points=5,viewpoint=[[-0.2148,-0.6611,-0.7189],153.71],camera_position=[1.0437,2.363,0.5013],aspect_ratio=[1,1,0.25])
+          plot2+=point3d((0,0,3),size=15,color="black")#+text3d("(0,0,3)",(0.3,-0.1,3.5),color="black",fontsize=20,zorder=10)
+          paths=[(t,0),(0,t+0),(0,0-t),(0-t,0),(0-t,0+t),(0+t,0+2*t^2),(0-t,0-t-0.1*sin(20*t))]
+          for p in paths:
+            r1(t)=(p[0],p[1],0)
+            r2(t)=(p[0],p[1],f(p[0],p[1]))
+            plot2+=parametric_plot3d(r1,(t,0,0.5),color="blue",thickness=2,zorder=5)
+            plot2+=arrow(r1(t=0.25),r1(t=0.2),color="blue",arrowsize=3,zorder=5)
+            plot2+=parametric_plot3d(r2,(t,0,0.5),color="red",thickness=2)
+            plot2+=arrow(r2(t=0.25),r2(t=0.2),color="red",arrowsize=2,frame=False)
+          plot2
+        </sageplot>
+      </image>
     </figure>
     <p>
       If you were not convinced that the output of <m>f</m> approaches 3 as <m>(x,y)</m> approaches <m>(0,0)</m>, you could look at approaching the origin along a particular path. For instance, we could look to simplify our limit to look at approaching the origin along the path given by <m>y=2x</m>. This means that we don't really need to examine our function's output at all points around the origin. Instead, we consider only points of the form <m>(x,2x)</m>. The limit expression becomes a one-dimensional problem in this case because along the path given by <m>y=2x</m>, <m>\displaystyle\lim_{(x,y)\to (0,0)} f(x,y) </m> becomes <m>\displaystyle\lim_{(x,2x)\to (0,0)} f(x,2x)</m>, which is the same as <m>\displaystyle\lim_{x \to 0} 3-x-2(2x) </m>.
@@ -861,7 +807,39 @@
         </md>.
         The graph of this function is shown below.
       </p>
-        <interactive label="interactive-surfaceLim1" platform="sage" width="91%" aspect="1:1">
+      <figure xml:id="surfaceLim1">
+        <caption>A plot of <m>z=f(x,y)</m></caption>
+        <image width="60%">
+          <description><p>A three dimensional plot of a surface with axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. The surface looks pinched between the points (0,0,1) and (0,0,-1). The surface goes through the x-axis as well. </p></description>
+          <sageplot variant="3d" label="interactive-surfaceLim1">
+            from sage.plot.plot3d.plot3d import axes
+            var('t,x,y')
+            scale=1
+            plot5=axes(scale,0.5,color="black",aspect_ratio=[1,1,1])
+            plot5+=text3d("x",(scale+0.25,0,0),fontsize=30)+text3d("y",(0,scale+0.25,0),fontsize=30)+text3d("z",(0,0,scale+0.25),fontsize=30)
+            f(x,y)=y/sqrt(x^2+y^2)
+            #plot5+=plot3d(f,(x,-1,1),(y,-1,1),color="lightblue",mesh=True,opacity=0.5,plot_points=41)
+            #show(plot5,viewpoint=[[-0.8872,-0.296,-0.354],86.61],camera_position=[3.1343,-3.8823,1.0265])
+            param(s,t)=(s,t,f(s,t))
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=15;m=15;a1=-1;a2=1;b1=-1;b2=1; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.7; o2=0.8; o3=0.8;
+            plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200,viewpoint=[[-0.9559,-0.1901,-0.2238],83.26],frame=False)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot5+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot5+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            plot5
+          </sageplot>
+        </image>
+        </figure>
+        <!-- <interactive label="interactive-surfaceLim1" platform="sage" width="91%" aspect="1:1">
           <slate surface="sage">
             from sage.plot.plot3d.plot3d import axes
             var('t,x,y')
@@ -873,7 +851,7 @@
             show(plot5,viewpoint=[[-0.8872,-0.296,-0.354],86.61],camera_position=[3.1343,-3.8823,1.0265])
           </slate>
         <description><p>A three dimensional plot of a surface with axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. The surface looks pinched between the points (0,0,1) and (0,0,-1). The surface goes through the x-axis as well. </p></description>
-      </interactive>  
+      </interactive>  --> 
       <!-- <figure xml:id="act-mv_deriv-limits-paths">
         <caption>The graph of <m>f(x,y) = \frac{y}{\sqrt{x^2+y^2}}</m>.</caption>
         <image width="50%" source="images/fig_10_1_disc_2"/>
@@ -901,56 +879,7 @@
         <p>
           Values of <m>f</m> (to three decimal places) at several points close to <m>(0,0)</m> are shown below.
         </p>
-          <tabular halign="right">
-            <row>
-              <cell halign="center"><m>x\backslash y</m></cell>
-              <cell bottom="medium"><m>-1.000</m></cell>
-              <cell bottom="medium"><m>-0.100</m></cell>
-              <cell bottom="medium"><nbsp/><m>0.000</m></cell>
-              <cell bottom="medium"><nbsp/><m>0.100</m></cell>
-              <cell bottom="medium"><nbsp/><m>1.000</m></cell>
-            </row>
-            <row>
-              <cell right="medium"><m>-1.000</m></cell>
-              <cell><m>-0.707</m></cell>
-              <cell halign="center"><mdash/></cell>
-              <cell><nbsp/><m>0.000</m></cell>
-              <cell halign="center"><mdash/></cell>
-              <cell><nbsp/><m>0.707</m></cell>
-            </row>
-            <row>
-              <cell right="medium"><m>-0.100</m></cell>
-              <cell halign="center"><mdash/></cell>
-              <cell><m>-0.707</m></cell>
-              <cell><nbsp/><m>0.000</m></cell>
-              <cell><nbsp/><m>0.707</m></cell>
-              <cell halign="center"><mdash/></cell>
-            </row>
-            <row>
-              <cell right="medium"><m>0.000</m></cell>
-              <cell><m>-1.000</m></cell>
-              <cell><m>-1.000</m></cell>
-              <cell halign="center"><mdash/></cell>
-              <cell><nbsp/><m>1.000</m></cell>
-              <cell><nbsp/><m>1.000</m></cell>
-            </row>
-            <row>
-              <cell right="medium"><m>0.100</m></cell>
-              <cell halign="center"><mdash/></cell>
-              <cell><m>-0.707</m></cell>
-              <cell><m>0.000</m></cell>
-              <cell><m>0.707</m></cell>
-              <cell halign="center"><mdash/></cell>
-            </row>
-            <row>
-              <cell right="medium"><m>1.000</m></cell>
-              <cell><m>-0.707</m></cell>
-              <cell halign="center"><mdash/></cell>
-              <cell><m>0.000</m></cell>
-              <cell halign="center"><mdash/></cell>
-              <cell><m>0.707</m></cell>
-            </row>
-          </tabular>
+        <xi:include href="./tables/limitvalues.txt"/>
         <p>              
           Based on these calculations, state whether you think <m>f</m> has a limit at <m>(0,0)</m> and give an argument supporting your statement.
         </p>
@@ -1332,9 +1261,9 @@
           </p> 
           <figure xml:id="limpaths2">
             <caption>A plot of <m>z=f(x,y) = \frac{y}{\sqrt{x^2+y^2}}</m> with a variety of paths approaching the origin</caption>
-            <interactive label="interactive-limpaths2" platform="sage" width="91%" aspect="1:1">
+            <image width="60%">
               <description><p>A three dimensional plot of a surface with axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. The surface looks pinched between the points (0,0,1) and (0,0,-1). The surface goes through the x-axis as well. Seven paths are plotted in blue approaching the origin on the xy-plane. These seven paths are also drawn in red along the surface and approaching the <m>z</m> axis at different heights depending on the direction of the approach. </p></description>
-              <slate surface="sage">
+              <sageplot variant="3d" label="interactive-limpaths2">
                 from sage.plot.plot3d.plot3d import axes
                 var('x,y,t')
                 scale=0.75
@@ -1344,7 +1273,6 @@
                 f(x,y)=y/sqrt(x^2+y^2)
                 #f(x,y)=3-x-2*sqrt(3*x^2+y^2)
                 #plot5+=plot3d(f,(x,-.5,0.5),(y,-0.5,0.5),color="lightblue",mesh=True,opacity=0.25,plot_points=51)
-
                 param(s,t)=(s,t,f(s,t));s1=-0.5;s2=0.5;t1=-0.5;t2=0.5;
                 #set up grid      n is number of steps in s    m is number of steps in t  
                 #a1 is min s    a2 is max s   b1 is min t    b2 is max t
@@ -1367,10 +1295,10 @@
                   plot5+=parametric_plot3d(r1,(t,0.01,0.5),color="blue",thickness=2,zorder=-1)
                   plot5+=arrow(r1(t=0.25),r1(t=0.2),color="blue",arrowsize=3,zorder=-1)
                   plot5+=parametric_plot3d(r2,(t,0.01,0.5),color="red",thickness=4)
-                  plot5+=arrow(r2(t=0.25),r2(t=0.2),color="red",arrowsize=2)
-                show(plot5,viewpoint=[[-0.8885,-0.2658,-0.374],77.31],camera_position=[1.6428,-2.0618,0.9308],aspect_ratio=(1,1,1/2),frame=False)
-              </slate>
-            </interactive>  
+                  plot5+=arrow(r2(t=0.25),r2(t=0.2),color="red",arrowsize=2,viewpoint=[[-0.8885,-0.2658,-0.374],77.31],camera_position=[1.6428,-2.0618,0.9308],aspect_ratio=(1,1,1/2),frame=False)
+                plot5
+              </sageplot>
+            </image> 
           </figure>
           <p>  
             <xref ref="limpaths2"/> shows in blue a collection of paths in the <m>xy</m>-plane that approach the origin. Each of these paths is shown in red on the surface <m>z=f(x,y)=\frac{y}{\sqrt{x^2+y^2}}</m> to demonstrate how the output of <m>f</m>, which is represented as the height of the surface, approaches different values as these paths each approach <m>(0,0)</m>. Note that the limit along each of these paths exists, but the limit as <m>(x,y) \to (0,0)</m> does not exist because there are paths that yield different limits. This should give you a greater appreciation for a surface plot like we saw in <xref ref="act-mv_deriv-limits-paths"/>. Computer-generated plots will create a surface plot but it is important for you to identify features on that plot that will have behavior quite different than the smooth, continuous appearance. 

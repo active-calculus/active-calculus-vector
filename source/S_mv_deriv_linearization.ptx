@@ -77,7 +77,7 @@
       </interactive>
     </figure>
     <p>
-      When viewing our differentiable function on a very small scale, the graph will be very close to the graph of the tangent line. Thus we can use the derivative as the slope of our tangent line in order to measure how tilted our graph is on a small scale. Because the graph of the function and the tangent line are so similar for a small region around the given point, the tangent line will allow us to approximate the output value of the function or the change in the output value for inputs near the given point. Tangent lines were used in many different applications and extensions of derivatives; For example, horizontal tangent lines gave critical points for optimization problems and tangent lines were used to approximate zeros or roots of functions when developing the Newton-Raphson Method. 
+      When viewing our differentiable function on a very small scale, the graph will be very close to the graph of the tangent line. Thus we can use the derivative as the slope of our tangent line in order to measure how tilted our graph is on a small scale. Because the graph of the function and the tangent line are so similar for a small region around the given point, the tangent line will allow us to approximate the output value of the function or the change in the output value for inputs near the given point. Tangent lines were used in many different applications and extensions of derivatives; For example, horizontal tangent lines gave critical inputs for optimization problems and tangent lines were used to approximate zeros or roots of functions when developing the Newton-Raphson Method. 
     </p>  -->
     <p>
       In <xref ref="tangentlines"/>, we saw that a curve in space, given as the graph of a vector-valued function of one variable, is locally linear and approximated well by a tangent line provided that the function is differentiable. So the vector-valued function of one variable that describes a curve in space will be differentiable if the curve looks like a line on a small scale.
@@ -366,37 +366,38 @@
         <p>
           What are the slopes of the tangent lines to the traces that you drew in the previous part? Write a couple of sentences to explain why the tilt of the tangent plane in the <m>x</m>-direction is given by the partial derivative <m>f_x</m> and the tilt of the tangent plane in the <m>y</m>-direction is given by the partial derivative <m>f_y</m>. Your answer should discuss how each of these slopes/partial derivatives relates to the traces of the surface and the plane illustrated below. You should identify whether the red/orange traces along the plane and the black/blue traces along the surface correspond to constant values of <m>x</m> or <m>y</m>.
         </p>
-          <interactive label="interactive-F_10_4_tangent_traces" platform="sage" width="91%" aspect="1:1">
-            <slate surface="sage">
-              var('x,y,z,t,s')
-              f(x,y)=6-x^2/2-y^2
-              param(s,t)=(s,t,f(s,t))
-              param2(s,t)=(s,t,4.5-(s-1)-2*(t-1))
-              #set up grid      n is number of steps in s    m is number of steps in t  
-              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-              n=5;m=5;a1=1/2;a2=1.5;b1=1/2;b2=1.5; 
-              #c1 is surface color     o1 is surface opacity
-              #c2 and o2 are for constant t value traces
-              #c3 and o3 are for constant s value traces
-              c1="blue"; c2="black"; c3="black"; o1=0.3; o2=0.4; o3=0.4;
-              plot6=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-              plot6+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color="red",opacity=o1)
-              for i in range(n+1):
-                sv=a1+i/n*(a2-a1)
-                plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-                plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c2,opacity=o2)
-              for i in range(m+1):
-                tv=b1+i/m*(b2-b1)
-                plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
-              plot6+=point((1,1,4.5),color="black",size=10)
-              sv=1; plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color="blue",thickness=3)
-              tv=1; plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color="black",thickness=3)
-              sv=1; plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color="orange",thickness=3)
-              tv=1; plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color="red",thickness=3)
-              show(plot6,aspect_ratio=(1,1,0.35),viewpoint=[[-0.396,-0.6577,-0.6407],137.81],camera_position=[3.2568,2.1949,1.6581])
-            </slate>
-          <description><p>A three dimensional plot with a slightly curved surface shown in blue with two curves in perpendicular directions along the surface through a highlighted point. A plane is shown in red that goes through the highlighted point and is tilted the same way as the blue surface at the highlighted point is plotted. Along the red plane, there are two lines drawn in the same directions as the perpendicular curves along the blue surface. </p></description></interactive>
+        <image width="60%">
+          <description><p>A three dimensional plot with a slightly curved surface shown in blue with two curves in perpendicular directions along the surface through a highlighted point. A plane is shown in red that goes through the highlighted point and is tilted the same way as the blue surface at the highlighted point is plotted. Along the red plane, there are two lines drawn in the same directions as the perpendicular curves along the blue surface. </p></description>
+          <sageplot variant="3d" label="interactive-F_10_4_tangent_traces">
+            var('x,y,z,t,s')
+            f(x,y)=6-x^2/2-y^2
+            param(s,t)=(s,t,f(s,t))
+            param2(s,t)=(s,t,4.5-(s-1)-2*(t-1))
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=5;m=5;a1=1/2;a2=1.5;b1=1/2;b2=1.5; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="blue"; c2="black"; c3="black"; o1=0.3; o2=0.4; o3=0.4;
+            plot6=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+            plot6+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color="red",opacity=o1)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            plot6+=point((1,1,4.5),color="black",size=10)
+            sv=1; plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color="blue",thickness=3)
+            tv=1; plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color="black",thickness=3)
+            sv=1; plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color="orange",thickness=3)
+            tv=1; plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color="red",thickness=3,aspect_ratio=(1,1,0.35),viewpoint=[[-0.396,-0.6577,-0.6407],137.81],camera_position=[3.2568,2.1949,1.6581])
+            plot6
+          </sageplot>
+        </image>
       </statement>
       <answer>
         <p>
@@ -665,18 +666,18 @@
     </p>
     <figure xml:id="fig-mv_deriv-linearization-tangent_linearization">
       <caption>A plot of a locally linear function <m>f(x,y)</m> </caption>
-      <interactive label="interactive-fig-mv_deriv-linearization-tangent_linearization" platform="sage" width="91%" aspect="1:1">
+      <image width="60%">
         <description><p>A curved surface is shown in blue with a highlighted point at (1,1,4.5). A plane is shown in red that goes through the highlighted point and is tilted the same as the surface at the highlighted point. </p></description>
-        <slate surface="sage">
+        <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-tangent_linearization">
           var('x,y,s,t')
           a=2
           z=2*2^(-a)
           plot6=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="blue",plot_points=13,opacity=0.4,mesh=True)
           plot6+=point((1,1,4.5),color="black",size=30*z)
-          plot6+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="red",opacity=0.3,plot_points=5,mesh=True)
-          show(plot6,viewpoint=[[-0.5332,-0.5677,-0.6272],119],camera_position=[1.1679,1.0105,2.2664],aspect_ratio=(1,1,0.3))
-        </slate>
-      </interactive>
+          plot6+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="red",opacity=0.3,plot_points=5,mesh=True,viewpoint=[[-0.5332,-0.5677,-0.6272],119],camera_position=[1.1679,1.0105,2.2664],aspect_ratio=(1,1,0.3))
+          plot6
+        </sageplot>
+      </image>
     </figure>
     <!-- <figure xml:id="fig-mv_deriv-linearization-tangent_linearization">
       <caption>The linearization of <m>f(x,y)</m>.</caption>
@@ -754,7 +755,8 @@
         <p>
           The table below provides a collection of values of the wind chill <m>w(v,T)</m>, in degrees Fahrenheit, as a function of  wind speed, in miles per hour, and temperature, also in degrees Fahrenheit.
         </p>
-          <tabular halign="center">
+        <xi:include href="./tables/windchill1.txt"/>
+          <!-- <tabular halign="center">
             <row>
               <cell><m>v \backslash T</m></cell>
               <cell bottom="medium"><m>-20</m></cell>
@@ -825,7 +827,7 @@
               <cell><m>-21</m></cell>
               <cell><m>-14</m></cell>
             </row>
-          </tabular>
+          </tabular> -->
         <p>
           <ol marker="i">
             <li>
@@ -1141,29 +1143,60 @@
           </p>
           <figure xml:id="fig-mv_deriv-linearization-absxabsy">
             <caption>A plot of <m>f(x,y)=|x|+|y|</m> </caption>
-            <interactive label="interactive-fig-mv_deriv-linearization-absxabsy" platform="sage" width="91%" aspect="1:1">
-              <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A surface is drawn in light blue with surface being a tilted plane going down to a height of zero as the x and y coordinates go to zero. This surface has a V-shape above each of the x and y axes.</p></description>
-            <slate surface="sage">
+            <image width="60%">
+              <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A surface is drawn in light blue with surface being a tilted plane going down to a height of zero as the x and y coordinates go to zero. This surface has a V-shape above each of the x and y axes. </p></description>
+              <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-absxabsy">
                 from sage.plot.plot3d.plot3d import axes
                 plot8=axes(2.5,1,color="black")+text3d("x",(3,0,0),fontsize=30)+text3d("y",(0,3,0),fontsize=30)+text3d("z",(0,0,3),fontsize=30)
                 var('x,y')
-                plot8+=plot3d(abs(x)+abs(y),(x,-2,2),(y,-2,2),plot_points=31,mesh=True,opacity=0.8,color="lightblue")
-                show(plot8)
-              </slate>
-            </interactive>
+                plot8+=plot3d(abs(x)+abs(y),(x,-2,2),(y,-2,2),plot_points=13,mesh=True,opacity=0.8,color="lightblue")
+                plot8
+              </sageplot>
+            </image>
           </figure>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Your experience from single-variable calculus may lead you to reasonably expect that if <m>f_x(a,b)</m> and <m>f_y(a,b)</m> both exist at a point <m>(a,b)</m>, then <m>f</m> is locally linear at <m>(a,b)</m>. <alert>This is not sufficient for multivariable functions, however.</alert> To illustrate this, consider the function defined by <m>f(x,y) = x^{1/3} y^{1/3}</m>. You can see from the figure below that as you zoom in around the origin, the graph does not flatten out and look like a plane. <xref ref="Ez_10_4_0" text="type-local"/> guides you through using the limit definition of the partial derivative to show that <m>f_x(0,0)</m> and <m>f_y(0,0)</m> both exist, but that <m>f</m> is not locally linear at <m>(0,0)</m>. 
+            Your experience from single-variable calculus may lead you to reasonably expect that if <m>f_x(a,b)</m> and <m>f_y(a,b)</m> both exist at a point <m>(a,b)</m>, then <m>f</m> is locally linear at <m>(a,b)</m>. <alert>This is not sufficient for multivariable functions, however.</alert> To illustrate this, consider the function defined by <m>f(x,y) = x^{1/3} y^{1/3}</m>. You can see from the figures below that as you zoom in around the origin (the plot on the right), the graph does not flatten out and look like a plane. <xref ref="Ez_10_4_0" text="type-local"/> guides you through using the limit definition of the partial derivative to show that <m>f_x(0,0)</m> and <m>f_y(0,0)</m> both exist, but that <m>f</m> is not locally linear at <m>(0,0)</m>. 
           </p>
           <figure xml:id="fig-mv_deriv-linearization-x13y13">
+            <caption>A plot of <m>f(x,y)= x^{1/3} y^{1/3}</m></caption>
+            <sidebyside>
+              <image width="60%">
+                <description><p>An interactive three dimensional plot of a smooth surface that is pinched at the origin. Along a direction corresponding to x and y coordinates being the same, the surface has an upward facing V-shape with a cusp at the origin. Along a direction corresponding to x being equal to negative y, the surface has a downward facing V-shape with a cusp at the origin.  </p></description>
+                <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-x13y131">
+                  var('x,y,t,s')
+                  f(x,y)=x^(1/3.)*y^(1/3.)
+                  a=0; b=2^(-a);
+                  p1=parametric_plot3d((s,t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
+                  p1+=parametric_plot3d((-s,-t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
+                  p1+=parametric_plot3d((-s,t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
+                  p1+=parametric_plot3d((s,-t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue",aspect_ratio=1)
+                  p1
+                </sageplot>
+              </image>
+              <image width="60%">
+                <description><p>An interactive three dimensional plot of a smooth surface that is pinched at the origin. Along a direction corresponding to x and y coordinates being the same, the surface has an upward facing V-shape with a cusp at the origin. Along a direction corresponding to x being equal to negative y, the surface has a downward facing V-shape with a cusp at the origin.  </p></description>
+                <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-x13y132">
+                  var('x,y,t,s')
+                  f(x,y)=x^(1/3.)*y^(1/3.)
+                  a=6; b=2^(-a);
+                  p1=parametric_plot3d((s,t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
+                  p1+=parametric_plot3d((-s,-t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
+                  p1+=parametric_plot3d((-s,t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
+                  p1+=parametric_plot3d((s,-t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue",aspect_ratio=[1,1,0.3])
+                  p1
+                </sageplot>
+              </image>
+            </sidebyside>
+          </figure>
+          <!-- <figure xml:id="fig-mv_deriv-linearization-x13y13">
             <caption>A plot of <m>f(x,y)= x^{1/3} y^{1/3}</m> </caption>
             <interactive label="interactive-fig-mv_deriv-linearization-x13y13" platform="sage" width="100%" aspect="1:1">
               <description><p>An interactive three dimensional plot of a smooth surface that is pinched at the origin. Along a direction corresponding to x and y coordinates being the same, the surface has an upward facing V-shape with a cusp at the origin. Along a direction corresponding to x being equal to negative y, the surface has a downward facing V-shape with a cusp at the origin. </p></description>
-            <slate surface="sage">
+              <slate surface="sage">
                 var('x,y,t,s')
                 f(x,y)=x^(1/3.)*y^(1/3.)
                 @interact
@@ -1176,7 +1209,7 @@
                     show(p1)
               </slate>
             </interactive>
-          </figure>
+          </figure> -->
         </statement>
       </task>
     </example>

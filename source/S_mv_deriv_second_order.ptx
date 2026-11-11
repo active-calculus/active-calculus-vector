@@ -624,39 +624,41 @@
     </p>
   <figure xml:id="fig-mv_deriv-second_order-fxx">
     <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>y=-1.5</m> and tangent line drawn </caption>
-    <interactive label="interactive-fig-mv_deriv-second_order-fxx" platform="sage" width="95%" aspect="1:1.15">
-      <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue downward facing parabola is drawn along the surface at the constant y-coordinate -1.5. The slider at the top of the figure changes the location of a highlighted point on the blue parabola. The line tangent along the blue parabola at the highlighted point is drawn in black.  </p></description>
-      <slate surface="sage">
-        var('x,y,z,t')
-        @interact
-        def expytrace(a=slider(1,2,0.1,default=1.2,label="x-coordinate")):
-          f(x,y)=sin(x)*exp(-y)
-          param(s,t)=(s,t,f(s,t))
-          #set up grid      n is number of steps in s    m is number of steps in t  
-          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-          n=10;m=12;a1=0;a2=pi;b1=-2;b2=0; 
-          #c1 is surface color     o1 is surface opacity
-          #c2 and o2 are for constant t value traces
-          #c3 and o3 are for constant s value traces
-          c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.4; o3=0.4;
-          plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
-          for i in range(n+1):
-            sv=a1+i/n*(a2-a1)
-            plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-          for i in range(m+1):
-            tv=b1+i/m*(b2-b1)
-            plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-          fx=diff(f,x)
-          fy=diff(f,y)
-          fv=f(a,-1.5)
-          fxv=fx(a,-1.5)
-          fyv=fy(a,-1.5)
-          plot11=plot99+parametric_plot3d((x,-1.5,f(x,-1.5)+0.05),(x,0,pi),color="blue",thickness=3)
-          plot11+=point((a,-1.5,f(a,-1.5)),color="black",size=30)
-          plot11+=parametric_plot3d((a+t,-1.5,fv+t*fxv+0.05),(t,-0.75,0.75),color="black",thickness=4,zorder=5)
-          show(plot11,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.6961,5.9053,4.602])
-      </slate>
-    </interactive> 
+    <image width="60%">
+        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue downward facing parabola is drawn along the surface at the constant y-coordinate -1.5. The slider at the top of the figure changes the location of a highlighted point on the blue parabola. The line tangent along the blue parabola at the highlighted point is drawn in black. </p></description>
+        <sageplot variant="3d" label="interactive-fig-mv_deriv-second_order-fxx">
+          var('x,y,z,t')
+          def expytrace(a):
+            f(x,y)=sin(x)*exp(-y)
+            param(s,t)=(s,t,f(s,t))
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=10;m=12;a1=0;a2=pi;b1=-2;b2=0; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.4; o3=0.4;
+            plot11=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            fx=diff(f,x)
+            fy=diff(f,y)
+            fv=f(a,-1.5)
+            fxv=fx(a,-1.5)
+            fyv=fy(a,-1.5)
+            plot11+=parametric_plot3d((x,-1.5,f(x,-1.5)+0.05),(x,0,pi),color="blue",thickness=3)
+            plot11+=point((a,-1.5,f(a,-1.5)),color="black",size=20)
+            plot11+=parametric_plot3d((a+t,-1.5,fv+t*fxv+0.05),(t,-0.75,0.75),color="black",thickness=4,zorder=5,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.6961,5.9053,4.602])
+            return plot11
+          frames1=[expytrace(a/10) for a in range(5,25)]
+          plot123=animate(frames1).interactive(delay=30,auto_play=False,animation_controls=True)
+          plot123
+        </sageplot>
+      </image>
   </figure>
   <p>
     Algebraically, we can calculate <m>f_x(x,y)=\cos(x)e^{-y}</m> and <m>f_{xx}(x,y)=-\sin(x)e^{-y} </m>. If we consider <m>x</m> coordinates from <m>0</m> to <m>\pi</m>, then <m>f_{xx}(x,y)=-\sin(x)e^{-y} \lt 0 </m> since <m>-\sin(x) \leq 0</m> if <m>0\leq x\leq \pi</m> and <m>e^{-y} \gt 0</m> for all values of <m>y</m>, including <m>y = -1.5</m>. The other second partials of <m>f</m> are explored in <xref ref="act-mv_deriv-second_order-shape"/>. 
@@ -677,13 +679,13 @@
       <p>
         In the interactive graphic below we see the trace of <m>f(x,y) = \sin(x) e^{-y}</m> with <m>x</m> held constant with <m>x = 1.75</m> plotted in blue. Use the slider to investigate how the slope of the tangent line changes as you vary the <m>y</m>-coordinate along this trace. Write a couple of sentences that describe whether the slope of the tangent lines to this curve increase or decrease as <m>y</m> increases along the trace <m>x=1.75</m>. Be sure to pay attention to which direction corresponds to each coordinate increasing. 
       </p>
-      <!-- <figure xml:id="F_10_3_fyy">
-        <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>x=1.75</m> and tangent line drawn </caption> -->
-        <interactive label="interactive-F_10_3_fyy" platform="sage" width="95%" aspect="1:1.08">
-          <slate surface="sage">
+      <figure xml:id="F_10_3_fyy">
+        <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>x=1.75</m> and tangent line drawn </caption>
+        <image width="60%">
+          <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent along the blue parabola at the highlighted point is drawn in black.  </p></description>
+          <sageplot variant="3d" label="interactive-F_10_3_fyy">
             var('x,y,z,t')
-            @interact
-            def expxtrace(a=slider(-2,-1,0.1,default=-1.5,label="y-coordinate")):
+            def expxtrace(a):
               f(x,y)=sin(x)*exp(-y)
               param(s,t)=(s,t,f(s,t))
               #set up grid      n is number of steps in s    m is number of steps in t  
@@ -692,26 +694,28 @@
               #c1 is surface color     o1 is surface opacity
               #c2 and o2 are for constant t value traces
               #c3 and o3 are for constant s value traces
-              c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.4; o3=0.4;
-              plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
+              c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.2; o3=0.2;
+              plot12=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
               for i in range(n+1):
                 sv=a1+i/n*(a2-a1)
-                plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                plot12+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
               for i in range(m+1):
                 tv=b1+i/m*(b2-b1)
-                plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                plot12+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
               fx=diff(f,x)
               fy=diff(f,y)
               fv=f(1.75,a)
               fxv=fx(1.75,a)
               fyv=fy(1.75,a)
-              plot12=plot99+parametric_plot3d((1.75,y,f(1.75,y)+0.05),(y,-2,0),color="blue",thickness=3)
-              plot12+=point3d((1.75,a,f(1.75,a)),color="black",size=30)
-              plot12+=parametric_plot3d((1.75,a+t,fv+t*fyv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
-              show(plot12,viewpoint=[[-0.5268,-0.5508,-0.6474],116.47],camera_position=[7.3902,-0.7407,2.4237])
-          </slate>
-        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent along the blue parabola at the highlighted point is drawn in black. </p></description>
-      </interactive> 
+              plot12+=parametric_plot3d((1.75,y,f(1.75,y)+0.05),(y,-2,0),color="blue",thickness=3)
+              plot12+=point3d((1.75,a,f(1.75,a)),color="black",size=30,viewpoint=[[-0.5268,-0.5508,-0.6474],116.47],camera_position=[7.3902,-0.7407,2.4237])
+              plot12+=parametric_plot3d((1.75,a+t,fv+t*fyv+0.05),(t,-0.25,0.25),color="black",thickness=4,zorder=5)
+              return plot12
+            frames1=[expxtrace(-a/10) for a in range(5,20)]
+            plot123=animate(frames1).interactive(delay=30,auto_play=False,animation_controls=True)
+            plot123
+          </sageplot>
+        </image>
       <!-- </figure> -->
       <!-- <figure xml:id="F_10_3_fyy">
         <caption>The tangent lines to a trace with increasing <m>y</m>.</caption>
@@ -719,8 +723,8 @@
         <image source="images/fig_10_3_fyy_1"/>
         <image source="images/fig_10_3_fyy_2"/>
         <image source="images/fig_10_3_fyy_3"/>
-        </sidebyside>
-      </figure> -->
+        </sidebyside>-->
+      </figure> 
     </statement>
     <solution>
       <p>
@@ -748,17 +752,17 @@
   <task>
     <statement>
       <p>
-        We want to explore what the mixed partial derivative <m>f_{xy}</m> describes. We will do this by focusing on the point <m>(x,y)=(1.75,-1.5)</m>. In this part, we will work through the definition for <m>f_{xy} (1.75,-1.5)</m> carefully.
+        We want to explore what the mixed partial derivative <m>f_{xy}</m> describes. We will do this by focusing on the point <m>(x,y)=(2,-1.5)</m>. In this part, we will work through the definition for <m>f_{xy} (2,-1.5)</m> carefully.
       </p>
       <p>  
-        The partial derivative <m>f_x(1.75,-1.5)</m> measures the slope of the line tangent to the trace given by <m>y=-1.5</m>. These tangent lines change in the <m>x</m>-direction (parallel to the <m>x</m>-axis). When we consider <m>f_{xy}</m>, we are taking the partial derivative of <m>f_x</m> with respect to <m>y</m>, <m>\frac{\partial}{\partial y} \Bigl[ f_x \Bigr]</m>. Thus, we are considering how the slope of the tangent line in the <m>x</m>-direction changes when we vary the <m>y</m>-coordinate a small amount. We can approximate <m>f_{xy}(1.75,-1.5)</m> with the difference quotient
-        <md> \frac{f_x(1.75,-1.5+h)-f_x(1.75,-1.5)}{h}</md>.
+        The partial derivative <m>f_x(2,-1.5)</m> measures the slope of the line tangent to the trace given by <m>y=-1.5</m>. These tangent lines change in the <m>x</m>-direction (parallel to the <m>x</m>-axis). When we consider <m>f_{xy}</m>, we are taking the partial derivative of <m>f_x</m> with respect to <m>y</m>, <m>\frac{\partial}{\partial y} \Bigl[ f_x \Bigr]</m>. Thus, we are considering how the slope of the tangent line in the <m>x</m>-direction changes when we vary the <m>y</m>-coordinate a small amount. We can approximate <m>f_{xy}(2,-1.5)</m> with the difference quotient
+        <md> \frac{f_x(2,-1.5+h)-f_x(2,-1.5)}{h}</md>.
       </p>
       <p>
-        One way of visualizing this is by thinking of sliding a pencil along the trace with <m>x=1.5</m> so that the pencil is in the <m>x</m>-direction and tangent to the surface. In the interactive image below, the pencil would be the black tangent line drawn. Use the slider at the top of the interactive to change the <m>y</m>-coordinate of the point where the tangent line is drawn. Examine what happens to the slope of the tangent line as you increase the <m>y</m>-coordinate of the point of tangency by adjusting the slider. The tangent line in the <m>x</m>-direction at the point <m>(1.75,-1.5)</m> is drawn in gray for reference purposes. 
+        One way of visualizing this is by thinking of sliding a pencil along the trace with <m>x=1.5</m> so that the pencil is tangent to the surface in the <m>x</m>-direction. In <xref ref="F_10_3_fxy"/> below, the pencil would be the black tangent line drawn. Use the slider at the top of the interactive to change the <m>y</m>-coordinate of the point where the tangent line is drawn. Examine what happens to the slope of the tangent line as you increase the <m>y</m>-coordinate of the point of tangency by adjusting the slider. The tangent line in the <m>x</m>-direction at the point <m>(2,-1.5)</m> is drawn in gray for reference purposes. 
       </p>
       <p>
-        Based on your exploration, write a few sentences about whether <m>f_{xy}(1.75, -1.5)</m> is positive or negative and justify your reasoning.
+        Based on your exploration, write a few sentences about whether <m>f_{xy}(2, -1.5)</m> is positive or negative and justify your reasoning.
       </p>
      <!--  <figure xml:id="F_10_3_fxy">
         <caption>The trace of <m>z = f(x,y) = \sin(x)e^{-y}</m> with <m>x = 1.75</m>, along with tangent lines in the <m>y</m>-direction at three different points.</caption>
@@ -768,45 +772,49 @@
         <image source="images/fig_10_3_fxy_3"/>
         </sidebyside>
       </figure> -->
-      <!-- <figure xml:id="F_10_3_fxy">
-        <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>x=1.75</m> and a tangent line in the <m>x</m>-direction drawn </caption> -->
+      <figure xml:id="F_10_3_fxy">
+        <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>x=2</m> and a tangent line in the <m>x</m>-direction drawn </caption>
         <interactive label="interactive-F_10_3_fxy" platform="sage" width="95%" aspect="1:1.08">
           <slate surface="sage">
             var('x,y,z,t')
-            @interact
-            def expxtrace2(a=slider(-2,-1,0.1,default=-1.5,label="y-coordinate")):
+            def expxtrace2(a):
               f(x,y)=sin(x)*exp(-y)
+              xv=2
               param(s,t)=(s,t,f(s,t))
               #set up grid      n is number of steps in s    m is number of steps in t  
               #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-              n=10;m=12;a1=0;a2=pi;b1=-2;b2=0; 
+              n=10;m=12;a1=pi/4;a2=3*pi/4;b1=-2;b2=-1; 
               #c1 is surface color     o1 is surface opacity
               #c2 and o2 are for constant t value traces
               #c3 and o3 are for constant s value traces
               c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.3; o3=0.3;
-              plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
+              plot12=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
               for i in range(n+1):
                 sv=a1+i/n*(a2-a1)
-                plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                plot12+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
               for i in range(m+1):
                 tv=b1+i/m*(b2-b1)
-                plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                plot12+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
               fx=diff(f,x)
               fy=diff(f,y)
-              fv=f(1.75,a)
-              fxv=fx(1.75,a)
-              fyv=fy(1.75,a)
+              fv=f(xv,a)
+              fxv=fx(xv,a)
+              fyv=fy(xv,a)
               fxy=diff(fx,y)
-              fxyv=fxy(1.75,a)
-              plot12=plot99+parametric_plot3d((1.75,y,f(1.75,y)),(y,-2,0),color="blue",thickness=3,opacity=0.75)
-              plot12+=text3d("x=1.75",(1.75,-2,8),color="blue",fontsize=20)
-              plot12+=point3d((1.75,a,f(1.75,a)),color="black",size=30)
-              plot12+=parametric_plot3d((1.75+t,-1.5,f(1.75,-1.5)+t*fx(1.75,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
-              plot12+=parametric_plot3d((1.75+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
-              show(plot12,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
+              fxyv=fxy(xv,a)
+              plot12+=parametric_plot3d((xv,y,f(xv,y)),(y,-2,-1),color="blue",thickness=3,opacity=0.75)
+              plot12+=text3d("x="+str(xv.n(digits=3)),(xv,-2,7),color="blue",fontsize=20)
+              plot12+=point3d((xv,a,f(xv,a)),color="black",size=30,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
+              plot12+=parametric_plot3d((xv+t,-1.5,f(xv,-1.5)+t*fx(xv,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
+              plot12+=parametric_plot3d((xv+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
+              return plot12
+            frames1=[expxtrace2(-a/10) for a in range(10,20)]
+            plot123=animate(frames1).interactive(delay=30,auto_play=False,animation_controls=True)
+            plot123
           </slate>
-        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent to the surface in the direction perpendicular to the blue curve at the highlighted point is drawn in black. </p></description></interactive> 
-      <!-- </figure> -->
+        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent to the surface in the direction perpendicular to the blue curve at the highlighted point is drawn in black. </p></description>
+      </interactive> 
+    </figure>
     </statement>
     <answer>
       <p>
@@ -822,83 +830,75 @@
   <task>
     <statement>
       <p>
-        Compute <m>f_{xy}(x,y)</m> algebraically and evaluate <m>f_{xy}(1.75, -1.5)</m>.  Write a couple of sentences about how this value compares with your observations in the previous part.
+        Compute <m>f_{xy}(x,y)</m> algebraically and evaluate <m>f_{xy}(2, -1.5)</m>.  Write a couple of sentences about how this value compares with your observations in the previous part.
       </p>
     </statement>
     <answer>
       <p>
-        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(1.75,-1.5) \approx 0.8</m>. This number is positive, as we discussed in the previous part.
+        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(2,-1.5) \approx 0.093</m>. This number is positive, as we discussed in the previous part.
       </p>
     </answer>
     <solution>
       <p>
-        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(1.75,-1.5) \approx 0.8</m>. This number is positive, as we discussed in the previous part.
+        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(2,-1.5) \approx 0.093</m>. This number is positive, as we discussed in the previous part.
       </p>
     </solution>
   </task>    
   <task>
     <statement>
       <p>
-        We know that <m>f_{xx}(1.75, -1.5)</m> measures the concavity of the <m>y = -1.5</m> trace, and that <m>f_{yy}(1.75, -1.5)</m> measures the concavity of the <m>x = 1.75</m> trace.  What do you think the quantity <m>f_{xy}(1.75, -1.5)</m> measures?
+        We know that <m>f_{xx}(2, -1.5)</m> measures the concavity of the <m>y = -1.5</m> trace, and that <m>f_{yy}(2, -1.5)</m> measures the concavity of the <m>x = 2</m> trace.  What do you think the quantity <m>f_{xy}(2, -1.5)</m> measures?
       </p>
     </statement>
     <answer>
       <p>
-        The quantity <m>f_{xy}(1.75,-1.5)</m> tells us how much the slopes of the <m>x=1.75</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(1.75,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=1.75</m> trace.
+        The quantity <m>f_{xy}(2,-1.5)</m> tells us how much the slopes of the <m>x=2</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(2,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=2</m> trace.
       </p>
     </answer>
     <solution>
       <p>
-        The quantity <m>f_{xy}(1.75,-1.5)</m> tells us how much the slopes of the <m>x=1.75</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(1.75,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=1.75</m> trace.
+        The quantity <m>f_{xy}(2,-1.5)</m> tells us how much the slopes of the <m>x=2</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(2,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=2</m> trace.
       </p>
     </solution>
   </task>
   <task>
     <statement>
       <p>
-        In the interactive image below, the trace with <m>y = -1.5</m> is highlighted with the point <m>(1.75,-1.5,f(1.75,-1.5))</m> drawn in black. Sketch three tangent lines to this trace whose slopes correspond to the value of <m>f_{yx}(x,-1.5)</m> for three different values of <m>x</m> near <m>x=1.75</m>. Use your tangent lines to state whether <m>f_{yx}(1.75, -1.5)</m> is positive or negative. Justify your reasoning and describe what you think <m>f_{yx}(1.75, -1.5)</m> measures.
+        In the interactive image below, the trace with <m>y = -1.5</m> is highlighted with the point <m>(2,-1.5,f(2,-1.5))</m> drawn in black. Sketch three tangent lines to this trace whose slopes correspond to the value of <m>f_{yx}(x,-1.5)</m> for three different values of <m>x</m> near <m>x=2</m>. Use your tangent lines to state whether <m>f_{yx}(2, -1.5)</m> is positive or negative. Justify your reasoning and describe what you think <m>f_{yx}(2, -1.5)</m> measures.
       </p>
       <!-- <figure xml:id="F_10_3_fyx">
         <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>y=-1.5</m> </caption> -->
-        <interactive label="interactive-F_10_3_fyx" platform="sage" width="91%" aspect="1:1">
-          <slate surface="sage">
-            f(x,y)=sin(x)*exp(-y)
-            param(s,t)=(s,t,f(s,t))
-            #set up grid      n is number of steps in s    m is number of steps in t  
-            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-            n=10;m=12;a1=0;a2=pi;b1=-2;b2=0; 
-            #c1 is surface color     o1 is surface opacity
-            #c2 and o2 are for constant t value traces
-            #c3 and o3 are for constant s value traces
-            c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.3; o3=0.3;
-            plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
-            for i in range(n+1):
-              sv=a1+i/n*(a2-a1)
-              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-            for i in range(m+1):
-              tv=b1+i/m*(b2-b1)
-              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-            a=-1.5
-            fx=diff(f,x)
-            fy=diff(f,y)
-            fv=f(1.75,a)
-            fxv=fx(1.75,a)
-            fyv=fy(1.75,a)
-            fxy=diff(fx,y)
-            fxyv=fxy(1.75,a)
-            plot13=plot99+parametric_plot3d((x,-1.5,f(x,-1.5)),(x,0,pi),color="blue",thickness=3,opacity=0.5)
-            plot13+=text3d("y=-1.5",(-0.5,-1.5,1),color="blue",fontsize=20)
-            plot13+=point3d((1.75,-1.5,f(1.75,-1.5)),color="black",size=30)
-            #plot13+=parametric_plot3d((1.75+t,-1.5,f(1.75,-1.5)+t*fx(1.75,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
-            #plot13+=parametric_plot3d((1.75+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="red",thickness=4,zorder=5)
-            show(plot13,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
-          </slate>
-        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue downward facing parabola is drawn along the surface at the constant y-coordinate -1.5. The slider at the top of the figure changes the location of a highlighted point on the blue parabola. </p></description></interactive> 
-      <!-- </figure> -->
+      <image width="60%">
+        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue downward facing parabola is drawn along the surface at the constant y-coordinate -1.5. The slider at the top of the figure changes the location of a highlighted point on the blue parabola. </p></description>
+        <sageplot variant="3d" label="interactive-F_10_3_fyx">
+          f(x,y)=sin(x)*exp(-y)
+          param(s,t)=(s,t,f(s,t))
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=10;m=12;a1=0;a2=pi;b1=-2;b2=0; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.3; o3=0.3;
+          plot13=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot13+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot13+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot13+=parametric_plot3d((x,-1.5,f(x,-1.5)),(x,0,pi),color="blue",thickness=3,opacity=0.5)
+          plot13+=text3d("y=-1.5",(-0.5,-1.5,1),color="blue",fontsize=20)
+          plot13+=point3d((2,-1.5,f(2,-1.5)),color="black",size=30,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
+          #plot13+=parametric_plot3d((2+t,-1.5,f(2,-1.5)+t*fx(2,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
+          #plot13+=parametric_plot3d((2+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="red",thickness=4,zorder=5)
+          plot13
+        </sageplot>
+      </image>
     </statement>
     <answer>
       <p>
-        The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(1.75,-1.5)</m> to be positive. In fact, <m>f_{yx}(1.75,-1.5) = 0.8</m>. The value of <m>f_{yx}(1.75,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=1.75</m> as we move along the <m>y=-1.5</m> trace.
+        The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(2,-1.5)</m> to be positive. In fact, <m>f_{yx}(2,-1.5) = 0.8</m>. The value of <m>f_{yx}(2,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=2</m> as we move along the <m>y=-1.5</m> trace.
       </p>
       <image width="73%" source="fig_10_3_Act_2a_fyx_1.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image> 
       <image width="73%" source="fig_10_3_Act_2a_fyx_2.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown through the highlighted point.</p></description></image> 
@@ -906,7 +906,7 @@
     </answer>
     <solution>
       <p>
-         The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(1.75,-1.5)</m> to be positive. In fact, <m>f_{yx}(1.75,-1.5) = 0.8</m>. The value of <m>f_{yx}(1.75,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=1.75</m> as we move along the <m>y=-1.5</m> trace.
+         The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(2,-1.5)</m> to be positive. In fact, <m>f_{yx}(2,-1.5) = 0.8</m>. The value of <m>f_{yx}(2,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=2</m> as we move along the <m>y=-1.5</m> trace.
       </p>
       <image width="73%" source="fig_10_3_Act_2a_fyx_1.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image> 
       <image width="73%" source="fig_10_3_Act_2a_fyx_2.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown through the highlighted point.</p></description></image> 
@@ -920,9 +920,9 @@
   </p>
   <figure xml:id="fig-mv_deriv-second_order-ruled">
     <caption>The surface given by <m>z=f(x,y) = xy</m> </caption>
-    <interactive label="interactive-fig-mv_deriv-second_order-ruled" platform="sage" width="91%" aspect="1:1">
-      <description><p>A three dimensional plot of axes labeled <m>x</m>, <m>y</m>, and <m>z</m> with a saddle surface shown going through the origin.  </p></description>
-      <slate surface="sage">
+    <image width="60%">
+      <description><p>A three dimensional plot of axes labeled <m>x</m>, <m>y</m>, and <m>z</m> with a saddle surface shown going through the origin.   </p></description>
+      <sageplot variant="3d" label="interactive-fig-mv_deriv-second_order-ruled">
         from sage.plot.plot3d.plot3d import axes
         scale=1.25
         plot5=axes(scale,1,color="black",aspect_ratio=[1,1,1])
@@ -935,17 +935,17 @@
         #c1 is surface color     o1 is surface opacity
         #c2 and o2 are for constant t value traces
         #c3 and o3 are for constant s value traces
-        c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.7; o3=0.7;
-        plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
+        c1="lightblue"; c2="black"; c3="black"; o1=0.4; o2=0.5; o3=0.5;
+        plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False,viewpoint=[[-0.4417,-0.5254,-0.7272],117.13],camera_position=[5.5415,1.1735,2.0264])
         for i in range(n+1):
           sv=a1+i/n*(a2-a1)
           plot5+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
         for i in range(m+1):
           tv=b1+i/m*(b2-b1)
           plot5+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-        show(plot5,viewpoint=[[-0.4417,-0.5254,-0.7272],117.13],camera_position=[5.5415,1.1735,2.0264])
-      </slate>
-    </interactive> 
+        plot5
+      </sageplot>
+    </image>
   </figure>
     <!-- <figure xml:id="fig-mv_deriv-second_oder-ruled">
       <caption>The graph of <m>f(x,y) = -xy</m>.</caption>
@@ -960,134 +960,7 @@
       <p>
         As we saw in <xref ref="act-mv_deriv-first_order-table">Activity</xref>, the wind chill <m>w(v,T)</m>, in degrees Fahrenheit, is a function of the wind speed, in miles per hour, and the air temperature, in degrees Fahrenheit. Some values of the wind chill are recorded in the table below.
       </p>
-      <tabular halign="center">
-        <row>
-          <cell><m>v \backslash T</m></cell>
-          <!-- <cell bottom="medium"><m>-30</m></cell>
-          <cell bottom="medium"><m>-25</m></cell> -->
-          <cell bottom="medium"><m>-20</m></cell>
-          <cell bottom="medium"><m>-15</m></cell>
-          <cell bottom="medium"><m>-10</m></cell>
-          <cell bottom="medium"><m>-5</m></cell>
-          <cell bottom="medium"><m>0</m></cell>
-          <cell bottom="medium"><m>5</m></cell>
-          <cell bottom="medium"><m>10</m></cell>
-          <!--  <cell bottom="medium"><m>15</m></cell>
-          <cell bottom="medium"><m>20</m></cell> -->
-        </row>
-        <!-- <row>
-          <cell right="medium"><m>5</m></cell>
-          <cell><m>-46</m></cell>
-          <cell><m>-40</m></cell>
-          <cell><m>-34</m></cell>
-          <cell><m>-28</m></cell>
-          <cell><m>-22</m></cell>
-          <cell><m>-16</m></cell>
-          <cell><m>-11</m></cell>
-          <cell><m>-5</m></cell>
-          <cell><m>1</m></cell>
-          <cell><m>7</m></cell>
-          <cell><m>13</m></cell>
-        </row> -->
-        <row>
-          <cell right="medium"><m>10</m></cell>
-          <!-- <cell><m>-53</m></cell>
-          <cell><m>-47</m></cell> -->
-          <cell><m>-41</m></cell>
-          <cell><m>-35</m></cell>
-          <cell><m>-28</m></cell>
-          <cell><m>-22</m></cell>
-          <cell><m>-16</m></cell>
-          <cell><m>-10</m></cell>
-          <cell><m>-4</m></cell>
-          <!-- <cell><m>3</m></cell>
-          <cell><m>9</m></cell> -->
-        </row>
-        <row>
-          <cell right="medium"><m>15</m></cell>
-          <!-- <cell><m>-58</m></cell>
-          <cell><m>-51</m></cell> -->
-          <cell><m>-45</m></cell>
-          <cell><m>-39</m></cell>
-          <cell><m>-32</m></cell>
-          <cell><m>-26</m></cell>
-          <cell><m>-19</m></cell>
-          <cell><m>-13</m></cell>
-          <cell><m>-7</m></cell>
-          <!-- <cell><m>0</m></cell>
-          <cell><m>6</m></cell> -->
-        </row>
-        <row>
-          <cell right="medium"><m>20</m></cell>
-          <!-- <cell><m>-61</m></cell>
-          <cell><m>-55</m></cell> -->
-          <cell><m>-48</m></cell>
-          <cell><m>-42</m></cell>
-          <cell><m>-35</m></cell>
-          <cell><m>-29</m></cell>
-          <cell><m>-22</m></cell>
-          <cell><m>-15</m></cell>
-          <cell><m>-9</m></cell>
-          <!-- <cell><m>-2</m></cell>
-          <cell><m>4</m></cell> -->
-        </row>
-        <row>
-          <cell right="medium"><m>25</m></cell>
-          <!-- <cell><m>-64</m></cell>
-          <cell><m>-58</m></cell> -->
-          <cell><m>-51</m></cell>
-          <cell><m>-44</m></cell>
-          <cell><m>-37</m></cell>
-          <cell><m>-31</m></cell>
-          <cell><m>-24</m></cell>
-          <cell><m>-17</m></cell>
-          <cell><m>-11</m></cell>
-          <!-- <cell><m>-4</m></cell>
-          <cell><m>3</m></cell> -->
-        </row>
-        <row>
-          <cell right="medium"><m>30</m></cell>
-          <!-- <cell><m>-67</m></cell>
-          <cell><m>-60</m></cell> -->
-          <cell><m>-53</m></cell>
-          <cell><m>-46</m></cell>
-          <cell><m>-39</m></cell>
-          <cell><m>-33</m></cell>
-          <cell><m>-26</m></cell>
-          <cell><m>-19</m></cell>
-          <cell><m>-12</m></cell>
-          <!--  <cell><m>-5</m></cell>
-          <cell><m>1</m></cell> -->
-        </row>
-        <row>
-          <cell right="medium"><m>35</m></cell>
-          <!-- <cell><m>-69</m></cell>
-          <cell><m>-62</m></cell> -->
-          <cell><m>-55</m></cell>
-          <cell><m>-48</m></cell>
-          <cell><m>-41</m></cell>
-          <cell><m>-34</m></cell>
-          <cell><m>-27</m></cell>
-          <cell><m>-21</m></cell>
-          <cell><m>-14</m></cell>
-          <!-- <cell><m>-7</m></cell>
-          <cell><m>0</m></cell> -->
-        </row>
-        <!-- <row>
-          <cell right="medium"><m>40</m></cell>
-          <cell><m>-71</m></cell>
-          <cell><m>-64</m></cell>
-          <cell><m>-57</m></cell>
-          <cell><m>-50</m></cell>
-          <cell><m>-43</m></cell>
-          <cell><m>-36</m></cell>
-          <cell><m>-29</m></cell>
-          <cell><m>-22</m></cell>
-          <cell><m>-15</m></cell>
-          <cell><m>-8</m></cell>
-          <cell><m>-1</m></cell>
-        </row> -->
-      </tabular>
+      <xi:include href="./tables/windchill1.txt"/>
     </introduction>
     <task>
       <statement>
