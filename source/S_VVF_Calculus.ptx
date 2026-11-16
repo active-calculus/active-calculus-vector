@@ -516,8 +516,8 @@
     <image width="60%">
         <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, and <m>y</m>, and <m>z</m>. A black curve is plotted that is centered and the origin, moves around the z-axis, and has two maximums and two minimums as the curve completes one rotation around the z-axis. The slider at the top of the figure changes the location of a highlighted point on the black curve. At the highlighted point on the black curve, a red line is drawn that is tangent to the curve at the highlighted point. </p></description>
         <sageplot variant="3d" label="interactive-tanline1">
-          var('t,x')
-          def tanline3d(a=slider(0.1,6.2,0.1,default=1,label="Location",display_value=False),zoom=slider(0,5,1,default=0,label="Zoom",display_value=False)):
+          def tanline3d(a):
+            var('t,x')
             from sage.plot.plot3d.plot3d import axes
             r(t)=(cos(t),sin(t),cos(2*t))
             v(t)=(-sin(t),cos(t),-2*sin(2*t))
@@ -530,7 +530,7 @@
             plot6+=parametric_plot(l(t),(t,-0.5,0.5),color="red",thickness=2,viewpoint=[[-0.2005,-0.5864,-0.7848],149.95],camera_position=[4.9299,6.4869,2.3259],aspect_ratio=1)
             return plot6
           frames1=[tanline3d(tval*pi/25) for tval in range(0,50)]
-          plot123 = animate(frames1).interactive(delay=20,auto_play=False,animation_controls=True)
+          plot123=animate(frames1).interactive(delay=20,auto_play=False,animation_controls=True)
           plot123
         </sageplot>
       </image>
