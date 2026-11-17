@@ -138,8 +138,139 @@
       <!-- On plots like <xref ref="fig-mv_deriv-linearization-tangent_4">Figure</xref>, you should pay attention to the scale on the edge of the plot to see how small of a scale you are viewing around your point.  -->
     </p>
     <figure xml:id="fig-mv_deriv-linearization-tangent_4">
-      <caption>A plot of <m>f(x,y)=6-\frac{x^2}{2}-y^2</m> with the point <m>(1,1,4.5)</m> highlighted and the option to zoom in around the highlighted point.</caption>
-      <interactive label="interactive-fig-mv_deriv-linearization-tangent_4" platform="sage" width="100%" aspect="1:1.15">
+      <caption>Plots of <m>f(x,y)=6-\frac{x^2}{2}-y^2</m> with the point <m>(1,1,4.5)</m> highlighted and a tangent plane (drawn in pink) shown at three different scales.</caption>
+      <sidebyside>
+        <image width="60%">
+        <description><p>An interactive three dimensional plot with a downward facing elliptic paraboloid shown in blue. A point on the side of the paraboloid is highlighted in black. The animation slider and buttons at top will zoom into the highlighted point and shows that the difference between the tangent plane the blue surface gets smaller as a larger zoom level is selected. </p></description>
+        <sageplot variant="3d" label="fig-mv_deriv-linearization-tangent_41">
+          var('x,y,s,t')
+          a=1
+          z=4*2^(-a)
+          g(x,y)=6-x^2/2-y^2
+          #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
+          param(s,t)=(s,t,g(s,t));s1=1-z;s2=z+1;t1=1-z;t2=1+z;
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=4;m=4;a1=s1;a2=s2;b1=t1;b2=t2; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.8; o3=0.8;
+          plot4=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35))
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot4+=point3d((1,1,4.5),color="black",size=30*z)
+          plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
+          plot4
+        </sageplot>
+      </image>
+      <image width="60%">
+        <description><p>An interactive three dimensional plot with a downward facing elliptic paraboloid shown in blue. A point on the side of the paraboloid is highlighted in black. The animation slider and buttons at top will zoom into the highlighted point and shows that the difference between the tangent plane the blue surface gets smaller as a larger zoom level is selected. </p></description>
+        <sageplot variant="3d" label="fig-mv_deriv-linearization-tangent_43">
+          var('x,y,s,t')
+          a=2.5
+          z=4*2^(-a)
+          g(x,y)=6-x^2/2-y^2
+          #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
+          param(s,t)=(s,t,g(s,t));s1=1-z;s2=z+1;t1=1-z;t2=1+z;
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=4;m=4;a1=s1;a2=s2;b1=t1;b2=t2; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.8; o3=0.8;
+          plot4=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35))
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot4+=point3d((1,1,4.5),color="black",size=30*z)
+          plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
+          plot4
+        </sageplot>
+      </image>
+      <image width="60%">
+        <description><p>An interactive three dimensional plot with a downward facing elliptic paraboloid shown in blue. A point on the side of the paraboloid is highlighted in black. The animation slider and buttons at top will zoom into the highlighted point and shows that the difference between the tangent plane the blue surface gets smaller as a larger zoom level is selected. </p></description>
+        <sageplot variant="3d" label="fig-mv_deriv-linearization-tangent_45">
+          var('x,y,s,t')
+          a=4
+          z=4*2^(-a)
+          g(x,y)=6-x^2/2-y^2
+          #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
+          param(s,t)=(s,t,g(s,t));s1=1-z;s2=z+1;t1=1-z;t2=1+z;
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=4;m=4;a1=s1;a2=s2;b1=t1;b2=t2; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.8; o3=0.8;
+          plot4=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35))
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot4+=point3d((1,1,4.5),color="black",size=30*z)
+          plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
+          plot4
+        </sageplot>
+      </image>
+      </sidebyside>
+      <!-- <image width="60%">
+        <description><p>An interactive three dimensional plot with a downward facing elliptic paraboloid shown in blue. A point on the side of the paraboloid is highlighted in black. The animation slider and buttons at top will zoom into the highlighted point and shows that the difference between the tangent plane the blue surface gets smaller as a larger zoom level is selected.  </p></description>
+        <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-tangent_4">
+          var('x,y,s,t')
+          def LLSurface2(zint):
+            z=8*2^(-zint)
+            g(x,y)=6-x^2/2-y^2
+            param(s,t)=(s+1,t+1,(g(s*z+1,t*z+1)-4.5)/z+4.5)
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=4;m=4;a1=-0.5;a2=0.5;b1=-0.5;b2=0.5; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
+            plot4=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot4+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)                  
+            param2(s,t)=((1-s),(1-t),4.5+s+2*t)
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=4;m=4;a1=-0.5;a2=0.5;b1=-0.5;b2=0.5;s1m=a1-0.05*zint;s2p=a2+0.05*zint;
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="pink"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
+            plot4+=parametric_plot3d(param2,(s,s1m,s2p),(t,s1m,s2p),color=c1,opacity=o1,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False)
+            for i in range(n+1):
+              sv=s1m+i/n*(s2p-s1m)
+              plot4+=parametric_plot3d(param2(sv,t),(t,s1m,s2p),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=s1m+i/n*(s2p-s1m)
+              plot4+=parametric_plot3d(param2(s,tv),(s,s1m,s2p),color=c3,opacity=o3)                  
+            plot4+=point3d((1,1,4.5),color="black",size=20)
+            plot4+=text3d("(a,b,f(a,b))",(0.75,1.25,5),color="black",fontsize=20)
+            return plot4
+          frames1=[LLSurface2(zint/5) for zint in range(5,21)]
+          plot123=animate(frames1).interactive(delay=40,auto_play=False)
+          plot123
+        </sageplot>
+      </image> -->
+      <!--<interactive label="interactive-fig-mv_deriv-linearization-tangent_4" platform="sage" width="100%" aspect="1:1.15">
         <description><p>An interactive three dimensional plot with a downward facing elliptic paraboloid shown in blue. A point on the side of the paraboloid is highlighted in black. A selection of buttons at the top of the figure gives the option to change how closely the plot is shown around the highlighted point. The zoom level options go from 0 to 7, where 7 shows the surface for a very small neighborhood around the highlighted point. A checkbox at the top of the figure allows a plane that is tangent to the blue surface at the highlighted point to be drawn in red. The difference between the tangent plane the blue surface gets smaller as a larger zoom level is selected. </p></description>
       <slate surface="sage">
           var('x,y,s,t')
@@ -168,7 +299,7 @@
             if(sp):
               plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
             show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False)
-          <!-- var('x,y,s,t')
+           var('x,y,s,t')
           @interact(layout=dict(bottom=[['a','sp']]))
           def LLsurface2(a=slider(0,8,1,default=0,label="Zoom"),sp=checkbox(False,label="Show Tangent Plane:")):
             z=4*2^(-a)
@@ -232,9 +363,9 @@
               plot4+=point3d((1,1,4.5),color="black",size=30*z)
             if(sp):
               plot4+=parametric_plot3d((1-s,1-t,4.5+s+2*t),(s,-z,z),(t,-z,z),color="pink",opacity=0.5,plot_points=5,mesh=True)
-            show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False) -->
-        </slate>
+            show(plot4,viewpoint=[[-0.2344,-0.6058,-0.7603],147.21],camera_position=[8.2585,8.9748,2.9946],aspect_ratio=(1,1,0.35),frame=False) 
       </interactive>
+        </slate>-->
     </figure>
     <!-- <figure xml:id="F_10_4_tangent_2">
       <caption>The graph of <m>f(x,y)=6-x^2/2 - y^2</m>.</caption>
@@ -1147,9 +1278,9 @@
               <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A surface is drawn in light blue with surface being a tilted plane going down to a height of zero as the x and y coordinates go to zero. This surface has a V-shape above each of the x and y axes. </p></description>
               <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-absxabsy">
                 from sage.plot.plot3d.plot3d import axes
-                plot8=axes(2.5,1,color="black")+text3d("x",(3,0,0),fontsize=30)+text3d("y",(0,3,0),fontsize=30)+text3d("z",(0,0,3),fontsize=30)
+                plot8=axes(3,1,color="black")+text3d("x",(3.25,0,0),fontsize=20)+text3d("y",(0,3.25,0),fontsize=20)+text3d("z",(0,0,3.25),fontsize=20)
                 var('x,y')
-                plot8+=plot3d(abs(x)+abs(y),(x,-2,2),(y,-2,2),plot_points=13,mesh=True,opacity=0.8,color="lightblue")
+                plot8+=plot3d(abs(x)+abs(y),(x,-2,2),(y,-2,2),plot_points=7,mesh=True,opacity=0.8,color="lightblue",frame=False,viewpoint=[[-0.1518,-0.5726,-0.8057],155.88])
                 plot8
               </sageplot>
             </image>
@@ -1167,27 +1298,73 @@
               <image width="60%">
                 <description><p>An interactive three dimensional plot of a smooth surface that is pinched at the origin. Along a direction corresponding to x and y coordinates being the same, the surface has an upward facing V-shape with a cusp at the origin. Along a direction corresponding to x being equal to negative y, the surface has a downward facing V-shape with a cusp at the origin.  </p></description>
                 <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-x13y131">
-                  var('x,y,t,s')
+                  var('x,y,z,t,s')
+                  scale=1
                   f(x,y)=x^(1/3.)*y^(1/3.)
-                  a=0; b=2^(-a);
-                  p1=parametric_plot3d((s,t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
-                  p1+=parametric_plot3d((-s,-t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
-                  p1+=parametric_plot3d((-s,t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
-                  p1+=parametric_plot3d((s,-t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue",aspect_ratio=1)
-                  p1
+                  param(s,t)=(s,t,f(s,t))
+                  param2(s,t)=(-s,-t,f(s,t))
+                  param3(s,t)=(s,-t,-f(s,t))
+                  param4(s,t)=(-s,t,-f(s,t))
+                  #set up grid      n is number of steps in s    m is number of steps in t  
+                  #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                  n=11;m=11;a1=0;a2=scale;b1=0;b2=scale; 
+                  #c1 is surface color     o1 is surface opacity
+                  #c2 and o2 are for constant t value traces
+                  #c3 and o3 are for constant s value traces
+                  c1="lightblue"; c2="gray"; c3="gray"; o1=0.7; o2=0.5; o3=0.5;
+                  plot6=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.6046,-0.4766,-0.6382],102.01])
+                  plot6+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                  plot6+=parametric_plot3d(param3,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                  plot6+=parametric_plot3d(param4,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                  for i in range(n+1):
+                    sv=a1+i/n*(a2-a1)
+                    plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                    plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                    plot6+=parametric_plot3d(param3(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                    plot6+=parametric_plot3d(param4(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                  for i in range(m+1):
+                    tv=b1+i/m*(b2-b1)
+                    plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    plot6+=parametric_plot3d(param3(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    plot6+=parametric_plot3d(param4(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                  plot6
                 </sageplot>
               </image>
               <image width="60%">
                 <description><p>An interactive three dimensional plot of a smooth surface that is pinched at the origin. Along a direction corresponding to x and y coordinates being the same, the surface has an upward facing V-shape with a cusp at the origin. Along a direction corresponding to x being equal to negative y, the surface has a downward facing V-shape with a cusp at the origin.  </p></description>
                 <sageplot variant="3d" label="interactive-fig-mv_deriv-linearization-x13y132">
-                  var('x,y,t,s')
+                  var('x,y,z,t,s')
+                  scale=2^(-5)
                   f(x,y)=x^(1/3.)*y^(1/3.)
-                  a=6; b=2^(-a);
-                  p1=parametric_plot3d((s,t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
-                  p1+=parametric_plot3d((-s,-t,f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
-                  p1+=parametric_plot3d((-s,t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue")
-                  p1+=parametric_plot3d((s,-t,-f(s,t)),(s,0,b),(t,0,b),mesh=True,plot_points=13,opacity=0.5,color="lightblue",aspect_ratio=[1,1,0.3])
-                  p1
+                  param(s,t)=(s,t,f(s,t))
+                  param2(s,t)=(-s,-t,f(s,t))
+                  param3(s,t)=(s,-t,-f(s,t))
+                  param4(s,t)=(-s,t,-f(s,t))
+                  #set up grid      n is number of steps in s    m is number of steps in t  
+                  #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                  n=11;m=11;a1=0;a2=scale;b1=0;b2=scale; 
+                  #c1 is surface color     o1 is surface opacity
+                  #c2 and o2 are for constant t value traces
+                  #c3 and o3 are for constant s value traces
+                  c1="lightblue"; c2="gray"; c3="gray"; o1=0.7; o2=0.5; o3=0.5;
+                  plot6=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,3*f(scale,scale)),viewpoint=[[-0.6046,-0.4766,-0.6382],102.01])
+                  plot6+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                  plot6+=parametric_plot3d(param3,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                  plot6+=parametric_plot3d(param4,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                  for i in range(n+1):
+                    sv=a1+i/n*(a2-a1)
+                    plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                    plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                    plot6+=parametric_plot3d(param3(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                    plot6+=parametric_plot3d(param4(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                  for i in range(m+1):
+                    tv=b1+i/m*(b2-b1)
+                    plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    plot6+=parametric_plot3d(param3(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    plot6+=parametric_plot3d(param4(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                  plot6
                 </sageplot>
               </image>
             </sidebyside>

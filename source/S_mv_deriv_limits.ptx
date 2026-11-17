@@ -711,11 +711,22 @@
       <xref ref="tableE1"/> shows that as the inputs <m>(x,y)</m> get closer to <m>(0,0)</m>, the output of <m>f(x,y)</m> gets closer to 3. We can look at some aspect of directionality using a table, like how the row corresponding to <m>x=0</m> shows values of <m>f</m> for inputs on the <m>y</m>-axis and the values on the diagonal (from top left to bottom right) shows values of <m>f</m> for inputs with equal <m>x</m>- and <m>y</m>-coordinates. 
     </p>
     <p>
-      Visual representations like contour graphs and surface plots will give more information with respect to the different directions we can approach <m>(0,0)</m>. <xref ref="contourE1"/> shows a contour plot of <m>f(x,y)=3-x-2y</m> where you can use the slider to change the number of contours used in the plot. The input point <m>(0,0)</m> is highlighted in red and you can see that regardless of how many contours are displayed, the output value of <m>f</m> seems to approach 3 near the red point. Just as with the table, you can get some idea on the directionality of how the outputs will approach 3, but because the contour plot does not give information about what is happening between contours, you are left to mentally fill in this information. 
+      Visual representations like contour graphs and surface plots will give more information with respect to the different directions we can approach <m>(0,0)</m>. <xref ref="contourE1"/> shows a contour plot of <m>f(x,y)=3-x-2y</m>. The input point <m>(0,0)</m> is highlighted in red and you can see that the output value of <m>f</m> seems to approach 3 near the red point. Just as with the table, you can get some idea on the directionality of how the outputs will approach 3, but because the contour plot does not give information about what is happening between contours, you are left to mentally fill in this information. 
     </p>
     <figure xml:id="contourE1">
       <caption>A contour plot of <m>f(x,y) = 3-x-2y</m> with the point <m>(0,0)</m> highlighted in red</caption>
-      <interactive label="interactive-contourE1" platform="sage" width="118%" aspect="1.15:1">
+      <image>
+        <description><p>A two dimensional plot with bands going diagonally across the space moving down and right. The space is labeled from -1 to 1 with the horizontal coordinate labeled <m>x</m> and the vertical coordinate labeled <m>y</m>. The bands are shaded darker gray as they move up and to the right. The divisions between bands are labeled with values decreasing as the bands move up and to the right.</p></description>
+        <sageplot>
+          var('x,y,z');n=8;        
+          g(x,y)=3-x-2*y
+          c=[6*i/n for i in range(n)]
+          plot1=contour_plot(g(x,y),(x,-1,1),(y,-1,1),contours=c,labels=True,label_fmt="%1.2f",colorbar=True,axes_labels=["$x$","$y$"])
+          plot1+=point((0,0),size=30,color="red",zorder=5)
+          plot1 
+        </sageplot>
+      </image>
+      <!-- <interactive label="interactive-contourE1" platform="sage" width="118%" aspect="1.15:1">
         <description><p>An interactive two dimensional plot with bands going diagonally across the space moving down and right. The space is labeled from -1 to 1 with the horizontal coordinate labeled <m>x</m> and the vertical coordinate labeled <m>y</m>. The slider at the top of the figure changes the number of contours shown on the plot as the division between the diagonal bands. The bands are shaded darker gray as they move up and to the right. The divisions between bands are labeled with values decreasing as the bands move up and to the right.</p></description>
         <slate surface="sage">
           var('x,y,z')
@@ -727,7 +738,7 @@
             plot1+=point((0,0),size=30,color="red",zorder=5)
             show(plot1)      
         </slate>
-      </interactive>  
+      </interactive>  --> 
     </figure>
     <p>
       A plot of the surface <m>z=f(x,y)=3-x-2y</m> will give more information about what is happening in different directions as the inputs approach <m>(0,0)</m>. The drawback to using surface plots is that they are difficult to create by hand. Even computer-generated plots of surfaces can be difficult to interpret and are prone to errors because of imprecise numerical calculations. In our case, the plot of <m>z=f(x,y)=3-x-2y</m> is a plane, which we have experience with from earlier in the course. We can see in <xref ref="Limitplot1"/> that if we approach the input point <m>(0,0)</m> in any direction or along any path, then the output of <m>f</m> (as shown by the <m>z</m>-coordinate on the plot) gets closer to 3.
@@ -814,7 +825,7 @@
           <sageplot variant="3d" label="interactive-surfaceLim1">
             from sage.plot.plot3d.plot3d import axes
             var('t,x,y')
-            scale=1
+            scale=1.25
             plot5=axes(scale,0.5,color="black",aspect_ratio=[1,1,1])
             plot5+=text3d("x",(scale+0.25,0,0),fontsize=30)+text3d("y",(0,scale+0.25,0),fontsize=30)+text3d("z",(0,0,scale+0.25),fontsize=30)
             f(x,y)=y/sqrt(x^2+y^2)
@@ -1266,22 +1277,20 @@
               <sageplot variant="3d" label="interactive-limpaths2">
                 from sage.plot.plot3d.plot3d import axes
                 var('x,y,t')
-                scale=0.75
-                plot5=axes(scale,0.5,color="black",aspect_ratio=[1,1,0.5],opacity=0.5)
+                scale=1.25
+                plot5=axes(scale,0.5,color="black",aspect_ratio=[1,1,1],opacity=0.5)
                 plot5+=text3d("x",(scale+0.1,0,0),fontsize=30)+text3d("y",(0,scale+0.1,0),fontsize=30)+text3d("z",(0,0,scale+0.25),fontsize=30)
                 var('x,y')
                 f(x,y)=y/sqrt(x^2+y^2)
-                #f(x,y)=3-x-2*sqrt(3*x^2+y^2)
-                #plot5+=plot3d(f,(x,-.5,0.5),(y,-0.5,0.5),color="lightblue",mesh=True,opacity=0.25,plot_points=51)
-                param(s,t)=(s,t,f(s,t));s1=-0.5;s2=0.5;t1=-0.5;t2=0.5;
+                param(s,t)=(s,t,f(s,t));
                 #set up grid      n is number of steps in s    m is number of steps in t  
                 #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-                n=15;m=11;a1=s1;a2=s2;b1=t1;b2=t2; 
+                n=15;m=15;a1=-1;a2=1;b1=-1;b2=1; 
                 #c1 is surface color     o1 is surface opacity
                 #c2 and o2 are for constant t value traces
                 #c3 and o3 are for constant s value traces
-                c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.6; o3=0.6;
-                plot5+=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1,plot_points=100)
+                c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.4; o3=0.4;
+                plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=100)
                 for i in range(n+1):
                   sv=a1+i/n*(a2-a1)
                   plot5+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
@@ -1292,10 +1301,10 @@
                 for p in paths:
                   r1(t)=(p[0],p[1],0)
                   r2(t)=(p[0],p[1],f(p[0],p[1]))
-                  plot5+=parametric_plot3d(r1,(t,0.01,0.5),color="blue",thickness=2,zorder=-1)
+                  plot5+=parametric_plot3d(r1,(t,0.01,0.65),color="blue",thickness=2,zorder=-1)
                   plot5+=arrow(r1(t=0.25),r1(t=0.2),color="blue",arrowsize=3,zorder=-1)
-                  plot5+=parametric_plot3d(r2,(t,0.01,0.5),color="red",thickness=4)
-                  plot5+=arrow(r2(t=0.25),r2(t=0.2),color="red",arrowsize=2,viewpoint=[[-0.8885,-0.2658,-0.374],77.31],camera_position=[1.6428,-2.0618,0.9308],aspect_ratio=(1,1,1/2),frame=False)
+                  plot5+=parametric_plot3d(r2,(t,0.01,0.65),color="red",thickness=3)
+                  plot5+=arrow(r2(t=0.25),r2(t=0.2),color="red",arrowsize=2,viewpoint=[[-0.8885,-0.2658,-0.374],77.31],camera_position=[1.6428,-2.0618,0.9308],frame=False)
                 plot5
               </sageplot>
             </image> 

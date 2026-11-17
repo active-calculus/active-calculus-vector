@@ -856,8 +856,9 @@
       </figure> -->
       <figure xml:id="F_10_3_fxy">
         <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>x=2</m> and a tangent line in the <m>x</m>-direction drawn </caption>
-        <interactive label="interactive-F_10_3_fxy" platform="sage" width="95%" aspect="1:1.08">
-          <slate surface="sage">
+        <image width="60%">
+          <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent to the surface in the direction perpendicular to the blue curve at the highlighted point is drawn in black.  </p></description>
+          <sageplot variant="3d" label="interactive-F_10_3_fxy">
             var('x,y,z,t')
             def expxtrace2(a):
               f(x,y)=sin(x)*exp(-y)
@@ -893,10 +894,9 @@
             frames1=[expxtrace2(-a/10) for a in range(10,20)]
             plot123=animate(frames1).interactive(delay=30,auto_play=False,animation_controls=True)
             plot123
-          </slate>
-        <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent to the surface in the direction perpendicular to the blue curve at the highlighted point is drawn in black. </p></description>
-      </interactive> 
-    </figure>
+          </sageplot>
+        </image>
+      </figure>
     </statement>
     <answer>
       <p>
@@ -1005,27 +1005,43 @@
     <image width="60%">
       <description><p>A three dimensional plot of axes labeled <m>x</m>, <m>y</m>, and <m>z</m> with a saddle surface shown going through the origin.   </p></description>
       <sageplot variant="3d" label="interactive-fig-mv_deriv-second_order-ruled">
-        from sage.plot.plot3d.plot3d import axes
-        scale=1.25
-        plot5=axes(scale,1,color="black",aspect_ratio=[1,1,1])
-        plot5+=text3d("x",(scale+0.25,0,0),fontsize=30)+text3d("y",(0,scale+0.25,0),fontsize=30)+text3d("z",(0,0,scale+0.25),fontsize=30)
-        var('x,y,z,t,s')
-        param(s,t)=(s,t,s*t)
-        #set up grid      n is number of steps in s    m is number of steps in t  
-        #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-        n=10;m=12;a1=-1;a2=1;b1=-1;b2=1; 
-        #c1 is surface color     o1 is surface opacity
-        #c2 and o2 are for constant t value traces
-        #c3 and o3 are for constant s value traces
-        c1="lightblue"; c2="black"; c3="black"; o1=0.4; o2=0.5; o3=0.5;
-        plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False,viewpoint=[[-0.4417,-0.5254,-0.7272],117.13],camera_position=[5.5415,1.1735,2.0264])
-        for i in range(n+1):
-          sv=a1+i/n*(a2-a1)
-          plot5+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-        for i in range(m+1):
-          tv=b1+i/m*(b2-b1)
-          plot5+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-        plot5
+        var('x,y,z,t')
+        def saddletrace(a):
+          from sage.plot.plot3d.plot3d import axes
+          scale=1.25
+          plot12=axes(scale,1,color="gray")
+          plot12+=text3d("x",(scale+0.15,0,0),fontsize=20)+text3d("y",(0,scale+0.15,0),fontsize=20)+text3d("z",(0,0,scale+0.15),fontsize=20)
+          f(x,y)=-x*y
+          xv=1/4
+          param(s,t)=(s,t,f(s,t))
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=10;m=10;a1=-1;a2=1;b1=-1;b2=1; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.3; o3=0.3;
+          plot12+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot12+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot12+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          fx=diff(f,x)
+          fy=diff(f,y)
+          fv=f(xv,a)
+          fxv=fx(xv,a)
+          fyv=fy(xv,a)
+          fxy=diff(fx,y)
+          fxyv=fxy(xv,a)
+          plot12+=parametric_plot3d((xv,y,f(xv,y)),(y,a1,a2),color="blue",thickness=3,opacity=0.75)
+          plot12+=point3d((xv,a,f(xv,a)),color="black",size=20,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
+          plot12+=parametric_plot3d((xv+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5,aspect_ratio=[1,1,1],frame=False)
+          return plot12
+        frames1=[saddletrace(a/10) for a in range(-9,10)]
+        plot123=animate(frames1).interactive(delay=40,auto_play=False,animation_controls=True)
+        plot123
       </sageplot>
     </image>
   </figure>

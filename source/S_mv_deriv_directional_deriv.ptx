@@ -60,12 +60,12 @@
           Below is a contour plot showing the elevations for a region of a nearby park. <!-- The elevations are given in meters above sea level and the horizontal and vertical grid lines are 1 km apart. Several locations are labeled on <xref ref="PA-DDcontour1"/> with capital letters. --> We will be referring to <m>h(x,y)</m> as the function of two variables that gives the elevation as a function of <m>x</m>-coordinate (location in the east-west or horizontal direction) and <m>y</m>-coordinates (location in the north-south or vertical direction).
         </p>
         <image width="60%">
-          <description>
-            <p>A contour plot on which three points (<m>A</m>, <m>B</m>, and <m>C</m>) are marked. A compass is drawn in the bottom left of the plot and labels the up direction N, to the right is labeled E, down is labeled S, and to the left is labeled W. Many curves are drawn and labeled corresponding the height of a landscape at that point. Peaks in the landscape occur toward the top left and the middle on the right, as well as the bottom right corner of the region. A depression is in the middle top of the region. </p>
-          </description>
           <caption>
             A contour plot on which three points (<m>A</m>, <m>B</m>, and <m>C</m>) are marked.
           </caption>
+          <description>
+            <p>A contour plot on which three points (<m>A</m>, <m>B</m>, and <m>C</m>) are marked. A compass is drawn in the bottom left of the plot and labels the up direction N, to the right is labeled E, down is labeled S, and to the left is labeled W. Many curves are drawn and labeled corresponding the height of a landscape at that point. Peaks in the landscape occur toward the top left and the middle on the right, as well as the bottom right corner of the region. A depression is in the middle top of the region. </p>
+          </description>
           <sageplot label="img-PA-DDcontour1">
             from matplotlib import ticker
             var('x,y,z,s,t')
@@ -265,7 +265,7 @@
     </p>
     <figure xml:id="CCA-DD3">
       <caption>A plot of the trace of <m>f</m> along the direction <m>\langle u_1,u_2\rangle</m> with tangent line drawn at point corresponding to <m>(x_0,y_0)</m></caption>
-      <image width="60%">
+      <image width="50%">
         <description>
           <p>
             A two-dimensional plot with the vertical axis labeled <m>f(x_0+tu_1,y_0+tu_2)</m> and the horizontal axis labeled <m>t</m>. A curve in blue, that starts between the second and third grid lines vertically, decreases until just after the third grid line on the horizontal axis. The tangent line to the curve at the left most point is shown and moves down but more to the right than down.
@@ -278,7 +278,7 @@
           a=2/3;b=1/3 ;x0=1/2;y0=1;
           fx=diff(f,x);fy=diff(f,y);
           fxv=fx(x=x0,y=y0);fyv=fy(x=x0,y=y0);
-          plot4=plot(f(x0+a*t,y0+b*t),(t,0,2),color="blue",axes_labels=["$t$","$f(x_0+t u_1,y_0+t u_2)$"],thickness=2,gridlines=True,ymin=0,ymax=2,aspect_ratio=1,tick_formatter=(ticker.NullFormatter(),
+          plot4=plot(f(x0+a*t,y0+b*t),(t,0,2),color="blue",axes_labels=["$t$","$f(x_0+t u_1,y_0+t u_2)$"],thickness=2,gridlines=True,ymin=0,ymax=1.5,aspect_ratio=1,tick_formatter=(ticker.NullFormatter(),
           ticker.NullFormatter()))
           plot4+=parametric_plot((t,f(x0,y0)+a*fxv*t+b*fyv*t),(t,0,1/2),color="black",thickness=2)
           plot4
@@ -379,13 +379,13 @@
         <xref ref="DDexample3"/> allows you to adjust the direction of the trace shown. By default, it shows the direction vector <m>\vj</m>, the cooresponding trace, and tangent line to the surface in the <m>\vj</m> direction. Use the slider at the top of <xref ref="DDexample3"/> to change the direction in which you want to evaluate the directional derivative. As you do so, examine how the steepness of the black tangent segment varies depending on the direction. 
       </p>
       <figure xml:id="DDexample3">
-      <caption>An interactive plot of <m>z=f(x,y)</m> with trace in the direction <m>\vu</m> through (2,2,1) shown including the tangent line</caption>
-        <interactive label="interactive-DDexample3" platform="sage" width="100%" aspect="1:1">
-          <description><p>An interactive three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The gray surface decreases as you move away from from a maximum near the z-axis. A slider at the top of the figure changes the direction of an arrow shown below the surface on the xy-plane in red. A gray segment is drawn from the beginning point of the red arrow, parallel to the z-axis, up to the surface. A point where the gray segment intersects the surface his highlighted. A blue plane is shown extending from the red arrow parallel to the z-axis, through the surface. The curve along the surface that is above the red segment and is the intersection between the curved surface and the blue plane is drawn in blue. As the direction of the red arrow changes the profile of the blue curve changes according to the shape of the surface in the given direction.</p></description>
-          <slate surface="sage">
-            <xi:include href="interacts/DDExample3.txt" parse="text"/>
-          </slate>
-        </interactive>
+        <caption>An interactive plot of <m>z=f(x,y)</m> with trace in the direction <m>\vu</m> through (2,2,1) shown including the tangent line</caption>
+        <image width="60%">
+          <description><p>An interactive three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The gray surface decreases as you move away from from a maximum near the z-axis. A slider at the top of the figure changes the direction of an arrow shown below the surface on the xy-plane in red. A gray segment is drawn from the beginning point of the red arrow, parallel to the z-axis, up to the surface. A point where the gray segment intersects the surface his highlighted. A blue plane is shown extending from the red arrow parallel to the z-axis, through the surface. The curve along the surface that is above the red segment and is the intersection between the curved surface and the blue plane is drawn in blue. As the direction of the red arrow changes the profile of the blue curve changes according to the shape of the surface in the given direction. </p></description>
+          <sageplot variant="3d" label="interactive-DDexample3">
+<xi:include href="interacts/DDExample3.txt" parse="text"/>          
+          </sageplot>
+        </image>
       </figure>
     </example>
     <p>
@@ -782,7 +782,7 @@
           </p>
           <figure xml:id="thermocline">
             <caption>A plot of the thermocline corresponding to 70 degrees going through the point <m>P</m></caption>
-            <image width="60%" xml:id="img-thermocline">
+            <image width="50%" xml:id="img-thermocline">
               <description><p>A two dimensional plot with a compass shown in the top left. The compass labels up N, to the right E, down S and to the left W. A curve extends from the bottom left to the top right of the region, through a point labeled <m>P</m> in the center of the plot. The region above and to the left of this curve is labeled <q>60s</q> and the region below and to the right of the curve is labeled <q>70s</q>. An arrow is drawn from the highlighted point to the right and down. This arrow is perpendicular to the curve at the highlighted point. </p> </description>
             <sageplot>
                 var('t,x')
@@ -791,13 +791,13 @@
                 d=0.1;a=.25;b=1.75;
                 plot50+=arrow((a,b),(a+d,b),color="black",arrowsize=2)+arrow((a,b),(a-d,b),color="black",arrowsize=2)
                 plot50+=arrow((a,b),(a,b+d),color="black",arrowsize=2)+arrow((a,b),(a,b-d),color="black",arrowsize=2)
-                plot50+=text("N",(a,b+1.5*d),color="black")+text("S",(a,b-1.5*d),color="black")
-                plot50+=text("E",(a+1.5*d,b),color="black")+text("W",(a-1.5*d,b),color="black")
-                plot50+=text("70",(1.5,1.5),color="black",background_color="white")
-                plot50+=text("70",(0.15,0.15),color="black",background_color="white")
-                plot50+=text("60s",(0.5,1),color="black",background_color="white")
-                plot50+=text("70s",(1.5,0.5),color="black",background_color="white")
-                plot50+=text("60s",(1.5,1.8),color="black",background_color="white")
+                plot50+=text("N",(a,b+1.5*d),color="black",fontsize=20)+text("S",(a,b-1.5*d),color="black",fontsize=20)
+                plot50+=text("E",(a+1.5*d,b),color="black",fontsize=20)+text("W",(a-1.5*d,b),color="black",fontsize=20)
+                plot50+=text("70",(1.5,1.5),color="black",background_color="white",fontsize=20)
+                plot50+=text("70",(0.15,0.15),color="black",background_color="white",fontsize=20)
+                plot50+=text("60s",(0.5,1),color="black",background_color="white",fontsize=20)
+                plot50+=text("70s",(1.5,0.5),color="black",background_color="white",fontsize=20)
+                plot50+=text("60s",(1.5,1.8),color="black",background_color="white",fontsize=20)
                 plot50+=text("P",(1,1.1),color="black",fontsize=20)
                 plot50+=arrow((1,1),(1.15,0.6),color="black",arrowsize=2)
                 plot50                  
