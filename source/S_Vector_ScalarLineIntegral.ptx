@@ -65,7 +65,7 @@
       </p>
       <figure xml:id="CopiumPlot">
         <caption>A plot of land with density of copium deposits </caption>
-        <image xml:id="CopiumMinePlot">
+        <image xml:id="CopiumMinePlot" width="60%">
           <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. A yellow parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100). </p></description>
         <sageplot>
 <xi:include href="./interacts/CopiumMinePlot.txt" parse="text"/>
@@ -106,7 +106,7 @@
         </p>
         <figure xml:id="CopiumPlotwithPath">
           <caption>A plot of land with copium Density and a path plotted in blue</caption>
-          <image xml:id="img-CopiumPlotwithPath">
+          <image xml:id="img-CopiumPlotwithPath" width="60%">
             <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. A yellow parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100).</p> </description>
             <sageplot>
               var('x,y,t')
@@ -133,7 +133,7 @@
         </p>
         <figure xml:id="CopiumPlotwithPath2">
           <caption>A plot of land with copium density and a path plotted in blue</caption>
-          <image xml:id="img-CopiumPlotwithPath2">
+          <image xml:id="img-CopiumPlotwithPath2" width="60%">
             <description><p>A contour plot with horizontal and vertical scales going from 0 to 560. Lighter shaded regions correspond to larger output values. Lighter regions are shown in for both the lower left and lower right parts of the region. The darkest region goes from the middle top to the center of the region. An orange parallelogram is drawn through the points (0,0), (200,425), (525, 525), and (300,100). A blue elliptic arc is drawn inside of the parallelogram with an arrow showing the curve is traveled in the counterclockwise direction. </p>
           </description><sageplot>
               var('x,y,t')
@@ -166,26 +166,26 @@
 </p>
 <figure>
   <caption>A curve in space with segments given by <m>\mathbf{r}_i</m></caption>
-  <image width="80%" xml:id="scalar_line_int_segments">
+  <image width="60%" xml:id="scalar_line_int_segments">
     <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}_0</m>,<m>\vec{r}_1</m>, and <m>P=\vec{r}_2</m>. The last three points are labeled <m>\vec{r}_{n-2}</m>,<m>\vec{r}_{n-1}</m>, and <m>Q=\vec{r}_n</m>. Blue vectors are drawn between consecutive points except for between the fourth and fifth points. A red vector is drawn from the fourth point to the fifth point and is labeled <m>\Delta \vec{r}_i=\vec{r}_{i+1}-\vec{r}_i</m>.</p>
   </description><sageplot>
       tpoints=[4,3.5,3,2.5,1.5,1,0.5]
-      offsetx=[0.1,-0.2,0.3,0.2,0,0,0.2]
-      offsety=[-0.2,-0.1,0,0.2,-0.3,-0.2,-0.2]
+      offsetx=[0.1,-0.2,-0.3,0.2,0,0,0.2]
+      offsety=[-0.2,-0.1,0,0.2,0.3,0.3,-0.2]
       labels=['$P=\\vec{r}_0$','$\\vec{r}_1$','$\\vec{r}_2$','','$\\vec{r}_{n-2}$','$\\vec{r}_{n-1}$','$Q=\\vec{r}_{n}$']
       var('t');
       r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
       plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
       for i in range(len(tpoints)):
-        position=r1(tpoints[i])
-        withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
-        if(i!=len(tpoints)-1 and i!=3):
-          plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='#1E88E5')
-        if(i==3):
-          plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='#D81B60')
-        plot99+=point([position],color='black',size=50,zorder=5)+text(labels[i],withoffset,fontsize=25,color='black')
+          position=r1(tpoints[i])
+          withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+          if(i!=len(tpoints)-1 and i!=3):
+              plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='#1E88E5')
+          if(i==3):
+              plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='#D81B60')
+          plot99+=point([position],color='black',size=50,zorder=5)+text(labels[i],withoffset,fontsize=25,color='black')
       plot99+=text('$\\Delta \\vec{r}_i=\\vec{r}_{i+1}-\\vec{r}_i$',(-0.9,0.6),color='#D81B60',fontsize=25)
-      plot99  
+      plot99    
     </sageplot>
   </image>
 </figure>
@@ -224,7 +224,7 @@
     </p>
     <figure xml:id="fig_sli_pm1">
       <caption>The curve <m>C</m> used in the line integral for <xref ref="sli_pm"/></caption>
-      <image width="75%" xml:id="fig_scalarlineint_pmexample1">
+      <image width="60%" xml:id="fig_scalarlineint_pmexample1">
         <description><p>A two dimensional plot with horizontal coordinate going from -1 to 2 labeled <m>x</m> and vertical coordinate going from 0 to 4 labeled <m>y</m>. A parabola with vertex at the origin and going through the points (1,1) and (-1,1) is drawn in blue. This curve is labeled <m>C</m>. </p></description>
         <sageplot>
           var('x')
@@ -241,7 +241,7 @@
     </p>
     <figure xml:id="fig_sli_pm3">
       <caption>The curve <m>C</m> split into regions with positive (blue) and negative (magenta) outputs of <m>f</m></caption>
-      <image width="75%" xml:id="fig_scalarlineint_pmexample3">
+      <image width="60%" xml:id="fig_scalarlineint_pmexample3">
         <description><p>A two dimensional plot with horizontal coordinate going from -1 to 2 labeled <m>x</m> and vertical coordinate going from 0 to 4 labeled <m>y</m>. A parabola with vertex at the origin and going through the points (1,1) and (-1,1) is drawn. The portion of the parabola with negative horizontal coordinates is drawn in magenta and the rest of the parabola is drawn in blue. The endpoints of this plot at (-1,1) and (2,4) are highlighted with black points. <m>C</m> </p></description>
       <sageplot>
           var('x')
@@ -264,7 +264,7 @@
     </p>
     <figure xml:id="fig_sli_pm2">
       <caption>The curve <m>C</m> split into three regions with positive (blue and green) and negative (magenta) outputs of <m>f</m></caption>
-      <image width="75%" xml:id="fig_scalarlineint_pmexample2">
+      <image width="60%" xml:id="fig_scalarlineint_pmexample2">
         <description><p>A two dimensional plot with horizontal coordinate going from -1 to 2 labeled <m>x</m> and vertical coordinate going from 0 to 4 labeled <m>y</m>. A parabola with vertex at the origin and going through the points (1,1) and (-1,1) is drawn. The portion of the parabola with negative horizontal coordinates is drawn in magenta, the portion of the parabola from (0,0) to (1,1) is drawn in green, and the rest is drawn in blue. The points (0,0), (1,1), (-1,1), and (2,4) are highlighted with black points.</p>
       </description>
         <sageplot>
@@ -580,7 +580,7 @@
   </p>
   <figure xml:id="scalar_int_param_seg">
       <caption>The curve <m>C</m> split into segments defined by equally spaced parameter values</caption>
-      <image width="80%" xml:id="scalar_line_int_segments_param">
+      <image width="60%" xml:id="scalar_line_int_segments_param">
         <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}(t_0)</m>,<m>\vec{r}(t_1)</m>, and <m>P=\vec{r}(t_2)</m>. The last three points are labeled <m>P=\vec{r}(t_{n-2})</m>,<m>\vec{r}(t_{n-1})</m>, and <m>Q=\vec{r}(t_n)</m>.</p></description>
         <sageplot>
           tpoints=[4,3.5,3,2.5,1.5,1,0.5]
@@ -931,10 +931,10 @@
   mine shown above </caption>
   <image xml:id="img_leftsideplot" width="60%">
     <description><p>A two dimensional plot with horizontal coordinate from 0 to 500 and vertical coordinate from 0 to 2.5. A blue curve is drawn from (0,2.5) sloping down to (500,1.5). </p></description>
-  <sageplot>
-      var('x')
+    <sageplot>
+      var('x,y')
       f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
-      plot(f(x/sqrt(5),2*x/sqrt(5)),(x,0,sqrt(5)*212.5),plot_points=30,ymin=0,ymax=2.5,xmin=0,xmax=520)      
+      plot(f(x/sqrt(5),2*x/sqrt(5)),(x,0,sqrt(5)*212.5),plot_points=30,ymin=0,ymax=3,xmin=0,xmax=520,gridlines=True,axes_labels=["Distance","Density"],fontsize=10)      
     </sageplot>
   </image>
 </figure>
@@ -950,10 +950,10 @@
       f=-x^2/2-3*y^3/3+0.5
       f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
       plot8=polygon3d([[212.5,425,0],[512.5,525,0],[300,100,0],[0,0,0]],color='grey',opacity=.5)
-      plot8+=parametric_plot3d((t,2*t,0),(t,0,212.5),color='#D81B60',thickness=4)+parametric_plot3d((t,2*t,f(t,2*t)),(t,0,212.5),color='#004D40',thickness=4)+parametric_plot3d((t,2*t,s*f(t,2*t)),(t,0,212.5),(s,0,1),color='#FFC107',thickness=4)
-      plot8+=parametric_plot3d((212.5+3*t,425+t,0),(t,0,100),color='#D81B60',thickness=4)+parametric_plot3d((212.5+3*t,425+t,f(212.5+3*t,425+t)),(t,0,100),color='#004D40',thickness=4)+parametric_plot3d((212.5+3*t,425+t,s*f(212.5+3*t,425+t)),(t,0,100),(s,0,1),color='#FFC107',thickness=4)
-      plot8+=parametric_plot3d((300+t,100+2*t,0),(t,0,212.5),color='#D81B60',thickness=4)+parametric_plot3d((300+t,100+2*t,f(300+t,100+2*t)),(t,0,212.5),color='#004D40',thickness=4)+parametric_plot3d((300+t,100+2*t,s*f(300+t,100+2*t)),(t,0,212.5),(s,0,1),color='#FFC107',thickness=4)
-      plot8+=parametric_plot3d((3*t,t,0),(t,0,100),color='#D81B60',thickness=4)+parametric_plot3d((3*t,t,f(3*t,t)),(t,0,100),color='#004D40',thickness=4)+parametric_plot3d((3*t,t,s*f(3*t,t)),(t,0,100),(s,0,1),color='#FFC107',thickness=4,aspect_ratio=(1,1,40))
+      plot8+=parametric_plot3d((t,2*t,0),(t,0,212.5),color='#D81B60',thickness=2)+parametric_plot3d((t,2*t,f(t,2*t)),(t,0,212.5),color='#004D40',thickness=2)+parametric_plot3d((t,2*t,s*f(t,2*t)),(t,0,212.5),(s,0,1),color='#FFC107',opacity=.5)
+      plot8+=parametric_plot3d((212.5+3*t,425+t,0),(t,0,100),color='#D81B60',thickness=2)+parametric_plot3d((212.5+3*t,425+t,f(212.5+3*t,425+t)),(t,0,100),color='#004D40',thickness=2)+parametric_plot3d((212.5+3*t,425+t,s*f(212.5+3*t,425+t)),(t,0,100),(s,0,1),color='#FFC107',opacity=.5)
+      plot8+=parametric_plot3d((300+t,100+2*t,0),(t,0,212.5),color='#D81B60',thickness=2)+parametric_plot3d((300+t,100+2*t,f(300+t,100+2*t)),(t,0,212.5),color='#004D40',thickness=2)+parametric_plot3d((300+t,100+2*t,s*f(300+t,100+2*t)),(t,0,212.5),(s,0,1),color='#FFC107',opacity=.5)
+      plot8+=parametric_plot3d((3*t,t,0),(t,0,100),color='#D81B60',thickness=2)+parametric_plot3d((3*t,t,f(3*t,t)),(t,0,100),color='#004D40',thickness=2)+parametric_plot3d((3*t,t,s*f(3*t,t)),(t,0,100),(s,0,1),color='#FFC107',opacity=.5,aspect_ratio=(1,1,40),viewpoint=[[-0.0335,-0.5504,-0.8342],174.19])
       plot8
     </sageplot>
   </image>
@@ -970,7 +970,7 @@
     <description><p>A three-dimensional plot of a helix extending in the vertical direction and curling with a circular radius of 1 is shown in green. </p></description>
     <sageplot variant="3d" label="helixplot1">
       var('t,s')
-      plot1=parametric_plot3d((cos(t),sin(t),t/8),(t,0,11),color='#004D40',thickness=4)#+parametric_plot3d((cos(t),sin(t),t/8+cos(t)-sin(t)),(t,0,11),color='#1E88E5',thickness=4,aspect_ratio=(1,1,1))
+      plot1=parametric_plot3d((cos(t),sin(t),t/8),(t,0,11),color='#004D40',thickness=4)#+parametric_plot3d((cos(t),sin(t),t/8+cos(t)-sin(t)),(t,0,11),color='#1E88E5',thickness=4,aspect_ratio=(1,1,1),viewpoint=[[0.2469,0.4845,0.8392],133.7])
       plot1
     </sageplot>
   </image>
@@ -985,7 +985,7 @@
     <sageplot variant="3d" label="helixplot2">
       var('t,s')
       plot6=parametric_plot3d((cos(t),sin(t),t/8),(t,0,11),color='#004D40',thickness=4)+parametric_plot3d((cos(t),sin(t),t/8+cos(t)-sin(t)),(t,0,11),color='#1E88E5',thickness=4)
-      plot6+=parametric_plot3d((cos(t),sin(t),t/8+s*(cos(t)-sin(t))),(t,0,11),(s,0,1),color='#FFC107',aspect_ratio=(1,1,1))
+      plot6+=parametric_plot3d((cos(t),sin(t),t/8+s*(cos(t)-sin(t))),(t,0,11),(s,0,1),color='#FFC107',aspect_ratio=(1,1,1),viewpoint=[[-0.2469,-0.4845,-0.8392],133.7])
       plot6
     </sageplot>
   </image>

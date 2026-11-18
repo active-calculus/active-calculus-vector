@@ -220,29 +220,29 @@
     </p>
     <figure xml:id="fig_param_line_int">
       <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the parameter <m>t</m></caption>
-      <image width="80%" xml:id="param_line_int1">
+      <image width="60%" xml:id="param_line_int1">
         <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}(t_0)</m>,<m>\vec{r}(t_1)</m>, and <m>P=\vec{r}(t_2)</m>. The last three points are labeled <m>P=\vec{r}(t_{n-2})</m>,<m>\vec{r}(t_{n-1})</m>, and <m>Q=\vec{r}(t_n)</m>.</p></description>
-				<sageplot>
-					tpoints=[4,3.5,3,2.5,1.5,1,0.5]
-					offsetx=[0.1,0.3,0.3,0.2,0,0.2,0.42]
-					offsety=[-0.2,.1,0,0.2,0.3,0.3,0.22]
-					labels=['$P=\\vec{r}_0$','$\\vec{r}_1$','$\\vec{r}_2$','','$\\vec{r}_{n-2}$','$\\vec{r}_{n-1}$','$Q=\\vec{r}_{n}$']
-					var('t');
-					r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
-					plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
-					for i in range(len(tpoints)):
-						position=r1(tpoints[i])
-						rx,ry=position
-						plot99+=arrow((rx,ry),(rx+rx/3,ry-ry/3),color='blue')
-						withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
-						if(i!=len(tpoints)-1 and i!=3):
-							plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
-						if(i==3):
-							plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
-						plot99+=point([position],color='black',size=50,zorder=5)+text(labels[i],withoffset,fontsize=25,color='black',axes=False)
-					plot99+=text('$\\Delta \\vec{r}_i=\\vec{r}_{i}-\\vec{r}_{i-1}$',(-0.8,0.6),color='red',fontsize=25)
-					plot99		
-				</sageplot>
+		<sageplot>
+			tpoints=[4,3.5,3,2.5,1.5,1,0.5]
+			offsetx=[0.1,0.3,0.3,0.2,0,0.2,0.42]
+			offsety=[-0.2,.1,0,0.2,0.3,0.3,0.22]
+			labels=['$P=\\vec{r}_0$','$\\vec{r}_1$','$\\vec{r}_2$','','$\\vec{r}_{n-2}$','$\\vec{r}_{n-1}$','$Q=\\vec{r}_{n}$']
+			var('t');
+			r1(t)=((t^2/15+2)*cos(t),(1.5-t/12)*sin(t))
+			plot99=parametric_plot(r1(t),(t,0.5,4),aspect_ratio=1,color='black',thickness=2,axes=False)
+			for i in range(len(tpoints)):
+				position=r1(tpoints[i])
+				rx,ry=position
+				plot99+=arrow((rx,ry),(rx+rx/3,ry-ry/3),color='blue')
+				withoffset=(position[0]+offsetx[i],position[1]+offsety[i])
+				if(i!=len(tpoints)-1 and i!=3):
+					plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+				if(i==3):
+					plot99+=arrow(r1(tpoints[i]),r1(tpoints[i+1]),color='red')
+				plot99+=point([position],color='black',size=50,zorder=5)+text(labels[i],withoffset,fontsize=20,color='black',axes=False)
+			plot99+=text('$\\Delta \\vec{r}_i=\\vec{r}_{i}-\\vec{r}_{i-1}$',(-0.8,0.6),color='red',fontsize=20)
+			plot99		
+		</sageplot>
       </image>
     </figure>
     <p>
@@ -250,7 +250,7 @@
 	  </p>
 	  <figure xml:id="fig_param_line_int2">
 	      <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> broken into <m>n</m> pieces evenly spaced in terms of the parameter <m>t</m> with displacement vectors <m>\Delta r_i</m></caption>
-	      <image width="80%" xml:id="param_line_int2">
+	      <image width="60%" xml:id="param_line_int2">
 	        <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m> that starts with P in the lower left of the region and Q in the upper right of the region. The curve move up and left from P, turns vertical then goes up and to the right. The curve then turns down and right into Q. Vectors are drawn between seven points along the curve. The first three points are labeled <m>P=\vec{r}(t_0)</m>,<m>\vec{r}(t_1)</m>, and <m>P=\vec{r}(t_2)</m>. The last three points are labeled <m>\vec{r}(t_{n-2})</m>,<m>\vec{r}(t_{n-1})</m>, and <m>Q=\vec{r}(t)_n</m>. Blue vectors are drawn between consecutive points except for between the fourth and fifth points. A red vector is drawn from the fourth point to the fifth point and is labeled <m>\Delta \vec{r}_i=\vec{r}(t_{i+1})-\vec{r}(t_i)</m>. </p></description>
 				<sageplot>
 					tpoints=[4,3.5,3,2.5,1.5,1,0.5]

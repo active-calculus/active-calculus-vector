@@ -566,7 +566,52 @@
     </p>
     <figure xml:id="fig-mult_ints-double_ints_rects-volume2">
       <caption>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>m</m> by <m>n</m> subrectangles</caption>
-        <interactive label="interactive-F_11_1_volume2" platform="sage" width="100%" aspect="1:1.15">
+        <image width="60%">
+          <description><p>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>n</m> by <m>n</m> subrectangles </p></description>
+          <sageplot variant="3d" label="interactive-F_11_1_volume2">
+            var('t,s,x,y,z')
+            from sage.plot.plot3d.plot3d import axes
+            from sage.plot.plot3d.shapes import Box
+            from sage.plot.plot3d.shapes import ColorCube
+            scale=2.5
+            def dblRS(n):
+              plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              f(x,y)=2-x/1.5+y^2/4;nx=n;ny=n;
+              total=0;
+              x1=0.5;x2=2; y1=0.5;y2=2;
+              dx=(x2-x1)/nx; dy=(y2-y1)/ny;
+              tc="black";sc="lightblue";bc="red"
+              for i in range(nx):
+                xa=x1+i*dx; xb=x1+(i+1)*dx;
+                for j in range(ny):
+                  ya=y1+j*dy;yb=y1+(j+1)*dy;
+                  h=f(xa+dx,ya)
+                  total+=h
+                  plot3+=ColorCube([dx/2,dy/2,h/2],[tc,sc,sc,bc,sc,sc],opacity=0.5).translate((xa+dx/2,ya+dy/2,h/2))
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.2; o3=0.2;
+              plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              RS=(total*1.5*1.5/nx/ny).n(digits=6)
+              plot3+=text3d("The Riemann sum shown is "+str(RS),(1,1,-1),color="black")
+              return plot3
+            frames=[dblRS(n) for n in range(2,14)]
+            plot123=animate(frames).interactive(delay=100,auto_play=False)
+            plot123
+          </sageplot>
+        </image>
+        <!-- <interactive label="interactive-F_11_1_volume2" platform="sage" width="100%" aspect="1:1.15">
           <description>
             <p>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>m</m> by <m>n</m> subrectangles</p>
           </description>
@@ -610,7 +655,7 @@
               return plot3
           frames=[dblRS(n) for n in range(2,20)]
           plot123=animate(frames).interactive(delay=150,auto_play=False)
-          plot123
+          plot123 -->
             <!-- var('t,s,x,y,z')
             from sage.plot.plot3d.plot3d import axes
             from sage.plot.plot3d.shapes import Box
@@ -648,9 +693,9 @@
                 plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
               show(plot3,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
               RS=total*1.5*1.5/nx/ny
-              print(" The value of the Riemann sum corresponding the volume of the\n rectangular prisms shown is "+str(RS)) -->
+              print(" The value of the Riemann sum corresponding the volume of the\n rectangular prisms shown is "+str(RS)) 
           </slate>
-        </interactive>
+        </interactive>-->
     </figure>
     <!-- <figure xml:id="F_11_1_rs">
       <caption>Finding better approximations by using smaller subrectangles.</caption>
