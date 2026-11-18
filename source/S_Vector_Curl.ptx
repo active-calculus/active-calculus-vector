@@ -110,20 +110,18 @@
       </p>
       <figure xml:id="fig_Vector_Curl_Spinner">
         <caption>A paddle-bladed spinner</caption>
-        <interactive label="sage_spinner_interact1" platform="sage" width="100%" aspect="1:1">
-        <description><p>A three dimensional plot of a spinner with a central axis shown by a segment in black. Four planar blades extend perpendicular to the central axis and are shown in with gray rectangles. </p>
-        </description><slate surface="sage">
-          var('t,s')
-          @interact
-          def _():
+        <image width="60%">
+          <description><p>A three dimensional plot of a spinner with a central axis shown by a segment in black. Four planar blades extend perpendicular to the central axis and are shown in with gray rectangles.  </p></description>
+          <sageplot variant="3d" label="sage_spinner_interact1">
+            var('t,s')
             a=2
             b=1
             plot5=parametric_plot3d((s,0,t),(s,-a,a),(t,0,b),color='gray',opacity=.75)
             plot5+=parametric_plot3d((0,s,t),(s,-a,a),(t,0,b),color='gray',opacity=.75)
-            plot5+=parametric_plot3d((0,0,t),(t,-1/4*b,3*b),color='black',thickness=6)
-            show(plot5,aspect_ratio=1,frame=False)
-        </slate>
-        </interactive>
+            plot5+=parametric_plot3d((0,0,t),(t,-1/4*b,3*b),color='black',thickness=6,aspect_ratio=1,frame=False)
+            plot5
+          </sageplot>
+        </image>
       </figure>
       <p>
         To begin our investigation of the rotation of a spinner in a vector field, we will look at the vector field <m>\vF</m> in <xref ref="fig_Vector_Curl_PA_0x"/>. As you think about these questions, draw an <q>X</q> at each of the points about which you are asked and consider the vector field as being the pattern of a wind blowing across the plane.
@@ -131,12 +129,12 @@
       <figure xml:id="fig_Vector_Curl_PA_0x">
         <caption>The vector field <m>\vF</m></caption>
         <image width="75%" xml:id="img_Curl_0x_field">
-        <description><p> A vector field that has only nonzero vertical component that is upward and increasing as you move horizontally to the right and downward as you move to the left. </p> </description>
-        <sageplot>
-          var('t,x,y')
-          plot1=plot_vector_field((0,x),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1)
-          plot1          
-        </sageplot>
+          <description><p> A vector field that has only nonzero vertical component that is upward and increasing as you move horizontally to the right and downward as you move to the left. </p> </description>
+          <sageplot>
+            var('t,x,y')
+            plot1=plot_vector_field((0,x),(x,-2,2),(y,-2,2),color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1)
+            plot1          
+          </sageplot>
         </image>
       </figure>
     </introduction>
@@ -518,23 +516,21 @@
   </p>
   <figure xml:id="fig_Vector_Curl_RotIn3D">
     <caption>Rotation as a vector on the <m>xy</m>-plane</caption>
-    <interactive label="vec_rotation" platform="sage" width="100%" aspect="1:1">
-      <description><p>A pink plane is shown through the x and y axes for a three dimensional plot. A blue arrow is drawn parallel to the z axis and extends from a highlighted point on the pink plane. The highlighted point is labeled <m>(a,b,c)</m>. A blue circular arc is drawn around the blue arrow in counteclockwise direction when viewed from the end of the blue arrow toward the pink plane.  </p></description>
-    <slate surface="sage">
+    <image width="60%">
+      <description><p>A pink plane is shown through the x and y axes for a three dimensional plot. A blue arrow is drawn parallel to the z axis and extends from a highlighted point on the pink plane. The highlighted point is labeled <m>(a,b,c)</m>. A blue circular arc is drawn around the blue arrow in counteclockwise direction when viewed from the end of the blue arrow toward the pink plane.   </p></description>
+      <sageplot variant="3d" label="vec_rotation">
         var('t,s')
         a=4
         b=5
-        @interact
-        def _():
-          plot1=sphere((1,2,0),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,s,0),(t,-a,a),(s,-a,a),color="red",opacity=.2)
-          plot1+=arrow3d((1,2,0),(1,2,2),color="blue",width=3)+parametric_plot3d((t,0,0),(t,-b,b),color="black")
-          plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
-          plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1,3,0.25))
-          plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="blue",thickness=3)
-          plot1+=arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=5,color="blue")
-          show(plot1)
-      </slate>
-    </interactive>
+        plot1=sphere((1,2,0),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,s,0),(t,-a,a),(s,-a,a),color="red",opacity=.2)
+        plot1+=arrow3d((1,2,0),(1,2,2),color="blue",width=3)+parametric_plot3d((t,0,0),(t,-b,b),color="black")
+        plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
+        plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1,3,0.25))
+        plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="blue",thickness=3)
+        plot1+=arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=5,color="blue")
+        plot1
+      </sageplot>
+    </image>
   </figure>
   <p>
     We first need to consider how we want to represent and measure rotation in three dimensions. When we developed the
@@ -547,30 +543,28 @@
   </p>
   <figure xml:id="fig_Vector_Curl_3DRotations">
     <caption>Rotation as a vector on each coordinate plane</caption>
-    <interactive label="vec_rotations" platform="sage" width="100%" aspect="1:1">
+    <image width="60%">
       <description><p>A pink plane is shown through the x and y axes for a three dimensional plot. A blue arrow is drawn parallel to the z axis and extends from a highlighted point on the pink plane. A blue circular arc is drawn around the blue arrow in counterclockwise direction when viewed from the end of the blue arrow toward the pink plane. 
       A yellow plane is shown through the y and z axes for a three dimensional plot. A yellow arrow is drawn parallel to the x axis and extends from a highlighted point on the yellow plane. A yellow circular arc is drawn around the blue arrow in counterclockwise direction when viewed from the end of the yellow arrow toward the pink plane.  
-      A green plane is shown through the x and z axes for a three dimensional plot. A magenta arrow is drawn parallel to the z axis and extends from a highlighted point on the green plane. A magenta circular arc is drawn around the magenta arrow in counterclockwise direction when viewed from the end of the magenta arrow toward the green plane.   </p></description>
-      <slate surface="sage">
+      A green plane is shown through the x and z axes for a three dimensional plot. A magenta arrow is drawn parallel to the z axis and extends from a highlighted point on the green plane. A magenta circular arc is drawn around the magenta arrow in counterclockwise direction when viewed from the end of the magenta arrow toward the green plane.</p></description>
+      <sageplot variant="3d" label="vec_rotations">
         var('t,s')
         a=4
         b=5
-        @interact
-        def _():
-          plot1=sphere((1,2,0),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,s,0),(t,-a,a),(s,-a,a),color="red",opacity=.2)
-          plot1+=sphere((-2,0,1),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,0,s),(t,-a,a),(s,-a,a),color="green",opacity=.2)
-          plot1+=sphere((0,-2,2),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((0,t,s),(t,-a,a),(s,-a,a),color="yellow",opacity=.2)
-          plot1+=arrow3d((1,2,0),(1,2,2),color="#648FFF",width=3)
-          plot1+=arrow3d((-2,0,1),(-2,2,1),color="#DC267F",width=3)
-          plot1+=arrow3d((0,-2,2),(2,-2,2),color="#FFB000",width=3)
-          plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")+parametric_plot3d((t,0,0),(t,-b,b),color="black")
-          plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))
-          plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="#648FFF",size=50)+arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=10,color="#648FFF")
-          plot1+=parametric_plot3d((-2+cos(-t),2,1+sin(-t)),(t,0,5.5),color="#DC267F",size=50)+arrow3d((-2+cos(-5.5),2,1+sin(-5.5)),(-2+cos(-5.75),2,1+sin(-5.75)),width=10,color="#DC267F")
-          plot1+=parametric_plot3d((2,-2+cos(t),2+sin(t)),(t,0,5.5),color="#FFB000",size=50)+arrow3d((2,-2+cos(5.5),2+sin(5.5)),(2,-2+cos(5.75),2+sin(5.75)),width=10,color="#FFB000")
-          show(plot1)
-      </slate>
-    </interactive>
+        plot1=sphere((1,2,0),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,s,0),(t,-a,a),(s,-a,a),color="red",opacity=.2)
+        plot1+=sphere((-2,0,1),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,0,s),(t,-a,a),(s,-a,a),color="green",opacity=.2)
+        plot1+=sphere((0,-2,2),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((0,t,s),(t,-a,a),(s,-a,a),color="yellow",opacity=.2)
+        plot1+=arrow3d((1,2,0),(1,2,2),color="#648FFF",width=3)
+        plot1+=arrow3d((-2,0,1),(-2,2,1),color="#DC267F",width=3)
+        plot1+=arrow3d((0,-2,2),(2,-2,2),color="#FFB000",width=3)
+        plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")+parametric_plot3d((t,0,0),(t,-b,b),color="black")
+        plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))
+        plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="#648FFF",size=50)+arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=10,color="#648FFF")
+        plot1+=parametric_plot3d((-2+cos(-t),2,1+sin(-t)),(t,0,5.5),color="#DC267F",size=50)+arrow3d((-2+cos(-5.5),2,1+sin(-5.5)),(-2+cos(-5.75),2,1+sin(-5.75)),width=10,color="#DC267F")
+        plot1+=parametric_plot3d((2,-2+cos(t),2+sin(t)),(t,0,5.5),color="#FFB000",size=50)+arrow3d((2,-2+cos(5.5),2+sin(5.5)),(2,-2+cos(5.75),2+sin(5.75)),width=10,color="#FFB000")
+        plot1
+      </sageplot>
+    </image>
   </figure>
   <p>
     If you look carefully at <xref ref="fig_Vector_Curl_3DRotations"/>, you can see that the vector shown in blue will be parallel to <m>\vk</m> and will represent rotations on planes of the form <m>z=c</m>. Similarly, the vector shown in yellow will be parallel to <m>\vi</m> and will represent rotations on planes of the form <m>x=a</m>. When looking down the blue and yellow vectors (from the terminal to the initial point), you can see the positive coordinate axes as pointing to the right and up<fn>When placing the <m>x</m>-axis horizontally for the blue vector and placing the <m>y</m>-axis horizontally for the yellow vector</fn> (as we would expect on a two-dimensional plot). In contrast, when you look down the magenta vector (from the terminal to the initial point), the positive coordinate axes (the <m>x</m> and <m>z</m> axes) point to the left and up.<fn>When placing the <m>x</m>-axis horizontally.</fn> In fact, when we look down the magenta vector the <m>xz</m>-plane is flipped. A positive rotation on a plane of the form <m>y=b</m> will correspond to a rotation vector that is in the direction of <m>-\vj</m>. This is a consequence of the right-handed coordinate system and our right-handed idea of rotation, as reflected in the relationships amongst the vectors <m>\vi,\vj\,\vk</m> recalled below:
@@ -676,15 +670,14 @@
     </p>
     <figure xml:id="fig_xyz_plot">
       <caption>The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</caption>
-      <interactive label="xyz_vf" platform="sage" width="100%" aspect="1:1">
-      <description><p>A vector field plotted for a region around the origin with each vector pointing away from the origin and getting longer as the location is farther from the origin. </p></description>
-      <slate surface="sage">
-        var('x,y,z')
-        @interact
-        def _():
-          show(plot_vector_field3d((x,y,z),(x,-2,2),(y,-2,2),(z,-2,2),plot_points=7))
-      </slate>
-      </interactive>
+      <image width="60%">
+        <description><p>A vector field plotted for a region around the origin with each vector pointing away from the origin and getting longer as the location is farther from the origin.  </p></description>
+        <sageplot variant="3d" label="xyz_vf">
+          var('x,y,z')
+          plot123=plot_vector_field3d((x,y,z),(x,-2,2),(y,-2,2),(z,-2,2),plot_points=7)
+          plot123
+        </sageplot>
+      </image>
     </figure>
   </example>
   <example>
@@ -984,14 +977,13 @@
     <task>
       <introduction>
       <p>
-        Now consider the vector field <m>\vF=\langle{-y,x,0}\rangle</m>, which is shown in <xref ref="fig_Vector_Curl_-yx"/>. The figure includes both an interactive three-dimensional plot of <m>\vF</m> as well as a two-dimensional plot of <m>\vF</m> in the yellow plane, which can be adjusted using the <q>Angle of Plane</q>
-        slider.
+        Now consider the vector field <m>\vF=\langle{-y,x,0}\rangle</m>, which is shown in <xref ref="fig_Vector_Curl_-yx"/>. The figure is an interactive three-dimensional plot of <m>\vF</m> in which the angle of the yellow plane is changed.
       </p>
       <figure xml:id="fig_Vector_Curl_-yx">
         <caption>Two views of the vector field <m>\langle -y,x,0\rangle</m></caption>
         <interactive label="int_Vector_Curl_-yx" platform="sage" width="100%" aspect="100:192">
-          <description><p>A pair of interactive plots are drawn to demonstrate the vector field <m>\langle -y,x,0\rangle</m> in two different perspectives. At the top of the figure are sliders to change the angle of the plane drawn and the number of vectors plotted in the three dimensional plot. The top plot is a three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A plane through the origin and the x-axis is shown in yellow. The angle this plane makes with the y-axis is changed by the slider above. Additionally, there is an array of vectors plotted representing the vector field. These vectors point in a circular pattern around the z-axis and are longer for locations farther from the z-axis. 
-          The second plot is a two dimensional plot of a vector field that shows arrows that show a pattern of clockwise rotation around the origin. As the angle of the plane in increased, the vector field becomes more stretched in the horizontal direction. </p>
+          <description><p>An interactive plot is drawn to demonstrate the vector field <m>\langle -y,x,0\rangle</m>. At the top of the figure are sliders to change the angle of the plane drawn and the number of vectors plotted in the three dimensional plot. The top plot is a three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A plane through the origin and the x-axis is shown in yellow. The angle this plane makes with the y-axis is changed by the slider above. Additionally, there is an array of vectors plotted representing the vector field. These vectors point in a circular pattern around the z-axis and are longer for locations farther from the z-axis. 
+           </p>
         </description>
         <slate surface="sage">
             var('x,y,z,t,s')
@@ -1001,21 +993,50 @@
             d=3
             w=d
             F=(-y,x,0)
-            @interact
-            def _(beta=slider(0,1.5,0.25,0,label="Angle of Plane"),vectors_to_plot=slider(5,10,1,7,label="Density")):
+            def asdf(beta):
               plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
               plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
               plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
               alpha=tan(beta)
-              plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=(vectors_to_plot))
-              plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow")
-              plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
-              show(plot1)
+              plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=7)
+              if alpha>1:
+                plot1+=plot3d(alpha*y,(x,-d,d),(y,-d/alpha,d/alpha),opacity=.4,color="yellow")
+                plot1+=arrow3d((1/alpha,1/alpha,1),(1/alpha,1/alpha-1,1+1/alpha))
+              else:
+                plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow")
+                plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
+              #plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
               plot2=plot_vector_field(((t),-s*(1/(1+alpha^2))),(s,-d,d),(t,-d,d),frame=False,aspect_ratio=1,color="blue",ticks=[[],[]])
-              show(plot2)
+              return plot1
+            frames=[asdf(beta/10) for beta in range(0,15)]
+            plot123=animate(frames).interactive(auto_play=False,delay=40)
+            plot123
           </slate>
         </interactive>
       </figure>
+      <p>
+        The gif below shows what the vector field will look like along the yellow plane, as the angle of the plane with the <m>xy</m>-plane is increased. 
+      </p>
+      <image source="./planevf.gif">
+        <description><p>This plot is a two dimensional plot of a vector field that shows arrows that show a pattern of clockwise rotation around the origin. As the angle of the plane in increased, the vector field becomes more stretched in the horizontal direction.</p></description>
+        <!-- <sageplot variant="3d" label="int_Vector_Curl_-yx2d">
+          var('x,y,z,t,s')
+          a=0
+          b=0
+          c=0
+          d=3
+          w=d
+          F=(-y,x,0)
+          def asdf2(beta):
+            alpha=tan(beta)
+            plot2=plot_vector_field(((t),-s*(1/(1+alpha^2))),(s,-d,d),(t,-d,d),frame=False,aspect_ratio=1,color="blue",ticks=[[],[]])
+            return plot2
+          frames=[asdf2(beta/10) for beta in range(0,16)]
+          plot123=animate(frames)
+          plot123
+        </sageplot> -->
+      </image>
+      
       </introduction>
     <task>
       <statement>

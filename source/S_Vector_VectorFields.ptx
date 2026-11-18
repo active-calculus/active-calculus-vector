@@ -346,17 +346,15 @@
 
     <figure xml:id="fig_Vector_VectorFields_gravity">
       <caption>Gravitational vector field.</caption>
-      <!--<image width="40%" source="/fig_12_1_gravity_field.png" />-->
-      <interactive label="interactive-gravitational-field" platform="sage" width="100%" aspect="1:1">
+      <image width="60%">
         <description><p>A three dimensional array of green vectors that point to the middle of the region. The arrows get larger as the locations get closer to the middle of the region.</p></description>
-      <slate surface="sage">
+        <sageplot variant="3d" label="interactive-gravitational-field">
           var('x,y,z')
-          @interact
-          def grav_field():
-              gravity_field = plot_vector_field3d((-6.67408*10^(-11)*1*5.972*10^24*x/sqrt(x^2 + y^2 + z^2)^3, -6.67408*10^(-11)*1*5.972*10^24*y/sqrt(x^2 + y^2 + z^2)^3, -6.67408*10^(-11)*1*5.972*10^24*z/sqrt(x^2 + y^2 + z^2)^3),(x,-1,1),(y,-1,1),(z,-1,1),colors="green",radius=.01,head_len=.1,head_radius=.05,plot_points=6)
-              show(gravity_field)
-        </slate>
-      </interactive>
+          gravity_field = plot_vector_field3d((-x/sqrt(x^2 + y^2 + z^2)^3, -y/sqrt(x^2 + y^2 + z^2)^3, -z/sqrt(x^2 + y^2 + z^2)^3),(x,-1,1),(y,-1,1),(z,-1,1),colors="green",radius=.01,head_len=0.075,head_radius=.025,plot_points=6)
+          gravity_field
+        </sageplot>
+      </image>
+      <!--<image width="40%" source="/fig_12_1_gravity_field.png" />-->
     </figure>
   </subsection>
 
@@ -496,14 +494,26 @@
           </solution>
         </task>
         <task>
-	  <statement>
+	      <statement>
           <p>
             Verify that <m>\vF(x,y)</m> is orthogonal to <m>\langle x,y\rangle</m>.
           </p>
-	  </statement>
+	      </statement>
           <solution>
             <p>
               Since <m> \langle x,y \rangle \cdot \langle y, - x \rangle \  = xy + - xy = 0</m>, we see that the vectors are orthogonal.
+            </p>
+          </solution>
+        </task>
+         <task>
+	        <statement>
+            <p>
+              Write a sentence describing the geometric relationship between <m>\vF(x,y)</m> and a circle centered at the origin. What is the relationship between <m>\vecmag{\vF(x,y)}</m> and the radius of that circle?
+            </p>
+	        </statement>
+          <solution>
+            <p>
+	            We know that the circle <m>x^2+y^2 = r^2</m> is a level curve of the function <m>f(x,y)=x^2+y^2</m>, and hence <m>\nabla f</m> is orthogonal to that circle.  Since <m>\vF(x,y)</m> is orthogonal to (a multiple of) the gradient of <m>f</m>, we know that <m>\vF(x,y)</m> is tangent to the circle. Noticing that <m>\vecmag{\vF(x,y)} = \sqrt{x^2+y^2}</m>, we see that the magnitude of <m>\vF(x,y)</m> is equal to the radius of the circle to which it is tangent.
             </p>
           </solution>
         </task>
@@ -519,18 +529,7 @@
             </p>
           </solution>
         </task>
-        <task>
-	        <statement>
-            <p>
-              Write a sentence describing the geometric relationship between <m>\vF(x,y)</m> and a circle centered at the origin. What is the relationship between <m>\vecmag{\vF(x,y)}</m> and the radius of that circle?
-            </p>
-	        </statement>
-          <solution>
-            <p>
-	            We know that the circle <m>x^2+y^2 = r^2</m> is a level curve of the function <m>f(x,y)=x^2+y^2</m>, and hence <m>\nabla f</m> is orthogonal to that circle.  Since <m>\vF(x,y)</m> is orthogonal to (a multiple of) the gradient of <m>f</m>, we know that <m>\vF(x,y)</m> is tangent to the circle. Noticing that <m>\vecmag{\vF(x,y)} = \sqrt{x^2+y^2}</m>, we see that the magnitude of <m>\vF(x,y)</m> is equal to the radius of the circle to which it is tangent.
-            </p>
-          </solution>
-        </task>
+       
     </activity>
  
     <p>

@@ -49,7 +49,7 @@
     </p>
     <figure xml:id="comp_rose1">
       <caption>An example of a sixteen-point compass rose (from <url href="https://commons.wikimedia.org/w/index.php?curid=667281" visual="commons.wikimedia.org/w/index.php?curid=667281">By Brosen~commonswiki - Own work, CC BY 2.5</url>)</caption>
-      <image width="50%" source="/Brosen_windrose.png">
+      <image width="40%" source="/Brosen_windrose.png">
         <description><p>A sixteen-point star shown with the point going up labeled N, the point going directly right labeled E, the point going down labeled S, and the point going left labeled W. The point going up and right is labeled NE, the point going down and right is labeled SE, the point going down and left is labeled SW, and the point going up and left is labeled NW. Between each of these points is eight points which are labeled (clockwise from the top) NNE, ENE, ESE, SSE, SSW, WSW, WNW, and NNW.</p></description>
       </image>
     </figure>
@@ -64,7 +64,7 @@
             <p>A contour plot on which three points (<m>A</m>, <m>B</m>, and <m>C</m>) are marked. A compass is drawn in the bottom left of the plot and labels the up direction N, to the right is labeled E, down is labeled S, and to the left is labeled W. Many curves are drawn and labeled corresponding the height of a landscape at that point. Peaks in the landscape occur toward the top left and the middle on the right, as well as the bottom right corner of the region. A depression is in the middle top of the region. </p>
           </description>
           <caption>
-            <p>A contour plot on which three points (<m>A</m>, <m>B</m>, and <m>C</m>) are marked.</p>
+            A contour plot on which three points (<m>A</m>, <m>B</m>, and <m>C</m>) are marked.
           </caption>
           <sageplot label="img-PA-DDcontour1">
             from matplotlib import ticker
@@ -78,9 +78,9 @@
             plot2+=arrow((-90,-90),(-100,-90),color="black",arrowsize=2)+arrow((-90,-90),(-90,-100),color="black",arrowsize=2)
             plot2+=text("N",(-90,-75),color="black")+text("S",(-90,-105),color="black")
             plot2+=text("E",(-75,-90),color="black")+text("W",(-105,-90),color="black")
-            plot2+=text("A",(0,15),color="red",zorder=5)
-            plot2+=text("B",(50,-30),color="red",zorder=5)
-            plot2+=text("C",(60,65),color="red",zorder=5)
+            plot2+=text("A",(0,15),color="red",zorder=5,bounding_box={'boxstyle': 'round', 'fc': 'w', 'ec': 'w','pad':0.15})
+            plot2+=text("B",(50,-30),color="red",zorder=5,bounding_box={'boxstyle': 'round', 'fc': 'w', 'ec': 'w','pad':0.15})
+            plot2+=text("C",(60,65),color="red",zorder=5,bounding_box={'boxstyle': 'round', 'fc': 'w', 'ec': 'w','pad':0.15})
             plot2
           </sageplot>
         </image>
@@ -207,12 +207,18 @@
     </p>
     <figure xml:id="CCA-DD1">
       <caption>A plot of <m>f(x,y)</m> with the measurements of change in input and output labeled for a change of inputs given by <m>\langle a,b\rangle</m></caption>
-      <interactive label="interactive-CCA-DD1" platform="sage" width="91%" aspect="1:1">
+      <image width="60%">
+        <description><p>A three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. An arrow is shown below the surface on the xy-plane in blue. This arrow is labeled with <m>\langle a ,b \rangle</m> and as <q>change in input</q> while pointing in the direction of the x and y axes. Line segments from the ends of the blue arrow to the surface are drawn in gray. From the two points where the gray segments intersect the surface, there are two red segments that move parallel to the xy-plane to the z-axis. The distance between where the two red line segments intersect the z-axis is shown with red arrows and labeled as <q>change in output</q>.</p></description>
+        <sageplot variant="3d" label="interactive-CCA-DD1">
+<xi:include href="interacts/CCA-DD1.txt" parse="text"/>
+        </sageplot>
+      </image>
+      <!-- <interactive label="interactive-CCA-DD1" platform="sage" width="91%" aspect="1:1">
         <description><p>A three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. An arrow is shown below the surface on the xy-plane in blue. This arrow is labeled with <m>\langle a ,b \rangle</m> and as <q>change in input</q> while pointing in the direction of the x and y axes. Line segments from the ends of the blue arrow to the surface are drawn in gray. From the two points where the gray segments intersect the surface, there are two red segments that move parallel to the xy-plane to the z-axis. The distance between where the two red line segments intersect the z-axis is shown with red arrows and labeled as <q>change in output</q>.</p>
       </description><slate surface="sage">
           <xi:include href="interacts/CCA-DD1.txt" parse="text"/>
         </slate>
-      </interactive>
+      </interactive> -->
     </figure>
     <p>
       The difference quotient completes is the first step in the classic calculus approach and provides a good start to approximating the rate of change for the output of <m>f</m> in the direction <m>\langle a,b\rangle</m>. However, it is not clear how this approximation changes when we look at smaller scales. Specifically, we need to look at what happens to this approximation as we shrink the step size <m>\sqrt{a^2+b^2}</m> to <m>0</m> while maintaining the same direction of change. In order to maintain our direction <em>and</em> look at smaller step sizes, we must separate the length of the vector <m>\langle a,b \rangle </m> from its direction. To do this, we use the unit vector in the direction of <m>\langle a,b \rangle</m>.
@@ -241,12 +247,18 @@
     </p>
     <figure xml:id="CCA-DD2">
       <caption>A plot of <m>f(x,y)</m> with a trace shown from the point <m>(x_0,y_0)</m> in the direction <m>\langle u_1,u_2 \rangle</m></caption>
-      <interactive label="interactive-CCA-DD2" platform="sage" width="91%" aspect="1:1">
+      <image width="60%">
+        <description><p>A three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The gray surface decreases as either x or y is increased from a maximum near the z-axis. An arrow is shown below the surface on the xy-plane in red. A line segment is shown in red on the xy-plane in same direction as the arrow and extends past the end of the arrow. This arrow is labeled with <m>\langle u_1,u_2 \rangle</m> while pointing in the direction of the x and y axes. A blue plane is shown extending from the red line segment parallel to the z-axis, through the surface. The curve along the surface that is above the red segment and is the intersection between the curved surface and the blue plane is drawn in blue.  </p></description>
+        <sageplot variant="3d" label="interactive-CCA-DD2">
+<xi:include href="interacts/CCA-DD2.txt" parse="text"/>
+        </sageplot>
+      </image>
+      <!-- <interactive label="interactive-CCA-DD2" platform="sage" width="91%" aspect="1:1">
         <description><p>A three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The gray surface decreases as either x or y is increased from a maximum near the z-axis. An arrow is shown below the surface on the xy-plane in red. A line segment is shown in red on the xy-plane in same direction as the arrow and extends past the end of the arrow. This arrow is labeled with <m>\langle u_1,u_2 \rangle</m> while pointing in the direction of the x and y axes. A blue plane is shown extending from the red line segment parallel to the z-axis, through the surface. The curve along the surface that is above the red segment and is the intersection between the curved surface and the blue plane is drawn in blue. </p>
       </description><slate surface="sage">
           <xi:include href="interacts/CCA-DD2.txt" parse="text"/>
         </slate>
-      </interactive>
+      </interactive> -->
     </figure>
     <p>
       When <m>t=0</m>, the location is <m>(x_0,y_0)</m>. The trace along the surface is given by <m>\vr(t)=\langle x_0+ u_1 t, y_0 + u_2 t , f(x_0+ u_1 t, y_0 + u_2 t) \rangle</m>. This trace is shown in blue in <xref ref="CCA-DD2"/>. We can also plot the trace of this surface in the direction of <m>\langle u_1,u_2 \rangle</m> as a function of <m>t</m> using a two-dimensional plot. This plot is shown in <xref ref="CCA-DD3"/>. We can visualize the directional derivative as the slope of a tangent line at the base point. This tangent line is drawn in black on <xref ref="CCA-DD3"/>. The scalar <m>D_{\vu} f(x_0,y_0)</m> tells us the slope of the line tangent to the surface in the direction of <m>\vu</m> at the point <m>(x_0,y_0,f(x_0,y_0))</m>. 
@@ -323,7 +335,7 @@
           <sageplot label="img-DDexample1">
             var('x,y,z,t,s')
             f(x,y)=2.5-(x-1)^2/2-(y+1)^2/9
-            plot7=contour_plot(f(x,y),(x,-2,4),(y,-4,4),aspect_ratio=1,labels=True,label_fmt="%1.0f",gridlines=True,label_inline=True,label_inline_spacing=5,fill=True)
+            plot7=contour_plot(f(x,y),(x,-2,4),(y,-4,4),aspect_ratio=1,labels=True,label_fmt="%1.0f",gridlines=True,label_inline=True,label_inline_spacing=5,fill=False)
             plot7+=arrow((2,2),(2-2/sqrt(5),2+1/sqrt(5)),color="red")
             plot7+=point((2,2),size=30,zorder=10,color="black")
             plot7
@@ -341,13 +353,19 @@
         This may be a bit difficult to see based on the contour plot in <xref ref="DDexample1"/>. However, the surface plot combined with a plot of the path of inputs in the direction <m>\vu</m> gives a better visualization. <xref ref="DDexample2"/> shows a surface plot of <m>z=f(x,y)</m> with the trace in the <m>\vu</m>-direction shown in blue and the direction vector <m>\vu</m> shown in red on the <m>xy</m>-plane. The black line segment shows how <m>Df_{\vu}(2,2)</m> is positive because the <m>z</m>-coordinate of this tangent line increases as we move away from <m>(2,2)</m> in the <m>\vu</m>-direction.
       </p>
       <figure xml:id="DDexample2">
-      <caption>A plot of <m>z=f(x,y)</m> with trace in the direction <m>\vu</m> through <m>(2,2,1)</m> shown including the tangent line</caption>
-        <interactive label="interactive-DDexample2" platform="sage" width="91%" aspect="1:1">
+        <caption>A plot of <m>z=f(x,y)</m> with trace in the direction <m>\vu</m> through <m>(2,2,1)</m> shown including the tangent line</caption>
+        <image width="60%">
+          <description><p>A three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The gray surface decreases as you move away from from a maximum near the z-axis. An arrow is shown below the surface on the xy-plane in red and points in the direction of the x and y axes. A gray segment is drawn from the beginning point of the red arrow, parallel to the z-axis, up to the surface. A point where the gray segment intersects the surface his highlighted. A blue plane is shown extending from the red arrow parallel to the z-axis, through the surface. The curve along the surface that is above the red segment and is the intersection between the curved surface and the blue plane is drawn in blue. This blue curve initially increases in z then decreases. The line segment that begins at the highlighted point and is tangent to the blue curve is shown in black.  </p></description>
+          <sageplot variant="3d" label="interactive-DDexample2">
+<xi:include href="interacts/DDExample2.txt" parse="text"/>
+          </sageplot>
+        </image>
+        <!-- <interactive label="interactive-DDexample2" platform="sage" width="91%" aspect="1:1">
           <description><p>A three dimensional plot of a curved surface shown in gray above a set of axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The gray surface decreases as you move away from from a maximum near the z-axis. An arrow is shown below the surface on the xy-plane in red and points in the direction of the x and y axes. A gray segment is drawn from the beginning point of the red arrow, parallel to the z-axis, up to the surface. A point where the gray segment intersects the surface his highlighted. A blue plane is shown extending from the red arrow parallel to the z-axis, through the surface. The curve along the surface that is above the red segment and is the intersection between the curved surface and the blue plane is drawn in blue. This blue curve initially increases in z then decreases. The line segment that begins at the highlighted point and is tangent to the blue curve is shown in black. </p></description>
         <slate surface="sage">
             <xi:include href="interacts/DDExample2.txt" parse="text"/>
           </slate>
-        </interactive>
+        </interactive> -->
       </figure>
       <p>  
         Remember that the directional derivative is a local measurement and only applies in a small neighborhood of a point and only in the direction <m>\vu</m>. In other words, <m>Df_{\vu}(2,2)</m> does not describe the rate of change at other points along the blue curve, only the rate of change along the blue curve for a small step away from our base point in the red direction. With plots like <xref ref="DDexample1"/>, you may be tempted to use information far away from the point of interest to try to figure out the rate of change. However, like most calculus measurements, we must only use plots to provide information on what is happening near a specific point. 

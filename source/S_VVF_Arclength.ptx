@@ -155,9 +155,8 @@
   </p>
   <figure xml:id="arclength2">
     <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> split into <m>6</m> parts with endpoints <m>\vr_0,\vr_1,...,\vr_6</m></caption>
-    <image width="80%"> <!--source="/line_int_defn3"-->
+    <image width="60%"> <!--source="/line_int_defn3"-->
       <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m>. Point <m>P</m> is labeled as <m>\vr_0</m> and point <m>Q</m> is labeled as <m>\vr_n</m>. There are five intermediate points drawn as well as vectors connecting consecutive intermediate points. The vector from <m>\vr_{3}</m> to <m>\vr_4</m> is labeled <m>\Delta\vr_4 = \vr_4-\vr_{3}</m>. </p></description>
-      
       <sageplot label="line-arclength2">
         tpoints=[4,3.5,3,2.5,1.5,1,0.5]
         offsetx=[0.1,-0.2,-0.25,0,0,0,0.2]
@@ -195,8 +194,12 @@
     Use the slider on <xref ref="arclengthinteract"/> to change the number of segments used in the approximation of the arc length of <m>C</m>. Notice that as the number of segments increases, the difference between the actual length of the curve and the line segments gets smaller. You can also see how the sum of the lengths of the blue segments will approach the true length of the curve, which is approximately <m>6.3286</m>.
   </p>
   <figure xml:id="arclengthinteract">
-    <caption>A plot of curve in space</caption>
-    <interactive label="interactive-arclength1" platform="sage" width="110%" aspect="1:0.75">
+    <caption>An animation of a curve in space with increasing number of line segments approximating arc length</caption>
+    <image source="./arclengthapprox.gif">
+    <description><p>An animated  two dimensional plot with an oriented curve from a point <m>P</m> to a point <m>Q</m>. The curve moves up and left from the point <m>P</m>, then turns up and to the right before moving down and right to the point <m>Q</m>. The slider above the plot changes the number of line segments drawn between intermediate points on the oriented curve. Line segments are drawn in blue between intermediate points on the curve. The length of the blue line segments is displayed as an approximation to the true arc length of the oriented curve. </p></description>
+    </image>
+  
+    <!-- <interactive label="interactive-arclength1" platform="sage" width="110%" aspect="1:0.75">
       <description><p>An interactive two dimensional plot with an oriented curve from a point <m>P</m> to a point <m>Q</m>. The curve moves up and left from the point <m>P</m>, then turns up and to the right before moving down and right to the point <m>Q</m>. The slider above the plot changes the number of line segments drawn between intermediate points on the oriented curve. Line segments are drawn in blue between intermediate points on the curve. The length of the blue line segments is displayed as an approximation to the true arc length of the oriented curve. </p></description>
       <slate surface="sage">
         @interact
@@ -217,7 +220,7 @@
             plot3+=text("The approximate arc length is "+str(dist.n(digits=5)),(0.5,-0.5),color="black",fontsize=10)    
             show(plot3)
       </slate>
-    </interactive>
+    </interactive> -->
   </figure>
   <p>
     Conceptually, you can use <xref ref="arclengthinteract"/> to see how more intermediate points will give rise to a better estimate for the true length of the curve, but we have not quantified how the approximation changes on a finer scale (step 2 of the CCA). In order to complete step 2 of the CCA, we will need to incorporate steps in our parameter <m>t</m> into this calculation.
@@ -414,7 +417,7 @@
 
   <figure xml:id="arclengthplot">
     <caption>A plot of the arc length traveled as a function of the parameter value to that point for <m>\vr(t)=\langle 3t\cos(4t)\sin(3-2t),t-\cos(2+t)\rangle</m></caption>
-    <image width="80%"> <!--source="/line_int_defn3"-->
+    <image width="60%"> <!--source="/line_int_defn3"-->
       <description><p>Axes for the first quadrant. The horizontal axis is labeled with time <m>t</m> and the vertical axis is labeled arc length <m>s</m>. The graph depicts a function that starts at the origin and increases, although the rate of increase varies. There is also a point identified on the graph with <m>t</m>-coordinate <m>4</m> and <m>s</m>-coordinate approximately <m>48</m>. Dashed lines go from the axes to this point. </p></description>
       <sageplot label="line-arclengthplot">
         var('t,x')
@@ -525,15 +528,28 @@
   </p>
   <figure xml:id="racetrack_plot">
     <!-- TODO These plots are really not awesome. -->
-    <caption>A plot of the racetrack with scale in meters</caption>
-    <sidebyside>
+    <caption>A plot of a racetrack with scale in meters</caption>
+    <image width="60%">
+      <description><p>A plot of the a race track with a long straightaway, followed by a gentle curve, then several back and forth turns and another gentle turn.</p></description>
+      <sageplot variant="3d" label="racetrack-interact">
+        var('t')
+        r2(t)=((3 + 2*sin(t))*cos(t), (3 - ((t - 2)*sin(4*t)))*sin(t), 1/30*t^2 *sin(3*t))
+        tval=2.5
+        rescale=1/3
+        pos=r2(tval)
+        plot5=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=2,axes=False)
+        plot5+=sphere(pos,color="black",size=0.15,viewpoint=[[-0.0028,-0.3535,-0.9354],179.16])
+        plot5
+      </sageplot>
+    </image>
+    <!-- <sidebyside>
       <image width="45%" source="racetrack1.png">
         <description><p>A plot of the a race track with a long straightaway, followed by a gentle curve, then several back and forth turns and another gentle turn.</p></description>
       </image>
       <image width="45%" source="racetrack2.png">
         <description><p>A plot of the a race track with a long straightaway, followed by a gentle curve, then several back and forth turns and another gentle turn from the side which shows how the racetrack changes elevation along the circuit.</p></description>
   </image>
-    </sidebyside>
+    </sidebyside> -->
   </figure>
   <p>
     All of the drivers are going the same way around the track, all start at the same location at <m>t=0</m>, all complete one lap of the track, and all of the cars have perfect grip of the road (the race cars are never sliding). The picture of the racetrack above is given so you have an example to help you think about the tasks in this problem, not because any particular feature of the track needs to be considered for the following activity.

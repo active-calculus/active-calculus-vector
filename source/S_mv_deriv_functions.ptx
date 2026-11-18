@@ -453,65 +453,7 @@
       </p>
       <table xml:id="T-mv_functions-range">
         <title>Values of <m>f(x,y) = \displaystyle \frac{x^2 \sin(2y)}{g}</m> with <m>g=32 \text{ft/s}^2</m></title>
-        <tabular halign="center">
-          <row>
-            <cell><m>x \Downarrow \backslash y\Rightarrow</m></cell>
-            <cell bottom="medium"><m>0.4</m></cell>
-            <cell bottom="medium"><m>0.6</m></cell>
-            <cell bottom="medium"><m>0.8</m></cell>
-            <cell bottom="medium"><m>1.0</m></cell>
-            <cell bottom="medium"><m>1.2</m></cell>
-          </row>
-          
-          <row>
-            <cell right="medium">50</cell>
-            <cell>56.0</cell>
-            <cell>72.8</cell>
-            <cell>78.1</cell>
-            <cell>71.0</cell>
-            <cell/>
-          </row>
-          <row>
-            <cell right="medium">75</cell>
-            <cell/>
-            <cell>163.8</cell>
-            <cell>175.7</cell>
-            <cell>159.8</cell>
-            <cell>118.7</cell>
-          </row>
-            <row>
-              <cell right="medium">100</cell>
-              <cell>224.2</cell>
-              <cell>291.3</cell>
-              <cell>312.4</cell>
-              <cell>284.2</cell>
-              <cell>211.1</cell>
-            </row>
-            <row>
-              <cell right="medium">125</cell>
-              <cell>350.3</cell>
-              <cell>455.1</cell>
-              <cell/>
-              <cell>444.0</cell>
-              <cell>329.8</cell>
-            </row>
-            <row>
-              <cell right="medium">150</cell>
-              <cell>504.4</cell>
-              <cell>655.3</cell>
-              <cell>702.8</cell>
-              <cell>639.3</cell>
-              <cell>474.9</cell>
-            </row>
-            <row>
-              <cell right="medium">175</cell>
-              <cell>686.5</cell>
-              <cell>892.0</cell>
-              <cell>956.6</cell>
-              <cell>870.2</cell>
-              <cell/>
-            </row>
-          </tabular>
+        <xi:include href="./tables/projectiletable-fillin.txt"/>
         </table>
     </statement>
     <answer>
@@ -576,15 +518,15 @@
     </figure> -->
     <figure xml:id="zfnxy">
       <caption>The projectile distance surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m></caption>
-      <interactive label="interactive-zfnxy" platform="sage" width="90%" aspect="1:1">
-        <description><p>A plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased.</p></description>
-      <slate surface="sage">
+      <image width="60%">
+        <description><p>A plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. </p></description>
+        <sageplot variant="3d" label="interactive-zfnxy">
           var('x,y')
           g(x,y)=x^2*sin(2*y)/32
-          plot10=plot3d(g,(x,0,200),(y,0,pi/2),color="lightblue",aspect_ratio=[1,100,0.15],mesh=True,opacity=0.8,plot_points=21)
-          show(plot10,viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
-        </slate>
-      </interactive>
+          plot10=plot3d(g,(x,0,200),(y,0,pi/2),color="lightblue",aspect_ratio=[1,100,0.15],mesh=True,opacity=0.8,plot_points=21,viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
+          plot10
+        </sageplot>
+      </image>
     </figure>
     <!-- TODO Add a link to preface section on graphing tools -->
     <p>
@@ -595,20 +537,38 @@
     </p>
     <figure xml:id="yfnxz">
       <caption>The surface given by <m>y=g(x,z) = \frac{x^2}{5}+z^2</m></caption>
-      <interactive label="interactive-yfnxz" platform="sage" width="90%" aspect="1:1">
-        <description><p>A bowl shaped surface is shown opening to the side. A red segment is drawn through this surface changing only in the vertical coordinate. The two points at which this red segment intersects the surface are highlighted in red and the segment is labeled <q>Same <m>(x,y)</m> value </q>.</p></description>
-      <slate surface="sage">
-          var('x,y,z,r,t')
+      <image width="60%">
+        <description><p>A bowl shaped surface is shown opening to the side. A red segment is drawn through this surface changing only in the vertical coordinate. The two points at which this red segment intersects the surface are highlighted in red and the segment is labeled <q>Same <m>(x,y)</m> value </q>. </p></description>
+        <sageplot variant="3d" label="interactive-yfnxz">
+          from sage.plot.plot3d.plot3d import axes
+          scale=3;
+          plot11=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+          var('x,y,z,s,t')
           g(x,z)=x^2/5+z^2
-          plot11=parametric_plot3d((r*cos(t)/sqrt(5),(r*cos(t))^2+(r*sin(t))^2,r*sin(t)),(r,0,2),(t,0,2*pi),opacity=0.8,mesh=True,plot_points=31,color="lightblue")
-          plot11+=line([(0,1,-2),(0,1,2)],color="red",thickness=2)
+          param(s,t)=(s*cos(t)/sqrt(5),(s*cos(t))^2+(s*sin(t))^2,s*sin(t))
+          plot11+=parametric_plot3d(param(s,t),(s,0,2),(t,0,2*pi),opacity=0.6,plot_points=31,color="lightblue",frame=False,axes_labels=['x','y','z'])
+          plot11+=line([(0,1,-2),(0,1,2)],color="red",thickness=2,aspect_ratio=1,viewpoint=[[-0.2046,-0.5544,-0.8067],146.85],camera_position=[4.4087,7.6827,2.8914])
           plot11+=point3d((0,1,1),color="red",size=30)
           plot11+=point3d((0,1,-1),color="red",size=30)
           plot11+=text3d("Same (x,y) value",(0,1,2.25),color="red",fontsize=20)
           plot11+=point((0,1,3),color="white",size=0)
-          show(plot11,aspect_ratio=(1,0.5,0.75),viewpoint=[[-0.1883,-0.5499,-0.8137],148.86],camera_position=[4.4087,7.6827,2.8914])
-        </slate>
-      </interactive>
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=10;m=12;a1=0;a2=2;b1=0;b2=2*pi; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.5; o3=0.5;
+          #plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot11
+        </sageplot>
+      </image>
     </figure>
   </paragraphs>
   </subsection>
@@ -639,7 +599,7 @@
     <figure xml:id="trace2">
       <caption>Plots illustrating values of <m>f</m> when one variable is fixed</caption>
 
-      <sidebyside widths="46% 46%">
+      <sidebyside widths="45% 45%">
         <figure xml:id="trace21">
           <caption>A plot of <m>f(x,0.6) = \frac{x^2}{32}\sin(2\cdot 0.6)</m> </caption>
           <image width="100%">
@@ -677,11 +637,11 @@
     </p>
     <figure xml:id="trace1">
       <caption>The surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m> with traces <m>y=0.6</m> (in red) and <m>x=150</m> (in blue)</caption>
-      <interactive label="interactive-trace1" platform="sage" width="90%" aspect="1:1">
+      <image width="60%">
         <description><p>A three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. On the lower corner of this curved surface are drawn three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m> signifying origin. 
         In the direction of the segment labeled y from the origin, there is a two dimensional flat grid labeled <m>x</m> horizontally and <m>z</m> vertically. A branch of a parabola is shown in red from the bottom left of this grid to the top right. This red curve is copied along the curved surface along a direction that is parallel to the segment labeled x (from the origin). 
-        In the direction of the segment labeled x from the origin, there is a two dimensional flat grid labeled <m>y</m> horizontally and <m>z</m> vertically. A parabola is shown in blue pointing downward on this grid with a vertex about half way up the grid. This blue curve is copied along the curved surface along a direction that is parallel to the segment labeled y (from the origin).</p> </description>
-      <slate surface="sage">
+        In the direction of the segment labeled x from the origin, there is a two dimensional flat grid labeled <m>y</m> horizontally and <m>z</m> vertically. A parabola is shown in blue pointing downward on this grid with a vertex about half way up the grid. This blue curve is copied along the curved surface along a direction that is parallel to the segment labeled y (from the origin).</p></description>
+        <sageplot variant="3d" label="interactive-trace1">
           var('x,y,z,t,s')
           f(x,y)=x^2*sin(2*y)/32
           param(s,t)=(s,t,f(s,t))
@@ -694,11 +654,11 @@
           c1="lightblue"; c2="black"; c3="black"; o1=0.6; o2=0.5; o3=0.5;
           plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
           for i in range(n+1):
-              sv=a1+i/n*(a2-a1)
-              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            sv=a1+i/n*(a2-a1)
+            plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
           for i in range(m+1):
-              tv=b1+i/m*(b2-b1)
-              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            tv=b1+i/m*(b2-b1)
+            plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
           d1=150
           d2=1.5
           plot11=plot99+parametric_plot3d((x,0.6,f(x,0.6)),(x,0,200),color="red",thickness=3)
@@ -712,10 +672,10 @@
           plot11+=line([(200+d1,0,0),(200+d1,pi/2+d2,0)],thickness=3,color="black")+text3d("y",(200+d1,pi/4,-100),fontsize=30)
           plot11+=line([(200+d1,0,0),(200+d1,0,1500)],thickness=3,color="black")+text3d("z",(200+d1,-0.5,750),fontsize=30)
           plot11+=line([(0,0,0),(100,0,0)],thickness=2,color="black")+line([(0,0,0),(0,1,0)],thickness=2,color="black")+line([(0,0,0),(0,0,500)],thickness=2,color="black")
-          plot11+=text3d("x",(100,0,-100),color="black",fontsize=20)+text3d("y",(0,1,-100),color="black",fontsize=20)+text3d("z",(0,0,600),color="black",fontsize=20)
-          show(plot11,aspect_ratio=[1,100,0.2],viewpoint=[[-0.8798,0.3246,0.3474],93.44],camera_position=[-347.7358,-471.7864,193.733],frame=False)
-        </slate>
-      </interactive>
+          plot11+=text3d("x",(100,0,-100),color="black",fontsize=20)+text3d("y",(0,1,-100),color="black",fontsize=20)+text3d("z",(0,0,600),color="black",fontsize=20,aspect_ratio=[1,100,0.2],viewpoint=[[-0.8798,0.3246,0.3474],93.44],camera_position=[-347.7358,-471.7864,193.733],frame=False)
+          plot11
+        </sageplot>
+      </image>
     </figure>
     
     <!-- <figure xml:id="trace1">
@@ -789,17 +749,17 @@
           </p>
           <figure xml:id="tracey1">
             <caption>A bounding box for the region with <m>-1 \leq x,y,z \leq 1</m></caption>
-            <interactive label="interactive-tracey1" platform="sage" width="91%" aspect="1:1">
+            <image width="70%">
               <description><p>A three dimensional plot of sides of a box shown in gray. The sides of this box are shown with a grid from negative one to one in both the horizontal and vertical coordinates.</p></description>
-              <slate surface="sage">
+              <sageplot variant="3d" label="interactive-tracey1">
                 var('t,s')
                 plot15=parametric_plot3d((1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5,aspect_ratio=[1,1,0.5])
                 plot15+=parametric_plot3d((-1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
                 plot15+=parametric_plot3d((s,1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
                 plot15+=parametric_plot3d((s,-1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
-                show(plot15)
-              </slate>
-            </interactive>
+                plot15
+              </sageplot>
+            </image>
           </figure>
         </statement>
         <solution>
@@ -836,23 +796,21 @@
           </p>
         </statement>
         <solution>
-          <image>
-            <interactive label="interactive-traces" platform="sage" width="91%" aspect="1:1">
-              <description><p>A three dimensional plot of sides of a box shown in gray. The sides of this box are shown with a grid from negative one to one in both the horizontal and vertical coordinates. A plot of the traces for <m>z=yx^2</m> is shown with the constant values of x shown in blue and constant values of y shown in red.</p></description>
-              <slate surface="sage">
-                var('t,s,x,y')
-                vs=[-1,-0.5,0,0.5,1]
-                f(x,y)=y*x^2
-                plot15=parametric_plot3d((1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5,aspect_ratio=[1,1,0.5])
-                plot15+=parametric_plot3d((-1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
-                plot15+=parametric_plot3d((s,1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
-                plot15+=parametric_plot3d((s,-1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
-                for v in vs:
-                  plot15+=parametric_plot3d((s,v,f(s,v)),(s,-1,1),color="red",thickness=2)
-                  plot15+=parametric_plot3d((v,s,f(v,s)),(s,-1,1),color="blue",thickness=2)
-                show(plot15)
-              </slate>
-            </interactive>
+          <image width="60%">
+            <description><p>A three dimensional plot of sides of a box shown in gray. The sides of this box are shown with a grid from negative one to one in both the horizontal and vertical coordinates. A plot of the traces for <m>z=yx^2</m> is shown with the constant values of x shown in blue and constant values of y shown in red. </p></description>
+            <sageplot variant="3d" label="interactive-traces">
+              var('t,s,x,y')
+              vs=[-1,-0.5,0,0.5,1]
+              f(x,y)=y*x^2
+              plot15=parametric_plot3d((1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5,aspect_ratio=[1,1,0.5])
+              plot15+=parametric_plot3d((-1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
+              plot15+=parametric_plot3d((s,1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
+              plot15+=parametric_plot3d((s,-1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
+              for v in vs:
+                plot15+=parametric_plot3d((s,v,f(s,v)),(s,-1,1),color="red",thickness=2)
+                plot15+=parametric_plot3d((v,s,f(v,s)),(s,-1,1),color="blue",thickness=2)
+              plot15
+            </sageplot>
           </image>
         </solution>
       </task>
@@ -870,8 +828,8 @@
           g(x,y)=x^2*sin(2*y)/32
           @interact
           def traceplot(s=checkbox(False,label="Show traces")):
-              plot16=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,mesh=s,opacity=0.8)
-              show(plot16,aspect_ratio=[1,100,0.15],viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
+            plot16=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,mesh=s,opacity=0.8)
+            show(plot16,aspect_ratio=[1,100,0.15],viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
         </slate>
       </interactive>
     </figure>
@@ -1178,22 +1136,22 @@
     </p>
     <figure xml:id="contour2">
       <caption>A plot of the contours of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m> at the appropriate heights</caption>
-      <interactive label="interactive-contour2" platform="sage" width="91%" aspect="1:1">
-        <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. There are eight curves shown along this surface at constant heights of 0 through 1050 with steps of size 150. These curves are all U-shaped and the colors go from pink to red to orange to yellow to green to blue to purple to pink. </p></description>
-      <slate surface="sage">
+      <image width="60%">
+        <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. There are eight curves shown along this surface at constant heights of 0 through 1050 with steps of size 150. These curves are all U-shaped and the colors go from pink to red to orange to yellow to green to blue to purple to pink.  </p></description>
+        <sageplot variant="3d" label="interactive-contour2">
           var('x,y,z,t,s')
           g(x,y)=x^2*sin(2*y)/32
           s=1
-          plot18=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.1*s)
+          plot18=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.1*s,aspect_ratio=[1,100,0.15],viewpoint=[[-0.9811,0.124,0.1483],80.88],camera_position=[-13.4812,-314.7077,166.7816])
           c=["pink","red","orange","yellow","green","blue","indigo","violet"]
           for i in range(8):
             h=150*i
             tv=arcsin(32*h/(200^2))/2
             plot18+=parametric_plot3d((sqrt(32*h/sin(2*t)),t,h),(t,tv,pi/2-tv),color=c[i],thickness=2)
             plot18+=text3d(str(h),(sqrt(32*h/1)-25,pi/4,h),color=c[i],fontsize=15)
-          show(plot18,aspect_ratio=[1,100,0.15],viewpoint=[[-0.9811,0.124,0.1483],80.88],camera_position=[-13.4812,-314.7077,166.7816])
-        </slate>
-      </interactive>
+          plot18
+        </sageplot>
+      </image>
     </figure>
     <!-- <figure xml:id="F-9-1-contours-1">
       <caption>Left: Level curves. Right: Level curves at appropriate heights.</caption> 
@@ -1209,9 +1167,9 @@
     </p>
     <figure xml:id="contour3">
       <caption>A plot of the contours and traces of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m> at the appropriate values</caption>
-      <interactive label="interactive-contour3" platform="sage" width="91%" aspect="1:1">
-        <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. Three mutually perpendicular segments are drawn from the lower corner of the surface and are labled <m>x</m> and <m>y</m> horizontally and <m>z</m> for the vertical segment. Eight red curves are shown along the surface in a direction parallel to the segment labeled <m>x</m>. Eight green curves are shown along the surface in a direction parallel to the segment labeled <m>y</m>. Eight blue curves are shown along the surface with constant steps in the height.</p> </description>
-      <slate surface="sage">
+      <image width="60%">
+        <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. Three mutually perpendicular segments are drawn from the lower corner of the surface and are labled <m>x</m> and <m>y</m> horizontally and <m>z</m> for the vertical segment. Eight red curves are shown along the surface in a direction parallel to the segment labeled <m>x</m>. Eight green curves are shown along the surface in a direction parallel to the segment labeled <m>y</m>. Eight blue curves are shown along the surface with constant steps in the height. </p></description>
+        <sageplot variant="3d" label="interactive-contour3">
           var('x,y,z,t,s')
           g(x,y)=x^2*sin(2*y)/32
           s=0
@@ -1227,10 +1185,11 @@
           for xv in c3:
               plot19+=parametric_plot3d((xv,t,g(xv,t)),(t,0,pi/2),color="green",thickness=2)
           plot19+=line([(0,0,0),(100,0,0)],thickness=2,color="black")+line([(0,0,0),(0,1,0)],thickness=2,color="black")+line([(0,0,0),(0,0,500)],thickness=2,color="black")
-          plot19+=text3d("x",(100,0,-100),color="black",fontsize=30)+text3d("y",(0,1,-100),color="black",fontsize=30)+text3d("z",(0,0,600),color="black",fontsize=30)
-          show(plot19,aspect_ratio=[1,100,0.15],frame=False,viewpoint=[[-0.8982,0.3075,0.314],94.94],camera_position=[-160.2715,-257.0002,95.1452])
-        </slate>
-      </interactive>
+          plot19+=text3d("x",(100,0,-100),color="black",fontsize=30)+text3d("y",(0,1,-100),color="black",fontsize=30)+text3d("z",(0,0,600),color="black",fontsize=30,aspect_ratio=[1,100,0.15],frame=False,viewpoint=[[-0.8982,0.3075,0.314],94.94],camera_position=[-160.2715,-257.0002,95.1452])
+          plot19
+        </sageplot>
+      </image>
+
     </figure>
     
     <p>

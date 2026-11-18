@@ -107,7 +107,22 @@
         </p>
         <figure xml:id="PA-OtherCoord-task4-plot">
           <caption>A plot of point <m>P</m> with <m>y</m>, <m>z</m>, and <m>r</m> labeled</caption>
-          <interactive label="interactive-othercoord1" platform="sage" width="91%" aspect="1:1">
+          <image width="50%">
+            <description><p>A three dimensional plot with the point <m>P</m> labeled and drawn with a green segment parallel to the z-axis. The green segment is labeled 2. A red segment is drawn perpendicular to the x-axis to the end point of the green segment on the xy-plane. The red segment is labeled 3. A blue segment goes from the origin to the point at which the green segment hits the xy-plane and is labeled 5.</p></description>
+            <sageplot variant="3d" label="interactive-othercoord1">
+              from sage.plot.plot3d.plot3d import axes
+              var('t,s')
+              scale=5
+              plot1=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot1+=line3d([(4,0,0),(4,3,0)],color="red",thickness=3)+text3d("3",(4.5,1.5,-.25),color="red",fontsize=30)
+              plot1+=line3d([(0,0,0),(4,3,0)],color="blue",thickness=3)+text3d("5",(2.5,1.25,0),color="blue",fontsize=30)
+              plot1+=line3d([(3.5,0,0),(3.5,0.5,0),(4,0.5,0)],color="black",thickness=2)
+              plot1+=line3d([(4,3,0),(4,3,2)],color="green",thickness=3)+text3d("2",(4,3.2,1.5),color="green",fontsize=30)
+              plot1+=sphere((4,3,2),color="black",size=0.1)+text3d("P",(4,3.3,2.2),color="black",fontsize=30,aspect_ratio=1,viewpoint=[[-0.4585,-0.5912,-0.6635],125.54],camera_position=[15.0205,5.8566,4.0979])
+              plot1
+            </sageplot>
+          </image>
+          <!-- <interactive label="interactive-othercoord1" platform="sage" width="91%" aspect="1:1">
             <description><p>A three dimensional plot with the point <m>P</m> labeled and drawn with a green segment parallel to the z-axis. The green segment is labeled 2. A red segment is drawn perpendicular to the x-axis to the end point of the green segment on the xy-plane. The red segment is labeled 3. A blue segment goes from the origin to the point at which the green segment hits the xy-plane and is labeled 5.</p></description>
             <slate surface="sage">
               from sage.plot.plot3d.plot3d import axes
@@ -121,7 +136,7 @@
               plot1+=sphere((4,3,2),color="black",size=0.1)+text3d("P",(4,3.3,2.2),color="black",fontsize=30)
               show(plot1,aspect_ratio=1,viewpoint=[[-0.4585,-0.5912,-0.6635],125.54],camera_position=[15.0205,5.8566,4.0979])
             </slate>
-          </interactive>
+          </interactive> -->
         </figure>
         <p>
           Use trigonometry and the distance formula to find the following:
@@ -171,9 +186,9 @@
         </p>
         <figure xml:id="PA-OtherCoord-task5-plot">
           <caption>A plot of point <m>P</m> with <m>y</m>, <m>z</m>, and <m>r</m> labeled</caption>
-          <interactive label="interactive-othercoord2" platform="sage" width="91%" aspect="1:1">
+          <image width="50%">
             <description><p>A three dimensional plot with the point labeled <m>P</m> is below the xy-plane and drawn with a green segment parallel to the z-axis. The green segment is labeled 1. A red segment is drawn perpendicular to the negative x-axis to the end point of the green segment on the xy-plane. The red segment is labeled 2. A blue segment goes from the origin to the point at which the green segment hits the xy-plane and is labeled 3. A pink segment from the origin is drawn to the point <m>P</m>. An orange arc is drawn in the same plane as the blue and pink segments and extends down from the positive z-axis to the pink segment.</p></description>
-          <slate surface="sage">
+            <sageplot variant="3d" label="interactive-othercoord2">
               from sage.plot.plot3d.plot3d import axes
               var('t,s')
               scale=3
@@ -187,10 +202,10 @@
               plot2+=line3d([(-sqrt(5),-2,0),(-sqrt(5),-2,-1)],color="green",thickness=3)+text3d("1",(-3,-2,-0.5),color="green",fontsize=30)
               plot2+=sphere((-sqrt(5),-2,-1),color="black",size=0.1)+text3d("P",(-3.3,-2,-1.5),color="black",fontsize=30)
               plot2+=line3d([(0,0,0,),(-sqrt(5),-2,-1)],color="pink",thickness=3)
-              plot2+=parametric_plot3d((cos(th)*sin(t),sin(th)*sin(t),cos(t)),(t,0,ps),color="orange",thickness=3)
-              show(plot2,aspect_ratio=1,viewpoint=[[-0.9662,-0.1375,-0.2179],66.3],camera_position=[2.6194,-8.1725,5.3059])
-            </slate>
-          </interactive>
+              plot2+=parametric_plot3d((cos(th)*sin(t),sin(th)*sin(t),cos(t)),(t,0,ps),color="orange",thickness=3,aspect_ratio=1,viewpoint=[[-0.9662,-0.1375,-0.2179],66.3],camera_position=[2.6194,-8.1725,5.3059])
+              plot2
+            </sageplot>
+          </image>
         </figure>
         <p>
           Use trigonometry and the distance formula to find the following:
@@ -295,9 +310,9 @@
     <sidebyside>
       <figure xml:id="polarex1">
         <caption>Starting orientation of polar coordinates</caption>
-        <image label="img-plarex1">
+        <image>
           <description><p>A two dimensional plot with the horizontal axis labeled x, the vertical axes labeled y, and an arrow pointing from the origin to the right, labeled "Face this way". </p></description>
-        <sageplot>
+          <sageplot label="img-plarex1">
             plot5=arrow((0,0),(1,0),color="black",axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
             plot5+=text("Face this way",(1,0.25),fontsize=20,color="black",xmin=-0.5,xmax=1.5,ymin=-0.5,ymax=1.5,aspect_ratio=1)
             plot5
@@ -306,9 +321,9 @@
       </figure>
       <figure xml:id="polarex2">
         <caption>Rotate by <m>\frac{\pi}{2}</m> counterclockwise</caption>
-        <image label="img-polarex2">
+        <image>
           <description><p>A two dimensional plot with the horizontal axis labeled x, the vertical axes labeled y, and an arrow pointing up from the origin, labeled "Face this way". A blue circular arc is drawn with arrow counterclockwise from the positive horizontal axis to the positive vertical axis. </p></description>
-        <sageplot>
+        <sageplot label="img-polarex2">
             var('t')
             plot6=arrow((0,0),(0,1),color="black",axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
             plot6+=text("Face this way",(0.15,1.1),fontsize=20,color="black")
@@ -319,9 +334,9 @@
       </figure>
       <figure xml:id="polarex3">
         <caption> Move two units in this direction</caption>
-        <image label="img-polarex3">
+        <image>
           <description><p> A two dimensional plot with the horizontal axis labeled x, the vertical axes labeled y, and an arrow pointing up from the origin, labeled "Face this way". A blue circular arc is drawn with arrow counterclockwise from the positive horizontal axis to the positive vertical axis. A red segment is drawn vertically from the origin to a point labeled <m>P:(r,\theta)=(2,\pi//2)</m>.</p></description>
-      <sageplot>
+          <sageplot label="img-polarex3">
             var('t')
             plot7=line([(0,0),(0,1.25)],color="red",thickness=3,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])+text("2",(-0.2,1),color="red",fontsize=15)
             plot7+=parametric_plot((0.5*cos(t),0.5*sin(t)),(t,0,pi/2),color="blue")+arrow((0.5*cos(pi/2-.1),0.5*sin(pi/2-.1)),(0,0.5),color="blue")
@@ -341,9 +356,9 @@
     <sidebyside>
       <figure xml:id="polarex4">
         <caption>Starting orientation of polar coordinates</caption>
-        <image label="img-plarex4">
+        <image>
           <description><p>A two dimensional plot with the horizontal axis labeled x, the vertical axes labeled y, and an arrow pointing from the origin to the right, labeled "Face this way".</p></description>
-        <sageplot>
+          <sageplot label="img-plarex4">
             plot5=arrow((0,0),(1,0),color="black",axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
             plot5+=text("Face this way",(1,0.25),fontsize=20,color="black",xmin=-0.5,xmax=1.5,ymin=-0.5,ymax=1.5,aspect_ratio=1)
             plot5
@@ -352,9 +367,9 @@
       </figure>
       <figure xml:id="polarex5">
         <caption>Rotate by <m>\frac{\pi}{2}</m> clockwise</caption>
-        <image label="img-polarex5">
+        <image>
           <description><p>A two dimensional plot with the horizontal axis labeled x, the vertical axes labeled y, and an arrow pointing down from the origin, labeled "Face this way". A blue circular arc is drawn with arrow clockwise from the positive horizontal axis to the negative vertical axis.</p></description>
-          <sageplot>
+          <sageplot label="img-polarex5">
             var('t')
             plot6=arrow((0,0),(0,-1),color="black",axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
             plot6+=text("Face this way",(0.25,-1.1),fontsize=20,color="black")
@@ -366,9 +381,9 @@
       </figure>
       <figure xml:id="polarex6">
         <caption> Move two units backwards while facing this direction</caption>
-        <image label="img-polarex6">
+        <image>
           <description><p> A two dimensional plot with the horizontal axis labeled x, the vertical axes labeled y, and an arrow pointing down from the origin, labeled "Face this way". A blue circular arc is drawn with arrow clockwise from the positive horizontal axis to the negative vertical axis. The blue arc is labeled <m>\theta=-\frac{\pi}{4}</m>. A red segment is drawn vertically up from the origin to a point labeled <m>Q:(r,\theta)=(-2,-\pi//2)</m>.</p></description>
-          <sageplot>
+          <sageplot label="img-polarex6">
             var('t')
             plot7=line([(0,0),(0,1.5)],color="red",thickness=3,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]],linestyle="--")
             plot7+=text("-2",(-0.2,1),color="red",fontsize=15)
@@ -438,7 +453,7 @@
       If we choose <m>r=\sqrt{13}</m>, then we need to select the angle that corresponds to the second quadrant, <m>\pi + \arctan(-\frac{3}{2})</m>, to get polar coordinates <m>P=(r,\theta)=(\sqrt{13},\pi+\arctan(-\frac{3}{2}))</m>. If we want to not have to use the complementary angle to <m>\arctan(-\frac{3}{2})</m>, then we need to use the negative value of <m>r</m> to get <m>P=(r,\theta)=(-\sqrt{13},\arctan(-\frac{3}{2}))</m>. <xref ref="rectpolarex"/> illustrates these two different polar coordinates that identify the point <m>P</m>
   </p>
   <figure xml:id="rectpolarex">
-  <sidebyside valign="bottom">
+    <sidebyside widths="45% 45%" valign="bottom">
     <figure xml:id="rectpolarex1">
       <caption>A visualization of <m>P</m> with polar coordinates <m>(-\sqrt{13},\arctan(-\frac{3}{2}))</m></caption>
       <image label="img-rectpolarex1">
@@ -478,7 +493,7 @@
     Now we will look at how to convert <m>Q=(-3,-2)</m> into polar coordinates. Similar to our arguments above, we find that <m>Q=(-3,-2)</m> implies that <m>r^2=9+4=13</m> and <m>\tan(\theta)=\frac{-2}{-3}</m>. If we want to consider a positive value for <m>r</m> and a value of <m>\theta</m> between <m>0</m> and <m>2\pi</m>, then we get <m>r=\sqrt{13}</m> and <m>\theta=\pi+\arctan(\frac{2}{3}) </m>. We could also consider a negative value for <m>r</m> and a value of <m>\theta</m> between <m>0</m> and <m>2\pi</m>, which would yield <m>r=-\sqrt{13}</m> and <m>\theta=\arctan(\frac{2}{3}) </m>. <xref ref="rectpolarex-Q"/> illustrates these two perspectives on finding polar coordinates for <m>Q</m>
   </p>
   <figure xml:id="rectpolarex-Q">
-  <sidebyside>
+  <sidebyside widths="45% 45%">
     <figure xml:id="rectpolarex3">
       <caption>A visualization of <m>Q</m> with polar coordinates <m>(\sqrt{13},\pi+\arctan(\frac{2}{3}))</m></caption>
       <image label="img-rectpolarex4">
@@ -1264,7 +1279,7 @@
     </p>
     <figure xml:id="convertreg1">
       <caption>A plot of <m> -1\leq x \leq 1</m> </caption>
-      <image width="75%" xml:id="img-convertreg1">
+      <image width="60%" xml:id="img-convertreg1">
         <description><p>A two dimensional plot with coordinates going from negative three to three. A rectangular region that extends one unit right and left of the vertical axis is highlighted in green. The vertical lines that are the boundary of this region are drawn with black lines.</p></description>
         <sageplot>
           plot12=line([(-1,-5),(-1,5)],color="black",thickness=2,axes=True,axes_labels=["$x$","$y$"],gridlines=True)
@@ -1277,7 +1292,7 @@
       If we consider the set of inequalities given by <m> -1\leq x \leq 1</m> and <m> 0\leq y \leq 2</m>, then we are looking for the region of points that satisfies both inequalities. The second inequality is shown in red in <xref ref="convertreg2"/> and the intersection of the two plots corresponds to the region described by <m> -1\leq x \leq 1</m> and <m> 0\leq y \leq 2</m>, which is plotted in blue <xref ref="convertreg3"/>.
     </p>
     <figure xml:id="converreg-container">
-      <sidebyside>
+      <sidebyside widths="45% 45%">
         <figure xml:id="convertreg2">
           <caption>A plot of <m> 0\leq y \leq 2</m> </caption>
           <image width="75%" xml:id="img-convertreg2">
@@ -1484,9 +1499,9 @@
 
     <figure xml:id="cylcoorddefn">
       <caption>A plot of point <m>P</m> with <m>y</m>, <m>z</m>, and <m>r</m> labeled</caption>
-      <interactive label="interactive-cylcoorddefn" platform="sage" width="91%" aspect="1:1">
-        <description><p>A three dimensional plot is shown with the xy-plane highlighted with a gridded gray plane. A point in the positive x,y,z directions is drawn and labeled <m>P=(r,\theta,z)</m>. A green segment is drawn parallel to the z-axis, from the point <m>P</m> to the xy-plane and is labeled <m>z</m>. A red segment is drawn from axis labeled <m>x</m> to the point where the green segment intersects the xy-plane and is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the red segment. </p></description>
-      <slate surface="sage">
+      <image width="60%">
+        <description><p>A three dimensional plot is shown with the xy-plane highlighted with a gridded gray plane. A point in the positive x,y,z directions is drawn and labeled <m>P=(r,\theta,z)</m>. A green segment is drawn parallel to the z-axis, from the point <m>P</m> to the xy-plane and is labeled <m>z</m>. A red segment is drawn from axis labeled <m>x</m> to the point where the green segment intersects the xy-plane and is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the red segment.  </p></description>
+        <sageplot variant="3d" label="interactive-cylcoorddefn">
           from sage.plot.plot3d.plot3d import axes
           var('s,t')
           scale=3.25
@@ -1501,10 +1516,10 @@
           plot12+=text3d("P=(r,\u03B8,z)",(1,2,3),fontsize=30,color="black")
           plot12+=text3d("\u03B8",(1.5,0.5,0),color="blue",fontsize=30)
           plot12+=text3d("r",(0.5,1.5,0.75),color="red",fontsize=30)
-          plot12+=text3d("z",(1.25,2.5,1.5),color="green",fontsize=30)
-          show(plot12,viewpoint=[[-0.4306,-0.5735,-0.6969],124.76],camera_position=[12.851,4.9751,4.488])
-        </slate>
-      </interactive>
+          plot12+=text3d("z",(1.25,2.5,1.5),color="green",fontsize=30,viewpoint=[[-0.4306,-0.5735,-0.6969],124.76],camera_position=[12.851,4.9751,4.488])
+          plot12
+        </sageplot>
+      </image>
     </figure>
     <!-- <figure xml:id="Cylindrical_coords_def">
       <caption>The cylindrical coordinates of a point</caption>
@@ -1546,22 +1561,22 @@
           </p>
           <figure xml:id="cylex1">
             <caption>A plot of <m>(r,\theta,z)=(\sqrt{5},\frac{3\pi}{4},-2)</m></caption>
-              <interactive label="interactive-cylex1" platform="sage" width="91%" aspect="1:1">
-                <description><p>A three dimensional plot is shown with the xy-plane highlighted with a gridded gray plane. A point in direction of the axis labeled <m>y</m> and opposite direction of the axes labeled <m>x</m> and <m>z</m>. A green segment is drawn parallel to the z-axis, from the point up to the xy-plane and is labeled <m>-2</m>. A red segment is drawn from axis labeled <m>x</m> to the point where the green segment intersects the xy-plane and is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the red segment. The blue arc is labeled <m>\theta</m>. </p></description>
-                <slate surface="sage">
-                  from sage.plot.plot3d.plot3d import axes
-                  var('s,t')
-                  scale=3.5
-                  plot15=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                  plot15+=sphere((-sqrt(10)/2,sqrt(10)/2,-2),size=0.15,color="black")+line([(-sqrt(10)/2,sqrt(10)/2,-2),(-sqrt(10)/2,sqrt(10)/2,0)],color="green",thickness=3)
-                  plot15+=text3d("-2",(-sqrt(10)/2+0.5,2,-1),color="green",fontsize=30)
-                  plot15+=line([(-sqrt(10)/2,sqrt(10)/2,0),(0,0,0)],color="red",thickness=3)+text3d("r",(-sqrt(10)/3,sqrt(10)/3-0.6,0),color="red",fontsize=30,fontstyle='italic')
-                  plot15+=parametric_plot3d((cos(t),sin(t),0),(t,0, 0.75*pi),color="blue",thickness=3)+text3d("\u03B8",(1,1,0),color="blue",fontsize=30)
-                  plot15+=arrow3d((cos(0.75*pi-0.1),sin(0.75*pi-0.1),0),(-1/sqrt(2),1/sqrt(2),0),color="red",arrowsize=3)
-                  plot15+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),opacity=0.1,color="gray",aspect_ratio=1,mesh=True,plot_points=5)
-                  show(plot15,aspect_ratio=1,viewpoint=[[0.076,-0.5053,-0.8596],194.73],camera_position=[-2.8466,11.7913,6.6115])
-                </slate>
-              </interactive>
+            <image width="60%">
+              <description><p>A three dimensional plot is shown with the xy-plane highlighted with a gridded gray plane. A point in direction of the axis labeled <m>y</m> and opposite direction of the axes labeled <m>x</m> and <m>z</m>. A green segment is drawn parallel to the z-axis, from the point up to the xy-plane and is labeled <m>-2</m>. A red segment is drawn from axis labeled <m>x</m> to the point where the green segment intersects the xy-plane and is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the red segment. The blue arc is labeled <m>\theta</m>. </p></description>
+              <sageplot variant="3d" label="interactive-cylex1">
+                from sage.plot.plot3d.plot3d import axes
+                var('s,t')
+                scale=3.5
+                plot15=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                plot15+=sphere((-sqrt(10)/2,sqrt(10)/2,-2),size=0.15,color="black")+line([(-sqrt(10)/2,sqrt(10)/2,-2),(-sqrt(10)/2,sqrt(10)/2,0)],color="green",thickness=3)
+                plot15+=text3d("-2",(-sqrt(10)/2+0.5,2,-1),color="green",fontsize=30)
+                plot15+=line([(-sqrt(10)/2,sqrt(10)/2,0),(0,0,0)],color="red",thickness=3)+text3d("r",(-sqrt(10)/3,sqrt(10)/3-0.6,0),color="red",fontsize=30,fontstyle='italic')
+                plot15+=parametric_plot3d((cos(t),sin(t),0),(t,0, 0.75*pi),color="blue",thickness=3)+text3d("\u03B8",(1,1,0),color="blue",fontsize=30)
+                plot15+=arrow3d((cos(0.75*pi-0.1),sin(0.75*pi-0.1),0),(-1/sqrt(2),1/sqrt(2),0),color="red",arrowsize=3)
+                plot15+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),opacity=0.1,color="gray",aspect_ratio=1,mesh=True,plot_points=5,viewpoint=[[0.076,-0.5053,-0.8596],194.73],camera_position=[-2.8466,11.7913,6.6115])
+                plot15
+              </sageplot>
+            </image>
           </figure>
           <p>
             To convert our cylindrical coordinates to rectangular, we can use <m>x = r \cos(\theta)</m> and <m>y = r \sin(\theta)</m>. This gives rectangular coordinates of <m>(x,y,z)= \left(-\frac{\sqrt{10}}{2},\frac{\sqrt{10}}{2},-2\right)</m>.
@@ -1581,26 +1596,26 @@
           </p>
           <figure xml:id="cylex2">
             <caption>A plot of <m>(x,y,z)=(-2,1,2)</m></caption>
-              <interactive label="interactive-cylex2" platform="sage" width="91%" aspect="1:1">
-                <description><p>A three dimensional plot is shown with the xy-plane highlighted with a gridded gray plane. A point in direction of the axes labeled <m>y</m> and <m>z</m> and opposite direction of the axis labeled <m>x</m>. A green segment is drawn parallel to the z-axis, from the point down to the xy-plane and is labeled <m>2</m>. A red segment is drawn from axis labeled <m>x</m> to the point where the green segment intersects the xy-plane and is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the red segment. The blue arc is labeled <m>\theta</m>. A pink segment is drawn two units from the origin in the direction opposite the axis labeled <m>x</m>. From the end of the pink segment, there is a dark red segment of length one unit drawn parallel to the axis labeled <m>y</m>.</p></description>
-              <slate surface="sage">
-                  from sage.plot.plot3d.plot3d import axes
-                  var('s,t')
-                  scale=3.5
-                  a=arccos(-2/sqrt(5))
-                  plot16=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                  plot16+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),opacity=0.1,color="gray",aspect_ratio=1)
-                  for i in range(-3,4):
-                    plot16+=line([(3,i,0),(-3,i,0)],color="gray")+line([(i,3,0),(i,-3,0)],color="gray")
-                  plot16+=sphere((-2,1,2),size=0.15,color="black")+line([(-2,1,2),(-2,1,0)],color="green",thickness=3)+text3d("2",(-2.25,1,1.35),color="green",fontsize=30)
-                  plot16+=line([(-2,1,0),(-2,0,0)],color="purple",thickness=3)+text3d("1",(-2.5,0.5,0.25),color="purple",fontsize=30)
-                  plot16+=line([(0,0,0),(-2,0,0)],color="magenta",thickness=3)+text3d("-2",(-1,-0.25,0.25),color="magenta",fontsize=30)
-                  plot16+=line([(0,0,0),(-2,1,0)],color="red",thickness=3)+text3d("r",(-1.0,1.75,0.25),color="red",fontsize=30)
-                  plot16+=parametric_plot3d((cos(t),sin(t),0),(t,0,a),color="blue",thickness=3)+text3d("\u03B8",(1.5,1.5,0.25),color="blue",fontsize=25)
-                  plot16+=arrow3d((cos(a-.1),sin(a-0.1),0),(cos(a),sin(a),0),color="blue",arrowsize=3)
-                  show(plot16,aspect_ratio=1,viewpoint=[[-0.1086,-0.5695,-0.8148],162.33],camera_position=[3.752,13.1687,6.9602])
-                </slate>
-              </interactive>
+            <image width="60%">
+              <description><p>A three dimensional plot is shown with the xy-plane highlighted with a gridded gray plane. A point in direction of the axes labeled <m>y</m> and <m>z</m> and opposite direction of the axis labeled <m>x</m>. A green segment is drawn parallel to the z-axis, from the point down to the xy-plane and is labeled <m>2</m>. A red segment is drawn from axis labeled <m>x</m> to the point where the green segment intersects the xy-plane and is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the red segment. The blue arc is labeled <m>\theta</m>. A pink segment is drawn two units from the origin in the direction opposite the axis labeled <m>x</m>. From the end of the pink segment, there is a dark red segment of length one unit drawn parallel to the axis labeled <m>y</m>. </p></description>
+              <sageplot variant="3d" label="interactive-cylex2">
+                from sage.plot.plot3d.plot3d import axes
+                var('s,t')
+                scale=3.5
+                a=arccos(-2/sqrt(5))
+                plot16=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                plot16+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),opacity=0.1,color="gray",aspect_ratio=1)
+                for i in range(-3,4):
+                  plot16+=line([(3,i,0),(-3,i,0)],color="gray")+line([(i,3,0),(i,-3,0)],color="gray")
+                plot16+=sphere((-2,1,2),size=0.15,color="black")+line([(-2,1,2),(-2,1,0)],color="green",thickness=3)+text3d("2",(-2.25,1,1.35),color="green",fontsize=30)
+                plot16+=line([(-2,1,0),(-2,0,0)],color="purple",thickness=3)+text3d("1",(-2.5,0.5,0.25),color="purple",fontsize=30)
+                plot16+=line([(0,0,0),(-2,0,0)],color="magenta",thickness=3)+text3d("-2",(-1,-0.25,0.25),color="magenta",fontsize=30)
+                plot16+=line([(0,0,0),(-2,1,0)],color="red",thickness=3)+text3d("r",(-1.0,1.75,0.25),color="red",fontsize=30)
+                plot16+=parametric_plot3d((cos(t),sin(t),0),(t,0,a),color="blue",thickness=3)+text3d("\u03B8",(1.5,1.5,0.25),color="blue",fontsize=25)
+                plot16+=arrow3d((cos(a-.1),sin(a-0.1),0),(cos(a),sin(a),0),color="blue",arrowsize=3,aspect_ratio=1,viewpoint=[[-0.1086,-0.5695,-0.8148],162.33],camera_position=[3.752,13.1687,6.9602])
+                plot16
+              </sageplot>
+            </image>
           </figure>
         </statement>
       </task>
@@ -1611,29 +1626,29 @@
           </p>
           <figure xml:id="cylex3">
             <caption>A plot of <m>\theta=2</m> with positive <m>r</m> values in blue and negative <m>r</m> values in green</caption>
-              <interactive label="interactive-cylex3" platform="sage" width="91%" aspect="1:1">
-                <description><p>A three dimensional plot with a half plane extending from the axis labeled <m>z</m> in the direction of positive <m>y</m> and negative <m>x</m> axes shown in blue. The blue half plane is labeled <m>\theta with r \gt 0</m>. A red circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the blue half plane and is labeled <m>\theta =2</m>. A green half plane extending from the axis labeled <m>z</m> in the direction of negative <m>y</m> and positive <m>x</m> axes shown in green. The green half plane is labeled <m>\theta with r \lt 0</m>. A pink circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the green half plane and is labeled <m>\theta =2+\pi</m>.  </p></description>
-              <slate surface="sage">
-                  from sage.plot.plot3d.plot3d import axes
-                  var('s,t')
-                  scale=3; d=2.5
-                  a=pi+2
-                  plot17=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                  plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-d,d),(s,-1.25,0),color="blue",opacity=.15)
-                  plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-d,d),(s,0,1.25),color="green",opacity=.15)
-                  for i in range(-2,3):
-                    plot17+=line([(i*d/4,tan(2)*i*d/4,d),(i*d/4,tan(2)*i*d/4,-d)],color="gray",thickness=1)
-                    plot17+=line([(d/2,tan(2)*d/2,d*i/2),(-d/2,-tan(2)*d/2,d*i/2)],color="gray",thickness=1)
-                  plot17+=parametric_plot3d((cos(t),sin(t),0),(t,0,2),color="red",thickness=3)+arrow((cos(2-0.3),sin(2-0.3),0),(cos(2),sin(2),0),color="red",arrowsize=8)
-                  plot17+=arrow3d((0.5*cos(a-0.3),0.5*sin(a-0.3),0),(0.5*cos(a),0.5*sin(a),0),color="magenta",arrowsize=8)
-                  plot17+=text3d("\u03B8=2",(1,2,0),color="red",fontsize=30)
-                  plot17+=text3d("\u03B8=2+\u03C0",(-2,-1,0),color="magenta",fontsize=30)
-                  plot17+=parametric_plot3d((0.5*cos(t),0.5*sin(t),0),(t,0,pi+2),color="magenta",thickness=3)
-                  plot17+=text3d("\u03B8 with r\u003C0",(4*cos(pi+2),4*sin(pi+2),3),color="green",fontsize=25)
-                  plot17+=text3d("\u03B8 with r\u003E0",(4*cos(2),4*sin(2),3),color="blue",fontsize=25)
-                  show(plot17,aspect_ratio=1,viewpoint=[[-0.5738,-0.49,-0.6562],104.92],camera_position=[14.2567,-2.1413,4.5515])
-                </slate>
-              </interactive>
+            <image width="60%">
+              <description><p>A three dimensional plot with a half plane extending from the axis labeled <m>z</m> in the direction of positive <m>y</m> and negative <m>x</m> axes shown in blue. The blue half plane is labeled <m>\theta with r \gt 0</m>. A red circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the blue half plane and is labeled <m>\theta =2</m>. A green half plane extending from the axis labeled <m>z</m> in the direction of negative <m>y</m> and positive <m>x</m> axes shown in green. The green half plane is labeled <m>\theta with r \lt 0</m>. A pink circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the green half plane and is labeled <m>\theta =2+\pi</m>.</p></description>
+              <sageplot variant="3d" label="interactive-cylex3">
+                from sage.plot.plot3d.plot3d import axes
+                var('s,t')
+                scale=3; d=2.5
+                a=pi+2
+                plot17=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-d,d),(s,-1.25,0),color="blue",opacity=.15)
+                plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-d,d),(s,0,1.25),color="green",opacity=.15)
+                for i in range(-2,3):
+                  plot17+=line([(i*d/4,tan(2)*i*d/4,d),(i*d/4,tan(2)*i*d/4,-d)],color="gray",thickness=1)
+                  plot17+=line([(d/2,tan(2)*d/2,d*i/2),(-d/2,-tan(2)*d/2,d*i/2)],color="gray",thickness=1)
+                plot17+=parametric_plot3d((cos(t),sin(t),0),(t,0,2),color="red",thickness=3)+arrow((cos(2-0.3),sin(2-0.3),0),(cos(2),sin(2),0),color="red",arrowsize=8)
+                plot17+=arrow3d((0.5*cos(a-0.3),0.5*sin(a-0.3),0),(0.5*cos(a),0.5*sin(a),0),color="magenta",arrowsize=8)
+                plot17+=text3d("\u03B8=2",(1,2,0),color="red",fontsize=30)
+                plot17+=text3d("\u03B8=2+\u03C0",(-2,-1,0),color="magenta",fontsize=30)
+                plot17+=parametric_plot3d((0.5*cos(t),0.5*sin(t),0),(t,0,pi+2),color="magenta",thickness=3)
+                plot17+=text3d("\u03B8 with r\u003C0",(4*cos(pi+2),4*sin(pi+2),3),color="green",fontsize=25)
+                plot17+=text3d("\u03B8 with r\u003E0",(4*cos(2),4*sin(2),3),color="blue",fontsize=25,aspect_ratio=1,viewpoint=[[-0.5738,-0.49,-0.6562],104.92],camera_position=[14.2567,-2.1413,4.5515])
+                plot17
+              </sageplot>
+            </image>
           </figure>
         </statement>
       </task>
@@ -1644,8 +1659,36 @@
           </p>
           <figure xml:id="cylex4">
             <caption>A plot of <m>z=r^2</m> with segments for <m>r</m> in red and <m>z=r^2</m> in green</caption>
-              <interactive label="interactive-cylex4" platform="sage" width="100%" aspect="1:1.1">
-                <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m> is shown. A bowl shaped surface is shown centered at the origin and extending toward the axis labeled <m>z</m>. A red segment is drawn in the xy-plane where the top slider changes the length of the segment drawn and the bottom slider changes the direction of the segment. The red segment is labeled <m>r</m>. From the end of the red segment, a green segment is drawn parallel to the z-axis. The green segment is the same length as the red segment.</p>
+            <image width="60%">
+              <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m> is shown. A bowl shaped surface is shown centered at the origin and extending toward the axis labeled <m>z</m>. A red segment is drawn in the xy-plane where the top slider changes the length of the segment drawn and the bottom slider changes the direction of the segment. The red segment is labeled <m>r</m>. From the end of the red segment, a green segment is drawn parallel to the z-axis. The green segment is the same length as the red segment.</p></description>
+              <sageplot variant="3d" label="interactive-cylex4">
+                from sage.plot.plot3d.plot3d import axes
+                var('s,t')
+                scale=2;b=1.25;a=2.5;
+                plot18=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                #plot18+=parametric_plot3d((s*cos(t),s*sin(t),s^2),(s,0,1.5),(t,0,2*pi),color="lightblue",opacity=.25)
+                param(s,t)=(s*cos(t),s*sin(t),s^2)
+                #set up grid      n is number of steps in s    m is number of steps in t  
+                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                n=9;m=9;a1=0;a2=1.5;b1=0;b2=2*pi; 
+                #c1 is surface color     o1 is surface opacity
+                #c2 and o2 are for constant t value traces
+                #c3 and o3 are for constant s value traces
+                c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.6; o3=0.6;
+                plot18+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot18+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot18+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                plot18+=line([(0,0,0),(b*cos(a),b*sin(a),0)],color="red",thickness=3)+text3d("r",(b*cos(a)/1.6,b*sin(a)/1.6,-0.25),color="red",fontsize=25)
+                plot18+=line([(b*cos(a),b*sin(a),0),(b*cos(a),b*sin(a),b^2)],color="green",thickness=3)+text3d("z=r\u00B2",((b+0.75)*cos(a),(b+0.75)*sin(a),b^2/2),color="green",fontsize=25,aspect_ratio=1,viewpoint=[[-0.0213,-0.6767,-0.7359],177.35],camera_position=[0.9859,8.7231,1.8168])
+                plot18
+              </sageplot>
+            </image>
+              <!-- <interactive label="" platform="sage" width="100%" aspect="1:1.1">
+                <description><p></p>
               </description><slate surface="sage">
                   from sage.plot.plot3d.plot3d import axes
                   var('s,t')
@@ -1673,7 +1716,7 @@
                       plot18+=line([(b*cos(a),b*sin(a),0),(b*cos(a),b*sin(a),b^2)],color="green",thickness=3)+text3d("z=r\u00B2",((b+0.75)*cos(a),(b+0.75)*sin(a),b^2/2),color="green",fontsize=25)
                       show(plot18,aspect_ratio=1,viewpoint=[[-0.0213,-0.6767,-0.7359],177.35],camera_position=[0.9859,8.7231,1.8168])
                 </slate>
-              </interactive>
+              </interactive> -->
           </figure>
         </statement>
       </task>
@@ -1726,20 +1769,17 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption>A plot of a right circular cylinder centered on the z-axis</caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
-            <description><p>A plot of a right circular cylinder centered on the z-axis</p></description>
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=3
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((2*cos(t),2*sin(t),s),(s,-3,3),(t,0,2*pi),color="lightblue",opacity=.7,mesh=True,plotpoints=13)
-                plot1             
-              </slate>
-            </interactive>
-          </figure>
+          <image width="60%">
+            <description><p>A plot of a right circular cylinder centered on the z-axis </p></description>
+            <sageplot variant="3d" label="rightcirccylz">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=3
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((2*cos(t),2*sin(t),s),(s,-3,3),(t,0,2*pi),color="lightblue",opacity=.7,mesh=True,plotpoints=13)
+              plot1 
+            </sageplot>
+          </image>
           <p>
             This surface is the right circular cylinder of radius 2 centered on the z-axis.
           </p>
@@ -1752,23 +1792,20 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption>The solid region is the half circular region below the paraboloid given by <m>z=r^2</m> and above the xy-plane</caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
-            <description><p>The solid region is the half circular region below the paraboloid given by <m>z=r^2</m> and above the xy-plane</p></description>
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=4
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,4),(t,0,pi),color="lightblue",opacity=.4)
-                plot1+=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,pi),color="yellow",opacity=.4)
-                plot1+=parametric_plot3d((s*cos(t),s*sin(t),s^2),(s,0,2),(t,0,pi),color="red",opacity=.4)
-                plot1+=parametric_plot3d((t,0,s*t^2),(s,0,1),(t,-2,2),color="gray",opacity=.4)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+          <image width="60%">
+            <description><p>The solid region is the half circular region below the paraboloid given by <m>z=r^2</m> and above the xy-plane </p></description>
+            <sageplot variant="3d" label="solidhalfcircregion">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=4
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,4),(t,0,pi),color="lightblue",opacity=.4)
+              plot1+=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,pi),color="yellow",opacity=.4)
+              plot1+=parametric_plot3d((s*cos(t),s*sin(t),s^2),(s,0,2),(t,0,pi),color="red",opacity=.4)
+              plot1+=parametric_plot3d((t,0,s*t^2),(s,0,1),(t,-2,2),color="gray",opacity=.4)
+              plot1  
+            </sageplot>
+          </image>
           <p>
             This solid region is the half circular region below the paraboloid given by <m>z=r^2</m> and above the xy-plane.
           </p>
@@ -1860,27 +1897,27 @@
       </p>
       <figure xml:id="sphdef">
         <caption>A plot of a point <m>P</m> with spherical coordinate measurements</caption>
-          <interactive label="interactive-sphdef" platform="sage" width="91%" aspect="1:1">
-            <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A point in the direction of the axes labeled <m>x</m>, <m>y</m>, and <m>z</m> is highlighted and labeled as <m>P=(\rho,\theta,\phi)</m>. A red segment is drawn from the origin to the point <m>P</m> and is labeled <m>\rho</m>. A gray segment is drawn parallel to the z-axis from the point <m>P</m> to the xy-plane. The gray segment is labeled <m>z</m>. A pink segment is drawn in the xy-plane from the origin to the end of the gray segment. The pink segment is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the pink segment. The blue arc is labeled <m>\theta</m>. A green circular arc is drawn from the axis labeled <m>z</m> to the red segment. The green arc is labeled <m>\phi</m>.</p> </description>
-            <slate surface="sage">
-              from sage.plot.plot3d.plot3d import axes
-              var('s,t')
-              scale=3
-              a=arccos(3/sqrt(14))
-              plot19=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-              plot19+=line([(0,0,0),(1,2,3)],color="red",thickness=3)+text3d("\u03c1",(0.6,1.2,1.5),color="red",fontsize=30)
-              plot19+=line([(0,0,0),(1,2,0)],color="magenta",thickness=3)
-              plot19+=line([(1,2,3),(1,2,0)],color="gray",linestyle="--")
-              plot19+=text3d("z",(1.25,2.5,1.5),color="grey",fontsize=25)
-              plot19+=parametric_plot3d((cos(t),sin(t),0),(t,0,arctan(2)),color="blue",thickness=3)+arrow3d((cos(a-.3),sin(a-.3),0),(cos(a),sin(a),0),color="blue",arrowsize=8)
-              plot19+=text3d("\u03b8",(1.5,0.75,0),color="blue",fontsize=25)
-              plot19+=text3d("r",(1.25,2.5,0),color="magenta",fontsize=25)
-              plot19+=parametric_plot3d((sin(t),2*sin(t),sqrt(5)*cos(t)),(t,0,a),color="green",thickness=2)+arrow3d((sin(a-.1),2*sin(a-.1),sqrt(5)*cos(a-.1)),(sin(a),2*sin(a),sqrt(5)*cos(a)),color="green",arrowsize=5)
-              plot19+=text3d("\u03c6",(0.5,1,2.5),color="green",fontsize=25)
-              plot19+=sphere((1,2,3),size=0.1,color="black")+text3d("P=(\u03c1,\u03b8,\u03c6)",(1.2,2.2,3.5),fontsize=25,color="black")
-              show(plot19,aspect_ratio=1,viewpoint=[[-0.3784,-0.4878,-0.7867],117.21],camera_position=[8.8047,3.5745,5.4277])
-            </slate>
-          </interactive>
+        <image width="50%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A point in the direction of the axes labeled <m>x</m>, <m>y</m>, and <m>z</m> is highlighted and labeled as <m>P=(\rho,\theta,\phi)</m>. A red segment is drawn from the origin to the point <m>P</m> and is labeled <m>\rho</m>. A gray segment is drawn parallel to the z-axis from the point <m>P</m> to the xy-plane. The gray segment is labeled <m>z</m>. A pink segment is drawn in the xy-plane from the origin to the end of the gray segment. The pink segment is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the pink segment. The blue arc is labeled <m>\theta</m>. A green circular arc is drawn from the axis labeled <m>z</m> to the red segment. The green arc is labeled <m>\phi</m>.</p></description>
+          <sageplot variant="3d" label="interactive-sphdef">
+            from sage.plot.plot3d.plot3d import axes
+            var('s,t')
+            scale=3
+            a=arccos(3/sqrt(14))
+            plot19=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            plot19+=line([(0,0,0),(1,2,3)],color="red",thickness=3)+text3d("\u03c1",(0.6,1.2,1.5),color="red",fontsize=30)
+            plot19+=line([(0,0,0),(1,2,0)],color="magenta",thickness=3)
+            plot19+=line([(1,2,3),(1,2,0)],color="gray",linestyle="--")
+            plot19+=text3d("z",(1.25,2.5,1.5),color="grey",fontsize=25)
+            plot19+=parametric_plot3d((cos(t),sin(t),0),(t,0,arctan(2)),color="blue",thickness=3)+arrow3d((cos(a-.3),sin(a-.3),0),(cos(a),sin(a),0),color="blue",arrowsize=8)
+            plot19+=text3d("\u03b8",(1.5,0.75,0),color="blue",fontsize=25)
+            plot19+=text3d("r",(1.25,2.5,0),color="magenta",fontsize=25)
+            plot19+=parametric_plot3d((sin(t),2*sin(t),sqrt(5)*cos(t)),(t,0,a),color="green",thickness=2)+arrow3d((sin(a-.1),2*sin(a-.1),sqrt(5)*cos(a-.1)),(sin(a),2*sin(a),sqrt(5)*cos(a)),color="green",arrowsize=5)
+            plot19+=text3d("\u03c6",(0.5,1,2.5),color="green",fontsize=25)
+            plot19+=sphere((1,2,3),size=0.1,color="black")+text3d("P=(\u03c1,\u03b8,\u03c6)",(1.2,2.2,3.5),fontsize=25,color="black",aspect_ratio=1,viewpoint=[[-0.3784,-0.4878,-0.7867],117.21],camera_position=[8.8047,3.5745,5.4277])
+            plot19
+          </sageplot>
+        </image>
       </figure>
       <assemblage xml:id="Spherical-rect">
         <title>Converting between rectangular and spherical coordinates</title>
@@ -1919,32 +1956,32 @@
 
       <figure xml:id="sphex1">
         <caption>A plot of a point <m>P=(-2,2,\sqrt{8})</m> with spherical coordinate measurements</caption>
-          <interactive label="interactive-sphex1" platform="sage" width="91%" aspect="1:1">
-            <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A point in the direction of the axes labeled <m>y</m> and <m>z</m> but opposite the axis labeled <m>x</m> is highlighted and labeled as <m>P</m>. A red segment is drawn from the origin to the point <m>P</m> and is labeled <m>\rho</m>. A gray segment is drawn parallel to the z-axis from the point <m>P</m> to the xy-plane. The gray segment is labeled <m>z</m>. A pink segment is drawn in the xy-plane from the origin to the end of the gray segment. The pink segment is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the pink segment. The blue arc is labeled <m>\theta</m>. A green circular arc is drawn from the axis labeled <m>z</m> to the red segment. The green arc is labeled <m>\phi</m>.</p></description>
-          <slate surface="sage">
-              from sage.plot.plot3d.plot3d import axes
-              var('s,t')
-              scale=3
-              tval=3*pi/4
-              xval=-2
-              yval=2
-              zval=sqrt(8)
-              r=sqrt(xval^2+yval^2)
-              rho=sqrt(xval^2+yval^2+zval^2)
-              a=arccos(zval/rho)
-              plot20=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-              plot20+=line([(0,0,0),(xval,yval,zval)],color="red",thickness=3)+text3d("\u03c1",(xval/1.6,yval/1.6,zval/1.6+0.5),color="red",fontsize=30)
-              plot20+=line([(0,0,0),(xval,yval,0)],color="magenta",thickness=2)+text3d("r",(xval/1.6,yval/1.6,-0.5),color="magenta",fontsize=30)
-              plot20+=line([(xval,yval,zval),(xval,yval,0)],color="gray",linestyle="--")+text3d("z",(xval/0.8,yval/0.8,zval/2),color="gray",fontsize=30)
-              plot20+=parametric_plot3d((cos(t),sin(t),0),(t,0,tval),color="blue",thickness=3)+arrow3d((cos(tval-0.2),sin(tval-0.2),0),(cos(tval),sin(tval),0),color="blue")
-              plot20+=text3d("\u03B8",(1,2,0),color="blue",fontsize=25)
-              plot20+=parametric_plot3d((xval/rho*sin(t),yval/rho*sin(t),r/rho*cos(t)),(t,0,a),color="green",thickness=3)
-              plot20+=arrow3d((sin(a-.01),2*sin(a-.01),sqrt(5)*cos(a-.01)),(sin(a),2*sin(a),sqrt(5)*cos(a)),color="green")
-              plot20+=text3d("\u03c6",(xval/4,yval/4,zval/2),color="green",fontsize=30)
-              plot20+=sphere((xval,yval,zval),size=0.1,color="black")+text3d("P",(xval,yval,zval+0.5),fontsize=25,color="black")
-              show(plot20,aspect_ratio=1,viewpoint=[[-0.1362,-0.5482,-0.8252],156.83],camera_position=[5.0477,10.2784,5.5862])
-            </slate>
-          </interactive>
+        <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A point in the direction of the axes labeled <m>y</m> and <m>z</m> but opposite the axis labeled <m>x</m> is highlighted and labeled as <m>P</m>. A red segment is drawn from the origin to the point <m>P</m> and is labeled <m>\rho</m>. A gray segment is drawn parallel to the z-axis from the point <m>P</m> to the xy-plane. The gray segment is labeled <m>z</m>. A pink segment is drawn in the xy-plane from the origin to the end of the gray segment. The pink segment is labeled <m>r</m>. A blue circular arc is drawn in the xy-plane from the axis labeled <m>x</m> to the pink segment. The blue arc is labeled <m>\theta</m>. A green circular arc is drawn from the axis labeled <m>z</m> to the red segment. The green arc is labeled <m>\phi</m>.</p></description>
+          <sageplot variant="3d" label="interactive-sphex1">
+            from sage.plot.plot3d.plot3d import axes
+            var('s,t')
+            scale=3
+            tval=3*pi/4
+            xval=-2
+            yval=2
+            zval=sqrt(8)
+            r=sqrt(xval^2+yval^2)
+            rho=sqrt(xval^2+yval^2+zval^2)
+            a=arccos(zval/rho)
+            plot20=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            plot20+=line([(0,0,0),(xval,yval,zval)],color="red",thickness=3)+text3d("\u03c1",(xval/1.6,yval/1.6,zval/1.6+0.5),color="red",fontsize=30)
+            plot20+=line([(0,0,0),(xval,yval,0)],color="magenta",thickness=2)+text3d("r",(xval/1.6,yval/1.6,-0.5),color="magenta",fontsize=30)
+            plot20+=line([(xval,yval,zval),(xval,yval,0)],color="gray",linestyle="--")+text3d("z",(xval/0.8,yval/0.8,zval/2),color="gray",fontsize=30)
+            plot20+=parametric_plot3d((cos(t),sin(t),0),(t,0,tval),color="blue",thickness=3)+arrow3d((cos(tval-0.2),sin(tval-0.2),0),(cos(tval),sin(tval),0),color="blue")
+            plot20+=text3d("\u03B8",(1,2,0),color="blue",fontsize=25)
+            plot20+=parametric_plot3d((xval/rho*sin(t),yval/rho*sin(t),r/rho*cos(t)),(t,0,a),color="green",thickness=3)
+            plot20+=arrow3d((sin(a-.01),2*sin(a-.01),sqrt(5)*cos(a-.01)),(sin(a),2*sin(a),sqrt(5)*cos(a)),color="green")
+            plot20+=text3d("\u03c6",(xval/4,yval/4,zval/2),color="green",fontsize=30)
+            plot20+=sphere((xval,yval,zval),size=0.1,color="black")+text3d("P",(xval,yval,zval+0.5),fontsize=25,color="black",aspect_ratio=1,viewpoint=[[-0.1362,-0.5482,-0.8252],156.83],camera_position=[5.0477,10.2784,5.5862])
+            plot20
+          </sageplot>
+        </image>
       </figure>
       <p> 
          What is the distance from <m>P</m> to the origin? The result is the value of <m>\rho</m> in the spherical coordinates of <m>P</m>, so 
@@ -1960,9 +1997,9 @@
        </p>
        <figure xml:id="sphex11">
         <caption>A 2D plot of a point <m>P</m> with spherical coordinate measurements in the plane of the measurement of <m>\theta</m></caption>
-        <image width="75%" xml:id="img-sphex11">
+        <image width="50%" xml:id="img-sphex11">
           <description><p>A two dimensional plot with horizontal axis labeled <m>\theta-</m>direction and the vertical axis is labeled <m>z-</m>axis. A point to the right and above the origin is shown and labeled <m>P</m>. A red segment is drawn from the origin to the point <m>P</m> and is labeled <m>\rho</m>. A gray segment is drawn vertically down from the point <m>P</m> to the horizontal axis and is labeled <m>z</m>. A pink segment is drawn horizontally from the origin to the end of the blue segment and is labeled <m>r</m>. A green circular arc is drawn clockwise from the positive vertical axis to the red segment and is labeled <m>\phi</m>. A second green circular arc is drawn clockwise from the gray segment to the red segment and is labeled <m>\phi</m>.</p></description>
-        <sageplot>
+          <sageplot>
             var('t')
             rho=sqrt(1.2^2+1)
             a=arctan(1.2)
@@ -2069,13 +2106,13 @@
         </p>
         <figure xml:id="sphex12">
           <caption>A plot of the half cone <m>z^2=2x^2+2y^2</m> with <m>z\geq 0</m> shown in orange with measurement of <m>\phi</m></caption>
-          <interactive label="interactive-sphex12" platform="sage" width="91%" aspect="1:1">
-            <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A cone extending along the axis labeled <m>z</m>. A green circular arc is drawn from the z-axis to the cone and is labeled <m>\phi \approx 26.56^\circ</m>.</p></description>
-          <slate surface="sage">
+          <image width="60%">
+            <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A cone extending along the axis labeled <m>z</m>. A green circular arc is drawn from the z-axis to the cone and is labeled <m>\phi \approx 35.26^\circ</m>. </p></description>
+            <sageplot variant="3d" label="interactive-sphex12">
               from sage.plot.plot3d.plot3d import axes
               var('s,t')
               scale=2
-              a=arctan(sqrt(.5))
+              a=arctan(sqrt(0.5))
               plot22=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
               #plot22+=parametric_plot3d((s*cos(t),s*sin(t),s*sqrt(2)),(s,0,1.75),(t,0,2*pi),color="red",opacity=0.45,mesh=True,plot_points=20)
               param(s,t)=(s*cos(t),s*sin(t),s*sqrt(2))
@@ -2094,26 +2131,25 @@
                 tv=b1+i/m*(b2-b1)
                 plot22+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
               plot22+=parametric_plot3d((0,1.5*sin(t),1.5*cos(t)),(t,0,a),color="green",thickness=2)
-              plot22+=text3d("\u03C6\u224826.56\u00B0",(0,1,1.75),color="green",fontsize=25)
-              plot22+=arrow3d((0,1.5*sin(a)-0.2,1.5*cos(a)+0.2),(0,1.5*sin(a),1.5*cos(a)),color="green",width=10)
-              show(plot22,viewpoint=[[-0.5565,-0.5478,-0.6246],115.2],camera_position=[9.134,0.1137,2.3726])
-            </slate>
-            </interactive>
+              plot22+=text3d("\u03C6\u224835.26\u00B0",(0,1.5,1.75),color="green",fontsize=25)
+              plot22+=arrow3d((0,1.5*sin(a)-0.2,1.5*cos(a)+0.2),(0,1.5*sin(a),1.5*cos(a)),color="green",width=10,viewpoint=[[-0.5565,-0.5478,-0.6246],115.2],camera_position=[9.134,0.1137,2.3726])
+              plot22
+            </sageplot>
+          </image>
         </figure>
         <p>
           If we considered the bottom half of the cone given by <m>z^2=2x^2+2y^2</m> where <m>z \leq 0 </m>, we would need to find the angle <m>\phi</m> between <m>\frac{\pi}{2}</m> and <m>\pi</m> that satisfies <m>\tan(\phi)=\sqrt{\frac{1}{2}}</m>. Using complementary angles we see that the bottom half of the cone given by <m>z^2=2x^2+2y^2</m> where <m>z \leq 0 </m> corresponds to the spherical equation <m>\phi = \pi - \arctan(\sqrt{\frac{1}{2}})</m>. 
         </p>
         <figure xml:id="sphex13">
           <caption>A plot of the bottom half of the cone <m>z^2=2x^2+2y^2</m> with <m>z\leq 0</m> shown in orange with measurement of <m>\phi</m> </caption>
-          <interactive label="interactive-sphex13" platform="sage" width="91%" aspect="1:1">
-            <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A cone extends in the direction opposite of the axis labeled <m>z</m> is plotted in light blue. A green circular arc is drawn from the z-axis to the cone and is labeled <m>\phi \approx 125.27^\circ</m>.</p> </description>
-            <slate surface="sage">
+          <image width="60%">
+            <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A cone extends in the direction opposite of the axis labeled <m>z</m> is plotted in light blue. A green circular arc is drawn from the z-axis to the cone and is labeled <m>\phi \approx 144.73^\circ</m>.</p></description>
+            <sageplot variant="3d" label="interactive-sphex13">
               from sage.plot.plot3d.plot3d import axes
               var('s,t')
               scale=2
-              a=pi-arctan(sqrt(2))
+              a=pi-arctan(sqrt(0.5))
               plot23=axes(scale,1.5,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-              #plot23+=parametric_plot3d((s*cos(t),s*sin(t),-s/sqrt(2)),(s,0,2),(t,0,2*pi),color="red",opacity=0.65,mesh=True,plot_points=20)
               param(s,t)=(s*cos(t),s*sin(t),-s/sqrt(2))
               #set up grid      n is number of steps in s    m is number of steps in t  
               #a1 is min s    a2 is max s   b1 is min t    b2 is max t
@@ -2131,11 +2167,11 @@
                 plot23+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
               plot23+=parametric_plot3d((0,sin(t),cos(t)),(t,0,a),color="green")
               plot23+=arrow3d((0,sin(a)+0.1,cos(a)+0.2),(0,sin(a),cos(a)),color="green",width=2)
-              plot23+=text3d("\u03C6\u2248125.27\u00B0",(0,2,0.5),color="green",fontsize=25)
-              plot23+=line([(0,0,0),(0,0,-2)],color="black")
-              show(plot23,viewpoint=[[-0.3876,-0.5801,-0.7164],128.84],camera_position=[9.8949,4.0994,2.5267])
-            </slate>
-          </interactive>
+              plot23+=text3d("\u03C6\u2248144.73\u00B0",(0,2,0.5),color="green",fontsize=25)
+              plot23+=line([(0,0,0),(0,0,-2)],color="black",viewpoint=[[-0.3876,-0.5801,-0.7164],128.84],camera_position=[9.8949,4.0994,2.5267])
+              plot23
+            </sageplot>
+          </image>
         </figure>
       </task>
       <task>
@@ -2182,21 +2218,18 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption> </caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
-            <description><p></p></description>
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=4
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((0,0,t),(0,4.5),color="blue",thickness=3)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+          <image width="60%">
+            <description><p>the positive z axis </p></description>
+            <sageplot variant="3d" label="phi0">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=4
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((0,0,t),(0,4.5),color="blue",thickness=3)
+              plot1
+            </sageplot>
+          </image>
           <p>
             The plot of <m>\phi=0</m> will be the positive z-axis.
           </p>
@@ -2209,23 +2242,20 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption>The plot of <m>\phi=1</m> will be a half cone that opens 1 radian from the positive z-axis. </caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
+          <image width="60%">
             <description><p>The plot of <m>\phi=1</m> will be a half cone that opens 1 radian from the positive z-axis.</p></description>
-              <slate surface="sage">
-                ph=1
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=3
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
-                plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+            <sageplot variant="3d" label="phi1">
+              ph=1
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=3
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
+              plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
+              plot1
+            </sageplot>
+          </image>
           <p>
             The plot of <m>\phi=1</m> will be a half cone that opens 1 radian from the positive z-axis.
           </p>
@@ -2238,23 +2268,20 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption>The plot of <m>\phi = \frac{\pi}{2}</m> will be the xy-plane.</caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
-            <description><p>The plot of <m>\phi = \frac{\pi}{2}</m> will be the xy-plane.</p></description>
-              <slate surface="sage">
-                ph=pi/2
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=3
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
-                plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+          <image width="60%">
+            <description><p>The plot of <m>\phi = \frac{\pi}{2}</m> will be the xy-plane. </p></description>
+            <sageplot variant="3d" label="phipi2">
+              ph=pi/2
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=3
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
+              plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
+              plot1 
+            </sageplot>
+          </image>
           <p>
             The plot of <m>\phi = \frac{\pi}{2}</m> will be the xy-plane.
           </p>
@@ -2267,23 +2294,20 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption>The plot of <m>\phi =\frac{3\pi}{4}</m> is a half cone that opens with an angle of <m>\frac{\pi}{4}</m> away from the negative z-axis. </caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
-            <description><p>The plot of <m>\phi =\frac{3\pi}{4}</m> is a half cone that opens with an angle of <m>\frac{\pi}{4}</m> away from the negative z-axis.</p></description>
-              <slate surface="sage">
-                ph=3*pi/4
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=3
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
-                plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+          <image width="60%">
+            <description><p>The plot of <m>\phi =\frac{3\pi}{4}</m> is a half cone that opens with an angle of <m>\frac{\pi}{4}</m> away from the negative z-axis.  </p></description>
+            <sageplot variant="3d" label="phi3pi4">
+              ph=3*pi/4
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=3
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
+              plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
+              plot1  
+            </sageplot>
+          </image>
           <p>
             The plot of <m>\phi =\frac{3\pi}{4}</m> is a half cone that opens with an angle of <m>\frac{\pi}{4}</m> away from the negative z-axis.
           </p>
@@ -2296,30 +2320,26 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption>The plot of <m>\phi = \pi </m> is the negative z-axis.</caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
+          <image width="60%">
             <description><p>The plot of <m>\phi = \pi </m> is the negative z-axis.</p></description>
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=4
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((0,0,-t),(0,4.5),color="blue",thickness=3)
-                plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,pi),color="red",thickness=3)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+            <sageplot variant="3d" label="phipi">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=4
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((0,0,-t),(0,4.5),color="blue",thickness=3)
+              plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,pi),color="red",thickness=3)
+              plot1 
+            </sageplot>
+          </image>
           <p>
             The plot of <m>\phi = \pi </m> is the negative z-axis.
           </p>
         </solution>
       </task>
     </activity>
- 
-     
+
   <activity workspace="1.5in">
       <introduction>
         <p>
@@ -2338,23 +2358,20 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption>The plot of <m>\phi = \frac{\pi}{2}</m> will be the xy-plane.</caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
+          <image width="60%">
             <description><p>The plot of <m>\phi = \frac{\pi}{2}</m> will be the xy-plane.</p></description>
-              <slate surface="sage">
-                ph=pi/2
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=3
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
-                plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+            <sageplot variant="3d" label="phipi21">
+              ph=pi/2
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=3
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0.5,0.5,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((s*cos(t)*sin(ph),s*sin(t)*sin(ph),s*cos(ph)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.5,mesh=True,plot_points=31)
+              plot1+=parametric_plot3d((2*cos(1)*sin(t),2*sin(1)*sin(t),2*cos(t)),(t,0,ph),color="red",thickness=3)
+              plot1
+            </sageplot>
+          </image>
           <p>
             The plot of <m>\phi = \frac{\pi}{2}</m> will be the xy-plane.
           </p>
@@ -2392,9 +2409,9 @@
       </p>
       <figure xml:id="sphex14">
         <caption>A plot of the region <m> 0 \leq \theta \leq \pi </m></caption>
-        <interactive label="interactive-sphex14" platform="sage" width="91%" aspect="1:1">
-          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A half plane is drawn in blue extending from the z-axis in the direction of the axis labeled <m>x</m>. The blue half plane is labeled <m>\theta=0</m>. A half plane is drawn in red extending from the z-axis in the direction opposite the axis labeled <m>x</m>. The red half plane is labeled <m>\theta=\pi</m>. The region of points with a positive y-coordinate is shown in yellow.</p></description>
-          <slate surface="sage">
+        <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A half plane is drawn in blue extending from the z-axis in the direction of the axis labeled <m>x</m>. The blue half plane is labeled <m>\theta=0</m>. A half plane is drawn in red extending from the z-axis in the direction opposite the axis labeled <m>x</m>. The red half plane is labeled <m>\theta=\pi</m>. The region of points with a positive y-coordinate is shown in yellow. </p></description>
+          <sageplot variant="3d" label="interactive-sphex14">
             from sage.plot.plot3d.shapes import *
             from sage.plot.plot3d.plot3d import axes
             var('s,t')
@@ -2402,19 +2419,19 @@
             plot24=axes(scale+0.25,1.5,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
             plot24+=Box([3,1.5,3],color="yellow",opacity=0.25).translate((0,1.5,0))+text3d("0 \u2264 \u03B8 \u2264 \u03C0",(0,2,4),color="black",fontsize=25) 
             plot24+=parametric_plot3d((s,0,t),(s,0,scale),(t,-scale,scale),color="blue",opacity=0.5)+text3d("\u03B8 = 0",(3.5,-0.75,1.25),color="blue",fontsize=25)
-            plot24+=parametric_plot3d((s,0,t),(s,-scale,0),(t,-scale,scale),color="magenta",opacity=0.5)+text3d("\u03B8 = \u03C0",(-3.5,-0.75,0.25),color="magenta",fontsize=25)
-            show(plot24,viewpoint=[[0.8499,0.2985,0.4342],77.92],camera_position=[8.216,-8.8812,5.5437])
-          </slate>
-        </interactive>
+            plot24+=parametric_plot3d((s,0,t),(s,-scale,0),(t,-scale,scale),color="magenta",opacity=0.5)+text3d("\u03B8 = \u03C0",(-3.5,-0.75,0.25),color="magenta",fontsize=25,viewpoint=[[0.8499,0.2985,0.4342],77.92],camera_position=[8.216,-8.8812,5.5437])
+            plot24
+          </sageplot>
+        </image>
       </figure>
       <p>
         We now want to think about the set of points that satisfies <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m>. The region given by <m>1 \leq \rho \leq 2 </m> is the set of points between the spheres of radius 1 and radius 2 centered at the origin. Hence, the region given by <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m> is the region between the spheres of radius 1 and radius 2 centered at the origin with non-negative <m>y</m>-coordinates.
       </p>
       <figure xml:id="sphex15">
         <caption>A plot of the region <m> 0 \leq \theta \leq \pi </m> and <m>1 \leq \rho \leq 2 </m></caption>
-        <interactive label="interactive-sphex15" platform="sage" width="91%" aspect="1:1">
-          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The half sphere of radius 1 centered at the origin with positive y-coordinate is shown in gray. The half sphere of radius 2 centered at the origin with positive y-coordinate is shown in yellow. The portion of the annular region between the spheres and on the xz-plane with positive x coordinate is shown in green. The portion of the annular region between the spheres and on the xz-plane with negative x coordinate is shown in red.</p></description>
-        <slate surface="sage">
+        <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The half sphere of radius 1 centered at the origin with positive y-coordinate is shown in gray. The half sphere of radius 2 centered at the origin with positive y-coordinate is shown in yellow. The portion of the annular region between the spheres and on the xz-plane with positive x coordinate is shown in green. The portion of the annular region between the spheres and on the xz-plane with negative x coordinate is shown in red. </p></description>
+          <sageplot variant="3d" label="interactive-sphex15">
             from sage.plot.plot3d.shapes import *
             from sage.plot.plot3d.plot3d import axes
             var('s,t')
@@ -2425,17 +2442,17 @@
             plot25+=parametric_plot3d((s*sin(t),0,s*cos(t)),(s,1,2),(t,0,pi),color="green",opacity=0.4)+text3d("\u03B8=0",(2,-0.75,0),color="green",fontsize=25)
             plot25+=parametric_plot3d((-s*sin(t),0,s*cos(t)),(s,1,2),(t,0,pi),color="red",opacity=0.4)+text3d("\u03B8=\u03C0",(-4,-0.75,0.25),color="red",fontsize=25)
             plot25
-          </slate>
-        </interactive>
+          </sageplot>
+        </image>
       </figure>
       <p>
         When we consider the additional restriction of <m>\frac{\pi}{4} \leq \phi \leq \pi</m>, we obtain the part of the region shown in <xref ref="sphex15"/> that is <em>below</em> the cone given by <m>\phi =\frac{\pi}{4}</m>. This gives the region shown in <xref ref="sphex16"/>. Note that we have shown each of the boundary surfaces in different colors to illustrate how each of the upper or lower bounds on each of the coordinates gives rise to a different part of our region. 
       </p>
       <figure xml:id="sphex16">
         <caption>A plot of the region <m> 0 \leq \theta \leq \pi </m>, <m>1 \leq \rho \leq 2 </m>, and <m>\frac{\pi}{4} \leq \phi \leq \pi</m></caption>
-        <interactive label="interactive-sphex16" platform="sage" width="91%" aspect="1:1">
-          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The region of a cone along the positive z-axis between the radius 1 and 2 from the origin with positive y coordinate is shown in blue. The half sphere of radius 1 centered at the origin with positive y-coordinate and below the blue cone is shown in gray. The half sphere of radius 2 centered at the origin with positive y-coordinate and below the blue cone is shown in yellow. The portion of the annular region between the spheres and on the xz-plane with positive x coordinate is shown in green. The portion of the annular region between the spheres and on the xz-plane with negative x coordinate is shown in red.</p></description>
-          <slate surface="sage">
+          <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The region of a cone along the positive z-axis between the radius 1 and 2 from the origin with positive y coordinate is shown in blue. The half sphere of radius 1 centered at the origin with positive y-coordinate and below the blue cone is shown in gray. The half sphere of radius 2 centered at the origin with positive y-coordinate and below the blue cone is shown in yellow. The portion of the annular region between the spheres and on the xz-plane with positive x coordinate is shown in green. The portion of the annular region between the spheres and on the xz-plane with negative x coordinate is shown in red. </p></description>
+          <sageplot variant="3d" label="interactive-sphex16">
             from sage.plot.plot3d.shapes import *
             from sage.plot.plot3d.plot3d import axes
             var('s,t')
@@ -2445,10 +2462,10 @@
             plot26+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),2*cos(s)),(s,pi/4,pi),(t,0,pi),color="yellow",opacity=.35)
             plot26+=parametric_plot3d((s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="green",opacity=0.4)+text3d("\u03B8=0",(3,-0.5,0),color="green",fontsize=25)
             plot26+=parametric_plot3d((-s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="red",opacity=0.4)+text3d("\u03B8=\u03C0",(-2,-0.75,0),color="red",fontsize=25)
-            plot26+=parametric_plot3d((s*cos(t)*sqrt(2)/2,s*sin(t)*sqrt(2)/2,s*sqrt(2)/2),(s,1,2),(t,0,pi),color="blue",opacity=0.4)+text3d("\u03C6=\u03C0/4",(0,1,2),color="blue",fontsize=25)
-            show(plot26,viewpoint=[[-0.8195,-0.3319,-0.4671],81.86],camera_position=[8.3609,-6.4789,4.5585])
-          </slate>
-        </interactive>
+            plot26+=parametric_plot3d((s*cos(t)*sqrt(2)/2,s*sin(t)*sqrt(2)/2,s*sqrt(2)/2),(s,1,2),(t,0,pi),color="blue",opacity=0.4)+text3d("\u03C6=\u03C0/4",(0,1,2),color="blue",fontsize=25,viewpoint=[[-0.8195,-0.3319,-0.4671],81.86],camera_position=[8.3609,-6.4789,4.5585])
+            plot26
+          </sageplot>
+        </image>
       </figure>
     </example>
     <p>
@@ -2463,22 +2480,18 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption> </caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
-            <description><p></p></description>
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=2
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((sin(s)*cos(t),sin(s)*sin(t),cos(s)),(t,0,2*pi),(s,0,pi/2),color="lightblue")
-                plot1+=parametric_plot3d((sin(s)*cos(t),sin(s)*sin(t),0),(t,0,2*pi),(s,0,pi/2),color="gray")
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+          <image width="60%">
+            <sageplot variant="3d" label="rleq1phi0pi2">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=2
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((sin(s)*cos(t),sin(s)*sin(t),cos(s)),(t,0,2*pi),(s,0,pi/2),color="lightblue")
+              plot1+=parametric_plot3d((sin(s)*cos(t),sin(s)*sin(t),0),(t,0,2*pi),(s,0,pi/2),color="gray")
+              plot1
+            </sageplot>
+          </image>
         </solution>
       </task>
       <task>
@@ -2488,24 +2501,21 @@
           </p>
         </statement>
         <solution>
-          <figure>
-            <caption> </caption>
-            <interactive platform="sage" width="100%" aspect="1:1">
-            <description><p></p></description>
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                var('s,t')
-                scale=2
-                plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
-                plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                plot1+=parametric_plot3d((3*cos(t),3*sin(t),s),(t,pi/4,5*pi/4),(s,-1,3),color="lightblue",opacity=0.5)
-                plot1+=parametric_plot3d((s*cos(t),s*sin(t),-1),(t,pi/4,5*pi/4),(s,0,3),color="gray",oapcity=0.5)
-                plot1+=parametric_plot3d((s*cos(t),s*sin(t),3),(t,pi/4,5*pi/4),(s,0,3),color="gray",oapcity=0.5)
-                plot1+=parametric_plot3d((t,t,s),(t,-3*sqrt(2)/2,3*sqrt(2)/2),(s,-1,3),color="yellow",opacity=0.5)
-                plot1              
-              </slate>
-            </interactive>
-          </figure>
+          <image width="60%">
+            <description><p> </p></description>
+            <sageplot variant="3d" label="diskwithslice">
+              from sage.plot.plot3d.plot3d import axes
+              var('s,t')
+              scale=2
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)
+              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot1+=parametric_plot3d((3*cos(t),3*sin(t),s),(t,pi/4,5*pi/4),(s,-1,3),color="lightblue",opacity=0.5)
+              plot1+=parametric_plot3d((s*cos(t),s*sin(t),-1),(t,pi/4,5*pi/4),(s,0,3),color="gray",oapcity=0.5)
+              plot1+=parametric_plot3d((s*cos(t),s*sin(t),3),(t,pi/4,5*pi/4),(s,0,3),color="gray",oapcity=0.5)
+              plot1+=parametric_plot3d((t,t,s),(t,-3*sqrt(2)/2,3*sqrt(2)/2),(s,-1,3),color="yellow",opacity=0.5)
+              plot1 
+            </sageplot>
+          </image>
         </solution>
       </task>
       <task>
@@ -2534,9 +2544,9 @@
       </p>
       <figure xml:id="sphex17">
         <caption>A plot of lines of constant latitude (in red) and longitude (in blue), with labels for the North and South Poles as well as the equator </caption>
-        <interactive label="interactive-sphex17" platform="sage" width="91%" aspect="1:1">
-          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A circle centered at the origin in the xy=plane is drawn in black and is labeled Equator. A point along the axis labeled <m>z</m> is shown in green and is labeled North Pole. A point in the direction opposite the axis labeled <m>z</m> is shown in purple and is labeled South Pole. Ten circles of different sizes centered on the z-axis are shown in red. Five blue circles with center at the origin oriented through the z-axis. </p>
-        </description><slate surface="sage">
+        <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A circle centered at the origin in the xy=plane is drawn in black and is labeled Equator. A point along the axis labeled <m>z</m> is shown in green and is labeled North Pole. A point in the direction opposite the axis labeled <m>z</m> is shown in purple and is labeled South Pole. Ten circles of different sizes centered on the z-axis are shown in red. Five blue circles with center at the origin oriented through the z-axis. </p></description>
+          <sageplot variant="3d" label="interactive-sphex17">
             from sage.plot.plot3d.shapes import *
             from sage.plot.plot3d.plot3d import axes
             var('s,t')
@@ -2552,17 +2562,17 @@
               plot27+=parametric_plot3d((sin(t)*cos(long),sin(t)*sin(long),cos(t)),(t,0,pi),color="blue",thickness=1.5,opacity=0.5)
             plot27+=point3d((0,0,1),color="green",size=40)+text3d("North Pole",(0,1,1.25),color="green",fontsize=20)
             plot27+=point3d((0,0,-1),color="purple",size=40)+text3d("South Pole",(1,0,-1.25),color="purple",fontsize=20)
-            plot27+=parametric_plot3d((cos(t),sin(t),0),(t,0,2*pi),color="black",thickness=2.5)+text3d("Equator",(0,2,0.25),color="black",fontsize=20)
-            show(plot27,viewpoint=[[-0.2987,-0.6349,-0.7125],142.93],camera_position=[6.074,5.1549,1.4245])
-          </slate>
-        </interactive>
+            plot27+=parametric_plot3d((cos(t),sin(t),0),(t,0,2*pi),color="black",thickness=2.5)+text3d("Equator",(0,2,0.25),color="black",fontsize=20,viewpoint=[[-0.2987,-0.6349,-0.7125],142.93],camera_position=[6.074,5.1549,1.4245])
+            plot27
+          </sageplot>
+        </image>
       </figure>
       <p>
         The blue curves in <xref ref="sphex17"/> are lines with constant longitude. Longitude corresponds to an angular measurement of how far around (horizontally) on the surface of the sphere. Longitude corresponds to a shifted version of the <m>\theta</m> coordinate. Lines of Longitude are called meridians and the Prime Meridian corresponds to the meridian that goes through the Greenwich Naval Observatory in Greenwich, England. If you were to flatten out the surface of the globe to make the latitude and longitude lines form a rectangular grid, then you get a Mercator projection map which you may recognize. While these flat maps are convienent there is a considerable amount of distortion in these maps as you get closer to the poles. As you can see in <xref ref="sphex17"/>, the lines with constant latitude are NOT all the same length, but need to be stretched out considerably near the poles to get a rectangular grid, as in <xref ref="MercatorProj"/>. Measuring the distortion of area (or volume) based on these coordinates will be an important idea in the later part of <xref ref="C_MI"/>.
       </p>
       <figure xml:id="MercatorProj">
         <caption>A Mercator projection of the Earth with latitude and longitude lines By Strebe - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=17700069</caption>
-        <image source="Mercator_projection_Square.JPG">
+        <image source="Mercator_projection_Square.JPG" width="60%">
           <description><p>A Mercator projection of the Earth with latitude and longitude lines By Strebe - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=17700069</p>
         </description></image>
       </figure>
@@ -2571,9 +2581,9 @@
       </p>
       <figure xml:id="sphex18">
         <caption>A plot of a grid of spherical coordinates </caption>
-        <interactive label="interactive-sphex18" platform="sage" width="91%" aspect="1:1">
-          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. Four groups of concentric circles shown centered at the origin with radii of 1, 2, 3, and 4. For each group of concentric cirles, there are ten circles of different sizes centered on the z-axis are shown in red. For each group of concentric cirles, there are five blue circles with center at the origin oriented through the z-axis.  </p>
-        </description><slate surface="sage">
+        <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. Four groups of concentric circles shown centered at the origin with radii of 1, 2, 3, and 4. For each group of concentric cirles, there are ten circles of different sizes centered on the z-axis are shown in red. For each group of concentric cirles, there are five blue circles with center at the origin oriented through the z-axis.  </p></description>
+          <sageplot variant="3d" label="interactive-sphex18">
             from sage.plot.plot3d.shapes import *
             from sage.plot.plot3d.plot3d import axes
             var('s,t')
@@ -2589,18 +2599,13 @@
                 plot28+=parametric_plot3d((r*cos(t)*sin(lat),r*sin(t)*sin(lat),r*cos(lat)),(t,0,2*pi),color="red",thickness=1,opacity=0.5)
               for j in range(nlong):
                 long=2*pi*j/nlong
-                plot28+=parametric_plot3d((r*sin(t)*cos(long),r*sin(t)*sin(long),r*cos(t)),(t,0,pi),color="blue",thickness=1,opacity=0.5)
-            show(plot28,viewpoint=[[-0.2733,-0.6455,-0.7132],146.39],camera_position=[8.3747,8.1398,1.8098])
-          </slate>
-        </interactive>
+                plot28+=parametric_plot3d((r*sin(t)*cos(long),r*sin(t)*sin(long),r*cos(t)),(t,0,pi),color="blue",thickness=1,opacity=0.5,viewpoint=[[-0.2733,-0.6455,-0.7132],146.39],camera_position=[8.3747,8.1398,1.8098])
+            plot28
+          </sageplot>
+        </image>
       </figure>
-      
     </example>
   </subsection>
-
-
- 
-
   <outcomes>
     <ul>
       <li>

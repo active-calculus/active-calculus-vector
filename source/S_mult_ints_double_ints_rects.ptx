@@ -58,7 +58,7 @@
           </p>
           <figure xml:id="PA-Int1">
             <caption>A continuous function on <m>[0,2]</m></caption>
-              <image width="60%">
+              <image width="50%">
                 <description><p>A continuous function on <m>[0,2]</m></p>
               </description><sageplot label="img-PA-Int1">
                   var('x,t')
@@ -162,8 +162,8 @@
     </p>
     <figure xml:id="basedblint">
       <caption>A plot of the volume under a surface <m>z=f(x,y)</m> over a region <m>R</m>, in red</caption>
-      <description><p>A plot of the volume under as surface <m>z=f(x,y)</m> over a region <m>R</m>, in red</p> </description>
-      <image>
+      <image width="60%">
+        <description><p>A plot of the volume under as surface <m>z=f(x,y)</m> over a region <m>R</m>, in red </p></description>
         <sageplot variant="3d" label="img-basedblint">
           var('t,s,x,y,z')
           from sage.plot.plot3d.plot3d import axes
@@ -199,42 +199,6 @@
           plot1
         </sageplot>
       </image>
-        <!-- <interactive label="interactive-basedblint" platform="sage" width="91%" aspect="1:1">
-          <description><p>A plot of the volume under as surface <m>z=f(x,y)</m> over a region <m>R</m>, in red</p> </description>
-        <slate surface="sage">
-            var('t,s,x,y,z')
-            from sage.plot.plot3d.plot3d import axes
-            scale=3
-            plot1=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-            f(x,y)=3-(0.5+x)^2/2-(1-y)^2/1.5
-            x0=1.75;y0=2;
-            x1(t)=(cos(t)^3+1)*sin(t)/1.5
-            y1(t)=(sin(t)+1.5)*cos(t)/2
-            plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,0),(t,0,2*pi),thickness=3,color="red")
-            plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,f(x1(t),y1(t))*s) ,(t,0,2*pi),(s,0,1),color="gray",opacity=0.6)
-            plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,f(s*x1(t),s*y1(t))),(t,0,2*pi),(s,0,1),color="lightblue",opacity=0.9)
-            plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,0),(t,0,2*pi),(s,0,1),color="red",opacity=0.8)
-            step=1
-            #plot1+=plot3d(f(x-x0,y-y0),(x,x0-step,x0+step),(y,y0-step,y0+step),color="blue",opacity=0.15,mesh=True,plot_points=13)
-            param(s,t)=(s,t,f(s-x0,t-y0))
-            #set up grid      n is number of steps in s    m is number of steps in t  
-            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-            n=7;m=7;a1=x0-step;a2=x0+step;b1=y0-step;b2=y0+step; 
-            #c1 is surface color     o1 is surface opacity
-            #c2 and o2 are for constant t value traces
-            #c3 and o3 are for constant s value traces
-            c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.6; o3=0.6;
-            plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-            for i in range(n+1):
-              sv=a1+i/n*(a2-a1)
-              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-            for i in range(m+1):
-              tv=b1+i/m*(b2-b1)
-              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-            plot1+=plot99
-            show(plot1,viewpoint=[[-0.9428,-0.1952,-0.2702],74.93],camera_position=[4.9761,-5.7972,4.0654])     
-          </slate>
-        </interactive> -->
     </figure>
     <p>
       The region shaded red in <xref ref="basedblint"/> is irregular in the coordinates (<m>x</m> and <m>y</m>). We will explore this kind of problem in <xref ref="S-mult_ints-general"/> once we have some intuition and tools from examining rectangular regions of integration. To discuss how to approach rectangular regions, we apply the classic calculus approach to the region shown in <xref ref="rectdblint"/>. In particular, for this rectangular region of input points, we want to 
@@ -248,48 +212,42 @@
     </p>
     <figure xml:id="rectdblint">
       <caption>A plot of the volume under a surface over a rectangular region</caption>
-        <interactive label="interactive-rectdblint" platform="sage" width="91%" aspect="1:1">
-          <description><p>A plot of the volume under a surface over a rectangular region</p>
-        </description><slate surface="sage">
-            var('t,s,x,y,z')
-            from sage.plot.plot3d.plot3d import axes
-            scale=3.5
-            plot2=axes(scale,1,color="gray",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-            f(x,y)=(3.5+(-1.5+x)^2/2.5-(2.5-y)^2/1.5)-x*y/2
-            x1=0.5;x2=2.5; y1=0.75;y2=2;
-            plot2+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color="red",opacity=0.5)
-            plot2+=line([(x1,y2,0),(x1,0,0)],color="black",thickness=2)+text3d("x=a",(x1,-0.5,0),color="black",fontsize=20)
-            plot2+=line([(x2,y2,0),(x2,0,0)],color="black",thickness=2)+text3d("x=b",(x2,-0.5,0),color="black",fontsize=20)
-            plot2+=line([(x2,y1,0),(0,y1,0)],color="black",thickness=2)+text3d("y=c",(-0.5,y1,0),color="black",fontsize=20)
-            plot2+=line([(x2,y2,0),(0,y2,0)],color="black",thickness=2)+text3d("y=d",(-0.5,y2,0),color="black",fontsize=20)
-            plot2+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color="gray",opacity=0.4)
-            plot2+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color="gray",opacity=0.4)
-            plot2+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.4)
-            plot2+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.4)
-            #plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,f(x1(t),y1(t))*s) ,(t,0,2*pi),(s,0,1),color="gray",opacity=0.6)
-            #plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,f(s*x1(t),s*y1(t))),(t,0,2*pi),(s,0,1),color="blue",opacity=0.7)
-            #plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,0),(t,0,2*pi),(s,0,1),color="red",opacity=0.5)
-            #step=1
-            #plot1+=plot3d(f(x-x0,y-y0),(x,x0-step,x0+step),(y,y0-step,y0+step),color="blue",opacity=0.15,mesh=True,plot_points=13)
-            param(s,t)=(s,t,f(s,t))
-            #set up grid      n is number of steps in s    m is number of steps in t  
-            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-            n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
-            #c1 is surface color     o1 is surface opacity
-            #c2 and o2 are for constant t value traces
-            #c3 and o3 are for constant s value traces
-            c1="lightblue"; c2="black"; c3="black"; o1=0.8; o2=0.5; o3=0.5;
-            plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-            for i in range(n+1):
-              sv=a1+i/n*(a2-a1)
-              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-            for i in range(m+1):
-              tv=b1+i/m*(b2-b1)
-              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-            plot2+=plot99
-            show(plot2,viewpoint=[[-0.96,-0.193,-0.2028],89.49],camera_position=[5.5569,-7.3355,2.4591])    
-          </slate>
-        </interactive>
+      <image width="60%">
+        <description><p>A plot of the volume under a surface over a rectangular region </p></description>
+        <sageplot variant="3d" label="interactive-rectdblint">
+          var('t,s,x,y,z')
+          from sage.plot.plot3d.plot3d import axes
+          scale=3.5
+          plot2=axes(scale,1,color="gray",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+          f(x,y)=(3.5+(-1.5+x)^2/2.5-(2.5-y)^2/1.5)-x*y/2
+          x1=0.5;x2=2.5; y1=0.75;y2=2;
+          plot2+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color="red",opacity=0.5)
+          plot2+=line([(x1,y2,0),(x1,0,0)],color="black",thickness=2)+text3d("x=a",(x1,-0.5,0),color="black",fontsize=20)
+          plot2+=line([(x2,y2,0),(x2,0,0)],color="black",thickness=2)+text3d("x=b",(x2,-0.5,0),color="black",fontsize=20)
+          plot2+=line([(x2,y1,0),(0,y1,0)],color="black",thickness=2)+text3d("y=c",(-0.5,y1,0),color="black",fontsize=20)
+          plot2+=line([(x2,y2,0),(0,y2,0)],color="black",thickness=2)+text3d("y=d",(-0.5,y2,0),color="black",fontsize=20)
+          plot2+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+          plot2+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+          plot2+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+          plot2+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+          param(s,t)=(s,t,f(s,t))
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="lightblue"; c2="black"; c3="black"; o1=0.8; o2=0.5; o3=0.5;
+          plot2+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.9822,-0.1174,-0.147],78.23],camera_position=[5.5569,-7.3355,2.4591])
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot2+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot2+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot2
+        </sageplot>
+      </image>
     </figure>
     <p>
       In the next activity, we will go through these steps for a particular function and rectangular region of integration as well as introduce some of the notation used in our development of double integrals. 
@@ -308,12 +266,16 @@
           </p>
           <!-- <figure xml:id="blank1010">
             <caption></caption> -->
-              <image width="60%">
+              <image width="50%">
                 <sageplot label="img-blank1010">
                   plot14=point((0,0),size=0,color="black",xmin=0,xmax=10,ymin=0,ymax=10,gridlines=True,axes_labels=["$x$","$y$"],aspect_ratio=1)
                   plot14         
                 </sageplot>
-              <description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+                <description>
+                  <p>A grid with the horizontal coordinate labeled <m>x</m>, going from 0 to 10 and the vertical coordinate labeled <m>y</m> going from 0 to 10.
+                  </p>
+                </description>
+              </image>
           <!-- </figure> -->
         </statement>
         <solution>
@@ -557,41 +519,40 @@
     </p>
     <figure xml:id="fig-mult_ints-double_ints_rects-volume">
       <caption>The solid below a surface <m>z=f(x,y)</m> over a rectangular region</caption>
-        <interactive label="interactive-mult_ints-double_ints_rects-volume" platform="sage" width="91%" aspect="1:1">
-          <description><p>The solid below a surface <m>z=f(x,y)</m> over a rectangular region</p>
-        </description><slate surface="sage">
-            var('t,s,x,y,z')
-            from sage.plot.plot3d.plot3d import axes
-            scale=2.5
-            plot2=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.7)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-            scale=2
-            f(x,y)=1.5-x/3+y^2/9
-            x1=0.5;x2=2; y1=0.5;y2=2;
-            tc="black";sc="gray";bc="red"
-            plot2+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=bc,opacity=0.8)
-            plot2+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color=sc,opacity=0.4)
-            plot2+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color=sc,opacity=0.4)
-            plot2+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=sc,opacity=0.4)
-            plot2+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=sc,opacity=0.4)
-            param(s,t)=(s,t,f(s,t))
-            #set up grid      n is number of steps in s    m is number of steps in t  
-            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-            n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
-            #c1 is surface color     o1 is surface opacity
-            #c2 and o2 are for constant t value traces
-            #c3 and o3 are for constant s value traces
-            c1="lightblue"; c2="gray"; c3="gray"; o1=0.9; o2=0.9; o3=0.9;
-            plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-            for i in range(n+1):
-              sv=a1+i/n*(a2-a1)
-              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-            for i in range(m+1):
-              tv=b1+i/m*(b2-b1)
-              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-            plot2+=plot99
-            show(plot2,viewpoint=[[-0.3037,-0.5594,-0.7712],134.56],camera_position=[5.9608,4.3919,3.2182])          
-          </slate>
-        </interactive>
+      <image width="60%">
+        <description><p>The solid below a surface <m>z=f(x,y)</m> over a rectangular region </p></description>
+        <sageplot variant="3d" label="interactive-mult_ints-double_ints_rects-volume">
+          var('t,s,x,y,z')
+          from sage.plot.plot3d.plot3d import axes
+          scale=2.5
+          plot2=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.7)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+          scale=2
+          f(x,y)=1.5-x/3+y^2/9
+          x1=0.5;x2=2; y1=0.5;y2=2;
+          tc="black";sc="gray";bc="red"
+          plot2+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=bc,opacity=0.8)
+          plot2+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color=sc,opacity=0.4)
+          plot2+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color=sc,opacity=0.4)
+          plot2+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=sc,opacity=0.4)
+          plot2+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=sc,opacity=0.4)
+          param(s,t)=(s,t,f(s,t))
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="lightblue"; c2="gray"; c3="gray"; o1=0.9; o2=0.9; o3=0.9;
+          plot2+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3037,-0.5594,-0.7712],134.56],camera_position=[5.9608,4.3919,3.2182])
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot2+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot2+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot2
+        </sageplot>
+      </image>
     </figure>
     <!-- <figure xml:id="fig-mult_ints-double_ints_rects-volume">
       <caption>The volume under a graph approximated by a Riemann Sum.</caption>
@@ -606,8 +567,10 @@
     <figure xml:id="fig-mult_ints-double_ints_rects-volume2">
       <caption>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>m</m> by <m>n</m> subrectangles</caption>
         <interactive label="interactive-F_11_1_volume2" platform="sage" width="100%" aspect="1:1.15">
-          <description><p>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>m</m> by <m>n</m> subrectangles</p>
-        </description><slate surface="sage">
+          <description>
+            <p>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>m</m> by <m>n</m> subrectangles</p>
+          </description>
+          <slate surface="sage">
             var('t,s,x,y,z')
             from sage.plot.plot3d.plot3d import axes
             from sage.plot.plot3d.shapes import Box
@@ -615,37 +578,37 @@
             scale=2.5
             @interact
             def dblRS(nx=slider(2,15,1,default=3,label="\\(m=\\)"),ny=slider(2,15,1,default=2,label="\\(n=\\)")):
-                plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                f(x,y)=2-x/1.5+y^2/4;
-                total=0;
-                x1=0.5;x2=2; y1=0.5;y2=2;
-                dx=(x2-x1)/nx; dy=(y2-y1)/ny;
-                tc="black";sc="lightblue";bc="red"
-                for i in range(nx):
-                    xa=x1+i*dx; xb=x1+(i+1)*dx;
-                    for j in range(ny):
-                        ya=y1+j*dy;yb=y1+(j+1)*dy;
-                        h=f(xa+dx,ya)
-                        total+=h
-                        plot3+=ColorCube([dx/2,dy/2,h/2],[tc,sc,sc,bc,sc,sc],opacity=0.5).translate((xa+dx/2,ya+dy/2,h/2))
-                param(s,t)=(s,t,f(s,t))
-                #set up grid      n is number of steps in s    m is number of steps in t  
-                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-                n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
-                #c1 is surface color     o1 is surface opacity
-                #c2 and o2 are for constant t value traces
-                #c3 and o3 are for constant s value traces
-                c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.2; o3=0.2;
-                plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-                for i in range(n+1):
-                    sv=a1+i/n*(a2-a1)
-                    plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-                for i in range(m+1):
-                    tv=b1+i/m*(b2-b1)
-                    plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                show(plot3,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
-                RS=total*1.5*1.5/nx/ny
-                print(" The value of the Riemann sum corresponding the volume of the\n rectangular prisms shown is "+str(RS))
+              plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              f(x,y)=2-x/1.5+y^2/4;
+              total=0;
+              x1=0.5;x2=2; y1=0.5;y2=2;
+              dx=(x2-x1)/nx; dy=(y2-y1)/ny;
+              tc="black";sc="lightblue";bc="red"
+              for i in range(nx):
+                xa=x1+i*dx; xb=x1+(i+1)*dx;
+                for j in range(ny):
+                  ya=y1+j*dy;yb=y1+(j+1)*dy;
+                  h=f(xa+dx,ya)
+                  total+=h
+                  plot3+=ColorCube([dx/2,dy/2,h/2],[tc,sc,sc,bc,sc,sc],opacity=0.5).translate((xa+dx/2,ya+dy/2,h/2))
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.2; o3=0.2;
+              plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              show(plot3,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
+              RS=total*1.5*1.5/nx/ny
+              print(" The value of the Riemann sum corresponding the volume of the\n rectangular prisms shown is "+str(RS))
           </slate>
         </interactive>
     </figure>
@@ -722,9 +685,9 @@
         </p>
         <figure xml:id="fig-mult_ints-double_ints_rects-signed">
           <caption>A plot of the surface <m>z=f(x,y)</m> over the rectangular region <m>R</m> </caption>
-            <interactive label="interactive-F_11_1_signed" platform="sage" width="91%" aspect="1:1">
-              <description><p>A plot of the surface <m>z=f(x,y)</m> over the rectangular region <m>R</m> </p>
-            </description><slate surface="sage">
+            <image width="60%">
+              <description><p>A plot of the surface <m>z=f(x,y)</m> over the rectangular region <m>R</m>  </p></description>
+              <sageplot variant="3d" label="interactive-F_11_1_signed">
                 var('t,s,x,y,z')
                 from sage.plot.plot3d.plot3d import axes
                 scale=2
@@ -742,19 +705,19 @@
                 plot7+=line([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0),(x1,y1,0)],thickness=3,color="black",opacity=0.75)+text3d("R",(1.25,1.25,0),color="black",fontsize=25)
                 plot7+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
                 for i in range(n+1):
-                    sv=a1+i/n*(a2-a1)
-                    plot7+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                  sv=a1+i/n*(a2-a1)
+                  plot7+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
                 for i in range(m+1):
-                    tv=b1+i/m*(b2-b1)
-                    plot7+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                  tv=b1+i/m*(b2-b1)
+                  plot7+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
                 for i in range(-4,5):
-                    val=i*3/8;
-                    plot7+=parametric_plot3d((s,val,0),(s,-1.5,1.5),color="gray",opacity=.6)
-                    plot7+=parametric_plot3d((val,s,0),(s,-1.5,1.5),color="gray",opacity=.6)
-                plot7+=parametric_plot3d((s,t,0),(s,-1.5,1.5),(t,-1.5,1.5),color="gray",opacity=0.1)
-                show(plot7,viewpoint=[[-0.4104,-0.5179,-0.7505],118.51],camera_position=[7.1519,2.061,3.4685])  
-              </slate>
-            </interactive>
+                  val=i*3/8;
+                  plot7+=parametric_plot3d((s,val,0),(s,-1.5,1.5),color="gray",opacity=.6)
+                  plot7+=parametric_plot3d((val,s,0),(s,-1.5,1.5),color="gray",opacity=.6)
+                plot7+=parametric_plot3d((s,t,0),(s,-1.5,1.5),(t,-1.5,1.5),color="gray",opacity=0.1,viewpoint=[[-0.4104,-0.5179,-0.7505],118.51],camera_position=[7.1519,2.061,3.4685])
+                plot7
+              </sageplot>
+            </image>
         </figure>
         <!-- <figure xml:id="fig-mult_ints-double_ints_rects-signed">
           <caption>The integral measures signed volume.</caption>
@@ -768,12 +731,12 @@
         </p>
         <figure xml:id="fig-mult_ints-double_ints_rects-signed2">
         <caption>A plot of the signed volume with the volume above the <m>xy</m>-plane shown in blue and the volume below the <m>xy</m>-plane shown in red</caption>
-          <interactive label="interactive-F_11_1_signed2" platform="sage" width="91%" aspect="1:1">
-            <description><p>A plot of the signed volume with the volume above the <m>xy</m>-plane shown in blue and the volume below the <m>xy</m>-plane shown in red</p>
-          </description><slate surface="sage">
-              <xi:include href="interacts/signedvol.txt" parse="text"/>
-            </slate>
-          </interactive>
+          <image width="60%">
+            <description><p>A plot of the signed volume with the volume above the <m>xy</m>-plane shown in blue and the volume below the <m>xy</m>-plane shown in red </p></description>
+            <sageplot variant="3d" label="interactive-F_11_1_signed2">
+<xi:include href="interacts/signedvol.txt" parse="text"/>
+            </sageplot>
+          </image>
       </figure>
       <p>
         The double integral of <m>f</m> over the rectangle <m>R</m> will be positive because there is more volume above the <m>xy</m>-plane (shown in blue) than volume below the <m>xy</m>-plane, which is counted as negative and shown in red.
@@ -856,9 +819,9 @@
         </table>
         <figure xml:id="F_11_1_DI_example">
           <caption>A plot of the surface given by <m>f(x,y)=\sqrt{4-y^2}</m> </caption>
-            <interactive label="interactive-F_11_1_DI_example" platform="sage" width="91%" aspect="1:1">
-              <description><p>A surface that has a semicircular cross section and is stretched for eight units in a perpendicular direction to the cross section.</p> </description>
-            <slate surface="sage">
+            <image width="60%">
+              <description><p>A surface that has a semicircular cross section and is stretched for eight units in a perpendicular direction to the cross section. </p></description>
+              <sageplot variant="3d" label="interactive-F_11_1_DI_example">
                 var('t,s,x,y,z')
                 scale=1.5
                 f(x,y)=sqrt(4-y^2)
@@ -872,16 +835,16 @@
                 #c3 and o3 are for constant s value traces
                 c1="lightblue"; c2="black"; c3="black"; o1=0.8; o2=0.5; o3=0.5;
                 plot9=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0),(x1,y1,0)],thickness=3,color="gray",opacity=0.2)
-                plot9+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                plot9+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.2826,-0.473,-0.8345],127],camera_position=[12.059,4.802,5.3817])
                 for i in range(n+1):
                   sv=a1+i/n*(a2-a1)
                   plot9+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
                 for i in range(m+1):
                   tv=b1+i/m*(b2-b1)
                   plot9+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                show(plot9,viewpoint=[[-0.2826,-0.473,-0.8345],127],camera_position=[12.059,4.802,5.3817])          
-              </slate>
-            </interactive>
+                plot9
+              </sageplot>
+            </image>
         </figure>
       </introduction>
     <!-- <figure xml:id="F_11_1_DI_example">

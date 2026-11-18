@@ -47,13 +47,13 @@
   </p>
   <figure xml:id="fig_Vector_FluxInt_ParaPic">
     <caption>A three-dimensional plot showing how a parallelogram can be used to approximate a section of a curved surface</caption>
-    <interactive platform="sage" width="100%" aspect="1:1.10" label="int_Vector_FluxInt_ParaPic">
+    <interactive platform="sage" label="int_Vector_FluxInt_ParaPic">
       <description><p>An interactive three-dimensional plot of a curved surface that is parabolic in one coordinate direction and cubic in the other. A grid of magenta and yellow traces along the surface are drawn. Two sliders at the top of the figure allow the user to change the location of a highlighted point on the surface. At the highlighted point, a vector is shown in magenta that is tilted to be tangent to the magenta trace through the highlighted point. A yellow vector is also drawn tangent to the yellow trace through the highlighted point. A yellow parallelogram is drawn with sides given by the magenta and yellow vectors. </p></description>
     <slate surface="sage">
         var('t,s,u,v,z,y,z')
         f=-x^2/2-3*y^3/3
         @interact
-        def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
+        def _(a=slider(-1,1,.5,0,label="s value",display_value=False),b=slider(-1,1,.5,.5,label="t value",display_value=False)):
           plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)+sphere((a,b,f(x=a,y=b)),size=.05,color="black")
           for i in range(0,5):
             plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="#D81B60")
@@ -117,24 +117,16 @@
         <p>
           The four points correspond to <m>(0,2,0)</m>, <m>(1,2,0)</m>, <m>(0,2\cos(1),0)</m>, and <m>(2,2\cos(3),2\sin(3))</m>. 
         </p>
-        <interactive xml:id="exercise-testing9" platform="sage" width="100%" aspect="1:1">
-
-          <slate surface="sage">
-
+        <image width="60%">
+          <description><p>ADD ALT TEXT TO THIS IMAGE </p></description>
+          <sageplot variant="3d" label="exercise-testing9">
 <xi:include href="./interacts/demo.sage9.txt" parse="text"/>
-
-</slate>
-
-<description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
-
+          </sageplot>
+        </image>
 <program>
-
 <code>
-
 <xi:include href="./interacts/demo.sage9.txt" parse="text"/>
-
 </code>
-
 </program>
       </solution>
     </task>
@@ -213,26 +205,19 @@
         </p>
       </statement>
       <solution>
+        <image width="60%">
+          <description><p>ADD ALT TEXT TO THIS IMAGE </p></description>
+          <sageplot variant="3d" label="exercise-testing10">
+<xi:include href="./interacts/demo.sage10.txt" parse="text"/>          
+          </sageplot>
+        </image>
         <p>
-          <interactive xml:id="exercise-testing10" platform="sage" width="100%" aspect="1:1">
-
-          <slate surface="sage">
-
-<xi:include href="./interacts/demo.sage10.txt" parse="text"/>
-
-</slate>
-
-<description><p>ADD ALT TEXT TO THIS IMAGE</p></description></interactive>
-
 <program>
-
 <code>
-
 <xi:include href="./interacts/demo.sage10.txt" parse="text"/>
-
 </code>
-
 </program>
+
         </p>
       </solution>
     </task>
@@ -286,94 +271,93 @@
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface1">
     <caption>A three-dimensional vector field and a surface</caption>
-    <interactive label="int_Vector_FluxInt_FieldSurface1" platform="sage" width="87%" aspect="1:1.05">
-      <description><p>A plot of a curved surface in blue with an array of vectors point up and in various directions.</p></description>
-    <slate surface="sage">
-        var('t,s,u,v,z,y,z')
-        f=-x^2/5-3*y^3/8
-        Fx=x^2
-        Fy=y
-        Fz=(x+y+z)/3+1
-        plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
-        for i in range(0,5):
-          plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
-          plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-        plot1+=plot_vector_field3d((Fx,Fy,Fz),(x,-1,1),(y,-1,1),(z,-1,1))
-        show(plot1)
-      </slate>
-    </interactive>
+    <image width="60%">
+        <description><p>A plot of a curved surface in blue with an array of vectors point up and in various directions. </p></description>
+        <sageplot variant="3d" label="int_Vector_FluxInt_FieldSurface1">
+          var('t,s,u,v,z,y,z')
+          f=-x^2/5-3*y^3/8
+          Fx=x^2
+          Fy=y
+          Fz=(x+y+z)/3+1
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+          for i in range(0,5):
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+          plot1+=plot_vector_field3d((Fx,Fy,Fz),(x,-1,1),(y,-1,1),(z,-1,1))
+          plot1
+        </sageplot>
+      </image>
   </figure>
   <p>
     As with understanding line integrals of vector-valued functions in <xref ref="S_Vector_IdeaLineIntegral"/>, we don't care about the output of the vector field at points away from the surface. We would really would like to examine the output vectors for the points on our surface. To do this, we will look at <xref ref="fig_Vector_FluxInt_FieldSurface2"/>, which plots the output of our vector field at an array of points on our surface.
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface2">
     <caption>A three-dimensional vector field evaluated along a surface</caption>
-    <interactive label="Vector_FluxInt_FieldSurface2" platform="sage" width="87%" aspect="1:1.05">
-      <description><p>A three-dimensional vector field represented with arrows at points along a curved surface. These arrows are more in a direction perpendicular to the surface than along the surface, regardless of the location.</p>
-    </description><slate surface="sage">
-        var('t,s,u,v,z,y,z')
-        a=1
-        b=1/2
-        f=-x^2/5-3*y^3/8
-        Fx=x^2
-        Fy=y
-        Fz=(x+y+z)/3+1
-        plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
-        for i in range(0,5):
-          plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
-          plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-        f_val=f(x=a,y=b)
-        pos=(a,b,f_val)
-        fx=diff(f,x)(x=a,y=b)
-        fy=diff(f,y)(x=a,y=b)
-        vt=(1/2+a,b,1/2*fx+f_val)
-        vs=(a,b+1/2,1/2*fy+f_val)
-        cr=(a-fx/2,b-fy/2,1/2+f_val)
-        for i in range(0,5):
-          for j in range (0,5):
-            plot1+=arrow3d((-1+i/2,-1+j/2,f(x=-1+i/2,y=-1+j/2)),(-1+i/2+Fx(x=-1+i/2,y=-1+j/2), -1+j/2+Fy(x=-1+i/2,y=-1+j/2),f(x=-1+i/2,y=-1+j/2)+Fz(x=-1+i/2,y=-1+j/2,z=f(x=-1+i/2,y=-1+j/2))),color="blue")
-        show(plot1)
-      </slate>
-    </interactive>
+    <image width="60%">
+        <description><p>A three-dimensional vector field represented with arrows at points along a curved surface. These arrows are more in a direction perpendicular to the surface than along the surface, regardless of the location. </p></description>
+        <sageplot variant="3d" label="Vector_FluxInt_FieldSurface2">
+          var('t,s,u,v,z,y,z')
+          a=1
+          b=1/2
+          f=-x^2/5-3*y^3/8
+          Fx=x^2
+          Fy=y
+          Fz=(x+y+z)/3+1
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+          for i in range(0,5):
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+          f_val=f(x=a,y=b)
+          pos=(a,b,f_val)
+          fx=diff(f,x)(x=a,y=b)
+          fy=diff(f,y)(x=a,y=b)
+          vt=(1/2+a,b,1/2*fx+f_val)
+          vs=(a,b+1/2,1/2*fy+f_val)
+          cr=(a-fx/2,b-fy/2,1/2+f_val)
+          for i in range(0,5):
+            for j in range (0,5):
+              plot1+=arrow3d((-1+i/2,-1+j/2,f(x=-1+i/2,y=-1+j/2)),(-1+i/2+Fx(x=-1+i/2,y=-1+j/2), -1+j/2+Fy(x=-1+i/2,y=-1+j/2),f(x=-1+i/2,y=-1+j/2)+Fz(x=-1+i/2,y=-1+j/2,z=f(x=-1+i/2,y=-1+j/2))),color="blue")
+          plot1
+        </sageplot>
+      </image>
   </figure>
   <p>
     The central question we would like to consider is <q>How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface?</q>, so we only need to consider the amount of the vector field that flows <em>through</em> the surface. Any portion of our vector field that flows along (or tangent) to the surface will not contribute to the amount that goes through the surface. In <xref ref="fig_Vector_FluxInt_FieldSurface3"/>, we have split the vector field for points on our surface into two components. One component, plotted in green, is orthogonal to the surface. The component that is tangent to the surface is plotted in magenta.
   </p>
   <figure xml:id="fig_Vector_FluxInt_FieldSurface3">
-    <caption>The decomposition of three-dimensional vector field
-    evaluated along a surface into normal and tangent components</caption>
-    <interactive label="int_Vector_FluxInt_FieldSurface3" platform="sage" width="87%" aspect="1:1.05">
-      <description><p>A three-dimensional vector field represented with arrows at points along a curved surface. These arrows are plotted in blue and are more in a direction perpendicular to the surface than along the surface, regardless of the location. Each blue vector is split into a magenta vector that shows how much along the surface the blue vector travels and a green vector that measures how much the blue vector moves in a direction perpendicular to the surface. A yellow vector is shown in the middle of the region pointing perpendicular through the surface.</p></description>
-    <slate surface="sage">
-        var('t,s,u,v,z,y,z')
-        f=-x^2/5-3*y^3/8
-        Fx=x^2
-        Fy=y
-        Fz=(x+y+z)/3+1
-        plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
-        for i in range(0,5):
-          plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
-          plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-        for i in range(0,5):
-          for j in range (0,5):
-            posx=-1+i/2
-            posy=-1+j/2
-            posz=f(x=posx,y=posy)
-            F1=Fx(x=posx,y=posy)
-            F2=Fy(x=posx,y=posy)
-            F3=Fz(x=posx,y=posy,z=posz)
-            plot1+=arrow3d((posx,posy,posz),(posx+Fx(x=posx,y=posy),posy+Fy(x=posx,y=posy), posz+Fz(x=posx,y=posy,z=posz)),color="#1E88E5")
-            N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
-            Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
-            FNx=Nfrac*N[0]
-            FNy=Nfrac*N[1]
-            FNz=Nfrac*N[2]
-            plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
-            plot1+=arrow3d((posx,posy,posz),(posx+F1-FNx,posy+F2-FNy,posz+F3-FNz),color="#D81B60")
-            plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="#FFC107")
-        show(plot1)
-      </slate>
-    </interactive>
+    <caption>The decomposition of three-dimensional vector field evaluated along a surface into normal and tangent components</caption>
+    <image width="60%">
+        <description><p>A three-dimensional vector field represented with arrows at points along a curved surface. These arrows are plotted in blue and are more in a direction perpendicular to the surface than along the surface, regardless of the location. Each blue vector is split into a magenta vector that shows how much along the surface the blue vector travels and a green vector that measures how much the blue vector moves in a direction perpendicular to the surface. A yellow vector is shown in the middle of the region pointing perpendicular through the surface. </p></description>
+        <sageplot variant="3d" label="int_Vector_FluxInt_FieldSurface3">
+          var('t,s,u,v,z,y,z')
+          f=-x^2/5-3*y^3/8
+          Fx=x^2
+          Fy=y
+          Fz=(x+y+z)/3+1
+          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
+          for i in range(0,5):
+            plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
+            plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
+          for i in range(0,5):
+            for j in range (0,5):
+              posx=-1+i/2
+              posy=-1+j/2
+              posz=f(x=posx,y=posy)
+              F1=Fx(x=posx,y=posy)
+              F2=Fy(x=posx,y=posy)
+              F3=Fz(x=posx,y=posy,z=posz)
+              plot1+=arrow3d((posx,posy,posz),(posx+Fx(x=posx,y=posy),posy+Fy(x=posx,y=posy), posz+Fz(x=posx,y=posy,z=posz)),color="#1E88E5",opacity=0.3)
+              N=(-diff(f,x)(x=posx,y=posy)/2,-diff(f,y)(x=posx,y=posy)/2,1/2)
+              Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+              FNx=Nfrac*N[0]
+              FNy=Nfrac*N[1]
+              FNz=Nfrac*N[2]
+              plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
+              plot1+=arrow3d((posx,posy,posz),(posx+F1-FNx,posy+F2-FNy,posz+F3-FNz),color="#D81B60")
+              plot1+=arrow3d((.25,.25,-.2),(.3,.2,.3),color="#FFC107")
+          plot1
+        </sageplot>
+      </image>
   </figure>
   <p>
     In order to measure the amount of the vector field that moves through the plotted section of the surface, we must find the accumulation of the lengths of the green vectors in <xref ref="fig_Vector_FluxInt_FieldSurface3"/>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors.
@@ -393,7 +377,7 @@
       </p>
       <figure xml:id="fig_Vector_FluxInt_FieldPicker">
         <caption>Five vector fields flowing through a surface, with decomposition into normal and tangential components</caption>
-        <interactive label="int_Vector_FluxInt_FieldPicker" platform="sage" width="100%" aspect="1:1.05">
+        <interactive label="int_Vector_FluxInt_FieldPicker" platform="sage">
           <description><p>An interactive plot of a curved surface and a vector field. At the top of the figure, a dropdown box allows the user to select between five different options of vector fields. For each different option of the vector fields, an array of blue arrows is plotted along the surface. At each blue vector, magenta and yellow vectors are shown for the decomposition the amount along the surface and the amount perpendicular to the surface. </p></description>
         <slate surface="sage">
             var('t,s,u,v,z,y,z')
@@ -487,8 +471,7 @@
         <slate surface="sage">
             var('t,s,u,v,z,y,z')
             f=-x^2/2-3*y^3/3
-            @interact
-            def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
+            def asdf3(n):
               plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
               stepsize=2/(n)
               for i in range(0,n):
@@ -506,7 +489,10 @@
                   cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
                   plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
                   plot1+=arrow3d(pos,cr,color="#004D40")
-              show(plot1)
+              return plot1
+            frames=[asdf3(n) for n in range(3,12)]
+            plot123=animate(frames).interactive(delay=100,auto_play=False)
+            plot123
           </slate>
         </interactive>
       </figure>
@@ -585,12 +571,36 @@
         <description><p>An interactive three dimensional plot of an annular section of a cone shown in gray a vector in green shown from the vertex of the cone to another location on the cone. A magenta vector is drawn from the end of the green vector in a direction that is perpendicular to the cone at that location. The sliders at the top of the figure allow the user to change the location of interest along the surface. </p></description>
       <slate surface="sage">
           var('x,y,z,s,t')
-          @interact
           def conepiece(a=slider(1,3,1/2,2,label="s value"),b=slider(0,2*pi,pi/6,pi/2,label="t value")):
-            plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0, 2*pi),color='gray', opacity=.50)
-            plot2+=arrow3d((a*cos(b),a*sin(b),a),(0,0,2*a),color='#D81B60',thickness=3)
-            plot2+=arrow3d((0,0,0),(a*cos(b),a*sin(b),a),color='#004D40')
-            show(plot2,aspect_ratio=1)
+            scale=3.5
+            plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            param(s,t)=(s*cos(t),s*sin(t),s)
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=6;m=9;a1=1;a2=3;b1=0;b2=2*pi; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.7; o3=0.7;
+            plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3357,-0.5577,-0.7591],130.87])
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            for i in range(-3,4):
+              plot1+=parametric_plot3d((t,i,0),(t,-3,3),color="gray")+parametric_plot3d((i,t,0),(t,-3,3),color="gray")
+            plot1+=arrow3d((a*cos(b),a*sin(b),a),(0,0,2*a),color='#D81B60',width=2)
+            plot1+=arrow3d((0,0,0),(a*cos(b),a*sin(b),a),color='#004D40',width=2)
+            return plot1
+          frames1=[conepiece(2+s/5,1) for s in range(0,6)]
+          frames2=[conepiece(3-s/5,1) for s in range(0,11)]
+          frames3=[conepiece(1+s/5,1) for s in range(0,6)]
+          frames4=[conepiece(2,1+s*2*pi/10) for s in range(0,11)]
+          frames=frames1+frames2+frames3+frames4
+          plot123=animate(frames).interactive(auto_play=False,delay=30)
+          plot123
         </slate>
       </interactive>
     </figure>
@@ -642,15 +652,33 @@
       </p>
       <figure xml:id="fig_Vector_FluxInt_yzsine">
         <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> and a right circular cylinder</caption>
-        <interactive label="int_Vector_FluxInt_yzsine" platform="sage" width="87%" aspect="1:1.05">
-          <description><p>A plot of a right circular cylinder is drawn in gray with an array of vectors corresponding to the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> shown for a region of points around the cylinder.</p></description>
-        <slate surface="sage">
-            var('s,t,x,y,z')
-            plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="gray",frame=False,aspect_ratio=1)
-            plot1+=plot_vector_field3d((y,z,2+sin(z)),(x,-3,3),(y,-3,3),(z,-1,4),plot_points=7)
-            show(plot1)
-          </slate>
-        </interactive>
+        <image width="60%">
+          <description><p>A plot of a right circular cylinder is drawn in gray with an array of vectors corresponding to the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> shown for a region of points around the cylinder. </p></description>
+          <sageplot variant="3d" label="int_Vector_FluxInt_yzsine">
+            var('x,y,z,s,t')
+            scale=3.5
+            #plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            param(s,t)=(2*cos(t),2*sin(t),s)
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=6;m=9;a1=0;a2=3;b1=0;b2=2*pi; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.7; o3=0.7;
+            plot1=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3357,-0.5577,-0.7591],130.87])
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            #for i in range(-3,4):
+              #plot1+=parametric_plot3d((t,i,0),(t,-3,3),color="gray")+parametric_plot3d((i,t,0),(t,-3,3),color="gray")
+            plot1+=plot_vector_field3d((y,z,2+sin(z)),(x,-3,3),(y,-3,3),(z,-1,4),width=2,plot_points=7,frame=False,viewpoint=[[-0.1827,-0.3451,-0.9206],128.03])
+            plot1
+          </sageplot>
+        </image>
       </figure>
       </introduction>
       <task>
@@ -773,40 +801,66 @@
         Use <xref ref="fig_Vector_FluxInt_yzsine_sliders"/> to make an argument about why the flux of <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> through the right circular cylinder is zero.
       </p>
       <figure xml:id="fig_Vector_FluxInt_yzsine_sliders">
-        <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> with normal and tangential components plotted on a right circular cylinder</caption>
-        <interactive label="int_Vector_FluxInt_yzsine_sliders" platform="sage" width="100%" aspect="1:1.15">
-          <description><p>An interactive three dimensional plot of a right circular cylinder is drawn in gray. Two sliders at the top of the figure allow the user to change the number of vectors drawn on the surface in each of the horizontal and vertical directions. For the selected number of vectors, the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> is shown at locations on the circular cylinder in blue. Each blue vector is split into a magenta part that is along the direction of the surface and a green part that is perpendicular to the surface. </p></description>
-        <slate surface="sage">
-            var('t,s,u,v,z,y,z')
-            Fx=y
-            Fy=z
-            Fz=2+sin(x)
-            @interact
-            def _(n=slider(8,20,2,10,label="Angular Partitions="),m=slider(4,8,1,5,label="Height Partitions=")):
-                plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="gray",frame=False,aspect_ratio=1)
-                for i in range(0,m):
-                    plot1+=parametric_plot3d((2*cos(t),2*sin(t),i*3/m),(t,0,2*pi),color="black",frame=False,aspect_ratio=1)
-                for i in range(0,n):
-                    plot1+=parametric_plot3d((2*cos(2*pi*i/n),2*sin(2*pi*i/n),s),(s,0,3),color="black",frame=False,aspect_ratio=1)
-                for i in range(0,n):
-                    posx=2*cos(2*pi*i/n)
-                    posy=2*sin(2*pi*i/n)
-                    for j in range (0,m):
-                        posz=j*3/m
-                        F1=Fx(x=posx,y=posy,z=posz)
-                        F2=Fy(x=posx,y=posy,z=posz)
-                        F3=Fz(x=posx,y=posy,z=posz)
-                        plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="#1E88E5")
-                        N=(-posx,-posy,0)
-                        Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
-                        FNx=Nfrac*N[0]
-                        FNy=Nfrac*N[1]
-                        FNz=Nfrac*N[2]
-                        plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
-                        plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="#D81B60")
-                show(plot1)
-          </slate>
-        </interactive>
+        <caption>The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> at points on the cylinder (left) and just the normal component plotted on a right circular cylinder (right)</caption>
+        <sidebyside>
+          <image>
+            <description><p>An interactive three dimensional plot of a right circular cylinder is drawn in gray. The vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> is shown at locations on the circular cylinder in blue. </p></description>
+            <sageplot variant="3d" label="int_Vector_FluxInt_yzsine1">
+              var('t,s,u,v,z,y,z')
+              Fx=y
+              Fy=z
+              Fz=2+sin(x)
+              n=11;m=6;
+              plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="lightblue",frame=False,aspect_ratio=1)
+              for i in range(0,m+1):
+                plot1+=parametric_plot3d((2*cos(t),2*sin(t),i*3/m),(t,0,2*pi),color="black",frame=False,aspect_ratio=1)
+              for i in range(0,n):
+                plot1+=parametric_plot3d((2*cos(2*pi*i/n),2*sin(2*pi*i/n),s),(s,0,3),color="black",frame=False,aspect_ratio=1)
+              for i in range(0,n):
+                posx=2 *cos(2*pi*i/n)
+                posy=2*sin(2*pi*i/n)
+                for j in range (0,m):
+                  posz=j*3/m
+                  F1=Fx(x=posx,y=posy,z=posz)
+                  F2=Fy(x=posx,y=posy,z=posz)
+                  F3=Fz(x=posx,y=posy,z=posz)
+                  plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="#1E88E5")
+              plot1
+            </sageplot>
+          </image>
+          <image>
+            <description><p>An interactive three dimensional plot of a right circular cylinder is drawn in gray. The part of the vector field <m>\vF=\langle{y,z,2+\sin(x)}\rangle</m> that is normal to the cylinder is plotted in green.</p></description>
+            <sageplot variant="3d" label="int_Vector_FluxInt_yzsine2">
+              var('t,s,u,v,z,y,z')
+              Fx=y
+              Fy=z
+              Fz=2+sin(x)
+              n=11;m=6;
+              plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="lightblue",frame=False,aspect_ratio=1)
+              for i in range(0,m+1):
+                plot1+=parametric_plot3d((2*cos(t),2*sin(t),i*3/m),(t,0,2*pi),color="black",frame=False,aspect_ratio=1)
+              for i in range(0,n):
+                plot1+=parametric_plot3d((2*cos(2*pi*i/n),2*sin(2*pi*i/n),s),(s,0,3),color="black",frame=False,aspect_ratio=1)
+              for i in range(0,n):
+                posx=2*cos(2*pi*i/n)
+                posy=2*sin(2*pi*i/n)
+                for j in range (0,m):
+                  posz=j*3/m
+                  F1=Fx(x=posx,y=posy,z=posz)
+                  F2=Fy(x=posx,y=posy,z=posz)
+                  F3=Fz(x=posx,y=posy,z=posz)
+                  #plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="#1E88E5")
+                  N=(-posx,-posy,0)
+                  Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+                  FNx=Nfrac*N[0]
+                  FNy=Nfrac*N[1]
+                  FNz=Nfrac*N[2]
+                  plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
+                  #plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="#D81B60")
+              plot1
+            </sageplot>
+          </image>
+        </sidebyside>
       </figure>
       </statement>
       <answer>

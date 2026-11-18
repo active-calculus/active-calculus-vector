@@ -215,17 +215,19 @@
       <interactive label="interactive-vvf-example1" platform="sage" width="100%" aspect="1:1">
         <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, and <m>y</m>, and <m>z</m>. A red curve is plotted that is centered and the origin, moves around the z-axis, and has two maximums and two minimums as the curve completes one rotation around the z-axis. The slider at the top of the figure changes the location of a highlighted point on the red curve. There is a blue arrow from the arrow to the highlighted point.</p></description>
       <slate surface="sage">
-          from sage.plot.plot3d.plot3d import axes
-          var('t')
-          scale=2;
-          @interact
-          def basic3dcurveplot(s=slider(0,2*pi,pi/20,default=3*pi/4,label="\\(t=\\)")):
-              plot1=axes(scale,1,color="black",opacity=0.15)+text3d("x",(scale+0.5,0,0),fontsize=30)
-              plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,frame=False)
-              plot1+=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=2,opacity=0.6)
-              plot1+=arrow((0,0,0),(cos(s),sin(s),cos(2*s)),color="blue",width=1.5)
-              plot1+=point((cos(s),sin(s),cos(2*s)),color="black",size=30)
-              show(plot1)
+        from sage.plot.plot3d.plot3d import axes
+        var('t')
+        scale=2;
+        def basic3dcurveplot1(s):
+          plot1=axes(scale,1,color="black",opacity=0.25)+text3d("x",(scale+0.5,0,0),fontsize=30)
+          plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,frame=False)
+          plot1+=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=2,opacity=0.6)
+          plot1+=arrow((0,0,0),(cos(s),sin(s),cos(2*s)),color="blue",width=1.5)
+          plot1+=point((cos(s),sin(s),cos(2*s)),color="black",size=30)
+          return plot1
+        frames1=[basic3dcurveplot1(tval*2*pi/50) for tval in range(0,50)]
+        plot123 = animate(frames1).interactive(delay=20,auto_play=True,animation_controls=True)
+        plot123
         </slate>
       </interactive>
     </figure>

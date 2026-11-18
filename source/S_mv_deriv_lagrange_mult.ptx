@@ -1023,33 +1023,35 @@
       <interactive label="interactive-LM-3D" platform="sage" width="91%" aspect="1:1">
         <description><p>A three dimensional plot with a curved surface shown in blue and a triangular portion of a tilted plane shown in pink </p></description>
         <slate surface="sage">
-            @interact
-            def _(c=slider(0.1,2,default=0.5,label="Level Set value")):
-              var('s,t,x,y,z')
-              xscale=10;yscale=10;zscale=10
-              plot1=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=2)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
-              plot1+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5)
-              xc=s+3;yc=t+2;zc=s^2/2+t^2/4+c-3;
-              xc2=xc+zc+2;yc2=yc+(-xc+zc)+4;zc2=-yc-xc+zc+8+c/2+1
-              param(s,t)=(xc2,yc2,zc2)
-              #set up grid      n is number of steps in s    m is number of steps in t  
-              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-              n=7;m=7;a1=-2.5;a2=2.5;b1=-2.5;b2=2.5; 
-              #c1 is surface color     o1 is surface opacity
-              #c2 and o2 are for constant t value traces
-              #c3 and o3 are for constant s value traces
-              c1="lightblue"; c2="black"; c3="black"; o1=0.5; o2=0.4; o3=0.4;
-              plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
-              for i in range(n+1):
-                sv=a1+i/n*(a2-a1)
-                plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-              for i in range(m+1):
-                tv=b1+i/m*(b2-b1)
-                plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-              k=8
-              plot1+=polygon([(k,0,0),(0,k,0),(0,0,k),(k,0,0)],color="pink",plot_points=5,mesh=True,opacity=0.8)
-              show(plot1,viewpoint=[[-0.8588,-0.3426,-0.381],92.64],camera_position=[22.7525,-13.4797,8.6722])
-          </slate>
+          def lagrange(c):
+            var('s,t,x,y,z')
+            xscale=10;yscale=10;zscale=10
+            plot1=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=2)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
+            plot1+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5)
+            xc=s+3;yc=t+2;zc=s^2/2+t^2/4+c-3;
+            xc2=xc+zc+2;yc2=yc+(-xc+zc)+4;zc2=-yc-xc+zc+8+c/2+1
+            param(s,t)=(xc2,yc2,zc2)
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=7;m=7;a1=-2.5;a2=2.5;b1=-2.5;b2=2.5; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="black"; c3="black"; o1=0.5; o2=0.4; o3=0.4;
+            plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            k=8
+            plot1+=polygon([(k,0,0),(0,k,0),(0,0,k),(k,0,0)],color="pink",plot_points=5,mesh=True,opacity=0.8,viewpoint=[[-0.8588,-0.3426,-0.381],92.64],camera_position=[22.7525,-13.4797,8.6722])
+            return plot1
+          frames1=[lagrange(c/10) for c in range(0,25)]
+          plot123=animate(frames1).interactive(delay=25,auto_play=False)
+          show(plot123)
+        </slate>
         </interactive>
       </figure>
     <p>

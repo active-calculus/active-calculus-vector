@@ -1,7 +1,6 @@
 from sage.plot.plot3d.plot3d import axes
 var('x,y,z,t,s')
 scale=4;
-@interact
 def DDex1(d=slider(0,6.2,0.1,default=pi/2,label="Direction")):
   plot6=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
   a=cos(d);b=sin(d);
@@ -27,6 +26,9 @@ def DDex1(d=slider(0,6.2,0.1,default=pi/2,label="Direction")):
   plot6+=parametric_plot3d((r(t)[0],r(t)[1],f(r(t)[0],r(t)[1])),(t,0,2),color="blue",thickness=3)
   dd=-1*a+(-2/3)*b
   plot6+=parametric_plot3d((r(t)[0],r(t)[1],1+dd*t),(t,0,0.55),color="black",thickness=3)
-  plot6+=arrow((2,2,0),(2+a,2+b,0),color="red",width=2)
+  plot6+=arrow((2,2,0),(2+a,2+b,0),color="red",width=2,viewpoint=[[-0.1301,-0.4479,-0.8846],151.18],camera_position=[1.297,10.6282,2.0542])
   plot6+=parametric_plot3d((r(t)[0],r(t)[1],s),(t,0,2),(s,0,3),color="blue",opacity=0.1,plot_points=2,mesh=True)
-  show(plot6,viewpoint=[[0.0266,-0.6767,-0.7358],183.32],camera_position=[1.297,10.6282,2.0542])
+  return plot6
+frames1=[DDex1(d/10) for d in range(0,62)]
+plot123=animate(frames1).interactive(delay=20,auto_play=False)
+plot123
