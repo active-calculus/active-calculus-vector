@@ -110,7 +110,7 @@
       </p>
       <figure xml:id="fig_Vector_Curl_Spinner">
         <caption>A paddle-bladed spinner</caption>
-        <image width="60%">
+        <image width="50%">
           <description><p>A three dimensional plot of a spinner with a central axis shown by a segment in black. Four planar blades extend perpendicular to the central axis and are shown in with gray rectangles.  </p></description>
           <sageplot variant="3d" label="sage_spinner_interact1">
             var('t,s')
@@ -118,7 +118,7 @@
             b=1
             plot5=parametric_plot3d((s,0,t),(s,-a,a),(t,0,b),color='gray',opacity=.75)
             plot5+=parametric_plot3d((0,s,t),(s,-a,a),(t,0,b),color='gray',opacity=.75)
-            plot5+=parametric_plot3d((0,0,t),(t,-1/4*b,3*b),color='black',thickness=6,aspect_ratio=1,frame=False)
+            plot5+=parametric_plot3d((0,0,t),(t,-1/4*b,3*b),color='black',thickness=6,aspect_ratio=1,frame=False,viewpoint=[[-0.1626,-0.4685,-0.8684],146.46])
             plot5
           </sageplot>
         </image>
@@ -128,7 +128,7 @@
       </p>
       <figure xml:id="fig_Vector_Curl_PA_0x">
         <caption>The vector field <m>\vF</m></caption>
-        <image width="75%" xml:id="img_Curl_0x_field">
+        <image width="50%" xml:id="img_Curl_0x_field">
           <description><p> A vector field that has only nonzero vertical component that is upward and increasing as you move horizontally to the right and downward as you move to the left. </p> </description>
           <sageplot>
             var('t,x,y')
@@ -369,7 +369,7 @@
   </p>
   <figure xml:id="fig_Vector_Curl_example1">
     <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m></caption>
-    <image width="60%" xml:id="img_Curl_example1">
+    <image width="50%" xml:id="img_Curl_example1">
     <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
     <sageplot>
       var('x,y,t')
@@ -385,7 +385,7 @@
   </p>
   <figure xml:id="fig_Vector_Curl_example12">
     <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m> shown around the point (2,2).</caption>
-    <image width="60%" xml:id="img_Curl_example12">
+    <image width="50%" xml:id="img_Curl_example12">
     <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
     <sageplot>
       var('x,y,t')
@@ -401,7 +401,7 @@
   </p>
   <figure xml:id="fig_Vector_Curl_example13">
     <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m> shown around the point (-2,2).</caption>
-    <image width="60%" xml:id="img_Curl_example13">
+    <image width="50%" xml:id="img_Curl_example13">
     <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
     <sageplot>
       var('x,y,t')
@@ -527,7 +527,7 @@
         plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
         plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1,3,0.25))
         plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="blue",thickness=3)
-        plot1+=arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=5,color="blue")
+        plot1+=arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=6,color="blue")
         plot1
       </sageplot>
     </image>
@@ -597,11 +597,82 @@
   <p>
     Recall that we have used a set of coordinate vectors (namely <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>) to write other vectors as a linear combination of our base vectors. In other words, a vector <m>\langle a,b,c\rangle</m> in <m>\R^3</m> can be written in the form <m>a\vi+b\vj+c\vk</m>.
   </p>
-    <figure xml:id="ijk_vector_sum">
+  <figure xml:id="ijk_vector_sum">
+    <caption>Three different cases where a vector shown in black is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</caption>
+    <sidebyside>
+      <image width="60%">
+        <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The values of <m>a</m>, <m>b</m>, and <m>c</m> change how far a black vector is drawn in the directions corresponding to the <m>x</m>, <m>y</m>, and <m>z</m> axes respectively. Magenta vectors of length a are drawn along the x axis and parallel to the x-axis in the xy-plane. Green vectors of length b are drawn along the y-axis and parallel to the y-axis at a distance a from the y-axis. Two blue vectors of length c are drawn parallel to the z-axis starting from the ends of the off axis magenta and green vectors and the origin. 
+      The values of The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. </p></description>
+        <sageplot variant="3d" label="ijk_vector_sum1">
+          from sage.plot.plot3d.plot3d import axes
+          var('t')
+          scale=4
+          a=1;b=-2;c=3;d=scale;
+          plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=20)+text3d("y",(0,scale+0.5,0),fontsize=20)+text3d("z",(0,0,scale+0.5),fontsize=20)
+          base=vector([0,0,0])
+          plot3+=arrow3d(base,base+vector([a,b,c]),width=3,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])
+          plot3+=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+          plot3+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black")
+          vs="\u27E8"+str(int(a))+","+str(int(b))+","+str(int(c))+"\u27E9"
+          plot3+=text3d(vs,(a,b,c+0.5),color="black",fontsize=20)
+          plot3+=arrow3d(base,base+vector([a,0,0]),width=3,color="#D81B60")+arrow3d(base,base+vector([0,b,0]),width=3,color="#004D40")
+          plot3+=arrow3d(base,base+vector([0,0,c]),width=3,color="#1E88E5")
+          plot3+= arrow3d(base+vector([0,b,0]),base+vector([a,b,0]),width=3,color="#D81B60") + arrow3d(base+vector([a,0,0]),base+vector([a,b,0]),width=3,color="#004D40")
+          plot3+=arrow3d(base+vector([a,b,0]),base+vector([a,b,c]),width=3,color="#1E88E5")
+          plot3
+        </sageplot>
+      </image>
+      <image width="60%">
+        <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The values of <m>a</m>, <m>b</m>, and <m>c</m> change how far a black vector is drawn in the directions corresponding to the <m>x</m>, <m>y</m>, and <m>z</m> axes respectively. Magenta vectors of length a are drawn along the x axis and parallel to the x-axis in the xy-plane. Green vectors of length b are drawn along the y-axis and parallel to the y-axis at a distance a from the y-axis. Two blue vectors of length c are drawn parallel to the z-axis starting from the ends of the off axis magenta and green vectors and the origin. 
+      The values of The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. </p></description>
+        <sageplot variant="3d" label="ijk_vector_sum2">
+          from sage.plot.plot3d.plot3d import axes
+          var('t')
+          scale=4
+          a=2;b=3;c=-1;d=scale;
+          plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=20)+text3d("y",(0,scale+0.5,0),fontsize=20)+text3d("z",(0,0,scale+0.5),fontsize=20)
+          base=vector([0,0,0])
+          plot3+=arrow3d(base,base+vector([a,b,c]),width=3,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])
+          plot3+=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+          plot3+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black")
+          vs="\u27E8"+str(int(a))+","+str(int(b))+","+str(int(c))+"\u27E9"
+          plot3+=text3d(vs,(a,b,c-0.5),color="black",fontsize=20)
+          plot3+=arrow3d(base,base+vector([a,0,0]),width=3,color="#D81B60")+arrow3d(base,base+vector([0,b,0]),width=3,color="#004D40")
+          plot3+=arrow3d(base,base+vector([0,0,c]),width=3,color="#1E88E5")
+          plot3+= arrow3d(base+vector([0,b,0]),base+vector([a,b,0]),width=3,color="#D81B60") + arrow3d(base+vector([a,0,0]),base+vector([a,b,0]),width=3,color="#004D40")
+          plot3+=arrow3d(base+vector([a,b,0]),base+vector([a,b,c]),width=3,color="#1E88E5")
+          plot3
+        </sageplot>
+      </image>
+      <image width="60%">
+        <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. The values of <m>a</m>, <m>b</m>, and <m>c</m> change how far a black vector is drawn in the directions corresponding to the <m>x</m>, <m>y</m>, and <m>z</m> axes respectively. Magenta vectors of length a are drawn along the x axis and parallel to the x-axis in the xy-plane. Green vectors of length b are drawn along the y-axis and parallel to the y-axis at a distance a from the y-axis. Two blue vectors of length c are drawn parallel to the z-axis starting from the ends of the off axis magenta and green vectors and the origin. 
+      The values of The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>. </p></description>
+        <sageplot variant="3d" label="ijk_vector_sum3">
+          from sage.plot.plot3d.plot3d import axes
+          var('t')
+          scale=4
+          a=-1;b=3;c=2;d=scale;
+          plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=20)+text3d("y",(0,scale+0.5,0),fontsize=20)+text3d("z",(0,0,scale+0.5),fontsize=20)
+          base=vector([0,0,0])
+          plot3+=arrow3d(base,base+vector([a,b,c]),width=3,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])
+          plot3+=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+          plot3+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black")
+          vs="\u27E8"+str(int(a))+","+str(int(b))+","+str(int(c))+"\u27E9"
+          plot3+=text3d(vs,(a,b,c+0.5),color="black",fontsize=20)
+          plot3+=arrow3d(base,base+vector([a,0,0]),width=3,color="#D81B60")+arrow3d(base,base+vector([0,b,0]),width=3,color="#004D40")
+          plot3+=arrow3d(base,base+vector([0,0,c]),width=3,color="#1E88E5")
+          plot3+= arrow3d(base+vector([0,b,0]),base+vector([a,b,0]),width=3,color="#D81B60") + arrow3d(base+vector([a,0,0]),base+vector([a,b,0]),width=3,color="#004D40")
+          plot3+=arrow3d(base+vector([a,b,0]),base+vector([a,b,c]),width=3,color="#1E88E5")
+          plot3
+        </sageplot>
+      </image>
+    </sidebyside>
+  </figure>
+    <!-- <figure xml:id="ijk_vector_sum">
       <caption>The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</caption>
       <interactive label="ijk_sum" platform="sage" width="100%" aspect="1:1.15">
       <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. Three sliders at the top of the figure allow the user to choose the value for <m>a</m>, <m>b</m>, and <m>c</m>. The values of <m>a</m>, <m>b</m>, and <m>c</m> change how far a black vector is drawn in the directions corresponding to the <m>x</m>, <m>y</m>, and <m>z</m> axes respectively. Magenta vectors of length a are drawn along the x axis and parallel to the x-axis in the xy-plane. Green vectors of length b are drawn along the y-axis and parallel to the y-axis at a distance a from the y-axis. Two blue vectors of length c are drawn parallel to the z-axis starting from the ends of the off axis magenta and green vectors and the origin. 
-        The values of The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</p></description>
+      The values of The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</p></description>
       <slate surface="sage">
         d=5
         var('t,s')
@@ -619,7 +690,7 @@
             show(plot3)
       </slate>
       </interactive>
-    </figure>
+    </figure> -->
     <p>
     The linear combination of vectors will allow us to build the total rotation vector by measuring the rotational strength in the direction of three coordinate direction vectors. Just as in <xref ref="ijk_vector_sum"/>, we will build our total rotation vector as a sum of <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>, but we will think of the initial point of the black vector as being at our point of interest <m>(u,v,w)</m>A rotation vector in the direction of <m>\vk</m> at a point <m>(u,v,w)</m> will measure the circulation density at our point restricted to the trace plane <m>z=w</m>. Similarly the rotation vectors in the directions <m>\vi</m> and <m>\vj</m> will measure the circulation density on the trace planes <m>x=u</m> and <m>y=v</m>, respectively.
   </p>
@@ -981,7 +1052,7 @@
       </p>
       <figure xml:id="fig_Vector_Curl_-yx">
         <caption>Two views of the vector field <m>\langle -y,x,0\rangle</m></caption>
-        <interactive label="int_Vector_Curl_-yx" platform="sage" width="100%" aspect="100:192">
+        <interactive label="int_Vector_Curl_-yx" platform="sage">
           <description><p>An interactive plot is drawn to demonstrate the vector field <m>\langle -y,x,0\rangle</m>. At the top of the figure are sliders to change the angle of the plane drawn and the number of vectors plotted in the three dimensional plot. The top plot is a three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A plane through the origin and the x-axis is shown in yellow. The angle this plane makes with the y-axis is changed by the slider above. Additionally, there is an array of vectors plotted representing the vector field. These vectors point in a circular pattern around the z-axis and are longer for locations farther from the z-axis. 
            </p>
         </description>
@@ -994,22 +1065,22 @@
             w=d
             F=(-y,x,0)
             def asdf(beta):
-              plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
-              plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
-              plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
-              alpha=tan(beta)
-              plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=7)
-              if alpha>1:
-                plot1+=plot3d(alpha*y,(x,-d,d),(y,-d/alpha,d/alpha),opacity=.4,color="yellow")
-                plot1+=arrow3d((1/alpha,1/alpha,1),(1/alpha,1/alpha-1,1+1/alpha))
-              else:
-                plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow")
-                plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
-              #plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
-              plot2=plot_vector_field(((t),-s*(1/(1+alpha^2))),(s,-d,d),(t,-d,d),frame=False,aspect_ratio=1,color="blue",ticks=[[],[]])
-              return plot1
+                plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
+                plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
+                plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
+                alpha=tan(beta)
+                plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=7,width=2)
+                if sign(alpha-1)==1:
+                    plot1+=plot3d(alpha*y,(x,-d,d),(y,-d/alpha,d/alpha),opacity=.4,color="yellow",mesh=True,plot_points=11)
+                    plot1+=arrow3d((1/alpha,1/alpha,1),(1/alpha,1/alpha-1,1+1/alpha),width=3)
+                else:
+                    plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow",mesh=True,plot_points=11)
+                    plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha),width=3)
+                #plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
+                #plot2=plot_vector_field(((t),-s*(1/(1+alpha^2))),(s,-d,d),(t,-d,d),frame=False,aspect_ratio=1,color="blue",ticks=[[],[]])
+                return plot1
             frames=[asdf(beta/10) for beta in range(0,15)]
-            plot123=animate(frames).interactive(auto_play=False,delay=40)
+            plot123=animate(frames).interactive(auto_play=False,pause=40)
             plot123
           </slate>
         </interactive>
@@ -1017,7 +1088,7 @@
       <p>
         The gif below shows what the vector field will look like along the yellow plane, as the angle of the plane with the <m>xy</m>-plane is increased. 
       </p>
-      <image source="./planevf.gif">
+      <image source="./planevf.gif" width="50%">
         <description><p>This plot is a two dimensional plot of a vector field that shows arrows that show a pattern of clockwise rotation around the origin. As the angle of the plane in increased, the vector field becomes more stretched in the horizontal direction.</p></description>
         <!-- <sageplot variant="3d" label="int_Vector_Curl_-yx2d">
           var('x,y,z,t,s')

@@ -571,6 +571,7 @@
         <description><p>An interactive three dimensional plot of an annular section of a cone shown in gray a vector in green shown from the vertex of the cone to another location on the cone. A magenta vector is drawn from the end of the green vector in a direction that is perpendicular to the cone at that location. The sliders at the top of the figure allow the user to change the location of interest along the surface. </p></description>
       <slate surface="sage">
           var('x,y,z,s,t')
+          from sage.plot.plot3d.plot3d import axes
           def conepiece(a=slider(1,3,1/2,2,label="s value"),b=slider(0,2*pi,pi/6,pi/2,label="t value")):
             scale=3.5
             plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
@@ -617,23 +618,41 @@
     </p>
     <figure xml:id="fig_Vector_FluxInt_Cone2">
       <caption>A plot of the surface with the vector field <m>\vF</m> for an array of points on the surface. The vector field has been scaled down by a factor of 5 in this plot.</caption>
-      <interactive label="int_Vector_FluxInt_Cone2" platform="sage" width="87%" aspect="1:1.05">
-        <description><p>A plot of an annular section of a cone is shown in gray. Blue vectors are shown for an array of points along the surface. The blue vector point in a circular pattern and away from the center of the cone.</p></description>
-      <slate surface="sage">
+      <image width="60%">
+        <description><p>A plot of an annular section of a cone is shown in gray. Blue vectors are shown for an array of points along the surface. The blue vector point in a circular pattern and away from the center of the cone. </p></description>
+        <sageplot variant="3d" label="int_Vector_FluxInt_Cone2">
           var('x,y,z,s,t')
-          N=10
+          from sage.plot.plot3d.plot3d import axes
+          scale=3.5
+          plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+          param(s,t)=(s*cos(t),s*sin(t),s)
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=6;m=9;a1=1;a2=3;b1=0;b2=2*pi; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.7; o3=0.7;
+          plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3357,-0.5577,-0.7591],130.87])
+          for i in range(n+1):
+            sv=a1+i/n*(a2-a1)
+            plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+            tv=b1+i/m*(b2-b1)
+            plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          for i in range(-3,4):
+            plot1+=parametric_plot3d((t,i,0),(t,-3,3),color="gray")+parametric_plot3d((i,t,0),(t,-3,3),color="gray")
+          N=14
           M=5
           k=5
-          plot3=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0, 2*pi),color='gray', opacity=.50)
           for i in range(0,N):
             for j in range(0,M):
               a=1+j/M*2
               b=0+i/N*2*pi 
-              #(a,b)
-              plot3+=arrow3d((a*cos(b),a*sin(b),a),(a*cos(b)+1/k*((a*cos(b))*(a)-2), a*sin(b)+1/k*(a*sin(b) + a*cos(b)), 1/k+a),color='#1E88E5')
-          show(plot3,aspect_ratio=1)
-        </slate>
-      </interactive>
+              plot1+=arrow3d((a*cos(b),a*sin(b),a),(a*cos(b)+1/k*((a*cos(b))*(a)-2), a*sin(b)+1/k*(a*sin(b) + a*cos(b)), 1/k+a),color='orange',width=2)
+          plot1
+        </sageplot>
+      </image>
     </figure>
     <p>
       In <xref ref="fig_Vector_FluxInt_Cone2"/> you can see much more of the vector field is flowing outside of the cone than inside, which matches with our result of calculating the flux as negative. 
