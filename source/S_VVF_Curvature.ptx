@@ -109,7 +109,7 @@
           </p>
           <figure xml:id="PA-curvatureplot1">
             <caption>A plot of the section of road with points <m>P_0</m> and <m>P_1</m> separated by 10 meters</caption>
-            <image width="60%">
+            <image width="75%">
               <description><p>A curve is drawn going from the top right of the region up and left, turning to go down and left before turning again to curl back toward the right. Two points are labeled <m>P_0</m> and <m>P_1</m> near the start of the curve.</p></description>
               <sageplot label="img-curvatureplot1">
                 tpoints=[0.9,1.3]
@@ -159,7 +159,7 @@
           </p>
           <figure xml:id="PA-curvatureplot2">
             <caption> A plot of the section of road with points <m>Q_0</m> and <m>Q_1</m> separated by 10 meters</caption>
-            <image width="60%">
+            <image width="75%">
               <description><p>A curve is drawn going from the top right of the region up and left, turning to go down and left before turning again to curl back toward the right. Two points are labeled <m>Q_0</m> and <m>Q_1</m> near where the curves back toward the right.  </p></description>
               <sageplot label="img-curvatureplot2">
                 tpoints=[3,3.4]
@@ -241,7 +241,7 @@
     </p> 
     <figure xml:id="curvatureplot7">
       <caption> A plot of a curve with <m>\vT</m> shown for two points</caption>
-      <image width="40%">
+      <image width="45%">
         <description><p>A two-dimensional curve is shown that moves down and turns toward the right part of the figure. Two points are shown along this curve and are labeled <m>\vr_1(s_0)</m> and <m>\vr_1(s_0+\Delta s)</m>. Blue arrows are drawn starting at each of these points and pointing in a direction tangent to the curve. These vectors are labeled <m>\vT(s_0)</m> and <m>\vT(s_0+\Delta s)</m>.</p></description>
         <sageplot label="img-curvatureplot7">
           tpoints=[3.1,3.4]
@@ -401,7 +401,7 @@
           <md>
             \vr(s) = \left\langle R \cos\left(\frac{s}{R}\right), R \sin\left(\frac{s}{R}\right)\right\rangle
           </md>
-          Compute the speed of this parameterization to verify that this has unit speed. This will also show that <m>\vr\, '(s)=\vv(s)=\vT(s)</m>. (Recall that this fact is not true in general!)
+          Compute the speed of this parameterization to verify that this has unit speed. This will also show that <m>\vr\, '(s)=\vecv(s)=\vT(s)</m>. (Recall that this fact is not true in general!)
         </p>
       </statement>
       <solution>
@@ -446,7 +446,7 @@
   </activity>
  
     <p>
-      Notice that a unit speed parameterization will have the property that <m>\vr_1\, '(s)=\vv(s)=\vT(s)</m>. While this fact is not true in general, it does make the calculation and interpretation of <m>\vT</m> as simple as possible. It is also helpful to observe that a unit speed parameterization has the property that <m>\vT'(s) = \va(s)</m>, the acceleration vector of the curve. Thus, when we have a unit speed parameterization for a path, we can think of the curvature of the path at a point as being the magnitude of the acceleration vector.
+      Notice that a unit speed parameterization will have the property that <m>\vr_1\, '(s)=\vecv(s)=\vT(s)</m>. While this fact is not true in general, it does make the calculation and interpretation of <m>\vT</m> as simple as possible. It is also helpful to observe that a unit speed parameterization has the property that <m>\vT'(s) = \va(s)</m>, the acceleration vector of the curve. Thus, when we have a unit speed parameterization for a path, we can think of the curvature of the path at a point as being the magnitude of the acceleration vector.
     </p>
     <p>
       The definition of curvature relies on our ability to parameterize curves with unit speed. Since finding unit speed parametrization is frequently difficult to compute directly, the following theorem gives a way of computing the curvature of a curve in terms of <em>any</em> parametrization <m>\vr(t)</m>.
@@ -459,7 +459,7 @@
         </p>
         <p>
           Further, we can efficiently calculate curvature in terms of the velocity and acceleration functions as
-          <md number="yes" xml:id="ec-curv">\kappa = \frac{\vecmag{ \vr\, '(t) \times \vr\, ''(t) }}{\vecmag{ \vr\, '(t) }^3}= \frac{\vecmag{ \vv(t) \times \va(t) }}{\vecmag{ \vv(t) }^3}</md>.
+          <md number="yes" xml:id="ec-curv">\kappa = \frac{\vecmag{ \vr\, '(t) \times \vr\, ''(t) }}{\vecmag{ \vr\, '(t) }^3}= \frac{\vecmag{ \vecv(t) \times \va(t) }}{\vecmag{ \vecv(t) }^3}</md>.
         </p>
       </statement>
       <proof>
@@ -493,7 +493,7 @@
       </proof>
     </theorem>
     <p>
-      Soon we will turn to an example of calculating curvature and then some activities for you to practice. First, however, we consider how we can use <xref ref="ec-curv"/> to make sense of when curvature is undefined (or does not make sense). From an algebraic perspective, the curvature cannot be defined when the speed is zero. This should make sense because if you are not moving along the curve, as indicated by having speed equal to zero, then it does not make sense to measure how quickly the curve is turning. In <xref ref="S-VVF-Splitting-Acceleration"/>, we consider why <m>\vecmag{ \vv(t) \times \va(t) }</m> being zero means that there will be zero curvature. This is different than the curvature being undefined!
+      Soon we will turn to an example of calculating curvature and then some activities for you to practice. First, however, we consider how we can use <xref ref="ec-curv"/> to make sense of when curvature is undefined (or does not make sense). From an algebraic perspective, the curvature cannot be defined when the speed is zero. This should make sense because if you are not moving along the curve, as indicated by having speed equal to zero, then it does not make sense to measure how quickly the curve is turning. In <xref ref="S-VVF-Splitting-Acceleration"/>, we consider why <m>\vecmag{ \vecv(t) \times \va(t) }</m> being zero means that there will be zero curvature. This is different than the curvature being undefined!
     </p>
     <example>
       <p>
@@ -527,15 +527,15 @@
       <p>  
         Using this parameterization, we compute the following:
         <md>
-          <mrow>\vv(t) = \vr\, '(t) \amp=\langle1,2t,0\rangle </mrow>
+          <mrow>\vecv(t) = \vr\, '(t) \amp=\langle1,2t,0\rangle </mrow>
           <mrow>\va(t) = \vr\, ''(t) \amp=\langle0,2,0\rangle </mrow>
-          <mrow>\vv(t)\times\va(t) \amp=\langle0,0,2\rangle </mrow>
-          <mrow>\vecmag{\vv(t)\times\va(t)} \amp=2 </mrow>
-          <mrow>\vecmag{\vv(t)} \amp=\sqrt{1+4t^2} </mrow>
+          <mrow>\vecv(t)\times\va(t) \amp=\langle0,0,2\rangle </mrow>
+          <mrow>\vecmag{\vecv(t)\times\va(t)} \amp=2 </mrow>
+          <mrow>\vecmag{\vecv(t)} \amp=\sqrt{1+4t^2} </mrow>
         </md>
         Using <xref ref="ec-curv"/>, the curvature is
         <md>
-          \kappa(t) = \frac{\vecmag{ \vv(t) \times \va(t) }}{\vecmag{ \vv(t) }^3} = \frac{2}{(1+4t^2)^{3/2}}
+          \kappa(t) = \frac{\vecmag{ \vecv(t) \times \va(t) }}{\vecmag{ \vecv(t) }^3} = \frac{2}{(1+4t^2)^{3/2}}
         </md>.
       </p>
       <p>
@@ -570,7 +570,7 @@
       </p>
       <figure xml:id="paracurv2">
         <caption>A plot of <m>y=x^2</m> with the osculating circle drawn tangent to the curve</caption>
-        <image source="./paracurv.gif" width="60%">
+        <image source="./paracurv.gif" width="60%" component="online">
           <description><p>An animated two dimensional plot with horizontal coordinate shown from negative two to two and vertical coordiante from zero to four. A parabola is drawn in black with vertex at the origin and going through the points <m>(1,1)</m> and <m>(-1,1)</m>. The animation changes the location of a point highlighted on the parabola. At the highlighted point, a blue circle is drawn such that the circle is curved in the same way as the parabola at the highlighted point and intersects the parabola at only the highlighted point. </p>
           </description>
           <!-- <sageplot>
@@ -655,12 +655,12 @@
       <task xml:id="task-act-VVF-curvature-ellipse-helix-v-a">
         <statement>
           <p>
-            For the given parameterization of the ellipse, find <m>\vv(t)</m> and <m>\va(t)</m>. Also identify the parameter values that correspond to the points of the ellipse with the largest and smallest <m>x</m> or <m>y</m> coordinates.
+            For the given parameterization of the ellipse, find <m>\vecv(t)</m> and <m>\va(t)</m>. Also identify the parameter values that correspond to the points of the ellipse with the largest and smallest <m>x</m> or <m>y</m> coordinates.
           </p>
         </statement>
         <solution>
           <p>
-            Derivatives of <m>\vr(t)</m> will give <m>\vv(t) = \langle -a \sin(t), b \cos(t) \rangle </m> and <m>\va(t) = \langle -a \cos(t), -b \sin(t) \rangle </m>.
+            Derivatives of <m>\vr(t)</m> will give <m>\vecv(t) = \langle -a \sin(t), b \cos(t) \rangle </m> and <m>\va(t) = \langle -a \cos(t), -b \sin(t) \rangle </m>.
           </p>
           <p>
             The parameter values with <m>t=0</m> and <m>t=\pi</m> have the largest curvature and <m>t=\frac{\pi}{2}</m> and <m>t=\frac{3\pi}{2}</m> have the smallest curvature.
@@ -670,12 +670,12 @@
       <task>
         <statement>
           <p>
-            Use your calculations for <m>\vv(t)</m> and <m>\va(t)</m> from <xref ref="task-act-VVF-curvature-ellipse-helix-v-a" text="type-local"/> in Equation <xref ref="ec-curv"/> to find a formula for the curvature of the ellipse with the given parameterization. Use your formula to find the curvature of the ellipse at the parameter values you identified in <xref ref="task-act-VVF-curvature-ellipse-helix-v-a" text="type-local"/> as corresponding to the extreme points of the ellipse.
+            Use your calculations for <m>\vecv(t)</m> and <m>\va(t)</m> from <xref ref="task-act-VVF-curvature-ellipse-helix-v-a" text="type-local"/> in Equation <xref ref="ec-curv"/> to find a formula for the curvature of the ellipse with the given parameterization. Use your formula to find the curvature of the ellipse at the parameter values you identified in <xref ref="task-act-VVF-curvature-ellipse-helix-v-a" text="type-local"/> as corresponding to the extreme points of the ellipse.
           </p>
         </statement>
         <hint>
           <p>
-            Remember that to compute the cross product here, you will need to consider <m>\vv</m> and <m>\va</m> as three-dimensional vectors.
+            Remember that to compute the cross product here, you will need to consider <m>\vecv</m> and <m>\va</m> as three-dimensional vectors.
           </p>
         </hint>
         <solution>
@@ -761,9 +761,9 @@
     <p>
       Before concluding this section, it may be helpful to think about what the units are on curvature. To do this, we again consider the formula that is in terms of velocity and acceleration:
       <md>
-        \kappa = \frac{\vecmag{\vv\times\va}}{\vecmag{\vv}^3}
+        \kappa = \frac{\vecmag{\vecv\times\va}}{\vecmag{\vecv}^3}
       </md>
-      If we assume that our parameterization has distance with units of meters and input is thought of as time measured in seconds, then the units on <m>\vv</m> are meters per second and the units on <m>\va</m> are meters per second-squared. This means the numerator of <m>\kappa</m> has units meters squared per second-cubed and the denominator is measured in meters-cubed per second-cubed. Simplifying, we find that curvature has units one over meters. 
+      If we assume that our parameterization has distance with units of meters and input is thought of as time measured in seconds, then the units on <m>\vecv</m> are meters per second and the units on <m>\va</m> are meters per second-squared. This means the numerator of <m>\kappa</m> has units meters squared per second-cubed and the denominator is measured in meters-cubed per second-cubed. Simplifying, we find that curvature has units one over meters. 
       <md> \frac{1}{\text{meters}}= \frac{ \frac{\text{meters}^2}{\text{seconds}^3}}{\frac{\text{meters}^3}{\text{seconds}^3}}</md>
       This aligns with the idea of the radius of curvature being <m>1/\kappa</m>, as it results in the radius of curvature having meters as its unit. That makes sense for something that we call a radius!
     </p>
@@ -817,7 +817,7 @@
         <p>
           Curvature can be efficiently calculated by the following formula for curves in space:
           <md>
-            \kappa = \frac{\vecmag{ \vr\, '(t) \times \vr\, ''(t) }}{\vecmag{ \vr\, '(t) }^3}= \frac{\vecmag{ \vv(t) \times \va(t) }}{\vecmag{ \vv(t) }^3}
+            \kappa = \frac{\vecmag{ \vr\, '(t) \times \vr\, ''(t) }}{\vecmag{ \vr\, '(t) }^3}= \frac{\vecmag{ \vecv(t) \times \va(t) }}{\vecmag{ \vecv(t) }^3}
           </md>
         </p>
       </li>

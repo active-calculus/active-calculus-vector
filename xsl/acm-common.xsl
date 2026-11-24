@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- **********************************************************************-->
+<!-- Copyright 2023-2026                                                   -->
+<!-- Mitchel T. Keller and Nicholas Long                                   -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus - Multivariable.                 -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-SA license.  The work      -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike".  All trademarks are the registered marks of  -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
 
 <!-- Conveniences for classes of similar elements -->
 <!DOCTYPE xsl:stylesheet [
@@ -14,12 +27,23 @@
 
 <!-- Font configuration should be consistent -->
 <xsl:param name="latex.preamble.early">
-
+    <xsl:text>%% Customized to load Palatino fonts&#xa;</xsl:text>
+    <xsl:text>\usepackage[T1]{fontenc}&#xa;</xsl:text>
+    <xsl:text>\renewcommand{\rmdefault}{zpltlf} %Roman font for use in math mode&#xa;</xsl:text>
+    <xsl:text>\usepackage[scaled=.85]{beramono}% used only by \mathtt&#xa;</xsl:text>
+    <xsl:text>\usepackage[type1]{cabin}%used only by \mathsf&#xa;</xsl:text>
+    <xsl:text>\usepackage{amsmath,amssymb}%load before newpxmath&#xa;</xsl:text>
+    <xsl:text>\usepackage[varg,cmintegrals,bigdelims,varbb]{newpxmath}&#xa;</xsl:text>
+    <xsl:text>\usepackage[scr=rsfso]{mathalfa}&#xa;</xsl:text>
+    <xsl:text>\usepackage{bm} %load after all math to give access to bold math&#xa;</xsl:text>
+    <xsl:text>% Now load the otf text fonts using fontspec--wont affect math&#xa;</xsl:text>
+    <xsl:text>\usepackage[no-math]{fontspec}&#xa;</xsl:text>
+    <xsl:text>\setmainfont{TeXGyrePagellaX}&#xa;</xsl:text>
+    <xsl:text>\defaultfontfeatures{Ligatures=TeX,Scale=1,Mapping=tex-text}&#xa;</xsl:text>
+    <xsl:text>\linespread{1.02}&#xa;</xsl:text>
 </xsl:param>
 
 <xsl:param name="latex.preamble.late.common">
-    <xsl:text>%% Used to get WeBWorK logo into margin next to WW exercises&#xa;</xsl:text>
-    <xsl:text>\usepackage{marginnote}&#xa;</xsl:text>
 
     <xsl:text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&#xa;</xsl:text>
     <xsl:text>% CC icon at bottom of first page of each chapter &#xa;</xsl:text>
@@ -65,8 +89,8 @@
     <xsl:text>\titleformat{\chapter}[display]&#xa;</xsl:text>
     <xsl:text>{\raggedleft\normalfont\color{chaptercolor}\Large}{</xsl:text>
     <xsl:text>\MakeUppercase{\divisionnameptx}\space</xsl:text>
-    <xsl:text>\rlap{\enskip\resizebox{!}{0.95cm}{\thechapter} \rule{15cm}{0.95cm}</xsl:text>
-    <xsl:text>}}{10pt}{\normalfont\Huge\itshape#1}&#xa;</xsl:text>
+    <xsl:text>\rlap{\enskip\resizebox{!}{0.75cm}{\thechapter} \rule{15cm}{0.75cm}</xsl:text>
+    <xsl:text>}}{10pt}{\normalfont\huge\itshape#1}&#xa;</xsl:text>
     <xsl:text>[{\Large\authorsptx}]&#xa;</xsl:text>
     <xsl:text>\titleformat{name=\chapter,numberless}[display]&#xa;</xsl:text>
     <xsl:text>{\raggedleft\normalfont\color{chaptercolor}\Huge\itshape}{}{0pt}{#1}&#xa;</xsl:text>
@@ -101,18 +125,18 @@
 <xsl:template match="&PROJECT-LIKE;" mode="tcb-style">
     <xsl:text>enhanced,frame hidden,interior hidden, sharp corners,&#xa;</xsl:text>
     <xsl:text>boxrule=0pt,borderline west={3pt}{0pt}{ActiveBlue}, &#xa;</xsl:text>
-    <xsl:text>runintitlestyle, blockspacingstyle, after title={.\space}, &#xa;</xsl:text>
+    <xsl:text>runintitlestyle, blockspacingstyle, breakable, after title={.\space}, &#xa;</xsl:text>
     <xsl:text>colback=white,&#xa;</xsl:text>
-    <xsl:text>coltitle=black,</xsl:text>
+    <xsl:text>coltitle=black</xsl:text>
 </xsl:template>
-
+<!-- ,before upper app={\setparstyle} -->
 
 <xsl:template match="&DEFINITION-LIKE;" mode="tcb-style">
-    <xsl:text>bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, </xsl:text>
+    <xsl:text>bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\lozenge\)}</xsl:text>
 </xsl:template>
 
 <xsl:template match="&EXAMPLE-LIKE;" mode="tcb-style">
-    <xsl:text>bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, </xsl:text>
+    <xsl:text>bwminimalstyle, runintitlestyle, blockspacingstyle, after title={\space}, after upper={\space\space\hspace*{\stretch{1}}\(\lozenge\)}</xsl:text>
 </xsl:template>
 
 

@@ -16,7 +16,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pi="http://pretextbook.org/2020/pretext/internal" version="1.0">
 
 <xsl:import href="./core/pretext-solution-manual-latex.xsl" />
-<xsl:import href="acmv-common.xsl" />
+<xsl:import href="acm-common.xsl" />
 <xsl:variable name="title-separator" select="'\\[0.25\baselineskip]'"/>
 
 <xsl:output method="text" />

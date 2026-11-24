@@ -10,7 +10,7 @@
 <!-- Assumes current file is in mathbook/user, so it must be copied there -->
 <xsl:import href="./core/pretext-html.xsl" />
 <!-- Assumes next file can be found in mathbook/user, so it must be copied there -->
-<xsl:import href="acmv-common.xsl" />
+<xsl:import href="acm-common.xsl" />
 
 <!-- Deal with footnotes from #url -->
 <xsl:template match="fn[@pi:url]" />

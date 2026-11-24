@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- **********************************************************************-->
-<!-- Copyright 2023                                                        -->
+<!-- Copyright 2023-2026                                                   -->
 <!-- Mitchel T. Keller and Nicholas Long                                   -->
 <!--                                                                       -->
 <!-- This file is part of Active Calculus - Multivariable.                 -->
@@ -20,7 +20,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
 <xsl:import href="./core/pretext-solution-manual-latex.xsl" />
-<xsl:import href="acmv-common.xsl" />
+<xsl:import href="acm-common.xsl" />
 <xsl:variable name="title-separator" select="'\\[0.25\baselineskip]'"/>
 
 <xsl:output method="text" />
