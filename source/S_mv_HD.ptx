@@ -208,14 +208,59 @@
       <p>
         While the plot of multiple level surfaces may be a bit overwhelming, we can show each of these level sets in a separate plot. <xref ref="plot4d"/> plots a level surface for the value given by the slider at the top. Use the slider to change the value of <m>k</m> over the entire range from <m>-4</m> to <m>4</m>. As you do so, look at how the shape of the corresponding level surface morphs from a hyperboloid of two sheets to a cone to a hyperbola of one sheet.
       </p>
+      <!-- Here is a comment -->
       <figure xml:id="plot4d">
         <caption>A plot of the level surface for <m>g(x,y,z)=x^2+y^2-z^2</m> with a slider for changing the level curve value from -4 to 4 </caption>
-        <interactive label="interactive-plot4d" platform="sage">
-          <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A slider at the top of the figure allows the user to change the value of <m>k</m>. The value of k changes the shape of the surface plotted in light blue. For negative values of k, a hyperboloid of two sheets is drawn with smaller values of k having a larger gap between the two sheets. For k equal to zero, a cone centered along the z-axis is shown. For k greater than zero, a hyperboloid of one sheet is shown with larger values of k having a larger opening around the z-axis.  </p></description>
-          <slate surface="sage">
-<xi:include href="interacts/implicitplotslider2.txt" parse="text"/>
-          </slate>
-        </interactive>
+        <image width="60%">
+          <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A slider at the top of the figure allows the user to change the value of <m>k</m>. The value of k changes the shape of the surface plotted in light blue. For negative values of k, a hyperboloid of two sheets is drawn with smaller values of k having a larger gap between the two sheets. For k equal to zero, a cone centered along the z-axis is shown. For k greater than zero, a hyperboloid of one sheet is shown with larger values of k having a larger opening around the z-axis.   </p></description>
+          <sageplot variant="3d" label="interactive-plot4d">
+            var('x,y,z,t,s')
+            def impplot(k):
+              from sage.plot.plot3d.plot3d import axes
+              scale=3;
+              plot1=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              if(sign(k)==-1):
+                param(s,t)=(s*cos(t),s*sin(t),sqrt(s^2-k))
+                param2(s,t)=(s*cos(t),s*sin(t),-sqrt(s^2-k))
+                #set up grid      n is number of steps in s    m is number of steps in t  
+                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                n=9;m=9;a1=0;a2=3;b1=0;b2=2*pi;
+                #c1 is surface color     o1 is surface opacity
+                #c2 and o2 are for constant t value traces
+                #c3 and o3 are for constant s value traces
+                c1="lightblue"; c2="gray"; c3="gray"; o1=0.7; o2=0.5; o3=0.5;
+                plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                plot1+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                  plot1+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                  plot1+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              else:
+                param(s,t)=(sqrt(k+s^2)*cos(t),sqrt(k+s^2)*sin(t),s)
+                #set up grid      n is number of steps in s    m is number of steps in t  
+                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+                n=9;m=9;a1=-3;a2=3;b1=0;b2=2*pi;
+                #c1 is surface color     o1 is surface opacity
+                #c2 and o2 are for constant t value traces
+                #c3 and o3 are for constant s value traces
+                c1="lightblue"; c2="gray"; c3="gray"; o1=0.7; o2=0.5; o3=0.5;
+                plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+                for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              return plot1
+            frames1=[impplot(k/5) for k in range(-20,20)]
+            plot123=animate(frames1).interactive(delay=20,auto_play=False)
+            plot123          
+          </sageplot>
+        </image>
       </figure>
       <p>
         <xref ref="plot4d"/> may look like a three-dimensional plot, but we really have a four-dimensional plot with slider providing the axis for the fourth dimension. We saw a similar case in <xref ref="vvf-example1"/> where the plot of <m>\vr(t)</m> was a four dimensional idea. In that plot, one dimension was the input changing, with the <m>t</m>-axis for the slider. The other three dimensions were represented by the vector <m>\vr</m> in standard position, which we can also think of as being a plot of the vector's terminal point. With vector-valued functions of one variables, we simplified the four-dimensional plot to include <em>all</em> of the three-dimensional outputs, frequently ignoring plotting how those outputs depended on the value of the parameter <m>t</m>.
@@ -417,183 +462,224 @@
       This example examines the function <m>f(x,y,z)=x^2+y^2+z^2</m> and the meaning of its gradient <m>\nabla f = \langle 2x,2y,2z\rangle </m>. In order to visualize the graph of <m>f</m> we can look at a level surface given by <m> f(x,y,z)=k</m>. <xref ref="gradspheres"/> shows a plot of the level surface for a value of <m>k</m>. Note that the level surfaces of <m>f</m> are spheres of radius <m>R=\sqrt{k}</m> centered at the origin. Move the slider at the top of <xref ref="gradspheres"/> to change the value of <m>k</m>. This illustrates how the scale of the level surface changes but the shape does not.
     </p>
     <figure xml:id="gradspheres">
-        <caption>A plot of a level surfaces for <m>g(x,y,z)=x^2+y^2+z^2</m> with the option to plot gradient vectors for some points on the level surface </caption>
-        <interactive label="interactive-gradspheres" platform="sage">
-          <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A slider at the top of the figure allows the user to change the value of k and a checkbox allows a grid of vectors to be drawn along the surface. The checkbox is labeled <q>Show Gradient Vectors</q>. A sphere is drawn in blue with a radius depending the value of k that is selected by the user. The vectors drawn are perpendicular to the surface and point away from the origin.</p> </description>
-          <slate surface="sage">
-            from sage.plot.plot3d.plot3d import axes
-            var('x,y,z,t,s')
-            scale=5;
-            def makesphereplot(k):
-              R=sqrt(k);
-              param(s,t)=(R*sin(s)*cos(t),R*sin(s)*sin(t),R*cos(s))
-              grad(s,t)=(2*R*sin(s)*cos(t),2*R*sin(s)*sin(t),2*R*cos(s))
-              plot3=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-              #plot3+=parametric_plot3d(param(s,t),(s,0,pi),(t,0,2*pi),color="blue",mesh=True,opacity=0.4,plot_points=21)
-              n=20;m=20;a1=0;a2=pi;b1=0;b2=2*pi; 
-              #c1 is surface color     o1 is surface opacity
-              #c2 and o2 are for constant t value traces
-              #c3 and o3 are for constant s value traces
-              c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
-              plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
-              for i in range(n+1):
-                sv=a1+i/n*(a2-a1)
-                plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
-              for i in range(m+1):
-                tv=b1+i/m*(b2-b1)
-                plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-              n=5;m=5;
-              for i in range(n):
-                sv=i*pi/n;
-                for j in range(m):
-                  tv=j*2*pi/m;
-                  plot3+=arrow(param(sv,tv),param(sv,tv)+grad(sv,tv)/2,color="red",opacity=0.5,width=2)
-              return plot3
-            frames1=[makesphereplot(k/4) for k in range(2,20)]
-            plot123=animate(frames1).interactive(delay=30,auto_play=False)
-            show(plot123)      
-          </slate>
-        </interactive>
-      </figure>
-      <p>
-        Use the checkbox in <xref ref="gradspheres"/> to show the gradient vector plotted at a collection of points on the level surface. If you turn on the gradient vectors, you can see that the gradient vector is perpendicular to the level surface and this relationship is true regardless of what value of <m>k</m> is used for the level surface. Two other properties should be noticed as well. First, the gradient always points <em>out</em> of the sphere (in the direction going away from the origin). Second, the length of the gradient increases as <m>k</m> increases. 
-      </p>
-      <p>  
-        The function <m>f</m> takes a point <m>(x,y,z)</m> as input and outputs the square of the distance to this point from the origin. This means that <m>f</m> increases as the point considered moves away from the origin, but the direction of <em>greatest</em> increase is to move directly away from the origin. The rate of increase of <m>f</m> also increases as the point gets farther from the origin. Both of these ideas are demonstrated in <xref ref="gradspheres"/> by the red gradient vectors. Specifically, you can see that length of the gradient vectors increases as you increase <m>k</m> and the direction of the gradient vectors is always perpendicular to the level surface/sphere. You can also reason that the direction for greatest decrease in <m>f</m> will be in the direction going toward the origin.
-      </p>
-      <p>
-        We can verify <xref ref="implicittanplane"/> by looking at tangent points for a few points on these spheres as level surfaces. Let <m>S_1</m> be the level surface with value 1, <m>1=f(x,y,z)=x^2+y^2+z^2</m>. Note that <m>P_0=(0,-1,0)</m> is on <m>S_1</m> and <m>\nabla f(P_0)=\langle 0,-2,0\rangle</m>. By <xref ref="implicittanplane"/>, the tangent plane to <m>S_1</m> at <m>P_0</m> is given by 
-        <md> (0)(x-0)+(-2)(y+1)+(0)(z-0)=0 \rightarrow y=-1</md>.
-        This point, normal vector, and tangent plane is shown in red in <xref ref="spheretanplanes"/>.
-      </p>
-      <figure xml:id="spheretanplanes">
-        <caption>A plot os a sphere with tangent planes in two locations </caption>
-          <image width="60%">
-          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A sphere is drawn in gray with two points on the sphere highlighted in red and green. At each of the highlighted points, a titled plane is shown, in red and green, such that the plane is tangent to the sphere at the highlighted point. Each highlighted point has a vector drawn perpendicular to the surface and pointing away from the origin. </p></description>
-          <sageplot variant="3d" label="interactive-spheretanplanes">
+      <caption>A plot of a level surfaces for <m>g(x,y,z)=x^2+y^2+z^2</m> with the option to plot gradient vectors for some points on the level surface </caption>
+      <image width="60%">
+        <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A slider at the top of the figure allows the user to change the value of k and a checkbox allows a grid of vectors to be drawn along the surface. The checkbox is labeled <q>Show Gradient Vectors</q>. A sphere is drawn in blue with a radius depending the value of k that is selected by the user. The vectors drawn are perpendicular to the surface and point away from the origin. </p></description>
+        <sageplot variant="3d" label="interactive-gradspheres">
+          from sage.plot.plot3d.plot3d import axes
+          var('x,y,z,t,s')
+          def makesphereplot(k):
+            R=sqrt(k);scale=5;
+            param(s,t)=(R*sin(s)*cos(t),R*sin(s)*sin(t),R*cos(s))
+            grad(s,t)=(2*R*sin(s)*cos(t),2*R*sin(s)*sin(t),2*R*cos(s))
+            plot3=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            #plot3+=parametric_plot3d(param(s,t),(s,0,pi),(t,0,2*pi),color="blue",mesh=True,opacity=0.4,plot_points=21)
+            n=20;m=20;a1=0;a2=pi;b1=0;b2=2*pi; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
+            plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            n=5;m=5;
+            for i in range(n):
+              sv=i*pi/n;
+              for j in range(m):
+                tv=j*2*pi/m;
+                plot3+=arrow(param(sv,tv),param(sv,tv)+grad(sv,tv)/2,color="red",opacity=0.5,width=2)
+            return plot3
+          frames1=[makesphereplot(k/4) for k in range(2,20)]
+          plot123=animate(frames1).interactive(delay=30,auto_play=False)
+          plot123   
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      Use the checkbox in <xref ref="gradspheres"/> to show the gradient vector plotted at a collection of points on the level surface. If you turn on the gradient vectors, you can see that the gradient vector is perpendicular to the level surface and this relationship is true regardless of what value of <m>k</m> is used for the level surface. Two other properties should be noticed as well. First, the gradient always points <em>out</em> of the sphere (in the direction going away from the origin). Second, the length of the gradient increases as <m>k</m> increases. 
+    </p>
+    <p>  
+      The function <m>f</m> takes a point <m>(x,y,z)</m> as input and outputs the square of the distance to this point from the origin. This means that <m>f</m> increases as the point considered moves away from the origin, but the direction of <em>greatest</em> increase is to move directly away from the origin. The rate of increase of <m>f</m> also increases as the point gets farther from the origin. Both of these ideas are demonstrated in <xref ref="gradspheres"/> by the red gradient vectors. Specifically, you can see that length of the gradient vectors increases as you increase <m>k</m> and the direction of the gradient vectors is always perpendicular to the level surface/sphere. You can also reason that the direction for greatest decrease in <m>f</m> will be in the direction going toward the origin.
+    </p>
+    <p>
+      We can verify <xref ref="implicittanplane"/> by looking at tangent points for a few points on these spheres as level surfaces. Let <m>S_1</m> be the level surface with value 1, <m>1=f(x,y,z)=x^2+y^2+z^2</m>. Note that <m>P_0=(0,-1,0)</m> is on <m>S_1</m> and <m>\nabla f(P_0)=\langle 0,-2,0\rangle</m>. By <xref ref="implicittanplane"/>, the tangent plane to <m>S_1</m> at <m>P_0</m> is given by 
+      <md> (0)(x-0)+(-2)(y+1)+(0)(z-0)=0 \rightarrow y=-1</md>.
+      This point, normal vector, and tangent plane is shown in red in <xref ref="spheretanplanes"/>.
+    </p>
+    <figure xml:id="spheretanplanes">
+      <caption>A plot os a sphere with tangent planes in two locations </caption>
+        <image width="60%">
+        <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A sphere is drawn in gray with two points on the sphere highlighted in red and green. At each of the highlighted points, a titled plane is shown, in red and green, such that the plane is tangent to the sphere at the highlighted point. Each highlighted point has a vector drawn perpendicular to the surface and pointing away from the origin. </p></description>
+        <sageplot variant="3d" label="interactive-spheretanplanes">
 <xi:include href="interacts/sphtanplanes.txt" parse="text"/>          
-          </sageplot>
-        </image>
-      </figure>
-      <p>
-        If we consider the point  <m>P_1=(\frac{\sqrt{2}}{2},0,-\frac{\sqrt{2}}{2}) </m>, which his also on <m>S_1</m>, we can apply the same argument. Note that <m> \nabla f(P_1)=\langle \sqrt{2},0,-\sqrt{2}\rangle</m>, which means that the tangent plane has equation
-        <md> (\sqrt{2})\left(x-\frac{\sqrt{2}}{2}\right)+(0)(y-0)+(-\sqrt{2})\left(z-\frac{\sqrt{2}}{2}\right)=0 \Rightarrow x-z=\sqrt{2}</md>.
-        This point, normal vector, and tangent plane is shown in green in <xref ref="spheretanplanes"/>.
-      </p>
-      </example>
-      <example>
-        <task>
-        <statement>
-          <p>
-            Suppose we wish to find an equation for the tangent plane to the hyperboloid of one sheet with equation <m>x^2+y^2-z^2 = 1</m> at the point <m>(-1,1,1)</m>. Because this is an implicit surface for which we cannot solve for <m>z</m> as a function of <m>x</m> and <m>y</m>, the techniques we developed in <xref ref="S-mv_deriv-linearization"/> do not apply directly. However, we can use the gradient vector as we did in the previous example. To do so, we recognize that the surface is a level surface of the three-variable function <m>g(x,y,z) = x^2+y^2-z^2</m> for the value <m>1</m>. Thus, we know that the gradient vector for <m>g</m> at the point <m>(-1,1,1)</m> is normal to the surface at that point and can be used as the normal vector for the tangent plane.
-          </p>
-          <p>
-            We can compute <m>\nabla g = \langle 2x,2y,-2z\rangle </m>, which tells us that <m>\nabla g(-1,1,1) = \langle -2,2,-2\rangle</m> is normal to the hyperboloid of one sheet at <m>(-1,1,1)</m>. Thus, we can write an equation for the tangent plane to this surface at this point as 
-            <md>
-              -2(x+1)+2(y-1)-2(z-1)=0
-            </md>.
-          </p>
-        </statement>
-      </task>
-      <task>
-        <statement>
-          <p>
-            A particularly nice aspect of the approach of viewing surfaces in three-dimensional space as level surfaces of functions of three variables is that the method does not change even as the surface changes. To continue with the function <m>g</m> from the previous part, we saw in <xref ref="implicitex1"/> that different values of <m>k</m> for the level surfaces gives rise to different types of surfaces. In particular,
-            <ul>
-              <li>if <m>k\lt 0</m>, the level surface is a hyperboloid of two sheets (as we saw in the previous part),</li>
-              <li>if <m>k = 0</m>, the level surface is a cone, and</li>
-              <li>if <m>k \gt 0</m>, the level surface is a hyperboloid of one sheet.</li>
-            </ul>
-            Even as the type of surface changes, the gradient's algebraic form <m>\nabla g = \langle 2x,2y,-2z\rangle </m> does not change. If you select the checkbox in <xref ref="gradhypcone"/> to plot gradient vectors at points along the level surface, you will see that the gradient vectors are perpendicular to the level surface. Use the slider to change the value of the level surface, which changes the shape of the level surface when the sign of <m>k</m> changes. 
-          </p>
-          <figure xml:id="gradhypcone">
-            <caption>A plot to view level surfaces for <m>g(x,y,z)=x^2+y^2-z^2</m> with the option to plot gradient vectors for some points on the level surface </caption>
-            <interactive label="interactive-gradhypcone" platform="sage">
-              <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A slider at the top of the figure allows the user to change the value of k and a checkbox allows a grid of vectors to be drawn along the surface. The value of k changes the shape of the surface plotted in light blue. For negative values of k, a hyperboloid of two sheets is drawn with smaller values of k having a larger gap between the two sheets. For k equal to zero, a cone centered along the z-axis is shown. For k greater than zero, a hyperboloid of one sheet is shown with larger values of k having a larger opening around the z-axis. The vectors drawn are perpendicular to the surface at the point they are drawn and point away from the z-axis.</p></description>
-              <slate surface="sage">
-                from sage.plot.plot3d.plot3d import axes
-                var('x,y,z,t,s')
-                scale=5;
-                def makehyp(k):
-                  n=5;m=6;d=4;
-                  plot3=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,viewpoint=[[-0.2556,-0.5906,-0.7655],143.35],camera_position=[22.801,21.411,8.8665])
-                  if(sign(k)==-1):
-                    param(s,t)=(s*cos(t),s*sin(t),-sqrt(s^2-k))
-                    param2(s,t)=(s*cos(t),s*sin(t),sqrt(s^2-k))
-                    grad(s,t)=(2*s*cos(t),2*s*sin(t),2*sqrt(s^2-k))
-                    grad2(s,t)=(2*s*cos(t),2*s*sin(t),-2*sqrt(s^2-k))
-                    #plot3+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="lightblue",opacity=0.5)
-                    #plot3+=parametric_plot3d(param2(s,t),(t,0,2*pi),(s,-d,d),color="lightblue",opacity=0.5)
-                    n=8;m=8;a1=-d;a2=d;b1=0;b2=2*pi; 
-                    #c1 is surface color     o1 is surface opacity
-                    #c2 and o2 are for constant t value traces
-                    #c3 and o3 are for constant s value traces
-                    c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
-                    plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
-                    plot3+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
-                    for i in range(n+1):
-                      sv=a1+i/n*(a2-a1)
-                      plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
-                      plot3+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c3,opacity=o3)
-                    for i in range(m+1):
-                      tv=b1+i/m*(b2-b1)
-                      plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                      plot3+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                  else:
-                    param(s,t)=(sqrt(k+s^2)*cos(t),sqrt(k+s^2)*sin(t),s)
-                    grad(s,t)=(2*sqrt(k+s^2)*cos(t),2*sqrt(k+s^2)*sin(t),-2*s)
-                    #plot3+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="lightblue",opacity=0.5,mesh=True)
-                    n=8;m=8;a1=-d;a2=d;b1=0;b2=2*pi; 
-                    #c1 is surface color     o1 is surface opacity
-                    #c2 and o2 are for constant t value traces
-                    #c3 and o3 are for constant s value traces
-                    c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
-                    plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
-                    for i in range(n+1):
-                      sv=a1+i/n*(a2-a1)
-                      plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
-                    for i in range(m+1):
-                      tv=b1+i/m*(b2-b1)
-                      plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                  #plot3+=parametric_plot3d(param(s,t),(s,0,pi),(t,0,2*pi),color="blue",mesh=True,opacity=0.4,plot_points=21)
-                  n=3;m=3;
+        </sageplot>
+      </image>
+    </figure>
+    <p>
+      If we consider the point  <m>P_1=(\frac{\sqrt{2}}{2},0,-\frac{\sqrt{2}}{2}) </m>, which his also on <m>S_1</m>, we can apply the same argument. Note that <m> \nabla f(P_1)=\langle \sqrt{2},0,-\sqrt{2}\rangle</m>, which means that the tangent plane has equation
+      <md> (\sqrt{2})\left(x-\frac{\sqrt{2}}{2}\right)+(0)(y-0)+(-\sqrt{2})\left(z-\frac{\sqrt{2}}{2}\right)=0 \Rightarrow x-z=\sqrt{2}</md>.
+      This point, normal vector, and tangent plane is shown in green in <xref ref="spheretanplanes"/>.
+    </p>
+  </example>
+  <example>
+    <task>
+      <statement>
+        <p>
+          Suppose we wish to find an equation for the tangent plane to the hyperboloid of one sheet with equation <m>x^2+y^2-z^2 = 1</m> at the point <m>(-1,1,1)</m>. Because this is an implicit surface for which we cannot solve for <m>z</m> as a function of <m>x</m> and <m>y</m>, the techniques we developed in <xref ref="S-mv_deriv-linearization"/> do not apply directly. However, we can use the gradient vector as we did in the previous example. To do so, we recognize that the surface is a level surface of the three-variable function <m>g(x,y,z) = x^2+y^2-z^2</m> for the value <m>1</m>. Thus, we know that the gradient vector for <m>g</m> at the point <m>(-1,1,1)</m> is normal to the surface at that point and can be used as the normal vector for the tangent plane.
+        </p>
+        <p>
+          We can compute <m>\nabla g = \langle 2x,2y,-2z\rangle </m>, which tells us that <m>\nabla g(-1,1,1) = \langle -2,2,-2\rangle</m> is normal to the hyperboloid of one sheet at <m>(-1,1,1)</m>. Thus, we can write an equation for the tangent plane to this surface at this point as 
+          <md>
+            -2(x+1)+2(y-1)-2(z-1)=0
+          </md>.
+        </p>
+      </statement>
+    </task>
+    <task>
+      <statement>
+        <p>
+          A particularly nice aspect of the approach of viewing surfaces in three-dimensional space as level surfaces of functions of three variables is that the method does not change even as the surface changes. To continue with the function <m>g</m> from the previous part, we saw in <xref ref="implicitex1"/> that different values of <m>k</m> for the level surfaces gives rise to different types of surfaces. In particular,
+          <ul>
+            <li>if <m>k\lt 0</m>, the level surface is a hyperboloid of two sheets (as we saw in the previous part),</li>
+            <li>if <m>k = 0</m>, the level surface is a cone, and</li>
+            <li>if <m>k \gt 0</m>, the level surface is a hyperboloid of one sheet.</li>
+          </ul>
+          Even as the type of surface changes, the gradient's algebraic form <m>\nabla g = \langle 2x,2y,-2z\rangle </m> does not change. If you select the checkbox in <xref ref="gradhypcone"/> to plot gradient vectors at points along the level surface, you will see that the gradient vectors are perpendicular to the level surface. Use the slider to change the value of the level surface, which changes the shape of the level surface when the sign of <m>k</m> changes. 
+        </p>
+        <figure xml:id="gradhypcone">
+          <caption>A plot to view level surfaces for <m>g(x,y,z)=x^2+y^2-z^2</m> with the option to plot gradient vectors for some points on the level surface </caption>
+          <image width="60%">
+            <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A slider at the top of the figure allows the user to change the value of k and a checkbox allows a grid of vectors to be drawn along the surface. The value of k changes the shape of the surface plotted in light blue. For negative values of k, a hyperboloid of two sheets is drawn with smaller values of k having a larger gap between the two sheets. For k equal to zero, a cone centered along the z-axis is shown. For k greater than zero, a hyperboloid of one sheet is shown with larger values of k having a larger opening around the z-axis. The vectors drawn are perpendicular to the surface at the point they are drawn and point away from the z-axis. </p></description>
+            <sageplot variant="3d" label="interactive-gradhypcone">
+              from sage.plot.plot3d.plot3d import axes
+              var('x,y,z,t,s')
+              scale=5;
+              def makehyp(k):
+                n=5;m=6;d=4;
+                plot3=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,viewpoint=[[-0.2556,-0.5906,-0.7655],143.35],camera_position=[22.801,21.411,8.8665])
+                if(sign(k)==-1):
+                  param(s,t)=(s*cos(t),s*sin(t),-sqrt(s^2-k))
+                  param2(s,t)=(s*cos(t),s*sin(t),sqrt(s^2-k))
+                  grad(s,t)=(2*s*cos(t),2*s*sin(t),2*sqrt(s^2-k))
+                  grad2(s,t)=(2*s*cos(t),2*s*sin(t),-2*sqrt(s^2-k))
+                  #plot3+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="lightblue",opacity=0.5)
+                  #plot3+=parametric_plot3d(param2(s,t),(t,0,2*pi),(s,-d,d),color="lightblue",opacity=0.5)
+                  n=8;m=8;a1=-d;a2=d;b1=0;b2=2*pi; 
+                  #c1 is surface color     o1 is surface opacity
+                  #c2 and o2 are for constant t value traces
+                  #c3 and o3 are for constant s value traces
+                  c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
+                  plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
+                  plot3+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
                   for i in range(n+1):
-                    sv=-d+i*2*d/n;
-                    for j in range(m+1):
-                      tv=j*2*pi/m;
-                      plot3+=arrow(param(sv,tv),param(sv,tv)+grad(sv,tv)/4,color="red",opacity=0.5,width=3)
-                      if(sign(k)==-1):
-                        tv=j*2*pi/m+pi/m
-                        plot3+=arrow(param2(sv,tv),param2(sv,tv)+grad2(sv,tv)/4,color="red",opacity=0.5,width=3)
-                  return plot3
-                frames1=[makehyp(k) for k in range(-6,7)]
-                plot123=animate(frames1).interactive(delay=30,auto_play=False)
-                show(plot123)
-              </slate>
-            </interactive>
-          </figure>
-          <p>
-            To see this in action, we can find a general way to express the tangent plane at a point on these level surfaces. Let <m>S_k</m> be the level surface with value <m>k</m>. In other words, <m>g(x,y,z)=k=x^2+y^2-z^2</m>. Let <m>P_k=(-1,1,\sqrt{2-k})</m> be a point, which you can verify for yourself is on <m>S_k</m>. This means that <m>\nabla g(P_k)=\langle -2,2,-2\sqrt{2-k}\rangle</m>. Hence by <xref ref="implicittanplane"/>, the tangent plane to <m>S_k</m> at <m>P_k</m> can be written as
-            <md> (-2)(x+1)+(2)(y-1)+(-2\sqrt{2-k})(z-\sqrt{2-k})=0</md>.
-            This point, the gradient vector (drawn at half length), and tangent plane are shown in red in <xref ref="hypconetanplanes"/>. Use the slider to change the value of <m>k</m> using the slider at the top of <xref ref="hypconetanplanes"/> to see how even though the shape of the level surface changes, the gradient vector at <m>P_k</m> remains orthogonal to the surface and will serves as a normal vector for our tangent plane.
-          </p>
-          <figure xml:id="hypconetanplanes">
-            <caption>A plot of a level surface for <m>g(x,y,z)=x^2+y^2-z^2</m> along with the normal vector and tangent plane at the point <m>(-1,1,\sqrt{2-k})</m> </caption>
-              <interactive label="interactive-hypconetanplanes" platform="sage">
-                <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A hyperboloid of two sheets with gap along the z-axis is drawn in gray with a point on the top sheet highlighted in red. At the highlighted point, a titled plane is shown, in red, such that the plane is tangent to the hyperboloid at the highlighted point. The highlighted point has a vector drawn perpendicular to the surface and pointing away from the z-axis.</p> </description>
-                <slate surface="sage">
-                  <xi:include href="interacts/hypconetanplanes.txt" parse="text"/>
-                </slate>
-              </interactive>
-          </figure>
-        </statement>
-      </task>
+                    sv=a1+i/n*(a2-a1)
+                    plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+                    plot3+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c3,opacity=o3)
+                  for i in range(m+1):
+                    tv=b1+i/m*(b2-b1)
+                    plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                    plot3+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                else:
+                  param(s,t)=(sqrt(k+s^2)*cos(t),sqrt(k+s^2)*sin(t),s)
+                  grad(s,t)=(2*sqrt(k+s^2)*cos(t),2*sqrt(k+s^2)*sin(t),-2*s)
+                  #plot3+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="lightblue",opacity=0.5,mesh=True)
+                  n=8;m=8;a1=-d;a2=d;b1=0;b2=2*pi; 
+                  #c1 is surface color     o1 is surface opacity
+                  #c2 and o2 are for constant t value traces
+                  #c3 and o3 are for constant s value traces
+                  c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
+                  plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
+                  for i in range(n+1):
+                    sv=a1+i/n*(a2-a1)
+                    plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+                  for i in range(m+1):
+                    tv=b1+i/m*(b2-b1)
+                    plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                #plot3+=parametric_plot3d(param(s,t),(s,0,pi),(t,0,2*pi),color="blue",mesh=True,opacity=0.4,plot_points=21)
+                n=3;m=3;
+                for i in range(n+1):
+                  sv=-d+i*2*d/n;
+                  for j in range(m+1):
+                    tv=j*2*pi/m;
+                    plot3+=arrow(param(sv,tv),param(sv,tv)+grad(sv,tv)/4,color="red",opacity=0.5,width=3)
+                    if(sign(k)==-1):
+                      tv=j*2*pi/m+pi/m
+                      plot3+=arrow(param2(sv,tv),param2(sv,tv)+grad2(sv,tv)/4,color="red",opacity=0.5,width=3)
+                return plot3
+              frames1=[makehyp(k) for k in range(-6,7)]
+              plot123=animate(frames1).interactive(delay=30,auto_play=False)
+              plot123
+            </sageplot>
+          </image>
+        </figure>
+        <p>
+          To see this in action, we can find a general way to express the tangent plane at a point on these level surfaces. Let <m>S_k</m> be the level surface with value <m>k</m>. In other words, <m>g(x,y,z)=k=x^2+y^2-z^2</m>. Let <m>P_k=(-1,1,\sqrt{2-k})</m> be a point, which you can verify for yourself is on <m>S_k</m>. This means that <m>\nabla g(P_k)=\langle -2,2,-2\sqrt{2-k}\rangle</m>. Hence by <xref ref="implicittanplane"/>, the tangent plane to <m>S_k</m> at <m>P_k</m> can be written as
+          <md> (-2)(x+1)+(2)(y-1)+(-2\sqrt{2-k})(z-\sqrt{2-k})=0</md>.
+          This point, the gradient vector (drawn at half length), and tangent plane are shown in red in <xref ref="hypconetanplanes"/>. Use the slider to change the value of <m>k</m> using the slider at the top of <xref ref="hypconetanplanes"/> to see how even though the shape of the level surface changes, the gradient vector at <m>P_k</m> remains orthogonal to the surface and will serves as a normal vector for our tangent plane.
+        </p>
+        <figure xml:id="hypconetanplanes">
+          <caption>A plot of a level surface for <m>g(x,y,z)=x^2+y^2-z^2</m> along with the normal vector and tangent plane at the point <m>(-1,1,\sqrt{2-k})</m> </caption>
+          <image width="60%">
+            <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A hyperboloid of two sheets with gap along the z-axis is drawn in gray with a point on the top sheet highlighted in red. At the highlighted point, a titled plane is shown, in red, such that the plane is tangent to the hyperboloid at the highlighted point. The highlighted point has a vector drawn perpendicular to the surface and pointing away from the z-axis. </p></description>
+            <sageplot variant="3d" label="interactive-hypconetanplanes">
+              from sage.plot.plot3d.plot3d import axes
+              scale=3;
+              var('x,y,z,t,s')
+              scale=3;
+              def makehyp1(k):
+                  n=5;m=6;d=4;
+                  plot11=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                  n=10;m=12; 
+                  #c1 is surface color     o1 is surface opacity
+                  #c2 and o2 are for constant t value traces
+                  #c3 and o3 are for constant s value traces
+                  c1="gray"; c2="gray"; c3="gray"; o1=0.3; o2=0.5; o3=0.5;
+                  if(sign(k)==-1):
+                      param(s,t)=(sqrt(s^2+k)*cos(t),sqrt(s^2+k)*sin(t),s)
+                      param2(s,t)=(sqrt(s^2+k)*cos(t),sqrt(s^2+k)*sin(t),-s)
+                      N=True; a1=sqrt(-k);a2=3;b1=0;b2=2*pi;
+                      #plot11+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="blue",opacity=0.5,mesh=True)
+                      #plot11+=parametric_plot3d(param2(s,t),(t,0,2*pi),(s,-d,d),color="blue",opacity=0.5,mesh=True)
+                  else:
+                      param(s,t)=(sqrt(k+s^2)*cos(t),sqrt(k+s^2)*sin(t),s)
+                      N=False; a1=-3;a2=3;b1=0;b2=2*pi;
+                      #plot11+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="blue",opacity=0.5,mesh=True)
+                  plot11+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
+                  if(N):
+                      plot11+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
+                  for i in range(n+1):
+                      sv=a1+i/n*(a2-a1)
+                      plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                      if(N):
+                          plot11+=parametric_plot3d(param2(sv,t),(t,b1,b2),color=c2,opacity=o2)
+                  for i in range(m+1):
+                      tv=b1+i/m*(b2-b1)
+                      plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                      if(N):
+                          plot11+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
+                  b=sqrt(2-k);
+                  cx=-1;cy=1;cz=b;
+                  plot11+=point((cx,cy,cz),size=40,color="red")
+                  plot11+=parametric_plot3d((s-1,s+1+b*t,t+b),(s,-.5,.5),(t,-0.5,0.5),color="red",opacity=0.3,mesh=True,plot_points=3)
+                  plot11+=arrow((cx,cy,cz),(2*cx,2*cy,0),color="red",opacity=0.5,width=3,viewpoint=[[-0.1111,-0.6669,-0.7368],166.01],camera_position=[4.9962,13.9403,1.6846])
+                  return plot11
+              frames1=[makehyp1(k/5) for k in range(-10,11)]
+              plot123=animate(frames1).interactive(delay=30,auto_play=False)
+              plot123          
+            </sageplot>
+          </image>
+        </figure>
+      </statement>
+    </task>
       <!-- <p>
         Returning to the function <m>g(x,y,z)=x^2+y^2-z^2</m>, we can ask <q>For an input point <m>(a,b,c)</m>, in what direction will the output of <m>g</m> be increasing at the greatest rate?</q> We can group the output of <m>g</m> into two terms <m>x^2+y^2</m> which increases as you move away from the <m>z</m>-axis and <m>-z^2</m> which increases as you get closer to the <m>xy</m>-plane (<m>z=0</m>). An input point of <m>(a,b,c)</m> for the gradient vector gives <m>\nabla g (a,b,c)=\langle 2a,2b,-2c\rangle</m>. Notice that for any point in our space, this gradient vector will point away from the <m>z</m>-axis and toward the <m>xy</m>-plane, as demonstrated by the red vectors in <xref ref="gradhypcone"/>. Note that our arguments are rotationally symmetric about the <m>z</m>-axis. 
       </p>
        -->
-      </example>
-       
+  </example>
       <activity workspace="1.5in">
         <introduction>
           <p>
@@ -619,19 +705,19 @@
             </p>
           </statement>
           <solution>
-            <interactive label="interactive-planeshd" platform="sage" width="100%" aspect="1:1">
-                <description><p>A three dimensional plot with five tilted parallel planes shown in light blue</p> </description>
-              <slate surface="sage">
-                  vals=[-2,-1,0,1,2]
-                  var('x,y')
-                  from sage.plot.plot3d.plot3d import axes
-                  scale=4
-                  plot1=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                  for v in vals:
-                    plot1+=plot3d(x+y-v,(x,-2,2),(y,-2,2),color="lightblue",opacity=0.6,mesh=True,plot_points=5)
-                  plot1
-                </slate>
-              </interactive>
+            <image width="60%">
+              <description><p>A three dimensional plot with five tilted parallel planes shown in light blue </p></description>
+              <sageplot variant="3d" label="interactive-planeshd">
+                vals=[-2,-1,0,1,2]
+                var('x,y')
+                from sage.plot.plot3d.plot3d import axes
+                scale=4
+                plot1=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                for v in vals:
+                  plot1+=plot3d(x+y-v,(x,-2,2),(y,-2,2),color="lightblue",opacity=0.6,mesh=True,plot_points=5)
+                plot1
+              </sageplot>
+            </image>
           </solution>
         </task>
         <task>
@@ -653,19 +739,19 @@
             </p>
           </statement>
           <solution>
-            <interactive label="interactive-paraboliodshd" platform="sage" width="100%" aspect="1:1">
-              <description><p>A three dimensional plot with five tilted parallel planes shown in light blue</p> </description>
-              <slate surface="sage">
-                  vals=[-2,-1,0,1,2]
-                  var('x,y')
-                  from sage.plot.plot3d.plot3d import axes
-                  scale=4
-                  plot1=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-                  for v in vals:
-                    plot1+=plot3d(v+x^2+y^2,(x,-1,1),(y,-1,1),color="pink",opacity=0.4,mesh=True,plot_points=13)
-                  plot1
-                </slate>
-              </interactive>
+            <image width="60%">
+              <description><p>A three dimensional plot with five tilted parallel planes shown in light blue </p></description>
+              <sageplot variant="3d" label="interactive-paraboliodshd">
+                vals=[-2,-1,0,1,2]
+                var('x,y')
+                from sage.plot.plot3d.plot3d import axes
+                scale=4
+                plot1=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+                for v in vals:
+                  plot1+=plot3d(v+x^2+y^2,(x,-1,1),(y,-1,1),color="pink",opacity=0.4,mesh=True,plot_points=13)
+                plot1
+              </sageplot>
+            </image>
           </solution>
         </task>
         <task>

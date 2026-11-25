@@ -50,15 +50,27 @@
       In <xref ref="S-VVF-Plotting"/>, we saw how a vector-valued function of one variable will graphically correspond to a curve in space. While the application of derivatives, integrals, and limits apply to these functions componentwise, we will need to apply our calculus and vector tools <em>together</em> to measure  important properties of these curves. Conceptually, you should think about the parameterization of the curve in space as a description on how to travel through those points in space. Remember that parameterizations are not unique: there is more than one way to walk the same path!
     </p>
     <figure xml:id="rc-plot1">
-      <caption> A plot of a racetrack</caption>
-      <image width="60%">
+      <caption> A 2D plot of a racetrack</caption>
+      <image width="50%">
         <description><p>A plot of the a race track with a long straightaway, followed by a gentle curve, then several back and forth turns and another gentle turn. </p></description>
-        <sageplot variant="3d" label="interactive-rc-plot1">
+        <sageplot>
+          var('t')
+          scale=175;tval=1.25
+          r2(t)=(scale*(3 + 2*sin(t))*cos(t)+700, scale*(3 - ((t - 2)*sin(4*t)))*sin(t)+900);pos=r2(tval);
+          plot5=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=2,gridlines=True)
+          plot5+=point(pos,color="black",size=40)
+          plot5
+        </sageplot>
+        <!-- <sageplot variant="3d" label="interactive-rc-plot1">
           var('t')
           r2(t)=((3 + 2*sin(t))*cos(t), (3 - ((t - 2)*sin(4*t)))*sin(t), 1/40*t^2 *sin(3*t))
-          plot6=parametric_plot(150*r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=2,viewpoint=[[-0.0881,-0.4429,-0.8922],159.87],camera_position=[406.6483,840.0159,786.1739])
-          plot6
-        </sageplot>
+          tval=1.25
+          rescale=1/3
+          pos=r2(tval)
+          plot5=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=3)
+          plot5+=sphere(pos,color="black",size=0.15,viewpoint=[[-0.0028,-0.3535,-0.9354],179.16],frame=False)
+          plot5
+        </sageplot> -->
       </image>
     </figure>
     <p>
@@ -147,7 +159,7 @@
   <subsection xml:id="subsec-unit-tangent">
     <title>Direction of travel</title>
     <p>
-      Based on our work in <xref ref="vvf-derivative"/>, if <m>\vr(t)</m> is a parameterization of a curve in space, then the velocity vector, <m>\vecv(t)=\vr\, '(t)</m>, is in the direction of travel. Since the speed, <m>\vecmag{\vecv(t)}</m>, is not always 1 (the velocity is not always a unit vector), we define the <term>direction of travel</term> using a unit vector as follows.
+      Based on our work in <xref ref="vvf-derivative"/>, if <m>\vr(t)</m> is a parameterization of a curve in space, then the velocity vector, <m>\vv(t)=\vr\, '(t)</m>, is in the direction of travel. Since the speed, <m>\vecmag{\vv(t)}</m>, is not always 1 (the velocity is not always a unit vector), we define the <term>direction of travel</term> using a unit vector as follows.
     </p>
     <aside>
       <p>
@@ -158,13 +170,13 @@
       <statement>
         <p>
           The <term>unit tangent vector</term> to a curve, denoted <m>\vT(t)</m>, is defined as 
-          <md> \vT(t)=\frac{\vecv(t)}{\vecmag{\vecv(t)}}</md>
+          <md> \vT(t)=\frac{\vv(t)}{\vecmag{\vv(t)}}</md>
           and measures the direction of travel along a parameterized curve.
         </p>
       </statement>
     </definition>
     <p>
-      By definition, the unit tangent vector exists as long as the velocity exists and is not the zero vector. If the velocity vector is <m>\vec{0}</m>, then the object is not moving, thus the direction of travel would not make sense at that instant. If there is a jump or discontinuity in the derivative of <m>\vr</m> so that <m>\vecv</m> does not exist, the direction of travel at that instant does not make sense because there is not a consistent way to define how the object is moving.
+      By definition, the unit tangent vector exists as long as the velocity exists and is not the zero vector. If the velocity vector is <m>\vec{0}</m>, then the object is not moving, thus the direction of travel would not make sense at that instant. If there is a jump or discontinuity in the derivative of <m>\vr</m> so that <m>\vv</m> does not exist, the direction of travel at that instant does not make sense because there is not a consistent way to define how the object is moving.
     </p>
     <p>
       The definition of <m>\vT</m> allows us to separate the velocity of a moving object into its magnitude (speed) and direction (unit tangent). Using a unit vector allows us to express the direction of travel as a vector that is separate from the length of any related measurements. Remember that <m>\vT</m> changes along the curve and is calculated as a function of the parameter.
@@ -186,10 +198,10 @@
         </image>
       </figure>
       <p>
-        Based on the parameterization <m>r(t)</m> for this helix, the velocity vector is <m>\vecv(t)=\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </m>. Thus, the speed is
-        <md>\text{speed}(t) = \vecmag{\vecv(t)} = \sqrt{\left(-\sin(t)\right)^2+\left(\cos(t)\right)^2+\left(\frac{1}{\pi}\right)^2}= \sqrt{1+\frac{1}{\pi^2}}</md>.
+        Based on the parameterization <m>r(t)</m> for this helix, the velocity vector is <m>\vv(t)=\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </m>. Thus, the speed is
+        <md>\text{speed}(t) = \vecmag{\vv(t)} = \sqrt{\left(-\sin(t)\right)^2+\left(\cos(t)\right)^2+\left(\frac{1}{\pi}\right)^2}= \sqrt{1+\frac{1}{\pi^2}}</md>.
         One of the useful and interesting ideas of this example is that the speed is constant. That is, no matter what parameter value we consider, the speed is always <m> \sqrt{1+\frac{1}{\pi^2}} </m>. Using <xref ref="def-unit-tangent"/>, we find
-        <md> \vT(t)= \frac{\vecv(t)}{\vecmag{{\vecv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </md>. To compute some specific examples, we have
+        <md> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\sin(t),\cos(t),\frac{1}{\pi} \rangle </md>. To compute some specific examples, we have
         <md>
           <mrow>\vT\left(\frac{\pi}{2}\right)\amp=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -1,0,\frac{1}{\pi} \right\rangle</mrow>
           <mrow>\vT\left(\frac{5\pi}{4}\right) \amp=  \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle \frac{\sqrt{2}}{2},-\frac{\sqrt{2}}{2},\frac{1}{\pi} \right\rangle</mrow>
@@ -223,7 +235,7 @@
         </image>
       </figure>
       <p>
-        Note that we can also find <m>\vT(\frac{\pi}{2})</m> by computing <m>\vecv(\frac{\pi}{2}) = \langle -1,0,\frac{1}{\pi} \rangle </m> and shrinking this vector to be a unit vector. Because our definitions and theorems work for all values of <m>t</m>, we can apply them at a specific value of <m>t</m>. This has the added advantage that computations tend to be manageable when done by hand. The downside to this calculation is that you only have information for the one parameter value. This will only useful for finding information at a fixed value of <m>t</m> because you are not concerned with how the measurement is done for other parameter values. 
+        Note that we can also find <m>\vT(\frac{\pi}{2})</m> by computing <m>\vv(\frac{\pi}{2}) = \langle -1,0,\frac{1}{\pi} \rangle </m> and shrinking this vector to be a unit vector. Because our definitions and theorems work for all values of <m>t</m>, we can apply them at a specific value of <m>t</m>. This has the added advantage that computations tend to be manageable when done by hand. The downside to this calculation is that you only have information for the one parameter value. This will only useful for finding information at a fixed value of <m>t</m> because you are not concerned with how the measurement is done for other parameter values. 
       </p>
     </example>
     <p>
@@ -234,14 +246,14 @@
       <task>
         <statement>
           <p>
-            Find <m>\vecv</m>, speed, and <m>\vT</m> as functions of <m>t</m> for the line parameterized as <m>\vr(t)=\langle 3t-1,2-2t,5+t\rangle</m>. Write a few sentences about why your results make sense and why in for this particular curve <m>\vT</m> does not vary based on the parameter value. 
+            Find <m>\vv</m>, speed, and <m>\vT</m> as functions of <m>t</m> for the line parameterized as <m>\vr(t)=\langle 3t-1,2-2t,5+t\rangle</m>. Write a few sentences about why your results make sense and why in for this particular curve <m>\vT</m> does not vary based on the parameter value. 
           </p>
         </statement>
       </task>
       <task>
         <statement>
           <p>
-            Find <m>\vecv</m>, speed, and <m>\vT</m> for the curve with parameterization <m>\vr(t)=\langle t,t^2,t^3\rangle</m>.
+            Find <m>\vv</m>, speed, and <m>\vT</m> for the curve with parameterization <m>\vr(t)=\langle t,t^2,t^3\rangle</m>.
           </p>
         </statement>
       </task>
@@ -262,7 +274,7 @@
     </p>
     <figure xml:id="rc-plot2">
       <caption> A plot of a racetrack with <m>\vT(2)</m> plotted in red</caption>
-      <image width="60%">
+      <image width="50%">
         <description><p>A three dimensional plot of the path of a racetrack with the a red arrow starting at near then start of a gentle curve and pointing in a direction that is tangent to the curve at that point.  </p></description>
         <sageplot variant="3d" label="interactive-rc-plot2">
           var('t')
@@ -270,7 +282,7 @@
           tval=2
           rescale=1/3
           pos=r2(tval)
-          plot9=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=1,frame=False,)
+          plot9=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=3,frame=False,)
           plot9+=point(pos,color="black",size=40)
           v2(t)=diff(r2,t)
           a2(t)=diff(v2,t)
@@ -282,7 +294,7 @@
           aNN=at-aTT
           N=(1/aN)*aNN
           offset=0.25
-          plot9+=arrow(pos,pos+1.5*T,color="red",width=2)
+          plot9+=arrow(pos,pos+1.5*T,color="red",width=3)
           plot9+=text3d("T",pos+1.15*T-0.25*N,color="red",fontsize=20,viewpoint=[[-0.0719,-0.5055,-0.8598],166.05],camera_position=[2.2814,6.9111,4.4164])
           plot9
         </sageplot>
@@ -384,7 +396,7 @@
     </p>
     <p>
       From our work in <xref ref="helix-T"/>, we calculated
-      <md> \vT(t)= \frac{\vecv(t)}{\vecmag{{\vecv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </md>
+      <md> \vT(t)= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </md>
       Using the definition of <m>\vN</m>, we need to compute the derivative of <m>\vT</m> with respect to <m>t</m>:
       <md> \vT\, '(t)=\frac{d\vT}{dt}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\langle -\cos(t),-\sin(t),0 \rangle </md>
       Note that in this example, the derivative of <m>\vT</m> is easily calculated for all time values but this will rarely be the case. Further, making a unit vector in the direction of <m>\vT(t)'=\frac{d\vT}{dt}</m> is routine and gives us the following calculation:
@@ -454,7 +466,7 @@
   <task>
     <statement>
       <p>
-        Calculate velocity <m>\vecv(t)</m> and <m>\text{speed}(t)</m> for the parameterization <m>\vr(t) =\langle t,t^2,t^3\rangle </m>.
+        Calculate velocity <m>\vv(t)</m> and <m>\text{speed}(t)</m> for the parameterization <m>\vr(t) =\langle t,t^2,t^3\rangle </m>.
       </p>
     </statement>
     <answer>
@@ -464,7 +476,7 @@
     </answer>
     <solution>
       <p>
-        <m> \vecv(t)= \langle 1,2t,3t^2\rangle </m> and <m>\text{speed}(t)=\sqrt{1+4t^2+9t^4}</m>
+        <m> \vv(t)= \langle 1,2t,3t^2\rangle </m> and <m>\text{speed}(t)=\sqrt{1+4t^2+9t^4}</m>
       </p>
     </solution>
   </task>
@@ -624,7 +636,7 @@
     <p>
       In this example, we complete the  calculation of the TNB frame for the helix given by <m>\vr(t)=\langle \cos(t),\sin(t)\frac{t}{\pi}\rangle </m>. From <xref ref="helix-T"/> and <xref ref="helix-N"/> we have the following:
         <md>
-          <mrow> \vT(t) \amp= \frac{\vecv(t)}{\vecmag{{\vecv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </mrow>
+          <mrow> \vT(t) \amp= \frac{\vv(t)}{\vecmag{{\vv(t)}}}= \frac{1}{\sqrt{1+\frac{1}{\pi^2}}}\left\langle -\sin(t),\cos(t),\frac{1}{\pi} \right\rangle </mrow>
           <mrow> \vN \amp= \langle -\cos(t),-\sin(t),0\rangle </mrow>
         </md> 
       Using the definition for <m>\vB</m>, we have
@@ -635,9 +647,9 @@
     </p>
     <figure xml:id="helix-plot4">
       <caption> A plot of the helix with the TNB frame plotted</caption>
-      <interactive label="interactive-helix-plot4" platform="sage" width="93%" aspect="1:1.11">
-        <description><p> An interactive three dimensional plot of a helical path of radius one and change of height of 3 with a slider above the plot that changes where the highlighted point on the path appears. At the highlighted point, there is a red arrow pointing in the tangent direction and is labeled <m>\vT</m>. At the highlighted point, there is a blue arrow pointing toward the inside of the turn and is labeled <m>/vN</m>. At the highlighted point, a green arrow is drawn perpendicular to the red and blue arrows. The green arrow is labeled <m>\vB</m>.</p></description>
-        <slate surface="sage">
+      <image width="60%">
+        <description><p>An interactive three dimensional plot of a helical path of radius one and change of height of 3 with a slider above the plot that changes where the highlighted point on the path appears. At the highlighted point, there is a red arrow pointing in the tangent direction and is labeled <m>\vT</m>. At the highlighted point, there is a blue arrow pointing toward the inside of the turn and is labeled <m>/vN</m>. At the highlighted point, a green arrow is drawn perpendicular to the red and blue arrows. The green arrow is labeled <m>\vB</m>. </p></description>
+        <sageplot variant="3d" label="interactive-helix-plot4">
           var('t')
           r2(t)=(cos(t),sin(t),t/pi)
           rescale=1/3
@@ -667,8 +679,8 @@
           frames1=[TNBhelix(tval*pi/30) for tval in range(0,60)]
           plot123=animate(frames1).interactive(delay=20,auto_play=False,animation_controls=True)
           plot123
-        </slate>
-      </interactive>
+        </sageplot>
+      </image>
     </figure>
     <p>
       Note that as you change the <m>t</m>-value and move around the helix, the unit tangent points in the direction of travel, the unit normal points in the direction the object is turning (always to the left while going up the helix), and the binormal vector is the axis of rotation for the <m>\vT</m> and <m>\vN</m> vectors. If you curl the fingers on your right hand from the direction of <m>\vT</m> toward the direction of <m>\vN</m>, notice that your thumb will point in the direction of <m>\vB</m>. This sets up the TNB frame as a right-handed coordinate system that changes relative to the motion of the object. 
@@ -746,7 +758,7 @@
   <ul>
     <li>
       <p>
-        The unit tangent vector, <m>\vT(t)=\frac{\vecv}{\vecmag{\vecv}}</m>, measures the direction of travel for an object along a parameterized curve.
+        The unit tangent vector, <m>\vT(t)=\frac{\vv}{\vecmag{\vv}}</m>, measures the direction of travel for an object along a parameterized curve.
       </p>
     </li>
 

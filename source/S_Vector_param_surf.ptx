@@ -231,7 +231,7 @@
               from sage.plot.plot3d.plot3d import axes
               var('s,t')
               scale=4
-              plot1=axes(scale,3,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=20)+text3d("y",(0,scale+0.5,0),fontsize=20)+text3d("z",(0,0,scale+0.5),fontsize=20)
               a=1; b=2;
               param(s,t)=((b+a*cos(s))*cos(t), (b+a*cos(s))*sin(t), a*sin(s))
               #set up grid      n is number of steps in s    m is number of steps in t  
@@ -263,7 +263,7 @@
               from sage.plot.plot3d.plot3d import axes
               var('s,t')
               scale=4
-              plot1=axes(scale,3,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=20)+text3d("y",(0,scale+0.5,0),fontsize=20)+text3d("z",(0,0,scale+0.5),fontsize=20)
               a=1; b=2;sc=2*pi/3; tc=pi/4
               param(s,t)=((b+a*cos(s))*cos(t), (b+a*cos(s))*sin(t), a*sin(s))
               #plot1+=parametric_plot3d(param(sc,t),(t,0,2*pi),color='red',thickness=3)
@@ -271,14 +271,14 @@
               #c1 is surface color     o1 is surface opacity
               #c2 and o2 are for constant t value traces
               #c3 and o3 are for constant s value traces
-              c1="lightblue"; c2="red"; c3="green"; o1=0.7; o2=0.3; o3=0.3;
-              #plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+              c1="lightblue"; c2="red"; c3="green"; o1=0.2; o2=0.2; o3=0.2;
+              plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
               for i in range(n+1):
                 sv=a1+i/n*(a2-a1)
                 plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
                 plot1+=sphere(param(sv,tc),color='black',size=0.1)
               plot1+=parametric_plot3d(param(s,tc),(s,0,2*pi),color='green',thickness=3)
-              plot1+=parametric_plot3d((s,s,t),(s,0,3),(t,-2,2),color="gray",opacity=0.4)
+              plot1+=parametric_plot3d((s,s,t),(s,0,3),(t,-2,2),color="gray",opacity=0.2,plot_points=2,mesh=True,viewpoint=[[-0.51,-0.5517,-0.6599],117.23])
               plot1 
             </sageplot>
           </image>
@@ -291,7 +291,7 @@
         </p>
         <figure xml:id="torus2d">
           <caption>A circle of radius <m>a</m> centered at the point <m>(b,0)</m></caption>
-          <image width="50%">
+          <image width="40%">
             <description>
               <p>
                 The right half of a two-dimensional plane in which the verticla axes is labeled <m>z</m>. A circle of radius <m>a</m> centered at the point <m>(b,0)</m> is shown. A point on the circle is highlighted. The distance from the <m>z</m>-axis to the point is labeled <m>r</m>.
@@ -714,34 +714,38 @@
     </p>
     <figure xml:id="fig_SurfaceAreaPieces2">
     <caption>Pieces of the tangent planes used to approximate surface area</caption>
-    <interactive label="int_SurfaceAreaPieces2" platform="sage" width="100%" aspect="1:1.10">
-      <description><p>An interactive plot of a curved surface shown in blue. A slider at the top of the figure allows the user to change the number of sections for the grid shown on the surface. At the top right of each grid piece along the surface a yellow parallelogram is drawn over each grid piece such that the parallelogram is tangent to the surface on the grid piece. The more curved the surface is on a grid piece, the larger the parallelogram.</p></description>
-      <slate surface="sage">
-        var('t,s,u,v,z,y,z')
-        f=-x^2/2-3*y^3/3
-        def parpieces(n):
-          plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
-          stepsize=2/(n)
-          for i in range(0,n):
-            a=- 1+i*stepsize
-            plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
-            plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
-            for j in range(0,n):
-              b=-1+j*stepsize
-              f_val=f(x=a,y=b)
-              pos=(a,b,f_val)
-              fx=diff(f,x)(x=a,y=b)
-              fy=diff(f,y)(x=a,y=b)
-              vt=(stepsize+a,b,stepsize*fx+f_val)
-              vs=(a,b+stepsize,stepsize*fy+f_val)
-              cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
-              plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-          return plot1
-        frames=[parpieces(n) for n in range(2,13)]
-        plot123=animate(frames).interactive(delay=100,auto_play=false)
-        plot123
+      <interactive label="int_SurfaceAreaPieces2" platform="sage">
+    <!-- <image width="60%"> -->
+        <description><p>An interactive plot of a curved surface shown in blue. A slider at the top of the figure allows the user to change the number of sections for the grid shown on the surface. At the top right of each grid piece along the surface a yellow parallelogram is drawn over each grid piece such that the parallelogram is tangent to the surface on the grid piece. The more curved the surface is on a grid piece, the larger the parallelogram. </p></description>
+        <!-- <sageplot variant="3d" label="int_SurfaceAreaPieces2"> -->        
+          <slate surface="sage">
+          var('t,s,u,v,z,y,z')
+          f=-x^2/2-3*y^3/3
+          def parpieces(n):
+            plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
+            stepsize=2/(n)
+            for i in range(0,n):
+              a=- 1+i*stepsize
+              plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
+              plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
+              for j in range(0,n):
+                b=-1+j*stepsize
+                f_val=f(x=a,y=b)
+                pos=(a,b,f_val)
+                fx=diff(f,x)(x=a,y=b)
+                fy=diff(f,y)(x=a,y=b)
+                vt=(stepsize+a,b,stepsize*fx+f_val)
+                vs=(a,b+stepsize,stepsize*fy+f_val)
+                cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
+                plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
+            return plot1
+          frames=[parpieces(n) for n in range(2,13)]
+          plot123=animate(frames).interactive(delay=100,auto_play=false)
+          plot123
+        <!-- </sageplot> -->
+      <!-- </image> -->
       </slate>
-    </interactive>
+      </interactive>
   </figure>
 
     <proposition xml:id="keyidea-Surface-area">

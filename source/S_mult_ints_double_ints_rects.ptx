@@ -562,16 +562,101 @@
       </sidebyside>
     </figure> -->
     <p>
-      This volume is approximated by a Riemann sum, which sums the volumes of the rectangular prisms shown in <xref ref="fig-mult_ints-double_ints_rects-volume2">Figure</xref>. In a double Riemann sum, both <m>m</m> and <m>n</m> go to infinity. This means that the number of subrectangles increases without bound, as illustrated in <xref ref="fig-mult_ints-double_ints_rects-volume2">Figure</xref>. As this happens, the sum of the volumes of the rectangular boxes approaches the true volume of the solid bounded above by <m>z=f(x,y)</m> over the region <m>R</m>. Use the sliders at the top of <xref ref="fig-mult_ints-double_ints_rects-volume2">Figure</xref> to change the number of subintervals used in the Riemann sum and verify geometrically how the estimated volume will approach true volume under <m>f</m> as <m>n</m> and <m>m</m> become arbitrarily large. 
+      This volume is approximated by a Riemann sum, which sums the volumes of the rectangular prisms shown in <xref ref="fig-mult_ints-double_ints_rects-volume2">Figure</xref>. In a double Riemann sum, both <m>m</m> and <m>n</m> go to infinity. This means that the number of subrectangles increases without bound, as illustrated in <xref ref="fig-mult_ints-double_ints_rects-volume2">Figure</xref>. As this happens, the sum of the volumes of the rectangular boxes approaches the true volume of the solid bounded above by <m>z=f(x,y)</m> over the region <m>R</m>. Use the slider at the top of <xref ref="fig-mult_ints-double_ints_rects-volume2">Figure</xref> to change the number of subintervals used in the Riemann sum and verify geometrically how the estimated volume will approach true volume under <m>f</m> as <m>n</m> becomes arbitrarily large. 
     </p>
     <figure xml:id="fig-mult_ints-double_ints_rects-volume2">
-      <caption>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>m</m> by <m>n</m> subrectangles</caption>
-        <interactive label="interactive-F_11_1_volume2" platform="sage" width="100%" aspect="1:1.15">
+      <caption>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>n</m> by <m>n</m> subrectangles</caption>
+        <image width="60%">
+          <description><p>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>n</m> by <m>n</m> subrectangles </p></description>
+          <sageplot variant="3d" label="interactive-F_11_1_volume2">
+            var('t,s,x,y,z')
+            from sage.plot.plot3d.plot3d import axes
+            from sage.plot.plot3d.shapes import Box
+            from sage.plot.plot3d.shapes import ColorCube
+            scale=2.5
+            def dblRS(n):
+              plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              f(x,y)=2-x/1.5+y^2/4;nx=n;ny=n;
+              total=0;
+              x1=0.5;x2=2; y1=0.5;y2=2;
+              dx=(x2-x1)/nx; dy=(y2-y1)/ny;
+              tc="black";sc="lightblue";bc="red"
+              for i in range(nx):
+                xa=x1+i*dx; xb=x1+(i+1)*dx;
+                for j in range(ny):
+                  ya=y1+j*dy;yb=y1+(j+1)*dy;
+                  h=f(xa+dx,ya)
+                  total+=h
+                  plot3+=ColorCube([dx/2,dy/2,h/2],[tc,sc,sc,bc,sc,sc],opacity=0.5).translate((xa+dx/2,ya+dy/2,h/2))
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.2; o3=0.2;
+              plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              RS=(total*1.5*1.5/nx/ny).n(digits=6)
+              plot3+=text3d("The Riemann sum shown is "+str(RS),(1,1,-1),color="black")
+              return plot3
+            frames=[dblRS(n) for n in range(2,14)]
+            plot123=animate(frames).interactive(delay=100,auto_play=False)
+            plot123
+          </sageplot>
+        </image>
+        <!-- <interactive label="interactive-F_11_1_volume2" platform="sage" width="100%" aspect="1:1.15">
           <description>
             <p>The estimated volume under a surface <m>z=f(x,y)</m> when using <m>m</m> by <m>n</m> subrectangles</p>
           </description>
           <slate surface="sage">
-            var('t,s,x,y,z')
+          var('t,s,x,y,z')
+          from sage.plot.plot3d.plot3d import axes
+          from sage.plot.plot3d.shapes import Box
+          from sage.plot.plot3d.shapes import ColorCube
+          scale=2.5
+          def dblRS(n):
+              plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              f(x,y)=2-x/1.5+y^2/4;nx=n;ny=n;
+              total=0;
+              x1=0.5;x2=2; y1=0.5;y2=2;
+              dx=(x2-x1)/nx; dy=(y2-y1)/ny;
+              tc="black";sc="lightblue";bc="red"
+              for i in range(nx):
+                  xa=x1+i*dx; xb=x1+(i+1)*dx;
+                  for j in range(ny):
+                      ya=y1+j*dy;yb=y1+(j+1)*dy;
+                      h=f(xa+dx,ya)
+                      total+=h
+                      plot3+=ColorCube([dx/2,dy/2,h/2],[tc,sc,sc,bc,sc,sc],opacity=0.5).translate((xa+dx/2,ya+dy/2,h/2))
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.2; o3=0.2;
+              plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
+              for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              RS=(total*1.5*1.5/nx/ny).n(digits=6)
+              plot3+=text3d("The Riemann sum shown is "+str(RS),(1,1,-1),color="black")
+              return plot3
+          frames=[dblRS(n) for n in range(2,20)]
+          plot123=animate(frames).interactive(delay=150,auto_play=False)
+          plot123 -->
+            <!-- var('t,s,x,y,z')
             from sage.plot.plot3d.plot3d import axes
             from sage.plot.plot3d.shapes import Box
             from sage.plot.plot3d.shapes import ColorCube
@@ -608,9 +693,9 @@
                 plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
               show(plot3,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
               RS=total*1.5*1.5/nx/ny
-              print(" The value of the Riemann sum corresponding the volume of the\n rectangular prisms shown is "+str(RS))
+              print(" The value of the Riemann sum corresponding the volume of the\n rectangular prisms shown is "+str(RS)) 
           </slate>
-        </interactive>
+        </interactive>-->
     </figure>
     <!-- <figure xml:id="F_11_1_rs">
       <caption>Finding better approximations by using smaller subrectangles.</caption>
@@ -638,7 +723,7 @@
       </p>
     </aside>
     <p>
-      For the solid shown in <xref ref="fig-mult_ints-double_ints_rects-volume2"/>, the exact volume is <m>231/64 = 3.609375</m>. Go back and see how close the estimate of the volume provided by the double Riemann sum is to the exact value for the largest values of <m>n</m> and <m>m</m> the sliders will allow.
+      For the solid shown in <xref ref="fig-mult_ints-double_ints_rects-volume2"/>, the exact volume is <m>231/64 = 3.609375</m>. Go back and see how close the estimate of the volume provided by the double Riemann sum is to the exact value for the largest value of <m>n</m> the slider allows.
     </p>
 
     <p>
@@ -734,7 +819,98 @@
           <image width="60%">
             <description><p>A plot of the signed volume with the volume above the <m>xy</m>-plane shown in blue and the volume below the <m>xy</m>-plane shown in red </p></description>
             <sageplot variant="3d" label="interactive-F_11_1_signed2">
-<xi:include href="interacts/signedvol.txt" parse="text"/>
+              var('t,s,x,y,z')
+              from sage.plot.plot3d.plot3d import axes
+              scale=2
+              plot8=axes(scale,1,color="gray",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              f(x,y)=(x-0.5)*(y-0.5); pc="blue";nc="red";
+              x1=-1;x2=1; y1=-1;y2=1;
+              plot8+=line([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0),(x1,y1,0)],thickness=3,color="black",opacity=0.75)+text3d("R",(1.25,1.25,0),color="black",fontsize=25)
+              x1=-1;x2=0.5; y1=-1;y2=0.5;
+              plot8+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=pc,opacity=0.5)
+              plot8+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              #plot8+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color=sc,opacity=0.4)
+              plot8+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              #plot8+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=sc,opacity=0.4)
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1=pc; c2="gray"; c3="gray"; o1=0.8; o2=0.6; o3=0.6;
+              plot8+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+              for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot8+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot8+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              x1=0.5;x2=1; y1=0.5;y2=1;
+              plot8+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=pc,opacity=0.5)
+              #plot8+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              plot8+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color=pc,opacity=0.6)
+              #plot8+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              plot8+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=pc,opacity=0.6)
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1=pc;
+              plot8+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+              for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot8+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot8+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              x1=-1;x2=0.5; y1=0.5;y2=1;
+              plot8+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=nc,opacity=0.5)
+              #plot8+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              plot8+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color=nc,opacity=0.6)
+              #plot8+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              plot8+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=nc,opacity=0.6)
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1=nc;
+              plot8+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+              for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot8+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot8+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              x1=0.5;x2=1; y1=-1;y2=0.5;
+              plot8+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=nc,opacity=0.5)
+              #plot8+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              plot8+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color=nc,opacity=0.6)
+              #plot8+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=pc,opacity=0.4)
+              plot8+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=nc,opacity=0.6)
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1=nc;
+              plot8+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.3926,-0.5745,-0.7182],127.72],camera_position=[5.6606,2.6653,2.0615])
+              for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot8+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot8+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              plot8
             </sageplot>
           </image>
       </figure>
@@ -746,11 +922,59 @@
   <activity workspace="1.5in" xml:id="act-mult_ints-double_ints_rects-volume">
       <introduction>
         <p>
-          Let <m>f(x,y) = \sqrt{4-y^2}</m> on the rectangular region <m>R = [1,7] \times [-2,2]</m>. Suppose that we partition <m>[1,7]</m> into 3 subintervals of equal length and <m>[-2,2]</m> into 2 subintervals of equal length. A table of values of <m>f</m> at some points in <m>R</m> is given in <xref ref="DI_11_1_TOV">Table</xref>, and a graph of <m>f</m> with the indicated partitions is shown in <xref ref="F_11_1_DI_example">Figure</xref>.
+          Let <m>f(x,y) = \sqrt{4-y^2}</m> on the rectangular region <m>R = [1,7] \times [-2,2]</m>. Suppose that we partition <m>[1,7]</m> into 3 subintervals of equal length and <m>[-2,2]</m> into 2 subintervals of equal length. A table of values of <m>f</m> at some points in <m>R</m> is given in <xref ref="F_11_1_DI_example">Table</xref>, and a graph of <m>f</m> with the indicated partitions is shown in <xref ref="F_11_1_DI_example">Figure</xref>.
         </p>
-        <table xml:id="DI_11_1_TOV">
-          <title>Table of values of <m>f(x,y) =  \sqrt{4-y^2}</m>.</title>
+      <figure xml:id="F_11_1_DI_example">
+        <caption>A table of values for <m>f(x,y)=\sqrt{4-y^2}</m> on the left and a plot of the surface given by <m>z=f(x,y)</m> on the right </caption>
+        <sidebyside widths="40% 60%">
+      <!--  <table xml:id="DI_11_1_TOV">
+           <title>Table of values of <m>f(x,y) =  \sqrt{4-y^2}</m>.</title> -->
+           
           <tabular halign="center">
+            <row bottom="medium">
+              <cell right="medium"><m> y \backslash \, x </m> </cell>
+              <cell><m>1</m></cell>
+              <cell><m>3</m></cell>
+              <cell><m>5</m></cell>
+              <cell><m>7</m></cell>
+            </row>
+            <row>
+              <cell right="medium"><m>-2</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+            <row>
+              <cell right="medium"><m>-1</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+            </row>
+            <row>
+              <cell right="medium"><m>0</m></cell>
+              <cell><m>2</m></cell>
+              <cell><m>2</m></cell>
+              <cell><m>2</m></cell>
+              <cell><m>2</m></cell>
+            </row>
+            <row>
+              <cell right="medium"><m>1</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+              <cell><m>\sqrt{3}</m></cell>
+            </row>
+            <row>
+              <cell right="medium"><m>2</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>0</m></cell>
+            </row>
+          </tabular>
+          <!-- <tabular halign="center">
             <row bottom="medium">
               <cell right="medium"><m> x \downarrow \backslash \, y \rightarrow</m> </cell>
               <cell><m>-2</m></cell>
@@ -815,36 +1039,35 @@
               <cell><m>\sqrt{3}</m></cell>
               <cell><m>0</m></cell>
             </row>
-          </tabular>
-        </table>
-        <figure xml:id="F_11_1_DI_example">
-          <caption>A plot of the surface given by <m>f(x,y)=\sqrt{4-y^2}</m> </caption>
-            <image width="60%">
-              <description><p>A surface that has a semicircular cross section and is stretched for eight units in a perpendicular direction to the cross section. </p></description>
-              <sageplot variant="3d" label="interactive-F_11_1_DI_example">
-                var('t,s,x,y,z')
-                scale=1.5
-                f(x,y)=sqrt(4-y^2)
-                x1=1;x2=7; y1=-2;y2=2;
-                param(s,t)=(s,t,f(s,t))
-                #set up grid      n is number of steps in s    m is number of steps in t  
-                #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-                n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
-                #c1 is surface color     o1 is surface opacity
-                #c2 and o2 are for constant t value traces
-                #c3 and o3 are for constant s value traces
-                c1="lightblue"; c2="black"; c3="black"; o1=0.8; o2=0.5; o3=0.5;
-                plot9=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0),(x1,y1,0)],thickness=3,color="gray",opacity=0.2)
-                plot9+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.2826,-0.473,-0.8345],127],camera_position=[12.059,4.802,5.3817])
-                for i in range(n+1):
-                  sv=a1+i/n*(a2-a1)
-                  plot9+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-                for i in range(m+1):
-                  tv=b1+i/m*(b2-b1)
-                  plot9+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                plot9
-              </sageplot>
-            </image>
+          </tabular> 
+        </table>-->
+          <image>
+            <description><p>A surface that has a semicircular cross section and is stretched for eight units in a perpendicular direction to the cross section. </p></description>
+            <sageplot variant="3d" label="interactive-F_11_1_DI_example">
+              var('t,s,x,y,z')
+              scale=1.5
+              f(x,y)=sqrt(4-y^2)
+              x1=1;x2=7; y1=-2;y2=2;
+              param(s,t)=(s,t,f(s,t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="lightblue"; c2="black"; c3="black"; o1=0.8; o2=0.5; o3=0.5;
+              plot9=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0),(x1,y1,0)],thickness=3,color="gray",opacity=0.2)
+              plot9+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[0.1015,0.503,0.8583],160.35],camera_position=[12.059,4.802,5.3817])
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot9+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot9+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              plot9
+            </sageplot>
+          </image>
+          </sidebyside>
         </figure>
       </introduction>
     <!-- <figure xml:id="F_11_1_DI_example">

@@ -1,7 +1,7 @@
 from sage.plot.plot3d.plot3d import axes
 var('x,y,z,t,s')
 scale=3;
-def impplot(k=slider(-4,4,0.25,default=-4,label="k=")):
+def impplot(k):
     plot1=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
     if(sign(k)==-1):
         param(s,t)=(s*cos(t),s*sin(t),sqrt(s^2-k))
@@ -26,7 +26,6 @@ def impplot(k=slider(-4,4,0.25,default=-4,label="k=")):
             plot99+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
         #plot1+=parametric_plot3d((s*cos(t),s*sin(t),sqrt(s^2-k)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.6,mesh=True,plot_points=31)
         #plot1+=parametric_plot3d((s*cos(t),s*sin(t),-sqrt(s^2-k)),(t,0,2*pi),(s,0,3),color="lightblue",opacity=0.6,mesh=True,plot_points=31)
-        plot1+=plot99
     else:
         #plot1+=parametric_plot3d((sqrt(k+s^2)*cos(t),sqrt(k+s^2)*sin(t),s),(t,0,2*pi),(s,-3,3),color="lightblue",opacity=0.6,mesh=True,plot_points=31)
         param(s,t)=(sqrt(k+s^2)*cos(t),sqrt(k+s^2)*sin(t),s)
@@ -44,8 +43,8 @@ def impplot(k=slider(-4,4,0.25,default=-4,label="k=")):
         for i in range(m+1):
             tv=b1+i/m*(b2-b1)
             plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-        plot1+=plot99
+    plot1+=plot99
     return plot1
 frames1=[impplot(k/5) for k in range(-20,20)]
 plot123=animate(frames1).interactive(delay=20,auto_play=False)
-show(plot123)
+plot123
