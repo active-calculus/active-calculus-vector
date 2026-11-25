@@ -13,15 +13,14 @@
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
 <pretext xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-US">
-  <docinfo>
+  <!-- docinfo is temporarily duplicated until MathJax adds \providecommand -->
+  <docinfo component="online">
     <document-id edition="2">acmulti</document-id>
     <blurb shelf="Mathematics">
       Active Calculus - Multivariable supports an active learning approach to a course involving multivariable and vector calculus. Every section of Active Calculus - Multivariable offers preview activities designed around preparing users for new topics; multiple activities in each section that can be used either in- or out-of-classtime; interactive WeBWorK exercises; other exercises and tasks that foster students' practice of skills and deeper investigation of conceptual material; opportunities for students to refine their effective communication of geometric and algebraic perspectives. The text makes frequent use of interactive three-dimensional graphics embedded in the text to help students with visualizing. This text is free and open-source, available in HTML, PDF, and print formats (2nd edition will be available by January 2028).  Ancillary materials for instructors are also available.
     </blurb>
     <macros>
-      %\usepackage{esvect}
-      %\let\oldvv\vv
-      %\renewcommand*{\vec}[1]{\oldvv{#1}}
+      \newcommand{\vv}{\overrightarrow}
       \newcommand{\R}{\mathbb{R}}
       \newcommand{\va}{\vec{a}}
       \newcommand{\vb}{\vec{b}}
@@ -38,8 +37,7 @@
       \newcommand{\vr}{\vec{r}}
       \newcommand{\vs}{\vec{s}}
       \newcommand{\vu}{\vec{u}}
-      %\renewcommand*{\vv}{\oldvv{v}}
-      \newcommand{\vv}{\vec{v}}
+      \newcommand{\vecv}{\vec{v}}
       \newcommand{\vw}{\vec{w}}
       \newcommand{\vx}{\vec{x}}
       \newcommand{\vy}{\vec{y}}
@@ -66,7 +64,6 @@
       \DeclareMathOperator{\curl}{curl}
       \DeclareMathOperator{\divg}{div}
 </macros>
-
     <latex-image-preamble>
 
       \usepackage{tikz}
@@ -118,12 +115,114 @@
     <rename element="proposition" xml:lang="en-US">Key Idea</rename>
     <rename element="task" xml:lang="en-US">part</rename>
     <rename element="historical" xml:lang="en-US">Note to Instructor</rename>
-    <!-- PreTeXt doesn't like renaming to whitespace, so using U+3164 (Hangul Filler) -->
-    <!-- here inside the rename element. -->
-    <rename element="worksheet" xml:lang="en-US">&#8193;</rename>
     <directories external="../assets"/>
     <defaults>
-      <cross-references text="type-global"/>
+      <xrefs text="type-global"/>
+    </defaults>
+  </docinfo>
+<docinfo component="print">
+    <document-id edition="2">acmulti</document-id>
+    <blurb shelf="Mathematics">
+      Active Calculus - Multivariable supports an active learning approach to a course involving multivariable and vector calculus. Every section of Active Calculus - Multivariable offers preview activities designed around preparing users for new topics; multiple activities in each section that can be used either in- or out-of-classtime; interactive WeBWorK exercises; other exercises and tasks that foster students' practice of skills and deeper investigation of conceptual material; opportunities for students to refine their effective communication of geometric and algebraic perspectives. The text makes frequent use of interactive three-dimensional graphics embedded in the text to help students with visualizing. This text is free and open-source, available in HTML, PDF, and print formats (2nd edition will be available by January 2028).  Ancillary materials for instructors are also available.
+    </blurb>
+    <macros>
+      \newcommand{\R}{\mathbb{R}}
+      \newcommand{\va}{\vec{a}}
+      \newcommand{\vb}{\vec{b}}
+      \newcommand{\vc}{\vec{c}}
+      \newcommand{\vC}{\vec{C}}
+      \newcommand{\vd}{\vec{d}}
+      \newcommand{\ve}{\vec{e}}
+      \newcommand{\cursedihat}{\hat{\dot{i}}}
+      \newcommand{\vi}{\hat{\imath}}
+      \newcommand{\vj}{\hat{\jmath}}
+      \newcommand{\vk}{\hat{k}}
+      \newcommand{\vn}{\vec{n}}
+      \newcommand{\vm}{\vec{m}}
+      \newcommand{\vr}{\vec{r}}
+      \newcommand{\vs}{\vec{s}}
+      \newcommand{\vu}{\vec{u}}
+      \newcommand{\vecv}{\vec{v}}
+      \newcommand{\vw}{\vec{w}}
+      \newcommand{\vx}{\vec{x}}
+      \newcommand{\vy}{\vec{y}}
+      \newcommand{\vz}{\vec{z}}
+      \newcommand{\vzero}{\vec{0}}
+      \newcommand{\vF}{\vec{F}}
+      \newcommand{\vG}{\vec{G}}
+      \newcommand{\vH}{\vec{H}}
+      \newcommand{\vR}{\vec{R}}
+      \newcommand{\vT}{\vec{T}}
+      \newcommand{\vN}{\vec{N}}
+      \newcommand{\vL}{\vec{L}}
+      \newcommand{\vA}{\vec{A}}
+      \newcommand{\vB}{\vec{B}}
+      \newcommand{\vS}{\vec{S}}
+      \newcommand{\proj}{\text{proj}}
+      \newcommand{\comp}{\text{comp}}
+      \newcommand{\nin}{}
+      \newcommand{\vecmag}[1]{\left\lVert #1\right\rVert}
+      \newcommand{\grad}{\nabla}
+      %\newcommand\restrict[1]{\raise-.5ex\hbox{$\Big|$}_{#1}}
+      % will need to use the two variable command to make the nicest possible formatting throughout different doc types
+      \newcommand\restrict[2]{\raise-.5ex\hbox{$\Big|_{#1}^{#2}$}}
+      \DeclareMathOperator{\curl}{curl}
+      \DeclareMathOperator{\divg}{div}
+</macros>
+    <latex-image-preamble>
+
+      \usepackage{tikz}
+      \usepackage{pgfplots}
+      \usetikzlibrary{positioning,matrix,arrows,hobby,patterns}
+      \usetikzlibrary{shapes,decorations,shadows,fadings,fillbetween}
+      \makeatletter
+      \pgfdeclarepatternformonly[\GridSize]{MyGrid}{\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{10pt}{10pt}}{\pgfqpoint{\GridSize}{\GridSize}}%
+      {
+        \pgfsetcolor{\tikz@pattern@color}
+        \pgfsetlinewidth{0.3pt}
+        \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+        \pgfpathlineto{\pgfqpoint{0pt}{9.1pt}}
+        \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+        \pgfpathlineto{\pgfqpoint{9.1pt}{0pt}}
+        \pgfusepath{stroke}
+      }
+      \makeatother
+      
+      \newdimen\GridSize
+      \tikzset{
+          GridSize/.code={\GridSize=#1},
+          GridSize=3pt
+      }
+      
+      \usetikzlibrary{decorations.markings}
+      \usetikzlibrary{arrows.meta}
+      
+      \tikzset{
+        orientation arrows/.style={
+          postaction={
+            decorate,
+            decoration={
+              markings,
+              mark=between positions 0 and 1 step 45pt with {\arrow{&gt;}},
+         }}}}
+      \tikzset{
+        arrow at end/.style={
+            decorate,decoration={
+                markings,
+                mark=at position .999 with{
+                    \arrow{#1};
+        }}}}      
+    </latex-image-preamble>
+
+    <rename element="exploration" xml:lang="en-US">Preview Activity</rename>
+    <rename element="objectives" xml:lang="en-US">Motivating Questions</rename>
+    <rename element="outcomes" xml:lang="en-US">Summary</rename>
+    <rename element="proposition" xml:lang="en-US">Key Idea</rename>
+    <rename element="task" xml:lang="en-US">part</rename>
+    <rename element="historical" xml:lang="en-US">Note to Instructor</rename>
+    <directories external="../assets"/>
+    <defaults>
+      <xrefs text="type-global"/>
     </defaults>
   </docinfo>
 
